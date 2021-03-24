@@ -4,7 +4,7 @@
         xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 
-    Title="MainWindow" Height="768" Width="1024" Background="PaleGoldenrod">
+    Title="MainWindow" Height="768" Width="1024" Background="Black">
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -60,14 +60,46 @@
             <TabItem Header="Scene">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" >
-                        <TextBlock Name="RenderState" Width="70" VerticalAlignment="Center" Foreground="White">
+                        <Button Width="25" Height="20">
+                            <Image Source="Images/Eye.png"></Image>
+                            <Button.Triggers>
+                                <!--<EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="WhiteSmoke"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>-->
+                            </Button.Triggers>
+                        </Button>
+                        <Button Width="25" Height="20">
+                            <Image Source="Images/Hand.png"></Image>
+                        </Button>
+                        <Button Width="25" Height="20">
+                            <Image Source="Images/NavMesh.png"></Image>
+                        </Button>
+                        <TextBlock Name="RenderState" Width="80" VerticalAlignment="Center" Foreground="White" TextAlignment="Center">
                             RenderState
                         </TextBlock>
                         <ComboBox Name="RenderStateBox" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
                             <ComboBoxItem Content="Shaded" Selected="Solid_Selected"/>
                             <ComboBoxItem Content="WireFrame" Selected="WireFrame_Selected"/>
                         </ComboBox>
-                        <TextBlock Width="300"/> <!--빈 공간-->
+                        <TextBlock Width="10"></TextBlock>
+                        <TextBlock VerticalAlignment="Center" Foreground="White" Width="90">ColliderViewer</TextBlock>
+                        <ComboBox Name="ColliderViewMode" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
+                            <ComboBoxItem Content="All" Selected="WireFrame_Selected"/>
+                            <ComboBoxItem Content="ForEditor" Selected="Solid_Selected"/>
+                            <ComboBoxItem Content="ForGame" Selected="WireFrame_Selected"/>
+                            <ComboBoxItem Content="Collisionable" Selected="Solid_Selected"/>
+                            <ComboBoxItem Content="Dynamic" Selected="WireFrame_Selected"/>
+                            <ComboBoxItem Content="Static" Selected="Solid_Selected"/>
+                            <ComboBoxItem Content="Multipurpose" Selected="WireFrame_Selected"/>
+                            <ComboBoxItem Content="Collider" Selected="Solid_Selected"/>
+                            <ComboBoxItem Content="Selectable" Selected="WireFrame_Selected"/>
+                            <ComboBoxItem Content="Nothing" Selected="WireFrame_Selected"/>
+                        </ComboBox>
+                        <TextBlock Width="40"/> <!--빈 공간-->
                         <TextBlock Width="40" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"> Gizmo</TextBlock>
                         <CheckBox VerticalAlignment="Center"/>
                     </StackPanel>
@@ -89,11 +121,12 @@
                 <!-- Inspector -->
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox VerticalAlignment="Center" 
+                        <TextBlock Width="10"></TextBlock>
+                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
                                   Checked="Active_Checked"
                                   Unchecked="Active_Unchecked"  
                                   IsChecked="True"/>
-                        <TextBlock Width="50" TextAlignment="Center">Name</TextBlock>
+                        <TextBlock Width="50" TextAlignment="Center" Foreground="White">Name</TextBlock>
                         <TextBox Width="150" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged"/>
                     </StackPanel>
                     <GroupBox x:Name="TransformData" IsEnabled="True">

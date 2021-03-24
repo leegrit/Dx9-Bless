@@ -157,6 +157,7 @@ namespace WPF_Tool
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
