@@ -99,7 +99,8 @@
                             <ComboBoxItem Content="Selectable" Selected="WireFrame_Selected"/>
                             <ComboBoxItem Content="Nothing" Selected="WireFrame_Selected"/>
                         </ComboBox>
-                        <TextBlock Width="40"/> <!--빈 공간-->
+                        <TextBlock Width="40"/>
+                        <!--빈 공간-->
                         <TextBlock Width="40" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"> Gizmo</TextBlock>
                         <CheckBox VerticalAlignment="Center"/>
                     </StackPanel>
@@ -113,25 +114,54 @@
 
             </TabItem>
             <TabItem Header="Game">
-                
+
             </TabItem>
         </TabControl>
         <TabControl Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" >
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="10"></TextBlock>
-                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
+                    <GroupBox x:Name="ObjectData" IsEnabled="True">
+                        <GroupBox.Header>
+                            <Label Width="100">Object Data</Label>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Width="10"></TextBlock>
+                                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
                                   Checked="Active_Checked"
                                   Unchecked="Active_Unchecked"  
                                   IsChecked="True"/>
-                        <TextBlock Width="50" TextAlignment="Center" Foreground="White">Name</TextBlock>
-                        <TextBox Width="150" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged"/>
-                    </StackPanel>
+                                <TextBlock Width="10"></TextBlock>
+                                <TextBlock Width="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Name</TextBlock>
+                                <TextBox Width="140" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Width="40"></TextBlock>
+                                <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
+                                <ComboBox  Width="140" VerticalAlignment="Top" SelectedIndex="0" >
+                                    <ComboBoxItem Content="Default" />
+                                    <ComboBoxItem Content="Terrain"/>
+                                    <ComboBoxItem Content="Player" />
+                                    <ComboBoxItem Content="Enemy"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Width="40"></TextBlock>
+                                <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Layer</TextBlock>
+                                <ComboBox  Width="140" VerticalAlignment="Top" SelectedIndex="0" >
+                                    <ComboBoxItem Content="Default" />
+                                    <ComboBoxItem Content="Terrain"/>
+                                    <ComboBoxItem Content="Player" />
+                                    <ComboBoxItem Content="Enemy"/>
+                                </ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <TextBlock/>
                     <GroupBox x:Name="TransformData" IsEnabled="True">
                         <GroupBox.Header>
-                            <Label>Transform Data</Label>
+                            <Label Width="100">Transform Data</Label>
                         </GroupBox.Header>
                         <StackPanel>
                             <TextBlock >Position</TextBlock>
@@ -164,7 +194,7 @@
                         </StackPanel>
                     </GroupBox>
                     <TextBlock/>
-                    <GroupBox x:Name="MeshData" IsEnabled="True">
+                    <GroupBox x:Name="MeshData" IsEnabled="True" >
                         <GroupBox.Header>
                             <Label>Mesh Data</Label>
                         </GroupBox.Header>
@@ -193,7 +223,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TreeView Width="150">
                         <TreeViewItem Header="Assets">
-                             <TreeViewItem Header="Mesh" MouseDown="Assets_Mesh_MouseDown"/>
+                            <TreeViewItem Header="Mesh" MouseDown="Assets_Mesh_MouseDown"/>
                             <TreeViewItem Header="Texture" MouseDown="Assets_Texture_MouseDown"/>
                         </TreeViewItem>
                         <TreeViewItem Header="Datas">
