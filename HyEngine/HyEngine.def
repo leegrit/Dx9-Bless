@@ -1,0 +1,13 @@
+LIBRARY "HyEngine"
+
+EXPORTS
+
+Initialize
+GetBackBuffer
+Update
+Render
+Destroy
+AddGameObject
+SelectEditObject
+InsertGameData
+InsertMeshData
