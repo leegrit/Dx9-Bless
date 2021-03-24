@@ -27,6 +27,8 @@ namespace Editor
 		// 이 함수는 해당 값을 대입하는게 아니라 그만큼 수정하는 함수
 		void AdjustEditCameraPos(float xPos, float yPos, float zPos);
 		void AdjustEditCameraRot(float xRot, float yRot, float zRot);
+		void SetSolidMode();
+		void SetWireFrameMode();
 
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }

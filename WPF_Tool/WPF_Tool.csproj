@@ -64,6 +64,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Scripts\CameraController.cs" />
+    <Compile Include="Scripts\DebugLoger.cs" />
     <Compile Include="Scripts\Externs.cs" />
     <Compile Include="Utility\FrameRateCalculator.cs" />
     <Compile Include="Utility\Serializer.cs" />

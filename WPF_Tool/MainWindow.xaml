@@ -64,8 +64,8 @@
                             RenderState
                         </TextBlock>
                         <ComboBox Name="RenderStateBox" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
-                            <ComboBoxItem Content="Shaded"/>
-                            <ComboBoxItem Content="WireFrame"/>
+                            <ComboBoxItem Content="Shaded" Selected="Solid_Selected"/>
+                            <ComboBoxItem Content="WireFrame" Selected="WireFrame_Selected"/>
                         </ComboBox>
                         <TextBlock Width="300"/> <!--빈 공간-->
                         <TextBlock Width="40" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"> Gizmo</TextBlock>

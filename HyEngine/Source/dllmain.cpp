@@ -92,3 +92,12 @@ extern "C" void WINAPI AdjustEditCameraRot(float xRot, float yRot, float zRot)
 {
 	EDIT_ENGINE->AdjustEditCameraRot(xRot, yRot, zRot);
 }
+
+extern "C" void WINAPI SetSolidMode()
+{
+	EDIT_ENGINE->SetSolidMode();
+}
+extern "C" void WINAPI SetWireFrameMode()
+{
+	EDIT_ENGINE->SetWireFrameMode();
+}

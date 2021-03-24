@@ -18,6 +18,7 @@ namespace WPF_Tool.Scripts
         private bool m_bMouseMoving = false;
 
         private Vector2 m_clickedPos;
+        private Vector2 m_clickedWindowPos;
         private Vector2 m_lastPos;
         private float m_deltaTime;
         //public static EKeyInputStatus[] m_currentKeyState = new EKeyInputStatus[4] { EKeyInputStatus.Up, EKeyInputStatus.Up, EKeyInputStatus.Up, EKeyInputStatus.Up};
@@ -92,22 +93,40 @@ namespace WPF_Tool.Scripts
         }
         public void OnMouseMove(object sender, EventArgs e)
         {
-            if (m_bRightButtonClicked == false) return;
-            Vector3 rot;
-            rot.x = 0;
-            rot.y = 0;
-            rot.z = 0;
+            if (m_bRightButtonClicked)
+            {
+                Vector3 rot;
+                rot.x = 0;
+                rot.y = 0;
+                rot.z = 0;
 
-            Point point = Mouse.GetPosition((IInputElement)m_dependencyObject);
-            Vector2 curPos;
-            curPos.x = (float)point.X;
-            curPos.y = (float)point.Y;
-            Vector2 result = m_lastPos - curPos;
-            m_lastPos = curPos;
-            result = Vector2.Normalize(result);
-            rot.y = result.x;
-            rot.x = result.y;
-            Externs.AdjustEditCameraRot(rot.x , rot.y , rot.z );
+                Point point = Mouse.GetPosition((IInputElement)m_dependencyObject);
+                Vector2 curPos;
+                curPos.x = (float)point.X;
+                curPos.y = (float)point.Y;
+                Vector2 result = m_lastPos - curPos;
+                m_lastPos = curPos;
+                result = Vector2.Normalize(result);
+                rot.y = result.x;
+                rot.x = result.y;
+                Externs.AdjustEditCameraRot(rot.x, rot.y, rot.z);
+            }
+            else if (m_bWheelClicked)
+            {
+                Vector2 pos;
+                pos.x = 0;
+                pos.y = 0;
+
+                Point point = Mouse.GetPosition((IInputElement)m_dependencyObject);
+                Vector2 curPos;
+                curPos.x = (float)point.X;
+                curPos.y = (float)point.Y;
+                Vector2 result = curPos - m_lastPos;
+                m_lastPos = curPos;
+                result = Vector2.Normalize(result);
+                result.x = 0;
+                Externs.AdjustEditCameraPos(result.x, result.y , 0);
+            }
         }
         public void OnRightButtonDownInDxRect(float xPos, float yPos)
         {
@@ -133,6 +152,10 @@ namespace WPF_Tool.Scripts
             pos.x = xPos;
             pos.y = yPos;
             m_clickedPos = pos;
+
+            Point point = Mouse.GetPosition((IInputElement)m_dependencyObject);
+            m_clickedWindowPos.x = (float)point.X;
+            m_clickedWindowPos.y = (float)point.Y;
         }
         public void OnWheelUpInDxRect()
         {

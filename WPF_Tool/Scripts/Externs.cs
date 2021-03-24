@@ -49,5 +49,11 @@ namespace WPF_Tool.Scripts
         [DllImport("HyEngine.dll")]
         public static extern void AdjustEditCameraRot(float xRot, float yRot, float zRot);
 
+
+        [DllImport("HyEngine.dll")]
+        public static extern void SetSolidMode();
+
+        [DllImport("HyEngine.dll")]
+        public static extern void SetWireFrameMode();
     }
 }

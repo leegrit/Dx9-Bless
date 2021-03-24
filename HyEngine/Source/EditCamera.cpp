@@ -42,7 +42,8 @@ void EditCamera::CameraUpdate()
 
 	D3DXMatrixTranslation(&matPos, -m_pTransform->m_position.x(),-m_pTransform->m_position.y(), -m_pTransform->m_position.z());
 
-	m_matView = matScale *matRot*  matPos ;
+	// юс╫ц
+	m_matView = matScale *  matPos* matRot;
 
 	/*D3DXVECTOR3 xAxis;
 	memcpy(&xAxis, &matRot.m[0][0], sizeof(D3DXVECTOR3));

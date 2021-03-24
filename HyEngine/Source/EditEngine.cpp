@@ -180,6 +180,16 @@ void Editor::EditEngine::AdjustEditCameraRot(float xRot, float yRot, float zRot)
 
 }
 
+void Editor::EditEngine::SetSolidMode()
+{
+	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+}
+
+void Editor::EditEngine::SetWireFrameMode()
+{
+	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+}
+
 HRESULT EditEngine::EnsureHWND()
 {
 	HRESULT hr = S_OK;

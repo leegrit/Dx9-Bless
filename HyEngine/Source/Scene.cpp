@@ -195,9 +195,13 @@ void Scene::RenderScene(Renderer * renderer)
 	
 #ifdef _DEBUG
 #ifdef COLLIDER_RENDER
-	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	RenderCollider(); // Fixed Pipeline
-	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	{
+		DWORD fillMode;
+		DEVICE->GetRenderState(D3DRS_FILLMODE, &fillMode);
+		DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+		RenderCollider(); // Fixed Pipeline
+		DEVICE->SetRenderState(D3DRS_FILLMODE, fillMode);
+	}
 #endif
 #endif
 	renderer->SetOpaqueContext();

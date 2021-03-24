@@ -27,15 +27,27 @@ void EditMesh::Initialize()
 void EditMesh::Render()
 {
 	GameObject::Render();
-	assert(m_pMesh);
-	DEVICE->SetStreamSource(0, m_pMesh->GetVertexBuffer(), 0, m_pMesh->GetVertexSize());
-	DEVICE->SetVertexDeclaration(m_pMesh->GetDeclare());
-	DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
 
-	assert(m_pBaseTex);
-	DEVICE->SetTexture(0, m_pBaseTex.get());
+	if (m_pDxMesh)
+	{
+		for (int i = 0; i < m_mtrls.size(); i++)
+		{
+			DEVICE->SetMaterial(&m_mtrls[i]);
+			DEVICE->SetTexture(0, m_textures[i]);
+			m_pDxMesh->DrawSubset(i);
+		}
+	}
+	else if (m_pMesh)
+	{
+		assert(m_pMesh);
+		DEVICE->SetStreamSource(0, m_pMesh->GetVertexBuffer(), 0, m_pMesh->GetVertexSize());
+		DEVICE->SetVertexDeclaration(m_pMesh->GetDeclare());
+		DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
 
-	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
+		assert(m_pBaseTex);
+		DEVICE->SetTexture(0, m_pBaseTex.get());
+		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
+	}
 }
 
 void Editor::EditMesh::UpdatedData(EDataType dataType)
@@ -60,6 +72,74 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 		// xfile formatÀÎ °æ¿ì
 		else if (std::wcscmp(meshPathExt.c_str(), L"X") == 0 || std::wcscmp(meshPathExt.c_str(), L"x") == 0)
 		{
+			HRESULT hr = 0;
+
+			ID3DXBuffer * adjBuffer = nullptr;
+			ID3DXBuffer* mtrlBuffer = nullptr;
+			DWORD numMtrls = 0;
+
+			hr = D3DXLoadMeshFromX
+			(
+				(ResourcePath::MeshFilePath + meshPath).c_str(),
+				D3DXMESH_MANAGED,
+				DEVICE,
+				&adjBuffer,
+				&mtrlBuffer,
+				0,
+				&numMtrls,
+				&m_pDxMesh
+			);
+			assert(SUCCEEDED(hr));
+
+			if (mtrlBuffer != 0 && numMtrls != 0)
+			{
+				D3DXMATERIAL * mtrls = (D3DXMATERIAL*)mtrlBuffer->GetBufferPointer();
+
+				for (int i = 0; i < numMtrls; i++)
+				{
+					// the MatD3D property doesn't have an ambient value set
+					// when its loaded, so set it now:
+					mtrls[i].MatD3D.Ambient = mtrls[i].MatD3D.Diffuse;
+
+					// save the ith material
+					m_mtrls.push_back(mtrls[i].MatD3D);
+
+					// check if the ith material has an associative texture
+					if (mtrls[i].pTextureFilename != 0)
+					{
+						IDirect3DTexture9* tex = nullptr;
+						std::wstring fileName = CString::CharToWstring(mtrls[i].pTextureFilename);
+						D3DXCreateTextureFromFile
+						(
+							DEVICE,
+							(ResourcePath::TextureFilePath + fileName).c_str(),
+							&tex
+						);
+
+						// save the loaded texture
+						m_textures.push_back(tex);
+					}
+					else
+					{
+						// no texture for the ith subset
+						m_textures.push_back(0);
+					}
+				}
+			}
+			mtrlBuffer->Release();
+
+			hr = m_pDxMesh->OptimizeInplace
+			(
+				D3DXMESHOPT_ATTRSORT |
+				D3DXMESHOPT_COMPACT |
+				D3DXMESHOPT_VERTEXCACHE,
+				(DWORD*)adjBuffer->GetBufferPointer(),
+				0, 0, 0
+			);
+
+			adjBuffer->Release();
+
+			assert(SUCCEEDED(hr));
 
 		}
 

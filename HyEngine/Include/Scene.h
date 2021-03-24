@@ -142,7 +142,6 @@ namespace HyEngine
 
 		class Light* GetGlobalLight() const;
 	private:
-		// TODO : 
 
 
 

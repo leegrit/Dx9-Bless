@@ -196,9 +196,13 @@ namespace WPF_Tool
                         {
                             int index = ofdlg.FileName.LastIndexOf("\\");
                             string text = ofdlg.FileName.Substring(index + 1);
-
+                            int extIndex = text.LastIndexOf(".");
+                            string ext = text.Substring(extIndex);
                             hierarchyItem.meshData.meshFilePath = text;
                             MeshFilePath.Text = text;
+                            // x file은 따로 텍스처가 필요 없기 때문
+                            if (ext == ".X" || ext == ".x")
+                                DiffuseFilePath.Text = text;
                             break;
                         }
                     }
@@ -712,6 +716,16 @@ namespace WPF_Tool
                 Externs.InactiveEditObject();
         }
 
-        
+        private void Solid_Selected(object sender, RoutedEventArgs e)
+        {
+            if(bWindowInit)
+                Externs.SetSolidMode();
+        }
+
+        private void WireFrame_Selected(object sender, RoutedEventArgs e)
+        {
+            if(bWindowInit)
+                Externs.SetWireFrameMode();
+        }
     }
 }

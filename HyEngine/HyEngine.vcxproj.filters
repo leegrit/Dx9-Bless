@@ -100,6 +100,9 @@
     <Filter Include="Editor\GlobalValue">
       <UniqueIdentifier>{c9ed009e-243a-4c02-b8ce-01660325303a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\Object">
+      <UniqueIdentifier>{7978c0ed-dd89-46d8-82ed-32199ab1947b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -404,9 +407,6 @@
     <ClInclude Include="Include\TestMesh.h">
       <Filter>Export\Sample</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EditMesh.h">
-      <Filter>Editor</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Functor.h">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -424,9 +424,6 @@
     </ClInclude>
     <ClInclude Include="Include\VectorData.h">
       <Filter>Editor\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EditObject.h">
-      <Filter>Editor</Filter>
     </ClInclude>
     <ClInclude Include="Include\EditData.h">
       <Filter>Editor\Data</Filter>
@@ -448,6 +445,12 @@
     </ClInclude>
     <ClInclude Include="Include\StringForEditor.h">
       <Filter>Editor\GlobalValue</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EditMesh.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EditObject.h">
+      <Filter>Editor\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -721,9 +724,6 @@
     <ClCompile Include="Source\TestMesh.cpp">
       <Filter>Export\Sample</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EditMesh.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Functor.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
@@ -742,9 +742,6 @@
     <ClCompile Include="Source\VectorData.cpp">
       <Filter>Editor\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EditObject.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EditData.cpp">
       <Filter>Editor\Data</Filter>
     </ClCompile>
@@ -759,6 +756,12 @@
     </ClCompile>
     <ClCompile Include="Source\EditScene.cpp">
       <Filter>Editor\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditMesh.cpp">
+      <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditObject.cpp">
+      <Filter>Editor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
