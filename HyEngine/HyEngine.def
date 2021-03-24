@@ -11,3 +11,7 @@ AddGameObject
 SelectEditObject
 InsertGameData
 InsertMeshData
+ActiveEditObject
+InactiveEditObject
+AdjustEditCameraPos
+AdjustEditCameraRot

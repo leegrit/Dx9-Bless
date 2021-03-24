@@ -18,6 +18,9 @@ namespace Editor
 		void AddMeshObject(int editIndex);
 		GameObject* GetMeshObject(int editIndex);
 		
+		class Camera* GetEditCamera();
+	private :
+		class EditCamera* m_pEditCamera = nullptr;
 	};
 
 }

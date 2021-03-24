@@ -98,6 +98,16 @@ Vector3 HyEngine::Camera::GetPosition() const
 	return m_pTransform->m_position;
 }
 
+Quaternion HyEngine::Camera::GetRotation() const
+{
+	return m_pTransform->m_rotation;
+}
+
+Vector3 HyEngine::Camera::GetRotationEuler() const
+{
+	return m_pTransform->m_rotationEuler;
+}
+
 D3DXMATRIX HyEngine::Camera::GetViewMatrix() const
 {
 	/*D3DXMATRIX viewMat;
@@ -149,6 +159,11 @@ D3DXMATRIX HyEngine::Camera::GetOrthoMatrix() const
 void HyEngine::Camera::SetPosition(float x, float y, float z)
 {
 	m_pTransform->SetPosition(x, y, z);
+}
+
+void HyEngine::Camera::SetRotationEuler(float x, float y, float z)
+{
+	m_pTransform->SetRotationEuler(D3DXVECTOR3(x, y, z));
 }
 
 Transform * HyEngine::Camera::GetTransform()

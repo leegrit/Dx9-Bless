@@ -19,6 +19,10 @@ namespace Editor
 		virtual void Initialize() override;
 		virtual void CameraUpdate() override;
 
+	private :
+		D3DXVECTOR3 m_xAxis;
+		D3DXVECTOR3 m_yAxis;
+		D3DXVECTOR3 m_zAxis;
 	};
 }
 

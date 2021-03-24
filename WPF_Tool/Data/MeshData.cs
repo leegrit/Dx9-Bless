@@ -9,7 +9,7 @@ namespace WPF_Tool.Data
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct MeshData
+    public struct MeshData
     {
         public MeshData(int index)
         {

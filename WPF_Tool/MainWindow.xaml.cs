@@ -18,8 +18,10 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using WPF_Tool.Data;
 using WPF_Tool.Utility;
+using WPF_Tool.Scripts;
 using Microsoft.Win32;
-
+using System.IO;
+using System.Diagnostics;
 
 namespace WPF_Tool
 {
@@ -32,14 +34,14 @@ namespace WPF_Tool
         {
             InitializeComponent();
 
-            Initialize();
+            Externs.Initialize();
             CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
-
-            _updateTimer = new DispatcherTimer();
-            _updateTimer.Tick += new EventHandler(Update_Tick);
-          //  60 frame
-            _updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
-            _updateTimer.Start();
+            CompositionTarget.Rendering += new EventHandler(Update_Tick);
+          //  _updateTimer = new DispatcherTimer();
+          //  _updateTimer.Tick += new EventHandler(Update_Tick);
+          ////  60 frame
+          //  _updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+          //  _updateTimer.Start();
 
 
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -49,25 +51,47 @@ namespace WPF_Tool
             this.Left = (screenWidth / 2) - (windowWidth / 2);
             this.Top = (screenHeight / 2) - (windowHeight / 2);
 
+            string baseDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            int lastIndex = baseDirectory.LastIndexOf(toolFolderName);
 
-            
+            string tempString;
+            tempString = baseDirectory.Substring(0, lastIndex);
+            ResourcePath = tempString + @"_Resources\";
+            MeshPath = tempString + @"_Resources\Mesh\";
+            TexturePath = tempString + @"_Resources\Texture\";
+
+
+            frameRateCalculator = new FrameRateCalculator();
+            cameraController = new CameraController(this);
+
+
+             bWindowInit = true;
 
             //AddGameObject();
         }
         ~MainWindow()
         {
-            Destroy();
+            Externs.Destroy();
         }
         void Update_Tick(object sender, EventArgs e)
         {
-           
-           
+            frameRateCalculator.Tick();
+            EditorFrame.Text = frameRateCalculator.GetFrameRate().ToString();
+            float elapsedTime = (float)frameRateCalculator.GetElapsedTime().Milliseconds / 1000;
+
             DxActualWidth = imgelt.ActualWidth;
             DxActualHeight = imgelt.ActualHeight;
             DxScreenSizeX.Text = DxActualWidth.ToString("N3");
             DxScreenSizeY.Text = DxActualHeight.ToString("N3");
-            Update();
+
+            Point pointToWindow = Mouse.GetPosition(this);
+            EditorMousePosX.Text = pointToWindow.X.ToString("N3");
+            EditorMousePosY.Text = pointToWindow.Y.ToString("N3");
+
+            cameraController.Update(elapsedTime);
+            Externs.Update();
         }
+
         void CompositionTarget_Rendering(object sender, EventArgs e)
         {
             RenderingEventArgs args = (RenderingEventArgs)e;
@@ -77,14 +101,14 @@ namespace WPF_Tool
             if (d3dimg.IsFrontBufferAvailable && _lastRender != args.RenderingTime)
             {
                 IntPtr pSurface = IntPtr.Zero;
-                GetBackBuffer(out pSurface);
+                Externs.GetBackBuffer(out pSurface);
                 if (pSurface != IntPtr.Zero)
                 {
                     d3dimg.Lock();
                     // Repeatedly calling SetBackBuffer with the same IntPtr is 
                     // a no-op. There is no performance penalty.
                     d3dimg.SetBackBuffer(D3DResourceType.IDirect3DSurface9, pSurface);
-                    Render();
+                    Externs.Render();
                     d3dimg.AddDirtyRect(new Int32Rect(0, 0, d3dimg.PixelWidth, d3dimg.PixelHeight));
                     d3dimg.Unlock();
 
@@ -92,42 +116,21 @@ namespace WPF_Tool
                 }
             }
         }
-
-        DispatcherTimer _updateTimer;
+        
         TimeSpan _lastRender;
         double DxActualWidth;
         double DxActualHeight;
         string toolFolderName = "WPF_Tool";
+        string ResourcePath;
+        string MeshPath;
+        string TexturePath;
+        bool bWindowInit = false;
+        FrameRateCalculator frameRateCalculator;
+        CameraController cameraController;
 
         #region DllImports
 
-        [DllImport("HyEngine.dll")]
-        static extern void Initialize();
-
-        [DllImport("HyEngine.dll")]
-        static extern void Destroy();
-
-        [DllImport("HyEngine.dll")]
-        static extern void GetBackBuffer(out IntPtr pSurface);
-
-        [DllImport("HyEngine.dll")]
-        static extern void Update();
-
-        [DllImport("HyEngine.dll")]
-        static extern void Render();
-
-        [DllImport("HyEngine.dll")]
-        static extern void AddGameObject(int index);
-
-        [DllImport("HyEngine.dll")]
-        static extern void InsertGameData(ref GameObjectData data);
-
-        [DllImport("HyEngine.dll")]
-        static extern void InsertMeshData(ref MeshData data);
-
-        [DllImport("HyEngine.dll")]
-        static extern void SelectEditObject(int index);
-
+     
         #endregion
 
         #region ButtonEvent
@@ -179,7 +182,8 @@ namespace WPF_Tool
                 //ofdlg.InitialDirectory = @"..\..\..\_Resources\Mesh";// "../../../_Resources/Mesh";
                 // ofdlg.InitialDirectory = System.IO.Path.Combine(
                 //    System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), "..\\..\\..\\_Resources\\Mesh\\");
-                ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                //ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                ofdlg.InitialDirectory = MeshPath;
                 ofdlg.CheckFileExists = true; // 파일 존재여부 확인
                 ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
 
@@ -206,8 +210,8 @@ namespace WPF_Tool
             OpenFileDialog ofdlg = new OpenFileDialog();
             {
                 // 기본 폴더
-                ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-
+                //ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                ofdlg.InitialDirectory = TexturePath;
                 ofdlg.CheckFileExists = true; // 파일 존재여부 확인
                 ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
 
@@ -246,7 +250,7 @@ namespace WPF_Tool
             data.meshData = new MeshData(index);
             gameObjectIndex++;
             hierarchyList.Add(data);
-            AddGameObject(index);
+            Externs.AddGameObject(index);
         }
 
         #endregion
@@ -259,7 +263,7 @@ namespace WPF_Tool
                 if (hierarchyItem.index.ToString() == item.Uid.ToString())
                 {
                     selectedIndex = hierarchyItem.index;
-                    SelectEditObject(hierarchyItem.index);
+                    Externs.SelectEditObject(hierarchyItem.index);
                     GameObjectName.Text = hierarchyItem.gameObjectData.name;
                     PositionX.Text = hierarchyItem.gameObjectData.transform.position.x.ToString();
                     PositionY.Text = hierarchyItem.gameObjectData.transform.position.y.ToString();
@@ -313,7 +317,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out xPos);
                     hierarchyItem.gameObjectData.transform.position.x = xPos;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -330,7 +334,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out yPos);
                     hierarchyItem.gameObjectData.transform.position.y = yPos;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -348,7 +352,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out zPos);
                     hierarchyItem.gameObjectData.transform.position.z = zPos;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -366,7 +370,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out xRot);
                     hierarchyItem.gameObjectData.transform.rotation.x = xRot;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -384,7 +388,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out yRot);
                     hierarchyItem.gameObjectData.transform.rotation.y = yRot;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -402,7 +406,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out zRot);
                     hierarchyItem.gameObjectData.transform.rotation.z = zRot;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -420,7 +424,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out xScale);
                     hierarchyItem.gameObjectData.transform.scale.x = xScale;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -438,7 +442,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out yScale);
                     hierarchyItem.gameObjectData.transform.scale.y = yScale;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -456,7 +460,7 @@ namespace WPF_Tool
                     float.TryParse(textBox.Text, out zScale);
                     hierarchyItem.gameObjectData.transform.scale.z = zScale;
                     GameObjectData data = hierarchyItem.gameObjectData;
-                    InsertGameData(ref data);
+                    Externs.InsertGameData(ref data);
                     break;
                 }
             }
@@ -474,7 +478,7 @@ namespace WPF_Tool
                     hierarchyList[i] = data;
                     ListBoxItem item = (ListBoxItem)HierarchyList.Items.GetItemAt(i);
                     item.Content = textBox.Text;
-                    InsertGameData(ref data.gameObjectData);
+                    Externs.InsertGameData(ref data.gameObjectData);
                     break;
                 }
             }
@@ -489,7 +493,7 @@ namespace WPF_Tool
                     HierarchyData data = hierarchyList[i];
                     data.meshData.meshFilePath = textBox.Text;
                     hierarchyList[i] = data;
-                    InsertMeshData(ref data.meshData);
+                    Externs.InsertMeshData(ref data.meshData);
                     break;
                 }
             }
@@ -504,7 +508,7 @@ namespace WPF_Tool
                     HierarchyData data = hierarchyList[i];
                     data.meshData.diffuseTexturePath = textBox.Text;
                     hierarchyList[i] = data;
-                    InsertMeshData(ref data.meshData);
+                    Externs.InsertMeshData(ref data.meshData);
                     break;
                 }
             }
@@ -540,8 +544,16 @@ namespace WPF_Tool
 
             string message = "DxMouseDown - X : " + actualX.ToString("N3") + ", Y : " + actualY.ToString("N3");
 
+            if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
+            {
+                cameraController.OnWheelDownInDxRect((float)mousePos.X, (float)mousePos.Y);
+            }
+            else if (e.ChangedButton == MouseButton.Right && e.ButtonState == MouseButtonState.Pressed)
+            {
+                cameraController.OnRightButtonDownInDxRect((float)mousePos.X, (float)mousePos.Y);
+            }
 
-            DebugLog(message);
+            DebugLog(message, ELogType.Log);
         }
 
         private void Dx_MouseUp(object sender, MouseButtonEventArgs e)
@@ -555,41 +567,151 @@ namespace WPF_Tool
 
             double actualX = d3dimg.Width * xRatio;
             double actualY = d3dimg.Height * yRatio;
-            
+
+
+            if (e.ChangedButton == MouseButton.Middle)
+            {
+                cameraController.OnWheelUpInDxRect();
+            }
+            else if (e.ChangedButton == MouseButton.Right)
+            {
+                cameraController.OnRightButtonUpInDxRect();
+            }
+
         }
 
-        public void DebugLog(string message)
+        public void DebugLog(string message, ELogType logType = ELogType.Log)
         {
             TextBlock element = new TextBlock();
-            element.Text = message;
+            switch(logType)
+            {
+                case ELogType.Log:
+                    string logLabel = "[Log] ";
+                    element.Text = logLabel + message;
+                    element.Foreground = Brushes.White;
+                    break;
+                case ELogType.Warning:
+                    string warningLabel = "[Warning] ";
+                    element.Text = warningLabel + message;
+                    element.Foreground = Brushes.Yellow;
+                    break;
+                case ELogType.Error:
+                    string errorLabel = "[Error] ";
+                    element.Text = errorLabel + message;
+                    element.Foreground = Brushes.Red;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
             ConsoleMessages.Children.Add(element);
             ConsoleScrollViewer.ScrollToBottom();
         }
 
         private void Assets_Mesh_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            string str = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            int lastIndex = str.LastIndexOf(toolFolderName);
-
-           str =  str.Substring(0, lastIndex);
-            str = str + @"_Resources\Mesh";
-            if (System.IO.Directory.Exists(str))
+            ProjectItems.Children.Clear();
+            if (System.IO.Directory.Exists(MeshPath))
             {
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(str);
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(MeshPath);
                 foreach (var item in info.GetFiles())
                 {
                     // 잘 들어온다.
                     // 이어서 작업 해야함. TODO
                     // 이걸로 Unity Project 창처럼 만들어야함.
                     // 그 다음엔 XfileFormat 출력
-                    string fileName = item.Name;
-                    string fileType = item.Extension;
+                    Stream imageStreamSource = new FileStream(TexturePath + @"MeshIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    BitmapSource bitmapSource = decoder.Frames[0];
+                    Image itemImage = new Image();
+                    itemImage.Source = bitmapSource;
+                    itemImage.Width = 95;
+                    itemImage.Height = 75;
+
+                    TextBlock itemText = new TextBlock();
+                    itemText.Text = item.Name;
+                    itemText.TextAlignment = TextAlignment.Center;
+                    itemText.Foreground = Brushes.White;
+                    itemText.Width = 95;
+                    itemText.Height = 20;
+
+                    StackPanel itemPanel = new StackPanel();
+                    itemPanel.VerticalAlignment = VerticalAlignment.Center;
+                    itemPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    itemPanel.Children.Add(itemImage);
+                    itemPanel.Children.Add(itemText);
+
+                    ProjectItems.Children.Add(itemPanel);
+
+                   // string fileName = item.Name;
+                    //string fileType = item.Extension;
                 }
             }
-            else
+        }
+        private void Assets_Texture_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ProjectItems.Children.Clear();
+            if (System.IO.Directory.Exists(TexturePath))
             {
-                int a = 0;
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(TexturePath);
+                foreach (var item in info.GetFiles())
+                {
+                    // 잘 들어온다.
+                    // 이어서 작업 해야함. TODO
+                    // 이걸로 Unity Project 창처럼 만들어야함.
+                    // 그 다음엔 XfileFormat 출력
+
+                    // png만 출력할 수 있음
+                    BitmapSource bitmapSource;
+                    if (item.Extension == ".png")
+                    {
+                        Stream imageStreamSource = new FileStream(item.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        bitmapSource = decoder.Frames[0];
+                    }
+                    else
+                    {
+                        Stream imageStreamSource = new FileStream(TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        bitmapSource = decoder.Frames[0];
+                    }
+                    Image itemImage = new Image();
+                    itemImage.Source = bitmapSource;
+                    itemImage.Width = 95;
+                    itemImage.Height = 75;
+
+                    TextBlock itemText = new TextBlock();
+                    itemText.Text = item.Name;
+                    itemText.TextAlignment = TextAlignment.Center;
+                    itemText.Foreground = Brushes.White;
+                    itemText.Width = 95;
+                    itemText.Height = 20;
+
+                    StackPanel itemPanel = new StackPanel();
+                    itemPanel.VerticalAlignment = VerticalAlignment.Center;
+                    itemPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    itemPanel.Children.Add(itemImage);
+                    itemPanel.Children.Add(itemText);
+
+                    ProjectItems.Children.Add(itemPanel);
+
+                    // string fileName = item.Name;
+                    //string fileType = item.Extension;
+                }
             }
         }
+        private void Active_Checked(object sender, RoutedEventArgs e)
+        {
+            if(bWindowInit)
+                Externs.ActiveEditObject();
+        }
+
+        private void Active_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if(bWindowInit)
+                Externs.InactiveEditObject();
+        }
+
+        
     }
 }

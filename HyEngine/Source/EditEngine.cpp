@@ -89,7 +89,17 @@ void EditEngine::Render()
 
 void EditEngine::Update()
 {
-	m_pEditScene->UpdateScene();
+	if (m_bGameMode)
+	{
+		m_pEditScene->UpdateScene();
+	}
+	else // editMode
+	{
+		assert(m_pEditScene);
+		EditScene* editScene = dynamic_cast<EditScene*>(m_pEditScene);
+		assert(editScene);
+		editScene->GetSelectedCamera()->CameraUpdate();
+	}
 }
 
 void EditEngine::GetBackBuffer(IDirect3DSurface9 ** ppSurface)
@@ -130,6 +140,44 @@ void Editor::EditEngine::InsertMeshData(MeshData * data)
 	EditObject* obj = dynamic_cast<EditObject*>(m_pSelectedObject);
 	assert(obj);
 	obj->InsertMeshData(data);
+}
+
+void Editor::EditEngine::ActiveObject()
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->SetActive(true);
+}
+
+void Editor::EditEngine::InactiveObject()
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->SetActive(false);
+}
+
+void Editor::EditEngine::AdjustEditCameraPos(float xPos, float yPos, float zPos)
+{
+	D3DXVECTOR3 curPos = m_pEditScene->GetEditCamera()->GetPosition();
+	Transform* curTr = m_pEditScene->GetEditCamera()->GetTransform();
+
+	D3DXVECTOR3 forward = curTr->Forward() * zPos;
+	D3DXVECTOR3 up = curTr->Up() * yPos;
+	D3DXVECTOR3 right = curTr->Right() * xPos;
+	curPos += forward;
+	curPos += up;
+	curPos += right;
+	//curPos = D3DXVECTOR3(curPos.x + xPos, curPos.y + yPos, curPos.z + zPos);
+
+	m_pEditScene->GetEditCamera()->SetPosition(curPos.x, curPos.y, curPos.z);
+}
+
+void Editor::EditEngine::AdjustEditCameraRot(float xRot, float yRot, float zRot)
+{
+	D3DXVECTOR3 curRot = m_pEditScene->GetEditCamera()->GetRotationEuler();
+	curRot = D3DXVECTOR3(curRot.x + xRot, curRot.y + yRot, curRot.z + zRot);
+	m_pEditScene->GetEditCamera()->SetRotationEuler(curRot.x, curRot.y, curRot.z);
+
 }
 
 HRESULT EditEngine::EnsureHWND()

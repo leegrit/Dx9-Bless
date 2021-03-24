@@ -10,4 +10,24 @@ namespace WPF_Tool.Data
     {
         Mesh,
     }
+    public enum EKeyState
+    {
+        Down,
+        Up,
+        Left,
+        Right,
+    }
+    public enum EKeyInputStatus
+    {
+        Up,
+        Down,
+        Press,
+    }
+
+    public enum ELogType
+    {
+        Log,
+        Warning,
+        Error,
+    }
 }

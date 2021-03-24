@@ -10,17 +10,13 @@ using namespace Editor;
 
 void Editor::EditScene::Update()
 {
-	if (EDIT_MOUSE->Press(0))
-	{
-		D3DXVECTOR3 pos = EDIT_MOUSE->GetPosition();
 
-	}
 }
 
 void Editor::EditScene::Load()
 {
-	Camera* camera = EditCamera::Create(this, nullptr);
-
+	m_pEditCamera = EditCamera::Create(this, nullptr);
+	Camera * camera = m_pEditCamera;
 	AddCamera(camera->GetName(), camera);
 	SelectCamera(camera->GetName());
 
@@ -32,6 +28,7 @@ void Editor::EditScene::Load()
 
 void Editor::EditScene::Unload()
 {
+	Object::Destroy(m_pEditCamera);
 }
 
 void Editor::EditScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -58,6 +55,11 @@ GameObject * Editor::EditScene::GetMeshObject(int index)
 		if (editObj->GetEditID() == index)
 			return obj;
 	}
+}
+
+Camera * Editor::EditScene::GetEditCamera()
+{
+	return m_pEditCamera;
 }
 
 

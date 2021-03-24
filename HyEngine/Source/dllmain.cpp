@@ -74,3 +74,21 @@ extern "C" void WINAPI SelectEditObject(int index)
 {
 	EDIT_ENGINE->SelectObject(index);
 }
+
+extern "C" void WINAPI ActiveEditObject()
+{
+	EDIT_ENGINE->ActiveObject();
+}
+
+extern "C" void WINAPI InactiveEditObject()
+{
+	EDIT_ENGINE->InactiveObject();
+}
+extern "C" void WINAPI AdjustEditCameraPos(float xPos, float yPos, float zPos)
+{
+	EDIT_ENGINE->AdjustEditCameraPos(xPos, yPos, zPos);
+}
+extern "C" void WINAPI AdjustEditCameraRot(float xRot, float yRot, float zRot)
+{
+	EDIT_ENGINE->AdjustEditCameraRot(xRot, yRot, zRot);
+}

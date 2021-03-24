@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:WPF_Tool"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/Themes/ExpressionDark.xaml"/>
     </Application.Resources>
 </Application>

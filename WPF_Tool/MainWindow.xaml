@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:i="clr-namespace:System.Windows.Interop;assembly=PresentationCore"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
     Title="MainWindow" Height="768" Width="1024" Background="PaleGoldenrod">
-    <Grid ShowGridLines="True">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="2*"/>
@@ -26,6 +27,9 @@
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
                     <MenuItem Header="_CreateMesh" Click="Btn_CreateMesh"/>
+                    <MenuItem Header="_CreateEffect" />
+                    <MenuItem Header="_CreateCamera"/>
+                    <MenuItem Header="_CreateLight" />
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -37,10 +41,13 @@
                 <!-- 여기서 하이어라키 -->
                 <ListBox x:Name="HierarchyList"
                          HorizontalAlignment="Left"
-                         VerticalAlignment="Top" Height="870" Width="190">
+                         VerticalAlignment="Top" Height="870" Width="198">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="_CreateMesh" Click="Btn_CreateMesh"/>
+                            <MenuItem Header="_CreateMesh" Foreground="Black" Click="Btn_CreateMesh"/>
+                            <MenuItem Header="_CreateEffect" Foreground="Black" />
+                            <MenuItem Header="_CreateCamera" Foreground="Black" />
+                            <MenuItem Header="_CreateLight" Foreground="Black"/>
 
                         </ContextMenu>
                     </ListBox.ContextMenu>
@@ -52,16 +59,20 @@
         <TabControl Grid.Row="1" Grid.Column="1">
             <TabItem Header="Scene">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="BlanchedAlmond">
-                        <TextBlock Name="RenderState" Width="70" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Name="RenderState" Width="70" VerticalAlignment="Center" Foreground="White">
                             RenderState
                         </TextBlock>
-                        <ComboBox Name="RenderStateBox" Width="70" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
+                        <ComboBox Name="RenderStateBox" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
                             <ComboBoxItem Content="Shaded"/>
                             <ComboBoxItem Content="WireFrame"/>
                         </ComboBox>
+                        <TextBlock Width="300"/> <!--빈 공간-->
+                        <TextBlock Width="40" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"> Gizmo</TextBlock>
+                        <CheckBox VerticalAlignment="Center"/>
                     </StackPanel>
-                    <Image x:Name="imgelt" MouseMove="Dx_MouseMove" MouseDown="Dx_MouseDown" MouseUp="Dx_MouseUp">
+                    <Image x:Name="imgelt"
+                           MouseMove="Dx_MouseMove" MouseDown="Dx_MouseDown" MouseUp="Dx_MouseUp">
                         <Image.Source>
                             <i:D3DImage x:Name="d3dimg"/>
                         </Image.Source>
@@ -69,13 +80,20 @@
                 </StackPanel>
 
             </TabItem>
+            <TabItem Header="Game">
+                
+            </TabItem>
         </TabControl>
         <TabControl Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" >
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="50" >Name</TextBlock>
+                        <CheckBox VerticalAlignment="Center" 
+                                  Checked="Active_Checked"
+                                  Unchecked="Active_Unchecked"  
+                                  IsChecked="True"/>
+                        <TextBlock Width="50" TextAlignment="Center">Name</TextBlock>
                         <TextBox Width="150" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged"/>
                     </StackPanel>
                     <GroupBox x:Name="TransformData" IsEnabled="True">
@@ -142,21 +160,17 @@
                 <StackPanel Orientation="Horizontal">
                     <TreeView Width="150">
                         <TreeViewItem Header="Assets">
-                            <TreeViewItem Header="Mesh" MouseDoubleClick="Assets_Mesh_MouseDown"/>
-                            <TreeViewItem Header="Texture" />
+                             <TreeViewItem Header="Mesh" MouseDown="Assets_Mesh_MouseDown"/>
+                            <TreeViewItem Header="Texture" MouseDown="Assets_Texture_MouseDown"/>
                         </TreeViewItem>
                         <TreeViewItem Header="Datas">
-                            <ListBoxItem Content="GameObjectData"/>
-                            <ListBoxItem Content="MeshData"/>
+                            <TreeViewItem Header="GameObjectData"/>
+                            <TreeViewItem Header="MeshData" />
                         </TreeViewItem>
                     </TreeView>
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   Width="610" Height="200">
-                        <WrapPanel>
-                            <StackPanel>
-                                <Image></Image>
-                                <TextBlock>aa</TextBlock>
-                            </StackPanel>
+                        <WrapPanel x:Name="ProjectItems">
                         </WrapPanel>
                     </ScrollViewer>
                 </StackPanel>
@@ -172,20 +186,30 @@
                     </ScrollViewer>
                     <StackPanel Width="360">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Width="130">DxScreenSize</TextBlock>
-                            <TextBlock Width="20">X :</TextBlock>
-                            <TextBlock  x:Name="DxScreenSizeX" Width="80">0</TextBlock>
-                            <TextBlock  Width="20">Y :</TextBlock>
-                            <TextBlock  x:Name="DxScreenSizeY" Width="80">0</TextBlock>
+                            <TextBlock Foreground="White" Width="130"> EditorFrame</TextBlock>
+                            <TextBlock Foreground="White" x:Name="EditorFrame">0</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="White" Width="130">DxScreenSize</TextBlock>
+                            <TextBlock Foreground="White" Width="20">X :</TextBlock>
+                            <TextBlock Foreground="White"  x:Name="DxScreenSizeX" Width="80">0</TextBlock>
+                            <TextBlock Foreground="White"  Width="20">Y :</TextBlock>
+                            <TextBlock Foreground="White"  x:Name="DxScreenSizeY" Width="80">0</TextBlock>
 
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Width="130">DXMousePosition</TextBlock>
-                            <TextBlock  Width="20">X :</TextBlock>
-                            <TextBlock x:Name="DXMousePosX" Width="80">0</TextBlock>
-                            <TextBlock  Width="20">Y :</TextBlock>
-                            <TextBlock x:Name="DXMousePosY" Width="80">0</TextBlock>
-
+                            <TextBlock Foreground="White" Width="130">DXMousePosition</TextBlock>
+                            <TextBlock Foreground="White"  Width="20">X :</TextBlock>
+                            <TextBlock Foreground="White" x:Name="DXMousePosX" Width="80">0</TextBlock>
+                            <TextBlock Foreground="White"  Width="20">Y :</TextBlock>
+                            <TextBlock Foreground="White" x:Name="DXMousePosY" Width="80">0</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="White" Width="130">EditorMousePosition</TextBlock>
+                            <TextBlock Foreground="White"  Width="20">X :</TextBlock>
+                            <TextBlock Foreground="White" x:Name="EditorMousePosX" Width="80">0</TextBlock>
+                            <TextBlock Foreground="White"  Width="20">Y :</TextBlock>
+                            <TextBlock Foreground="White" x:Name="EditorMousePosY" Width="80">0</TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

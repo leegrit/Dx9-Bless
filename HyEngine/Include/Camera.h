@@ -27,6 +27,8 @@ namespace HyEngine
 		void SetViewMatrix(const D3DXVECTOR3& target);
 		void SetViewMatrix(const D3DXVECTOR3 & eye, const D3DXVECTOR3 & target);
 		Vector3 GetPosition() const;
+		Quaternion GetRotation() const;
+		Vector3 GetRotationEuler() const;
 		D3DXMATRIX GetViewMatrix() const;
 		D3DXMATRIX GetProjectionMatrix() const;
 		D3DXMATRIX GetLongProjectionMatrix() const;
@@ -35,6 +37,7 @@ namespace HyEngine
 		D3DXMATRIX GetOrthoMatrix() const;
 
 		void SetPosition(float x, float y, float z);
+		void SetRotationEuler(float x, float y, float z);
 		class Transform* GetTransform();
 		//void Rotate();
 
@@ -56,7 +59,7 @@ namespace HyEngine
 		bool IsInFrustumWithOutFar(D3DXVECTOR3& position);
 	protected :
 
-	private:
+	protected:
 		
 		float m_moveSpeed = 1; 
 		float m_rotSpeed = 1; 

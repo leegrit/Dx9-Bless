@@ -22,6 +22,11 @@ namespace Editor
 		void SelectObject(int index);
 		void InsertGameData(class  GameObjectData* data);
 		void InsertMeshData(class MeshData* data);
+		void ActiveObject();
+		void InactiveObject();
+		// 이 함수는 해당 값을 대입하는게 아니라 그만큼 수정하는 함수
+		void AdjustEditCameraPos(float xPos, float yPos, float zPos);
+		void AdjustEditCameraRot(float xRot, float yRot, float zRot);
 
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }
@@ -38,12 +43,12 @@ namespace Editor
 		class Timer* m_pTimer = nullptr;
 		class IO::Keyboard *m_pKeyboard;
 		class IO::Mouse *m_pMouse;
-		class Scene* m_pEditScene = nullptr;
+		class EditScene* m_pEditScene = nullptr;
 		HWND m_hWnd = NULL;
 		UINT m_width;
 		UINT m_height;
 		bool m_bLoading;
-
+		bool m_bGameMode = false;
 		GameObject* m_pSelectedObject = nullptr;
 	};
 

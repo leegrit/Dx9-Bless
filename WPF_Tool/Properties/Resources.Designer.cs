@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Tool.Properties
-{
-
-
+namespace WPF_Tool.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -22,49 +22,187 @@ namespace WPF_Tool.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPF_Tool.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BureauBlack {
+            get {
+                return ResourceManager.GetString("BureauBlack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string BureauBlue {
+            get {
+                return ResourceManager.GetString("BureauBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ExpressionDark {
+            get {
+                return ResourceManager.GetString("ExpressionDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ExpressionLight {
+            get {
+                return ResourceManager.GetString("ExpressionLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot; 
+        ///                    xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///                    mc:Ignorable=&quot;d&quot; 
+        ///      [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ShinyBlue {
+            get {
+                return ResourceManager.GetString("ShinyBlue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///    
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blen [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ShinyRed {
+            get {
+                return ResourceManager.GetString("ShinyRed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!--
+        ///// (c) Copyright Microsoft Corporation.
+        ///// This source is subject to Microsoft Public License (Ms-PL).
+        ///// Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        ///// All other rights reserved.
+        ///--&gt;
+        ///
+        ///&lt;ResourceDictionary
+        ///  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+        ///  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+        ///  xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+        ///  mc:Ignorable=&quot;d&quot;
+        ///  xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WhistlerBlue {
+            get {
+                return ResourceManager.GetString("WhistlerBlue", resourceCulture);
             }
         }
     }
