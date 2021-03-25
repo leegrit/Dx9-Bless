@@ -536,6 +536,23 @@ namespace WPF_Tool
 
         private void Dx_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
+            // Dx 화면을 클릭하면 모든 포커스를 없앤다.
+
+            //IInputElement logicFocusedControl = FocusManager.GetFocusedElement(this);
+            //Keyboard.ClearFocus();
+
+
+           // Keyboard.Focus(this);
+
+            //Keyboard.Focus(this);
+           // Image i = sender as Image;
+
+           // IInputElement keyboardFocusedControl = Keyboard.FocusedElement;
+            //keyboardFocusedControl.Focusable = false;
+            //  keyboardFocusedControl
+
+
             Point mousePos = e.GetPosition((IInputElement)sender);
 
             double x = mousePos.X;

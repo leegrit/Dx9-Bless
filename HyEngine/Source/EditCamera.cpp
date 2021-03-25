@@ -29,21 +29,28 @@ void EditCamera::CameraUpdate()
 		1.0f,
 		1000.0f
 	);
-	D3DXMATRIX matScale;
-	D3DXMATRIX matRot;
-	D3DXMATRIX matPos;
+	D3DXVECTOR3 target;
+	target = (GetTransform()->m_position + GetTransform()->Forward() * 10).operator D3DXVECTOR3();
+	SetViewMatrix(target);
 
-	D3DXMatrixScaling(&matScale, 1, 1, 1);
-	if (m_pTransform->m_rotationEuler == Vector3::Zero)
-		D3DXMatrixRotationQuaternion(&matRot, &m_pTransform->m_rotation.operator D3DXQUATERNION());
-	else
-		D3DXMatrixRotationYawPitchRoll(&matRot, D3DXToRadian(m_pTransform->m_rotationEuler.y()), D3DXToRadian(m_pTransform->m_rotationEuler.x()), D3DXToRadian(m_pTransform->m_rotationEuler.z()));
+	//SetViewMatrix()
 
 
-	D3DXMatrixTranslation(&matPos, -m_pTransform->m_position.x(),-m_pTransform->m_position.y(), -m_pTransform->m_position.z());
+	//D3DXMATRIX matScale;
+	//D3DXMATRIX matRot;
+	//D3DXMATRIX matPos;
 
-	// 임시
-	m_matView = matScale *  matPos* matRot;
+	//D3DXMatrixScaling(&matScale, 1, 1, 1);
+	//if (m_pTransform->m_rotationEuler == Vector3::Zero)
+	//	D3DXMatrixRotationQuaternion(&matRot, &m_pTransform->m_rotation.operator D3DXQUATERNION());
+	//else
+	//	D3DXMatrixRotationYawPitchRoll(&matRot, D3DXToRadian(m_pTransform->m_rotationEuler.y()), D3DXToRadian(m_pTransform->m_rotationEuler.x()), D3DXToRadian(m_pTransform->m_rotationEuler.z()));
+
+
+	//D3DXMatrixTranslation(&matPos, -m_pTransform->m_position.x(),-m_pTransform->m_position.y(), -m_pTransform->m_position.z());
+
+	//// 임시
+	//m_matView = matScale *  matPos* matRot;
 
 	/*D3DXVECTOR3 xAxis;
 	memcpy(&xAxis, &matRot.m[0][0], sizeof(D3DXVECTOR3));

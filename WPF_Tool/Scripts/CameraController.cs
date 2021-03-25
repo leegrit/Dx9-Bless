@@ -109,7 +109,7 @@ namespace WPF_Tool.Scripts
                 result = Vector2.Normalize(result);
                 rot.y = result.x;
                 rot.x = result.y;
-                Externs.AdjustEditCameraRot(rot.x, rot.y, rot.z);
+                Externs.AdjustEditCameraRot(rot.x, -rot.y, rot.z);
             }
             else if (m_bWheelClicked)
             {
