@@ -8,6 +8,7 @@
 #include "UIElement.h"
 #include "Light.h"
 #include "Skybox.h"
+#include "NavMesh.h"
 
 using namespace HyEngine;
 
@@ -51,6 +52,9 @@ Scene::~Scene()
 	for (auto& obj : m_multipurposeColliders)
 		Object::DestroyImmediate(obj);
 	m_multipurposeColliders.clear();
+	for (auto& navMesh : m_navMeshs)
+		SAFE_DELETE(navMesh);
+	m_navMeshs.clear();
 	SAFE_DELETE(m_pSkybox);
 
 	EventDispatcher::Cleanup();
@@ -778,6 +782,11 @@ void HyEngine::Scene::AddParticleSystem(ParticleSystem * particleSystem)
 	m_particleSystems.push_back(particleSystem);
 }
 
+void HyEngine::Scene::AddNavMesh(NavMesh * navMesh)
+{
+	m_navMeshs.push_back(navMesh);
+}
+
 void HyEngine::Scene::SetPlayer(std::wstring playerName)
 {
 	m_pPlayer = GetGameObject(playerName);
@@ -1089,6 +1098,18 @@ std::vector<class Collider*> HyEngine::Scene::GetMultipurposeColliderAll(UINT la
 		else
 			return false;
 	}) >> cpplinq::to_vector();*/
+}
+
+NavMesh * HyEngine::Scene::GetNavMesh(int index)
+{
+	assert(index < m_navMeshs.size());
+	assert(index >= 0);
+	return m_navMeshs[index];
+}
+
+const std::vector<class NavMesh*> HyEngine::Scene::GetNavMeshAll()
+{
+	return m_navMeshs;
 }
 
 std::vector<GameObject*>& HyEngine::Scene::GetMeshObjectAll(UINT layer)

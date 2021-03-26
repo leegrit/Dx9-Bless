@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 #include "IRenderable.h"
+
+
 namespace HyEngine
 {
 	class Component;
@@ -92,7 +94,8 @@ namespace HyEngine
 		inline UINT GetLayer() { return m_layer; }
 		inline int GetRenderQueue() { return m_renderQueue; }
 		inline void SetRenderQueue(int renderQueue) { m_renderQueue = renderQueue; }
-
+		void SetEditID(int editID);
+		int GetEditID() const;
 		inline void AddChild(GameObject* obj)
 		{
 			m_pChilds.push_back(obj);
@@ -117,6 +120,17 @@ namespace HyEngine
 
 		inline void SetViewFrustumCulled(bool result) { m_bViewFrustumCulled = result; }
 		inline bool GetViewFrustumCulled() const { return m_bViewFrustumCulled; }
+
+
+		// --------------------------------------------------------------
+		// DATA
+		// --------------------------------------------------------------
+		void InsertGameData(class GameObjectData* data);
+		void InsertMeshData(class MeshData* data);
+		void InsertCellData(class CellData* data);
+
+		virtual void UpdatedData(EDataType dataType) {};
+		EStaticType GetStaticType() const;
 	public:
 		class Transform* m_pTransform;
 
@@ -144,6 +158,15 @@ namespace HyEngine
 
 		std::vector<std::function<void()>> m_removeFunctions;
 
-		int m_renderQueue = 3000; 
+
+		EStaticType m_staticType;
+		// only editor
+		int m_editID;
+
+		int m_renderQueue = 3000;
+	protected:
+		class GameObjectData* m_pGameObjectData = nullptr;
+		class MeshData* m_pMeshData = nullptr;
+		class CellData* m_pCellData = nullptr;
 	};
 }

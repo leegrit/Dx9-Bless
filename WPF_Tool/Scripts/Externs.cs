@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using WPF_Tool.Data;
+using WPF_Tool.Math;
 
 namespace WPF_Tool.Scripts
 {
@@ -29,10 +30,16 @@ namespace WPF_Tool.Scripts
         public static extern void AddGameObject(int index);
 
         [DllImport("HyEngine.dll")]
+        public static extern void AddNavMesh(int index);
+
+        [DllImport("HyEngine.dll")]
         public static extern void InsertGameData(ref GameObjectData data);
 
         [DllImport("HyEngine.dll")]
         public static extern void InsertMeshData(ref MeshData data);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void InsertCellData(ref CellData data, int cellEditMode);
 
         [DllImport("HyEngine.dll")]
         public static extern void SelectEditObject(int index);
@@ -42,6 +49,7 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void InactiveEditObject();
+
 
         [DllImport("HyEngine.dll")]
         public static extern void AdjustEditCameraPos(float xPos, float yPos, float zPos);
@@ -57,7 +65,7 @@ namespace WPF_Tool.Scripts
         public static extern void SetWireFrameMode();
 
         [DllImport("HyEngine.dll")]
-        public static extern void PickNavMesh(float xMousePos, float yMousePos);
+        public static extern bool PickNavMesh(float xMousePos, float yMousePos, int cellOption,ref Vector3 pickedPos);
 
         [DllImport("HyEngine.dll")]
         public static extern void RemoveGameObject(int index);

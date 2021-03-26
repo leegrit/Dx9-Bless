@@ -51,4 +51,23 @@ namespace WPF_Tool.Data
         Nothing,
         Navigation,
     }
+
+    public enum EToolMode
+    {
+        ViewTool,
+        HandTool,
+        NavMeshTool,
+    }
+
+    public enum ECellOption
+    {
+        NORMAL,
+        TRIGGER,
+        EVENT,
+    }
+    public enum ECellEditMode
+    {
+        Similar, // 주변 같이
+        Selected, // 선택한 것만
+    }
 }

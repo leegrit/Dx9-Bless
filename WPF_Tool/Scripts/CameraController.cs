@@ -55,6 +55,8 @@ namespace WPF_Tool.Scripts
             movePos.z = 0;
             if (m_bRightButtonClicked)
             {
+                if(ToolManager.ToolMode != EToolMode.NavMeshTool)
+                    ToolManager.ToolMode = EToolMode.ViewTool;
                 if (m_currentKeyState[(int)EKeyState.Down] == EKeyInputStatus.Down)
                 {
                     movePos.z -= m_moveSpeed * deltaTime;
@@ -95,6 +97,8 @@ namespace WPF_Tool.Scripts
         {
             if (m_bRightButtonClicked)
             {
+                if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                    ToolManager.ToolMode = EToolMode.ViewTool;
                 Vector3 rot;
                 rot.x = 0;
                 rot.y = 0;
@@ -113,6 +117,8 @@ namespace WPF_Tool.Scripts
             }
             else if (m_bWheelClicked)
             {
+                if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                    ToolManager.ToolMode = EToolMode.HandTool;
                 Vector2 pos;
                 pos.x = 0;
                 pos.y = 0;

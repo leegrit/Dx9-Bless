@@ -461,6 +461,21 @@
     <ClInclude Include="Include\Cell.h">
       <Filter>Object\NavMesh</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Line.h">
+      <Filter>Object\NavMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ColorTriangle.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Macros.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\NavPrimitive.h">
+      <Filter>Object\NavMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CellData.h">
+      <Filter>Editor\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -777,6 +792,18 @@
     </ClCompile>
     <ClCompile Include="Source\Cell.cpp">
       <Filter>Object\NavMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Line.cpp">
+      <Filter>Object\NavMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ColorTriangle.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavPrimitive.cpp">
+      <Filter>Object\NavMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CellData.cpp">
+      <Filter>Editor\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

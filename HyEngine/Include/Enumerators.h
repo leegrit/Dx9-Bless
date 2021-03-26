@@ -124,38 +124,49 @@ enum class EStaticType
 };
 
 // For NavMesh
-namespace NavMeshEnums
+enum class EPoint
 {
-	enum class EPoint
-	{
-		POINT_A,
-		POINT_B,
-		POINT_C,
-		POINT_END,
-	};
-	enum class ELine
-	{
-		LINE_AB,
-		LINE_BC,
-		LINE_CA,
-		LINE_END,
-	};
-	enum class ENeighbor
-	{
-		NEIGHBOR_AB,
-		NEIGHBOR_BC,
-		NEIGHBOR_CA,
-		NEIGHBOR_END,
-	};
-	enum class ECompare
-	{
-		COMPARE_MOVE,
-		COMPARE_STOp
-	};
-	enum class ECellOption
-	{
-		NORMAL,
-		TRIGGER,
-		EVENT,
-	};
-}
+	POINT_A,
+	POINT_B,
+	POINT_C,
+	POINT_END,
+};
+enum class ELine
+{
+	LINE_AB,
+	LINE_BC,
+	LINE_CA,
+	LINE_END,
+};
+enum class ENeighbor
+{
+	NEIGHBOR_AB,
+	NEIGHBOR_BC,
+	NEIGHBOR_CA,
+	NEIGHBOR_END,
+};
+enum class ECompare
+{
+	COMPARE_MOVE,
+	COMPARE_STOp
+};
+enum class ECellOption
+{
+	NORMAL,
+	TRIGGER,
+	EVENT,
+};
+enum class EDataType
+{
+	GameObjectData,
+	MeshData,
+	CellData,
+	TextureData,
+	End
+};
+
+enum class ECellEditMode
+{
+	Similar, // 근처 버텍스도 같이 이동
+	Selected, // 선택한 버텍스만 이동
+};

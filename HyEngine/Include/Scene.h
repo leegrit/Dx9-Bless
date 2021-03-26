@@ -101,9 +101,11 @@ namespace HyEngine
 		void AddStaticCollider(class Collider* collider);
 		void AddMultipurposeCollider(class Collider* collider);
 		void AddParticleSystem(class ParticleSystem* particleSystem);
+		void AddNavMesh(class NavMesh* navMesh);
 		void SetPlayer(std::wstring playerName);
 		void SetSkybox(class Skybox* skybox);
 		void SetGlobalLight(class Light* light);
+	
 		
 		bool SelectCamera(std::wstring name);
 
@@ -134,6 +136,8 @@ namespace HyEngine
 		std::vector<class Collider*> GetStaticColliderAll(UINT layer);
 		std::vector<class Collider*> GetMultipurposeColliderAll(UINT layer);
 	
+		class NavMesh* GetNavMesh(int index);
+		const std::vector<class NavMesh*> GetNavMeshAll();
 
 
 		GameObject* GetUIObject(std::wstring name);
@@ -180,6 +184,8 @@ namespace HyEngine
 		std::vector<class Collider*> m_multipurposeColliders;
 		std::unordered_map<UINT, std::vector<Collider*>> m_multipurposeColCache;
 		std::vector<class ParticleSystem* > m_particleSystems;
+
+		std::vector<class NavMesh*> m_navMeshs;
 		class Skybox* m_pSkybox;
 		GameObject* m_pPlayer = nullptr;
 

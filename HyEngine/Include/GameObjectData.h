@@ -2,7 +2,7 @@
 #include "EditData.h"
 #include "TransformData.h"
 
-namespace Editor
+namespace HyEngine
 {
 #pragma pack(push,1)
 	struct GameObjectData// : public EditData
@@ -18,4 +18,3 @@ namespace Editor
 	};
 #pragma pack(pop)
 }
-

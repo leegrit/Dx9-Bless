@@ -1,8 +1,12 @@
 #include "StandardEngineFramework.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "GameObjectData.h"
+#include "MeshData.h"
+#include "CellData.h"
 
 using namespace HyEngine;
+using namespace Editor;
 
 GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent,  const std::wstring& name)
 	: Object(name),
@@ -13,7 +17,9 @@ GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent
 	m_pParent(parent),
 	m_tag(EngineTags::Default),
 	m_layer(Layer::Default),
-	m_renderQueue(3000)
+	m_renderQueue(3000),
+	m_pGameObjectData(nullptr),
+	m_pMeshData(nullptr)
 {
 	//assert(false);
 	m_pTransform = new Transform(this);
@@ -185,6 +191,16 @@ void HyEngine::GameObject::SetTag(std::wstring tag)
 	m_tag = tag;
 }
 
+void HyEngine::GameObject::SetEditID(int editID)
+{
+	m_editID = editID;
+}
+
+int HyEngine::GameObject::GetEditID() const
+{
+	return m_editID;
+}
+
 GameObject * HyEngine::GameObject::GetParent()
 {
 	return m_pParent;
@@ -193,4 +209,50 @@ GameObject * HyEngine::GameObject::GetParent()
 Scene * HyEngine::GameObject::GetScene()
 {
 	return m_pScene;
+}
+void GameObject::InsertGameData(GameObjectData * data)
+{
+	GameObjectData* gameObjectData = data;
+	if (gameObjectData)
+	{
+		SetName(CString::CharToWstring(gameObjectData->name));
+		SetTag(CString::CharToWstring(gameObjectData->tag));
+		m_pTransform->m_position = gameObjectData->transform.position;
+		m_pTransform->m_rotationEuler = gameObjectData->transform.rotation;
+		m_pTransform->m_scale = gameObjectData->transform.scale;
+
+		UINT layer = Layer::IndexToLayer(gameObjectData->layer);
+		SetLayer(layer);
+		m_staticType = (EStaticType)gameObjectData->staticType;
+		m_pGameObjectData = gameObjectData;
+		UpdatedData(EDataType::GameObjectData);
+		return;
+	}
+}
+
+void GameObject::InsertMeshData(MeshData * data)
+{
+	MeshData* meshData = data;
+	if (meshData)
+	{
+		m_pMeshData = meshData;
+		UpdatedData(EDataType::MeshData);
+		return;
+	}
+}
+
+void HyEngine::GameObject::InsertCellData(CellData * data)
+{
+	CellData* cellData = data;
+	if (cellData)
+	{
+		m_pCellData = cellData;
+		UpdatedData(EDataType::CellData);
+		return;
+	}
+}
+
+EStaticType HyEngine::GameObject::GetStaticType() const
+{
+	return m_staticType;
 }

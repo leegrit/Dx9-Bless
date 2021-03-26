@@ -23,6 +23,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Diagnostics;
 using Newtonsoft.Json.Linq;
+using WPF_Tool.Math;
 
 namespace WPF_Tool
 {
@@ -104,6 +105,26 @@ namespace WPF_Tool
             EditorMousePosY.Text = pointToWindow.Y.ToString("N3");
 
             cameraController.Update(elapsedTime);
+
+            switch(ToolManager.ToolMode)
+            {
+                case EToolMode.HandTool:
+                    HandToolButton.IsChecked = true;
+                    ViewToolButton.IsChecked = false;
+                    NavMeshToolButton.IsChecked = false;
+                    break;
+                case EToolMode.ViewTool:
+                    HandToolButton.IsChecked = false;
+                    ViewToolButton.IsChecked = true;
+                    NavMeshToolButton.IsChecked = false;
+                    break;
+                case EToolMode.NavMeshTool:
+                    HandToolButton.IsChecked = false;
+                    ViewToolButton.IsChecked = false;
+                    NavMeshToolButton.IsChecked = true;
+                    break;
+            }
+
             Externs.Update();
         }
 
@@ -143,6 +164,7 @@ namespace WPF_Tool
         FrameRateCalculator frameRateCalculator;
         CameraController cameraController;
         Dictionary<string, BitmapSource> textureImages;
+
 
         public void TexturesLoad()
         {
@@ -378,7 +400,7 @@ namespace WPF_Tool
             item.Uid = gameObjectIndex.ToString();
             item.Content = HierarchyContent.NavMesh;
             item.Tag = HierarchyTag.NavMesh;
-            item.MouseUp += SelectedGameObject;
+            item.MouseUp += SelectedNavMesh;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
             int index = gameObjectIndex; // temp
@@ -395,11 +417,62 @@ namespace WPF_Tool
             data.meshData = default(MeshData);
             gameObjectIndex++;
             hierarchyList.Add(data);
-            Externs.AddGameObject(index);
+            Externs.AddNavMesh(index);
         }
         #endregion
 
         private void SelectedGameObject(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem item = sender as ListBoxItem;
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.index.ToString() == item.Uid.ToString())
+                {
+                    selectedIndex = hierarchyItem.index;
+                    Externs.SelectEditObject(hierarchyItem.index);
+                    GameObjectName.Text = hierarchyItem.gameObjectData.name;
+                    ObjectTag.SelectedIndex = hierarchyItem.tagIndex;
+                    ObjectLayer.SelectedIndex = hierarchyItem.layerIndex;
+                    ObjectStatic.SelectedIndex = hierarchyItem.staticIndex;
+                    PositionX.Text = hierarchyItem.gameObjectData.transform.position.x.ToString();
+                    PositionY.Text = hierarchyItem.gameObjectData.transform.position.y.ToString();
+                    PositionZ.Text = hierarchyItem.gameObjectData.transform.position.z.ToString();
+                    RotationX.Text = hierarchyItem.gameObjectData.transform.rotation.x.ToString();
+                    RotationY.Text = hierarchyItem.gameObjectData.transform.rotation.y.ToString();
+                    RotationZ.Text = hierarchyItem.gameObjectData.transform.rotation.z.ToString();
+                    ScaleX.Text = hierarchyItem.gameObjectData.transform.scale.x.ToString();
+                    ScaleY.Text = hierarchyItem.gameObjectData.transform.scale.y.ToString();
+                    ScaleZ.Text = hierarchyItem.gameObjectData.transform.scale.z.ToString();
+
+
+                    // default
+                    // 만약 navmesh 상태에서 일반 오브젝트를 클릭하면
+                    // 원상복귀되어야한다.
+                    ToolManager.ToolMode = EToolMode.HandTool;
+
+                    // 여기서 각 데이터 그룹박스를 비활성화 하고
+                    // 선택한 오브젝트 타입에 따라 활성화해준다.
+                    MeshData.Visibility = Visibility.Hidden;
+                    TransformData.Visibility = Visibility.Hidden;
+
+                    switch (hierarchyItem.type)
+                    {
+                        case GameObjectType.Mesh:
+                            MeshData.Visibility = Visibility.Visible;
+                            TransformData.Visibility = Visibility.Visible;
+                            MeshFilePath.Text = hierarchyItem.meshData.meshFilePath;
+                            DiffuseFilePath.Text = hierarchyItem.meshData.diffuseTexturePath;
+                            break;
+                        case GameObjectType.NavMesh:
+
+                            break;
+                    }
+                    break;
+                }
+            }
+
+        }
+        private void SelectedNavMesh(object sender, RoutedEventArgs e)
         {
             ListBoxItem item = sender as ListBoxItem;
             foreach (var hierarchyItem in hierarchyList)
@@ -440,6 +513,15 @@ namespace WPF_Tool
 
                             break;
                     }
+
+
+                    // 여기부터 navMesh tap
+                    // 강제로 탭 변경을 한다.
+                    InspectorTab.SelectedIndex = 1;
+                    ToolManager.ToolMode = EToolMode.NavMeshTool;
+
+
+
                     break;
                 }
             }
@@ -447,14 +529,104 @@ namespace WPF_Tool
         }
 
 
-
         List<HierarchyData> hierarchyList = new List<HierarchyData>();
         List<MeshData> meshDatas = new List<MeshData>();
+        
         int gameObjectIndex = 0;
         int selectedIndex = -1;
         private void RenderStateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void CellPositionX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;
+
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float xPos;
+            float.TryParse(textBox.Text, out xPos);
+
+            data.position.x = xPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
+        }
+        private void CellPositionY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;
+
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float yPos;
+            float.TryParse(textBox.Text, out yPos);
+
+            data.position.y = yPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
+        }
+        private void CellPositionZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;        
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float zPos;
+            float.TryParse(textBox.Text, out zPos);
+
+            data.position.z = zPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
         }
 
         private void PositionX_TextChanged(object sender, TextChangedEventArgs e)
@@ -669,7 +841,34 @@ namespace WPF_Tool
         {
 
         }
+        private void NavPrimSelected(object sender, RoutedEventArgs e)
+        {
+            //CellDataGroup.IsEnabled = false;
+        }
+        private void CellSelected(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = sender as TreeViewItem;
+            //CellDataGroup.IsEnabled = true;
+            CellData cellData = default(CellData);
+            bool bFind = false;
+            foreach(var data in NavMeshManager.CellDatas)
+            {
+                if (item.Uid == data.cellIndex.ToString())
+                {
+                    cellData = data;
+                    bFind = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFind);
+            NavMeshManager.SelectedCellIndex = cellData.cellIndex;
+            CellIndex.Text = item.Uid;
 
+            CellOption.SelectedIndex = cellData.option;
+            CellPositionX.Text = cellData.position.x.ToString();
+            CellPositionY.Text = cellData.position.y.ToString();
+            CellPositionZ.Text = cellData.position.z.ToString();
+        }
         private void Dx_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePos = e.GetPosition((IInputElement)sender);
@@ -710,12 +909,46 @@ namespace WPF_Tool
 
             double actualX = d3dimg.Width * xRatio;
             double actualY = d3dimg.Height * yRatio;
-
-            string message = "DxMouseDown - X : " + actualX.ToString("N3") + ", Y : " + actualY.ToString("N3");
+            
 
             if (e.ChangedButton == MouseButton.Left)
             {
-                Externs.PickNavMesh((float)actualX, (float)actualY);
+                if (ToolManager.ToolMode == EToolMode.NavMeshTool)
+                {
+                    Vector3 pickedPos = default(Vector3);
+                    bool isHit = Externs.PickNavMesh((float)actualX, (float)actualY, (int)NavMeshManager.CellOption ,ref pickedPos);
+                    if (isHit)
+                    {
+                        bool isNewPrim = false;
+                        isNewPrim = NavMeshManager.IsNewPrimitive();
+                        if (isNewPrim == true)
+                        {
+                            TreeViewItem primItem = new TreeViewItem();
+                            primItem.Header = "NavPrimitive_" + NavMeshManager.NavPrimIndex.ToString();
+                            primItem.Uid = NavMeshManager.NavPrimIndex.ToString();
+                            primItem.Selected += NavPrimSelected;
+                            NavMeshManager.NavPrimIndex++;
+
+
+                            CellList.Items.Add(primItem);
+                        }
+
+                        TreeViewItem cellItem = new TreeViewItem();
+                        cellItem.Header = "Cell_" + NavMeshManager.CellIndex;
+                        cellItem.Uid = NavMeshManager.CellIndex.ToString();
+                        cellItem.Selected += CellSelected;
+                        NavMeshManager.AddCell(pickedPos);
+
+                        int primCount = CellList.Items.Count;
+
+                        ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
+
+
+
+
+                        DebugLog("NavMesh Picked X : " + pickedPos.x + ", " + " Y : " + pickedPos.y + ", Z : " + pickedPos.z, ELogType.Log);
+                    }
+                }
             }
             if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
             {
@@ -726,7 +959,7 @@ namespace WPF_Tool
                 cameraController.OnRightButtonDownInDxRect((float)mousePos.X, (float)mousePos.Y);
             }
 
-            DebugLog(message, ELogType.Log);
+            
         }
 
         private void Dx_MouseUp(object sender, MouseButtonEventArgs e)
@@ -781,7 +1014,7 @@ namespace WPF_Tool
             ConsoleScrollViewer.ScrollToBottom();
         }
 
-        private void Assets_Mesh_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Assets_Mesh_MouseDown(object sender, RoutedEventArgs e)
         {
             ProjectItems.Children.Clear();
             if (System.IO.Directory.Exists(Paths.MeshPath))
@@ -821,7 +1054,7 @@ namespace WPF_Tool
                 }
             }
         }
-        private void Assets_Texture_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Assets_Texture_MouseDown(object sender, RoutedEventArgs e)
         {
             ProjectItems.Children.Clear();
             if (System.IO.Directory.Exists(Paths.TexturePath))
@@ -1151,6 +1384,16 @@ namespace WPF_Tool
                     //string fileType = item.Extension;
                 }
             }
+        }
+
+        private void SimilarVTX_Checked(object sender, RoutedEventArgs e)
+        {
+            NavMeshManager.CellEditMode = ECellEditMode.Similar;
+        }
+
+        private void SelectedVTX_Checked(object sender, RoutedEventArgs e)
+        {
+            NavMeshManager.CellEditMode = ECellEditMode.Selected;
         }
     }
 }

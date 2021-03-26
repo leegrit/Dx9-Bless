@@ -142,8 +142,10 @@
     <ClInclude Include="Include\BumpMesh.h" />
     <ClInclude Include="Include\Camera.h" />
     <ClInclude Include="Include\Cell.h" />
+    <ClInclude Include="Include\CellData.h" />
     <ClInclude Include="Include\CohesionBehaviour.h" />
     <ClInclude Include="Include\Collider.h" />
+    <ClInclude Include="Include\ColorTriangle.h" />
     <ClInclude Include="Include\Component.h" />
     <ClInclude Include="Include\CompositeBehaviour.h" />
     <ClInclude Include="Include\Constants.h" />
@@ -190,8 +192,10 @@
     <ClInclude Include="Include\Keyboard.h" />
     <ClInclude Include="Include\Layer.h" />
     <ClInclude Include="Include\Light.h" />
+    <ClInclude Include="Include\Line.h" />
     <ClInclude Include="Include\LinearMath.h" />
     <ClInclude Include="Include\LoadingScene.h" />
+    <ClInclude Include="Include\Macros.h" />
     <ClInclude Include="Include\MathUtils.h" />
     <ClInclude Include="Include\Mesh.h" />
     <ClInclude Include="Include\MeshData.h" />
@@ -200,6 +204,7 @@
     <ClInclude Include="Include\MeshObject.h" />
     <ClInclude Include="Include\Mouse.h" />
     <ClInclude Include="Include\NavMesh.h" />
+    <ClInclude Include="Include\NavPrimitive.h" />
     <ClInclude Include="Include\ObjData.h" />
     <ClInclude Include="Include\Object.h" />
     <ClInclude Include="Include\ObjectEditor.h" />
@@ -265,8 +270,10 @@
     <ClCompile Include="Source\BumpMesh.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Cell.cpp" />
+    <ClCompile Include="Source\CellData.cpp" />
     <ClCompile Include="Source\CohesionBehaviour.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\ColorTriangle.cpp" />
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\CompositeBehaviour.cpp" />
     <ClCompile Include="Source\Constants.cpp" />
@@ -305,6 +312,7 @@
     <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Light.cpp" />
+    <ClCompile Include="Source\Line.cpp" />
     <ClCompile Include="Source\LinearMath.cpp" />
     <ClCompile Include="Source\LoadingScene.cpp" />
     <ClCompile Include="Source\Log.cpp" />
@@ -316,6 +324,7 @@
     <ClCompile Include="Source\MeshObject.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\NavMesh.cpp" />
+    <ClCompile Include="Source\NavPrimitive.cpp" />
     <ClCompile Include="Source\ObjData.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\ObjectEditor.cpp" />

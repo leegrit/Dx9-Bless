@@ -5,6 +5,7 @@
 #include "Ring.h" // 테스트
 #include "TestMesh.h"
 #include "EditMesh.h"
+#include "NavMesh.h"
 
 using namespace Editor;
 
@@ -39,22 +40,37 @@ void Editor::EditScene::LateLoadScene()
 {
 }
 
-void Editor::EditScene::AddMeshObject(int index)
+void Editor::EditScene::AddMeshObject(int editIndex)
 {
 	//Ring::Create(this, nullptr);
-	EditMesh::Create(this, nullptr, index);
+	EditMesh::Create(this, nullptr, editIndex);
 	//EditMesh::Create(this, nullptr);
 }
 
-GameObject * Editor::EditScene::GetMeshObject(int index)
+void Editor::EditScene::AddNavMesh(int editIndex)
+{
+	NavMesh::Create(this, nullptr, editIndex);
+}
+
+GameObject * Editor::EditScene::GetGameObject(int editIndex)
 {
 	for (auto& obj : GetMeshObjectAll())
 	{
 		EditObject* editObj = dynamic_cast<EditObject*>(obj);
 		assert(editObj);
-		if (editObj->GetEditID() == index)
+		if (editObj->GetEditID() == editIndex)
 			return obj;
 	}
+	for (auto& obj : this->GetInvisibleObjectAll())
+	{
+		if (obj->GetEditID() == editIndex)
+			return obj;
+	}
+	// TODO 
+	/*for (auto& obj : this->GetTextureObjectAll())
+	{
+
+	}*/
 }
 
 Camera * Editor::EditScene::GetEditCamera()
@@ -62,7 +78,55 @@ Camera * Editor::EditScene::GetEditCamera()
 	return m_pEditCamera;
 }
 
-void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
+//void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
+//{
+//	for (auto& obj : GetMeshObjectAll())
+//	{
+//		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+//		assert(editObj);
+//		if (editObj->GetStaticType() == EStaticType::Navigation)
+//		{
+//			ID3DXMesh* mesh = editObj->GetDxMesh();
+//			if (mesh == nullptr) return;
+//			// navmesh picking은 xfile만 가능
+//
+//			D3DXVECTOR3 origin;
+//			D3DXVECTOR3 direction;
+//			GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+//			BOOL isHit = false;
+//			DWORD faceIndex;
+//			FLOAT u;
+//			FLOAT v;
+//			FLOAT dist;
+//			LPD3DXBUFFER allHits;
+//			DWORD countOfHits;
+//			D3DXVECTOR3 resultPos;
+//
+//			/*D3DXMATRIX worldInverse;
+//			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+//			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+//			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);*/
+//
+//			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
+//			if (isHit)
+//			{
+//				GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
+//				assert(selectedObject);
+//				NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
+//				//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
+//				assert(navMesh);
+//
+//				resultPos = origin + direction * dist;
+//
+//				// celloption등 이후 추가예정
+//				navMesh->PickingCell(resultPos, ECellOption::NORMAL);
+//			}
+//
+//		}
+//	}
+//}
+
+bool Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOption option,  VectorData * pickedPos)
 {
 	for (auto& obj : GetMeshObjectAll())
 	{
@@ -71,7 +135,7 @@ void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
 		if (editObj->GetStaticType() == EStaticType::Navigation)
 		{
 			ID3DXMesh* mesh = editObj->GetDxMesh();
-			if (mesh == nullptr) return;
+			if (mesh == nullptr) return false;
 			// navmesh picking은 xfile만 가능
 
 			D3DXVECTOR3 origin;
@@ -85,14 +149,37 @@ void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
 			LPD3DXBUFFER allHits;
 			DWORD countOfHits;
 			D3DXVECTOR3 resultPos;
+
+			/*D3DXMATRIX worldInverse;
+			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);*/
+
 			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
 			if (isHit)
 			{
+				GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
+				assert(selectedObject);
+				NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
+				//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
+				assert(navMesh);
+
 				resultPos = origin + direction * dist;
+				pickedPos->x = resultPos.x;
+				pickedPos->y = resultPos.y;
+				pickedPos->z = resultPos.z;
+
+				navMesh->TryPickingCell(pickedPos, resultPos, option);
+			
+
+				return true;
+
 			}
 
 		}
 	}
+	return false;
 }
+
 
 

@@ -1,25 +1,58 @@
 #pragma once
-
+#include "GameObject.h"
 namespace HyEngine
 {
-	class NavMesh
+	class NavMesh : public GameObject
 	{
-	public :
+	public:
 		// --------------------------------------------------------
 		// CONSTRUCTOR & DESTRUCTOR
 		// --------------------------------------------------------
-		explicit NavMesh();
-		~NavMesh();
+		explicit NavMesh(class Scene* scene, GameObject* parent);
+		virtual ~NavMesh();
+
+	public:
+		virtual void Render() override;
+		static NavMesh* Create(Scene* scene, GameObject* parent)
+		{
+			//assert(false);
+			NavMesh* mesh = new NavMesh(scene, parent);
+			//assert(false);
+
+			return mesh;
+		}
+
+		// for editor
+		static NavMesh* Create(Scene* scene, GameObject* parent, int editID)
+		{
+			//assert(false);
+			NavMesh* mesh = new NavMesh(scene, parent);
+			mesh->SetEditID(editID);
+			//assert(false);
+
+			return mesh;
+		}
+
 	public :
+		// ---------------------------------------------------------
+		// INHERITED
+		// --------------------------------------------------------
+		virtual void UpdatedData(EDataType dataType) override;
+
+	public:
 		// ------------------------------------------------------
 		// GETTERS
 		// ------------------------------------------------------
-		const std::vector<class Cell*>& GetCells();
-		const int& GetCurCellIndex() const;
-		const NavMeshEnums::ECellOption& GetCellOption(const int& cellIndex);
+		const std::vector<class NavPrimitive*>& GetNavPrimitives();
+		class NavPrimitive* GetNavPrimitive(const int& navPrimIndex);
+		class std::vector<class Cell*> GetCells(const int& navPrimIndex);
+		class Cell*			GetCell(const int& cellIndex);
+		//const int& GetCurCellIndex() const;
+		const  ECellOption& GetCellOption(const int& cellIndex);
 		const int& GetGroup(const int& cellIndex);
 
-	public :
+
+	public:
 		// --------------------------------------------------------
 		// SETTERS
 		// --------------------------------------------------------
@@ -28,29 +61,36 @@ namespace HyEngine
 
 	public :
 		// ----------------------------------------------------------
+		// Data
+		// -----------------------------------------------------------
+
+
+	public:
+		// ----------------------------------------------------------
 		// PUBLIC METHODS
 		// ----------------------------------------------------------
-		bool TryPickingCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);
-		bool TryDeleteCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);
+		/*bool TryPickingCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);
+		bool TryDeleteCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);*/
+		bool TryPickingCell(_Out_ VectorData* pickedPos, const D3DXVECTOR3& pickingPos, const  ECellOption& option, const unsigned int& group = 100);
 		void ClearCell();
 		void ClearPickedPoses();
-		void ChangeCellOption(const unsigned long& cellIndex, const NavMeshEnums::ECellOption& option);
-		void ChangeCellOption(const unsigned int& group, const NavMeshEnums::ECellOption& option);
+		void ChangeCellOption(const unsigned long& cellIndex, const  ECellOption& option);
+		void ChangeCellOption(const unsigned int& group, const  ECellOption& option);
+		void CreateCell(CellData* data);
 
+		void SetCellEditMode(ECellEditMode cellEditMode);
 
-
-
-	private :
+	private:
 		// ---------------------------------------------------
 		// VARIABLES
 		// --------------------------------------------------
-		std::vector<class Cell*> m_cells;
-		unsigned long m_currentCellIndex;
-		// 피킹된 vector들을 모아서
-		// 3개가 되었을 때 Cell을 하나 생성한다.
-		std::vector<D3DXVECTOR3> m_pickedVectors;
-		float m_pickRadius = 0.2f;
+		std::vector<class NavPrimitive*> m_navPrimitives;
+		unsigned long m_nextCellIndex;
+		unsigned long m_nextNavPrimIndex;
 
+		std::vector<class Cell*> m_pickedCell;
+		float m_pickRadius = 1.f;
+		ECellEditMode m_cellEditMode = ECellEditMode::Similar;
 	};
 }
 

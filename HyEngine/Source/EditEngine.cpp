@@ -6,7 +6,8 @@
 #include "EditData.h"
 #include "GameObjectData.h"
 #include "MeshData.h"
-
+#include "NavMesh.h"
+#include "CellData.h"
 using namespace Editor;
 
 const static TCHAR szAppName[] = TEXT("D3DImageSample");
@@ -89,18 +90,19 @@ void EditEngine::Render()
 
 void EditEngine::Update()
 {
-	if (m_bGameMode)
-	{
-		m_pEditScene->UpdateScene();
-	}
-	else // editMode
-	{
-		assert(m_pEditScene);
-		EditScene* editScene = dynamic_cast<EditScene*>(m_pEditScene);
-		assert(editScene);
-		m_pEditScene->CheckWantDestroy();
-		editScene->GetSelectedCamera()->CameraUpdate();
-	}
+	m_pEditScene->UpdateScene();
+	//if (m_bGameMode)
+	//{
+	//	m_pEditScene->UpdateScene();
+	//}
+	//else // editMode
+	//{
+	//	assert(m_pEditScene);
+	//	EditScene* editScene = dynamic_cast<EditScene*>(m_pEditScene);
+	//	assert(editScene);
+	//	m_pEditScene->CheckWantDestroy();
+	//	editScene->GetSelectedCamera()->CameraUpdate();
+	//}
 }
 
 void EditEngine::GetBackBuffer(IDirect3DSurface9 ** ppSurface)
@@ -121,7 +123,7 @@ Scene * EditEngine::GetScene()
 void EditEngine::SelectObject(int index)
 {
 	EditScene* scene = static_cast<EditScene*>(m_pEditScene);
-	GameObject* selectedObj =  scene->GetMeshObject(index);
+	GameObject* selectedObj =  scene->GetGameObject(index);
 	m_pSelectedObject = selectedObj;
 }
 
@@ -129,18 +131,24 @@ void Editor::EditEngine::InsertGameData(GameObjectData* data)
 {
 	if (m_pSelectedObject == nullptr)
 		return;
-	EditObject* obj = dynamic_cast<EditObject*>(m_pSelectedObject);
-	assert(obj);
-	obj->InsertGameData(data);
+	m_pSelectedObject->InsertGameData(data);
 }
 
 void Editor::EditEngine::InsertMeshData(MeshData * data)
 {
 	if (m_pSelectedObject == nullptr)
 		return;
-	EditObject* obj = dynamic_cast<EditObject*>(m_pSelectedObject);
-	assert(obj);
-	obj->InsertMeshData(data);
+
+	m_pSelectedObject->InsertMeshData(data);
+}
+
+void Editor::EditEngine::InsertCellData(CellData * data, int cellEditMode)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	NavMesh* navMesh = dynamic_cast<NavMesh*>(m_pSelectedObject);
+	navMesh->SetCellEditMode((ECellEditMode)cellEditMode);
+	navMesh->InsertCellData(data);
 }
 
 void Editor::EditEngine::ActiveObject()
@@ -191,9 +199,14 @@ void Editor::EditEngine::SetWireFrameMode()
 	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 }
 
-void Editor::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
+//void Editor::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
+//{
+//	m_pEditScene->PickNavMesh(xMousePos, yMousePos);
+//}
+
+GameObject * Editor::EditEngine::GetSelectedObject()
 {
-	m_pEditScene->PickNavMesh(xMousePos, yMousePos);
+	return m_pSelectedObject;
 }
 
 HRESULT EditEngine::EnsureHWND()

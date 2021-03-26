@@ -190,8 +190,8 @@ void HyEngine::Camera::UnProjection(_Out_ D3DXVECTOR3 * origin, _Out_  D3DXVECTO
 
 	// viewport -> proj space
 	D3DXVECTOR3 mouse;
-	mouse.x = pt.x / (WinMaxWidth * 0.5f) - 1.0f;
-	mouse.y = 1.f - pt.y / (WinMaxHeight * 0.5f);
+	mouse.x = source.x() / (WinMaxWidth * 0.5f) - 1.0f;
+	mouse.y = 1.f - source.y() / (WinMaxHeight * 0.5f);
 	mouse.z = 0.0f;
 
 	// projection space -> view space

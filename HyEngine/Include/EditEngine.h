@@ -22,6 +22,7 @@ namespace Editor
 		void SelectObject(int index);
 		void InsertGameData(class  GameObjectData* data);
 		void InsertMeshData(class MeshData* data);
+		void InsertCellData(class CellData* data, int cellEditMode);
 		void ActiveObject();
 		void InactiveObject();
 		// 이 함수는 해당 값을 대입하는게 아니라 그만큼 수정하는 함수
@@ -30,6 +31,8 @@ namespace Editor
 		void SetSolidMode();
 		void SetWireFrameMode();
 		void PickNavMesh(float xMousePos, float yMousePos);
+
+		GameObject* GetSelectedObject();
 
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }

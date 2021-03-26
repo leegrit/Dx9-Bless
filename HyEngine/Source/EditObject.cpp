@@ -18,8 +18,7 @@ Editor::EditObject::EditObject(ERenderType renderType, Scene * scene, GameObject
 	m_pGameObjectData.layer = GetLayer();*/
 
 	SetEditID(editID);
-	m_pGameObjectData = nullptr;
-	m_pMeshData = nullptr;
+	
 }
 
 Editor::EditObject::~EditObject()
@@ -62,49 +61,41 @@ void Editor::EditObject::Render()
 //	
 //
 //}
+// 
+// void Editor::EditObject::InsertGameData(GameObjectData * data)
+// {
+// 	GameObjectData* gameObjectData = data;
+// 	if (gameObjectData)
+// 	{
+// 		SetName(CString::CharToWstring(gameObjectData->name));
+// 		SetTag(CString::CharToWstring(gameObjectData->tag));
+// 		m_pTransform->m_position = gameObjectData->transform.position;
+// 		m_pTransform->m_rotationEuler = gameObjectData->transform.rotation;
+// 		m_pTransform->m_scale = gameObjectData->transform.scale;
+// 
+// 		UINT layer = Layer::IndexToLayer(gameObjectData->layer);
+// 		SetLayer(layer);
+// 		m_staticType = (EStaticType) gameObjectData->staticType;
+// 		m_pGameObjectData= gameObjectData;
+// 		UpdatedData(EDataType::GameObjectData);
+// 		return;
+// 	}
+// }
+// 
+// void Editor::EditObject::InsertMeshData(MeshData * data)
+// {
+// 	MeshData* meshData = data;
+// 	if (meshData)
+// 	{
+// 		m_pMeshData = meshData;
+// 		UpdatedData(EDataType::MeshData);
+// 		return;
+// 	}
+// }
 
-void Editor::EditObject::InsertGameData(GameObjectData * data)
-{
-	GameObjectData* gameObjectData = data;
-	if (gameObjectData)
-	{
-		SetName(CString::CharToWstring(gameObjectData->name));
-		SetTag(CString::CharToWstring(gameObjectData->tag));
-		m_pTransform->m_position = gameObjectData->transform.position;
-		m_pTransform->m_rotationEuler = gameObjectData->transform.rotation;
-		m_pTransform->m_scale = gameObjectData->transform.scale;
 
-		UINT layer = Layer::IndexToLayer(gameObjectData->layer);
-		SetLayer(layer);
-		m_staticType = (EStaticType) gameObjectData->staticType;
-		m_pGameObjectData= gameObjectData;
-		UpdatedData(EDataType::GameObjectData);
-		return;
-	}
-}
-
-void Editor::EditObject::InsertMeshData(MeshData * data)
-{
-	MeshData* meshData = data;
-	if (meshData)
-	{
-		m_pMeshData = meshData;
-		UpdatedData(EDataType::MeshData);
-		return;
-	}
-}
-
-void Editor::EditObject::SetEditID(int editID)
-{
-	m_editID = editID;
-}
-
-int Editor::EditObject::GetEditID() const
-{
-	return m_editID;
-}
-
-EStaticType Editor::EditObject::GetStaticType() const
-{
-	return m_staticType;
-}
+// 
+// EStaticType Editor::EditObject::GetStaticType() const
+// {
+// 	return m_staticType;
+// }

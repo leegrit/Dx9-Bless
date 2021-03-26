@@ -16,11 +16,15 @@ namespace Editor
 	public :
 		// 테스트용
 		void AddMeshObject(int editIndex);
-		GameObject* GetMeshObject(int editIndex);
+		void AddNavMesh(int editIndex);
 		
+		GameObject* GetGameObject(int editIndex);
 		class Camera* GetEditCamera();
 
-		void PickNavMesh(float xMousePos, float yMousePos);
+		//void PickNavMesh(float xMousePos, float yMousePos);
+
+		bool PickNavMesh(float xMousePos, float yMousePos, ECellOption option,VectorData* pickedPos);
+
 	private :
 		class EditCamera* m_pEditCamera = nullptr;
 	};

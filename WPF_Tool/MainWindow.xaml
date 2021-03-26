@@ -62,24 +62,15 @@
             <TabItem Header="Scene">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" >
-                        <Button Width="25" Height="20">
+                        <ToggleButton x:Name="ViewToolButton" Width="25" Height="20">
                             <Image Source="Images/Eye.png"></Image>
-                            <Button.Triggers>
-                                <!--<EventTrigger RoutedEvent="MouseEnter">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="WhiteSmoke"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>-->
-                            </Button.Triggers>
-                        </Button>
-                        <Button Width="25" Height="20">
+                        </ToggleButton>
+                        <ToggleButton x:Name="HandToolButton" Width="25" Height="20">
                             <Image Source="Images/Hand.png"></Image>
-                        </Button>
-                        <Button Width="25" Height="20">
+                        </ToggleButton>
+                        <ToggleButton x:Name="NavMeshToolButton" Width="25" Height="20">
                             <Image Source="Images/NavMesh.png"></Image>
-                        </Button>
+                        </ToggleButton>
                         <TextBlock Name="RenderState" Width="80" VerticalAlignment="Center" Foreground="White" TextAlignment="Center">
                             RenderState
                         </TextBlock>
@@ -118,7 +109,7 @@
 
             </TabItem>
         </TabControl>
-        <TabControl Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" >
+        <TabControl x:Name="InspectorTab" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
@@ -239,39 +230,61 @@
                         <TextBlock Height="5"></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Width="3"></TextBlock>
-                            <RadioButton x:Name="SimilarVTX" Width="120" Height="25" HorizontalAlignment="Left" >Similar-VTX</RadioButton>
+                            <RadioButton x:Name="SimilarVTX" Width="120" Height="25" HorizontalAlignment="Left" Checked="SimilarVTX_Checked">Similar-VTX</RadioButton>
                             <TextBlock Width="5"></TextBlock>
-                            <RadioButton x:Name="SelectedVTX" Width="120" Height="25" HorizontalAlignment="Right" >Selected-VTX</RadioButton>
+                            <RadioButton x:Name="SelectedVTX" Width="120" Height="25" HorizontalAlignment="Right" Checked="SelectedVTX_Checked" >Selected-VTX</RadioButton>
                         </StackPanel>
                         <TextBlock Height="5"/>
-                        <GroupBox x:Name="CellData" IsEnabled="True">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="10"/>
+                            <TextBlock Foreground="White" Width="100" VerticalAlignment="Center"> Cell Option</TextBlock>
+                            <ComboBox SelectedIndex="0" Width="130">
+                                <ComboBoxItem Content="Normal" />
+                                <ComboBoxItem Content="Trigger"/>
+                                <ComboBoxItem Content="Event"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <TextBlock Height="10"/>
+                        <GroupBox x:Name="CellDataGroup" IsEnabled="True" Margin="0,0,-0.4,0">
                             <GroupBox.Header>
-                                <Label Width="100">Cell Data</Label>
+                                <Label Width="100" Content="Cell Data"/>
                             </GroupBox.Header>
                             <StackPanel>
                                 <TextBlock Height="5"/>
                                 <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="2"></TextBlock>
-                                    <TextBlock Width="60" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Cell Index :</TextBlock>
+                                    <TextBlock Width="2"/>
+                                    <TextBlock Width="60" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Cell Index :"/></TextBlock>
                                     <TextBlock Width="10"/>
-                                    <TextBlock Width="140">0</TextBlock>
+                                    <TextBlock Width="140" x:Name="CellIndex"> 0</TextBlock>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="2"/>
+                                    <TextBlock Width="70" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"><Run Text="Cell Option"/></TextBlock>
+                                    <ComboBox SelectedIndex="0" Width="130" x:Name="CellOption">
+                                        <ComboBoxItem Content="Normal" />
+                                        <ComboBoxItem Content="Trigger"/>
+                                        <ComboBoxItem Content="Event"/>
+                                    </ComboBox>
                                 </StackPanel>
                                 <TextBlock Height="10"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Width="2"/>
-                                    <TextBlock>Position</TextBlock>
+                                    <TextBlock><Run Text="Position"/></TextBlock>
                                 </StackPanel>
                                 <TextBlock Height="5"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
-                                    <TextBox x:Name="CellPositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
-                                    <TextBox x:Name="CellPositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
-                                    <TextBox x:Name="CellPositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"><Run Text="X"/></TextBlock>
+                                    <TextBox x:Name="CellPositionX" Width="50" TextChanged="CellPositionX_TextChanged" Text="0"/>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"><Run Text="Y"/></TextBlock>
+                                    <TextBox x:Name="CellPositionY" Width="50" TextChanged="CellPositionY_TextChanged" Text="0"/>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"><Run Text="Z"/></TextBlock>
+                                    <TextBox x:Name="CellPositionZ" Width="50" TextChanged="CellPositionZ_TextChanged" Text="0"/>
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                       
+                        <TextBlock Height="5"/>
                         <TextBlock Height="10"/>
                         <GroupBox x:Name="CellListGroup" IsEnabled="True">
                             <GroupBox.Header>
@@ -279,158 +292,9 @@
                             </GroupBox.Header>
                             <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   Height="300">
-                                <WrapPanel x:Name="CellList">
-                                    <TreeView>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="0">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
-                                        <TreeViewItem Header="1">
-                                            <TreeViewItem Header="_0"/>
-                                            <TreeViewItem Header="_1"/>
-                                            <TreeViewItem Header="_2"/>
-                                        </TreeViewItem>
+                                <WrapPanel Orientation="Vertical">
+                                    <TreeView  x:Name="CellList" >
+                                        
                                     </TreeView>
                                 </WrapPanel>
                             </ScrollViewer>
@@ -465,12 +329,12 @@
                 <StackPanel Orientation="Horizontal">
                     <TreeView Width="150">
                         <TreeViewItem Header="Assets">
-                            <TreeViewItem Header="Mesh" MouseDown="Assets_Mesh_MouseDown"/>
+                            <TreeViewItem Header="Mesh" Selected="Assets_Mesh_MouseDown"/>
 
-                            <TreeViewItem Header="Texture" MouseDown="Assets_Texture_MouseDown"/>
+                            <TreeViewItem Header="Texture" Selected="Assets_Texture_MouseDown"/>
                         </TreeViewItem>
                         <TreeViewItem Header="Datas">
-                            <TreeViewItem Header="HierarchyData" MouseDown="Datas_HierarchyData_MouseDown"/>
+                            <TreeViewItem Header="HierarchyData" Selected="Datas_HierarchyData_MouseDown"/>
                             <TreeViewItem Header="GameObjectData"/>
                             <TreeViewItem Header="MeshData" />
                         </TreeViewItem>

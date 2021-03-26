@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\CellData.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\HierarchyData.cs" />
     <Compile Include="Data\MeshData.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Scripts\CameraController.cs" />
     <Compile Include="Scripts\DebugLoger.cs" />
     <Compile Include="Scripts\Externs.cs" />
+    <Compile Include="Scripts\NavMeshManager.cs" />
+    <Compile Include="Scripts\ToolManager.cs" />
     <Compile Include="Utility\ConvertBitmapToBitmapImage.cs" />
     <Compile Include="Utility\FrameRateCalculator.cs" />
     <Compile Include="Utility\JsonHelper.cs" />

@@ -1,7 +1,7 @@
 #pragma once
 #include "EditData.h"
 
-namespace Editor
+namespace HyEngine
 {
 #pragma pack(push, 1)
 	struct MeshData// : public EditData

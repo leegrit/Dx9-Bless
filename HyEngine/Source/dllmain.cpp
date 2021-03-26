@@ -3,6 +3,7 @@
 #include "EditScene.h"
 #include "GameObjectData.h"
 #include "MeshData.h"
+#include "CellData.h"
 #include "EditObject.h"
 using namespace Editor;
 
@@ -60,6 +61,14 @@ extern "C" void WINAPI AddGameObject(int index)
 	assert(editScene);
 	editScene->AddMeshObject(index);
 }
+extern "C" void WINAPI AddNavMesh(int index)
+{
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddNavMesh(index);
+}
 
 extern "C" void WINAPI RemoveGameObject(int index)
 {
@@ -87,6 +96,10 @@ extern "C" __declspec(dllexport) void WINAPI InsertGameData(GameObjectData* data
 extern "C" __declspec(dllexport) void WINAPI InsertMeshData(MeshData* data)
 {
 	EDIT_ENGINE->InsertMeshData(data);
+}
+extern "C" __declspec(dllexport) void WINAPI InsertCellData(CellData* data, int cellEditMode)
+{
+	EDIT_ENGINE->InsertCellData(data, cellEditMode);
 }
 
 extern "C" void WINAPI SelectEditObject(int index)
@@ -121,7 +134,16 @@ extern "C" void WINAPI SetWireFrameMode()
 	EDIT_ENGINE->SetWireFrameMode();
 }
 
-extern "C" void WINAPI PickNavMesh(float xMousePos, float yMousePos)
+//extern "C" void WINAPI PickNavMesh(float xMousePos, float yMousePos)
+//{
+//	EDIT_ENGINE->PickNavMesh(xMousePos, yMousePos);
+//}
+
+extern "C" bool WINAPI PickNavMesh(float xMousePos, float yMousePos,int cellOption,  VectorData* pickedPos)
 {
-	EDIT_ENGINE->PickNavMesh(xMousePos, yMousePos);
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	return editScene->PickNavMesh(xMousePos, yMousePos, (ECellOption)cellOption, pickedPos);
 }
