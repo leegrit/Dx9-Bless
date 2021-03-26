@@ -29,6 +29,7 @@ namespace Editor
 		void AdjustEditCameraRot(float xRot, float yRot, float zRot);
 		void SetSolidMode();
 		void SetWireFrameMode();
+		void PickNavMesh(float xMousePos, float yMousePos);
 
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }

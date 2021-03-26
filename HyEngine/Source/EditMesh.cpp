@@ -11,6 +11,8 @@ EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 	m_pMesh = MeshLoader::GetMesh("../../../_Resources/Mesh/Cube.obj");
 	//assert(m_pMesh);
 	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(L"../../../_Resources/Texture/Checker.png"));
+
+
 }
 
 EditMesh::~EditMesh()
@@ -21,7 +23,7 @@ EditMesh::~EditMesh()
 
 void EditMesh::Initialize()
 {
-
+	m_pCollider = SphereCollider::Create(EColliderType::Multipurpose, this, 1, Layer::Player, [](Collider*) {});
 }
 
 void EditMesh::Render()
@@ -50,6 +52,11 @@ void EditMesh::Render()
 	}
 }
 
+ID3DXMesh * Editor::EditMesh::GetDxMesh() const
+{
+	return m_pDxMesh;
+}
+
 void Editor::EditMesh::UpdatedData(EDataType dataType)
 {
 	switch (dataType)
@@ -60,7 +67,6 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 		assert(data);
 		std::wstring  meshPath = CString::CharToWstring(data->meshFilePath);
 		std::wstring meshPathExt = HyEngine::Path::GetExtension(meshPath);
-
 		std::wstring diffuseTexturePath = CString::CharToWstring(data->diffuseTexturePath);
 		std::wstring diffuseTextureExt = HyEngine::Path::GetExtension(diffuseTexturePath);
 		// mesh file
@@ -72,75 +78,78 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 		// xfile formatÀÎ °æ¿ì
 		else if (std::wcscmp(meshPathExt.c_str(), L"X") == 0 || std::wcscmp(meshPathExt.c_str(), L"x") == 0)
 		{
-			HRESULT hr = 0;
-
-			ID3DXBuffer * adjBuffer = nullptr;
-			ID3DXBuffer* mtrlBuffer = nullptr;
-			DWORD numMtrls = 0;
-
-			hr = D3DXLoadMeshFromX
-			(
-				(ResourcePath::MeshFilePath + meshPath).c_str(),
-				D3DXMESH_MANAGED,
-				DEVICE,
-				&adjBuffer,
-				&mtrlBuffer,
-				0,
-				&numMtrls,
-				&m_pDxMesh
-			);
-			assert(SUCCEEDED(hr));
-
-			if (mtrlBuffer != 0 && numMtrls != 0)
+			if (m_lastLoadedMeshPath != meshPath)
 			{
-				D3DXMATERIAL * mtrls = (D3DXMATERIAL*)mtrlBuffer->GetBufferPointer();
+				m_lastLoadedMeshPath = meshPath;
+				HRESULT hr = 0;
 
-				for (int i = 0; i < numMtrls; i++)
+				ID3DXBuffer * adjBuffer = nullptr;
+				ID3DXBuffer* mtrlBuffer = nullptr;
+				DWORD numMtrls = 0;
+
+				hr = D3DXLoadMeshFromX
+				(
+					(ResourcePath::MeshFilePath + meshPath).c_str(),
+					D3DXMESH_MANAGED,
+					DEVICE,
+					&adjBuffer,
+					&mtrlBuffer,
+					0,
+					&numMtrls,
+					&m_pDxMesh
+				);
+				assert(SUCCEEDED(hr));
+
+				if (mtrlBuffer != 0 && numMtrls != 0)
 				{
-					// the MatD3D property doesn't have an ambient value set
-					// when its loaded, so set it now:
-					mtrls[i].MatD3D.Ambient = mtrls[i].MatD3D.Diffuse;
+					D3DXMATERIAL * mtrls = (D3DXMATERIAL*)mtrlBuffer->GetBufferPointer();
 
-					// save the ith material
-					m_mtrls.push_back(mtrls[i].MatD3D);
-
-					// check if the ith material has an associative texture
-					if (mtrls[i].pTextureFilename != 0)
+					for (int i = 0; i < numMtrls; i++)
 					{
-						IDirect3DTexture9* tex = nullptr;
-						std::wstring fileName = CString::CharToWstring(mtrls[i].pTextureFilename);
-						D3DXCreateTextureFromFile
-						(
-							DEVICE,
-							(ResourcePath::TextureFilePath + fileName).c_str(),
-							&tex
-						);
+						// the MatD3D property doesn't have an ambient value set
+						// when its loaded, so set it now:
+						mtrls[i].MatD3D.Ambient = mtrls[i].MatD3D.Diffuse;
 
-						// save the loaded texture
-						m_textures.push_back(tex);
-					}
-					else
-					{
-						// no texture for the ith subset
-						m_textures.push_back(0);
+						// save the ith material
+						m_mtrls.push_back(mtrls[i].MatD3D);
+
+						// check if the ith material has an associative texture
+						if (mtrls[i].pTextureFilename != 0)
+						{
+							IDirect3DTexture9* tex = nullptr;
+							std::wstring fileName = CString::CharToWstring(mtrls[i].pTextureFilename);
+							D3DXCreateTextureFromFile
+							(
+								DEVICE,
+								(ResourcePath::TextureFilePath + fileName).c_str(),
+								&tex
+							);
+
+							// save the loaded texture
+							m_textures.push_back(tex);
+						}
+						else
+						{
+							// no texture for the ith subset
+							m_textures.push_back(0);
+						}
 					}
 				}
+				mtrlBuffer->Release();
+
+				hr = m_pDxMesh->OptimizeInplace
+				(
+					D3DXMESHOPT_ATTRSORT |
+					D3DXMESHOPT_COMPACT |
+					D3DXMESHOPT_VERTEXCACHE,
+					(DWORD*)adjBuffer->GetBufferPointer(),
+					0, 0, 0
+				);
+
+				adjBuffer->Release();
+
+				assert(SUCCEEDED(hr));
 			}
-			mtrlBuffer->Release();
-
-			hr = m_pDxMesh->OptimizeInplace
-			(
-				D3DXMESHOPT_ATTRSORT |
-				D3DXMESHOPT_COMPACT |
-				D3DXMESHOPT_VERTEXCACHE,
-				(DWORD*)adjBuffer->GetBufferPointer(),
-				0, 0, 0
-			);
-
-			adjBuffer->Release();
-
-			assert(SUCCEEDED(hr));
-
 		}
 
 		// texture file

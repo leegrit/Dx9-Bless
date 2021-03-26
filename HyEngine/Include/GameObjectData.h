@@ -13,6 +13,7 @@ namespace Editor
 		char name[256];
 		char tag[256];
 		int layer;
+		int staticType;
 		TransformData transform;
 	};
 #pragma pack(pop)

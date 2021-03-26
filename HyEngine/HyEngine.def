@@ -17,3 +17,5 @@ AdjustEditCameraPos
 AdjustEditCameraRot
 SetSolidMode
 SetWireFrameMode
+PickNavMesh
+RemoveGameObject

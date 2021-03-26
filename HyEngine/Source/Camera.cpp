@@ -196,7 +196,7 @@ void HyEngine::Camera::UnProjection(_Out_ D3DXVECTOR3 * origin, _Out_  D3DXVECTO
 
 	// projection space -> view space
 	D3DXMATRIX ProjMatInv;
-	D3DXMatrixInverse(&ProjMatInv, 0, &CAMERA->GetProjectionMatrix());
+	D3DXMatrixInverse(&ProjMatInv, 0, &GetProjectionMatrix());
 	D3DXVec3TransformCoord(&mouse, &mouse, &ProjMatInv);
 
 	// 뷰 스페이스 상에서 광선의 출발점과 방향을 결정
@@ -207,7 +207,7 @@ void HyEngine::Camera::UnProjection(_Out_ D3DXVECTOR3 * origin, _Out_  D3DXVECTO
 
 	/* 뷰 스페이스에 있는 광선의 정보를 월드 스페이스로 변환 */
 	D3DXMATRIX matInvView;
-	D3DXMatrixInverse(&matInvView, 0, &CAMERA->GetViewMatrix());
+	D3DXMatrixInverse(&matInvView, 0, &GetViewMatrix());
 	D3DXVec3TransformCoord(&rayOrigin, &rayOrigin, &matInvView);
 	D3DXVec3TransformNormal(&rayDir, &rayDir, &matInvView);
 	D3DXVec3Normalize(&rayDir, &rayDir);

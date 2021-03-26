@@ -1,0 +1,36 @@
+﻿{
+  "Type": 0,
+  "Index": 2,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 2,
+    "Name": "Flogas",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 100.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 180.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 2,
+    "MeshFilePath": "Flogas_00.X",
+    "DiffuseTexturePath": "Flogas_00.X"
+  }
+}

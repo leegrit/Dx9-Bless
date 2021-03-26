@@ -79,6 +79,7 @@ namespace DefaultPath
 	const std::wstring CheckerPath = TexturePath + L"Checker.png";
 }
 
+#include "Macros.h"
 
 #include "Settings.h"
 

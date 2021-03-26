@@ -98,6 +98,7 @@ void EditEngine::Update()
 		assert(m_pEditScene);
 		EditScene* editScene = dynamic_cast<EditScene*>(m_pEditScene);
 		assert(editScene);
+		m_pEditScene->CheckWantDestroy();
 		editScene->GetSelectedCamera()->CameraUpdate();
 	}
 }
@@ -188,6 +189,11 @@ void Editor::EditEngine::SetSolidMode()
 void Editor::EditEngine::SetWireFrameMode()
 {
 	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+}
+
+void Editor::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
+{
+	m_pEditScene->PickNavMesh(xMousePos, yMousePos);
 }
 
 HRESULT EditEngine::EnsureHWND()

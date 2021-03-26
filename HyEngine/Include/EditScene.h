@@ -19,6 +19,8 @@ namespace Editor
 		GameObject* GetMeshObject(int editIndex);
 		
 		class Camera* GetEditCamera();
+
+		void PickNavMesh(float xMousePos, float yMousePos);
 	private :
 		class EditCamera* m_pEditCamera = nullptr;
 	};

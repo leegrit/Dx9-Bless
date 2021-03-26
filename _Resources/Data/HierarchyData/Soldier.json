@@ -1,0 +1,36 @@
+﻿{
+  "Type": 0,
+  "Index": 9,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 9,
+    "Name": "Soldier",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 20.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 9,
+    "MeshFilePath": "Soldier_00.x",
+    "DiffuseTexturePath": "Soldier_00.x"
+  }
+}

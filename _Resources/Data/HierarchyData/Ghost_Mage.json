@@ -1,0 +1,36 @@
+﻿{
+  "Type": 0,
+  "Index": 3,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 3,
+    "Name": "Ghost_Mage",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 10.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 180.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 3,
+    "MeshFilePath": "Ghost_Mage_00.X",
+    "DiffuseTexturePath": "Ghost_Mage_00.X"
+  }
+}

@@ -9,6 +9,7 @@ namespace WPF_Tool.Data
     public enum GameObjectType
     {
         Mesh,
+        NavMesh
     }
     public enum EKeyState
     {
@@ -29,5 +30,25 @@ namespace WPF_Tool.Data
         Log,
         Warning,
         Error,
+    }
+
+    public enum ETag
+    {
+        Default,
+        UI,
+        Player,
+        Enemy,
+    }
+    public enum ELayer
+    {
+        Default,
+        UI,
+        Player,
+        Enemy,
+    }
+    public enum EStatic
+    {
+        Nothing,
+        Navigation,
     }
 }

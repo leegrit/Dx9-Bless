@@ -27,7 +27,7 @@ namespace Editor
 		//void SetBumb(const std::wstring& path);
 		//void SetEmission(const std::wstring& path);
 
-
+		ID3DXMesh* GetDxMesh()const;
 	private :
 		std::shared_ptr<IDirect3DTexture9> m_pBaseTex = nullptr;
 		std::shared_ptr<IDirect3DTexture9> m_pBumpTex = nullptr;
@@ -39,11 +39,12 @@ namespace Editor
 		std::vector<D3DMATERIAL9> m_mtrls;
 		std::vector<IDirect3DTexture9*> m_textures;
 
+		std::wstring m_lastLoadedMeshPath;
 
 
 		// Inherited via EditObject
 		virtual void UpdatedData(EDataType dataType) override;
-
+		class Collider* m_pCollider = nullptr;
 	};
 
 }

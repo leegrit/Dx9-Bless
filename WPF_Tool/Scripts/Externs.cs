@@ -55,5 +55,11 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void SetWireFrameMode();
+
+        [DllImport("HyEngine.dll")]
+        public static extern void PickNavMesh(float xMousePos, float yMousePos);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void RemoveGameObject(int index);
     }
 }

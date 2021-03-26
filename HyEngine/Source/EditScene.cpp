@@ -62,4 +62,37 @@ Camera * Editor::EditScene::GetEditCamera()
 	return m_pEditCamera;
 }
 
+void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
+{
+	for (auto& obj : GetMeshObjectAll())
+	{
+		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+		assert(editObj);
+		if (editObj->GetStaticType() == EStaticType::Navigation)
+		{
+			ID3DXMesh* mesh = editObj->GetDxMesh();
+			if (mesh == nullptr) return;
+			// navmesh picking은 xfile만 가능
+
+			D3DXVECTOR3 origin;
+			D3DXVECTOR3 direction;
+			GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+			BOOL isHit = false;
+			DWORD faceIndex;
+			FLOAT u;
+			FLOAT v;
+			FLOAT dist;
+			LPD3DXBUFFER allHits;
+			DWORD countOfHits;
+			D3DXVECTOR3 resultPos;
+			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
+			if (isHit)
+			{
+				resultPos = origin + direction * dist;
+			}
+
+		}
+	}
+}
+
 

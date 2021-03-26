@@ -1,0 +1,36 @@
+﻿{
+  "Type": 0,
+  "Index": 1,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 1,
+  "GameObjectData": {
+    "Index": 1,
+    "Name": "Floor",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 1,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 0.1,
+        "Y": 0.1,
+        "Z": 0.1
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 1,
+    "MeshFilePath": "Floor.X",
+    "DiffuseTexturePath": "Floor.X"
+  }
+}

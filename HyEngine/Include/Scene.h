@@ -64,10 +64,11 @@ namespace HyEngine
 
 		void LateUpdateGameObject();
 
-		void CheckWantDestroy();
+		
 
 		void CollisionCalculate();
-
+	public:
+		void CheckWantDestroy();
 	public:
 		explicit Scene();
 		virtual ~Scene();

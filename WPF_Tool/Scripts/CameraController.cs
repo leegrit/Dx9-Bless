@@ -124,8 +124,7 @@ namespace WPF_Tool.Scripts
                 Vector2 result = curPos - m_lastPos;
                 m_lastPos = curPos;
                 result = Vector2.Normalize(result);
-                result.x = 0;
-                Externs.AdjustEditCameraPos(result.x, result.y , 0);
+                Externs.AdjustEditCameraPos(-result.x, result.y , 0);
             }
         }
         public void OnRightButtonDownInDxRect(float xPos, float yPos)

@@ -22,6 +22,7 @@ using WPF_Tool.Scripts;
 using Microsoft.Win32;
 using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json.Linq;
 
 namespace WPF_Tool
 {
@@ -34,14 +35,17 @@ namespace WPF_Tool
         {
             InitializeComponent();
 
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnHandledException);
+
             Externs.Initialize();
             CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
             CompositionTarget.Rendering += new EventHandler(Update_Tick);
-          //  _updateTimer = new DispatcherTimer();
-          //  _updateTimer.Tick += new EventHandler(Update_Tick);
-          ////  60 frame
-          //  _updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
-          //  _updateTimer.Start();
+            //  _updateTimer = new DispatcherTimer();
+            //  _updateTimer.Tick += new EventHandler(Update_Tick);
+            ////  60 frame
+            //  _updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
+            //  _updateTimer.Start();
 
 
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -56,16 +60,27 @@ namespace WPF_Tool
 
             string tempString;
             tempString = baseDirectory.Substring(0, lastIndex);
-            ResourcePath = tempString + @"_Resources\";
-            MeshPath = tempString + @"_Resources\Mesh\";
-            TexturePath = tempString + @"_Resources\Texture\";
+            // ResourcePath = tempString + @"_Resources\";
+            Paths.ResourcePath = tempString + @"_Resources\";
+            // MeshPath = tempString + @"_Resources\Mesh\";
+            Paths.MeshPath = tempString + @"_Resources\Mesh\";
 
+            //TexturePath = tempString + @"_Resources\Texture\";
+            Paths.TexturePath = tempString + @"_Resources\Texture\";
+
+            Paths.DataPath = tempString + @"_Resources\Data\";
+            Paths.GameObjectDataPath = tempString + @"_Resources\Data\GameObjectData\";
+            Paths.MeshDataPath = tempString + @"_Resources\Data\MeshData\";
+            Paths.HierarchyDataPath = tempString + @"_Resources\Data\HierarchyData\";
 
             frameRateCalculator = new FrameRateCalculator();
             cameraController = new CameraController(this);
+            Keyboard.AddKeyDownHandler(this, OnKeyDown);
 
+            SimilarVTX.IsChecked = true;
 
-             bWindowInit = true;
+            TexturesLoad();
+            bWindowInit = true;
 
             //AddGameObject();
         }
@@ -116,22 +131,116 @@ namespace WPF_Tool
                 }
             }
         }
-        
+
         TimeSpan _lastRender;
         double DxActualWidth;
         double DxActualHeight;
         string toolFolderName = "WPF_Tool";
-        string ResourcePath;
-        string MeshPath;
-        string TexturePath;
+        //string ResourcePath;
+        // string MeshPath;
+        //string TexturePath;
         bool bWindowInit = false;
         FrameRateCalculator frameRateCalculator;
         CameraController cameraController;
+        Dictionary<string, BitmapSource> textureImages;
 
-        #region DllImports
+        public void TexturesLoad()
+        {
+            textureImages = new Dictionary<string, BitmapSource>();
+            if (System.IO.Directory.Exists(Paths.TexturePath))
+            {
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.TexturePath);
+                foreach (var item in info.GetFiles())
+                {
+                    // 잘 들어온다.
+                    // 이어서 작업 해야함. TODO
+                    // 이걸로 Unity Project 창처럼 만들어야함.
+                    // 그 다음엔 XfileFormat 출력
 
-     
-        #endregion
+                    // png만 출력할 수 있음
+                    BitmapSource bitmapSource;
+                    if (item.Extension == ".png")
+                    {
+                        Stream imageStreamSource = new FileStream(item.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        bitmapSource = decoder.Frames[0];
+                       
+                    }
+                    else if (item.Extension == ".tga")
+                    {
+                        // 이거 해결해야함.
+                        // tga loader에서 간헐적으로 tga.image를 로드하지 못하는 문제가 있음
+                        // 아마 stride가 큰건 못읽어서 그런듯?
+
+
+                        //Stream imageStreamSource = new FileStream(Paths.TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                        //PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        //bitmapSource = decoder.Frames[0];
+                        bitmapSource = default(BitmapSource);
+                        System.Drawing.Bitmap bitMap;
+
+                        //bitMap = Paloma.TargaImage.LoadTargaImage(item.FullName);
+
+                        Paloma.TargaImage tgaImage = new Paloma.TargaImage(item.FullName);
+                        bitMap = tgaImage.Image;
+                        if (tgaImage.Stride < 3070)
+                        {
+                            var handle = bitMap.GetHbitmap();
+
+
+                            bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                        }
+                        else
+                        {
+                            Stream imageStreamSource = new FileStream(Paths.TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
+                        }
+                        tgaImage.Dispose();
+
+                    }
+                    else
+                    {
+                        Stream imageStreamSource = new FileStream(Paths.TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        bitmapSource = decoder.Frames[0];
+                    }
+                    textureImages.Add(item.FullName, bitmapSource);
+                   
+
+                }
+            }
+        }
+
+        void UnHandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
+            DebugLog(e.Message, ELogType.Error);
+        }
+
+        public void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Delete:
+                    if (selectedIndex == -1) return;
+
+                    int index = 0;
+                    foreach (var hierarchyItem in hierarchyList)
+                    {
+                        if (hierarchyItem.index == selectedIndex)
+                        {
+                            selectedIndex = -1;
+                            hierarchyList.Remove(hierarchyItem);
+                            HierarchyList.Items.RemoveAt(index);
+                            Externs.RemoveGameObject(hierarchyItem.index);
+                            break;
+                        }
+                        index++;
+                    }
+                    break;
+            }
+        }
 
         #region ButtonEvent
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -184,7 +293,7 @@ namespace WPF_Tool
                 // ofdlg.InitialDirectory = System.IO.Path.Combine(
                 //    System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), "..\\..\\..\\_Resources\\Mesh\\");
                 //ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                ofdlg.InitialDirectory = MeshPath;
+                ofdlg.InitialDirectory = Paths.MeshPath;
                 ofdlg.CheckFileExists = true; // 파일 존재여부 확인
                 ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
 
@@ -216,7 +325,7 @@ namespace WPF_Tool
             {
                 // 기본 폴더
                 //ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                ofdlg.InitialDirectory = TexturePath;
+                ofdlg.InitialDirectory = Paths.TexturePath;
                 ofdlg.CheckFileExists = true; // 파일 존재여부 확인
                 ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
 
@@ -241,9 +350,10 @@ namespace WPF_Tool
         private void Btn_CreateMesh(object sender, RoutedEventArgs e)
         {
             ListBoxItem item = new ListBoxItem();
-           // item.Name = "GameObject" + gameObjectIndex;
+            // item.Name = "GameObject" + gameObjectIndex;
             item.Uid = gameObjectIndex.ToString();
-            item.Content = "GameObject";
+            item.Content = HierarchyContent.GameObject;
+            item.Tag = HierarchyTag.GameObject;
             item.MouseUp += SelectedGameObject;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
@@ -251,13 +361,42 @@ namespace WPF_Tool
             HierarchyData data = new HierarchyData();
             data.index = index;
             data.type = GameObjectType.Mesh;
-            data.gameObjectData = new GameObjectData(index);
+            data.gameObjectData = new GameObjectData(index, HierarchyContent.GameObject);
+            // data.gameObjectData.tag = ;
+            data.gameObjectData.tag = Strings.Tags[ObjectTag.SelectedIndex];
+            data.gameObjectData.layer = ObjectLayer.SelectedIndex;
+            data.gameObjectData.staticType = ObjectStatic.SelectedIndex;
             data.meshData = new MeshData(index);
             gameObjectIndex++;
             hierarchyList.Add(data);
             Externs.AddGameObject(index);
         }
-
+        private void Btn_CreateNavMesh(object sender, RoutedEventArgs e)
+        {
+            ListBoxItem item = new ListBoxItem();
+            // item.Name = "GameObject" + gameObjectIndex;
+            item.Uid = gameObjectIndex.ToString();
+            item.Content = HierarchyContent.NavMesh;
+            item.Tag = HierarchyTag.NavMesh;
+            item.MouseUp += SelectedGameObject;
+            HierarchyList.Items.Add(item);
+            HierarchyList.SelectionMode = SelectionMode.Single;
+            int index = gameObjectIndex; // temp
+            HierarchyData data = new HierarchyData();
+            data.index = index;
+            data.type = GameObjectType.NavMesh;
+            data.tagIndex = ObjectTag.SelectedIndex;
+            data.layerIndex = ObjectLayer.SelectedIndex;
+            data.staticIndex = ObjectStatic.SelectedIndex;
+            data.gameObjectData = new GameObjectData(index, HierarchyContent.NavMesh);
+            data.gameObjectData.tag = Strings.Tags[ObjectTag.SelectedIndex];
+            data.gameObjectData.layer = ObjectLayer.SelectedIndex;
+            data.gameObjectData.staticType = ObjectStatic.SelectedIndex;
+            data.meshData = default(MeshData);
+            gameObjectIndex++;
+            hierarchyList.Add(data);
+            Externs.AddGameObject(index);
+        }
         #endregion
 
         private void SelectedGameObject(object sender, RoutedEventArgs e)
@@ -270,6 +409,9 @@ namespace WPF_Tool
                     selectedIndex = hierarchyItem.index;
                     Externs.SelectEditObject(hierarchyItem.index);
                     GameObjectName.Text = hierarchyItem.gameObjectData.name;
+                    ObjectTag.SelectedIndex = hierarchyItem.tagIndex;
+                    ObjectLayer.SelectedIndex = hierarchyItem.layerIndex;
+                    ObjectStatic.SelectedIndex = hierarchyItem.staticIndex;
                     PositionX.Text = hierarchyItem.gameObjectData.transform.position.x.ToString();
                     PositionY.Text = hierarchyItem.gameObjectData.transform.position.y.ToString();
                     PositionZ.Text = hierarchyItem.gameObjectData.transform.position.z.ToString();
@@ -283,14 +425,19 @@ namespace WPF_Tool
 
                     // 여기서 각 데이터 그룹박스를 비활성화 하고
                     // 선택한 오브젝트 타입에 따라 활성화해준다.
-                    MeshData.IsEnabled = false;
+                    MeshData.Visibility = Visibility.Hidden;
+                    TransformData.Visibility = Visibility.Hidden;
 
                     switch (hierarchyItem.type)
                     {
                         case GameObjectType.Mesh:
-                            MeshData.IsEnabled = true;
+                            MeshData.Visibility = Visibility.Visible;
+                            TransformData.Visibility = Visibility.Visible;
                             MeshFilePath.Text = hierarchyItem.meshData.meshFilePath;
                             DiffuseFilePath.Text = hierarchyItem.meshData.diffuseTexturePath;
+                            break;
+                        case GameObjectType.NavMesh:
+
                             break;
                     }
                     break;
@@ -543,12 +690,12 @@ namespace WPF_Tool
             //Keyboard.ClearFocus();
 
 
-           // Keyboard.Focus(this);
+            // Keyboard.Focus(this);
 
             //Keyboard.Focus(this);
-           // Image i = sender as Image;
+            // Image i = sender as Image;
 
-           // IInputElement keyboardFocusedControl = Keyboard.FocusedElement;
+            // IInputElement keyboardFocusedControl = Keyboard.FocusedElement;
             //keyboardFocusedControl.Focusable = false;
             //  keyboardFocusedControl
 
@@ -566,6 +713,10 @@ namespace WPF_Tool
 
             string message = "DxMouseDown - X : " + actualX.ToString("N3") + ", Y : " + actualY.ToString("N3");
 
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                Externs.PickNavMesh((float)actualX, (float)actualY);
+            }
             if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
             {
                 cameraController.OnWheelDownInDxRect((float)mousePos.X, (float)mousePos.Y);
@@ -605,7 +756,7 @@ namespace WPF_Tool
         public void DebugLog(string message, ELogType logType = ELogType.Log)
         {
             TextBlock element = new TextBlock();
-            switch(logType)
+            switch (logType)
             {
                 case ELogType.Log:
                     string logLabel = "[Log] ";
@@ -633,16 +784,16 @@ namespace WPF_Tool
         private void Assets_Mesh_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ProjectItems.Children.Clear();
-            if (System.IO.Directory.Exists(MeshPath))
+            if (System.IO.Directory.Exists(Paths.MeshPath))
             {
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(MeshPath);
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.MeshPath);
                 foreach (var item in info.GetFiles())
                 {
                     // 잘 들어온다.
                     // 이어서 작업 해야함. TODO
                     // 이걸로 Unity Project 창처럼 만들어야함.
                     // 그 다음엔 XfileFormat 출력
-                    Stream imageStreamSource = new FileStream(TexturePath + @"MeshIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    Stream imageStreamSource = new FileStream(Paths.TexturePath + @"MeshIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
                     PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
                     BitmapSource bitmapSource = decoder.Frames[0];
                     Image itemImage = new Image();
@@ -665,7 +816,7 @@ namespace WPF_Tool
 
                     ProjectItems.Children.Add(itemPanel);
 
-                   // string fileName = item.Name;
+                    // string fileName = item.Name;
                     //string fileType = item.Extension;
                 }
             }
@@ -673,9 +824,9 @@ namespace WPF_Tool
         private void Assets_Texture_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ProjectItems.Children.Clear();
-            if (System.IO.Directory.Exists(TexturePath))
+            if (System.IO.Directory.Exists(Paths.TexturePath))
             {
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(TexturePath);
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.TexturePath);
                 foreach (var item in info.GetFiles())
                 {
                     // 잘 들어온다.
@@ -685,19 +836,46 @@ namespace WPF_Tool
 
                     // png만 출력할 수 있음
                     BitmapSource bitmapSource;
-                    if (item.Extension == ".png")
-                    {
-                        Stream imageStreamSource = new FileStream(item.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
-                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                        bitmapSource = decoder.Frames[0];
-                    }
-                    else
-                    {
-                        Stream imageStreamSource = new FileStream(TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
-                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                        bitmapSource = decoder.Frames[0];
-                    }
+                    bitmapSource = textureImages[item.FullName];
+                    //if (item.Extension == ".png")
+                    //{
+                    //    bitmapSource = textureImages[item.FullName];
+                    //    //Stream imageStreamSource = new FileStream(item.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    //    //PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    //    //bitmapSource = decoder.Frames[0];
+                    //}
+                    //else if (item.Extension == ".tga")
+                    //{
+                    //    bitmapSource = default(BitmapSource);
+                    //    System.Drawing.Bitmap bitMap;
+                    //    try
+                    //    {
+                    //        bitMap = Paloma.TargaImage.LoadTargaImage(item.FullName);
+                    //        if (bitMap != null)
+                    //        {
+                    //            var handle = bitMap.GetHbitmap();
+
+                    //            bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                    //        }
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        DebugLog(ex.Message, ELogType.Error);
+
+                    //    }
+                    //    finally
+                    //    {
+                           
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Stream imageStreamSource = new FileStream(Paths.TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    //    PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    //    bitmapSource = decoder.Frames[0];
+                    //}
                     Image itemImage = new Image();
+                    
                     itemImage.Source = bitmapSource;
                     itemImage.Width = 95;
                     itemImage.Height = 75;
@@ -724,26 +902,255 @@ namespace WPF_Tool
         }
         private void Active_Checked(object sender, RoutedEventArgs e)
         {
-            if(bWindowInit)
+            if (bWindowInit)
                 Externs.ActiveEditObject();
         }
 
         private void Active_Unchecked(object sender, RoutedEventArgs e)
         {
-            if(bWindowInit)
+            if (bWindowInit)
                 Externs.InactiveEditObject();
         }
 
         private void Solid_Selected(object sender, RoutedEventArgs e)
         {
-            if(bWindowInit)
+            if (bWindowInit)
                 Externs.SetSolidMode();
         }
 
         private void WireFrame_Selected(object sender, RoutedEventArgs e)
         {
-            if(bWindowInit)
+            if (bWindowInit)
                 Externs.SetWireFrameMode();
+        }
+
+        private void Tag_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.tagIndex = comboBoxIndex;
+                    data.gameObjectData.tag = Strings.Tags[comboBoxIndex];
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+
+        }
+
+        private void Layer_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.layerIndex = comboBoxIndex;
+                    data.gameObjectData.layer = comboBoxIndex;
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+        }
+
+        private void Static_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.staticIndex = comboBoxIndex;
+                    data.gameObjectData.staticType = comboBoxIndex;
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+        }
+
+        private void ObjectTag_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_HierarchySave(object sender, RoutedEventArgs e)
+        {
+            if (selectedIndex == -1) return;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.index == selectedIndex)
+                {
+                    bool result;
+                    string fileName = "";
+                    result = JsonHelper.Write(hierarchyItem, ref fileName);
+                    if (result)
+                    {
+                        MessageBox.Show("Hierarchy 정보 저장에 성공했습니다.\n FileName : " + fileName, "Hierarchy Save 성공");
+                    }
+
+                    return;
+                }
+            }
+        }
+        private void Btn_HierarchyLoad(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofdlg = new OpenFileDialog();
+            {
+
+                ofdlg.InitialDirectory = Paths.HierarchyDataPath;
+                ofdlg.CheckFileExists = true; // 파일 존재여부 확인
+                ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
+
+                // 파일 열기(값의 유무 확인)
+                if (ofdlg.ShowDialog().GetValueOrDefault())
+                {
+                    int lastIndex = ofdlg.FileName.LastIndexOf("\\");
+                    string text = ofdlg.FileName.Substring(lastIndex + 1);
+                    int extIndex = text.LastIndexOf(".");
+                    string ext = text.Substring(extIndex);
+
+                    if (ext != ".json")
+                    {
+                        // 실패 / 잘못된 포맷
+                        MessageBox.Show("Load에 실패했습니다. 잘못된 format입니다. \n선택한 파일 : " + text, "HierarchyData Load Failed");
+                        DebugLog("HierarchyLoadFailed : " + text, ELogType.Warning);
+                        return;
+                    }
+
+                    HierarchyData hierarchyData = new HierarchyData();
+
+                    bool result = JsonHelper.Read(ref hierarchyData, text);
+                    if (result == false)
+                    {
+                        MessageBox.Show("Load에 실패했습니다.\n선택한 파일 :  " + text, "HierarchyData Load Failed");
+                        DebugLog("HierarchyLoadFailed : " + text, ELogType.Warning);
+                        return;
+                    }
+
+                    ListBoxItem item = new ListBoxItem();
+                    // item.Name = "GameObject" + gameObjectIndex;
+                    item.Uid = gameObjectIndex.ToString();
+                    item.Content = hierarchyData.gameObjectData.name;
+                    item.Tag = hierarchyData.gameObjectData.tag;
+                    item.MouseUp += SelectedGameObject;
+                    HierarchyList.Items.Add(item);
+                    HierarchyList.SelectionMode = SelectionMode.Single;
+                    int index = gameObjectIndex; // temp
+                    HierarchyData data = hierarchyData;
+                    data.index = index;
+                    gameObjectIndex++;
+                    hierarchyList.Add(data);
+                    Externs.AddGameObject(index);
+
+
+                    selectedIndex = data.index;
+                    Externs.SelectEditObject(data.index);
+                    GameObjectName.Text = data.gameObjectData.name;
+                    ObjectTag.SelectedIndex = data.tagIndex;
+                    ObjectLayer.SelectedIndex = data.layerIndex;
+                    ObjectStatic.SelectedIndex = data.staticIndex;
+                    PositionX.Text = data.gameObjectData.transform.position.x.ToString();
+                    PositionY.Text = data.gameObjectData.transform.position.y.ToString();
+                    PositionZ.Text = data.gameObjectData.transform.position.z.ToString();
+                    RotationX.Text = data.gameObjectData.transform.rotation.x.ToString();
+                    RotationY.Text = data.gameObjectData.transform.rotation.y.ToString();
+                    RotationZ.Text = data.gameObjectData.transform.rotation.z.ToString();
+                    ScaleX.Text = data.gameObjectData.transform.scale.x.ToString();
+                    ScaleY.Text = data.gameObjectData.transform.scale.y.ToString();
+                    ScaleZ.Text = data.gameObjectData.transform.scale.z.ToString();
+
+
+                    // 여기서 각 데이터 그룹박스를 비활성화 하고
+                    // 선택한 오브젝트 타입에 따라 활성화해준다.
+                    MeshData.Visibility = Visibility.Hidden;
+                    TransformData.Visibility = Visibility.Hidden;
+
+                    switch (data.type)
+                    {
+                        case GameObjectType.Mesh:
+                            MeshData.Visibility = Visibility.Visible;
+                            TransformData.Visibility = Visibility.Visible;
+                            MeshFilePath.Text = data.meshData.meshFilePath;
+                            DiffuseFilePath.Text = data.meshData.diffuseTexturePath;
+                            break;
+                        case GameObjectType.NavMesh:
+
+                            break;
+                    }
+                    return;
+                }
+            }
+        }
+
+        private void Datas_HierarchyData_MouseDown(object sender, RoutedEventArgs e)
+        {
+            ProjectItems.Children.Clear();
+            if (System.IO.Directory.Exists(Paths.HierarchyDataPath))
+            {
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.HierarchyDataPath);
+                foreach (var item in info.GetFiles())
+                {
+                    // 잘 들어온다.
+                    // 이어서 작업 해야함. TODO
+                    // 이걸로 Unity Project 창처럼 만들어야함.
+                    // 그 다음엔 XfileFormat 출력
+
+                    // png만 출력할 수 있음
+                    BitmapSource bitmapSource;
+                    //if (item.Extension == ".png")
+                    //{
+                    //    Stream imageStreamSource = new FileStream(item.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    //    PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    //    bitmapSource = decoder.Frames[0];
+                    //}
+                    //else
+                    //{
+                    //    Stream imageStreamSource = new FileStream(Paths.TexturePath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    //    PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    //    bitmapSource = decoder.Frames[0];
+                    //}
+
+                    Stream imageStreamSource = new FileStream(Paths.TexturePath + "JsonIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                    PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                    bitmapSource = decoder.Frames[0];
+
+                    Image itemImage = new Image();
+                    itemImage.Source = bitmapSource;
+                    itemImage.Width = 95;
+                    itemImage.Height = 75;
+
+                    TextBlock itemText = new TextBlock();
+                    itemText.Text = item.Name;
+                    itemText.TextAlignment = TextAlignment.Center;
+                    itemText.Foreground = Brushes.White;
+                    itemText.Width = 95;
+                    itemText.Height = 20;
+
+                    StackPanel itemPanel = new StackPanel();
+                    itemPanel.VerticalAlignment = VerticalAlignment.Center;
+                    itemPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    itemPanel.Children.Add(itemImage);
+                    itemPanel.Children.Add(itemText);
+
+                    ProjectItems.Children.Add(itemPanel);
+
+                    // string fileName = item.Name;
+                    //string fileType = item.Extension;
+                }
+            }
         }
     }
 }

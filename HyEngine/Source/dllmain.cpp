@@ -3,6 +3,7 @@
 #include "EditScene.h"
 #include "GameObjectData.h"
 #include "MeshData.h"
+#include "EditObject.h"
 using namespace Editor;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -60,6 +61,24 @@ extern "C" void WINAPI AddGameObject(int index)
 	editScene->AddMeshObject(index);
 }
 
+extern "C" void WINAPI RemoveGameObject(int index)
+{
+	//test
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	for (auto& obj : editScene->GetMeshObjectAll())
+	{
+		EditObject* editObj = dynamic_cast<EditObject*>(obj);
+		if (editObj->GetEditID() == index)
+		{
+			Object::Destroy(editObj);
+			return;
+		}
+	}
+}
+
 
 extern "C" __declspec(dllexport) void WINAPI InsertGameData(GameObjectData* data)
 {
@@ -100,4 +119,9 @@ extern "C" void WINAPI SetSolidMode()
 extern "C" void WINAPI SetWireFrameMode()
 {
 	EDIT_ENGINE->SetWireFrameMode();
+}
+
+extern "C" void WINAPI PickNavMesh(float xMousePos, float yMousePos)
+{
+	EDIT_ENGINE->PickNavMesh(xMousePos, yMousePos);
 }

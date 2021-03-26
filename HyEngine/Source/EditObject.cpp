@@ -73,8 +73,10 @@ void Editor::EditObject::InsertGameData(GameObjectData * data)
 		m_pTransform->m_position = gameObjectData->transform.position;
 		m_pTransform->m_rotationEuler = gameObjectData->transform.rotation;
 		m_pTransform->m_scale = gameObjectData->transform.scale;
-		SetLayer(gameObjectData->layer);
 
+		UINT layer = Layer::IndexToLayer(gameObjectData->layer);
+		SetLayer(layer);
+		m_staticType = (EStaticType) gameObjectData->staticType;
 		m_pGameObjectData= gameObjectData;
 		UpdatedData(EDataType::GameObjectData);
 		return;
@@ -100,4 +102,9 @@ void Editor::EditObject::SetEditID(int editID)
 int Editor::EditObject::GetEditID() const
 {
 	return m_editID;
+}
+
+EStaticType Editor::EditObject::GetStaticType() const
+{
+	return m_staticType;
 }

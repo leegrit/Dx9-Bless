@@ -11,10 +11,10 @@ namespace WPF_Tool.Data
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct GameObjectData
     {
-        public GameObjectData(int index)
+        public GameObjectData(int index, string defaultName)
         {
             this.index = index;
-            name = "GameObject"; // default
+            name = defaultName; // default
             tag = "Default"; // default
             transform = new Transform();
             transform.position = new Math.Vector3();
@@ -30,6 +30,7 @@ namespace WPF_Tool.Data
             transform.scale.y = 1;
             transform.scale.z = 1;
             layer = 0;
+            staticType = 0;
         }
         [MarshalAs(UnmanagedType.I4)]
         public int index;
@@ -39,7 +40,8 @@ namespace WPF_Tool.Data
         public string tag;
         [MarshalAs(UnmanagedType.I4)]
         public int layer;
-
+        [MarshalAs(UnmanagedType.I4)]
+        public int staticType;
         [MarshalAs(UnmanagedType.Struct)]
         public Transform transform;
         

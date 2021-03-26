@@ -141,6 +141,7 @@
     <ClInclude Include="Include\BrainTree.h" />
     <ClInclude Include="Include\BumpMesh.h" />
     <ClInclude Include="Include\Camera.h" />
+    <ClInclude Include="Include\Cell.h" />
     <ClInclude Include="Include\CohesionBehaviour.h" />
     <ClInclude Include="Include\Collider.h" />
     <ClInclude Include="Include\Component.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\MeshObject.h" />
     <ClInclude Include="Include\Mouse.h" />
+    <ClInclude Include="Include\NavMesh.h" />
     <ClInclude Include="Include\ObjData.h" />
     <ClInclude Include="Include\Object.h" />
     <ClInclude Include="Include\ObjectEditor.h" />
@@ -262,6 +264,7 @@
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\BumpMesh.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\Cell.cpp" />
     <ClCompile Include="Source\CohesionBehaviour.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
     <ClCompile Include="Source\Component.cpp" />
@@ -312,6 +315,7 @@
     <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\MeshObject.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
+    <ClCompile Include="Source\NavMesh.cpp" />
     <ClCompile Include="Source\ObjData.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\ObjectEditor.cpp" />

@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <MenuItem Header="_File" Height="30">
                     <MenuItem Header="_New" Click="MenuItem_Click"/>
                     <MenuItem Header="_Open" Click="MenuItem_Click_1"/>
                     <MenuItem Header="_Save"/>
@@ -27,6 +27,7 @@
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
                     <MenuItem Header="_CreateMesh" Click="Btn_CreateMesh"/>
+                    <MenuItem Header="_CreateNavMesh" Click="Btn_CreateNavMesh"/>
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
                     <MenuItem Header="_CreateLight" />
@@ -45,6 +46,7 @@
                     <ListBox.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="_CreateMesh" Foreground="Black" Click="Btn_CreateMesh"/>
+                            <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="Btn_CreateNavMesh"/>
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
                             <MenuItem Header="_CreateCamera" Foreground="Black" />
                             <MenuItem Header="_CreateLight" Foreground="Black"/>
@@ -95,7 +97,6 @@
                             <ComboBoxItem Content="Dynamic" Selected="WireFrame_Selected"/>
                             <ComboBoxItem Content="Static" Selected="Solid_Selected"/>
                             <ComboBoxItem Content="Multipurpose" Selected="WireFrame_Selected"/>
-                            <ComboBoxItem Content="Collider" Selected="Solid_Selected"/>
                             <ComboBoxItem Content="Selectable" Selected="WireFrame_Selected"/>
                             <ComboBoxItem Content="Nothing" Selected="WireFrame_Selected"/>
                         </ComboBox>
@@ -121,101 +122,342 @@
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
-                    <GroupBox x:Name="ObjectData" IsEnabled="True">
-                        <GroupBox.Header>
-                            <Label Width="100">Object Data</Label>
-                        </GroupBox.Header>
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock Width="10"></TextBlock>
-                                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
+                    <StackPanel Height="650">
+                        <GroupBox x:Name="ObjectData" IsEnabled="True">
+                            <GroupBox.Header>
+                                <Label Width="100">Object Data</Label>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="10"></TextBlock>
+                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
                                   Checked="Active_Checked"
                                   Unchecked="Active_Unchecked"  
                                   IsChecked="True"/>
-                                <TextBlock Width="10"></TextBlock>
-                                <TextBlock Width="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Name</TextBlock>
-                                <TextBox Width="140" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock Width="10"></TextBlock>
+                                    <TextBlock Width="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Name</TextBlock>
+                                    <TextBox Width="140" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="40"></TextBlock>
+                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
+                                    <ComboBox  x:Name="ObjectTag" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Tag_Selected">
+                                        <ComboBoxItem Content="Default" />
+                                        <ComboBoxItem Content="UI"/>
+                                        <ComboBoxItem Content="Player" />
+                                        <ComboBoxItem Content="Enemy"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="40"></TextBlock>
+                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Layer</TextBlock>
+                                    <ComboBox  x:Name="ObjectLayer" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Layer_Selected">
+                                        <ComboBoxItem Content="Default" />
+                                        <ComboBoxItem Content="UI"/>
+                                        <ComboBoxItem Content="Player" />
+                                        <ComboBoxItem Content="Enemy"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="40"></TextBlock>
+                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Static</TextBlock>
+                                    <ComboBox x:Name="ObjectStatic" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Static_Selected" >
+                                        <ComboBoxItem Content="Nothing" />
+                                        <ComboBoxItem Content="Navigation"/>
+                                    </ComboBox>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock Width="40"></TextBlock>
-                                <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
-                                <ComboBox  Width="140" VerticalAlignment="Top" SelectedIndex="0" >
-                                    <ComboBoxItem Content="Default" />
-                                    <ComboBoxItem Content="Terrain"/>
-                                    <ComboBoxItem Content="Player" />
-                                    <ComboBoxItem Content="Enemy"/>
-                                </ComboBox>
+                        </GroupBox>
+                        <TextBlock/>
+                        <GroupBox x:Name="TransformData" IsEnabled="True">
+                            <GroupBox.Header>
+                                <Label Width="100">Transform Data</Label>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <TextBlock >Position</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="PositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                    <TextBox x:Name="PositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                    <TextBox x:Name="PositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
+                                </StackPanel>
+                                <TextBlock>Rotation</TextBlock>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="RotationX" Width="50" TextChanged="RotationX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                    <TextBox x:Name="RotationY" Width="50" TextChanged="RotationY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                    <TextBox x:Name="RotationZ" Width="50" TextChanged="RotationZ_TextChanged">0</TextBox>
+                                </StackPanel>
+                                <TextBlock>Scale</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="ScaleX" Width="50" TextChanged="ScaleX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                    <TextBox x:Name="ScaleY" Width="50" TextChanged="ScaleY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                    <TextBox x:Name="ScaleZ" Width="50" TextChanged="ScaleZ_TextChanged">0</TextBox>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock Width="40"></TextBlock>
-                                <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Layer</TextBlock>
-                                <ComboBox  Width="140" VerticalAlignment="Top" SelectedIndex="0" >
-                                    <ComboBoxItem Content="Default" />
-                                    <ComboBoxItem Content="Terrain"/>
-                                    <ComboBoxItem Content="Player" />
-                                    <ComboBoxItem Content="Enemy"/>
-                                </ComboBox>
+                        </GroupBox>
+                        <TextBlock/>
+                        <GroupBox x:Name="MeshData" IsEnabled="True" >
+                            <GroupBox.Header>
+                                <Label>Mesh Data</Label>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Width="60">MeshFile</TextBlock>
+                                    <TextBox x:Name="MeshFilePath" Width="100" TextChanged="MeshFile_TextChanged"></TextBox>
+                                    <Button Width="70" Click="Button_MeshLoad">Load</Button>
+                                </StackPanel>
+                                <TextBlock/>
+                                <StackPanel  Orientation="Horizontal">
+                                    <TextBlock Width="60">Diffuse</TextBlock>
+                                    <TextBox x:Name="DiffuseFilePath" Width="100" TextChanged="DiffuseFile_TextChanged"/>
+                                    <Button Width="70" Click="Button_DiffuseLoad">Load</Button>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </GroupBox>
-                    <TextBlock/>
-                    <GroupBox x:Name="TransformData" IsEnabled="True">
-                        <GroupBox.Header>
-                            <Label Width="100">Transform Data</Label>
-                        </GroupBox.Header>
-                        <StackPanel>
-                            <TextBlock >Position</TextBlock>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="20" HorizontalAlignment="Center">X</TextBlock>
-                                <TextBox x:Name="PositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Y</TextBlock>
-                                <TextBox x:Name="PositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Z</TextBlock>
-                                <TextBox x:Name="PositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
-                            </StackPanel>
-                            <TextBlock>Rotation</TextBlock>
-                            <StackPanel Orientation="Horizontal" >
-                                <TextBlock Width="20" HorizontalAlignment="Center">X</TextBlock>
-                                <TextBox x:Name="RotationX" Width="50" TextChanged="RotationX_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Y</TextBlock>
-                                <TextBox x:Name="RotationY" Width="50" TextChanged="RotationY_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Z</TextBlock>
-                                <TextBox x:Name="RotationZ" Width="50" TextChanged="RotationZ_TextChanged">0</TextBox>
-                            </StackPanel>
-                            <TextBlock>Rotation</TextBlock>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="20" HorizontalAlignment="Center">X</TextBlock>
-                                <TextBox x:Name="ScaleX" Width="50" TextChanged="ScaleX_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Y</TextBlock>
-                                <TextBox x:Name="ScaleY" Width="50" TextChanged="ScaleY_TextChanged">0</TextBox>
-                                <TextBlock Width="20" HorizontalAlignment="Center">Z</TextBlock>
-                                <TextBox x:Name="ScaleZ" Width="50" TextChanged="ScaleZ_TextChanged">0</TextBox>
-                            </StackPanel>
-                        </StackPanel>
-                    </GroupBox>
-                    <TextBlock/>
-                    <GroupBox x:Name="MeshData" IsEnabled="True" >
-                        <GroupBox.Header>
-                            <Label>Mesh Data</Label>
-                        </GroupBox.Header>
-                        <StackPanel>
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock Width="60">MeshFile</TextBlock>
-                                <TextBox x:Name="MeshFilePath" Width="100" TextChanged="MeshFile_TextChanged"></TextBox>
-                                <Button Width="70" Click="Button_MeshLoad">Load</Button>
-                            </StackPanel>
-                            <TextBlock/>
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock Width="60">Diffuse</TextBlock>
-                                <TextBox x:Name="DiffuseFilePath" Width="100" TextChanged="DiffuseFile_TextChanged"/>
-                                <Button Width="70" Click="Button_DiffuseLoad">Load</Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </GroupBox>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="3"></TextBlock>
+                        <Button Width="120" Height="25" HorizontalAlignment="Left" Click="Btn_HierarchySave">Save</Button>
+                        <TextBlock Width="5"></TextBlock>
+                        <Button Width="120" Height="25" HorizontalAlignment="Right" Click="Btn_HierarchyLoad">Load</Button>
+                    </StackPanel>
+
                 </StackPanel>
             </TabItem>
             <TabItem Header="NavMesh">
-
+                <StackPanel>
+                    <StackPanel Height="650" x:Name="NavMeshInfo">
+                        <TextBlock Height="5"></TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="3"></TextBlock>
+                            <RadioButton x:Name="SimilarVTX" Width="120" Height="25" HorizontalAlignment="Left" >Similar-VTX</RadioButton>
+                            <TextBlock Width="5"></TextBlock>
+                            <RadioButton x:Name="SelectedVTX" Width="120" Height="25" HorizontalAlignment="Right" >Selected-VTX</RadioButton>
+                        </StackPanel>
+                        <TextBlock Height="5"/>
+                        <GroupBox x:Name="CellData" IsEnabled="True">
+                            <GroupBox.Header>
+                                <Label Width="100">Cell Data</Label>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="2"></TextBlock>
+                                    <TextBlock Width="60" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Cell Index :</TextBlock>
+                                    <TextBlock Width="10"/>
+                                    <TextBlock Width="140">0</TextBlock>
+                                </StackPanel>
+                                <TextBlock Height="10"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="2"/>
+                                    <TextBlock>Position</TextBlock>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="CellPositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                    <TextBox x:Name="CellPositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                    <TextBox x:Name="CellPositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <TextBlock Height="10"/>
+                        <GroupBox x:Name="CellListGroup" IsEnabled="True">
+                            <GroupBox.Header>
+                                <Label Width="100">Cell List</Label>
+                            </GroupBox.Header>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  Height="300">
+                                <WrapPanel x:Name="CellList">
+                                    <TreeView>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="0">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                        <TreeViewItem Header="1">
+                                            <TreeViewItem Header="_0"/>
+                                            <TreeViewItem Header="_1"/>
+                                            <TreeViewItem Header="_2"/>
+                                        </TreeViewItem>
+                                    </TreeView>
+                                </WrapPanel>
+                            </ScrollViewer>
+                            <!--<StackPanel Height="300">
+                                <TreeView>
+                                    <TreeViewItem Header="0">
+                                        <TreeViewItem Header="_0"/>
+                                        <TreeViewItem Header="_1"/>
+                                        <TreeViewItem Header="_2"/>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="1">
+                                        <TreeViewItem Header="_0"/>
+                                        <TreeViewItem Header="_1"/>
+                                        <TreeViewItem Header="_2"/>
+                                    </TreeViewItem>
+                                </TreeView>
+                            </StackPanel>-->
+                        </GroupBox>
+                        <Button Height="20">Delete</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="3"></TextBlock>
+                        <Button Width="120" Height="25" HorizontalAlignment="Left">Save</Button>
+                        <TextBlock Width="5"></TextBlock>
+                        <Button Width="120" Height="25" HorizontalAlignment="Right">Load</Button>
+                    </StackPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
@@ -224,9 +466,11 @@
                     <TreeView Width="150">
                         <TreeViewItem Header="Assets">
                             <TreeViewItem Header="Mesh" MouseDown="Assets_Mesh_MouseDown"/>
+
                             <TreeViewItem Header="Texture" MouseDown="Assets_Texture_MouseDown"/>
                         </TreeViewItem>
                         <TreeViewItem Header="Datas">
+                            <TreeViewItem Header="HierarchyData" MouseDown="Datas_HierarchyData_MouseDown"/>
                             <TreeViewItem Header="GameObjectData"/>
                             <TreeViewItem Header="MeshData" />
                         </TreeViewItem>

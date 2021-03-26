@@ -35,7 +35,9 @@ namespace HyEngine
 		static  UINT GetLayer(std::wstring name);
 		static std::wstring LayerToName(UINT layer);
 		static UINT NameToLayer(std::wstring name);
+		static UINT IndexToLayer(int index);
 	private:
+		static std::vector< unsigned long long> layersVec;
 		static std::unordered_map<std::wstring, UINT> layersMap;
 
 	};

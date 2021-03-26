@@ -103,6 +103,9 @@
     <Filter Include="Editor\Object">
       <UniqueIdentifier>{7978c0ed-dd89-46d8-82ed-32199ab1947b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\NavMesh">
+      <UniqueIdentifier>{6d644e16-47d2-41c4-a245-79727f0d34f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -452,6 +455,12 @@
     <ClInclude Include="Include\EditObject.h">
       <Filter>Editor\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Include\NavMesh.h">
+      <Filter>Object\NavMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Cell.h">
+      <Filter>Object\NavMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -762,6 +771,12 @@
     </ClCompile>
     <ClCompile Include="Source\EditObject.cpp">
       <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavMesh.cpp">
+      <Filter>Object\NavMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Cell.cpp">
+      <Filter>Object\NavMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
