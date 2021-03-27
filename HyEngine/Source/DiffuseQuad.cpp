@@ -8,7 +8,7 @@ void HyEngine::DiffuseQuad::Initialize(void * arg)
 
 	if (arg != nullptr)
 	{
-		D3DCOLOR* color = static_cast<D3DCOLOR*>(arg);
+		D3DCOLOR* color = (D3DCOLOR*)arg;
 		assert(color);
 		m_color = *color;
 	}

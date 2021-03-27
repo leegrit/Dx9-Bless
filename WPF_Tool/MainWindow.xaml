@@ -25,13 +25,28 @@
                     <Separator/>
                     <MenuItem Header="_Exit"/>
                 </MenuItem>
+                <MenuItem Header="Data" Height="30" >
+                    <MenuItem Header="_Import Scene" />
+                    <MenuItem Header="_Import Hierarchy"  Click="BTN_ImportHierarchy"/>
+                    <MenuItem Header="_Import MapData" Click="BTN_ImportMapData"/>
+                    <MenuItem Header="_Import Effect" />
+                    <Separator/>
+                    <MenuItem Header="_Export Scene" />
+                    <MenuItem Header="_Export Hierarchy" Click="BTN_ExportHierarchy"/>
+                    <MenuItem Header="_Export MapData"  Click="BTN_ExportMapData"/>
+                    <MenuItem Header="_Export Effect" />
+                </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
-                    <MenuItem Header="_CreateMesh" Click="Btn_CreateMesh"/>
-                    <MenuItem Header="_CreateNavMesh" Click="Btn_CreateNavMesh"/>
+                    <MenuItem Header="_CreateMesh" Click="BTN_CreateMesh"/>
+                    <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
+                    <MenuItem Header="_CreateNavMesh" Click="BTN_CreateNavMesh"/>
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
                     <MenuItem Header="_CreateLight" />
                 </MenuItem>
+                <MenuItem Header="Component" Height="30" >
+                </MenuItem>
+                
             </Menu>
         </DockPanel>
 
@@ -45,8 +60,9 @@
                          VerticalAlignment="Top" Height="870" Width="198">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="_CreateMesh" Foreground="Black" Click="Btn_CreateMesh"/>
-                            <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="Btn_CreateNavMesh"/>
+                            <MenuItem Header="_CreateMesh" Foreground="Black" Click="BTN_CreateMesh"/>
+                            <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
+                            <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
                             <MenuItem Header="_CreateCamera" Foreground="Black" />
                             <MenuItem Header="_CreateLight" Foreground="Black"/>
@@ -113,114 +129,143 @@
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
-                    <StackPanel Height="650">
-                        <GroupBox x:Name="ObjectData" IsEnabled="True">
-                            <GroupBox.Header>
-                                <Label Width="100">Object Data</Label>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="10"></TextBlock>
-                                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" >
+
+                        <StackPanel Height="685" x:Name="InspectorStackPanel">
+                            <GroupBox x:Name="ObjectData" IsEnabled="True">
+                                <GroupBox.Header>
+                                    <Label Width="100">Object Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="10"></TextBlock>
+                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
                                   Checked="Active_Checked"
                                   Unchecked="Active_Unchecked"  
                                   IsChecked="True"/>
-                                    <TextBlock Width="10"></TextBlock>
-                                    <TextBlock Width="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Name</TextBlock>
-                                    <TextBox Width="140" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Width="10"></TextBlock>
+                                        <TextBlock Width="50" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center">Name</TextBlock>
+                                        <TextBox Width="120" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="40"></TextBlock>
+                                        <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
+                                        <ComboBox  x:Name="ObjectTag" Width="120" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Tag_Selected">
+                                            <ComboBoxItem Content="Default" />
+                                            <ComboBoxItem Content="UI"/>
+                                            <ComboBoxItem Content="Player" />
+                                            <ComboBoxItem Content="Enemy"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="40"></TextBlock>
+                                        <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Layer</TextBlock>
+                                        <ComboBox  x:Name="ObjectLayer" Width="120" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Layer_Selected">
+                                            <ComboBoxItem Content="Default" />
+                                            <ComboBoxItem Content="UI"/>
+                                            <ComboBoxItem Content="Player" />
+                                            <ComboBoxItem Content="Enemy"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="40"></TextBlock>
+                                        <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Static</TextBlock>
+                                        <ComboBox x:Name="ObjectStatic" Width="120" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Static_Selected" >
+                                            <ComboBoxItem Content="Nothing" />
+                                            <ComboBoxItem Content="Navigation"/>
+                                        </ComboBox>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="40"></TextBlock>
-                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
-                                    <ComboBox  x:Name="ObjectTag" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Tag_Selected">
-                                        <ComboBoxItem Content="Default" />
-                                        <ComboBoxItem Content="UI"/>
-                                        <ComboBoxItem Content="Player" />
-                                        <ComboBoxItem Content="Enemy"/>
-                                    </ComboBox>
+                            </GroupBox>
+                            <TextBlock/>
+                            <GroupBox x:Name="TransformData" IsEnabled="True">
+                                <GroupBox.Header>
+                                    <Label Width="100">Transform Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock >Position</TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBox x:Name="PositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBox x:Name="PositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBox x:Name="PositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock>Rotation</TextBlock>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBox x:Name="RotationX" Width="50" TextChanged="RotationX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBox x:Name="RotationY" Width="50" TextChanged="RotationY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBox x:Name="RotationZ" Width="50" TextChanged="RotationZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock>Scale</TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBox x:Name="ScaleX" Width="50" TextChanged="ScaleX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBox x:Name="ScaleY" Width="50" TextChanged="ScaleY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBox x:Name="ScaleZ" Width="50" TextChanged="ScaleZ_TextChanged">0</TextBox>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="40"></TextBlock>
-                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Layer</TextBlock>
-                                    <ComboBox  x:Name="ObjectLayer" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Layer_Selected">
-                                        <ComboBoxItem Content="Default" />
-                                        <ComboBoxItem Content="UI"/>
-                                        <ComboBoxItem Content="Player" />
-                                        <ComboBoxItem Content="Enemy"/>
-                                    </ComboBox>
+                            </GroupBox>
+                            <TextBlock/>
+                            <GroupBox x:Name="MapData" Visibility="Collapsed">
+                                <GroupBox.Header>
+                                    <Label>MapData</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="10"></TextBlock>
+                                        <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Group</TextBlock>
+                                        <ComboBox  x:Name="MapGroupComboBox" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="SLT_MapGroup">
+                                            <ComboBoxItem Content="Group1" />
+                                            <ComboBoxItem Content="Group2"/>
+                                            <ComboBoxItem Content="Group3" />
+                                            <ComboBoxItem Content="Group5"/>
+                                            <ComboBoxItem Content="Group6"/>
+                                            <ComboBoxItem Content="Group7"/>
+                                            <ComboBoxItem Content="Group8"/>
+                                            <ComboBoxItem Content="Group9"/>
+                                        </ComboBox>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="40"></TextBlock>
-                                    <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Static</TextBlock>
-                                    <ComboBox x:Name="ObjectStatic" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Static_Selected" >
-                                        <ComboBoxItem Content="Nothing" />
-                                        <ComboBoxItem Content="Navigation"/>
-                                    </ComboBox>
+                            </GroupBox>
+                            <TextBlock Height="10"/>
+                            <GroupBox x:Name="MeshData" IsEnabled="True" >
+                                <GroupBox.Header>
+                                    <Label>Mesh Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55"><Run Text="MeshFile"/></TextBlock>
+                                        <TextBox x:Name="MeshFilePath" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_MeshFile" Content="Load"/>
+                                    </StackPanel>
+                                    <TextBlock/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55">Diffuse</TextBlock>
+                                        <TextBox x:Name="DiffuseFilePath" Width="100" />
+                                        <TextBlock Width ="5"/>
+                                        <Button Width="60" Click="BTN_Diffuse">Load</Button>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </GroupBox>
-                        <TextBlock/>
-                        <GroupBox x:Name="TransformData" IsEnabled="True">
-                            <GroupBox.Header>
-                                <Label Width="100">Transform Data</Label>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <TextBlock >Position</TextBlock>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
-                                    <TextBox x:Name="PositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
-                                    <TextBox x:Name="PositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
-                                    <TextBox x:Name="PositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
-                                </StackPanel>
-                                <TextBlock>Rotation</TextBlock>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
-                                    <TextBox x:Name="RotationX" Width="50" TextChanged="RotationX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
-                                    <TextBox x:Name="RotationY" Width="50" TextChanged="RotationY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
-                                    <TextBox x:Name="RotationZ" Width="50" TextChanged="RotationZ_TextChanged">0</TextBox>
-                                </StackPanel>
-                                <TextBlock>Scale</TextBlock>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
-                                    <TextBox x:Name="ScaleX" Width="50" TextChanged="ScaleX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
-                                    <TextBox x:Name="ScaleY" Width="50" TextChanged="ScaleY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
-                                    <TextBox x:Name="ScaleZ" Width="50" TextChanged="ScaleZ_TextChanged">0</TextBox>
-                                </StackPanel>
-                            </StackPanel>
-                        </GroupBox>
-                        <TextBlock/>
-                        <GroupBox x:Name="MeshData" IsEnabled="True" >
-                            <GroupBox.Header>
-                                <Label>Mesh Data</Label>
-                            </GroupBox.Header>
-                            <StackPanel>
-                                <TextBlock Height="5"/>
-                                <StackPanel  Orientation="Horizontal">
-                                    <TextBlock Width="60">MeshFile</TextBlock>
-                                    <TextBox x:Name="MeshFilePath" Width="100" TextChanged="MeshFile_TextChanged"></TextBox>
-                                    <Button Width="70" Click="Button_MeshLoad">Load</Button>
-                                </StackPanel>
-                                <TextBlock/>
-                                <StackPanel  Orientation="Horizontal">
-                                    <TextBlock Width="60">Diffuse</TextBlock>
-                                    <TextBox x:Name="DiffuseFilePath" Width="100" TextChanged="DiffuseFile_TextChanged"/>
-                                    <Button Width="70" Click="Button_DiffuseLoad">Load</Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </GroupBox>
-                    </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!--<TextBlock Height="5"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="3"></TextBlock>
                         <Button Width="120" Height="25" HorizontalAlignment="Left" Click="Btn_HierarchySave">Save</Button>
                         <TextBlock Width="5"></TextBlock>
                         <Button Width="120" Height="25" HorizontalAlignment="Right" Click="Btn_HierarchyLoad">Load</Button>
-                    </StackPanel>
+                    </StackPanel>-->
 
                 </StackPanel>
             </TabItem>
@@ -283,7 +328,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                       
+
                         <TextBlock Height="5"/>
                         <TextBlock Height="10"/>
                         <GroupBox x:Name="CellListGroup" IsEnabled="True">
@@ -294,24 +339,10 @@
                                   Height="300">
                                 <WrapPanel Orientation="Vertical">
                                     <TreeView  x:Name="CellList" >
-                                        
+
                                     </TreeView>
                                 </WrapPanel>
                             </ScrollViewer>
-                            <!--<StackPanel Height="300">
-                                <TreeView>
-                                    <TreeViewItem Header="0">
-                                        <TreeViewItem Header="_0"/>
-                                        <TreeViewItem Header="_1"/>
-                                        <TreeViewItem Header="_2"/>
-                                    </TreeViewItem>
-                                    <TreeViewItem Header="1">
-                                        <TreeViewItem Header="_0"/>
-                                        <TreeViewItem Header="_1"/>
-                                        <TreeViewItem Header="_2"/>
-                                    </TreeViewItem>
-                                </TreeView>
-                            </StackPanel>-->
                         </GroupBox>
                         <Button Height="20">Delete</Button>
                     </StackPanel>
@@ -327,20 +358,70 @@
         <TabControl Grid.Row="2" Grid.ColumnSpan="2">
             <TabItem Header="Project">
                 <StackPanel Orientation="Horizontal">
-                    <TreeView Width="150">
-                        <TreeViewItem Header="Assets">
-                            <TreeViewItem Header="Mesh" Selected="Assets_Mesh_MouseDown"/>
+                    <TreeView Width="190">
+                        <TreeViewItem x:Name="ProjectAssets" Header="Assets" Selected="SLT_Assets">
+                            <TreeViewItem Header="Mesh">
+                                <TreeViewItem Header="Item">
+                                    <TreeViewItem Header="ARW"/>
+                                    <TreeViewItem Header="BOW"/>
+                                    <TreeViewItem Header="BOW_ARCHER"/>
+                                    <TreeViewItem Header="DGR"/>
+                                    <TreeViewItem Header="OSW"/>
+                                    <TreeViewItem Header="QUI"/>
+                                    <TreeViewItem Header="SLD"/>
+                                    <TreeViewItem Header="STF"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="Map">
+                                    <TreeViewItem Header="Hieracon">
 
-                            <TreeViewItem Header="Texture" Selected="Assets_Texture_MouseDown"/>
+                                    </TreeViewItem>
+                                    <TreeViewItem Header="Water">
+
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                                <TreeViewItem Header="Unit">
+                                    <TreeViewItem Header="Archer"/>
+                                    <TreeViewItem Header="Balrog"/>
+                                    <TreeViewItem Header="Elf"/>
+                                    <TreeViewItem Header="Flogas"/>
+                                    <TreeViewItem Header="Ghost_Mage"/>
+                                    <TreeViewItem Header="Ghost_Soldier"/>
+                                    <TreeViewItem Header="Lups"/>
+                                    <TreeViewItem Header="Masq"/>
+                                    <TreeViewItem Header="Quatran"/>
+                                    <TreeViewItem Header="Sire"/>
+                                    <TreeViewItem Header="Skeleton"/>
+                                    <TreeViewItem Header="Soldier"/>
+                                </TreeViewItem>
+
+                            </TreeViewItem>
+                            <TreeViewItem Header="Effect">
+                                <TreeViewItem Header="EffectMesh"/>
+                                <TreeViewItem Header="SingleTexture"/>
+                                <TreeViewItem Header="Texture"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="UI">
+                                <TreeViewItem Header="PortraitCircle"/>
+                                <TreeViewItem Header="SkillIcon">
+                                    <TreeViewItem Header="Elf"/>
+                                    <TreeViewItem Header="Lups"/>
+                                    <TreeViewItem Header="Masq"/>
+                                    <TreeViewItem Header="Sire"/>
+                                    <TreeViewItem Header="SkillIconBase"/>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                            <TreeViewItem Header="Sound"/>
+                            <TreeViewItem Header="SkyBox"/>
                         </TreeViewItem>
-                        <TreeViewItem Header="Datas">
-                            <TreeViewItem Header="HierarchyData" Selected="Datas_HierarchyData_MouseDown"/>
-                            <TreeViewItem Header="GameObjectData"/>
-                            <TreeViewItem Header="MeshData" />
+                        <TreeViewItem Header="Datas" Selected="SLT_Datas">
+                            <TreeViewItem Header="HierarchyData"/>
+                            <TreeViewItem Header="MapData"/>
+                            <TreeViewItem Header="SceneData"/>
+                            <TreeViewItem Header="EffectData"/>
                         </TreeViewItem>
                     </TreeView>
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  Width="610" Height="200">
+                                  Width="570" Height="200">
                         <WrapPanel x:Name="ProjectItems">
                         </WrapPanel>
                     </ScrollViewer>

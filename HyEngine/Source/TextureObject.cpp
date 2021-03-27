@@ -37,7 +37,6 @@ void HyEngine::TextureObject::Render()
 
 	//DEVICE->SetTexture(0, m_pTexture);
 
-
 }
 
 void HyEngine::TextureObject::Draw(std::string techniqueName)

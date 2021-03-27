@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\AlignmentBehaviour.h" />
+    <ClInclude Include="Include\Animator.h" />
     <ClInclude Include="Include\Application.h" />
     <ClInclude Include="Include\AvoidanceBehaviour.h" />
     <ClInclude Include="Include\BillboardObject.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Include\EditMesh.h" />
     <ClInclude Include="Include\EditObject.h" />
     <ClInclude Include="Include\EditScene.h" />
+    <ClInclude Include="Include\EditTransformRect.h" />
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Enumerators.h" />
     <ClInclude Include="Include\EnumForEditor.h" />
@@ -198,6 +200,7 @@
     <ClInclude Include="Include\Macros.h" />
     <ClInclude Include="Include\MathUtils.h" />
     <ClInclude Include="Include\Mesh.h" />
+    <ClInclude Include="Include\MeshAnimator.h" />
     <ClInclude Include="Include\MeshData.h" />
     <ClInclude Include="Include\MeshLoader.h" />
     <ClInclude Include="Include\MeshObject2.h" />
@@ -263,6 +266,7 @@
   <ItemGroup>
     <ClCompile Include="Include\SphereCollider.cpp" />
     <ClCompile Include="Source\AlignmentBehaviour.cpp" />
+    <ClCompile Include="Source\Animator.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\AvoidanceBehaviour.cpp" />
     <ClCompile Include="Source\BillboardObject.cpp" />
@@ -292,6 +296,7 @@
     <ClCompile Include="Source\EditMesh.cpp" />
     <ClCompile Include="Source\EditObject.cpp" />
     <ClCompile Include="Source\EditScene.cpp" />
+    <ClCompile Include="Source\EditTransformRect.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\EventDispatcher.cpp" />
     <ClCompile Include="Source\FiniteState.cpp" />
@@ -318,6 +323,7 @@
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\MathUtils.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
+    <ClCompile Include="Source\MeshAnimator.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
     <ClCompile Include="Source\MeshObject2.cpp" />

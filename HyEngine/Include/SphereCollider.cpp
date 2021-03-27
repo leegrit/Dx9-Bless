@@ -30,6 +30,7 @@ void HyEngine::SphereCollider::Initialize()
 void HyEngine::SphereCollider::Render()
 {
 	Collider::Render();
+
 	m_pSphereMesh->DrawSubset(0);
 }
 

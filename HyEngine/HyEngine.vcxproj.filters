@@ -476,6 +476,15 @@
     <ClInclude Include="Include\CellData.h">
       <Filter>Editor\Data</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Animator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshAnimator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EditTransformRect.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -804,6 +813,15 @@
     </ClCompile>
     <ClCompile Include="Source\CellData.cpp">
       <Filter>Editor\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animator.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshAnimator.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditTransformRect.cpp">
+      <Filter>Editor\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

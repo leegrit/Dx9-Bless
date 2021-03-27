@@ -8,15 +8,16 @@ using namespace Editor;
 EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 	: EditObject(ERenderType::RenderMesh, scene, parent, editID)
 {
-	m_pMesh = MeshLoader::GetMesh("../../../_Resources/Mesh/Cube.obj");
+	m_pMesh = MeshLoader::GetMesh("../../../_Resources/System/Cube.obj");
 	//assert(m_pMesh);
-	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(L"../../../_Resources/Texture/Checker.png"));
+	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(L"../../../_Resources/System/Checker.png"));
 
 
 }
 
 EditMesh::~EditMesh()
 {
+	Object::Destroy(m_pCollider);
 	m_pMesh.reset();
 	m_pBaseTex.reset();
 }
@@ -69,6 +70,8 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 		std::wstring meshPathExt = HyEngine::Path::GetExtension(meshPath);
 		std::wstring diffuseTexturePath = CString::CharToWstring(data->diffuseTexturePath);
 		std::wstring diffuseTextureExt = HyEngine::Path::GetExtension(diffuseTexturePath);
+
+
 		// mesh file
 		if (std::wcscmp(meshPathExt.c_str(), L"obj") == 0) // 두 문자열이 동일할 경우
 		{
@@ -89,7 +92,7 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 
 				hr = D3DXLoadMeshFromX
 				(
-					(ResourcePath::MeshFilePath + meshPath).c_str(),
+					(ResourcePath::ResourcesPath + meshPath).c_str(),
 					D3DXMESH_MANAGED,
 					DEVICE,
 					&adjBuffer,
@@ -104,6 +107,7 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 				{
 					D3DXMATERIAL * mtrls = (D3DXMATERIAL*)mtrlBuffer->GetBufferPointer();
 
+					std::wstring dirPath = HyEngine::Path::GetDirectoryName(ResourcePath::ResourcesPath + meshPath);
 					for (int i = 0; i < numMtrls; i++)
 					{
 						// the MatD3D property doesn't have an ambient value set
@@ -121,7 +125,7 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 							D3DXCreateTextureFromFile
 							(
 								DEVICE,
-								(ResourcePath::TextureFilePath + fileName).c_str(),
+								(dirPath + fileName).c_str(),
 								&tex
 							);
 
@@ -155,7 +159,7 @@ void Editor::EditMesh::UpdatedData(EDataType dataType)
 		// texture file
 		if ((std::wcscmp(diffuseTextureExt.c_str(), L"png") == 0) || (std::wcscmp(diffuseTextureExt.c_str(), L"tga") == 0))
 		{
-			m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(ResourcePath::TextureFilePath + diffuseTexturePath));
+			m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(ResourcePath::ResourcesPath + diffuseTexturePath));
 		}
 		break;
 	}

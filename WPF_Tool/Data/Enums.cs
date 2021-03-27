@@ -9,6 +9,7 @@ namespace WPF_Tool.Data
     public enum GameObjectType
     {
         Mesh,
+        MapObject,
         NavMesh
     }
     public enum EKeyState
@@ -69,5 +70,17 @@ namespace WPF_Tool.Data
     {
         Similar, // 주변 같이
         Selected, // 선택한 것만
+    }
+    public enum EMapGroup
+    {
+        Group1,
+        Group2,
+        Group3,
+        Group4,
+        Group5,
+        Group6,
+        Group7,
+        Group8,
+        Group9,
     }
 }

@@ -65,10 +65,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\CellData.cs" />
+    <Compile Include="Data\ChunkMapData.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\HierarchyData.cs" />
+    <Compile Include="Data\MapData.cs" />
     <Compile Include="Data\MeshData.cs" />
     <Compile Include="Data\Strings.cs" />
+    <Compile Include="Windows\DebugLoger.cs" />
+    <Compile Include="Windows\DockWindow.cs" />
+    <Compile Include="Windows\HierarchyWindow.cs" />
+    <Compile Include="Windows\InspectorWindow.cs" />
+    <Compile Include="Windows\ProjTreeView.cs" />
+    <Compile Include="Windows\TestPartial.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

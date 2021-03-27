@@ -21,11 +21,13 @@ namespace WPF_Tool.Data
     public class HierarchyTag
     {
         public static string GameObject = "GameObject";
+        public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
     }
     public class HierarchyContent
     {
         public static string GameObject = "GameObject";
+        public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
     }
     public class Paths
@@ -34,9 +36,11 @@ namespace WPF_Tool.Data
         public static string MeshPath;
         public static string TexturePath;
         public static string DataPath;
-        public static string GameObjectDataPath;
-        public static string MeshDataPath;
         public static string HierarchyDataPath;
+        public static string SystemPath;
+        public static string MapDataPath;
+        public static string BackupPath;
+        public static string AssetPath;
 
     }
 
