@@ -166,6 +166,27 @@ bool HyEngine::NavMesh::TryPickingCell(_Out_ VectorData* pickedPos,  const D3DXV
 	return true;
 }
 
+void HyEngine::NavMesh::AddCell(const D3DXVECTOR3 & position, const ECellOption & option, const unsigned int & group)
+{
+
+	// cell 만들기 전에 위치값을 보관한다.
+	Cell* cell = Cell::Create(GetScene(), nullptr, m_nextCellIndex++, option, position);
+
+	m_pickedCell.push_back(cell);
+
+	if (m_pickedCell.size() == 3)
+	{
+		NavPrimitive* navPrimitive = NavPrimitive::Create(GetScene(), nullptr,
+			m_pickedCell[(int)EPoint::POINT_A],
+			m_pickedCell[(int)EPoint::POINT_B],
+			m_pickedCell[(int)EPoint::POINT_C],
+			option, group, m_nextNavPrimIndex++);
+		assert(navPrimitive);
+		m_navPrimitives.push_back(navPrimitive);
+		m_pickedCell.clear();
+	}
+}
+
 //bool HyEngine::NavMesh::TryDeleteCell(const D3DXVECTOR3 & pickingPos, unsigned long * cellIndex)
 //{
 //	return false;

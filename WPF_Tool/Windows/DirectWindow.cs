@@ -56,7 +56,7 @@ namespace WPF_Tool
 
         private void Dx_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Keyboard.Focus(ViewToolButton);
 
 
             Point mousePos = e.GetPosition((IInputElement)sender);
@@ -75,39 +75,58 @@ namespace WPF_Tool
             {
                 if (ToolManager.ToolMode == EToolMode.NavMeshTool)
                 {
+
+
                     Vector3 pickedPos = default(Vector3);
-                    bool isHit = Externs.PickNavMesh((float)actualX, (float)actualY, (int)NavMeshManager.CellOption, ref pickedPos);
+                    bool isHit = Externs.PickNavMesh((float)actualX, (float)actualY, (int)cellOption, ref pickedPos);
                     if (isHit)
                     {
                         bool isNewPrim = false;
-                        isNewPrim = NavMeshManager.IsNewPrimitive();
+                        isNewPrim = IsNewPrimitive();
                         if (isNewPrim == true)
                         {
                             TreeViewItem primItem = new TreeViewItem();
-                            primItem.Header = "NavPrimitive_" + NavMeshManager.NavPrimIndex.ToString();
-                            primItem.Uid = NavMeshManager.NavPrimIndex.ToString();
+                            primItem.Header = "NavPrimitive_" + NavPrimIndex.ToString();
+                            primItem.Uid = NavPrimIndex.ToString();
                             primItem.Selected += NavPrimSelected;
-                            NavMeshManager.NavPrimIndex++;
+                            NavPrimIndex++;
 
 
                             CellList.Items.Add(primItem);
                         }
 
                         TreeViewItem cellItem = new TreeViewItem();
-                        cellItem.Header = "Cell_" + NavMeshManager.CellIndex;
-                        cellItem.Uid = NavMeshManager.CellIndex.ToString();
+                        cellItem.Header = "Cell_" + cellIndex;
+                        cellItem.Uid = cellIndex.ToString();
                         cellItem.Selected += CellSelected;
-                        NavMeshManager.AddCell(pickedPos);
+                        AddCell(pickedPos);
 
                         int primCount = CellList.Items.Count;
 
                         ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
 
-
+                        foreach (var selectedNavMesh in hierarchyList)
+                        {
+                            if (selectedNavMesh.Index == SelectedIndex)
+                            {
+                                selectedNavMesh.navMeshData.cellCount++;
+                                break;
+                            }
+                        }
 
 
                         DebugLog("NavMesh Picked X : " + pickedPos.x + ", " + " Y : " + pickedPos.y + ", Z : " + pickedPos.z, ELogType.Log);
                     }
+                }
+                else
+                {
+                    int resultIndex = -1;
+                    bool isPicked = Externs.PickGameObject((float)actualX, (float)actualY, ref resultIndex);
+                    if (isPicked == true)
+                    {
+                        SelectedIndex = resultIndex;
+                    }
+
                 }
             }
             if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)

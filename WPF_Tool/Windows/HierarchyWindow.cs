@@ -34,81 +34,97 @@ namespace WPF_Tool
 
         private void BTN_CreateMesh(object sender, RoutedEventArgs e)
         {
-            ListBoxItem item = new ListBoxItem();
-            // item.Name = "GameObject" + gameObjectIndex;
-            item.Uid = gameObjectIndex.ToString();
-            item.Content = HierarchyContent.GameObject;
-            item.Tag = HierarchyTag.GameObject;
-            item.MouseUp += SelectedGameObject;
-            item.MouseDoubleClick += DoubleClickGameObject;
-            HierarchyList.Items.Add(item);
-            HierarchyList.SelectionMode = SelectionMode.Single;
-            int index = gameObjectIndex; // temp
-            HierarchyData data = new HierarchyData();
-            data.Index = index;
-            data.type = GameObjectType.Mesh;
-            data.gameObjectData = new GameObjectData(index, HierarchyContent.GameObject);
-            // data.gameObjectData.tag = ;
-            data.gameObjectData.tag = Strings.Tags[ObjectTag.SelectedIndex];
-            data.gameObjectData.layer = ObjectLayer.SelectedIndex;
-            data.gameObjectData.staticType = ObjectStatic.SelectedIndex;
-            data.meshData = new MeshData(index);
-            gameObjectIndex++;
-            hierarchyList.Add(data);
-            Externs.AddGameObject(index);
+            CreateHierarchy(GameObjectType.Mesh);
         }
         private void BTN_CreateNavMesh(object sender, RoutedEventArgs e)
         {
-            ListBoxItem item = new ListBoxItem();
-            // item.Name = "GameObject" + gameObjectIndex;
-            item.Uid = gameObjectIndex.ToString();
-            item.Content = HierarchyContent.NavMesh;
-            item.Tag = HierarchyTag.NavMesh;
-            item.MouseUp += SelectedNavMesh;
-            item.MouseDoubleClick += DoubleClickGameObject;
-            HierarchyList.Items.Add(item);
-            HierarchyList.SelectionMode = SelectionMode.Single;
-            int index = gameObjectIndex; // temp
-            HierarchyData data = new HierarchyData();
-            data.Index = index;
-            data.type = GameObjectType.NavMesh;
-            data.tagIndex = ObjectTag.SelectedIndex;
-            data.layerIndex = ObjectLayer.SelectedIndex;
-            data.staticIndex = ObjectStatic.SelectedIndex;
-            data.gameObjectData = new GameObjectData(index, HierarchyContent.NavMesh);
-            data.gameObjectData.tag = Strings.Tags[ObjectTag.SelectedIndex];
-            data.gameObjectData.layer = ObjectLayer.SelectedIndex;
-            data.gameObjectData.staticType = ObjectStatic.SelectedIndex;
-            data.meshData = default(MeshData);
-            gameObjectIndex++;
-            hierarchyList.Add(data);
-            Externs.AddNavMesh(index);
+            foreach (var item in hierarchyList)
+            {
+                if (item.type == GameObjectType.NavMesh)
+                {
+                    return;
+                }
+            }
+            CreateHierarchy(GameObjectType.NavMesh);
         }
         private void BTN_CreateMapObject(object sender, RoutedEventArgs e)
         {
+            CreateHierarchy(GameObjectType.MapObject);
+        }
+
+        private void CreateHierarchy(GameObjectType gameObjectType)
+        {
             ListBoxItem item = new ListBoxItem();
             // item.Name = "GameObject" + gameObjectIndex;
-            item.Uid = gameObjectIndex.ToString();
-            item.Content = HierarchyContent.MapObject;
-            item.Tag = HierarchyTag.MapObject;
-            item.MouseUp += SelectedGameObject;
+            int index = gameObjectIndex++; // temp
+            item.Uid = index.ToString();
+            switch (gameObjectType)
+            {
+                case GameObjectType.Mesh:
+                    item.Content = HierarchyContent.GameObject;
+                    item.Tag = HierarchyTag.GameObject;
+                    break;
+                case GameObjectType.MapObject:
+                    item.Content = HierarchyContent.MapObject;
+                    item.Tag = HierarchyTag.MapObject;
+                    break;
+                case GameObjectType.NavMesh:
+                    item.Content = HierarchyContent.NavMesh;
+                    item.Tag = HierarchyTag.NavMesh;
+                    break;
+            }
+
+
+            switch (gameObjectType)
+            {
+                case GameObjectType.Mesh:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.NavMesh:
+                    item.MouseUp += SelectedNavMesh;
+                    break;
+                case GameObjectType.MapObject:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+
+            }
+            
+
+
             item.MouseDoubleClick += DoubleClickGameObject;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
-            int index = gameObjectIndex; // temp
+           
             HierarchyData data = new HierarchyData();
             data.Index = index;
-            data.type = GameObjectType.MapObject;
-            data.gameObjectData = new GameObjectData(index, HierarchyContent.GameObject);
+            data.type = gameObjectType;
 
+            data.gameObjectData = new GameObjectData(index, item.Content.ToString());
             data.gameObjectData.tag = Strings.Tags[ObjectTag.SelectedIndex];
             data.gameObjectData.layer = ObjectLayer.SelectedIndex;
             data.gameObjectData.staticType = ObjectStatic.SelectedIndex;
+
+
             data.meshData = new MeshData(index);
             data.mapData = new MapData(index);
-            gameObjectIndex++;
+            data.navMeshData = new NavMeshData(index);
             hierarchyList.Add(data);
-            Externs.AddGameObject(index);
+
+            switch (gameObjectType)
+            {
+                case GameObjectType.Mesh:
+                    Externs.AddGameObject(index);
+                    break;
+                case GameObjectType.NavMesh:
+                    Externs.AddNavMesh(index);
+                    break;
+                case GameObjectType.MapObject:
+                    Externs.AddGameObject(index);
+                    break;
+
+            }
+         
+            SelectedIndex = index;
         }
 
         private void SelectedGameObject(object sender, RoutedEventArgs e)
@@ -118,10 +134,7 @@ namespace WPF_Tool
             {
                 if (hierarchyItem.Index.ToString() == item.Uid.ToString())
                 {
-                    selectedIndex = hierarchyItem.Index;
-                    Externs.SelectEditObject(hierarchyItem.Index);
-
-                    ShowInspector(hierarchyItem);
+                    SelectedIndex = hierarchyItem.Index;
 
 
                     // default
@@ -144,10 +157,8 @@ namespace WPF_Tool
             {
                 if (hierarchyItem.Index.ToString() == item.Uid.ToString())
                 {
-                    selectedIndex = hierarchyItem.Index;
-                    Externs.SelectEditObject(hierarchyItem.Index);
+                    SelectedIndex = hierarchyItem.Index;
 
-                    ShowInspector(hierarchyItem);
 
                     
 
@@ -155,7 +166,7 @@ namespace WPF_Tool
                     // 강제로 탭 변경을 한다.
                     InspectorTab.SelectedIndex = 1;
                     ToolManager.ToolMode = EToolMode.NavMeshTool;
-
+                    OnInspectorTabChanged();
 
 
                     break;

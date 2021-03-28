@@ -19,7 +19,8 @@ GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent
 	m_layer(Layer::Default),
 	m_renderQueue(3000),
 	m_pGameObjectData(nullptr),
-	m_pMeshData(nullptr)
+	m_pMeshData(nullptr),
+	m_editID(-1)
 {
 	//assert(false);
 	m_pTransform = new Transform(this);
@@ -224,7 +225,16 @@ void GameObject::InsertGameData(GameObjectData * data)
 		UINT layer = Layer::IndexToLayer(gameObjectData->layer);
 		SetLayer(layer);
 		m_staticType = (EStaticType)gameObjectData->staticType;
-		m_pGameObjectData = gameObjectData;
+
+		if (m_pGameObjectData == nullptr)
+			m_pGameObjectData = new GameObjectData();
+		m_pGameObjectData->index = gameObjectData->index;
+		m_pGameObjectData->layer = gameObjectData->layer;
+		strcpy_s(m_pGameObjectData->name, 256, gameObjectData->name);
+		m_pGameObjectData->staticType = gameObjectData->staticType;
+		strcpy_s(m_pGameObjectData->tag, 256, gameObjectData->tag);
+		m_pGameObjectData->transform = gameObjectData->transform;
+		
 		UpdatedData(EDataType::GameObjectData);
 		return;
 	}
@@ -235,7 +245,13 @@ void GameObject::InsertMeshData(MeshData * data)
 	MeshData* meshData = data;
 	if (meshData)
 	{
-		m_pMeshData = meshData;
+		if (m_pMeshData == nullptr)
+			m_pMeshData = new MeshData();
+		m_pMeshData->index = meshData->index;
+		strcpy_s(m_pMeshData->meshFilePath, 256, meshData->meshFilePath);
+		strcpy_s(m_pMeshData->diffuseTexturePath, 256, meshData->diffuseTexturePath);
+		
+
 		UpdatedData(EDataType::MeshData);
 		return;
 	}
@@ -246,7 +262,12 @@ void HyEngine::GameObject::InsertCellData(CellData * data)
 	CellData* cellData = data;
 	if (cellData)
 	{
-		m_pCellData = cellData;
+		if (m_pCellData == nullptr)
+			m_pCellData = new CellData();
+		m_pCellData->cellIndex = cellData->cellIndex;
+		m_pCellData->group = cellData->group;
+		m_pCellData->option = cellData->option;
+		m_pCellData->position = cellData->position;
 		UpdatedData(EDataType::CellData);
 		return;
 	}

@@ -72,6 +72,7 @@ namespace HyEngine
 		/*bool TryPickingCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);
 		bool TryDeleteCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);*/
 		bool TryPickingCell(_Out_ VectorData* pickedPos, const D3DXVECTOR3& pickingPos, const  ECellOption& option, const unsigned int& group = 100);
+		void AddCell(const D3DXVECTOR3& position, const ECellOption& option, const unsigned int& group);
 		void ClearCell();
 		void ClearPickedPoses();
 		void ChangeCellOption(const unsigned long& cellIndex, const  ECellOption& option);

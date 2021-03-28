@@ -200,7 +200,7 @@ namespace WPF_Tool
                 Externs.InactiveEditObject();
         }
 
-        private void ShowInspector(HierarchyData data)
+        public void ShowInspector(HierarchyData data)
         {
             GameObjectName.Text = data.gameObjectData.name;
             ObjectTag.SelectedIndex = data.tagIndex;
@@ -219,6 +219,7 @@ namespace WPF_Tool
             MeshData.Visibility = Visibility.Collapsed;
             TransformData.Visibility = Visibility.Collapsed;
             MapData.Visibility = Visibility.Collapsed;
+            CellData.Visibility = Visibility.Collapsed;
 
             switch (data.type)
             {
@@ -260,7 +261,8 @@ namespace WPF_Tool
                         break;
                     }
                 case GameObjectType.NavMesh:
-
+                    CellData.Visibility = Visibility.Visible;
+                    CellCount.Text = data.navMeshData.cellCount.ToString();
                     break;
                 case GameObjectType.MapObject:
                     {
@@ -305,9 +307,127 @@ namespace WPF_Tool
             }
 
         }
+        private void OnInspectorTabChanged()
+        {
+            foreach (var item in hierarchyList)
+            {
+                if (item.Index == SelectedIndex)
+                {
+                    ShowInspector(item);
+                    break;
+                }
+            }
+           
+        }
+        private void PositionX_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickPositionX(data);
+                    return;
+                }
+            }
+        }
+        private void PositionY_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickPositionY(data);
+                    return;
+                }
+            }
+        }
+        private void PositionZ_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickPositionZ(data);
+                    return;
+                }
+            }
+        }
 
-
-
+        private void RotationX_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickRotationX(data);
+                    return;
+                }
+            }
+        }
+        private void RotationY_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickRotationY(data);
+                    return;
+                }
+            }
+        }
+        private void RotationZ_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickRotationZ(data);
+                    return;
+                }
+            }
+        }
+        private void ScaleX_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickScaleX(data);
+                    return;
+                }
+            }
+        }
+        private void ScaleY_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickScaleY(data);
+                    return;
+                }
+            }
+        }
+        private void ScaleZ_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    gameObjectController.PickScaleZ(data);
+                    return;
+                }
+            }
+        }
 
         #region Text Changed
 
@@ -323,12 +443,12 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in NavMeshManager.CellDatas)
+            foreach (var cellData in CellDatas)
             {
-                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                if (cellData .cellIndex == SelectedCellIndex)
                 {
-                    data = cellData;
-                    editMode = NavMeshManager.CellEditMode;
+                    data = cellData ;
+                    editMode = CellEditMode;
                     bFound = true;
                     break;
                 }
@@ -353,12 +473,12 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in NavMeshManager.CellDatas)
+            foreach (var cellData in CellDatas)
             {
-                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                if (cellData .cellIndex == SelectedCellIndex)
                 {
-                    data = cellData;
-                    editMode = NavMeshManager.CellEditMode;
+                    data = cellData ;
+                    editMode = CellEditMode;
                     bFound = true;
                     break;
                 }
@@ -382,12 +502,12 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in NavMeshManager.CellDatas)
+            foreach (var cellData in CellDatas)
             {
-                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                if (cellData .cellIndex == SelectedCellIndex)
                 {
-                    data = cellData;
-                    editMode = NavMeshManager.CellEditMode;
+                    data = cellData ;
+                    editMode = CellEditMode;
                     bFound = true;
                     break;
                 }

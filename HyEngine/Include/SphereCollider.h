@@ -27,6 +27,8 @@ namespace HyEngine
 
 		// Getter
 		inline int GetRadius() const { return m_radius; };
+		void SetRadius(float radius);
+
 	private :
 		bool CalcToSphere(Collider* other) const;
 		bool CalcToBox(Collider* other) const;

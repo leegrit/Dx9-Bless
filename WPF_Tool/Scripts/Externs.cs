@@ -84,5 +84,11 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void TranslateToMesh();
+
+        [DllImport("HyEngine.dll")]
+        public static extern bool PickGameObject(float xMousePos, float yMousePos, ref int resultIndex);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void AddCell(ref CellData cellData);
     }
 }

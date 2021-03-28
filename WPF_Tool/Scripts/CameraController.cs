@@ -200,8 +200,8 @@ namespace WPF_Tool.Scripts
                 pos.y = m_cameraLastPos.y;
                 pos.z = m_cameraLastPos.z;
 
-                pos.y = m_cameraLastPos.y - result.y;
-                pos.x = m_cameraLastPos.x + (result.x);
+                pos.y = m_cameraLastPos.y + result.y;
+                pos.x = m_cameraLastPos.x - (result.x);
 
                 Externs.SetEditCameraPos(pos.x, pos.y, pos.z);
                 /*

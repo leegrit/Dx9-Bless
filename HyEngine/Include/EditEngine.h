@@ -35,6 +35,7 @@ namespace HyEngine
 		void AddGameObject(int index);
 		void AddNavMesh(int index);
 		void RemoveGameObject(int index);
+		bool PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex);
 
 
 		/* For Data */
@@ -60,7 +61,7 @@ namespace HyEngine
 
 		/* For NavMesh */
 		bool PickNavMesh(float xMousePos, float yMousePos, int cellOption, _Out_ VectorData* pickedPos);
-
+		void AddCell(CellData* cellData);
 	
 		
 		//////////////////////////////////////////////////////////////////////////

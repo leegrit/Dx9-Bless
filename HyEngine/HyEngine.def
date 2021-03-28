@@ -26,3 +26,5 @@ GetEditCameraRot
 SetEditCameraPos
 SetEditCameraRot
 TranslateToMesh
+PickGameObject
+AddCell

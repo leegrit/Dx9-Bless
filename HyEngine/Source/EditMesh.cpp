@@ -182,6 +182,20 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 				adjBuffer->Release();
 
 				assert(SUCCEEDED(hr));
+
+
+				// Collider 크기 변경
+
+				D3DXVECTOR3 center;
+				float radius;
+				CalcBounds(&center, &radius);
+				assert(m_pCollider);
+				SphereCollider* sphereCol = dynamic_cast<SphereCollider*>(m_pCollider);
+				assert(sphereCol);
+				sphereCol->SetRadius(radius);
+				D3DXVECTOR3 originPos = m_pTransform->m_position;
+				D3DXVECTOR3 offsetPos = center - originPos;
+				sphereCol->SetOffset(offsetPos);
 			}
 		}
 

@@ -30,6 +30,41 @@ namespace WPF_Tool
 {
     public partial class MainWindow
     {
+        public int NavPrimIndex = 0;
+        public int cellIndex = 0;
+        public int SelectedCellIndex = 0;
+        public ECellOption cellOption = ECellOption.NORMAL;
+        public ECellEditMode CellEditMode = ECellEditMode.Similar;
+        public List<CellData> CellDatas = new List<CellData>();
+        public bool IsNewPrimitive()
+        {
+            if (CellDatas.Count == 0)
+                return true;
+
+            if (CellDatas.Count % 3 == 0)
+                return true;
+
+            return false;
+        }
+
+        public void AddCell(Vector3 position)
+        {
+            CellData data = new Data.CellData();
+            data.cellIndex = cellIndex++;
+            data.position = position;
+            data.option = (int)cellOption;
+            data.group = 100; // 지금은 사용하지않는다.
+
+
+            CellDatas.Add(data);
+        }
+
+        // cell만 지우기 불가능 
+        public void RemovePrim(int primIndex)
+        {
+
+            //Externs.RemovePrim
+        }
 
         private void CellSelected(object sender, RoutedEventArgs e)
         {
@@ -37,17 +72,17 @@ namespace WPF_Tool
             //CellDataGroup.IsEnabled = true;
             CellData cellData = default(CellData);
             bool bFind = false;
-            foreach (var data in NavMeshManager.CellDatas)
+            foreach (var data in CellDatas)
             {
                 if (item.Uid == data.cellIndex.ToString())
                 {
-                    cellData = data;
+                    cellData = data ;
                     bFind = true;
                     break;
                 }
             }
             Debug.Assert(bFind);
-            NavMeshManager.SelectedCellIndex = cellData.cellIndex;
+            SelectedCellIndex = cellData.cellIndex;
             CellIndex.Text = item.Uid;
 
             CellOption.SelectedIndex = cellData.option;
@@ -58,12 +93,12 @@ namespace WPF_Tool
 
         private void SimilarVTX_Checked(object sender, RoutedEventArgs e)
         {
-            NavMeshManager.CellEditMode = ECellEditMode.Similar;
+            CellEditMode = ECellEditMode.Similar;
         }
 
         private void SelectedVTX_Checked(object sender, RoutedEventArgs e)
         {
-            NavMeshManager.CellEditMode = ECellEditMode.Selected;
+            CellEditMode = ECellEditMode.Selected;
         }
     }
 }

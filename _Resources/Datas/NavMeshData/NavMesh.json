@@ -1,0 +1,116 @@
+﻿{
+  "Type": 2,
+  "Index": 1,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 1,
+    "Name": "NavMesh",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 1,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 1,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 1,
+    "CellCount": 9
+  },
+  "Cell_0": {
+    "CellIndex": 0,
+    "PositionX": -61,
+    "PositionY": 501,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_1": {
+    "CellIndex": 1,
+    "PositionX": 24,
+    "PositionY": 568,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_2": {
+    "CellIndex": 2,
+    "PositionX": 24,
+    "PositionY": 469,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_3": {
+    "CellIndex": 3,
+    "PositionX": -40,
+    "PositionY": 351,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_4": {
+    "CellIndex": 4,
+    "PositionX": 4,
+    "PositionY": 404,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_5": {
+    "CellIndex": 5,
+    "PositionX": 25,
+    "PositionY": 330,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_6": {
+    "CellIndex": 6,
+    "PositionX": -73,
+    "PositionY": 455,
+    "PositionZ": -74,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_7": {
+    "CellIndex": 7,
+    "PositionX": 16,
+    "PositionY": 497,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_8": {
+    "CellIndex": 8,
+    "PositionX": 11,
+    "PositionY": 381,
+    "PositionZ": -77,
+    "Option": 0,
+    "Group": 100
+  }
+}

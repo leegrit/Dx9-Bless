@@ -35,60 +35,8 @@ namespace WPF_Tool
         public MainWindow()
         {
             InitializeComponent();
+            InitializeWindow();
 
-            AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnHandledException);
-
-            Externs.Initialize();
-            CompositionTarget.Rendering += new EventHandler(CompositionTarget_Rendering);
-            CompositionTarget.Rendering += new EventHandler(Update_Tick);
-            //  _updateTimer = new DispatcherTimer();
-            //  _updateTimer.Tick += new EventHandler(Update_Tick);
-            ////  60 frame
-            //  _updateTimer.Interval = new TimeSpan(0, 0, 0, 0, 16);
-            //  _updateTimer.Start();
-
-
-            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
-            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
-            double windowWidth = this.Width;
-            double windowHeight = this.Height;
-            this.Left = (screenWidth / 2) - (windowWidth / 2);
-            this.Top = (screenHeight / 2) - (windowHeight / 2);
-
-            string baseDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            int lastIndex = baseDirectory.LastIndexOf(toolFolderName);
-
-            string tempString;
-            tempString = baseDirectory.Substring(0, lastIndex);
-            // ResourcePath = tempString + @"_Resources\";
-            Paths.ResourcePath = tempString + @"_Resources\";
-            // MeshPath = tempString + @"_Resources\Mesh\";
-            Paths.MeshPath = tempString + @"_Resources\Mesh\";
-
-            //TexturePath = tempString + @"_Resources\Texture\";
-            Paths.TexturePath = tempString + @"_Resources\Texture\";
-
-            Paths.DataPath = tempString + @"_Resources\Datas\";
-       
-            Paths.HierarchyDataPath = tempString + @"_Resources\Datas\HierarchyData\";
-            Paths.SystemPath = tempString + @"_Resources\System\";
-            Paths.MapDataPath = tempString + @"_Resources\Datas\MapData\";
-            Paths.BackupPath = tempString + @"_Resources\Backup\";
-            Paths.AssetPath = tempString + @"_Resources\Assets\";
-
-            frameRateCalculator = new FrameRateCalculator();
-            cameraController = new CameraController(this);
-            Keyboard.AddKeyDownHandler(this, OnKeyDown);
-
-            SimilarVTX.IsChecked = true;
-
-
-
-            //TexturesLoad();
-            bWindowInit = true;
-
-            //AddGameObject();
         }
         ~MainWindow()
         {
@@ -166,9 +114,8 @@ namespace WPF_Tool
         //string ResourcePath;
         // string MeshPath;
         //string TexturePath;
-        bool bWindowInit = false;
-        FrameRateCalculator frameRateCalculator;
-        CameraController cameraController;
+    
+
         //Dictionary<string, BitmapSource> textureImages;
 
 
@@ -216,13 +163,34 @@ namespace WPF_Tool
             set
             {
                 selectedIndex = value;
-                
+                Externs.SelectEditObject(selectedIndex);
                 foreach (var item in HierarchyList.Items)
                 {
                     ListBoxItem listBoxItem = item as ListBoxItem;
                     if (selectedIndex.ToString() == listBoxItem.Uid)
                     {
                         listBoxItem.IsSelected = true;
+
+                        foreach (var data in hierarchyList)
+                        {
+                            if (selectedIndex == data.Index)
+                            {
+                                ShowInspector(data);
+                                if (data.type == GameObjectType.NavMesh)
+                                {
+                                    InspectorTab.SelectedIndex = 1;
+                                    ToolManager.ToolMode = EToolMode.NavMeshTool;
+                                    OnInspectorTabChanged();
+                                }
+                                else
+                                {
+                                    InspectorTab.SelectedIndex = 0;
+                                    ToolManager.ToolMode = EToolMode.ViewTool;
+                                    OnInspectorTabChanged();
+                                }
+                                break;
+                            }
+                        }
                         break;
                     }
                 }
@@ -251,7 +219,6 @@ namespace WPF_Tool
 
         }
 
-
-
+        
     }
 }

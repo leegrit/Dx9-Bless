@@ -29,11 +29,13 @@
                     <MenuItem Header="_Import Scene" />
                     <MenuItem Header="_Import Hierarchy"  Click="BTN_ImportHierarchy"/>
                     <MenuItem Header="_Import MapData" Click="BTN_ImportMapData"/>
+                    <MenuItem Header="_Import NavMesh" Click="BTN_ImportNavMesh"/>
                     <MenuItem Header="_Import Effect" />
                     <Separator/>
                     <MenuItem Header="_Export Scene" />
                     <MenuItem Header="_Export Hierarchy" Click="BTN_ExportHierarchy"/>
                     <MenuItem Header="_Export MapData"  Click="BTN_ExportMapData"/>
+                    <MenuItem Header="_Export NavMesh"  Click="BTN_ExportNavMesh"/>
                     <MenuItem Header="_Export Effect" />
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
@@ -124,6 +126,9 @@
             <TabItem Header="Game">
 
             </TabItem>
+            <TabItem Header="Settings">
+                
+            </TabItem>
         </TabControl>
         <TabControl x:Name="InspectorTab" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <TabItem Header="Inspector">
@@ -177,7 +182,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <TextBlock/>
+                            
                             <GroupBox x:Name="TransformData" IsEnabled="True">
                                 <GroupBox.Header>
                                     <Label Width="100">Transform Data</Label>
@@ -185,34 +190,34 @@
                                 <StackPanel>
                                     <TextBlock >Position</TextBlock>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
                                         <TextBox x:Name="PositionX" Width="50" TextChanged="PositionX_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
                                         <TextBox x:Name="PositionY" Width="50" TextChanged="PositionY_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
                                         <TextBox x:Name="PositionZ" Width="50" TextChanged="PositionZ_TextChanged">0</TextBox>
                                     </StackPanel>
                                     <TextBlock>Rotation</TextBlock>
                                     <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
                                         <TextBox x:Name="RotationX" Width="50" TextChanged="RotationX_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
                                         <TextBox x:Name="RotationY" Width="50" TextChanged="RotationY_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
                                         <TextBox x:Name="RotationZ" Width="50" TextChanged="RotationZ_TextChanged">0</TextBox>
                                     </StackPanel>
                                     <TextBlock>Scale</TextBlock>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleX_MouseDown">X</TextBlock>
                                         <TextBox x:Name="ScaleX" Width="50" TextChanged="ScaleX_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleY_MouseDown">Y</TextBlock>
                                         <TextBox x:Name="ScaleY" Width="50" TextChanged="ScaleY_TextChanged">0</TextBox>
-                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Z</TextBlock>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleZ_MouseDown">Z</TextBlock>
                                         <TextBox x:Name="ScaleZ" Width="50" TextChanged="ScaleZ_TextChanged">0</TextBox>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <TextBlock/>
+
                             <GroupBox x:Name="MapData" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label>MapData</Label>
@@ -235,7 +240,6 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <TextBlock Height="10"/>
                             <GroupBox x:Name="MeshData" IsEnabled="True" >
                                 <GroupBox.Header>
                                     <Label>Mesh Data</Label>
@@ -254,6 +258,19 @@
                                         <TextBox x:Name="DiffuseFilePath" Width="100" />
                                         <TextBlock Width ="5"/>
                                         <Button Width="60" Click="BTN_Diffuse">Load</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox x:Name="CellData" Visibility="Collapsed">
+                                <GroupBox.Header>
+                                    <Label>Cell Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="10"></TextBlock>
+                                        <TextBlock Foreground="White" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center">Cell Count : </TextBlock>
+                                        <TextBlock x:Name="CellCount">0</TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>

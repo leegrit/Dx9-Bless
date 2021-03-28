@@ -11,6 +11,8 @@ HyEngine::SphereCollider::SphereCollider(EColliderType colliderType, GameObject*
 
 HyEngine::SphereCollider::~SphereCollider()
 {
+	SAFE_RELEASE(m_pSphereMesh);
+
 }
 
 void HyEngine::SphereCollider::Initialize()
@@ -84,6 +86,22 @@ bool HyEngine::SphereCollider::CalculateToDot(D3DXVECTOR3 dotPos)
 	if (length < m_radius)
 		return true;
 	return false;
+}
+
+void HyEngine::SphereCollider::SetRadius(float radius)
+{
+	SAFE_RELEASE(m_pSphereMesh);
+	m_radius = radius;
+	D3DXCreateSphere
+	(
+		DEVICE,
+		(float)m_radius,
+		m_slices,
+		m_stacks,
+		&m_pSphereMesh,
+		0
+	);
+
 }
 
 bool HyEngine::SphereCollider::CalcToSphere(Collider* other) const

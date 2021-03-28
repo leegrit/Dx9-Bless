@@ -65,12 +65,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\CellData.cs" />
+    <Compile Include="Data\ChunkCellData.cs" />
     <Compile Include="Data\ChunkMapData.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\HierarchyData.cs" />
     <Compile Include="Data\MapData.cs" />
     <Compile Include="Data\MeshData.cs" />
+    <Compile Include="Data\NavMeshData.cs" />
     <Compile Include="Data\Strings.cs" />
+    <Compile Include="Scripts\GameObjectController.cs" />
     <Compile Include="Utility\Timer.cs" />
     <Compile Include="Windows\DebugLoger.cs" />
     <Compile Include="Windows\DirectWindow.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Utility\Serializer.cs" />
     <Compile Include="Utility\StringHelper.cs" />
     <Compile Include="Utility\UIDGenerator.cs" />
+    <Compile Include="Windows\WindowInitializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -139,3 +139,11 @@ extern "C" void WINAPI TranslateToMesh()
 {
 	EDIT_ENGINE->TranslateToMesh();
 }
+extern "C" bool WINAPI PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex)
+{
+	return EDIT_ENGINE->PickGameObject(xMousePos, yMousePos, resultIndex);
+}
+extern "C" void WINAPI AddCell(CellData* cellData)
+{
+	EDIT_ENGINE->AddCell(cellData);
+}

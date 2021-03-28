@@ -197,6 +197,40 @@ void HyEngine::EditEngine::RemoveGameObject(int index)
 	}
 }
 
+bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex)
+{
+	for (auto& obj :  GetScene()->GetMeshObjectAll())
+	{
+		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+		if (editObj == nullptr)
+			continue;
+
+		// picking은 xfile만 가능
+		ID3DXMesh* mesh = editObj->GetDxMesh();
+		if (mesh == nullptr) continue;
+
+		D3DXVECTOR3 origin;
+		D3DXVECTOR3 direction;
+		m_pEditScene->GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+		BOOL isHit = false;
+		DWORD faceIndex;
+		FLOAT u;
+		FLOAT v;
+		FLOAT dist;
+		LPD3DXBUFFER allHits;
+		DWORD countOfHits;
+		D3DXVECTOR3 resultPos;
+		D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
+
+		if (isHit)
+		{
+			*resultIndex = editObj->GetEditID();
+			return true;
+		}
+	}
+	return false;
+}
+
 void HyEngine::EditEngine::AdjustEditCameraPos(float xPos, float yPos, float zPos)
 {
 	D3DXVECTOR3 curPos = m_pEditScene->GetEditCamera()->GetPosition();
@@ -292,6 +326,21 @@ bool HyEngine::EditEngine::PickNavMesh(float xMousePos, float yMousePos, int cel
 	assert(editScene);
 	return editScene->PickNavMesh(xMousePos, yMousePos, (ECellOption)cellOption, pickedPos);
 }
+
+void HyEngine::EditEngine::AddCell(CellData * cellData)
+{
+	NavMesh* editObj = dynamic_cast<NavMesh*>(m_pSelectedObject);
+	assert(editObj);
+
+	D3DXVECTOR3 position;
+	position.x = cellData->position.x;
+	position.y = cellData->position.y;
+	position.z = cellData->position.z;
+
+	editObj->AddCell(position, (ECellOption)cellData->option, cellData->group);
+
+}
+
 
 //void HyEngine::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
 //{

@@ -31,6 +31,6 @@ namespace WPF_Tool.Data
         public GameObjectData gameObjectData;
         public MeshData meshData;
         public MapData mapData;
-
+        public NavMeshData navMeshData;
     }
 }
