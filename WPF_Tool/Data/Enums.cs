@@ -18,6 +18,7 @@ namespace WPF_Tool.Data
         Up,
         Left,
         Right,
+        LeftShift,
     }
     public enum EKeyInputStatus
     {

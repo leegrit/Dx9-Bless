@@ -19,8 +19,8 @@
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File" Height="30">
-                    <MenuItem Header="_New" Click="MenuItem_Click"/>
-                    <MenuItem Header="_Open" Click="MenuItem_Click_1"/>
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open"/>
                     <MenuItem Header="_Save"/>
                     <Separator/>
                     <MenuItem Header="_Exit"/>
@@ -90,13 +90,13 @@
                         <TextBlock Name="RenderState" Width="80" VerticalAlignment="Center" Foreground="White" TextAlignment="Center">
                             RenderState
                         </TextBlock>
-                        <ComboBox Name="RenderStateBox" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
+                        <ComboBox Name="RenderStateBox" Width="100" VerticalAlignment="Top"  SelectedIndex="0">
                             <ComboBoxItem Content="Shaded" Selected="Solid_Selected"/>
                             <ComboBoxItem Content="WireFrame" Selected="WireFrame_Selected"/>
                         </ComboBox>
                         <TextBlock Width="10"></TextBlock>
                         <TextBlock VerticalAlignment="Center" Foreground="White" Width="90">ColliderViewer</TextBlock>
-                        <ComboBox Name="ColliderViewMode" Width="100" VerticalAlignment="Top" SelectionChanged="RenderStateBox_SelectionChanged" SelectedIndex="0">
+                        <ComboBox Name="ColliderViewMode" Width="100" VerticalAlignment="Top" SelectedIndex="0">
                             <ComboBoxItem Content="All" Selected="WireFrame_Selected"/>
                             <ComboBoxItem Content="ForEditor" Selected="Solid_Selected"/>
                             <ComboBoxItem Content="ForGame" Selected="WireFrame_Selected"/>

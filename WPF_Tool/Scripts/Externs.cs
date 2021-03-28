@@ -57,6 +57,18 @@ namespace WPF_Tool.Scripts
         [DllImport("HyEngine.dll")]
         public static extern void AdjustEditCameraRot(float xRot, float yRot, float zRot);
 
+        [DllImport("HyEngine.dll")]
+        public static extern void GetEditCameraPos(ref Vector3 position);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void GetEditCameraRot(ref Vector3 rotation);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void SetEditCameraPos(float xPos, float yPos, float zPos);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void SetEditCameraRot(float xRot, float yRot, float zRot);
+
 
         [DllImport("HyEngine.dll")]
         public static extern void SetSolidMode();
@@ -69,5 +81,8 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void RemoveGameObject(int index);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void TranslateToMesh();
     }
 }

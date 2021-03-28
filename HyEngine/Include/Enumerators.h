@@ -10,35 +10,16 @@
 //	RenderDebug = 0x0008,
 //	None = 0x0010,
 //};
-struct RenderType
-{
-	static const DWORD RenderOpaque = 0x0001;
-	static const DWORD RenderAlpha = 0x0002;
-	static const DWORD RenderUI = 0x0004;
-	static const DWORD RenderDebug = 0x0008;
-	static const DWORD None = 0x0010;
-	static const DWORD Texture = 0x0020;
-};
+
 //enum class LogicType
 //{
 //	Update = 0x0001,
 //	LateUpdate = 0x0002,
 //	None = 0x0004,
 //};
-struct ENGINE_DLL BehaviourType
-{
-	static const DWORD Update = 0x0001;
-	static const DWORD LateUpdate = 0x0002;
-	static const DWORD None = 0x0004;
-};
 
-namespace EngineTags
-{
-	static std::wstring Default = L"Default";
-	static std::wstring Player = L"Player";
-	static std::wstring Obstacle = L"Obstacle";
-	static std::wstring Enemy = L"Enemy";
-}
+
+
 
 enum class ERenderType
 {

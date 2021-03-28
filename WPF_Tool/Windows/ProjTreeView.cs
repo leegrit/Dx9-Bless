@@ -188,11 +188,17 @@ namespace WPF_Tool
                     }
                     else
                     {
-                        Stream imageStreamSource = new FileStream(Paths.SystemPath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
-                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                        bitmapSource = decoder.Frames[0];
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+                        if (isExist == false)
+                        {
+                            Stream imageStreamSource = new FileStream(Paths.SystemPath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
 
-                        IconImages.Add(fileItem.FullName, bitmapSource);
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+                       
                     }
 
                     Image itemImage = new Image();

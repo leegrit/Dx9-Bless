@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-namespace Editor
+namespace HyEngine
 {
 	class EditObject : public GameObject
 	{

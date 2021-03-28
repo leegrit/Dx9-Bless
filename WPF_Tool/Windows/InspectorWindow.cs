@@ -132,6 +132,74 @@ namespace WPF_Tool
             }
         }
 
+        private void Tag_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == SelectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.tagIndex = comboBoxIndex;
+                    data.gameObjectData.tag = Strings.Tags[comboBoxIndex];
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+
+        }
+
+        private void Layer_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.layerIndex = comboBoxIndex;
+                    data.gameObjectData.layer = comboBoxIndex;
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+        }
+
+        private void Static_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBox item = sender as ComboBox;
+            int comboBoxIndex = item.SelectedIndex;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.staticIndex = comboBoxIndex;
+                    data.gameObjectData.staticType = comboBoxIndex;
+                    hierarchyList[i] = data;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+        }
+
+        private void Active_Checked(object sender, RoutedEventArgs e)
+        {
+            if (bWindowInit)
+                Externs.ActiveEditObject();
+        }
+
+        private void Active_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (bWindowInit)
+                Externs.InactiveEditObject();
+        }
+
         private void ShowInspector(HierarchyData data)
         {
             GameObjectName.Text = data.gameObjectData.name;
@@ -237,5 +305,314 @@ namespace WPF_Tool
             }
 
         }
+
+
+
+
+        #region Text Changed
+
+
+        private void CellPositionX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;
+
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float xPos;
+            float.TryParse(textBox.Text, out xPos);
+
+            data.position.x = xPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
+        }
+        private void CellPositionY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;
+
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float yPos;
+            float.TryParse(textBox.Text, out yPos);
+
+            data.position.y = yPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
+        }
+        private void CellPositionZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ToolManager.ToolMode != EToolMode.NavMeshTool)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            CellData data = default(CellData);
+            ECellEditMode editMode = ECellEditMode.Similar;
+
+            bool bFound = false;
+            foreach (var cellData in NavMeshManager.CellDatas)
+            {
+                if (cellData.cellIndex == NavMeshManager.SelectedCellIndex)
+                {
+                    data = cellData;
+                    editMode = NavMeshManager.CellEditMode;
+                    bFound = true;
+                    break;
+                }
+            }
+            Debug.Assert(bFound);
+
+            float zPos;
+            float.TryParse(textBox.Text, out zPos);
+
+            data.position.z = zPos;
+
+            Externs.InsertCellData(ref data, (int)editMode);
+        }
+
+        private void PositionX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == SelectedIndex)
+                {
+                    float xPos = 0;
+                    float.TryParse(textBox.Text, out xPos);
+                    hierarchyItem.gameObjectData.transform.position.x = xPos;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+        private void PositionY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == SelectedIndex)
+                {
+                    float yPos = 0;
+                    float.TryParse(textBox.Text, out yPos);
+                    hierarchyItem.gameObjectData.transform.position.y = yPos;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void PositionZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float zPos = 0;
+                    float.TryParse(textBox.Text, out zPos);
+                    hierarchyItem.gameObjectData.transform.position.z = zPos;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void RotationX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float xRot = 0;
+                    float.TryParse(textBox.Text, out xRot);
+                    hierarchyItem.gameObjectData.transform.rotation.x = xRot;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void RotationY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float yRot = 0;
+                    float.TryParse(textBox.Text, out yRot);
+                    hierarchyItem.gameObjectData.transform.rotation.y = yRot;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void RotationZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float zRot = 0;
+                    float.TryParse(textBox.Text, out zRot);
+                    hierarchyItem.gameObjectData.transform.rotation.z = zRot;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void ScaleX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float xScale = 0;
+                    float.TryParse(textBox.Text, out xScale);
+                    hierarchyItem.gameObjectData.transform.scale.x = xScale;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void ScaleY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float yScale = 0;
+                    float.TryParse(textBox.Text, out yScale);
+                    hierarchyItem.gameObjectData.transform.scale.y = yScale;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void ScaleZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            foreach (var hierarchyItem in hierarchyList)
+            {
+                if (hierarchyItem.Index == selectedIndex)
+                {
+                    float zScale = 0;
+                    float.TryParse(textBox.Text, out zScale);
+                    hierarchyItem.gameObjectData.transform.scale.z = zScale;
+                    GameObjectData data = hierarchyItem.gameObjectData;
+                    Externs.InsertGameData(ref data);
+                    break;
+                }
+            }
+        }
+
+        private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.gameObjectData.name = textBox.Text;
+                    hierarchyList[i] = data;
+                    ListBoxItem item = (ListBoxItem)HierarchyList.Items.GetItemAt(i);
+                    item.Content = textBox.Text;
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    break;
+                }
+            }
+        }
+        private void MeshFile_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.meshData.meshFilePath = textBox.Text;
+                    hierarchyList[i] = data;
+                    Externs.InsertMeshData(ref data.meshData);
+                    break;
+                }
+            }
+        }
+        private void DiffuseFile_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            for (int i = 0; i < hierarchyList.Count; i++)
+            {
+                if (hierarchyList[i].Index == selectedIndex)
+                {
+                    HierarchyData data = hierarchyList[i];
+                    data.meshData.diffuseTexturePath = textBox.Text;
+                    hierarchyList[i] = data;
+                    Externs.InsertMeshData(ref data.meshData);
+                    break;
+                }
+            }
+        }
+
+
+        #endregion TextChanged
+
     }
 }

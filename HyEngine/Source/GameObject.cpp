@@ -6,7 +6,7 @@
 #include "CellData.h"
 
 using namespace HyEngine;
-using namespace Editor;
+using namespace HyEngine;
 
 GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent,  const std::wstring& name)
 	: Object(name),

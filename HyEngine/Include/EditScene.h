@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-namespace Editor
+namespace HyEngine
 {
 	class EditScene : public HyEngine::Scene
 	{

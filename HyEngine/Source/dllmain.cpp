@@ -5,7 +5,7 @@
 #include "MeshData.h"
 #include "CellData.h"
 #include "EditObject.h"
-using namespace Editor;
+using namespace HyEngine;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
 	DWORD  ul_reason_for_call,
@@ -48,44 +48,21 @@ extern "C" void WINAPI Render()
 
 extern "C" void WINAPI Destroy()
 {
-	//EditEngine::Release(&pEditEngine);
 	EditEngine::Destroy();
 }
 
 extern "C" void WINAPI AddGameObject(int index)
 {
-//test
-	Scene* scene = EDIT_SCENE;
-	assert(scene);
-	EditScene * editScene = dynamic_cast<EditScene*>(scene);
-	assert(editScene);
-	editScene->AddMeshObject(index);
+	EDIT_ENGINE->AddGameObject(index);
 }
 extern "C" void WINAPI AddNavMesh(int index)
 {
-	Scene* scene = EDIT_SCENE;
-	assert(scene);
-	EditScene * editScene = dynamic_cast<EditScene*>(scene);
-	assert(editScene);
-	editScene->AddNavMesh(index);
+	EDIT_ENGINE->AddNavMesh(index);
 }
 
 extern "C" void WINAPI RemoveGameObject(int index)
 {
-	//test
-	Scene* scene = EDIT_SCENE;
-	assert(scene);
-	EditScene * editScene = dynamic_cast<EditScene*>(scene);
-	assert(editScene);
-	for (auto& obj : editScene->GetMeshObjectAll())
-	{
-		EditObject* editObj = dynamic_cast<EditObject*>(obj);
-		if (editObj->GetEditID() == index)
-		{
-			Object::Destroy(editObj);
-			return;
-		}
-	}
+	EDIT_ENGINE->RemoveGameObject(index);
 }
 
 
@@ -134,16 +111,31 @@ extern "C" void WINAPI SetWireFrameMode()
 	EDIT_ENGINE->SetWireFrameMode();
 }
 
-//extern "C" void WINAPI PickNavMesh(float xMousePos, float yMousePos)
-//{
-//	EDIT_ENGINE->PickNavMesh(xMousePos, yMousePos);
-//}
 
 extern "C" bool WINAPI PickNavMesh(float xMousePos, float yMousePos,int cellOption,  VectorData* pickedPos)
 {
-	Scene* scene = EDIT_SCENE;
-	assert(scene);
-	EditScene * editScene = dynamic_cast<EditScene*>(scene);
-	assert(editScene);
-	return editScene->PickNavMesh(xMousePos, yMousePos, (ECellOption)cellOption, pickedPos);
+	return EDIT_ENGINE->PickNavMesh(xMousePos, yMousePos, cellOption, pickedPos);
+}
+
+extern "C" void WINAPI GetEditCameraPos(_Out_ VectorData* position)
+{
+	EDIT_ENGINE->GetEditCameraPos(position);
+}
+extern "C" void WINAPI GetEditCameraRot(_Out_ VectorData* rotation)
+{
+	EDIT_ENGINE->GetEditCameraRot(rotation);
+}
+
+extern "C" void WINAPI SetEditCameraPos(float xPos, float yPos, float zPos)
+{
+	EDIT_ENGINE->SetEditCameraPos(xPos, yPos, zPos);
+}
+
+extern "C" void WINAPI SetEditCameraRot(float xRot, float yRot, float zRot)
+{
+	EDIT_ENGINE->SetEditCameraRot(xRot, yRot, zRot);
+}
+extern "C" void WINAPI TranslateToMesh()
+{
+	EDIT_ENGINE->TranslateToMesh();
 }

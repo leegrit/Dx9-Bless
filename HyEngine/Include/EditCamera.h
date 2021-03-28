@@ -1,7 +1,7 @@
 #pragma once
 #include "Camera.h"
 
-namespace Editor
+namespace HyEngine
 {
 	class EditCamera : public Camera
 	{

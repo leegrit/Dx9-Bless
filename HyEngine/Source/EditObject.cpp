@@ -5,7 +5,7 @@
 #include "GameObjectData.h"
 #include "MeshData.h"
 
-Editor::EditObject::EditObject(ERenderType renderType, Scene * scene, GameObject * parent, int editID)
+HyEngine::EditObject::EditObject(ERenderType renderType, Scene * scene, GameObject * parent, int editID)
 	: GameObject(renderType, scene, parent, L"GameObject")
 {
 	/*m_pEditData
@@ -21,16 +21,16 @@ Editor::EditObject::EditObject(ERenderType renderType, Scene * scene, GameObject
 	
 }
 
-Editor::EditObject::~EditObject()
+HyEngine::EditObject::~EditObject()
 {
 
 }
 
-void Editor::EditObject::Render()
+void HyEngine::EditObject::Render()
 {
 }
 
-//void Editor::EditObject::InsertData(EditData* data)
+//void HyEngine::EditObject::InsertData(EditData* data)
 //{
 //	
 //	GameObjectData* gameObjectData = nullptr;
@@ -62,7 +62,7 @@ void Editor::EditObject::Render()
 //
 //}
 // 
-// void Editor::EditObject::InsertGameData(GameObjectData * data)
+// void HyEngine::EditObject::InsertGameData(GameObjectData * data)
 // {
 // 	GameObjectData* gameObjectData = data;
 // 	if (gameObjectData)
@@ -82,7 +82,7 @@ void Editor::EditObject::Render()
 // 	}
 // }
 // 
-// void Editor::EditObject::InsertMeshData(MeshData * data)
+// void HyEngine::EditObject::InsertMeshData(MeshData * data)
 // {
 // 	MeshData* meshData = data;
 // 	if (meshData)
@@ -95,7 +95,7 @@ void Editor::EditObject::Render()
 
 
 // 
-// EStaticType Editor::EditObject::GetStaticType() const
+// EStaticType HyEngine::EditObject::GetStaticType() const
 // {
 // 	return m_staticType;
 // }

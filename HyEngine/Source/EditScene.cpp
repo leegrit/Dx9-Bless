@@ -7,14 +7,14 @@
 #include "EditMesh.h"
 #include "NavMesh.h"
 
-using namespace Editor;
+using namespace HyEngine;
 
-void Editor::EditScene::Update()
+void HyEngine::EditScene::Update()
 {
 
 }
 
-void Editor::EditScene::Load()
+void HyEngine::EditScene::Load()
 {
 	m_pEditCamera = EditCamera::Create(this, nullptr);
 	Camera * camera = m_pEditCamera;
@@ -27,32 +27,32 @@ void Editor::EditScene::Load()
 	SetGlobalLight(light);
 }
 
-void Editor::EditScene::Unload()
+void HyEngine::EditScene::Unload()
 {
 	Object::Destroy(m_pEditCamera);
 }
 
-void Editor::EditScene::LoadAsync(std::function<void(int, int)> onProgress)
+void HyEngine::EditScene::LoadAsync(std::function<void(int, int)> onProgress)
 {
 }
 
-void Editor::EditScene::LateLoadScene()
+void HyEngine::EditScene::LateLoadScene()
 {
 }
 
-void Editor::EditScene::AddMeshObject(int editIndex)
+void HyEngine::EditScene::AddMeshObject(int editIndex)
 {
 	//Ring::Create(this, nullptr);
 	EditMesh::Create(this, nullptr, editIndex);
 	//EditMesh::Create(this, nullptr);
 }
 
-void Editor::EditScene::AddNavMesh(int editIndex)
+void HyEngine::EditScene::AddNavMesh(int editIndex)
 {
 	NavMesh::Create(this, nullptr, editIndex);
 }
 
-GameObject * Editor::EditScene::GetGameObject(int editIndex)
+GameObject * HyEngine::EditScene::GetGameObject(int editIndex)
 {
 	for (auto& obj : GetMeshObjectAll())
 	{
@@ -73,12 +73,12 @@ GameObject * Editor::EditScene::GetGameObject(int editIndex)
 	}*/
 }
 
-Camera * Editor::EditScene::GetEditCamera()
+Camera * HyEngine::EditScene::GetEditCamera()
 {
 	return m_pEditCamera;
 }
 
-//void Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos)
+//void HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos)
 //{
 //	for (auto& obj : GetMeshObjectAll())
 //	{
@@ -126,7 +126,7 @@ Camera * Editor::EditScene::GetEditCamera()
 //	}
 //}
 
-bool Editor::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOption option,  VectorData * pickedPos)
+bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOption option,  VectorData * pickedPos)
 {
 	for (auto& obj : GetMeshObjectAll())
 	{

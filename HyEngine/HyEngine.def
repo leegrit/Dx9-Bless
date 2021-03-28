@@ -21,3 +21,8 @@ SetSolidMode
 SetWireFrameMode
 PickNavMesh
 RemoveGameObject
+GetEditCameraPos
+GetEditCameraRot
+SetEditCameraPos
+SetEditCameraRot
+TranslateToMesh

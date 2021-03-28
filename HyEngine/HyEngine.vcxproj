@@ -156,6 +156,7 @@
     <ClInclude Include="Include\D3DXMeshObject.h" />
     <ClInclude Include="Include\DataStructures.h" />
     <ClInclude Include="Include\DebugGround.h" />
+    <ClInclude Include="Include\Defines.h" />
     <ClInclude Include="Include\DiffuseQuad.h" />
     <ClInclude Include="Include\DirectXDevice.h" />
     <ClInclude Include="Include\DxHelper.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Include\GameObject.h" />
     <ClInclude Include="Include\GameObjectData.h" />
     <ClInclude Include="Include\Geometry.h" />
+    <ClInclude Include="Include\GlobalVars.h" />
     <ClInclude Include="Include\ILight.h" />
     <ClInclude Include="Include\ImageButton.h" />
     <ClInclude Include="Include\ImageSwitchButton.h" />
@@ -241,6 +243,7 @@
     <ClInclude Include="Include\StateMachine.h" />
     <ClInclude Include="Include\StayInRadiusBehaviour.h" />
     <ClInclude Include="Include\StringForEditor.h" />
+    <ClInclude Include="Include\Strings.h" />
     <ClInclude Include="Include\TestMesh.h" />
     <ClInclude Include="Include\TextureLoader.h" />
     <ClInclude Include="Include\TextureObject.h" />

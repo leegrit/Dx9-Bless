@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Editor
+namespace HyEngine
 {
 #pragma pack(push,1)
 	struct EditData

@@ -1,7 +1,7 @@
 #include "StandardEngineFramework.h"
 #include "EditCamera.h"
 
-using namespace Editor;
+using namespace HyEngine;
 EditCamera::EditCamera(Scene * scene, GameObject * parent)
 	: Camera(scene, parent, L"EditCamera")
 {

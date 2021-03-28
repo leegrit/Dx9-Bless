@@ -8,7 +8,8 @@
 #include "MeshData.h"
 #include "NavMesh.h"
 #include "CellData.h"
-using namespace Editor;
+#include "EditMesh.h"
+using namespace HyEngine;
 
 const static TCHAR szAppName[] = TEXT("D3DImageSample");
 
@@ -52,10 +53,6 @@ EditEngine::~EditEngine()
 }
 
 
-void EditEngine::Release(EditEngine ** engine)
-{
-	SAFE_DELETE(*engine);
-}
 
 
 
@@ -127,14 +124,14 @@ void EditEngine::SelectObject(int index)
 	m_pSelectedObject = selectedObj;
 }
 
-void Editor::EditEngine::InsertGameData(GameObjectData* data)
+void HyEngine::EditEngine::InsertGameData(GameObjectData* data)
 {
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->InsertGameData(data);
 }
 
-void Editor::EditEngine::InsertMeshData(MeshData * data)
+void HyEngine::EditEngine::InsertMeshData(MeshData * data)
 {
 	if (m_pSelectedObject == nullptr)
 		return;
@@ -142,7 +139,7 @@ void Editor::EditEngine::InsertMeshData(MeshData * data)
 	m_pSelectedObject->InsertMeshData(data);
 }
 
-void Editor::EditEngine::InsertCellData(CellData * data, int cellEditMode)
+void HyEngine::EditEngine::InsertCellData(CellData * data, int cellEditMode)
 {
 	if (m_pSelectedObject == nullptr)
 		return;
@@ -151,21 +148,56 @@ void Editor::EditEngine::InsertCellData(CellData * data, int cellEditMode)
 	navMesh->InsertCellData(data);
 }
 
-void Editor::EditEngine::ActiveObject()
+void HyEngine::EditEngine::ActiveObject()
 {
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->SetActive(true);
 }
 
-void Editor::EditEngine::InactiveObject()
+void HyEngine::EditEngine::InactiveObject()
 {
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->SetActive(false);
 }
 
-void Editor::EditEngine::AdjustEditCameraPos(float xPos, float yPos, float zPos)
+void HyEngine::EditEngine::AddGameObject(int index)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddMeshObject(index);
+}
+
+void HyEngine::EditEngine::AddNavMesh(int index)
+{
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddNavMesh(index);
+}
+
+void HyEngine::EditEngine::RemoveGameObject(int index)
+{
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	for (auto& obj : editScene->GetMeshObjectAll())
+	{
+		EditObject* editObj = dynamic_cast<EditObject*>(obj);
+		if (editObj->GetEditID() == index)
+		{
+			Object::Destroy(editObj);
+			return;
+		}
+	}
+}
+
+void HyEngine::EditEngine::AdjustEditCameraPos(float xPos, float yPos, float zPos)
 {
 	D3DXVECTOR3 curPos = m_pEditScene->GetEditCamera()->GetPosition();
 	Transform* curTr = m_pEditScene->GetEditCamera()->GetTransform();
@@ -181,7 +213,7 @@ void Editor::EditEngine::AdjustEditCameraPos(float xPos, float yPos, float zPos)
 	m_pEditScene->GetEditCamera()->SetPosition(curPos.x, curPos.y, curPos.z);
 }
 
-void Editor::EditEngine::AdjustEditCameraRot(float xRot, float yRot, float zRot)
+void HyEngine::EditEngine::AdjustEditCameraRot(float xRot, float yRot, float zRot)
 {
 	D3DXVECTOR3 curRot = m_pEditScene->GetEditCamera()->GetRotationEuler();
 	curRot = D3DXVECTOR3(curRot.x + xRot, curRot.y + yRot, curRot.z + zRot);
@@ -189,22 +221,84 @@ void Editor::EditEngine::AdjustEditCameraRot(float xRot, float yRot, float zRot)
 
 }
 
-void Editor::EditEngine::SetSolidMode()
+void HyEngine::EditEngine::GetEditCameraPos(VectorData * position)
+{
+	D3DXVECTOR3 pos = m_pEditScene->GetEditCamera()->m_pTransform->m_position;
+
+	position->x = pos.x;
+	position->y = pos.y;
+	position->z = pos.z;
+}
+
+void HyEngine::EditEngine::GetEditCameraRot(VectorData * rotation)
+{
+	D3DXVECTOR3 rot = m_pEditScene->GetEditCamera()->m_pTransform->m_rotationEuler;
+	rotation->x = rot.x;
+	rotation->y = rot.y;
+	rotation->z = rot.z;
+}
+
+void HyEngine::EditEngine::SetEditCameraPos(float xPos, float yPos, float zPos)
+{
+	m_pEditScene->GetEditCamera()->m_pTransform->SetPosition(xPos, yPos, zPos);
+}
+
+void HyEngine::EditEngine::SetEditCameraRot(float xRot, float yRot, float zRot)
+{
+	m_pEditScene->GetEditCamera()->m_pTransform->m_rotationEuler = D3DXVECTOR3(xRot, yRot, zRot);
+}
+
+void HyEngine::EditEngine::TranslateToMesh()
+{
+	EditMesh* editMesh = dynamic_cast<EditMesh*>(m_pSelectedObject);
+	if (editMesh == nullptr) return;
+
+	float radius;
+	D3DXVECTOR3 center;
+
+	bool bFinish = editMesh->CalcBounds(&center, &radius);
+	if (bFinish == false)
+		return;
+
+	D3DXVECTOR3 result = center;
+
+	Transform* editCameraTr = m_pEditScene->GetEditCamera()->m_pTransform;
+
+	result = result + (-editCameraTr->Forward().operator D3DXVECTOR3()) * radius;
+
+	// 메쉬를 안정적으로 바라볼 수 있도록 일정 거리만큼 추가적으로 이동시킨다.
+	result = result + (-editCameraTr->Forward().operator D3DXVECTOR3()) * 20;
+
+	m_pEditScene->GetEditCamera()->m_pTransform->SetPosition(result);
+	
+
+}
+
+void HyEngine::EditEngine::SetSolidMode()
 {
 	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 }
 
-void Editor::EditEngine::SetWireFrameMode()
+void HyEngine::EditEngine::SetWireFrameMode()
 {
 	DEVICE->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 }
 
-//void Editor::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
+bool HyEngine::EditEngine::PickNavMesh(float xMousePos, float yMousePos, int cellOption, VectorData * pickedPos)
+{
+	Scene* scene = EDIT_SCENE;
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	return editScene->PickNavMesh(xMousePos, yMousePos, (ECellOption)cellOption, pickedPos);
+}
+
+//void HyEngine::EditEngine::PickNavMesh(float xMousePos, float yMousePos)
 //{
 //	m_pEditScene->PickNavMesh(xMousePos, yMousePos);
 //}
 
-GameObject * Editor::EditEngine::GetSelectedObject()
+GameObject * HyEngine::EditEngine::GetSelectedObject()
 {
 	return m_pSelectedObject;
 }

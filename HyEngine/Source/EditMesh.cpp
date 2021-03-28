@@ -3,7 +3,7 @@
 #include "EditData.h"
 #include "GameObjectData.h"
 #include "MeshData.h"
-using namespace Editor;
+using namespace HyEngine;
 
 EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 	: EditObject(ERenderType::RenderMesh, scene, parent, editID)
@@ -53,12 +53,41 @@ void EditMesh::Render()
 	}
 }
 
-ID3DXMesh * Editor::EditMesh::GetDxMesh() const
+ID3DXMesh * HyEngine::EditMesh::GetDxMesh() const
 {
 	return m_pDxMesh;
 }
 
-void Editor::EditMesh::UpdatedData(EDataType dataType)
+bool HyEngine::EditMesh::CalcBounds(D3DXVECTOR3 * center, float * radius)
+{
+	if (m_pDxMesh == nullptr)
+		return false;
+
+	BYTE* ptr = nullptr;
+
+	// get the face count
+	DWORD numVertices = m_pDxMesh->GetNumVertices();
+
+	// get the fvf flags
+	DWORD fvfSize = D3DXGetFVFVertexSize(m_pDxMesh->GetFVF());
+
+	// lock the vertex buffer
+	m_pDxMesh->LockVertexBuffer(0, (void**)&ptr);
+
+	HRESULT hr;
+	hr = D3DXComputeBoundingSphere((D3DXVECTOR3*)ptr,
+		numVertices,
+		fvfSize,
+		center, radius);
+	assert(SUCCEEDED(hr));
+
+	m_pDxMesh->UnlockVertexBuffer();
+
+	return true;
+
+}
+
+void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 {
 	switch (dataType)
 	{

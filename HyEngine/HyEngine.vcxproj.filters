@@ -106,6 +106,9 @@
     <Filter Include="Object\NavMesh">
       <UniqueIdentifier>{6d644e16-47d2-41c4-a245-79727f0d34f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GlobalVars">
+      <UniqueIdentifier>{9c209f0e-6750-4ed2-8791-f4266d5555aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -127,9 +130,6 @@
     </ClInclude>
     <ClInclude Include="Include\Component.h">
       <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\DataStructures.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\LinearMath.h">
       <Filter>Utilities</Filter>
@@ -160,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="Include\Renderer.h">
       <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Enumerators.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\Layer.h">
       <Filter>Scripts</Filter>
@@ -467,9 +464,6 @@
     <ClInclude Include="Include\ColorTriangle.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Macros.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Include\NavPrimitive.h">
       <Filter>Object\NavMesh</Filter>
     </ClInclude>
@@ -484,6 +478,24 @@
     </ClInclude>
     <ClInclude Include="Include\EditTransformRect.h">
       <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DataStructures.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Macros.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Enumerators.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Strings.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GlobalVars.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Defines.h">
+      <Filter>GlobalVars</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #include "StandardEngineFramework.h"
 
 
-namespace Editor
+namespace HyEngine
 {
 
 	namespace ResourcePath

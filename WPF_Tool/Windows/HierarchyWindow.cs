@@ -31,7 +31,7 @@ namespace WPF_Tool
 {
     public partial class MainWindow
     {
-       
+
         private void BTN_CreateMesh(object sender, RoutedEventArgs e)
         {
             ListBoxItem item = new ListBoxItem();
@@ -40,6 +40,7 @@ namespace WPF_Tool
             item.Content = HierarchyContent.GameObject;
             item.Tag = HierarchyTag.GameObject;
             item.MouseUp += SelectedGameObject;
+            item.MouseDoubleClick += DoubleClickGameObject;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
             int index = gameObjectIndex; // temp
@@ -64,6 +65,7 @@ namespace WPF_Tool
             item.Content = HierarchyContent.NavMesh;
             item.Tag = HierarchyTag.NavMesh;
             item.MouseUp += SelectedNavMesh;
+            item.MouseDoubleClick += DoubleClickGameObject;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
             int index = gameObjectIndex; // temp
@@ -90,6 +92,7 @@ namespace WPF_Tool
             item.Content = HierarchyContent.MapObject;
             item.Tag = HierarchyTag.MapObject;
             item.MouseUp += SelectedGameObject;
+            item.MouseDoubleClick += DoubleClickGameObject;
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
             int index = gameObjectIndex; // temp
@@ -129,7 +132,10 @@ namespace WPF_Tool
                     break;
                 }
             }
-
+        }
+        private void DoubleClickGameObject(object sender, RoutedEventArgs e)
+        {
+            Externs.TranslateToMesh();
         }
         private void SelectedNavMesh(object sender, RoutedEventArgs e)
         {

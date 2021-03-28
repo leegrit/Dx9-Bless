@@ -27,6 +27,7 @@ struct ENGINE_DLL EngineConfig
 	bool bShowDebuger;
 	bool bShowProfiler;
 
+	// 수정필요함
 	std::vector<Scene*> scenes = {};
 	Scene* loadingScene = nullptr;
 	Camera * camera = nullptr;

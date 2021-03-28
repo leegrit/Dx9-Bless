@@ -5,11 +5,11 @@ matrix ProjMatrix;
 float4 Color;
 
 float4 Ambient;
-float4 AmbientIntensity;
+float4 Ambient_Intensity;
 float4 Diffuse;
-float4 DiffuseIntensity;
+float4 Diffuse_Intensity;
 float4 Specular;
-float4 SpecularIntensity;
+float4 Specular_Intensity;
 float4 SpecularPower;
 
 float4 LightDirection;
@@ -70,7 +70,7 @@ float4 Dissolve(float4 sourceColor, float2 texcoord,
                 float dissolveAmount, float fringeAmount)
 {
     float4 dissolveMap = tex2D(DissolveSampler ,texcoord);
-    float dissolveValue = dissolveMap.x;
+	float dissolveValue = dissolveMap.x;
 
     if(dissolveValue <= dissolveAmount)
     {
@@ -87,7 +87,7 @@ float4 Dissolve(float4 sourceColor, float2 texcoord,
 }
 
 void MeshVS(float4 position : POSITION,
-            float3 normal : NORMAL, 
+	float3 normal : NORMAL,
             float2 texcoord : TEXCOORD0,
             out float4 outPosition : POSITION,
             out float3 outNormal : NORMAL,
@@ -128,17 +128,17 @@ void MeshPS(float3 normal : NORMAL,
     
 
     // ambient 
-    float4 ambientColor = Ambient * AmbientIntensity;
+    float4 ambientColor = Ambient * Ambient_Intensity;
 
     // diffuse
-    float4 diffuseColor = Diffuse * DiffuseIntensity * dot(lightDir, normal);
+    float4 diffuseColor = Diffuse * Diffuse_Intensity * dot(lightDir, normal);
 
     float4 specularColor = float4(0,0,0,0);
     if(diffuseColor.r > 0)
     {
             // specular
     //float3 reflection = reflect(-lightDir, normal);
-    //float4 specularColor = Specular * SpecularIntensity * pow(saturate(dot(reflection, viewDir)), SpecularPower);
+    //float4 specularColor = Specular * Specular_Intensity * pow(saturate(dot(reflection, viewDir)), SpecularPower);
     }
     outColor = saturate((ambientColor + diffuseColor) * albedo + specularColor);
 
@@ -225,12 +225,12 @@ void BumpPS
     float3 worldNormal = mul(TBN, tangentNormal); // 월드의 법선
 
     // ambient color
-    float4 ambientColor = Ambient * AmbientIntensity;
+    float4 ambientColor = Ambient * Ambient_Intensity;
 
     // diffuse color
-    float4 diffuseColor = Diffuse * DiffuseIntensity * saturate(dot(-lightDir, worldNormal));
+    float4 diffuseColor = Diffuse * Diffuse_Intensity * saturate(dot(-lightDir, worldNormal));
 
-   //float4 specularColor = Specular * SpecularIntensity * pow(saturate(dot(reflection, -viewDir)), SpecularPower);
+   //float4 specularColor = Specular * Specular_Intensity * pow(saturate(dot(reflection, -viewDir)), SpecularPower);
     float4 specularColor = 0;
     if(diffuseColor.x > 0)
     {
@@ -242,7 +242,7 @@ void BumpPS
        /*
        float3 fvReflection  = normalize(((2.0f * tangentNormal)*(dot(tangentNormal,lightDir))) - lightDir);
        float3 fvViewDir = normalize(viewDir);
-       float fRDotV = max(0.0f, dot(fvReflection, fvViewDir));
+       _Float fRDotV = max(0.0f, dot(fvReflection, fvViewDir));
        specularColor = Specular * pow(fRDotV, SpecularPower);
        */
 
@@ -254,7 +254,7 @@ void BumpPS
 
 
 	/*float4 dissolveMap = tex2D(DissolveSampler, texcoord);
-	float dissolveValue = dissolveMap.x;
+	_Float dissolveValue = dissolveMap.x;
 
 	if (dissolveValue <= DissolveAmount)
 	{
@@ -306,14 +306,14 @@ void ColorMeshPS(float3 normal : NORMAL,
     
 
     // ambient 
-    float4 ambientColor = Ambient * AmbientIntensity;
+    float4 ambientColor = Ambient * Ambient_Intensity;
 
     // diffuse
-    float4 diffuseColor = Diffuse * DiffuseIntensity * dot(lightDir, normal);
+    float4 diffuseColor = Diffuse * Diffuse_Intensity * dot(lightDir, normal);
 
     // specular
     float3 reflection = reflect(lightDir, normal);
-    float4 specularColor = Specular * SpecularIntensity * pow(saturate(dot(reflection, viewDir)), SpecularPower);
+    float4 specularColor = Specular * Specular_Intensity * pow(saturate(dot(reflection, viewDir)), SpecularPower);
 
     outColor = saturate((ambientColor + diffuseColor) * Color + specularColor);
 }

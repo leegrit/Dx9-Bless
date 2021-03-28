@@ -1,7 +1,7 @@
 #pragma once
 #include "EditObject.h"
 
-namespace Editor
+namespace HyEngine
 {
 	class EditMesh : public EditObject
 	{
@@ -28,6 +28,9 @@ namespace Editor
 		//void SetEmission(const std::wstring& path);
 
 		ID3DXMesh* GetDxMesh()const;
+
+		bool CalcBounds(_Out_ D3DXVECTOR3* center, _Out_ float * radius);
+
 	private :
 		std::shared_ptr<IDirect3DTexture9> m_pBaseTex = nullptr;
 		std::shared_ptr<IDirect3DTexture9> m_pBumpTex = nullptr;

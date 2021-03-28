@@ -38,50 +38,19 @@
 #undef max
 
 
-#ifdef EXPORTS_ENGINE
-#define ENGINE_DLL _declspec(dllexport)
-#else
-#define ENGINE_DLL _declspec(dllimport)
-#endif
 
-#define SAFE_DELETE(p)  \
-if(p)					\
-{						\
-delete p;				\
-p = nullptr;			\
-}
-#define SAFE_RELEASE(p)  \
-if(p)					\
-{						\
-p->Release();				\
-p = nullptr;			\
-}
-#define SAFE_DELETE_ARRAY(p)\
-if (p)\
-{\
-	delete[] p;\
-	p = nullptr;\
-}
 
-#define WinMaxWidth 1024
-#define WinMaxHeight 768
-//#define WinMaxWidth 1280
-//#define WinMaxHeight 720
-#define WinMinWidth 200
-#define WinMinHeight 200
 
-namespace DefaultPath
-{
-	const std::wstring MeshPath = L"./Resources/Mesh/";
-	const std::wstring TexturePath = L"./Resources/Texture/";
-
-	const std::wstring CubePath = MeshPath + L"Cube.obj";
-	const std::wstring CheckerPath = TexturePath + L"Checker.png";
-}
-
-#include "Macros.h"
 
 #include "Settings.h"
+
+/* Global Vars */
+#include "Defines.h"
+#include "Strings.h"
+#include "Macros.h"
+#include "Enumerators.h"
+
+#include "GlobalVars.h"
 
 
 // Utilities
@@ -97,7 +66,6 @@ namespace DefaultPath
 #include "LinearMath.h"
 #include "UIDGen.h"
 #include "DxMath.h"
-#include "LinearMath.h"
 #include "DxHelper.h"
 #include "fsm.h"
 #include "TextureLoader.h"
@@ -109,12 +77,11 @@ namespace DefaultPath
 
 // Core
 #include "Layer.h"
-#include "Enumerators.h"
 #include "Timer.h"
 #include "DirectXDevice.h"
+#include "DataStructures.h"
 #include "Scene.h"
 #include "LoadingScene.h"
-#include "DataStructures.h"
 #include "Transform.h"
 #include "Application.h"
 #include "Engine.h"
