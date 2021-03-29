@@ -443,7 +443,7 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in CellDatas)
+            foreach (var cellData in selectedHierarchy.cells)
             {
                 if (cellData .cellIndex == SelectedCellIndex)
                 {
@@ -473,7 +473,7 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in CellDatas)
+            foreach (var cellData in selectedHierarchy.cells)
             {
                 if (cellData .cellIndex == SelectedCellIndex)
                 {
@@ -502,7 +502,7 @@ namespace WPF_Tool
             ECellEditMode editMode = ECellEditMode.Similar;
 
             bool bFound = false;
-            foreach (var cellData in CellDatas)
+            foreach (var cellData in selectedHierarchy.cells)
             {
                 if (cellData .cellIndex == SelectedCellIndex)
                 {

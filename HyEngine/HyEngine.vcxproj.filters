@@ -109,6 +109,9 @@
     <Filter Include="GlobalVars">
       <UniqueIdentifier>{9c209f0e-6750-4ed2-8791-f4266d5555aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mesh">
+      <UniqueIdentifier>{65509b8b-bc02-4707-b10b-02b8196ae3c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -497,6 +500,12 @@
     <ClInclude Include="Include\Defines.h">
       <Filter>GlobalVars</Filter>
     </ClInclude>
+    <ClInclude Include="Include\EditDynamicMesh.h">
+      <Filter>Editor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshHierarchy.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -834,6 +843,12 @@
     </ClCompile>
     <ClCompile Include="Source\EditTransformRect.cpp">
       <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditDynamicMesh.cpp">
+      <Filter>Editor\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshHierarchy.cpp">
+      <Filter>Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

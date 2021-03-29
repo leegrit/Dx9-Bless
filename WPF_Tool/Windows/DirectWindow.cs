@@ -100,19 +100,11 @@ namespace WPF_Tool
                         cellItem.Uid = cellIndex.ToString();
                         cellItem.Selected += CellSelected;
                         AddCell(pickedPos);
-
+                        selectedHierarchy.navMeshData.cellCount++;
                         int primCount = CellList.Items.Count;
 
                         ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
-
-                        foreach (var selectedNavMesh in hierarchyList)
-                        {
-                            if (selectedNavMesh.Index == SelectedIndex)
-                            {
-                                selectedNavMesh.navMeshData.cellCount++;
-                                break;
-                            }
-                        }
+                        
 
 
                         DebugLog("NavMesh Picked X : " + pickedPos.x + ", " + " Y : " + pickedPos.y + ", Z : " + pickedPos.z, ELogType.Log);

@@ -57,14 +57,10 @@ namespace WPF_Tool
 
             string tempString;
             tempString = baseDirectory.Substring(0, lastIndex);
-            // ResourcePath = tempString + @"_Resources\";
+
             Paths.ResourcePath = tempString + @"_Resources\";
-            // MeshPath = tempString + @"_Resources\Mesh\";
             Paths.MeshPath = tempString + @"_Resources\Mesh\";
-
-            //TexturePath = tempString + @"_Resources\Texture\";
             Paths.TexturePath = tempString + @"_Resources\Texture\";
-
             Paths.DataPath = tempString + @"_Resources\Datas\";
             Paths.HierarchyDataPath = tempString + @"_Resources\Datas\HierarchyData\";
             Paths.NavMeshData = tempString + @"_Resources\Datas\NavMeshData\";
@@ -72,6 +68,7 @@ namespace WPF_Tool
             Paths.MapDataPath = tempString + @"_Resources\Datas\MapData\";
             Paths.BackupPath = tempString + @"_Resources\Backup\";
             Paths.AssetPath = tempString + @"_Resources\Assets\";
+            Paths.SceneDataPath = tempString + @"_Resources\Datas\SceneData\";
 
             frameRateCalculator = new FrameRateCalculator();
             cameraController = new CameraController(this);

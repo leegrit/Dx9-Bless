@@ -12,6 +12,14 @@ namespace WPF_Tool.Data
         MapObject,
         NavMesh
     }
+    public enum EDataType
+    {
+        Hierarchy,
+        Map,
+        NavMesh,
+        Scene,
+
+    }
     public enum EKeyState
     {
         Down,

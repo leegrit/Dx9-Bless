@@ -42,6 +42,7 @@ namespace WPF_Tool.Data
         public static string BackupPath;
         public static string AssetPath;
         public static string NavMeshData;
+        public static string SceneDataPath;
 
     }
 

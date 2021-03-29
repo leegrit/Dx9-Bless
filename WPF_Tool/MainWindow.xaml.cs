@@ -157,6 +157,7 @@ namespace WPF_Tool
         List<MeshData> meshDatas = new List<MeshData>();
         
         int gameObjectIndex = 0;
+        HierarchyData selectedHierarchy;
         private int selectedIndex = -1;
         public int SelectedIndex
         {
@@ -175,6 +176,7 @@ namespace WPF_Tool
                         {
                             if (selectedIndex == data.Index)
                             {
+                                selectedHierarchy = data;
                                 ShowInspector(data);
                                 if (data.type == GameObjectType.NavMesh)
                                 {

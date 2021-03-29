@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using WPF_Tool.Data;
 using System.IO;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace WPF_Tool.Utility
 {
@@ -17,47 +18,20 @@ namespace WPF_Tool.Utility
             string fileName;
             fileName = data.gameObjectData.name;
 
-            var dataJson = new JObject();
-            dataJson.Add("Type", (int)data.type);
-            dataJson.Add("Index", data.Index);
-            dataJson.Add("TagIndex", data.tagIndex);
-            dataJson.Add("LayerIndex", data.layerIndex);
-            dataJson.Add("StaticIndex", data.staticIndex);
+            var dataJson = ConvertToJson(data);
 
-            var gameObjectJson = ConvertToJson(data.gameObjectData);
-            dataJson.Add("GameObjectData", gameObjectJson);
-
-            var meshJson = ConvertToJson(data.meshData);
-            dataJson.Add("MeshData", meshJson);
-
-            var mapJson = ConvertToJson(data.mapData);
-            dataJson.Add("MapData", mapJson);
-
-            // 여기서 같은 파일 이름이 있을 경우
-            // 이름 뒤에 번호 0 ~ 붙여서 fileName 최종 결정
-
-            if (System.IO.Directory.Exists(Paths.HierarchyDataPath))
+            switch (data.type)
             {
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.HierarchyDataPath);
-                int count = 0;
-                foreach (var item in info.GetFiles())
-                {
-                    if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
-                    {
-                        count++;
-                        // 같은게 있으면 count를 늘려준다.
-                        // 중복이 여러 개 있을 수도 있기 때문.
-                    }
-                }
-                if(count !=0)
-                    fileName = fileName + count;
+                case GameObjectType.Mesh:
+                    SaveJsonFile(EDataType.Hierarchy, dataJson, fileName, ref outFileName);
+                    break;
+                case GameObjectType.MapObject:
+                    SaveJsonFile(EDataType.Hierarchy, dataJson, fileName, ref outFileName);
+                    break;
+                case GameObjectType.NavMesh:
+                    SaveJsonFile(EDataType.NavMesh, dataJson, fileName, ref outFileName);
+                    break;
             }
-
-            using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, Encoding.UTF8))
-            {
-                sw.Write(dataJson.ToString());
-            }
-            outFileName = fileName + ".json";
             return true;
         }
         public static bool Write(ChunkMapData data, ref string outFileName)
@@ -73,64 +47,18 @@ namespace WPF_Tool.Utility
             // 맵 개수만큼 hierarchyData를 json에 써준다.
             for (int i = 0; i < data.mapCount; i++)
             {
-
-                var hierarchyJson = new JObject();
-                hierarchyJson.Add("Type", (int)data.maps[i].type);
-                hierarchyJson.Add("Index", data.maps[i].Index);
-                hierarchyJson.Add("TagIndex", data.maps[i].tagIndex);
-                hierarchyJson.Add("LayerIndex", data.maps[i].layerIndex);
-                hierarchyJson.Add("StaticIndex", data.maps[i].staticIndex);
-
-                var gameObjectJson = ConvertToJson(data.maps[i].gameObjectData);
-                hierarchyJson.Add("GameObjectData", gameObjectJson);
-
-                var meshJson = ConvertToJson(data.maps[i].meshData);
-                hierarchyJson.Add("MeshData", meshJson);
-
-                var mapJson = ConvertToJson(data.maps[i].mapData);
-                hierarchyJson.Add("MapData", mapJson);
+                var hierarchyJson = ConvertToJson(data.maps[i]);
 
                 dataJson.Add("Hierarchy_" + i.ToString(), hierarchyJson);
             }
 
-            // map data는 만약 중복일 경우 덮어쓰는데
-            // 실수를 방지하기 위해 backup폴더에 저장해두고 덮어쓴다.
-            if (System.IO.Directory.Exists(Paths.MapDataPath))
-            {
-                string backupFileName = fileName;
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.MapDataPath);
-               
-                int count = 0;
-                foreach (var item in info.GetFiles())
-                {
-                    if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
-                    {
-                        count++;
-                    }
-                }
-                if (count != 0)
-                {
-                    backupFileName = backupFileName + count;
-
-
-
-                    using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
-                    {
-                        sw.Write(dataJson.ToString());
-                    }
-                }
-            }
-
-
-            using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json", false, Encoding.UTF8))
-            {
-                sw.Write(dataJson.ToString());
-            }
-            outFileName = fileName + ".json";
+            SaveJsonFile(EDataType.Map, dataJson, fileName, ref outFileName);
             return true;
         }
         public static bool Write(ChunkCellData data, ref string outFileName)
         {
+            // 사용 x
+            Debug.Assert(false);
             string fileName;
             fileName = data.navMeshObject.gameObjectData.name;
 
@@ -156,154 +84,49 @@ namespace WPF_Tool.Utility
 
             for (int i = 0; i < data.navMeshObject.navMeshData.cellCount; i++)
             {
-
                 var cellJson = new JObject();
-                cellJson.Add("CellIndex", (int)data.cells[i].cellIndex);
-                cellJson.Add("PositionX", (int)data.cells[i].position.x);
-                cellJson.Add("PositionY", (int)data.cells[i].position.y);
-                cellJson.Add("PositionZ", (int)data.cells[i].position.z);
-                cellJson.Add("Option", (int)data.cells[i].option);
-                cellJson.Add("Group", (int)data.cells[i].group);
+                cellJson = ConvertToJson(data.cells[i]);
                 dataJson.Add("Cell_" + i, cellJson);
             }
 
-            // map data는 만약 중복일 경우 덮어쓰는데
-            // 실수를 방지하기 위해 backup폴더에 저장해두고 덮어쓴다.
-            if (System.IO.Directory.Exists(Paths.NavMeshData))
-            {
-                string backupFileName = fileName;
-                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.NavMeshData);
-
-                int count = 0;
-                foreach (var item in info.GetFiles())
-                {
-                    if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
-                    {
-                        count++;
-                    }
-                }
-                if (count != 0)
-                {
-                    backupFileName = backupFileName + count;
-
-
-
-                    using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
-                    {
-                        sw.Write(dataJson.ToString());
-                    }
-                }
-            }
-
-
-            using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, Encoding.UTF8))
-            {
-                sw.Write(dataJson.ToString());
-            }
-            outFileName = fileName + ".json";
+            SaveJsonFile(EDataType.NavMesh, dataJson, fileName, ref outFileName);
             return true;
         }
+
         public static bool Write(List<HierarchyData> datas, ref string outFileName)
         {
-            string fileName = ShowSaveFileDialog("*.json", 1, "Scene", ".json");
-
+            string fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Scene", ".json");
+            outFileName = fileName;
             var sceneJson = new JObject();
+            sceneJson.Add("HierarchyCount", datas.Count);
             for (int i = 0; i < datas.Count; i++)
             {
-                var dataJson = new JObject();
-                dataJson.Add("Type", (int)datas[i].type);
-                dataJson.Add("Index", datas[i].Index);
-                dataJson.Add("TagIndex", datas[i].tagIndex);
-                dataJson.Add("LayerIndex", datas[i].layerIndex);
-                dataJson.Add("StaticIndex", datas[i].staticIndex);
-
-                var gameObjectJson = ConvertToJson(datas[i].gameObjectData);
-                dataJson.Add("GameObjectData", gameObjectJson);
-
-                var meshJson = ConvertToJson(datas[i].meshData);
-                dataJson.Add("MeshData", meshJson);
-
-                var mapJson = ConvertToJson(datas[i].mapData);
-                dataJson.Add("MapData", mapJson);
-
-                switch (datas[i].type)
-                {
-                    case GameObjectType.NavMesh:
-                        // ~~~ TODO 
-                        break;
-
-                }
-
+                var dataJson = ConvertToJson(datas[i]);
+                
                 sceneJson.Add("Hierarchy_" + i, dataJson);
             }
+            SaveJsonFile(EDataType.Scene, sceneJson, fileName, ref outFileName);
+            
             return true;
         }
-        public static bool Read(ref HierarchyData outData, string fileName)
+        public static bool Read(ref HierarchyData outData, string fileName, EDataType dataType = EDataType.Hierarchy)
         {
-            bool hasExt = false;
-            string ext = ".json";
-            hasExt = fileName.Contains(ext);
-            if (hasExt == false)
-                fileName = fileName + ".json";
-
-            FileInfo fi = new FileInfo(Paths.HierarchyDataPath + fileName);
-            if (fi.Exists == false) return false;
-
             string text;
-            using (StreamReader sw = new StreamReader(Paths.HierarchyDataPath + fileName))
-            {
-                text = sw.ReadToEnd();
-            }
+
+            ReadJsonFile(dataType, fileName, out text);
 
             // 읽기
             var readJson = JObject.Parse(text);
-
-            // Json Parse
-            HierarchyData data = new HierarchyData();
-            data.type = (GameObjectType)((int)readJson["Type"]);
-            data.Index = (int)readJson["Index"];
-            data.tagIndex = (int)readJson["TagIndex"];
-            data.layerIndex = (int)readJson["LayerIndex"];
-            data.staticIndex = (int)readJson["StaticIndex"];
-
-
-
-
-            GameObjectData gameObjectData;
-            InjectGameObjectData(out gameObjectData, readJson);
-            data.gameObjectData = gameObjectData;
-
-            MeshData meshData;
-            InjectMeshData(out meshData, readJson);
-            data.meshData = meshData;
-
-            MapData mapData;
-            InjectMapData(out mapData, readJson);
-            data.mapData = mapData;
-
-            outData = data;
-            return true;
-
             
-
+            InjectHierarchyData(out outData, readJson);
+            return true;
         }
 
         public static bool Read(ref ChunkMapData outData, string fileName)
         {
-            bool hasExt = false;
-            string ext = ".json";
-            hasExt = fileName.Contains(ext);
-            if (hasExt == false)
-                fileName = fileName + ".json";
-
-            FileInfo fi = new FileInfo(Paths.MapDataPath + fileName);
-            if (fi.Exists == false) return false;
-
+           
             string text;
-            using (StreamReader sw = new StreamReader(Paths.MapDataPath + fileName))
-            {
-                text = sw.ReadToEnd();
-            }
+            ReadJsonFile(EDataType.Map, fileName, out text);
 
             // 읽기
             var readJson = JObject.Parse(text);
@@ -318,26 +141,8 @@ namespace WPF_Tool.Utility
             {
                 var hierarchyJson = readJson["Hierarchy_" + i.ToString()];
 
-                HierarchyData hierarchyData = new HierarchyData();
-                
-                hierarchyData.type = (GameObjectType)((int)hierarchyJson["Type"]);
-                hierarchyData.Index = (int)hierarchyJson["Index"];
-                hierarchyData.tagIndex = (int)hierarchyJson["TagIndex"];
-                hierarchyData.layerIndex = (int)hierarchyJson["LayerIndex"];
-                hierarchyData.staticIndex = (int)hierarchyJson["StaticIndex"];
-
-                GameObjectData gameObjectData;
-                InjectGameObjectData(out gameObjectData, hierarchyJson);
-                hierarchyData.gameObjectData = gameObjectData;
-
-                MeshData meshData;
-                InjectMeshData(out meshData, hierarchyJson);
-                hierarchyData.meshData = meshData;
-
-                MapData mapData;
-                InjectMapData(out mapData, hierarchyJson);
-                hierarchyData.mapData = mapData;
-
+                HierarchyData hierarchyData;
+                InjectHierarchyData(out hierarchyData, hierarchyJson);
 
                 data.maps.Add(hierarchyData);
             }
@@ -393,17 +198,8 @@ namespace WPF_Tool.Utility
             data.cells = new List<CellData>();
             for (int i = 0; i < data.navMeshObject.navMeshData.cellCount; i++)
             {
-
-                var cellJson = readJson["Cell_" + i.ToString()];
-
                 CellData cellData = new CellData();
-                cellData.cellIndex = (int)cellJson["CellIndex"];
-                cellData.position.x = (int)cellJson["PositionX"];
-                cellData.position.y = (int)cellJson["PositionY"];
-                cellData.position.z = (int)cellJson["PositionZ"];
-                cellData.option = (int)cellJson["Option"];
-                cellData.group = (int)cellJson["Group"];
-
+                InjectCellData(out cellData, i, readJson);
                 data.cells.Add(cellData);
             }
 
@@ -413,7 +209,72 @@ namespace WPF_Tool.Utility
 
         }
 
+        public static bool Read(ref List<HierarchyData> outData, string fileName)
+        {
+            bool hasExt = false;
+            string ext = ".json";
+            hasExt = fileName.Contains(ext);
+            if (hasExt == false)
+                fileName = fileName + ".json";
+
+            FileInfo fi = new FileInfo(Paths.SceneDataPath + fileName);
+            if (fi.Exists == false) return false;
+
+            string text;
+            using (StreamReader sw = new StreamReader(Paths.SceneDataPath + fileName))
+            {
+                text = sw.ReadToEnd();
+            }
+
+            outData = new List<HierarchyData>();
+            // 읽기
+            var readJson = JObject.Parse(text);
+            int hierarchyCount = (int)readJson["HierarchyCount"];
+
+            Debug.Assert(hierarchyCount > 0);
+            for (int i = 0; i < hierarchyCount; i++)
+            {
+                HierarchyData data;
+
+                var hierarchyJson = readJson["Hierarchy_" + i];
+                InjectHierarchyData(out data, hierarchyJson);
+                
+
+                outData.Add(data);
+            }
+            return true;
+        }
         #region Converter
+
+        private static JObject ConvertToJson(HierarchyData hierarchyData)
+        {
+            var hierarchyJson = new JObject();
+            hierarchyJson.Add("Type", (int)hierarchyData.type);
+            hierarchyJson.Add("Index", hierarchyData.Index);
+            hierarchyJson.Add("TagIndex", hierarchyData.tagIndex);
+            hierarchyJson.Add("LayerIndex", hierarchyData.layerIndex);
+            hierarchyJson.Add("StaticIndex", hierarchyData.staticIndex);
+
+            var gameObjectJson = ConvertToJson(hierarchyData.gameObjectData);
+            hierarchyJson.Add("GameObjectData", gameObjectJson);
+
+            var meshJson = ConvertToJson(hierarchyData.meshData);
+            hierarchyJson.Add("MeshData", meshJson);
+
+            var mapJson = ConvertToJson(hierarchyData.mapData);
+            hierarchyJson.Add("MapData", mapJson);
+
+            var navMeshJson = ConvertToJson(hierarchyData.navMeshData);
+            hierarchyJson.Add("NavMeshData", navMeshJson);
+
+            for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
+            {
+                var cellJson = new JObject();
+                cellJson = ConvertToJson(hierarchyData.cells[i]);
+                hierarchyJson.Add("Cell_" + i, cellJson);
+            }
+            return hierarchyJson;
+        }
         private static JObject ConvertToJson(GameObjectData gameObjectData)
         {
             var gameObjectJson = new JObject();
@@ -465,6 +326,17 @@ namespace WPF_Tool.Utility
             mapJson.Add("Group", mapData.group);
             return mapJson;
         }
+        private static JObject ConvertToJson(CellData cellData)
+        {
+            var cellJson = new JObject();
+            cellJson.Add("CellIndex", (int)cellData.cellIndex);
+            cellJson.Add("PositionX", (int)cellData.position.x);
+            cellJson.Add("PositionY", (int)cellData.position.y);
+            cellJson.Add("PositionZ", (int)cellData.position.z);
+            cellJson.Add("Option", (int)cellData.option);
+            cellJson.Add("Group", (int)cellData.group);
+            return cellJson;
+        }
         private static JObject ConvertToJson(NavMeshData navMeshData)
         {
             var navMeshJson = new JObject();
@@ -477,6 +349,48 @@ namespace WPF_Tool.Utility
 
         // 각 Inject 함수를 통해 json 버전에 관계없이 값을 읽을 수 있게 한다.
         #region Injections
+        private static bool InjectHierarchyData(out HierarchyData hierarchyData, JToken parentToekn)
+        {
+           // var readJson = JObject.Parse(text);
+
+            // Json Parse
+            HierarchyData data = new HierarchyData();
+            data.type = (GameObjectType)((int)parentToekn["Type"]);
+            data.Index = (int)parentToekn["Index"];
+            data.tagIndex = (int)parentToekn["TagIndex"];
+            data.layerIndex = (int)parentToekn["LayerIndex"];
+            data.staticIndex = (int)parentToekn["StaticIndex"];
+
+
+
+
+            GameObjectData gameObjectData;
+            InjectGameObjectData(out gameObjectData, parentToekn);
+            data.gameObjectData = gameObjectData;
+
+            MeshData meshData;
+            InjectMeshData(out meshData, parentToekn);
+            data.meshData = meshData;
+
+            MapData mapData;
+            InjectMapData(out mapData, parentToekn);
+            data.mapData = mapData;
+
+            NavMeshData navMeshData;
+            InjectNavMeshData(out navMeshData, parentToekn);
+            data.navMeshData = navMeshData;
+
+            data.cells = new List<CellData>();
+            for (int j = 0; j < navMeshData.cellCount; j++)
+            {
+                CellData cellData;
+                InjectCellData(out cellData, j, parentToekn);
+                data.cells.Add(cellData);
+            }
+
+            hierarchyData = data;
+            return true;
+        }
 
         private static bool InjectGameObjectData(out GameObjectData gameObjectData, JToken parentToken)
         {
@@ -554,10 +468,179 @@ namespace WPF_Tool.Utility
 
             return true;
         }
+
+        private static bool InjectCellData(out CellData cellData, int index, JToken parentToken)
+        {
+            var jsonCellData = parentToken["Cell_" + index.ToString()];
+            if (jsonCellData == null)
+            {
+                cellData = default(CellData);
+                return false;
+            }
+
+            cellData.cellIndex = (int)jsonCellData["CellIndex"];
+            cellData.position.x = (int)jsonCellData["PositionX"];
+            cellData.position.y = (int)jsonCellData["PositionY"];
+            cellData.position.z = (int)jsonCellData["PositionZ"];
+            cellData.option = (int)jsonCellData["Option"];
+            cellData.group = (int)jsonCellData["Group"];
+
+            return true;
+        }
         #endregion
 
 
+        private static void SaveJsonFile(EDataType type, JObject json, string fileName, ref string outFileName)
+        {
+            switch (type)
+            {
+                case EDataType.Hierarchy:
+                    if (System.IO.Directory.Exists(Paths.HierarchyDataPath))
+                    {
+                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.HierarchyDataPath);
+                        int count = 0;
+                        foreach (var item in info.GetFiles())
+                        {
+                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                            {
+                                count++;
+                                // 같은게 있으면 count를 늘려준다.
+                                // 중복이 여러 개 있을 수도 있기 때문.
+                            }
+                        }
+                        if (count != 0)
+                            fileName = fileName + count;
+                    }
 
+                    using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, Encoding.UTF8))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName + ".json";
+                    break;
+                case EDataType.Map:
+                    // map data는 만약 중복일 경우 덮어쓰는데
+                    // 실수를 방지하기 위해 backup폴더에 저장해두고 덮어쓴다.
+                    if (System.IO.Directory.Exists(Paths.MapDataPath))
+                    {
+                        string backupFileName = fileName;
+                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.MapDataPath);
+
+                        int count = 0;
+                        foreach (var item in info.GetFiles())
+                        {
+                            if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
+                            {
+                                count++;
+                            }
+                        }
+                        if (count != 0)
+                        {
+                            backupFileName = backupFileName + count;
+
+
+
+                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
+                            {
+                                sw.Write(json.ToString());
+                            }
+                        }
+                    }
+
+
+                    using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json", false, Encoding.UTF8))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName + ".json";
+                    break;
+                case EDataType.NavMesh:
+                    if (System.IO.Directory.Exists(Paths.NavMeshData))
+                    {
+                        string backupFileName = fileName;
+                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.NavMeshData);
+
+                        int count = 0;
+                        foreach (var item in info.GetFiles())
+                        {
+                            if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
+                            {
+                                count++;
+                            }
+                        }
+                        if (count != 0)
+                        {
+                            backupFileName = backupFileName + count;
+
+
+
+                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
+                            {
+                                sw.Write(json.ToString());
+                            }
+                        }
+                    }
+
+
+                    using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, Encoding.UTF8))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName + ".json";
+                    break;
+                case EDataType.Scene:
+                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName;
+                    break;
+                default:
+                    outFileName = default(string);
+                    Debug.Assert(false);
+                    break;
+            }
+        }
+        private static bool ReadJsonFile(EDataType type, string fileName, out string readText)
+        {
+            bool hasExt = false;
+            string ext = ".json";
+            hasExt = fileName.Contains(ext);
+            if (hasExt == false)
+                fileName = fileName + ".json";
+
+            readText = default(string);
+
+            string defaultPath = default(string);
+            switch (type)
+            {
+                case EDataType.Hierarchy:
+                    defaultPath = Paths.HierarchyDataPath;
+                    break;
+                case EDataType.Map:
+                    defaultPath = Paths.MapDataPath;
+                    break;
+                case EDataType.NavMesh:
+                    defaultPath = Paths.NavMeshData;
+                    break;
+                case EDataType.Scene:
+                    defaultPath = Paths.SceneDataPath;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
+
+            FileInfo fi = new FileInfo(defaultPath + fileName);
+            if (fi.Exists == false) return false;
+            
+            using (StreamReader sw = new StreamReader(defaultPath + fileName))
+            {
+                readText = sw.ReadToEnd();
+            }
+            return true;
+           
+        }
         public static string ShowSaveFileDialog
         (
             string filter,
@@ -567,7 +650,9 @@ namespace WPF_Tool.Utility
         )
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-                        
+
+            saveFileDialog.InitialDirectory = Paths.SceneDataPath;
+                           
             saveFileDialog.Filter = filter;
             saveFileDialog.FilterIndex = filterIndex + 1;
             saveFileDialog.FileName = defaultFileName;

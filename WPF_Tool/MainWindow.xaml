@@ -26,13 +26,13 @@
                     <MenuItem Header="_Exit"/>
                 </MenuItem>
                 <MenuItem Header="Data" Height="30" >
-                    <MenuItem Header="_Import Scene" />
+                    <MenuItem Header="_Import Scene" Click="BTN_ImportScene"/>
                     <MenuItem Header="_Import Hierarchy"  Click="BTN_ImportHierarchy"/>
                     <MenuItem Header="_Import MapData" Click="BTN_ImportMapData"/>
                     <MenuItem Header="_Import NavMesh" Click="BTN_ImportNavMesh"/>
                     <MenuItem Header="_Import Effect" />
                     <Separator/>
-                    <MenuItem Header="_Export Scene" />
+                    <MenuItem Header="_Export Scene" Click="BTN_ExportScene"/>
                     <MenuItem Header="_Export Hierarchy" Click="BTN_ExportHierarchy"/>
                     <MenuItem Header="_Export MapData"  Click="BTN_ExportMapData"/>
                     <MenuItem Header="_Export NavMesh"  Click="BTN_ExportNavMesh"/>

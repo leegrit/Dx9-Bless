@@ -35,15 +35,20 @@ namespace WPF_Tool
         public int SelectedCellIndex = 0;
         public ECellOption cellOption = ECellOption.NORMAL;
         public ECellEditMode CellEditMode = ECellEditMode.Similar;
-        public List<CellData> CellDatas = new List<CellData>();
+       // public static List<CellData> CellDatas = new List<CellData>();
         public bool IsNewPrimitive()
         {
-            if (CellDatas.Count == 0)
-                return true;
-
-            if (CellDatas.Count % 3 == 0)
-                return true;
-
+            foreach (var item in hierarchyList)
+            {
+                if (item.Index == SelectedIndex)
+                {
+                    if (item.cells.Count == 0)
+                        return true;
+                    if (item.cells.Count % 3 == 0)
+                        return true;
+                    return false;
+                }
+            }
             return false;
         }
 
@@ -55,8 +60,17 @@ namespace WPF_Tool
             data.option = (int)cellOption;
             data.group = 100; // 지금은 사용하지않는다.
 
-
-            CellDatas.Add(data);
+            foreach (var item in hierarchyList)
+            {
+                if (item.Index == SelectedIndex)
+                {
+                    if (item.cells == null)
+                        item.cells = new List<Data.CellData>();
+                    item.cells.Add(data);
+                    break;
+                }
+            }
+            
         }
 
         // cell만 지우기 불가능 
@@ -72,12 +86,20 @@ namespace WPF_Tool
             //CellDataGroup.IsEnabled = true;
             CellData cellData = default(CellData);
             bool bFind = false;
-            foreach (var data in CellDatas)
+
+            foreach (var hierarchyData in hierarchyList)
             {
-                if (item.Uid == data.cellIndex.ToString())
+                if (hierarchyData.Index == SelectedIndex)
                 {
-                    cellData = data ;
-                    bFind = true;
+                    foreach (var cell in hierarchyData.cells)
+                    {
+                        if (item.Uid == cell.cellIndex.ToString())
+                        {
+                            cellData = cell;
+                            bFind = true;
+                            break;
+                        }
+                    }
                     break;
                 }
             }

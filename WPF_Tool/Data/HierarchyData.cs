@@ -28,9 +28,15 @@ namespace WPF_Tool.Data
         public int tagIndex;
         public int layerIndex;
         public int staticIndex;
+
+        /* Serialized Data */
         public GameObjectData gameObjectData;
         public MeshData meshData;
         public MapData mapData;
         public NavMeshData navMeshData;
+
+        /* For Editor */
+        // 에디터에서만 사용되는 데이터
+        public List<CellData> cells;
     }
 }

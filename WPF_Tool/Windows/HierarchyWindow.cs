@@ -116,6 +116,7 @@ namespace WPF_Tool
                     Externs.AddGameObject(index);
                     break;
                 case GameObjectType.NavMesh:
+                    data.cells = new List<Data.CellData>();
                     Externs.AddNavMesh(index);
                     break;
                 case GameObjectType.MapObject:
@@ -127,6 +128,91 @@ namespace WPF_Tool
             SelectedIndex = index;
         }
 
+        private void AddHierarchy(HierarchyData hierarchyData)
+        {
+            // 여기서 값을 넣으면 정상적으로 hierarchy에 추가해준다.
+            // TODO
+            int index = gameObjectIndex++;
+            ListBoxItem item = new ListBoxItem();
+            item.Uid = index.ToString();
+            item.Content = hierarchyData.gameObjectData.name;
+            item.Tag = hierarchyData.gameObjectData.tag;
+            hierarchyData.Index = index;
+            switch (hierarchyData.type)
+            {
+                case GameObjectType.Mesh:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.NavMesh:
+                    item.MouseUp += SelectedNavMesh;
+                    break;
+                case GameObjectType.MapObject:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
+            item.MouseDoubleClick += DoubleClickGameObject;
+
+            HierarchyList.Items.Add(item);
+            HierarchyList.SelectionMode = SelectionMode.Single;
+            hierarchyList.Add(hierarchyData);
+            switch (hierarchyData.type)
+            {
+                case GameObjectType.Mesh:
+                    Externs.AddGameObject(index);
+                    break;
+                case GameObjectType.NavMesh:
+                    Externs.AddNavMesh(index);
+                    break;
+                case GameObjectType.MapObject:
+                    Externs.AddGameObject(index);
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
+            }
+            // SelectedIndex Property에서 Select, ShowInspector, InsertData 모두 해준다.
+            SelectedIndex = index;
+
+            for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
+            {
+                Debug.Assert(hierarchyData.type == GameObjectType.NavMesh);
+
+                CellData cellData = hierarchyData.cells[i];
+                Externs.AddCell(ref cellData);
+
+                Vector3 position;
+                position = hierarchyData.cells[i].position;
+
+                bool isNewPrim = IsNewPrimitive();
+                if (isNewPrim)
+                {
+                    TreeViewItem primItem = new TreeViewItem();
+                    primItem.Header = "NavPrimitive_" + NavPrimIndex.ToString();
+                    primItem.Uid = NavPrimIndex.ToString();
+                    primItem.Selected += NavPrimSelected;
+                    NavPrimIndex++;
+
+                    CellList.Items.Add(primItem);
+                }
+                TreeViewItem cellItem = new TreeViewItem();
+                cellItem.Header = "Cell_" + cellIndex;
+                cellItem.Uid = cellIndex.ToString();
+                cellItem.Selected += CellSelected;
+                AddCell(position);
+
+                int primCount = CellList.Items.Count;
+                ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
+               
+                
+            }
+
+
+
+
+        }
         private void SelectedGameObject(object sender, RoutedEventArgs e)
         {
             ListBoxItem item = sender as ListBoxItem;
