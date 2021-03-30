@@ -28,3 +28,7 @@ SetEditCameraRot
 TranslateToMesh
 PickGameObject
 AddCell
+GetAnimationCount
+GetAnimationName
+AddPawn
+SetAnimation

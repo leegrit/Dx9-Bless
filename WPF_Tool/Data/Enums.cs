@@ -9,6 +9,7 @@ namespace WPF_Tool.Data
     public enum GameObjectType
     {
         Mesh,
+        Pawn,
         MapObject,
         NavMesh
     }

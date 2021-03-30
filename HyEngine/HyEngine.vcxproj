@@ -134,7 +134,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\AlignmentBehaviour.h" />
+    <ClInclude Include="Include\AnimationController.h" />
     <ClInclude Include="Include\Animator.h" />
+    <ClInclude Include="Include\AnimNameData.h" />
     <ClInclude Include="Include\Application.h" />
     <ClInclude Include="Include\AvoidanceBehaviour.h" />
     <ClInclude Include="Include\BillboardObject.h" />
@@ -271,7 +273,9 @@
   <ItemGroup>
     <ClCompile Include="Include\SphereCollider.cpp" />
     <ClCompile Include="Source\AlignmentBehaviour.cpp" />
+    <ClCompile Include="Source\AnimationController.cpp" />
     <ClCompile Include="Source\Animator.cpp" />
+    <ClCompile Include="Source\AnimNameData.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\AvoidanceBehaviour.cpp" />
     <ClCompile Include="Source\BillboardObject.cpp" />

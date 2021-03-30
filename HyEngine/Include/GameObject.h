@@ -112,8 +112,8 @@ namespace HyEngine
 			}
 		}
 
-		GameObject* GetParent();
-		Scene* GetScene();
+		GameObject* GetParent() const;
+		Scene* GetScene() const;
 		// ----------------------------------------------------------
 		// STATIC METHODS
 		// ---------------------------------------------------------------

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{6444d493-874c-4225-b1e2-eed4d7655407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{dfea43e8-8c81-4a19-9de5-694d964f1e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{550990b2-8b12-46b4-b88d-1e050a0cdfcf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -33,6 +33,7 @@ namespace HyEngine
 		void ActiveObject();
 		void InactiveObject();
 		void AddGameObject(int index);
+		void AddPawn(int index);
 		void AddNavMesh(int index);
 		void RemoveGameObject(int index);
 		bool PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex);
@@ -62,7 +63,11 @@ namespace HyEngine
 		/* For NavMesh */
 		bool PickNavMesh(float xMousePos, float yMousePos, int cellOption, _Out_ VectorData* pickedPos);
 		void AddCell(CellData* cellData);
-	
+
+		/* For DynamicMesh */
+		int GetAnimationCount();
+		void GetAnimationName(_Out_ class AnimNameData* outString, int index);
+		void SetAnimation(int index);
 		
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER

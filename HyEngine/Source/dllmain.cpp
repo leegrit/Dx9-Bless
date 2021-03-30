@@ -5,6 +5,7 @@
 #include "MeshData.h"
 #include "CellData.h"
 #include "EditObject.h"
+#include "AnimNameData.h"
 using namespace HyEngine;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -54,6 +55,10 @@ extern "C" void WINAPI Destroy()
 extern "C" void WINAPI AddGameObject(int index)
 {
 	EDIT_ENGINE->AddGameObject(index);
+}
+extern "C" void WINAPI AddPawn(int index)
+{
+	EDIT_ENGINE->AddPawn(index);
 }
 extern "C" void WINAPI AddNavMesh(int index)
 {
@@ -146,4 +151,17 @@ extern "C" bool WINAPI PickGameObject(float xMousePos, float yMousePos, _Out_ in
 extern "C" void WINAPI AddCell(CellData* cellData)
 {
 	EDIT_ENGINE->AddCell(cellData);
+}
+
+extern "C" int WINAPI GetAnimationCount()
+{
+	return EDIT_ENGINE->GetAnimationCount();
+}
+extern "C" void WINAPI GetAnimationName(_Out_ AnimNameData* outString, int index)
+{
+	EDIT_ENGINE->GetAnimationName(outString, index);
+}
+extern "C" void WINAPI SetAnimation(int index)
+{
+	EDIT_ENGINE->SetAnimation(index);
 }

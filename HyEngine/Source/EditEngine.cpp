@@ -9,6 +9,8 @@
 #include "NavMesh.h"
 #include "CellData.h"
 #include "EditMesh.h"
+#include "EditDynamicMesh.h"
+#include "AnimNameData.h"
 using namespace HyEngine;
 
 const static TCHAR szAppName[] = TEXT("D3DImageSample");
@@ -87,6 +89,7 @@ void EditEngine::Render()
 
 void EditEngine::Update()
 {
+	EDIT_TIMER->tick();
 	m_pEditScene->UpdateScene();
 	//if (m_bGameMode)
 	//{
@@ -169,6 +172,15 @@ void HyEngine::EditEngine::AddGameObject(int index)
 	EditScene * editScene = dynamic_cast<EditScene*>(scene);
 	assert(editScene);
 	editScene->AddMeshObject(index);
+}
+
+void HyEngine::EditEngine::AddPawn(int index)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddPawn(index);
 }
 
 void HyEngine::EditEngine::AddNavMesh(int index)
@@ -339,6 +351,34 @@ void HyEngine::EditEngine::AddCell(CellData * cellData)
 
 	editObj->AddCell(position, (ECellOption)cellData->option, cellData->group);
 
+}
+
+int HyEngine::EditEngine::GetAnimationCount()
+{
+	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	assert(obj);
+
+	int count = obj->GetAnimationCount();
+
+	return count;
+}
+
+void HyEngine::EditEngine::GetAnimationName(_Out_ AnimNameData* outString, int index)
+{
+	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	assert(obj);
+	 obj->GetAnimationName(outString, index);
+	return;
+}
+
+void HyEngine::EditEngine::SetAnimation(int index)
+{
+	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	assert(obj);
+	CString a;
+
+
+	obj->SetAnimationSet(index);
 }
 
 

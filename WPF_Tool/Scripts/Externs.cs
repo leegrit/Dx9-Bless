@@ -30,6 +30,9 @@ namespace WPF_Tool.Scripts
         public static extern void AddGameObject(int index);
 
         [DllImport("HyEngine.dll")]
+        public static extern void AddPawn(int index);
+
+        [DllImport("HyEngine.dll")]
         public static extern void AddNavMesh(int index);
 
         [DllImport("HyEngine.dll")]
@@ -90,5 +93,14 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void AddCell(ref CellData cellData);
+
+        [DllImport("HyEngine.dll")]
+        public static extern int GetAnimationCount();
+
+        [DllImport("HyEngine.dll")]
+        public static extern void GetAnimationName(ref AnimNameData outString, int index);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void SetAnimation(int index);
     }
 }

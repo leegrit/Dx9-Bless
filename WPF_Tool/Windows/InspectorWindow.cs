@@ -35,10 +35,6 @@ namespace WPF_Tool
             OpenFileDialog ofdlg = new OpenFileDialog();
             {
                 // 기본 폴더
-                //ofdlg.InitialDirectory = @"..\..\..\_Resources\Mesh";// "../../../_Resources/Mesh";
-                // ofdlg.InitialDirectory = System.IO.Path.Combine(
-                //    System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory), "..\\..\\..\\_Resources\\Mesh\\");
-                //ofdlg.InitialDirectory = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
                 ofdlg.InitialDirectory = Paths.AssetPath;
                 ofdlg.CheckFileExists = true; // 파일 존재여부 확인
                 ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
@@ -69,6 +65,32 @@ namespace WPF_Tool
                             hierarchyList[i] = data;
 
                             Externs.InsertMeshData(ref data.meshData);
+                            ShowInspector(data);
+//                             if (data.type == GameObjectType.Pawn)
+//                             {
+//                                 // 여기서 애니메이션 개수를 구한 후 
+//                                 // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
+//                                 int animCount = Externs.GetAnimationCount();
+//                                 AnimationCount.Text = animCount.ToString();
+//                                 AnimationIndex.Text = (0).ToString(); // 기본값 0
+// 
+//                                 // 여기서 비우고 아래에서 다시 채워준다.
+//                                 AnimationComboBox.Items.Clear();
+//                                 for (int animIndex = 0; animIndex < animCount; animIndex++)
+//                                 {
+//                                     IntPtr animName = Externs.GetAnimationName(animIndex);
+//                                     if (animName == null) continue;
+// 
+//                                     string convertedName = Marshal.PtrToStringUni(animName);
+// 
+//                                     ComboBoxItem item = new ComboBoxItem();
+//                                     item.Uid = animIndex.ToString();
+//                                     item.Content = convertedName;
+//                                     item.Selected += Animation_Selected;
+//                                     AnimationComboBox.Items.Add(item);
+//                                 }
+// 
+//                             }
 
                             break;
                         }
@@ -187,7 +209,13 @@ namespace WPF_Tool
                 }
             }
         }
-
+        private void Animation_Selected(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem item = sender as ComboBoxItem;
+            int index = Int32.Parse(item.Uid);
+            AnimationIndex.Text = item.Uid;
+            Externs.SetAnimation(index);
+        }
         private void Active_Checked(object sender, RoutedEventArgs e)
         {
             if (bWindowInit)
@@ -220,6 +248,7 @@ namespace WPF_Tool
             TransformData.Visibility = Visibility.Collapsed;
             MapData.Visibility = Visibility.Collapsed;
             CellData.Visibility = Visibility.Collapsed;
+            AnimationData.Visibility = Visibility.Collapsed;
 
             switch (data.type)
             {
@@ -258,6 +287,69 @@ namespace WPF_Tool
 
                         Externs.InsertGameData(ref data.gameObjectData);
                         Externs.InsertMeshData(ref data.meshData);
+                        break;
+                    }
+                case GameObjectType.Pawn:
+                    {
+                        MeshData.Visibility = Visibility.Visible;
+                        TransformData.Visibility = Visibility.Visible;
+                        AnimationData.Visibility = Visibility.Visible;
+
+                        string meshOnlyName = "";
+                        string ext = "";
+                        int meshIndex = data.meshData.meshFilePath.LastIndexOf("\\");
+
+                        if (meshIndex > 0)
+                            meshOnlyName = data.meshData.meshFilePath.Substring(meshIndex + 1);
+
+                        int extIndex = meshOnlyName.LastIndexOf(".");
+
+                        if (extIndex > 0)
+                            ext = meshOnlyName.Substring(extIndex);
+
+                        string diffuseOnlyName = "";
+                        int diffuseIndex = data.meshData.diffuseTexturePath.LastIndexOf("\\");
+                        if (diffuseIndex > 0)
+                            diffuseOnlyName = data.meshData.diffuseTexturePath.Substring(diffuseIndex + 1);
+
+                        MeshFilePath.Text = meshOnlyName;
+                        if (ext == ".X" || ext == ".x")
+                        {
+                            DiffuseFilePath.Text = meshOnlyName;
+                        }
+                        else
+                        {
+                            DiffuseFilePath.Text = diffuseOnlyName;
+                        }
+
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertMeshData(ref data.meshData);
+
+                        // 아래 데이터들은 Insert를 마친 후 세팅되어야한다.
+                        // 여기서 애니메이션 개수를 구한 후 
+                        // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
+                        int animCount = Externs.GetAnimationCount();
+                        AnimationCount.Text = animCount.ToString();
+                        AnimationIndex.Text = (0).ToString(); // 기본값 0
+
+                        // 여기서 비우고 아래에서 다시 채워준다.
+                        AnimationComboBox.Items.Clear();
+                        for (int animIndex = 0; animIndex < animCount; animIndex++)
+                        {
+                            AnimNameData animName = default(AnimNameData);
+                           Externs.GetAnimationName(ref animName, animIndex);
+                            
+                            //String convertedName = Marshal.PtrToStringUni(animName);
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Uid = animIndex.ToString();
+                            item.Content = animName.name;
+                            item.Selected += Animation_Selected;
+
+                            AnimationComboBox.Items.Add(item);
+                        }
+                        // 기본값
+                        AnimationComboBox.SelectedIndex = 0;
                         break;
                     }
                 case GameObjectType.NavMesh:

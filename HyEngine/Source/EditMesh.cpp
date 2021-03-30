@@ -118,6 +118,7 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 				ID3DXBuffer * adjBuffer = nullptr;
 				ID3DXBuffer* mtrlBuffer = nullptr;
 				DWORD numMtrls = 0;
+				
 
 				hr = D3DXLoadMeshFromX
 				(

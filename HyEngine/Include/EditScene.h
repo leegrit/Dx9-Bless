@@ -16,6 +16,7 @@ namespace HyEngine
 	public :
 		// 테스트용
 		void AddMeshObject(int editIndex);
+		void AddPawn(int editIndex);
 		void AddNavMesh(int editIndex);
 		
 		GameObject* GetGameObject(int editIndex);

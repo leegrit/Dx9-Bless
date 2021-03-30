@@ -28,6 +28,7 @@ HyEngine::EditObject::~EditObject()
 
 void HyEngine::EditObject::Render()
 {
+	GameObject::Render();
 }
 
 //void HyEngine::EditObject::InsertData(EditData* data)

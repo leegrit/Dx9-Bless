@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HyEngine", "HyEngine\HyEngi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Tool", "WPF_Tool\WPF_Tool.csproj", "{646E3B41-3782-4A0B-8E7B-2F6B76D177CF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditEngine", "EditEngine\EditEngine.vcxproj", "{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{646E3B41-3782-4A0B-8E7B-2F6B76D177CF}.Release|x64.Build.0 = Release|Any CPU
 		{646E3B41-3782-4A0B-8E7B-2F6B76D177CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{646E3B41-3782-4A0B-8E7B-2F6B76D177CF}.Release|x86.Build.0 = Release|Any CPU
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Debug|x64.ActiveCfg = Debug|x64
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Debug|x64.Build.0 = Debug|x64
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Debug|x86.ActiveCfg = Debug|Win32
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Debug|x86.Build.0 = Debug|Win32
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Release|x64.ActiveCfg = Release|x64
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Release|x64.Build.0 = Release|x64
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Release|x86.ActiveCfg = Release|Win32
+		{9F3CE740-3B60-459A-B2DD-5A82721C1AC1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

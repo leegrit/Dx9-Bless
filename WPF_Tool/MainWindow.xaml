@@ -40,6 +40,7 @@
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
                     <MenuItem Header="_CreateMesh" Click="BTN_CreateMesh"/>
+                    <MenuItem Header="_CreatePawn" Click="BTN_CreatePawn"/>
                     <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
                     <MenuItem Header="_CreateNavMesh" Click="BTN_CreateNavMesh"/>
                     <MenuItem Header="_CreateEffect" />
@@ -63,6 +64,7 @@
                     <ListBox.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="_CreateMesh" Foreground="Black" Click="BTN_CreateMesh"/>
+                            <MenuItem Header="_CreatePawn" Click="BTN_CreatePawn"/>
                             <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
                             <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
@@ -259,6 +261,31 @@
                                         <TextBlock Width ="5"/>
                                         <Button Width="60" Click="BTN_Diffuse">Load</Button>
                                     </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox x:Name="AnimationData" IsEnabled="True" Visibility="Collapsed">
+                                <GroupBox.Header>
+                                    <Label>Animation Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="105"> Animation Count : </TextBlock>
+                                        <TextBlock x:Name="AnimationCount" Width="15" HorizontalAlignment="Center">0</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="105"> Animation Index :</TextBlock>
+                                        <TextBlock x:Name="AnimationIndex" Width="15" HorizontalAlignment="Center">0</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="105">Current Animation</TextBlock>
+                                        <ComboBox x:Name="AnimationComboBox" Width="100" VerticalAlignment="Center">
+                                            
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
                                 </StackPanel>
                             </GroupBox>
                             <GroupBox x:Name="CellData" Visibility="Collapsed">

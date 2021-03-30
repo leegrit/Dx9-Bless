@@ -202,12 +202,12 @@ int HyEngine::GameObject::GetEditID() const
 	return m_editID;
 }
 
-GameObject * HyEngine::GameObject::GetParent()
+GameObject * HyEngine::GameObject::GetParent() const 
 {
 	return m_pParent;
 }
 
-Scene * HyEngine::GameObject::GetScene()
+Scene * HyEngine::GameObject::GetScene() const
 {
 	return m_pScene;
 }

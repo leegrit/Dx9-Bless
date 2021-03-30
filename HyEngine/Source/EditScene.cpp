@@ -6,6 +6,7 @@
 #include "TestMesh.h"
 #include "EditMesh.h"
 #include "NavMesh.h"
+#include "EditDynamicMesh.h"
 
 using namespace HyEngine;
 
@@ -44,7 +45,13 @@ void HyEngine::EditScene::AddMeshObject(int editIndex)
 {
 	//Ring::Create(this, nullptr);
 	EditMesh::Create(this, nullptr, editIndex);
+	
 	//EditMesh::Create(this, nullptr);
+}
+
+void HyEngine::EditScene::AddPawn(int editIndex)
+{
+	EditDynamicMesh::Create(this, nullptr, editIndex);
 }
 
 void HyEngine::EditScene::AddNavMesh(int editIndex)

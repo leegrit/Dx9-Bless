@@ -506,6 +506,12 @@
     <ClInclude Include="Include\MeshHierarchy.h">
       <Filter>Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Include\AnimationController.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AnimNameData.h">
+      <Filter>Editor\Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -849,6 +855,12 @@
     </ClCompile>
     <ClCompile Include="Source\MeshHierarchy.cpp">
       <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationController.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimNameData.cpp">
+      <Filter>Editor\Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

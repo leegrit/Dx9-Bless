@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\AnimNameData.cs" />
     <Compile Include="Data\CellData.cs" />
     <Compile Include="Data\ChunkCellData.cs" />
     <Compile Include="Data\ChunkMapData.cs" />

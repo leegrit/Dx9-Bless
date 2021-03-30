@@ -7,6 +7,7 @@ namespace HyEngine
 	{
 	private :
 		explicit EditDynamicMesh(Scene* scene, GameObject* parent, int editID);
+		explicit EditDynamicMesh(const EditDynamicMesh& rhs);
 		virtual ~EditDynamicMesh();
 
 		//////////////////////////////////////////////////////////////////////////
@@ -14,13 +15,14 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		virtual void Initialize();
+		virtual void Update() override;
 		virtual void Render() override;
 		virtual void UpdatedData(EDataType dataType) override;
 
 		static EditDynamicMesh* Create(Scene* scene, GameObject* parent, int editID)
 		{
 			//assert(false);
-			EditDynamicMesh* mesh = new EditDynamicMesh(scene, parent, editID);
+			EditDynamicMesh* mesh = new EditDynamicMesh(scene, parent,  editID);
 			//assert(false);
 			mesh->Initialize();
 			return mesh;
@@ -47,6 +49,13 @@ namespace HyEngine
 		void PlayAnimationSet(const float& timeDelta);
 
 		//////////////////////////////////////////////////////////////////////////
+		// FOR EDITOR
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		int GetAnimationCount();
+		void GetAnimationName(_Out_ class AnimNameData* outString, int index);
+
+		//////////////////////////////////////////////////////////////////////////
 		// PRIVATE METHODS
 		//////////////////////////////////////////////////////////////////////////
 	private :
@@ -55,13 +64,13 @@ namespace HyEngine
 
 	private :
 		D3DXFRAME* m_pRootFrame;
-		// Hierarchy* m_pLoader;
-		// MeshAnimator * m_pAnimator;
+		class MeshHierarchy* m_pLoader;
+		class AnimationController* m_pAniCtrl;
 
 		std::list<D3DXMESHCONTAINER_DERIVED*> m_MeshContainerList;
 
 
-
+		std::wstring m_lastMeshPath;
 
 
 
