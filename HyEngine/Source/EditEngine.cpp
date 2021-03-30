@@ -11,6 +11,7 @@
 #include "EditMesh.h"
 #include "EditDynamicMesh.h"
 #include "AnimNameData.h"
+#include "PathManager.h"
 using namespace HyEngine;
 
 const static TCHAR szAppName[] = TEXT("D3DImageSample");
@@ -28,6 +29,7 @@ EditEngine::EditEngine()
 {
 	DirectXDevice::Create();
 	UIDGen::Create();
+	PathManager::Create();
 	m_pRenderer = new Renderer();
 	m_pTimer = new Timer();
 	m_pMouse = new IO::Mouse();
@@ -40,6 +42,7 @@ void EditEngine::DestroyResources()
 {
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
+	PathManager::Destroy();
 	SAFE_DELETE(m_pRenderer);
 	SAFE_DELETE(m_pTimer);
 

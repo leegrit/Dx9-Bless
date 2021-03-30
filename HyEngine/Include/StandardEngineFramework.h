@@ -34,6 +34,11 @@
 
 #include <DirectXMath.h>
 
+/* jsoncpp */
+#include <Jsoncpp/Include/json.h>
+#pragma comment(lib, "Jsoncpp/Lib/jsoncpp.lib")
+
+
 #undef min
 #undef max
 
@@ -72,7 +77,6 @@
 #include "MeshLoader.h"
 #include "CString.h"
 #include "Functor.h"
-#include "Constants.h"
 #include "Path.h"
 
 

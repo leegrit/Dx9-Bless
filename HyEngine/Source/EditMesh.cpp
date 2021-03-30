@@ -3,14 +3,15 @@
 #include "EditData.h"
 #include "GameObjectData.h"
 #include "MeshData.h"
+#include "PathManager.h"
 using namespace HyEngine;
 
 EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 	: EditObject(ERenderType::RenderMesh, scene, parent, editID)
 {
-	m_pMesh = MeshLoader::GetMesh("../../../_Resources/System/Cube.obj");
+	m_pMesh = MeshLoader::GetMesh(PATH->ResourcesPath() + "System/Cube.obj");
 	//assert(m_pMesh);
-	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(L"../../../_Resources/System/Checker.png"));
+	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(PATH->ResourcesPathW() + L"System/Checker.png"));
 
 
 }

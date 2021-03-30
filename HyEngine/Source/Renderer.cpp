@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "GameObject.h"
 #include "ILight.h"
+#include "Constants.h"
 using namespace HyEngine;
 
 Renderer::Renderer()

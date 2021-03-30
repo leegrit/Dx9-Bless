@@ -317,9 +317,6 @@
     <ClInclude Include="Include\UpdateDispatcher.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="Include\UIElement2.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Include\UIPanel.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -512,6 +509,9 @@
     <ClInclude Include="Include\AnimNameData.h">
       <Filter>Editor\Data</Filter>
     </ClInclude>
+    <ClInclude Include="Include\PathManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -691,9 +691,6 @@
     <ClCompile Include="Source\UpdateDispatcher.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UIElement2.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UIPanel.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -861,6 +858,9 @@
     </ClCompile>
     <ClCompile Include="Source\AnimNameData.cpp">
       <Filter>Editor\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PathManager.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

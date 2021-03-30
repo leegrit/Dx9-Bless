@@ -41,7 +41,7 @@
                 <MenuItem Header="GameObject" Height="30" >
                     <MenuItem Header="_CreateMesh" Click="BTN_CreateMesh"/>
                     <MenuItem Header="_CreatePawn" Click="BTN_CreatePawn"/>
-                    <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
+                    <MenuItem Header="_CreateMapObject"  Click="BTN_CreateMapObject"/>
                     <MenuItem Header="_CreateNavMesh" Click="BTN_CreateNavMesh"/>
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
@@ -64,7 +64,7 @@
                     <ListBox.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="_CreateMesh" Foreground="Black" Click="BTN_CreateMesh"/>
-                            <MenuItem Header="_CreatePawn" Click="BTN_CreatePawn"/>
+                            <MenuItem Header="_CreatePawn" Foreground="Black"  Click="BTN_CreatePawn"/>
                             <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
                             <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
