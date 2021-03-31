@@ -6,6 +6,10 @@
 //#define FULL_SCREEN
 #endif
 
+
+
+
+
 #pragma warning(disable : 4251)
 #pragma warning(disable : 4503)
 
@@ -33,6 +37,13 @@
 #pragma comment(lib, "d3dx9.lib")
 
 #include <DirectXMath.h>
+
+/* jsoncpp */
+#include "json-forwards.h"
+#include "Json.h"
+// #include <Jsoncpp/Include/json.h>
+// #pragma comment(lib, "Jsoncpp/Lib/jsoncpp.lib")
+
 
 #undef min
 #undef max
@@ -101,7 +112,15 @@
 #include "EnumForEditor.h"
 #include "StringForEditor.h"
 
-
+//SeverityType::info
+#define SEND_LOG(Message)  ServiceLocator::getFileLogger()->print<SeverityType::info>(Message)
+#define SEND_LOG_WARNING(Message) ServiceLocator::getFileLogger()->print<SeverityType::warning>(Message)
+#define SEND_LOG_ERROR(Message) ServiceLocator::getFileLogger()->print<SeverityType::error>(Message)
+#ifdef _DEBUG
+#define SEND_LOG_DEBUG(Message) ServiceLocator::getFileLogger()->print<SeverityType::debug>(Message)
+#else
+#define SEND_LOG_DEBUG(Message) 
+#endif
 
 #define ENGINE Engine::Get()
 #define KEYBOARD Engine::Get()->GetKeyboard()
@@ -110,6 +129,7 @@
 #define SCENE Engine::Get()->GetActiveScene()
 #define CAMERA Engine::Get()->GetActiveScene()->GetSelectedCamera()
 #define PLAYER Engine::Get()->GetActiveScene()->GetPlayer()
+
 
 #define EDIT_ENGINE EditEngine::Get()
 #define EDIT_KEYBOARD EditEngine::Get()->GetKeyboard()
@@ -125,3 +145,16 @@
 #include "ProgressVerticalBar.h"
 #include "UIPanel.h"
 
+#ifdef _DEBUG
+
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+#ifndef DBG_NEW 
+
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ ) 
+#define new DBG_NEW 
+
+#endif
+#endif

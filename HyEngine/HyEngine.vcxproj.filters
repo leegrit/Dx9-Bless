@@ -112,6 +112,12 @@
     <Filter Include="Mesh">
       <UniqueIdentifier>{65509b8b-bc02-4707-b10b-02b8196ae3c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{d4e5a9ce-f705-4629-b524-b91b13be0930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Map">
+      <UniqueIdentifier>{9523dfe8-e2a4-4d3c-9ae3-16fe1da1b1be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -416,21 +422,6 @@
     <ClInclude Include="Include\ObjectEditor.h">
       <Filter>Editor</Filter>
     </ClInclude>
-    <ClInclude Include="Include\GameObjectData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\TransformData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\VectorData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\EditData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\MeshData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Include\EditCamera.h">
       <Filter>Editor\Core</Filter>
     </ClInclude>
@@ -466,9 +457,6 @@
     </ClInclude>
     <ClInclude Include="Include\NavPrimitive.h">
       <Filter>Object\NavMesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\CellData.h">
-      <Filter>Editor\Data</Filter>
     </ClInclude>
     <ClInclude Include="Include\Animator.h">
       <Filter>Component</Filter>
@@ -506,11 +494,68 @@
     <ClInclude Include="Include\AnimationController.h">
       <Filter>Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Include\AnimNameData.h">
-      <Filter>Editor\Data</Filter>
-    </ClInclude>
     <ClInclude Include="Include\PathManager.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Deserializer.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\HierarchyData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\AnimNameData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CellData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EditData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameObjectData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TransformData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\VectorData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\NavMeshData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MapData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DataLoader.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\JsonHelper.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\json.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\json-forwards.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DynamicMesh.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DynamicCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MapObject.h">
+      <Filter>Object\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GroupMapObject.h">
+      <Filter>Object\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ChunkMapData.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -790,21 +835,6 @@
     <ClCompile Include="Source\ObjectEditor.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameObjectData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TransformData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VectorData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EditData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EditCamera.cpp">
       <Filter>Editor\Core</Filter>
     </ClCompile>
@@ -835,9 +865,6 @@
     <ClCompile Include="Source\NavPrimitive.cpp">
       <Filter>Object\NavMesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CellData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Animator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -856,11 +883,65 @@
     <ClCompile Include="Source\AnimationController.cpp">
       <Filter>Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AnimNameData.cpp">
-      <Filter>Editor\Data</Filter>
-    </ClCompile>
     <ClCompile Include="Source\PathManager.cpp">
       <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Deserializer.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HierarchyData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimNameData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CellData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjectData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransformData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\VectorData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavMeshData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MapData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DataLoader.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\JsonHelper.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\jsoncpp.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DynamicMesh.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DynamicCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MapObject.cpp">
+      <Filter>Object\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GroupMapObject.cpp">
+      <Filter>Object\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ChunkMapData.cpp">
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ Timer::Timer() : startTime(0), totalIdleTime(0), pausedTime(0), currentTime(0), 
 		secondsPerCount = 1.0 / (double)frequency;
 #ifndef NDEBUG
 		// log success
-		//Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The high-precision timer was created successfully.");
+		// ServiceLocator::getFileLogger()->print< SeverityType::info>("The high-precision timer was created successfully.");
 #endif
 	}
 	else
@@ -31,7 +31,7 @@ Timer::~Timer()
 {
 #ifndef NDEBUG
 	// log success
-	//Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The timer was successfully destroyed.");
+	// ServiceLocator::getFileLogger()->print< SeverityType::info>("The timer was successfully destroyed.");
 #endif
 }
 
@@ -82,7 +82,7 @@ void Timer::reset()
 		isStopped = false;
 
 #ifndef NDEBUG
-		//Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The timer was reset.");
+		// ServiceLocator::getFileLogger()->print< SeverityType::info>("The timer was reset.");
 #endif
 
 			// return success
@@ -112,7 +112,7 @@ void Timer::start()
 			isStopped = false;
 
 #ifndef NDEBUG
-			//	Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The timer was started.");
+			//	 ServiceLocator::getFileLogger()->print< SeverityType::info>("The timer was started.");
 #endif
 
 				// return success
@@ -140,7 +140,7 @@ void Timer::stop()
 			isStopped = true;
 
 #ifndef NDEBUG
-			//Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The timer was stopped.");
+			// ServiceLocator::getFileLogger()->print< SeverityType::info>("The timer was stopped.");
 #endif
 
 				// return success

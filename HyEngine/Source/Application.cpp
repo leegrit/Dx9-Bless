@@ -10,7 +10,8 @@ Application::Application(LPCWSTR appName)
 	m_dt(1 / (double)60),
 	m_maxSkipFrames(10)
 {
-
+	// LOG
+	InitLoggingService();
 	Engine::Create();
 }
 
@@ -25,8 +26,7 @@ bool Application::Init(HINSTANCE hInstance, int nCmdShow, EngineConfig engineCon
 	m_hInstance = hInstance;
 
 
-	// LOG
-	InitLoggingService();
+
 	
 	// WINDOW
 	InitWindow();
@@ -263,7 +263,7 @@ void Application::InitWindow()
 void Application::ShutdownWindows()
 {
 	ShowCursor(true);
-
+	 ServiceLocator::Clear();
 	if (Engine::sEngineSettigns.window.fullScreen)
 	{
 		ChangeDisplaySettings(NULL, 0);
@@ -305,18 +305,18 @@ void Application::CalculateFrameStatistics()
 void Application::InitLoggingService()
 {
 	// create file Logger
-	std::shared_ptr<Utility::Logger<Utility::FileLogPolicy >> engineLogger
-		(new Utility::Logger<Utility::FileLogPolicy>(L"engine.log"));
+	std::shared_ptr<Logger<FileLogPolicy >> engineLogger = 
+		std::make_shared<Logger<FileLogPolicy >>(L"engine.log");
 
 	// set name of current thread
 	engineLogger->setThreadName("mainThread");
 
 	// register the logging service
-	Utility::ServiceLocator::provideFileLoggingService(engineLogger);
+	 ServiceLocator::provideFileLoggingService(engineLogger);
 
 
 #ifdef _DEBUG
 	// print starting message
-	Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The file logger was created successfully.");
+	 ServiceLocator::getFileLogger()->print<SeverityType::info>("The file logger was created successfully.");
 #endif
 }

@@ -3,7 +3,6 @@
 #include "Path.h"
 #include "CString.h"
 
-using namespace HyEngine::Utility;
 
 bool Path::ExistFile(string path)
 {

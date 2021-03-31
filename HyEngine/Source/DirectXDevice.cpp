@@ -12,11 +12,12 @@ DirectXDevice::DirectXDevice()
 
 DirectXDevice::~DirectXDevice()
 {
+	SEND_LOG("DirectDevice Deleted");
 }
 
 HRESULT DirectXDevice::Init(HWND hwnd)
 {
-
+	SEND_LOG("DirectDevice Initialize Start");
 
 
 	m_hWnd = hwnd;
@@ -88,7 +89,7 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 
 
 
-
+	SEND_LOG("DirectDevice Initialize End");
 	return S_OK;
 }
 

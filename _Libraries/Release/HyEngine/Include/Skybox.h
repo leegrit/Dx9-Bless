@@ -37,7 +37,7 @@ namespace HyEngine
 
 		int m_primitiveCount;
 
-		std::shared_ptr<IDirect3DCubeTexture9> m_pTexture = nullptr;
+		IDirect3DCubeTexture9* m_pTexture = nullptr;
 
 		class GameObject* m_pCamera;
 

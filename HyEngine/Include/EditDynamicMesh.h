@@ -47,6 +47,7 @@ namespace HyEngine
 		const list<D3DXMESHCONTAINER_DERIVED*>& GetMeshContainerList();
 		void SetAnimationSet(const unsigned int& index);
 		void PlayAnimationSet(const float& timeDelta);
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// FOR EDITOR
@@ -54,6 +55,7 @@ namespace HyEngine
 	public :
 		int GetAnimationCount();
 		void GetAnimationName(_Out_ class AnimNameData* outString, int index);
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// PRIVATE METHODS

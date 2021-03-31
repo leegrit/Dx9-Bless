@@ -7,6 +7,8 @@
 #include "LoadingScene.h"
 #include "EventDispatcher.h"
 #include "ScriptableData.h"
+#include "PathManager.h"
+
 using namespace HyEngine;
 
 Settings::Engine Engine::sEngineSettigns ;
@@ -19,9 +21,10 @@ Engine::Engine()
 	m_bLoading(false),
 	m_bIsPaused(false)
 {
-
+	SEND_LOG("Engine Created");
 	DirectXDevice::Create();
 	UIDGen::Create();
+	PathManager::Create();
 
 	m_pRenderer = new Renderer();
 	m_pMouse = new IO::Mouse();
@@ -37,10 +40,12 @@ Engine::~Engine()
 	delete m_pRenderer;
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
+	PathManager::Destroy();
 }
 
 bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 {
+	SEND_LOG("Engine Initialize Start");
 	DirectXDevice::Get()->Init(hWnd);
 
 	m_pTimer->start();
@@ -68,16 +73,20 @@ bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 	//}
 	//m_pCamera->Initialize();
 
-
+	SEND_LOG("Engine Initialize End");
 	return false;
 }
 
 void Engine::Exit()
 {
 	m_pActiveScene->UnloadScene();
+	m_pLoadingScene->UnloadScene();
+
+	SAFE_DELETE(m_pSceneTransition);
+	SAFE_DELETE(m_pLoadingScene);
 	for (auto& scene : m_scenes)
 	{
-		delete scene;
+		SAFE_DELETE(scene);
 	}
 	for (auto& data : m_scriptableDatas)
 	{
@@ -98,11 +107,13 @@ bool Engine::Load()
 	else
 		m_pLoadingScene = (LoadingScene*)engineConfig.loadingScene;
 	m_currentLevel = engineConfig.defaultSceneIndex;
+	SAFE_DELETE(m_pSceneTransition);
 	m_pSceneTransition = new SceneTransition();
 	// 처음엔 current scene이 없기때문에 null을 넣는다.
 	m_pSceneTransition->Transit(nullptr, m_scenes[m_currentLevel],
 	[&](){
 		// on completed 
+	
 		m_pActiveScene = m_scenes[m_currentLevel];
 		m_scenes[m_currentLevel]->LoadScene();
 		
@@ -110,7 +121,6 @@ bool Engine::Load()
 		TIMER->reset();
 	});
 	//LoadScenes();
-
 
 	m_bLoading = false;
 	return false;

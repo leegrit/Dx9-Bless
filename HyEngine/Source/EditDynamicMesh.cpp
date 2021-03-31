@@ -106,7 +106,7 @@ void HyEngine::EditDynamicMesh::UpdatedData(EDataType dataType)
 		return;
 
 	InitializeMeshes(dirPath, fileName);
-	SetAnimationSet(1);
+	SetAnimationSet(0);
 }
 
 void HyEngine::EditDynamicMesh::InitializeMeshes(std::wstring filePath, std::wstring fileName)
@@ -212,6 +212,8 @@ void HyEngine::EditDynamicMesh::GetAnimationName(_Out_ AnimNameData* outString, 
 
 
 }
+
+
 
 void HyEngine::EditDynamicMesh::UpdateFrameMatrix(D3DXFRAME_DERIVED * frame, const D3DXMATRIX * parentMatrix)
 {

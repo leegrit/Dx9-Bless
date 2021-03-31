@@ -9,7 +9,13 @@ HyEngine::Skybox::Skybox(Camera * camera, std::wstring cubeTexPath)
 {
 	/*if (FAILED(D3DXCreateCubeTextureFromFile(DEVICE, cubeTexPath.c_str(), &m_pTexture)))
 		assert(m_pTexture);*/
-	m_pTexture = std::static_pointer_cast<IDirect3DCubeTexture9>(TextureLoader::GetCubeTexture(cubeTexPath));
+	
+	D3DXCreateCubeTextureFromFile
+	(
+		DEVICE,
+		cubeTexPath.c_str(),
+		&m_pTexture
+	);
 	assert(m_pTexture);
 	m_pCamera = camera;
 	m_pTransform = new Transform(nullptr);
@@ -17,6 +23,8 @@ HyEngine::Skybox::Skybox(Camera * camera, std::wstring cubeTexPath)
 
 HyEngine::Skybox::~Skybox()
 {
+	m_pTexture->Release();
+	SAFE_DELETE(m_pTransform);
 }
 
 void HyEngine::Skybox::Initialize()
@@ -161,7 +169,7 @@ void HyEngine::Skybox::Render()
 	DEVICE->GetLightEnable(0, &lightEnable);
 	DEVICE->LightEnable(0, TRUE);//юс╫ц
 
-	DEVICE->SetTexture(0, m_pTexture.get());
+	DEVICE->SetTexture(0, m_pTexture);
 
 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
 

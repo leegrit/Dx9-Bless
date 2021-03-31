@@ -83,11 +83,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./;../Source;../Include;../../_Libraries/Debug/HyEngine/Include/;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../Source/;../Include/;../../_Libraries/Debug/HyEngine/Include/;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>..\..\_Libraries\Debug\HyEngine\Lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>HyEngine.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -129,11 +132,12 @@
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\SampleCamera.cpp" />
+    <ClCompile Include="..\Source\SampleLoadingScene.cpp" />
     <ClCompile Include="..\Source\SampleScene.cpp" />
-    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\SampleCamera.h" />
+    <ClInclude Include="..\Include\SampleLoadingScene.h" />
     <ClInclude Include="..\Include\SampleScene.h" />
     <ClInclude Include="..\Include\stdafx.h" />
   </ItemGroup>

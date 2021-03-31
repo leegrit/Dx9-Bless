@@ -1,0 +1,92 @@
+{
+  "Group": 0,
+  "MapCount": 2,
+  "Hierarchy_0": {
+    "Type": 2,
+    "Index": 0,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 0,
+      "Name": "MapObject",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": -14.16,
+          "Z": 24.48001
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 0,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon47.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 0,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 0,
+      "CellCount": 0
+    }
+  },
+  "Hierarchy_1": {
+    "Type": 2,
+    "Index": 2,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 2,
+      "Name": "MapObject",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -7.679999,
+          "Y": 0.7200012,
+          "Z": 10.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 2,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon16.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 2,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    }
+  }
+}

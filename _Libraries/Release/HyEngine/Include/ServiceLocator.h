@@ -18,8 +18,6 @@
 
 namespace HyEngine
 {
-	namespace Utility
-	{
 		// CLASSES //////////////////////////////////////////////////////////////////////////////
 
 		class ServiceLocator
@@ -29,8 +27,9 @@ namespace HyEngine
 
 		public:
 			// file logging services
+			static void Clear() { fileLogger.reset(); }
 			static Logger<FileLogPolicy>* getFileLogger() { return fileLogger.get(); };									// returns the file logger
 			static void provideFileLoggingService(const std::shared_ptr<Logger<FileLogPolicy> > providedFileLogger);	// sets the file logging service to the given logger
 		};
-	}
+	
 }

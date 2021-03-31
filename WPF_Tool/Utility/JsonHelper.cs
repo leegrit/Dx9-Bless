@@ -25,6 +25,9 @@ namespace WPF_Tool.Utility
                 case GameObjectType.Mesh:
                     SaveJsonFile(EDataType.Hierarchy, dataJson, fileName, ref outFileName);
                     break;
+                case GameObjectType.Pawn:
+                    SaveJsonFile(EDataType.Hierarchy, dataJson, fileName, ref outFileName);
+                    break;
                 case GameObjectType.MapObject:
                     SaveJsonFile(EDataType.Hierarchy, dataJson, fileName, ref outFileName);
                     break;
@@ -512,12 +515,13 @@ namespace WPF_Tool.Utility
                             fileName = fileName + count;
                     }
 
-                    using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
                     outFileName = fileName + ".json";
                     break;
+
                 case EDataType.Map:
                     // map data는 만약 중복일 경우 덮어쓰는데
                     // 실수를 방지하기 위해 backup폴더에 저장해두고 덮어쓴다.
@@ -540,7 +544,7 @@ namespace WPF_Tool.Utility
 
 
 
-                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
+                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
                             {
                                 sw.Write(json.ToString());
                             }
@@ -548,7 +552,7 @@ namespace WPF_Tool.Utility
                     }
 
 
-                    using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json", false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json",false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
@@ -574,7 +578,7 @@ namespace WPF_Tool.Utility
 
 
 
-                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, Encoding.UTF8))
+                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
                             {
                                 sw.Write(json.ToString());
                             }
@@ -582,7 +586,7 @@ namespace WPF_Tool.Utility
                     }
 
 
-                    using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }

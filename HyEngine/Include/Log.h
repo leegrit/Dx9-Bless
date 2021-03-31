@@ -10,7 +10,7 @@
 *			- 02/07/2017: added overloaded print function to take a string
 *
 ****************************************************************************************/
-
+//https://bell0bytes.eu/thread-safe-logger/
 // INCLUDES /////////////////////////////////////////////////////////////////////////////
 
 // windows includes
@@ -28,8 +28,6 @@
 
 namespace HyEngine
 {
-	namespace Utility
-	{
 		// CLASSES //////////////////////////////////////////////////////////////////////////////
 
 		/////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +148,7 @@ namespace HyEngine
 		{
 #ifndef NDEBUG
 			// print closing message
-			Utility::ServiceLocator::getFileLogger()->print<Utility::SeverityType::info>("The file logger was destroyed.");
+			// ServiceLocator::getFileLogger()->print< SeverityType::info>("The file logger was destroyed.");
 #endif
 			// terminate the daemon by clearing the still running flag and letting it join to the main thread
 			isStillRunning.clear();
@@ -227,5 +225,5 @@ namespace HyEngine
 			stream << msg.c_str();
 			this->print<severity>(std::stringstream(stream.str()));
 		}
-	}
+	
 }

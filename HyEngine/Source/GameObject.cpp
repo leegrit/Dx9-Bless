@@ -99,7 +99,11 @@ GameObject::~GameObject()
 	if (m_pParent)
 		m_pParent->RemoveChild(this);
 	
-	delete m_pTransform;
+	SAFE_DELETE(m_pTransform);
+	SAFE_DELETE(m_pGameObjectData);
+	SAFE_DELETE(m_pMeshData);
+	SAFE_DELETE(m_pCellData);
+	//delete m_pTransform;
 
 	for (auto& com : m_components)
 	{

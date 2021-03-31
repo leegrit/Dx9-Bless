@@ -1,6 +1,6 @@
 #include "ServiceLocator.h"
 
-using namespace HyEngine::Utility;
+using namespace HyEngine;
 
 // file logger
 std::shared_ptr<Logger<FileLogPolicy> > ServiceLocator::fileLogger = NULL;

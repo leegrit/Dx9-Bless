@@ -138,7 +138,8 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 	for (auto& obj : GetMeshObjectAll())
 	{
 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
-		assert(editObj);
+		if (editObj == nullptr) continue;
+		//assert(editObj);
 		if (editObj->GetStaticType() == EStaticType::Navigation)
 		{
 			ID3DXMesh* mesh = editObj->GetDxMesh();
@@ -157,11 +158,21 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 			DWORD countOfHits;
 			D3DXVECTOR3 resultPos;
 
+			D3DXMATRIX worldInverse;
+
+			// 변환 전 월드 공간 상의 origin, direction을 저장해둔다.
+			// 미리 저장하는 이유는 나중에 world 공간의 origin과 direction이 사용되기 때문
+			D3DXVECTOR3 worldOrigin = origin;
+			D3DXVECTOR3 worldDirection = direction;
+			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+			D3DXVec3TransformNormal(&direction, &direction, &worldInverse); 
+
 			/*D3DXMATRIX worldInverse;
 			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
 			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
 			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);*/
-
+			
 			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
 			if (isHit)
 			{
@@ -171,7 +182,7 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 				//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
 				assert(navMesh);
 
-				resultPos = origin + direction * dist;
+				resultPos = worldOrigin + worldDirection * dist;
 				pickedPos->x = resultPos.x;
 				pickedPos->y = resultPos.y;
 				pickedPos->z = resultPos.z;

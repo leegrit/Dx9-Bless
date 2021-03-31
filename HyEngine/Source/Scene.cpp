@@ -56,6 +56,7 @@ Scene::~Scene()
 		SAFE_DELETE(navMesh);
 	m_navMeshs.clear();
 	SAFE_DELETE(m_pSkybox);
+	SAFE_DELETE(m_pGlobalLight);
 
 	EventDispatcher::Cleanup();
 }
@@ -103,6 +104,7 @@ void Scene::UnloadScene()
 		delete particle;
 	m_particleSystems.clear();
 	SAFE_DELETE(m_pSkybox);
+	SAFE_DELETE(m_pGlobalLight);
 
 	EventDispatcher::Cleanup();
 	Unload();

@@ -84,6 +84,12 @@ bool HyEngine::EditMesh::CalcBounds(D3DXVECTOR3 * center, float * radius)
 
 	m_pDxMesh->UnlockVertexBuffer();
 
+
+	float scaleFactor = std::max(m_pTransform->m_scale.x(), m_pTransform->m_scale.y());
+	scaleFactor = std::max(scaleFactor, m_pTransform->m_scale.z());
+	// scale영향 받도록한다.
+	*radius *= scaleFactor;
+
 	return true;
 
 }
