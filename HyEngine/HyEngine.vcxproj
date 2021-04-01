@@ -250,6 +250,7 @@
     <ClInclude Include="Include\ParticleSystem.h" />
     <ClInclude Include="Include\Path.h" />
     <ClInclude Include="Include\PathManager.h" />
+    <ClInclude Include="Include\Pawn.h" />
     <ClInclude Include="Include\ProgressBar.h" />
     <ClInclude Include="Include\ProgressVerticalBar.h" />
     <ClInclude Include="Include\Ray.h" />
@@ -387,6 +388,7 @@
     <ClCompile Include="Source\ParticleSystem.cpp" />
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\PathManager.cpp" />
+    <ClCompile Include="Source\Pawn.cpp" />
     <ClCompile Include="Source\ProgressBar.cpp" />
     <ClCompile Include="Source\ProgressVerticalBar.cpp" />
     <ClCompile Include="Source\Ray.cpp" />

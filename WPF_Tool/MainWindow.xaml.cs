@@ -66,16 +66,25 @@ namespace WPF_Tool
                     HandToolButton.IsChecked = true;
                     ViewToolButton.IsChecked = false;
                     NavMeshToolButton.IsChecked = false;
+                    PickToolButton.IsChecked = false;
                     break;
                 case EToolMode.ViewTool:
                     HandToolButton.IsChecked = false;
                     ViewToolButton.IsChecked = true;
                     NavMeshToolButton.IsChecked = false;
+                    PickToolButton.IsChecked = false;
                     break;
                 case EToolMode.NavMeshTool:
                     HandToolButton.IsChecked = false;
                     ViewToolButton.IsChecked = false;
                     NavMeshToolButton.IsChecked = true;
+                    PickToolButton.IsChecked = false;
+                    break;
+                case EToolMode.PickTool:
+                    HandToolButton.IsChecked = false;
+                    ViewToolButton.IsChecked = false;
+                    NavMeshToolButton.IsChecked = false;
+                    PickToolButton.IsChecked = true;
                     break;
             }
 
@@ -142,6 +151,9 @@ namespace WPF_Tool
                             hierarchyList.Remove(hierarchyItem);
                             HierarchyList.Items.RemoveAt(index);
                             Externs.RemoveGameObject(hierarchyItem.Index);
+
+                            if(hierarchyItem.type == GameObjectType.NavMesh)
+                                RefreshAll();
                             break;
                         }
                         index++;
@@ -150,13 +162,18 @@ namespace WPF_Tool
             }
         }
 
-       
 
+        void RefreshAll()
+        {
+            CellList.Items.Clear();
+
+        }
 
         List<HierarchyData> hierarchyList = new List<HierarchyData>();
         List<MeshData> meshDatas = new List<MeshData>();
         
         int gameObjectIndex = 0;
+        IInputElement lastFocusedElement;
         HierarchyData selectedHierarchy;
         private int selectedIndex = -1;
         public int SelectedIndex
@@ -204,10 +221,6 @@ namespace WPF_Tool
         }
 
 
-        private void NavPrimSelected(object sender, RoutedEventArgs e)
-        {
-            //CellDataGroup.IsEnabled = false;
-        }
       
        
       

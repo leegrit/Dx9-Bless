@@ -4,16 +4,23 @@
 #include "NavPrimitive.h"
 #include "VectorData.h"
 #include "CellData.h"
+#include "HierarchyData.h"
+#include "Deserializer.h"
 
 HyEngine::NavMesh::NavMesh(Scene* scene, GameObject* parent)
 	: GameObject(ERenderType::None, scene, parent, L"NavMesh")
 {
-	m_nextCellIndex = 0;
-	m_nextNavPrimIndex = 0;
+
 }
 
 HyEngine::NavMesh::~NavMesh()
 {
+	for (auto& cell : m_pickedCell)
+		Object::Destroy(cell);
+	m_pickedCell.clear();
+	for (auto& prim : m_navPrimitives)
+		Object::Destroy(prim);
+	m_navPrimitives.clear();
 
 }
 
@@ -99,6 +106,24 @@ void HyEngine::NavMesh::SetGroup(const unsigned long & cellIndex, const unsigned
 	// 아직 미구현
 	// TODO
 	assert(false);
+}
+
+void HyEngine::NavMesh::Initialize(std::wstring dataPath)
+{
+	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
+	
+	InsertGameData(data->gameObjectData);
+
+	for (int i = 0; i < data->cells.size(); i++)
+	{
+		D3DXVECTOR3 position;
+		position.x = data->cells[i]->position.x;
+		position.y = data->cells[i]->position.y;
+		position.z = data->cells[i]->position.z;
+
+		AddCell(position, (ECellOption)data->cells[i]->option,
+			data->cells[i]->group);
+	}
 }
 
 bool HyEngine::NavMesh::TryPickingCell(_Out_ VectorData* pickedPos,  const D3DXVECTOR3& pickingPos, const  ECellOption& option, const unsigned int& group )
@@ -247,7 +272,54 @@ void HyEngine::NavMesh::CreateCell(CellData * data)
 	}
 }
 
+void HyEngine::NavMesh::RemoveNavPrim(int navPrimIndex)
+{
+	for (int i = 0; i < m_navPrimitives.size(); i++)
+	{
+		if (m_navPrimitives[i]->GetNavPrimIndex() == navPrimIndex)
+		{
+			Object::Destroy(m_navPrimitives[i]);
+			m_navPrimitives.erase(m_navPrimitives.begin() + i);
+			i--;
+			return;
+		}
+	}
+}
+
 void HyEngine::NavMesh::SetCellEditMode(ECellEditMode cellEditMode)
 {
 	m_cellEditMode = cellEditMode;
 }
+
+bool HyEngine::NavMesh::IsOnMesh(D3DXVECTOR3 position, float * yPos)
+{
+	// 삼각형 순회
+	for (auto& prim : m_navPrimitives)
+	{
+		if (DxMath::PointInTriangle(position,
+			prim->GetPosition(EPoint::POINT_A),
+			prim->GetPosition(EPoint::POINT_B),
+			prim->GetPosition(EPoint::POINT_C)))
+		{
+			// 평면의 방정식을 활용한 높이 구하기
+
+			*yPos = DxMath::GetHeightFromPoints(position,
+				prim->GetPosition(EPoint::POINT_A),
+				prim->GetPosition(EPoint::POINT_B),
+				prim->GetPosition(EPoint::POINT_C));
+
+			return true;
+		}
+	}
+	return false;
+}
+
+bool HyEngine::NavMesh::PickOnMesh(D3DXVECTOR3 origin, D3DXVECTOR3 direction, D3DXVECTOR3 * pickedPos)
+{
+	// 미구현
+	assert(false);
+	return false;
+}
+
+unsigned long NavMesh::m_nextCellIndex = 0;
+unsigned long NavMesh::m_nextNavPrimIndex = 0;

@@ -27,6 +27,7 @@ EditEngine::EditEngine()
 	m_bLoading(false),
 	m_pTimer(nullptr)
 {
+	InitLoggingService();
 	DirectXDevice::Create();
 	UIDGen::Create();
 	PathManager::Create();
@@ -106,6 +107,25 @@ void EditEngine::Update()
 	//	m_pEditScene->CheckWantDestroy();
 	//	editScene->GetSelectedCamera()->CameraUpdate();
 	//}
+}
+
+void HyEngine::EditEngine::InitLoggingService()
+{
+	// create file Logger
+	std::shared_ptr<Logger<FileLogPolicy >> engineLogger =
+		std::make_shared<Logger<FileLogPolicy >>(L"editor.log");
+
+	// set name of current thread
+	engineLogger->setThreadName("mainThread");
+
+	// register the logging service
+	ServiceLocator::provideFileLoggingService(engineLogger);
+
+
+#ifdef _DEBUG
+	// print starting message
+	ServiceLocator::getFileLogger()->print<SeverityType::info>("The file logger was created successfully.");
+#endif
 }
 
 void EditEngine::GetBackBuffer(IDirect3DSurface9 ** ppSurface)
@@ -210,11 +230,34 @@ void HyEngine::EditEngine::RemoveGameObject(int index)
 			return;
 		}
 	}
+	for (auto& obj : editScene->GetInvisibleObjectAll())
+	{
+		if (obj->GetEditID() == index)
+		{
+			Object::Destroy(obj);
+			return;
+		}
+	}
 }
 
-bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex)
+bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos)
 {
-	for (auto& obj :  GetScene()->GetMeshObjectAll())
+	std::vector<GameObject*>& sortedvec = GetScene()->GetMeshObjectAll();
+	std::sort(sortedvec.begin(), sortedvec.end(), [&](GameObject* left, GameObject* right) ->bool
+	{
+		D3DXVECTOR3 camPos = m_pEditScene->GetEditCamera()->m_pTransform->m_position;
+		D3DXVECTOR3 leftPos = left->m_pTransform->m_position;
+		D3DXVECTOR3 rightPos = right->m_pTransform->m_position;
+		float leftDist = D3DXVec3Length(&(camPos - leftPos));
+		float rightDist = D3DXVec3Length(&(camPos - rightPos));
+
+
+		if (leftDist < rightDist)
+			return true;
+		else
+			return false;
+	});
+	for (auto& obj : sortedvec)
 	{
 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
 		if (editObj == nullptr)
@@ -227,6 +270,14 @@ bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out
 		D3DXVECTOR3 origin;
 		D3DXVECTOR3 direction;
 		m_pEditScene->GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+		
+		D3DXMATRIX worldInverse;
+		D3DXVECTOR3 worldOrigin = origin;
+		D3DXVECTOR3 worldDirection = direction;
+		D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+		D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+		D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
+		
 		BOOL isHit = false;
 		DWORD faceIndex;
 		FLOAT u;
@@ -240,6 +291,11 @@ bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out
 		if (isHit)
 		{
 			*resultIndex = editObj->GetEditID();
+
+			D3DXVECTOR3 resultPos = worldOrigin + worldDirection * dist;
+			pickedPos->x = resultPos.x;
+			pickedPos->y = resultPos.y;
+			pickedPos->z = resultPos.z;
 			return true;
 		}
 	}
@@ -354,6 +410,14 @@ void HyEngine::EditEngine::AddCell(CellData * cellData)
 
 	editObj->AddCell(position, (ECellOption)cellData->option, cellData->group);
 
+}
+
+void HyEngine::EditEngine::RemoveNavPrim(int navPrimIndex)
+{
+	NavMesh* navMesh = dynamic_cast<NavMesh*>(m_pSelectedObject);
+	assert(navMesh);
+
+	navMesh->RemoveNavPrim(navPrimIndex);
 }
 
 int HyEngine::EditEngine::GetAnimationCount()

@@ -136,7 +136,53 @@ namespace WPF_Tool
                 }
             }
         }
+        private void BTN_NavPrimDelete(object sender, RoutedEventArgs e)
+        {
+            var focusedElement = lastFocusedElement;
+            TreeViewItem selectedItem = focusedElement as TreeViewItem;
+            if (selectedItem == null) return;
+            string navPrimStr = "NavPrimitive";
+            bool isNavPrim = false;
+            isNavPrim = ((string)selectedItem.Header).Contains(navPrimStr);
 
+            if (isNavPrim == false) return;
+
+
+
+            HierarchyData selected = selectedHierarchy;
+            if (selected.type != GameObjectType.NavMesh)
+            {
+                Debug.Assert(false);
+            }
+
+            // Inspector 상에서 해당 prim 하위에 있는
+            // 모든 셀을 지운다.
+            for (int i = 0; i < selectedItem.Items.Count; i++)
+            {
+                TreeViewItem cellItem = selectedItem.Items[i] as TreeViewItem;
+                for (int j = 0; j < selected.cells.Count; j++)
+                {
+                    if (selected.cells[j].cellIndex.ToString() == cellItem.Uid)
+                    {
+                        selected.cells.RemoveAt(j);
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < CellList.Items.Count; i++)
+            {
+                TreeViewItem navPrimItem = CellList.Items[i] as TreeViewItem;
+                if (navPrimItem.Uid == selectedItem.Uid)
+                {
+                    CellList.Items.RemoveAt(i);
+                    break;
+                }
+            }
+
+            selectedItem.Items.Clear();
+
+            Externs.RemoveNavPrim(Int32.Parse(selectedItem.Uid));
+        }
         private void SLT_MapGroup(object sender, RoutedEventArgs e)
         {
             ComboBox item = sender as ComboBox;
@@ -153,7 +199,7 @@ namespace WPF_Tool
                 }
             }
         }
-
+        
         private void Tag_Selected(object sender, RoutedEventArgs e)
         {
             ComboBox item = sender as ComboBox;

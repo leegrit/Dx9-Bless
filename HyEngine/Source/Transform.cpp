@@ -243,6 +243,13 @@ void Transform::RotateEuler(const Vector3 & eulers)
 {
 	m_rotationEuler = eulers;
 }
+void HyEngine::Transform::Refresh()
+{
+	m_positionOld = m_position;
+	m_rotationOld = m_rotation;
+	m_rotationEulerOld = m_rotationEuler;
+	m_scaleOld = m_scale;
+}
 //
 //void Transform::SetParent(Transform * parent)
 //{

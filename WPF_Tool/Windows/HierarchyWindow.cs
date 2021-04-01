@@ -226,6 +226,8 @@ namespace WPF_Tool
 
             HierarchyList.Items.Add(item);
             HierarchyList.SelectionMode = SelectionMode.Single;
+
+            
             hierarchyList.Add(hierarchyData);
             switch (hierarchyData.type)
             {
@@ -248,15 +250,28 @@ namespace WPF_Tool
             // SelectedIndex Property에서 Select, ShowInspector, InsertData 모두 해준다.
             SelectedIndex = index;
 
+            // 여기서 리스트를 복사해준다.
+            // 아래 로직은 cells가 아직 없다는 전제로 
+            // 차례대로 추가해나가기 때문에 
+            // 값을 미리 복사해두고 hierarchyData는 다시 채우기위해 비워둔다.
+            List<CellData> newList = new List<Data.CellData>();
+            if (hierarchyData.navMeshData.cellCount > 0)
+            {
+                for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
+                {
+                    newList.Add(hierarchyData.cells[i]);
+                }
+                hierarchyData.cells.Clear();
+            }
             for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
             {
                 Debug.Assert(hierarchyData.type == GameObjectType.NavMesh);
 
-                CellData cellData = hierarchyData.cells[i];
-                Externs.AddCell(ref cellData);
+                CellData cellData = newList[i];
+                
 
                 Vector3 position;
-                position = hierarchyData.cells[i].position;
+                position = newList[i].position;
 
                 bool isNewPrim = IsNewPrimitive();
                 if (isNewPrim)
@@ -273,7 +288,7 @@ namespace WPF_Tool
                 cellItem.Header = "Cell_" + cellIndex;
                 cellItem.Uid = cellIndex.ToString();
                 cellItem.Selected += CellSelected;
-                AddCell(position);
+                AddCell(position, true);
 
                 int primCount = CellList.Items.Count;
                 ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
@@ -287,6 +302,7 @@ namespace WPF_Tool
         }
         private void SelectedGameObject(object sender, RoutedEventArgs e)
         {
+            lastFocusedElement = Keyboard.FocusedElement;
             ListBoxItem item = sender as ListBoxItem;
             foreach (var hierarchyItem in hierarchyList)
             {
@@ -310,6 +326,7 @@ namespace WPF_Tool
         }
         private void SelectedNavMesh(object sender, RoutedEventArgs e)
         {
+            lastFocusedElement = Keyboard.FocusedElement;
             ListBoxItem item = sender as ListBoxItem;
             foreach (var hierarchyItem in hierarchyList)
             {
@@ -318,7 +335,7 @@ namespace WPF_Tool
                     SelectedIndex = hierarchyItem.Index;
 
 
-                    
+                    ShowNavMeshInfo();
 
                     // 여기부터 navMesh tap
                     // 강제로 탭 변경을 한다.

@@ -118,6 +118,9 @@
     <Filter Include="Object\Map">
       <UniqueIdentifier>{9523dfe8-e2a4-4d3c-9ae3-16fe1da1b1be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Old">
+      <UniqueIdentifier>{b4aeca92-ab3b-4fcb-9277-413f5ffae1bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -211,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="Include\DxMath.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\DebugGround.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\IndexTypes.h">
       <Filter>Geometry</Filter>
@@ -326,9 +326,6 @@
     <ClInclude Include="Include\UIPanel.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ShadedMeshObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\UIButton.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -349,9 +346,6 @@
     </ClInclude>
     <ClInclude Include="Include\ParticleGun.h">
       <Filter>Particle\Samples</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\MeshObject2.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\MeshObject.h">
       <Filter>Object</Filter>
@@ -383,23 +377,11 @@
     <ClInclude Include="Include\ScriptableData.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ZTextureObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\ZTextureQuad.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ZBillboardObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\D3DXMeshObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\ImageButton.h">
       <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\CrossTextureObject.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\CrossTextureQuad.h">
       <Filter>Geometry</Filter>
@@ -557,6 +539,30 @@
     <ClInclude Include="Include\ChunkMapData.h">
       <Filter>Data</Filter>
     </ClInclude>
+    <ClInclude Include="Include\CrossTextureObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\D3DXMeshObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DebugGround.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshObject2.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ShadedMeshObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ZBillboardObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ZTextureObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Pawn.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -636,9 +642,6 @@
     </ClCompile>
     <ClCompile Include="Source\DxMath.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DebugGround.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\IndexTypes.cpp">
       <Filter>Geometry</Filter>
@@ -739,9 +742,6 @@
     <ClCompile Include="Source\UIPanel.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ShadedMeshObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UIButton.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -762,9 +762,6 @@
     </ClCompile>
     <ClCompile Include="Source\ParticleGun.cpp">
       <Filter>Particle\Samples</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshObject2.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshObject.cpp">
       <Filter>Object</Filter>
@@ -793,23 +790,11 @@
     <ClCompile Include="Source\ScriptableData.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ZTextureObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ZTextureQuad.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ZBillboardObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\D3DXMeshObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ImageButton.cpp">
       <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CrossTextureObject.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\CrossTextureQuad.cpp">
       <Filter>Geometry</Filter>
@@ -942,6 +927,30 @@
     </ClCompile>
     <ClCompile Include="Source\ChunkMapData.cpp">
       <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CrossTextureObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D3DXMeshObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DebugGround.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshObject2.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShadedMeshObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZBillboardObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZTextureObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pawn.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

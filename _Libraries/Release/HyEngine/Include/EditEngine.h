@@ -14,10 +14,10 @@ namespace HyEngine
 		EditEngine();
 		~EditEngine();
 	public :
-
 		void Render();
 		void Update();
-
+	private: /* For.Logger */
+		void InitLoggingService();
 		//////////////////////////////////////////////////////////////////////////
 		// EXPORTS
 		//////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ namespace HyEngine
 		void AddPawn(int index);
 		void AddNavMesh(int index);
 		void RemoveGameObject(int index);
-		bool PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex);
+		bool PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos);
 
 
 		/* For Data */
@@ -63,6 +63,7 @@ namespace HyEngine
 		/* For NavMesh */
 		bool PickNavMesh(float xMousePos, float yMousePos, int cellOption, _Out_ VectorData* pickedPos);
 		void AddCell(CellData* cellData);
+		void RemoveNavPrim(int navPrimIndex);
 
 		/* For DynamicMesh */
 		int GetAnimationCount();

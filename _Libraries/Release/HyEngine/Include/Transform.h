@@ -26,7 +26,7 @@ namespace HyEngine
 		inline void SetXRotationDeg(float xDeg) { m_rotation = Quaternion::FromAxisAngle(Vector3::Right, xDeg * DEG2RAD); }
 		inline void SetYRotationDeg(float yDeg) { m_rotation = Quaternion::FromAxisAngle(Vector3::Up, yDeg * DEG2RAD); }
 		inline void SetZRotationDeg(float zDeg) { m_rotation = Quaternion::FromAxisAngle(Vector3::Forward, zDeg * DEG2RAD); }
-		// 사용금지!!
+	
 		inline void SetRotationDeg(float xDeg, float yDeg, float zDeg)
 		{
 			m_rotation = Quaternion::FromAxisAngle(Vector3::Right, (-xDeg) * DEG2RAD);
@@ -34,7 +34,6 @@ namespace HyEngine
 			RotateAroundGlobalZAxisDegrees(zDeg);
 		}
 		
-		// ㅇㅋ
 		inline void SetScale(float x, float y, float z) { m_scale = Vector3(x, y, z); }
 		inline void SetScale(const Vector3& scale) { m_scale = scale; }
 		inline void SetUniformScale(float scale) { m_scale = Vector3(scale, scale, scale); }
@@ -45,7 +44,6 @@ namespace HyEngine
 		//----------------------------------------------------------------------------------------------------------------
 		// TRANSFORMATIONS
 		//----------------------------------------------------------------------------------------------------------------
-		//ㅇㅋ
 		void Translate(const Vector3& translation);
 		void Translate(float x, float y, float z);
 		void Scale(const Vector3& scale);
@@ -101,24 +99,24 @@ namespace HyEngine
 
 		void RotateEuler(const Vector3& eulers);
 
-		//void SetParent(Transform* parent);
+		// old 값들을 새로 채워준다.
+		void Refresh();
 
 
 		//----------------------------------------------------------------------------------------------------------------
 		// DATA
 		//----------------------------------------------------------------------------------------------------------------
 		Vector3			 m_position;
+		Vector3			 m_positionOld;
 		Quaternion		 m_rotation = Quaternion::Identity();
+		Quaternion		 m_rotationOld;
 		// 주의  오일러 값을 건들게 되면 쿼터니언 값은 무시됩니다.
 		Vector3			 m_rotationEuler = Vector3::Zero;
+		Vector3			 m_rotationEulerOld;
 		Vector3		     m_scale;
+		Vector3			 m_scaleOld;
 		const Vector3    m_originalPosition;
 		const Quaternion m_originalRotation;
-		//Vector3          m_localPosition;
-		//Quaternion		 m_localRotation;
-		//Vector3			 m_localScale;
-		//Transform *		 m_parent;
-		//Transform *	     m_root;
 
 		D3DXMATRIX m_worldMatrix;
 

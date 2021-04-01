@@ -89,7 +89,7 @@ namespace WPF_Tool.Scripts
         public static extern void TranslateToMesh();
 
         [DllImport("HyEngine.dll")]
-        public static extern bool PickGameObject(float xMousePos, float yMousePos, ref int resultIndex);
+        public static extern bool PickGameObject(float xMousePos, float yMousePos, ref int resultIndex, ref Vector3 pickedPos);
 
         [DllImport("HyEngine.dll")]
         public static extern void AddCell(ref CellData cellData);
@@ -102,5 +102,8 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void SetAnimation(int index);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void RemoveNavPrim(int navPrimIndex);
     }
 }

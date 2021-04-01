@@ -1,6 +1,11 @@
 #pragma once
 #include "Scene.h"
 
+namespace HyEngine
+{
+	class Pawn;
+}
+
 using namespace HyEngine;
 class SampleScene : public Scene
 {
@@ -14,5 +19,8 @@ class SampleScene : public Scene
 
 public :
 
+private :
+	// test
+	Pawn* m_pPawn;
 };
 

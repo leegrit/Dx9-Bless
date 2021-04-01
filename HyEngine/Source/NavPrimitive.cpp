@@ -18,6 +18,16 @@ HyEngine::NavPrimitive::NavPrimitive(Scene * scene, GameObject * parent, Cell * 
 	m_navPrimIndex = navPrimIndex;
 }
 
+HyEngine::NavPrimitive::~NavPrimitive()
+{
+	SAFE_DELETE(m_pColorTriangle);
+	for (int i = 0; i < m_cells.size(); i++)
+	{
+		Object::Destroy(m_cells[i]);
+	}
+	m_cells.clear();
+}
+
 void HyEngine::NavPrimitive::Initialize()
 {
 	
@@ -48,7 +58,6 @@ void HyEngine::NavPrimitive::Render()
 {
 	GameObject::Render();
 
-	m_pColorTriangle = Geometry::CreateGeometry<ColorTriangle>((void*)&m_color);
 	ColorVertex * vertices = m_pColorTriangle->LockVertices();
 	{
 
@@ -104,4 +113,9 @@ Cell * HyEngine::NavPrimitive::GetCell(int cellIndex)
 const std::vector<Cell*>& HyEngine::NavPrimitive::GetCells()
 {
 	return m_cells;
+}
+
+int HyEngine::NavPrimitive::GetNavPrimIndex() const
+{
+	return m_navPrimIndex;
 }

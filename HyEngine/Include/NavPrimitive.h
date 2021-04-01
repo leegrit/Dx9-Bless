@@ -11,7 +11,7 @@ namespace HyEngine
 		explicit NavPrimitive(class Scene* scene, GameObject* parent,
 			Cell* cellA, Cell* cellB, Cell* cellC,
 			const  ECellOption& cellOption, const unsigned int& group, unsigned int navPrimIndex);
-		virtual ~NavPrimitive() = default;
+		virtual ~NavPrimitive();
 
 	public :
 		// Inherited via GameObject
@@ -25,13 +25,14 @@ namespace HyEngine
 		D3DXVECTOR3 GetPosition(EPoint point);
 		Cell* GetCell(int cellIndex);
 		const std::vector<Cell*>& GetCells();
+		int GetNavPrimIndex()const;
 	private :
 		class ColorTriangle* m_pColorTriangle = nullptr;
 		D3DCOLOR m_color;
 
 		std::vector<Cell*> m_cells;
-		std::vector<NavPrimitive*> m_neighbor;
-		std::vector<Line*> m_lines;
+		//std::vector<NavPrimitive*> m_neighbor;
+		//std::vector<Line*> m_lines;
 
 		ECellOption m_cellOption;
 

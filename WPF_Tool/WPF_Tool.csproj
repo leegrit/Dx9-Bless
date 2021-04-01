@@ -73,6 +73,7 @@
     <Compile Include="Data\MapData.cs" />
     <Compile Include="Data\MeshData.cs" />
     <Compile Include="Data\NavMeshData.cs" />
+    <Compile Include="Data\SelectInfo.cs" />
     <Compile Include="Data\Strings.cs" />
     <Compile Include="Scripts\GameObjectController.cs" />
     <Compile Include="Utility\Timer.cs" />
@@ -177,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\NavMesh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

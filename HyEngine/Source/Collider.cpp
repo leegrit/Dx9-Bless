@@ -26,7 +26,10 @@ HyEngine::Collider::Collider(EColliderShape colliderShape, EColliderType collide
 	// collider transform don't have owner.
 	m_pTransform = new Transform(nullptr);
 }
-
+Collider::~Collider()
+{
+	SAFE_DELETE(m_pTransform);
+}
 void HyEngine::Collider::Initialize()
 {
 }
@@ -34,6 +37,7 @@ void HyEngine::Collider::Initialize()
 void HyEngine::Collider::PositionUpdate()
 {
 	if (m_pOwner == nullptr) return;
+	m_pTransform->Refresh();
 
 	Vector3 result = m_pOwner->m_pTransform->m_position;
 	result += m_pOwner->m_pTransform->Forward() * m_offset.z();

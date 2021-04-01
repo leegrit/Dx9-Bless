@@ -32,3 +32,4 @@ GetAnimationCount
 GetAnimationName
 AddPawn
 SetAnimation
+RemoveNavPrim

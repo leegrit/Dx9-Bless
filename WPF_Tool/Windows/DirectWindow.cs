@@ -52,6 +52,11 @@ namespace WPF_Tool
 
             DXMousePosX.Text = x.ToString("N3");
             DXMousePosY.Text = y.ToString("N3");
+
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) && ToolManager.ToolMode != EToolMode.NavMeshTool)
+            {
+                ToolManager.ToolMode = EToolMode.PickTool;
+            }
         }
 
         private void Dx_MouseDown(object sender, MouseButtonEventArgs e)
@@ -70,6 +75,7 @@ namespace WPF_Tool
             double actualX = d3dimg.Width * xRatio;
             double actualY = d3dimg.Height * yRatio;
 
+            
 
             if (e.ChangedButton == MouseButton.Left)
             {
@@ -104,16 +110,32 @@ namespace WPF_Tool
                         int primCount = CellList.Items.Count;
 
                         ((TreeViewItem)CellList.Items[primCount - 1]).Items.Add(cellItem);
-                        
+
 
 
                         DebugLog("NavMesh Picked X : " + pickedPos.x + ", " + " Y : " + pickedPos.y + ", Z : " + pickedPos.z, ELogType.Log);
                     }
                 }
+                else if (ToolManager.ToolMode == EToolMode.PickTool && Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    Vector3 pickedPos = default(Vector3);
+                    int temp = 0;
+                    bool isHit = Externs.PickGameObject((float)actualX, (float)actualY, ref temp, ref pickedPos);
+                    if (isHit)
+                    {
+                        HierarchyData select = selectedHierarchy;
+
+                        select.gameObjectData.transform.position = pickedPos;
+
+                        Externs.InsertGameData(ref select.gameObjectData);
+                    }
+
+                }
                 else
                 {
                     int resultIndex = -1;
-                    bool isPicked = Externs.PickGameObject((float)actualX, (float)actualY, ref resultIndex);
+                    Vector3 vec = default(Vector3);
+                    bool isPicked = Externs.PickGameObject((float)actualX, (float)actualY, ref resultIndex, ref vec );
                     if (isPicked == true)
                     {
                         SelectedIndex = resultIndex;

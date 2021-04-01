@@ -68,6 +68,7 @@ namespace WPF_Tool.Data
         ViewTool,
         HandTool,
         NavMeshTool,
+        PickTool,
     }
 
     public enum ECellOption
@@ -92,5 +93,11 @@ namespace WPF_Tool.Data
         Group7,
         Group8,
         Group9,
+    }
+    public enum ESelectableType
+    {
+        Hierarchy,
+        Cell,
+        NavPrimitive,
     }
 }

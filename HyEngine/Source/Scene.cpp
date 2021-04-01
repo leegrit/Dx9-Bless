@@ -193,7 +193,7 @@ void Scene::RenderScene(Renderer * renderer)
 {
 	DEVICE->SetTransform(D3DTS_VIEW, &m_pSelectedCamera->GetViewMatrix());
 	DEVICE->SetTransform(D3DTS_PROJECTION, &m_pSelectedCamera->GetProjectionMatrix());
-
+	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	DEVICE->SetRenderState(D3DRS_LIGHTING, FALSE);
 	renderer->SetAlphaContext();

@@ -35,6 +35,7 @@ namespace WPF_Tool
         public int SelectedCellIndex = 0;
         public ECellOption cellOption = ECellOption.NORMAL;
         public ECellEditMode CellEditMode = ECellEditMode.Similar;
+       
        // public static List<CellData> CellDatas = new List<CellData>();
         public bool IsNewPrimitive()
         {
@@ -52,7 +53,7 @@ namespace WPF_Tool
             return false;
         }
 
-        public void AddCell(Vector3 position)
+        public void AddCell(Vector3 position, bool bSendExterns = false)
         {
             CellData data = new Data.CellData();
             data.cellIndex = cellIndex++;
@@ -67,6 +68,8 @@ namespace WPF_Tool
                     if (item.cells == null)
                         item.cells = new List<Data.CellData>();
                     item.cells.Add(data);
+                    if(bSendExterns)
+                        Externs.AddCell(ref data);
                     break;
                 }
             }
@@ -76,12 +79,20 @@ namespace WPF_Tool
         // cell만 지우기 불가능 
         public void RemovePrim(int primIndex)
         {
+            HierarchyData selected = selectedHierarchy;
+            if (selected.type != GameObjectType.NavMesh)
+            {
+                Debug.Assert(false);
+            }
+
+
 
             //Externs.RemovePrim
         }
 
         private void CellSelected(object sender, RoutedEventArgs e)
         {
+            lastFocusedElement = Keyboard.FocusedElement;
             TreeViewItem item = sender as TreeViewItem;
             //CellDataGroup.IsEnabled = true;
             CellData cellData = default(CellData);
@@ -113,6 +124,10 @@ namespace WPF_Tool
             CellPositionZ.Text = cellData.position.z.ToString();
         }
 
+        private void NavPrimSelected(object sender, RoutedEventArgs e)
+        {
+            lastFocusedElement = Keyboard.FocusedElement;
+        }
         private void SimilarVTX_Checked(object sender, RoutedEventArgs e)
         {
             CellEditMode = ECellEditMode.Similar;
@@ -121,6 +136,12 @@ namespace WPF_Tool
         private void SelectedVTX_Checked(object sender, RoutedEventArgs e)
         {
             CellEditMode = ECellEditMode.Selected;
+        }
+
+        private void ShowNavMeshInfo()
+        {
+
+
         }
     }
 }

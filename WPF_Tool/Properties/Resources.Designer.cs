@@ -175,6 +175,16 @@ namespace WPF_Tool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pick {
+            get {
+                object obj = ResourceManager.GetObject("Pick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;!--
         ///// (c) Copyright Microsoft Corporation.
         ///// This source is subject to Microsoft Public License (Ms-PL).

@@ -2,7 +2,7 @@
 #include "GameObject.h"
 namespace HyEngine
 {
-	class NavMesh : public GameObject
+	class ENGINE_DLL NavMesh : public GameObject
 	{
 	public:
 		// --------------------------------------------------------
@@ -33,6 +33,15 @@ namespace HyEngine
 			return mesh;
 		}
 
+		static NavMesh* Create(Scene* scene, GameObject * parent, std::wstring dataPath)
+		{
+			NavMesh* mesh = new NavMesh(scene, parent);
+			mesh->Initialize(dataPath);
+			return mesh;
+		}
+
+
+
 	public :
 		// ---------------------------------------------------------
 		// INHERITED
@@ -60,17 +69,17 @@ namespace HyEngine
 		void SetGroup(const unsigned long& cellIndex, const unsigned int& group);
 
 	public :
+	
+		//////////////////////////////////////////////////////////////////////////
+		// INITIALIZER
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		void Initialize(std::wstring dataPath);
+
 		// ----------------------------------------------------------
-		// Data
-		// -----------------------------------------------------------
-
-
+		// FOR EDITOR 
+		// ----------------------------------------------------------
 	public:
-		// ----------------------------------------------------------
-		// PUBLIC METHODS
-		// ----------------------------------------------------------
-		/*bool TryPickingCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);
-		bool TryDeleteCell(const D3DXVECTOR3& pickingPos, _Out_ unsigned long* cellIndex);*/
 		bool TryPickingCell(_Out_ VectorData* pickedPos, const D3DXVECTOR3& pickingPos, const  ECellOption& option, const unsigned int& group = 100);
 		void AddCell(const D3DXVECTOR3& position, const ECellOption& option, const unsigned int& group);
 		void ClearCell();
@@ -78,16 +87,26 @@ namespace HyEngine
 		void ChangeCellOption(const unsigned long& cellIndex, const  ECellOption& option);
 		void ChangeCellOption(const unsigned int& group, const  ECellOption& option);
 		void CreateCell(CellData* data);
-
+		void RemoveNavPrim(int navPrimIndex);
 		void SetCellEditMode(ECellEditMode cellEditMode);
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHODS
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		bool IsOnMesh(D3DXVECTOR3 position,  _Out_ float* yPos);
+		bool PickOnMesh(D3DXVECTOR3 origin, D3DXVECTOR3 direction, _Out_ D3DXVECTOR3* pickedPos);
+
+
 
 	private:
 		// ---------------------------------------------------
 		// VARIABLES
 		// --------------------------------------------------
 		std::vector<class NavPrimitive*> m_navPrimitives;
-		unsigned long m_nextCellIndex;
-		unsigned long m_nextNavPrimIndex;
+		static unsigned long m_nextCellIndex;
+		static unsigned long m_nextNavPrimIndex;
 
 		std::vector<class Cell*> m_pickedCell;
 		float m_pickRadius = 1.f;

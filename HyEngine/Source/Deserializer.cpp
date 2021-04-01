@@ -61,7 +61,8 @@ shared_ptr<HierarchyData> HyEngine::Deserializer::Deserialize(std::wstring jsonP
 	/* For Cells */
 	for (int i = 0; i < result->navMeshData->cellCount; i++)
 	{
-		Json::Value cellJson = root["Cell_" + i];
+		string key = CString::string_format("Cell_%d", i);
+		Json::Value cellJson = root[key];
 		
 		CellData * cellData = new CellData();
 		Json::GetValue(cellJson, JsonKey::CellIndex, cellData->cellIndex);

@@ -124,6 +124,7 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
+	m_pTransform->Refresh();
 	for (auto& com : m_components)
 	{
 		if (com->GetBehaviourType() & BehaviourType::Update)

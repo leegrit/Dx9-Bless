@@ -49,7 +49,8 @@
                 </MenuItem>
                 <MenuItem Header="Component" Height="30" >
                 </MenuItem>
-                
+                <MenuItem Header="Help" Height="30" >
+                </MenuItem>
             </Menu>
         </DockPanel>
 
@@ -88,6 +89,9 @@
                         <ToggleButton x:Name="HandToolButton" Width="25" Height="20">
                             <Image Source="Images/Hand.png"></Image>
                         </ToggleButton>
+                        <ToggleButton x:Name="PickToolButton" Width="25" Height="20">
+                            <Image Source="Images/Pick.png"></Image>
+                        </ToggleButton>
                         <ToggleButton x:Name="NavMeshToolButton" Width="25" Height="20">
                             <Image Source="Images/NavMesh.png"></Image>
                         </ToggleButton>
@@ -111,7 +115,7 @@
                             <ComboBoxItem Content="Selectable" Selected="WireFrame_Selected"/>
                             <ComboBoxItem Content="Nothing" Selected="WireFrame_Selected"/>
                         </ComboBox>
-                        <TextBlock Width="40"/>
+                        <TextBlock Width="20"/>
                         <!--빈 공간-->
                         <TextBlock Width="40" VerticalAlignment="Center" TextAlignment="Center" Foreground="White"> Gizmo</TextBlock>
                         <CheckBox VerticalAlignment="Center"/>
@@ -230,9 +234,11 @@
                                         <TextBlock Width="10"></TextBlock>
                                         <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Group</TextBlock>
                                         <ComboBox  x:Name="MapGroupComboBox" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="SLT_MapGroup">
-                                            <ComboBoxItem Content="Group1" />
-                                            <ComboBoxItem Content="Group2"/>
-                                            <ComboBoxItem Content="Group3" />
+                                            <ComboBoxItem Content="Group0" />
+                                            <ComboBoxItem Content="Group1"/>
+                                            <ComboBoxItem Content="Group2" />
+                                            <ComboBoxItem Content="Group3"/>
+                                            <ComboBoxItem Content="Group4"/>
                                             <ComboBoxItem Content="Group5"/>
                                             <ComboBoxItem Content="Group6"/>
                                             <ComboBoxItem Content="Group7"/>
@@ -388,7 +394,7 @@
                                 </WrapPanel>
                             </ScrollViewer>
                         </GroupBox>
-                        <Button Height="20">Delete</Button>
+                        <Button Height="20" Click="BTN_NavPrimDelete" >Delete</Button>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="3"></TextBlock>

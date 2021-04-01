@@ -7,7 +7,7 @@ namespace HyEngine
 	{
 	protected:
 		Collider(EColliderShape colliderShape, EColliderType colliderType, GameObject* owner, UINT targetLayer,std::function<void(Collider*)> onCollision = nullptr );
-		virtual ~Collider() = default;
+		virtual ~Collider();
 	public:
 		virtual void Initialize();
 		void PositionUpdate();

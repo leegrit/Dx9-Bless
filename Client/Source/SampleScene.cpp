@@ -7,9 +7,19 @@
 #include "DynamicMesh.h"
 #include "DynamicCamera.h"
 #include "GroupMapObject.h"
+#include "NavMesh.h"
+#include "Pawn.h"
 
 void SampleScene::Update()
 {
+	if(KEYBOARD->Press('B'))
+	{
+		m_pPawn->m_pTransform->Translate(m_pPawn->m_pTransform->Forward() * 10 * TIMER->getDeltaTime());
+	}
+	if (KEYBOARD->Press('V'))
+	{
+		m_pPawn->m_pTransform->Translate(-m_pPawn->m_pTransform->Forward() * 10 * TIMER->getDeltaTime());
+	}
 }
 
 void SampleScene::Load()
@@ -25,9 +35,12 @@ void SampleScene::Load()
 	Skybox* skybox = new Skybox(camera, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
 	skybox->Initialize();
 	SetSkybox(skybox);
-
-	DynamicMesh::Create(this, nullptr, L"Elf", PATH->DatasPathW() + L"HierarchyData/Elf.json");
+	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/NavMesh3.json");
+	
+	m_pPawn = Pawn::Create(this, nullptr, navMesh, PATH->DatasPathW() + L"HierarchyData/Elf.json");
 	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_0.json");
+
+	
 }
 
 void SampleScene::Unload()

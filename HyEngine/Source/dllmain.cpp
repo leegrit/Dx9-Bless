@@ -144,13 +144,17 @@ extern "C" void WINAPI TranslateToMesh()
 {
 	EDIT_ENGINE->TranslateToMesh();
 }
-extern "C" bool WINAPI PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex)
+extern "C" bool WINAPI PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos)
 {
-	return EDIT_ENGINE->PickGameObject(xMousePos, yMousePos, resultIndex);
+	return EDIT_ENGINE->PickGameObject(xMousePos, yMousePos, resultIndex, pickedPos);
 }
 extern "C" void WINAPI AddCell(CellData* cellData)
 {
 	EDIT_ENGINE->AddCell(cellData);
+}
+extern "C" void WINAPI RemoveNavPrim(int navPrimIndex)
+{
+	EDIT_ENGINE->RemoveNavPrim(navPrimIndex);
 }
 
 extern "C" int WINAPI GetAnimationCount()

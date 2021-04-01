@@ -150,7 +150,39 @@ namespace HyEngine
 
 			return (float)(acos(dotProduct / (mag1 * mag2)));
 		}
+		static bool SameSide(D3DXVECTOR3 p1, D3DXVECTOR3 p2, D3DXVECTOR3 a, D3DXVECTOR3 b)
+		{
+			D3DXVECTOR3 cp1;
+			D3DXVec3Cross(&cp1, &(b - a), &(p1 - a));
+			D3DXVECTOR3 cp2;
+			D3DXVec3Cross(&cp2, &(b - a), &(p2 - a));
+			if (D3DXVec3Dot(&cp1, &cp2) >= 0)
+				return true;
+			return false;
+		}
+		static bool PointInTriangle(D3DXVECTOR3 p, D3DXVECTOR3 a, D3DXVECTOR3 b, D3DXVECTOR3 c)
+		{
+			if (SameSide(p, a, b, c) && SameSide(p, b, a, c)
+				&& SameSide(p, c, a, b))
+				return true;
+			else
+				return false;
+		}
+		static float GetHeightFromPoints(D3DXVECTOR3 position,
+			D3DXVECTOR3 pointA, D3DXVECTOR3 pointB, D3DXVECTOR3 pointC)
+		{
+			D3DXPLANE plane;
+			D3DXPlaneFromPoints(&plane, &pointA, &pointB, &pointC);
 
+			float x = position.x;
+			float y = position.y;
+			float z = position.z;
+			float a = plane.a;
+			float b = plane.b;
+			float c = plane.c;
+			float d = plane.d;
+			return -(a*x + c*z + d) / b;
+		}
 	}
 }
 
