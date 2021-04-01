@@ -8,7 +8,7 @@ using namespace HyEngine;
 HyEngine::CrossTextureObject::CrossTextureObject(Scene * scene, GameObject * parent, const std::wstring & textureFilePath, const std::wstring & name)
 	: GameObject(ERenderType::RenderTexture, scene,parent, name)
 {
-	m_pTexture = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(textureFilePath));
+	m_pTexture = (IDirect3DTexture9*)(TextureLoader::GetTexture(textureFilePath));
 }
 
 void HyEngine::CrossTextureObject::Initialize()
@@ -31,7 +31,7 @@ void HyEngine::CrossTextureObject::Render()
 
 
 	D3DXHANDLE imageHandle = m_pEffect->GetParameterByName(0, "ImageTex");
-	m_pEffect->SetTexture(imageHandle, m_pTexture.get());
+	m_pEffect->SetTexture(imageHandle, m_pTexture);
 }
 
 void HyEngine::CrossTextureObject::Draw(std::string techniqueName)

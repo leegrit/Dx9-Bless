@@ -11,7 +11,8 @@ namespace WPF_Tool.Data
         Mesh,
         Pawn,
         MapObject,
-        NavMesh
+        NavMesh,
+        Terrain,
     }
     public enum EDataType
     {

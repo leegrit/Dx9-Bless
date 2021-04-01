@@ -7,6 +7,7 @@
 #include "EditMesh.h"
 #include "NavMesh.h"
 #include "EditDynamicMesh.h"
+#include "Terrain.h"
 
 using namespace HyEngine;
 
@@ -57,6 +58,11 @@ void HyEngine::EditScene::AddPawn(int editIndex)
 void HyEngine::EditScene::AddNavMesh(int editIndex)
 {
 	NavMesh::Create(this, nullptr, editIndex);
+}
+
+void HyEngine::EditScene::AddTerrain(int editIndex)
+{
+	Terrain::Create(this, nullptr, editIndex);
 }
 
 GameObject * HyEngine::EditScene::GetGameObject(int editIndex)

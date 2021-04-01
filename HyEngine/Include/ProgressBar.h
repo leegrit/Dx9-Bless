@@ -43,8 +43,8 @@ namespace HyEngine
 		inline void SetAmount(float amount) { m_amount = amount; }
 
 	private :
-		std::shared_ptr<IDirect3DTexture9> m_pFillTex;
-		std::shared_ptr<IDirect3DTexture9> m_pFillBack;
+		IDirect3DTexture9* m_pFillTex;
+		IDirect3DTexture9* m_pFillBack;
 
 		float m_amount;
 	};

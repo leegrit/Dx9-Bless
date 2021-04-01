@@ -33,3 +33,5 @@ GetAnimationName
 AddPawn
 SetAnimation
 RemoveNavPrim
+CreateTerrain
+InsertTerrainData

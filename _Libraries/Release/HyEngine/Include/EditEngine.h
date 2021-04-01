@@ -69,7 +69,11 @@ namespace HyEngine
 		int GetAnimationCount();
 		void GetAnimationName(_Out_ class AnimNameData* outString, int index);
 		void SetAnimation(int index);
-		
+
+		/* For.Terrain */
+		void CreateTerrain(unsigned int editID);
+		void InsertTerrainData(class TerrainData* data);
+
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
 		//////////////////////////////////////////////////////////////////////////

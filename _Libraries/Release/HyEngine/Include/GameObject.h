@@ -128,6 +128,7 @@ namespace HyEngine
 		void InsertGameData(class GameObjectData* data);
 		void InsertMeshData(class MeshData* data);
 		void InsertCellData(class CellData* data);
+		void InsertTerrainData(class TerrainData* data);
 
 		virtual void UpdatedData(EDataType dataType) {};
 		EStaticType GetStaticType() const;
@@ -164,9 +165,10 @@ namespace HyEngine
 		int m_editID;
 
 		int m_renderQueue = 3000;
-	protected:
+	protected: /* Hierarchy Data */
 		class GameObjectData* m_pGameObjectData = nullptr;
 		class MeshData* m_pMeshData = nullptr;
 		class CellData* m_pCellData = nullptr;
+		class TerrainData* m_pTerrainData = nullptr;
 	};
 }

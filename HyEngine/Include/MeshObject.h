@@ -58,10 +58,10 @@ namespace HyEngine
 		void Draw(std::string techniqueName);
 
 	protected:
-		std::shared_ptr<IDirect3DTexture9> m_pBaseTex = nullptr;
-		std::shared_ptr<IDirect3DTexture9> m_pBumpTex = nullptr;
-		std::shared_ptr<IDirect3DTexture9>m_pEmission = nullptr;
-		std::shared_ptr<IDirect3DTexture9> m_pDissolveMap = nullptr;
+		IDirect3DTexture9* m_pBaseTex = nullptr;
+		IDirect3DTexture9* m_pBumpTex = nullptr;
+		IDirect3DTexture9*m_pEmission = nullptr;
+		IDirect3DTexture9* m_pDissolveMap = nullptr;
 		std::shared_ptr< Mesh>m_pMesh = nullptr;
 		ID3DXMesh * m_pDxMesh = nullptr;
 		D3DXCOLOR m_color;

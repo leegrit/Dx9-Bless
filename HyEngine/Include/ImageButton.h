@@ -43,8 +43,8 @@ namespace HyEngine
 		void SetSwitchImage() { m_bImageChange = true; }
 	private:
 		bool m_bImageChange = false;
-		std::shared_ptr<IDirect3DTexture9> m_pOriginTex;
-		std::shared_ptr<IDirect3DTexture9> m_pSwitchImage;
+		IDirect3DTexture9* m_pOriginTex;
+		IDirect3DTexture9* m_pSwitchImage;
 
 	};
 

@@ -14,9 +14,9 @@ HyEngine::ShadedMeshObject::ShadedMeshObject(Scene * scene, GameObject * parent,
 	const std::wstring& emissionTexturePath, const std::wstring & tag)
 	: GameObject(renderType, scene, parent, tag)
 {
-	m_pBaseTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(baseTexturePath));
-	m_pBumpTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(normalTexturePath));
-	m_pEmission = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(emissionTexturePath));
+	m_pBaseTex = (IDirect3DTexture9*)TextureLoader::GetTexture(baseTexturePath);
+	m_pBumpTex = (IDirect3DTexture9*)TextureLoader::GetTexture(normalTexturePath);
+	m_pEmission = (IDirect3DTexture9*)TextureLoader::GetTexture(emissionTexturePath);
 	m_pMesh = MeshLoader::GetMesh(CString::ToString(meshFilePath));
 
 }
@@ -66,9 +66,9 @@ void HyEngine::ShadedMeshObject::Render()
 	DEVICE->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
 	DEVICE->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
-	DEVICE->SetTexture(0, m_pBaseTex.get());
-	DEVICE->SetTexture(1, m_pBumpTex.get());
-	DEVICE->SetTexture(2, m_pEmission.get());
+	DEVICE->SetTexture(0, m_pBaseTex);
+	DEVICE->SetTexture(1, m_pBumpTex);
+	DEVICE->SetTexture(2, m_pEmission);
 
 	m_pEffect->SetTechnique("Default_Technique");
 	m_pEffect->Begin(0, 0);

@@ -277,6 +277,8 @@
     <ClInclude Include="Include\StayInRadiusBehaviour.h" />
     <ClInclude Include="Include\StringForEditor.h" />
     <ClInclude Include="Include\Strings.h" />
+    <ClInclude Include="Include\Terrain.h" />
+    <ClInclude Include="Include\TerrainData.h" />
     <ClInclude Include="Include\TestMesh.h" />
     <ClInclude Include="Include\TextureLoader.h" />
     <ClInclude Include="Include\TextureObject.h" />
@@ -408,6 +410,8 @@
     <ClCompile Include="Source\Skybox.cpp" />
     <ClCompile Include="Source\StateMachine.cpp" />
     <ClCompile Include="Source\StayInRadiusBehaviour.cpp" />
+    <ClCompile Include="Source\Terrain.cpp" />
+    <ClCompile Include="Source\TerrainData.cpp" />
     <ClCompile Include="Source\TestMesh.cpp" />
     <ClCompile Include="Source\TextureLoader.cpp" />
     <ClCompile Include="Source\TextureObject.cpp" />

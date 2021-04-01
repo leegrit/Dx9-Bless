@@ -300,6 +300,7 @@ namespace WPF_Tool
             MapData.Visibility = Visibility.Collapsed;
             CellData.Visibility = Visibility.Collapsed;
             AnimationData.Visibility = Visibility.Collapsed;
+            TerrainData.Visibility = Visibility.Collapsed;
 
             switch (data.type)
             {

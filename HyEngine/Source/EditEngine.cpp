@@ -12,6 +12,8 @@
 #include "EditDynamicMesh.h"
 #include "AnimNameData.h"
 #include "PathManager.h"
+#include "TerrainData.h"
+
 using namespace HyEngine;
 
 const static TCHAR szAppName[] = TEXT("D3DImageSample");
@@ -446,6 +448,20 @@ void HyEngine::EditEngine::SetAnimation(int index)
 
 
 	obj->SetAnimationSet(index);
+}
+
+void HyEngine::EditEngine::CreateTerrain(unsigned int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddTerrain(editID);
+}
+
+void HyEngine::EditEngine::InsertTerrainData(TerrainData * data)
+{
+	m_pSelectedObject->InsertTerrainData(data);
 }
 
 

@@ -9,13 +9,14 @@ HyEngine::TestMesh::TestMesh(Scene * scene, GameObject * parent)
 	//assert(false);
 	m_pMesh = MeshLoader::GetMesh("../../../Resources/Mesh/Cube.obj");
 	//assert(m_pMesh);
-	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(L"../../../Resources/Texture/Checker.png"));
+	m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(L"../../../Resources/Texture/Checker.png"));
 }
 
 HyEngine::TestMesh::~TestMesh()
 {
+	
 	m_pMesh.reset();
-	m_pBaseTex.reset();
+	SAFE_RELEASE(m_pBaseTex);
 }
 
 void HyEngine::TestMesh::Initialize()
@@ -41,7 +42,7 @@ void HyEngine::TestMesh::Render()
 	DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
 
 	assert(m_pBaseTex);
-	DEVICE->SetTexture(0, m_pBaseTex.get());
+	DEVICE->SetTexture(0, m_pBaseTex);
 
 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
 }

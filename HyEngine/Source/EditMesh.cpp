@@ -11,7 +11,7 @@ EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 {
 	m_pMesh = MeshLoader::GetMesh(PATH->ResourcesPath() + "System/Cube.obj");
 	//assert(m_pMesh);
-	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(PATH->ResourcesPathW() + L"System/Checker.png"));
+	m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(PATH->ResourcesPathW() + L"System/Checker.png"));
 
 
 }
@@ -20,7 +20,7 @@ EditMesh::~EditMesh()
 {
 	Object::Destroy(m_pCollider);
 	m_pMesh.reset();
-	m_pBaseTex.reset();
+	SAFE_DELETE(m_pBaseTex);
 }
 
 void EditMesh::Initialize()
@@ -49,7 +49,7 @@ void EditMesh::Render()
 		DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
 
 		assert(m_pBaseTex);
-		DEVICE->SetTexture(0, m_pBaseTex.get());
+		DEVICE->SetTexture(0, m_pBaseTex);
 		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
 	}
 }
@@ -210,7 +210,7 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 		// texture file
 		if ((std::wcscmp(diffuseTextureExt.c_str(), L"png") == 0) || (std::wcscmp(diffuseTextureExt.c_str(), L"tga") == 0))
 		{
-			m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(ResourcePath::ResourcesPath + diffuseTexturePath));
+			m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(ResourcePath::ResourcesPath + diffuseTexturePath));
 		}
 		break;
 	}
@@ -227,7 +227,7 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 //{
 //	if (m_pBaseTex)
 //		m_pBaseTex.reset();
-//	m_pBaseTex = static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(path));
+//	m_pBaseTex = IDirect3DTexture9*(TextureLoader::GetTexture(path));
 //}
 //
 //void HyEngine::EditMesh::SetBumb(const std::wstring & path)

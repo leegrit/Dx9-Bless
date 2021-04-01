@@ -8,7 +8,7 @@ using namespace HyEngine;
 HyEngine::ZTextureObject::ZTextureObject(Scene * scene, GameObject* parent, ERenderType renderType, const std::wstring & textureFilePath, const std::wstring & tag)
 	: GameObject(renderType, scene, parent, tag)
 {
-	m_pTexture = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(textureFilePath));
+	m_pTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(textureFilePath);
 }
 
 void HyEngine::ZTextureObject::Initialize()
@@ -32,7 +32,7 @@ void HyEngine::ZTextureObject::Render()
 
 
 	D3DXHANDLE imageHandle = m_pEffect->GetParameterByName(0, "ImageTex");
-	m_pEffect->SetTexture(imageHandle, m_pTexture.get());
+	m_pEffect->SetTexture(imageHandle, m_pTexture);
 
 
 	//DEVICE->SetTexture(0, m_pTexture);

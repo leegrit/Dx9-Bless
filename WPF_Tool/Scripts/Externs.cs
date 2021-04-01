@@ -105,5 +105,12 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void RemoveNavPrim(int navPrimIndex);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateTerrain(uint editID);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void InsertTerrainData(ref TerrainData terrainData);
+        
     }
 }

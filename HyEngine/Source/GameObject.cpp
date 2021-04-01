@@ -4,6 +4,7 @@
 #include "GameObjectData.h"
 #include "MeshData.h"
 #include "CellData.h"
+#include "TerrainData.h"
 
 using namespace HyEngine;
 using namespace HyEngine;
@@ -276,6 +277,19 @@ void HyEngine::GameObject::InsertCellData(CellData * data)
 		UpdatedData(EDataType::CellData);
 		return;
 	}
+}
+
+void HyEngine::GameObject::InsertTerrainData(TerrainData * data)
+{
+	if (m_pTerrainData == nullptr)
+		m_pTerrainData = new TerrainData();
+	m_pTerrainData->vertexCountX = data->vertexCountX;
+	m_pTerrainData->vertexCountZ = data->vertexCountZ;
+	m_pTerrainData->vertexInterval = data->vertexInterval;
+	strcpy_s(m_pTerrainData->diffuseFilePath, 256, data->diffuseFilePath);
+	strcpy_s(m_pTerrainData->normalFilePath, 256, data->normalFilePath);
+
+	UpdatedData(EDataType::TerrainData);
 }
 
 EStaticType HyEngine::GameObject::GetStaticType() const

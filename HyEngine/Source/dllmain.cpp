@@ -6,6 +6,7 @@
 #include "CellData.h"
 #include "EditObject.h"
 #include "AnimNameData.h"
+#include "TerrainData.h"
 using namespace HyEngine;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -168,4 +169,16 @@ extern "C" void WINAPI GetAnimationName(_Out_ AnimNameData* outString, int index
 extern "C" void WINAPI SetAnimation(int index)
 {
 	EDIT_ENGINE->SetAnimation(index);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// FOR TERRAIN
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateTerrain(unsigned int editID)
+{
+	EDIT_ENGINE->CreateTerrain(editID);
+}
+extern "C" void WINAPI InsertTerrainData(TerrainData* data)
+{
+	EDIT_ENGINE->InsertTerrainData(data);
 }

@@ -23,12 +23,14 @@ namespace WPF_Tool.Data
         public static string GameObject = "GameObject";
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
+        public static string Terrain = "Terrain";
     }
     public class HierarchyContent
     {
         public static string GameObject = "GameObject";
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
+        public static string Terrain = "Terrain";
     }
     public class Paths
     {

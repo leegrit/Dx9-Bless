@@ -19,7 +19,7 @@ namespace HyEngine
 
 	protected:
 		class ZTextureQuad* m_pTextureQuad = nullptr;
-		std::shared_ptr<IDirect3DTexture9> m_pTexture = nullptr;
+		IDirect3DTexture9* m_pTexture = nullptr;
 
 		LPD3DXEFFECT m_pEffect = nullptr;
 	};

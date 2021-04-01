@@ -57,8 +57,10 @@ void DynamicCamera::CameraUpdate()
 		mousePos.z = 0;
 
 		D3DXVec3Normalize(&mousePos, &mousePos);
-		m_pTransform->m_rotationEuler.x() = mousePos.y * m_xRotMax;
-		m_pTransform->m_rotationEuler.y() = mousePos.x * m_yRotMax;
+
+
+		m_pTransform->m_rotationEuler.x() = m_pTransform->m_rotationEuler.x() + mousePos.y * m_xRotMax;
+		m_pTransform->m_rotationEuler.y() = m_pTransform->m_rotationEuler.y() + mousePos.x * m_yRotMax;
 	}
 
 

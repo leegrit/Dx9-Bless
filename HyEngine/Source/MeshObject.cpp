@@ -12,9 +12,9 @@ using namespace HyEngine;
 HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType renderType, const std::wstring & meshFilePath, const std::wstring & baseTexturePath, const std::wstring & normalTexturePath, const std::wstring & emissionTexturePath, const std::wstring & tag)
 	: GameObject(renderType, scene, parent, tag)
 {
-	m_pBaseTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(baseTexturePath));
-	m_pBumpTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(normalTexturePath));
-	m_pEmission = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(emissionTexturePath));
+	m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(baseTexturePath));
+	m_pBumpTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(normalTexturePath));
+	m_pEmission = (IDirect3DTexture9*)(TextureLoader::GetTexture(emissionTexturePath));
 #ifdef TEST_MODE
 	m_pMesh = MeshLoader::GetMesh("../Resources/Cube.obj");
 #else
@@ -25,8 +25,8 @@ HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType
 HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType renderType, const std::wstring & meshFilePath, const std::wstring & baseTexturePath, const std::wstring & normalTexturePath, const std::wstring & tag)
 	: GameObject(renderType, scene, parent, tag)
 {
-	m_pBaseTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(baseTexturePath));
-	m_pBumpTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(normalTexturePath));
+	m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(baseTexturePath));
+	m_pBumpTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(normalTexturePath));
 	m_pEmission = nullptr;
 #ifdef TEST_MODE
 	m_pMesh = MeshLoader::GetMesh("../Resources/Cube.obj");
@@ -38,7 +38,7 @@ HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType
 HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType renderType, const std::wstring & meshFilePath, const std::wstring & baseTexturePath, const std::wstring & tag)
 	: GameObject(renderType, scene, parent, tag)
 {
-	m_pBaseTex = std::static_pointer_cast<IDirect3DTexture9>(TextureLoader::GetTexture(baseTexturePath));
+	m_pBaseTex = (IDirect3DTexture9*)(TextureLoader::GetTexture(baseTexturePath));
 	m_pBumpTex = nullptr;
 	m_pEmission = nullptr;
 #ifdef TEST_MODE
@@ -123,14 +123,10 @@ HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ED3DXMeshTy
 
 HyEngine::MeshObject::~MeshObject()
 {
-	if (m_pMesh)
-		m_pMesh.reset();
-	if (m_pBaseTex)
-		m_pBaseTex.reset();
-	if (m_pBumpTex)
-		m_pBumpTex.reset();
-	if (m_pEmission)
-		m_pEmission.reset();
+	SAFE_RELEASE(m_pBaseTex);
+	SAFE_RELEASE(m_pBumpTex);
+	SAFE_RELEASE(m_pEmission);
+	SAFE_RELEASE(m_pDissolveMap);
 }
 
 void HyEngine::MeshObject::Initialize()
@@ -175,22 +171,22 @@ void HyEngine::MeshObject::Render()
 	if (m_pBaseTex)
 	{
 		D3DXHANDLE baseHandle = m_pEffect->GetParameterByName(0, "BaseMap");
-		m_pEffect->SetTexture(baseHandle, m_pBaseTex.get());
+		m_pEffect->SetTexture(baseHandle, m_pBaseTex);
 	}
 	if (m_pBumpTex)
 	{
 		D3DXHANDLE bumpHandle = m_pEffect->GetParameterByName(0, "BumpMap");
-		m_pEffect->SetTexture(bumpHandle, m_pBumpTex.get());
+		m_pEffect->SetTexture(bumpHandle, m_pBumpTex);
 	}
 	if (m_pEmission)
 	{
 		D3DXHANDLE emissionHandle = m_pEffect->GetParameterByName(0, "EmissionMap");
-		m_pEffect->SetTexture(emissionHandle, m_pEmission.get());
+		m_pEffect->SetTexture(emissionHandle, m_pEmission);
 	}
 	if (m_pDissolveMap)
 	{
 		D3DXHANDLE dissolveHandle = m_pEffect->GetParameterByName(0, "DissolveMap");
-		m_pEffect->SetTexture(dissolveHandle, m_pDissolveMap.get());
+		m_pEffect->SetTexture(dissolveHandle, m_pDissolveMap);
 	}
 }
 

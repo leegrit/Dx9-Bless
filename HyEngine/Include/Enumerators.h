@@ -142,7 +142,7 @@ enum class EDataType
 	GameObjectData,
 	MeshData,
 	CellData,
-	TextureData,
+	TerrainData,
 	End
 };
 

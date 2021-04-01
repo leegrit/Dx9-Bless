@@ -563,6 +563,12 @@
     <ClInclude Include="Include\Pawn.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Terrain.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TerrainData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -951,6 +957,12 @@
     </ClCompile>
     <ClCompile Include="Source\Pawn.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Terrain.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TerrainData.cpp">
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

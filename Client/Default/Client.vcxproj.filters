@@ -24,6 +24,9 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{6c7da6fb-9361-4b73-88fe-14c124e6be13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{3a20c14d-fdef-4fb0-9d65-bf6652dc1ad7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\stdafx.h" />

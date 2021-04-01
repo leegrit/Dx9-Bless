@@ -3,7 +3,7 @@
 
 using namespace HyEngine;
 
-std::shared_ptr<IDirect3DBaseTexture9> TextureLoader::GetTexture(std::wstring filePath)
+IDirect3DBaseTexture9* TextureLoader::GetTexture(std::wstring filePath)
 {
 	auto& iter = textureMap.find(filePath);
 	if (textureMap.end()== iter)
@@ -20,7 +20,7 @@ std::shared_ptr<IDirect3DBaseTexture9> TextureLoader::GetTexture(std::wstring fi
 	}
 	return textureMap[filePath];
 }
-std::shared_ptr<IDirect3DBaseTexture9> HyEngine::TextureLoader::GetCubeTexture(std::wstring filePath)
+IDirect3DBaseTexture9* HyEngine::TextureLoader::GetCubeTexture(std::wstring filePath)
 {
 	auto& iter = textureMap.find(filePath);
 	if (textureMap.end() == iter)
@@ -37,7 +37,7 @@ std::shared_ptr<IDirect3DBaseTexture9> HyEngine::TextureLoader::GetCubeTexture(s
 	}
 	return textureMap[filePath];
 }
-std::shared_ptr<IDirect3DBaseTexture9> TextureLoader::GetTexture(LPCWSTR filePath)
+IDirect3DBaseTexture9* TextureLoader::GetTexture(LPCWSTR filePath)
 {
 	auto& iter = textureMap.find(filePath);
 	if (textureMap.end() == iter)
@@ -54,4 +54,4 @@ std::shared_ptr<IDirect3DBaseTexture9> TextureLoader::GetTexture(LPCWSTR filePat
 	}
 	return textureMap[filePath];
 }
-std::unordered_map<std::wstring, std::shared_ptr<IDirect3DBaseTexture9>> TextureLoader::textureMap;
+std::unordered_map<std::wstring, IDirect3DBaseTexture9*> TextureLoader::textureMap;

@@ -108,6 +108,10 @@ namespace WPF_Tool
         {
             CreateHierarchy(GameObjectType.MapObject);
         }
+        private void BTN_CreateTerrain(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.Terrain);
+        }
 
         private void CreateHierarchy(GameObjectType gameObjectType)
         {
@@ -133,6 +137,10 @@ namespace WPF_Tool
                     item.Content = HierarchyContent.NavMesh;
                     item.Tag = HierarchyTag.NavMesh;
                     break;
+                case GameObjectType.Terrain:
+                    item.Content = HierarchyContent.Terrain;
+                    item.Tag = HierarchyTag.Terrain;
+                    break;
             }
 
 
@@ -150,7 +158,9 @@ namespace WPF_Tool
                 case GameObjectType.MapObject:
                     item.MouseUp += SelectedGameObject;
                     break;
-
+                case GameObjectType.Terrain:
+                    item.MouseUp += SelectedGameObject;
+                    break;
             }
             
 
@@ -189,7 +199,9 @@ namespace WPF_Tool
                 case GameObjectType.MapObject:
                     Externs.AddGameObject(index);
                     break;
-
+                case GameObjectType.Terrain:
+                    Externs.CreateTerrain((uint)index);
+                    break;
             }
          
             SelectedIndex = index;
@@ -218,6 +230,8 @@ namespace WPF_Tool
                 case GameObjectType.MapObject:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.Terrain:
+                    item.MouseUp += SelectedGameObject;
                 default:
                     Debug.Assert(false);
                     break;
@@ -242,6 +256,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.MapObject:
                     Externs.AddGameObject(index);
+                    break;
+                case GameObjectType.Terrain:
+                    Externs.Terrain((uint)index);
                     break;
                 default:
                     Debug.Assert(false);

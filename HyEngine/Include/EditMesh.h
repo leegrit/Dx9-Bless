@@ -32,9 +32,9 @@ namespace HyEngine
 		bool CalcBounds(_Out_ D3DXVECTOR3* center, _Out_ float * radius);
 
 	private :
-		std::shared_ptr<IDirect3DTexture9> m_pBaseTex = nullptr;
-		std::shared_ptr<IDirect3DTexture9> m_pBumpTex = nullptr;
-		std::shared_ptr<IDirect3DTexture9> m_pEmission = nullptr;
+		IDirect3DTexture9* m_pBaseTex = nullptr;
+		IDirect3DTexture9* m_pBumpTex = nullptr;
+		IDirect3DTexture9* m_pEmission = nullptr;
 		std::shared_ptr<Mesh> m_pMesh = nullptr;
 
 		// for xfile format
