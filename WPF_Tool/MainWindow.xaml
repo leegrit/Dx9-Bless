@@ -132,9 +132,6 @@
             <TabItem Header="Game">
 
             </TabItem>
-            <TabItem Header="Settings">
-                
-            </TabItem>
         </TabControl>
         <TabControl x:Name="InspectorTab" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <TabItem Header="Inspector">
@@ -402,6 +399,59 @@
                         <TextBlock Width="5"></TextBlock>
                         <Button Width="120" Height="25" HorizontalAlignment="Right">Load</Button>
                     </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Setting">
+                <StackPanel>
+                    <GroupBox x:Name="EditCamSettingGroup">
+                        <GroupBox.Header>
+                            <Label  Content="Editor Camera Setting"/>
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <TextBlock Height="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Foreground="White" Text="Move Speed  "/>
+                                <TextBox x:Name="TEXTBOX_EditCamSpeed" Width="135" Foreground="White" Text="0"
+                                         TextChanged="EditCamMoveSpeed_TextChanged"/>
+                            </StackPanel>
+                            <TextBlock Height="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Foreground="White" Text="Far"/>
+                                <TextBox Width="135" Foreground="White" Text="10000" IsEnabled="False"/>
+                            </StackPanel>
+                            <TextBlock Height="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Foreground="White" Text="Near"/>
+                                <TextBox Width="135" Foreground="White" Text="1" IsEnabled="False"/>
+                            </StackPanel>
+                            <TextBlock Height="5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="100" Foreground="White" Text="Fov"/>
+                                <TextBox Width="135" Foreground="White" Text="90" IsEnabled="False"/>
+                            </StackPanel>
+                             <TextBlock Height="5"/>
+                            <StackPanel>
+                                <TextBlock >Position</TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                    <TextBox x:Name="EditCamPositionX" Width="50" TextChanged="EditCamPositionX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                    <TextBox x:Name="EditCamPositionY" Width="50" TextChanged="EditCamPositionY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                    <TextBox x:Name="EditCamPositionZ" Width="50" TextChanged="EditCamPositionZ_TextChanged">0</TextBox>
+                                </StackPanel>
+                                <TextBlock>Rotation</TextBlock>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
+                                    <TextBox x:Name="EditCamRotationX" Width="50" TextChanged="EditCamRotationX_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
+                                    <TextBox x:Name="EditCamRotationY" Width="50" TextChanged="EditCamRotationY_TextChanged">0</TextBox>
+                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
+                                    <TextBox x:Name="EditCamRotationZ" Width="50" TextChanged="EditCamRotationZ_TextChanged">0</TextBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
             </TabItem>
         </TabControl>

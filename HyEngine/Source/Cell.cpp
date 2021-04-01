@@ -88,7 +88,7 @@ HyEngine::Cell::~Cell()
 
 void HyEngine::Cell::Initialize()
 {
-	m_pCollider = SphereCollider::Create(EColliderType::Multipurpose, this, 1, Layer::Default, [](Collider*) {});
+	m_pCollider = SphereCollider::Create(EColliderType::Multipurpose, this, 5, Layer::Default, [](Collider*) {});
 
 }
 

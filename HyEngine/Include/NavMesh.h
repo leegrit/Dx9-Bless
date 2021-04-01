@@ -109,7 +109,7 @@ namespace HyEngine
 		static unsigned long m_nextNavPrimIndex;
 
 		std::vector<class Cell*> m_pickedCell;
-		float m_pickRadius = 1.f;
+		float m_pickRadius = 5.f;
 		ECellEditMode m_cellEditMode = ECellEditMode::Similar;
 	};
 }

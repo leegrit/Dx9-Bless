@@ -7,7 +7,7 @@ void HyEngine::ColorTriangle::Initialize(void * arg)
 {
 	if (arg != nullptr)
 	{
-		D3DCOLOR* color = (D3DCOLOR*)arg;
+		D3DXCOLOR* color = (D3DXCOLOR*)arg;
 		assert(color);
 		m_color = *color;
 	}

@@ -9,7 +9,7 @@ HyEngine::NavPrimitive::NavPrimitive(Scene * scene, GameObject * parent, Cell * 
 	, unsigned int navPrimIndex)
 	: GameObject(ERenderType::RenderTexture, scene, parent, L"NavPrimitive")
 {
-	m_color = D3DCOLOR_ARGB(255, 255, 0, 0);
+	m_color = D3DXCOLOR(0, 255, 0, 255);
 	m_cells.push_back(cellA);
 	m_cells.push_back(cellB);
 	m_cells.push_back(cellC);
@@ -39,7 +39,7 @@ void HyEngine::NavPrimitive::Initialize()
 		vertices[(int)EPoint::POINT_A].x = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.x();
 		vertices[(int)EPoint::POINT_A].y = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.y();
 		vertices[(int)EPoint::POINT_A].z = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.z();
-																		
+		
 		vertices[(int)EPoint::POINT_B].x = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.x();
 		vertices[(int)EPoint::POINT_B].y = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.y();
 		vertices[(int)EPoint::POINT_B].z = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.z();
@@ -58,6 +58,9 @@ void HyEngine::NavPrimitive::Render()
 {
 	GameObject::Render();
 
+	DWORD oldLightEnable;
+	DEVICE->GetRenderState(D3DRS_LIGHTING, &oldLightEnable);
+	DEVICE->SetRenderState(D3DRS_LIGHTING, FALSE);
 	ColorVertex * vertices = m_pColorTriangle->LockVertices();
 	{
 
@@ -83,6 +86,8 @@ void HyEngine::NavPrimitive::Render()
 	DEVICE->SetIndices(m_pColorTriangle->GetIndexBuffer());
 
 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pColorTriangle->GetVertexCount(), 0, m_pColorTriangle->GetPrimitiveCount());
+
+	DEVICE->SetRenderState(D3DRS_LIGHTING, oldLightEnable);
 }
 
 NavPrimitive * HyEngine::NavPrimitive::Create(Scene * scene, GameObject * parent, Cell * cellA, Cell * cellB, Cell * cellC, const ECellOption & cellOption, const unsigned int & group, unsigned int navPrimIndex)

@@ -1,7 +1,7 @@
 #include "StandardEngineFramework.h"
 #include "Collider.h"
 #include "SphereCollider.h"
-
+#include "Constants.h"
 HyEngine::SphereCollider::SphereCollider(EColliderType colliderType, GameObject* owner, int radius,UINT targetLayer, std::function<void(Collider*)>onCollision)
 	: Collider(EColliderShape::Sphere, colliderType, owner,targetLayer, onCollision),
 	m_radius(radius)
@@ -32,8 +32,18 @@ void HyEngine::SphereCollider::Initialize()
 void HyEngine::SphereCollider::Render()
 {
 	Collider::Render();
-
+	D3DMATERIAL9 matrl;
+	matrl = WHITE_MTRL;
+	matrl.Diffuse.a = 255;
+	matrl.Diffuse.r = 0;
+	matrl.Diffuse.g = 255;
+	matrl.Diffuse.b = 0;
+	DEVICE->SetMaterial(&matrl);
+	DWORD oldLight;
+	DEVICE->GetRenderState(D3DRS_LIGHTING, &oldLight);
+	DEVICE->SetRenderState(D3DRS_LIGHTING, TRUE);
 	m_pSphereMesh->DrawSubset(0);
+	DEVICE->SetRenderState(D3DRS_LIGHTING, oldLight);
 }
 
 void HyEngine::SphereCollider::Calculate(Collider * other) const

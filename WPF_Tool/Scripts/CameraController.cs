@@ -107,7 +107,19 @@ namespace WPF_Tool.Scripts
             }
 
             Externs.AdjustEditCameraPos(movePos.x, 0, movePos.z);
+
+
+
         }
+        public float GetMoveSpeed()
+        {
+            return m_moveSpeed;
+        }
+        public void SetMoveSpeed(float spd)
+        {
+            m_moveSpeed = spd;
+        }
+
         public void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Middle)

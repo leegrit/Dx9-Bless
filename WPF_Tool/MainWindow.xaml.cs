@@ -88,6 +88,20 @@ namespace WPF_Tool
                     break;
             }
 
+
+
+            Vector3 editCamPos = default(Vector3);
+            Externs.GetEditCameraPos(ref editCamPos);
+            Vector3 editCamRot = default(Vector3);
+            Externs.GetEditCameraRot(ref editCamRot);
+            EditCamPositionX.Text = editCamPos.x.ToString("N3");
+            EditCamPositionY.Text = editCamPos.y.ToString("N3");
+            EditCamPositionZ.Text = editCamPos.z.ToString("N3");
+            EditCamRotationX.Text = editCamRot.x.ToString("N3");
+            EditCamRotationY.Text = editCamRot.y.ToString("N3");
+            EditCamRotationZ.Text = editCamRot.z.ToString("N3");
+
+            TEXTBOX_EditCamSpeed.Text = cameraController.GetMoveSpeed().ToString("N3");
             Externs.Update();
         }
 

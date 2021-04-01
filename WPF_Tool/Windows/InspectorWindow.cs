@@ -155,6 +155,10 @@ namespace WPF_Tool
                 Debug.Assert(false);
             }
 
+            // 3개 모두 완성된 primitive만 지울 수 있다.
+            // C++ engine과 index를 맞추기 위함
+            if (selectedItem.Items.Count != 3)
+                return;
             // Inspector 상에서 해당 prim 하위에 있는
             // 모든 셀을 지운다.
             for (int i = 0; i < selectedItem.Items.Count; i++)
@@ -180,8 +184,9 @@ namespace WPF_Tool
             }
 
             selectedItem.Items.Clear();
-
             Externs.RemoveNavPrim(Int32.Parse(selectedItem.Uid));
+
+            selected.navMeshData.cellCount = selected.cells.Count;
         }
         private void SLT_MapGroup(object sender, RoutedEventArgs e)
         {
@@ -821,6 +826,102 @@ namespace WPF_Tool
             }
         }
 
+        private void EditCamPositionX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamPos = default(Vector3);
+            Externs.GetEditCameraPos(ref editCamPos);
+            editCamPos.x = value;
+            Externs.SetEditCameraPos(editCamPos.x, editCamPos.y, editCamPos.z); 
+        }
+        private void EditCamPositionY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamPos = default(Vector3);
+            Externs.GetEditCameraPos(ref editCamPos);
+            editCamPos.y = value;
+            Externs.SetEditCameraPos(editCamPos.x, editCamPos.y, editCamPos.z);
+        }
+
+        private void EditCamPositionZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamPos = default(Vector3);
+            Externs.GetEditCameraPos(ref editCamPos);
+            editCamPos.z = value;
+            Externs.SetEditCameraPos(editCamPos.x, editCamPos.y, editCamPos.z);
+        }
+        private void EditCamRotationX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamRot = default(Vector3);
+            Externs.GetEditCameraRot(ref editCamRot);
+            editCamRot.x = value;
+            Externs.SetEditCameraRot(editCamRot.x, editCamRot.y, editCamRot.z);
+        }
+        private void EditCamRotationY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamRot = default(Vector3);
+            Externs.GetEditCameraRot(ref editCamRot);
+            editCamRot.y = value;
+            Externs.SetEditCameraRot(editCamRot.x, editCamRot.y, editCamRot.z);
+        }
+        private void EditCamRotationZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            Vector3 editCamRot = default(Vector3);
+            Externs.GetEditCameraRot(ref editCamRot);
+            editCamRot.z = value;
+            Externs.SetEditCameraRot(editCamRot.x, editCamRot.y, editCamRot.z);
+        }
+        private void EditCamMoveSpeed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox textBox = sender as TextBox;
+
+            float value;
+            value = float.Parse(textBox.Text);
+
+            cameraController.SetMoveSpeed(value);
+        }
         private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;

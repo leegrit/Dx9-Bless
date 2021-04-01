@@ -35,10 +35,10 @@ void SampleScene::Load()
 	Skybox* skybox = new Skybox(camera, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
 	skybox->Initialize();
 	SetSkybox(skybox);
-	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/NavMesh3.json");
+	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Sample_NavMesh.json");
 	
-	m_pPawn = Pawn::Create(this, nullptr, navMesh, PATH->DatasPathW() + L"HierarchyData/Elf.json");
-	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_0.json");
+	m_pPawn = Pawn::Create(this, nullptr, navMesh, PATH->DatasPathW() + L"HierarchyData/Sample_Elf.json");
+	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_6.json");
 
 	
 }

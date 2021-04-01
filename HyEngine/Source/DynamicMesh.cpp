@@ -92,6 +92,7 @@ void HyEngine::DynamicMesh::UpdatedData(EDataType dataType)
 	assert(m_pMeshData);
 	std::wstring meshPath = CString::CharToWstring(m_pMeshData->meshFilePath);
 	std::wstring meshPathExt = HyEngine::Path::GetExtension(meshPath);
+	if (m_lastMeshPath == meshPath) return;
 	m_lastMeshPath = meshPath;
 	std::wstring dirPath = Path::GetDirectoryName(PATH->ResourcesPathW() + meshPath);
 	std::wstring fileName = Path::GetFileName(PATH->ResourcesPathW() + meshPath);

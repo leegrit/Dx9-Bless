@@ -28,7 +28,7 @@ namespace HyEngine
 		int GetNavPrimIndex()const;
 	private :
 		class ColorTriangle* m_pColorTriangle = nullptr;
-		D3DCOLOR m_color;
+		D3DXCOLOR m_color;
 
 		std::vector<Cell*> m_cells;
 		//std::vector<NavPrimitive*> m_neighbor;

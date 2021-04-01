@@ -21,7 +21,7 @@ namespace HyEngine
 		void UnlockIndices();
 
 	private:
-		D3DCOLOR m_color;
+		D3DXCOLOR m_color;
 	};
 }
 
