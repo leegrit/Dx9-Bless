@@ -9,13 +9,14 @@ IDirect3DBaseTexture9* TextureLoader::GetTexture(std::wstring filePath)
 	if (textureMap.end()== iter)
 	{
 		IDirect3DTexture9 * texture;
-		D3DXCreateTextureFromFile
+		HRESULT hr = D3DXCreateTextureFromFile
 		(
 			DEVICE,
 			filePath.c_str(),
 			&texture
 		);
-		assert(texture != nullptr);
+		if (SUCCEEDED(hr) == false)
+			return nullptr;
 		textureMap.insert(std::make_pair(filePath, texture));
 	}
 	return textureMap[filePath];
@@ -26,13 +27,14 @@ IDirect3DBaseTexture9* HyEngine::TextureLoader::GetCubeTexture(std::wstring file
 	if (textureMap.end() == iter)
 	{
 		IDirect3DCubeTexture9 * texture;
-		D3DXCreateCubeTextureFromFile
+		HRESULT hr=  D3DXCreateCubeTextureFromFile
 		(
 			DEVICE,
 			filePath.c_str(),
 			&texture
 		);
-		assert(texture != nullptr);
+		if (SUCCEEDED(hr) == false)
+			return nullptr;
 		textureMap.insert(std::make_pair(filePath, texture));
 	}
 	return textureMap[filePath];
@@ -43,13 +45,14 @@ IDirect3DBaseTexture9* TextureLoader::GetTexture(LPCWSTR filePath)
 	if (textureMap.end() == iter)
 	{
 		IDirect3DTexture9 * texture;
-		D3DXCreateTextureFromFile
+		HRESULT hr = D3DXCreateTextureFromFile
 		(
 			DEVICE,
 			filePath,
 			&texture
 		);
-
+		if (SUCCEEDED(hr) == false)
+			return nullptr;
 		textureMap.insert(std::make_pair(filePath, texture));
 	}
 	return textureMap[filePath];

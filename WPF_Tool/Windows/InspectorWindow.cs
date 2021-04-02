@@ -188,6 +188,54 @@ namespace WPF_Tool
 
             selected.navMeshData.cellCount = selected.cells.Count;
         }
+        private void BTN_TerrainDiffuseLoad(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofdlg = new OpenFileDialog();
+            {
+                ofdlg.InitialDirectory = Paths.AssetPath;
+                ofdlg.CheckFileExists = true;
+                ofdlg.CheckPathExists = true;
+
+                if (ofdlg.ShowDialog().GetValueOrDefault())
+                {
+                    string filePath = ofdlg.FileName.Substring(Paths.ResourcePath.Count());
+
+                    int index = ofdlg.FileName.LastIndexOf("\\");
+                    string onlyName = ofdlg.FileName.Substring(index + 1);
+
+                    Debug.Assert(selectedHierarchy.type == GameObjectType.Terrain);
+                    selectedHierarchy.terrainData.diffuseFilePath = filePath;
+
+                    TerrainDiffuseFilePath.Text = onlyName;
+
+                    Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+                }
+            }
+        }
+        private void BTN_TerrainNormalLoad(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofdlg = new OpenFileDialog();
+            {
+                ofdlg.InitialDirectory = Paths.AssetPath;
+                ofdlg.CheckFileExists = true;
+                ofdlg.CheckPathExists = true;
+
+                if (ofdlg.ShowDialog().GetValueOrDefault())
+                {
+                    string filePath = ofdlg.FileName.Substring(Paths.ResourcePath.Count());
+
+                    int index = ofdlg.FileName.LastIndexOf("\\");
+                    string onlyName = ofdlg.FileName.Substring(index + 1);
+
+                    Debug.Assert(selectedHierarchy.type == GameObjectType.Terrain);
+                    selectedHierarchy.terrainData.normalFilePath = filePath;
+
+                    TerrainNormalFilePath.Text = onlyName;
+
+                    Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+                }
+            }
+        }
         private void SLT_MapGroup(object sender, RoutedEventArgs e)
         {
             ComboBox item = sender as ComboBox;
@@ -301,7 +349,7 @@ namespace WPF_Tool
             CellData.Visibility = Visibility.Collapsed;
             AnimationData.Visibility = Visibility.Collapsed;
             TerrainData.Visibility = Visibility.Collapsed;
-
+            
             switch (data.type)
             {
                 case GameObjectType.Mesh:
@@ -446,6 +494,38 @@ namespace WPF_Tool
 
                         Externs.InsertGameData(ref data.gameObjectData);
                         Externs.InsertMeshData(ref data.meshData);
+                        break;
+                    }
+                case GameObjectType.Terrain:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        TerrainData.Visibility = Visibility.Visible;
+                        
+                        TerrainX.Text = data.terrainData.vertexCountX.ToString();
+                        TerrainZ.Text = data.terrainData.vertexCountZ.ToString();
+                        TerrainInterval.Text = data.terrainData.vertexInterval.ToString();
+
+                        string diffuseOnlyName = "";
+                        int diffuseIndex = data.terrainData.diffuseFilePath.LastIndexOf("\\");
+                        if (diffuseIndex > 0)
+                            diffuseOnlyName = data.terrainData.diffuseFilePath.Substring(diffuseIndex + 1);
+                        else
+                            DebugLog("Terrain DiffuseName was invalid", ELogType.Warning);
+
+                        string normalOnlyName = "";
+                        int normalIndex = data.terrainData.normalFilePath.LastIndexOf("\\");
+                        if (normalIndex > 0)
+                            normalOnlyName = data.terrainData.normalFilePath.Substring(normalIndex + 1);
+                        else
+                            DebugLog("Terrain NormalName was invalid", ELogType.Warning);
+
+
+                        TerrainDiffuseFilePath.Text = diffuseOnlyName;
+                        TerrainNormalFilePath.Text = normalOnlyName;
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertTerrainData(ref data.terrainData);
+
                         break;
                     }
             }
@@ -925,6 +1005,8 @@ namespace WPF_Tool
         }
         private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!bWindowInit)
+                return;
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -942,6 +1024,8 @@ namespace WPF_Tool
         }
         private void MeshFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!bWindowInit)
+                return;
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -957,6 +1041,8 @@ namespace WPF_Tool
         }
         private void DiffuseFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!bWindowInit)
+                return;
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -970,8 +1056,49 @@ namespace WPF_Tool
                 }
             }
         }
-
-
+        private void TerrainX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox item = sender as TextBox;
+            selectedHierarchy.terrainData.vertexCountX = UInt32.Parse( item.Text);
+            Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+        }
+        private void TerrainZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox item = sender as TextBox;
+            selectedHierarchy.terrainData.vertexCountZ = UInt32.Parse(item.Text);
+            Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+        }
+        private void TerrainTextureX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox item = sender as TextBox;
+            selectedHierarchy.terrainData.textureCountX = UInt32.Parse(item.Text);
+            Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+        }
+        private void TerrainTextureZ_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox item = sender as TextBox;
+            selectedHierarchy.terrainData.textureCountZ = UInt32.Parse(item.Text);
+            Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+        }
+        private void TerrainInterval_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!bWindowInit)
+                return;
+            TextBox item = sender as TextBox;
+            float result;
+            bool bSuccess = float.TryParse(item.Text, out result);
+            if (bSuccess)
+                selectedHierarchy.terrainData.vertexInterval = result;
+            Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
+        }
         #endregion TextChanged
 
     }

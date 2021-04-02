@@ -20,7 +20,7 @@ namespace WPF_Tool.Data
         Map,
         NavMesh,
         Scene,
-
+        Terrain,
     }
     public enum EKeyState
     {

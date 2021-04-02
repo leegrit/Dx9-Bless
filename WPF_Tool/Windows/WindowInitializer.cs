@@ -30,6 +30,7 @@ namespace WPF_Tool
     public partial class MainWindow
     {
         bool bWindowInit = false;
+        bool bLateInit = false;
         FrameRateCalculator frameRateCalculator;
         CameraController cameraController;
         GameObjectController gameObjectController;
@@ -69,6 +70,7 @@ namespace WPF_Tool
             Paths.BackupPath = tempString + @"_Resources\Backup\";
             Paths.AssetPath = tempString + @"_Resources\Assets\";
             Paths.SceneDataPath = tempString + @"_Resources\Datas\SceneData\";
+            Paths.TerrainDataPath = tempString + @"_Resources\Datas\TerrainData\";
 
             frameRateCalculator = new FrameRateCalculator();
             cameraController = new CameraController(this);
@@ -81,6 +83,11 @@ namespace WPF_Tool
 
             
             bWindowInit = true;
+        }
+        private void LateInitialize()
+        {
+            ProjectViewInit();
+            bLateInit = true;
         }
     }
 }

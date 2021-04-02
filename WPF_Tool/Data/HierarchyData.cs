@@ -34,7 +34,7 @@ namespace WPF_Tool.Data
         public MeshData meshData;
         public MapData mapData;
         public NavMeshData navMeshData;
-
+        public TerrainData terrainData;
         /* For Editor */
         // 에디터에서만 사용되는 데이터
         public List<CellData> cells;

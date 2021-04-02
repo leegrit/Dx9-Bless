@@ -147,7 +147,8 @@ extern "C" void WINAPI TranslateToMesh()
 }
 extern "C" bool WINAPI PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos)
 {
-	return EDIT_ENGINE->PickGameObject(xMousePos, yMousePos, resultIndex, pickedPos);
+	bool isPicked = EDIT_ENGINE->PickGameObject(xMousePos, yMousePos, resultIndex, pickedPos);
+	return isPicked;
 }
 extern "C" void WINAPI AddCell(CellData* cellData)
 {

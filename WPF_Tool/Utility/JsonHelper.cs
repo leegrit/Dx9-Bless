@@ -34,6 +34,9 @@ namespace WPF_Tool.Utility
                 case GameObjectType.NavMesh:
                     SaveJsonFile(EDataType.NavMesh, dataJson, fileName, ref outFileName);
                     break;
+                case GameObjectType.Terrain:
+                    SaveJsonFile(EDataType.Terrain, dataJson, fileName, ref outFileName);
+                    break;
             }
             return true;
         }
@@ -270,6 +273,9 @@ namespace WPF_Tool.Utility
             var navMeshJson = ConvertToJson(hierarchyData.navMeshData);
             hierarchyJson.Add("NavMeshData", navMeshJson);
 
+            var terrainJson = ConvertToJson(hierarchyData.terrainData);
+            hierarchyJson.Add("TerrainData", terrainJson);
+
             for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
             {
                 var cellJson = new JObject();
@@ -347,6 +353,18 @@ namespace WPF_Tool.Utility
             navMeshJson.Add("CellCount", navMeshData.cellCount);
             return navMeshJson;
         }
+        private static JObject ConvertToJson(TerrainData terrainData)
+        {
+            var terrainJson = new JObject();
+            terrainJson.Add("VertexCountX", terrainData.vertexCountX);
+            terrainJson.Add("VertexCountZ", terrainData.vertexCountZ);
+            terrainJson.Add("TextureCountX", terrainData.textureCountX);
+            terrainJson.Add("TextureCountZ", terrainData.textureCountZ);
+            terrainJson.Add("VertexInterval", terrainData.vertexInterval);
+            terrainJson.Add("DiffuseFilePath", terrainData.diffuseFilePath);
+            terrainJson.Add("NormalFilePath", terrainData.normalFilePath);
+            return terrainJson;
+        }
         #endregion
 
 
@@ -382,6 +400,10 @@ namespace WPF_Tool.Utility
             NavMeshData navMeshData;
             InjectNavMeshData(out navMeshData, parentToekn);
             data.navMeshData = navMeshData;
+
+            TerrainData terrainData;
+            InjectTerrainData(out terrainData, parentToekn);
+            data.terrainData = terrainData;
 
             data.cells = new List<CellData>();
             for (int j = 0; j < navMeshData.cellCount; j++)
@@ -487,6 +509,24 @@ namespace WPF_Tool.Utility
             cellData.position.z = (int)jsonCellData["PositionZ"];
             cellData.option = (int)jsonCellData["Option"];
             cellData.group = (int)jsonCellData["Group"];
+
+            return true;
+        }
+        private static bool InjectTerrainData(out TerrainData terrainData, JToken parentToken)
+        {
+            var jsonTerrainData = parentToken["TerrainData"];
+            if (jsonTerrainData == null)
+            {
+                terrainData = default(TerrainData);
+                return false;
+            }
+            terrainData.vertexCountX = (uint)jsonTerrainData["VertexCountX"];
+            terrainData.vertexCountZ = (uint)jsonTerrainData["VertexCountZ"];
+            terrainData.textureCountX = (float)jsonTerrainData["TextureCountX"];
+            terrainData.textureCountZ = (float)jsonTerrainData["TextureCountZ"];
+            terrainData.vertexInterval = (float)jsonTerrainData["VertexInterval"];
+            terrainData.diffuseFilePath = (string)jsonTerrainData["DiffuseFilePath"];
+            terrainData.normalFilePath = (string)jsonTerrainData["NormalFilePath"];
 
             return true;
         }
@@ -599,6 +639,30 @@ namespace WPF_Tool.Utility
                     }
                     outFileName = fileName;
                     break;
+                case EDataType.Terrain:
+                    if (System.IO.Directory.Exists(Paths.TerrainDataPath))
+                    {
+                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.TerrainDataPath);
+                        int count = 0;
+                        foreach (var item in info.GetFiles())
+                        {
+                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                            {
+                                count++;
+                                // 같은게 있으면 count를 늘려준다.
+                                // 중복이 여러 개 있을 수도 있기 때문.
+                            }
+                        }
+                        if (count != 0)
+                            fileName = fileName + count;
+                    }
+
+                    using (StreamWriter sw = new StreamWriter(Paths.TerrainDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName + ".json";
+                    break;
                 default:
                     outFileName = default(string);
                     Debug.Assert(false);
@@ -629,6 +693,9 @@ namespace WPF_Tool.Utility
                     break;
                 case EDataType.Scene:
                     defaultPath = Paths.SceneDataPath;
+                    break;
+                case EDataType.Terrain:
+                    defaultPath = Paths.TerrainDataPath;
                     break;
                 default:
                     Debug.Assert(false);

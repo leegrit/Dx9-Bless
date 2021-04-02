@@ -7,6 +7,8 @@ namespace HyEngine
 	{
 		unsigned int vertexCountX;
 		unsigned int vertexCountZ;
+		float textureCountX;
+		float textureCountZ;
 		float vertexInterval;
 		char diffuseFilePath[256];
 		char normalFilePath[256];

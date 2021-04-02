@@ -13,6 +13,7 @@
 #include "AnimNameData.h"
 #include "PathManager.h"
 #include "TerrainData.h"
+#include "Terrain.h"
 
 using namespace HyEngine;
 
@@ -240,12 +241,29 @@ void HyEngine::EditEngine::RemoveGameObject(int index)
 			return;
 		}
 	}
+	for (auto& obj : editScene->GetTextureObjectAll())
+	{
+		if (obj->GetEditID() == index)
+		{
+			Object::Destroy(obj);
+			return;
+		}
+	}
 }
 
 bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos)
 {
-	std::vector<GameObject*>& sortedvec = GetScene()->GetMeshObjectAll();
-	std::sort(sortedvec.begin(), sortedvec.end(), [&](GameObject* left, GameObject* right) ->bool
+	std::vector<GameObject*>& meshObjs = GetScene()->GetMeshObjectAll();
+	/* For Terrain */
+	std::vector<GameObject*>& textureObjs = GetScene()->GetTextureObjectAll();
+	
+	/* Merge */
+	std::vector<GameObject*> sortedVec;
+	sortedVec.insert(sortedVec.end(), meshObjs.begin(), meshObjs.end());
+	sortedVec.insert(sortedVec.end(), textureObjs.begin(), textureObjs.end());
+
+
+	std::sort(sortedVec.begin(), sortedVec.end(), [&](GameObject* left, GameObject* right) ->bool
 	{
 		D3DXVECTOR3 camPos = m_pEditScene->GetEditCamera()->m_pTransform->m_position;
 		D3DXVECTOR3 leftPos = left->m_pTransform->m_position;
@@ -259,47 +277,74 @@ bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out
 		else
 			return false;
 	});
-	for (auto& obj : sortedvec)
+	for (auto& obj : sortedVec)
 	{
 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
-		if (editObj == nullptr)
-			continue;
-
-		// picking은 xfile만 가능
-		ID3DXMesh* mesh = editObj->GetDxMesh();
-		if (mesh == nullptr) continue;
-
-		D3DXVECTOR3 origin;
-		D3DXVECTOR3 direction;
-		m_pEditScene->GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
-		
-		D3DXMATRIX worldInverse;
-		D3DXVECTOR3 worldOrigin = origin;
-		D3DXVECTOR3 worldDirection = direction;
-		D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
-		D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
-		D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
-		
-		BOOL isHit = false;
-		DWORD faceIndex;
-		FLOAT u;
-		FLOAT v;
-		FLOAT dist;
-		LPD3DXBUFFER allHits;
-		DWORD countOfHits;
-		D3DXVECTOR3 resultPos;
-		D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
-
-		if (isHit)
+		if (editObj != nullptr)
 		{
-			*resultIndex = editObj->GetEditID();
 
-			D3DXVECTOR3 resultPos = worldOrigin + worldDirection * dist;
-			pickedPos->x = resultPos.x;
-			pickedPos->y = resultPos.y;
-			pickedPos->z = resultPos.z;
-			return true;
+			// picking은 xfile만 가능
+			ID3DXMesh* mesh = editObj->GetDxMesh();
+			if (mesh == nullptr) continue;
+
+			D3DXVECTOR3 origin;
+			D3DXVECTOR3 direction;
+			m_pEditScene->GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+
+			D3DXMATRIX worldInverse;
+			D3DXVECTOR3 worldOrigin = origin;
+			D3DXVECTOR3 worldDirection = direction;
+			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
+
+			BOOL isHit = false;
+			DWORD faceIndex;
+			FLOAT u;
+			FLOAT v;
+			FLOAT dist;
+			LPD3DXBUFFER allHits;
+			DWORD countOfHits;
+			D3DXVECTOR3 resultPos;
+			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
+
+			if (isHit)
+			{
+				*resultIndex = editObj->GetEditID();
+
+				D3DXVECTOR3 resultPos = worldOrigin + worldDirection * dist;
+				pickedPos->x = resultPos.x;
+				pickedPos->y = resultPos.y;
+				pickedPos->z = resultPos.z;
+				return true;
+			}
 		}
+	
+		Terrain* terrain = dynamic_cast<Terrain*>(obj);
+		if (terrain != nullptr)
+		{
+			D3DXVECTOR3 origin;
+			D3DXVECTOR3 direction;
+			m_pEditScene->GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+
+			D3DXMATRIX worldInverse;
+			D3DXMatrixInverse(&worldInverse, nullptr, &terrain->m_pTransform->GetWorldMatrix());
+			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
+			
+			D3DXVECTOR3 resultPos;
+			bool isHit = false;
+			isHit = terrain->TryPickOnTerrain(origin, direction, &resultPos);
+			if (isHit)
+			{
+				pickedPos->x = resultPos.x;
+				pickedPos->y = resultPos.y;
+				pickedPos->z = resultPos.z;
+				*resultIndex = terrain->GetEditID();
+				return true;
+			}
+		}
+
 	}
 	return false;
 }
@@ -461,6 +506,8 @@ void HyEngine::EditEngine::CreateTerrain(unsigned int editID)
 
 void HyEngine::EditEngine::InsertTerrainData(TerrainData * data)
 {
+	if (m_pSelectedObject == nullptr)
+		return;
 	m_pSelectedObject->InsertTerrainData(data);
 }
 

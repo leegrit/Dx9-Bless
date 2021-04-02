@@ -44,6 +44,8 @@ namespace WPF_Tool
         }
         void Update_Tick(object sender, EventArgs e)
         {
+            if (bLateInit == false)
+                LateInitialize();
             frameRateCalculator.Tick();
             EditorFrame.Text = frameRateCalculator.GetFrameRate().ToString();
             float elapsedTime = (float)frameRateCalculator.GetElapsedTime().Milliseconds / 1000;

@@ -80,6 +80,7 @@ namespace WPF_Tool.Scripts
         public static extern void SetWireFrameMode();
 
         [DllImport("HyEngine.dll")]
+        [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool PickNavMesh(float xMousePos, float yMousePos, int cellOption,ref Vector3 pickedPos);
 
         [DllImport("HyEngine.dll")]
@@ -89,6 +90,7 @@ namespace WPF_Tool.Scripts
         public static extern void TranslateToMesh();
 
         [DllImport("HyEngine.dll")]
+        [return: MarshalAs(UnmanagedType.I1)]
         public static extern bool PickGameObject(float xMousePos, float yMousePos, ref int resultIndex, ref Vector3 pickedPos);
 
         [DllImport("HyEngine.dll")]

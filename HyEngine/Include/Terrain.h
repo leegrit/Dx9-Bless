@@ -31,6 +31,14 @@ namespace HyEngine
 		}
 
 		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHODS
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		bool TryPickOnTerrain(D3DXVECTOR3 origin, D3DXVECTOR3 direction, _Out_ D3DXVECTOR3 * pPickedPos);
+
+
+
+		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
 	private : /* For.Render */
@@ -44,14 +52,20 @@ namespace HyEngine
 		D3DFORMAT m_indexFMT = D3DFMT_INDEX32;
 		size_t m_indexSize = 0;
 
+		// vertexBuffer를 Lock, Unlock하지 않고
+		// 바로 vertex position 값을 받아오기 위한 값.
+		std::vector<D3DXVECTOR3> m_vtxPositions;
+
 	private : /* For.Resources */
-		IDirect3DTexture9* m_pTexture;
-		IDirect3DTexture9* m_pNormal;
+		IDirect3DTexture9* m_pTexture = nullptr;
+		IDirect3DTexture9* m_pNormal = nullptr;
 
 
 	private : /* For.Terrain */
 		size_t m_vertexCountX = 10;
 		size_t m_vertexCountZ = 10;
+		float m_textureCountX = 20.f;
+		float m_textureCountZ = 20.f;
 		float m_vertexInterval = 1.f;
 	};
 }

@@ -182,6 +182,7 @@ namespace WPF_Tool
             data.meshData = new MeshData(index);
             data.mapData = new MapData(index);
             data.navMeshData = new NavMeshData(index);
+            data.terrainData = new TerrainData(index);
             hierarchyList.Add(data);
 
             switch (gameObjectType)
@@ -232,6 +233,7 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.Terrain:
                     item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -258,7 +260,7 @@ namespace WPF_Tool
                     Externs.AddGameObject(index);
                     break;
                 case GameObjectType.Terrain:
-                    Externs.Terrain((uint)index);
+                    Externs.CreateTerrain((uint)index);
                     break;
                 default:
                     Debug.Assert(false);

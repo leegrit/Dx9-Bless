@@ -70,11 +70,15 @@ GameObject * HyEngine::EditScene::GetGameObject(int editIndex)
 	for (auto& obj : GetMeshObjectAll())
 	{
 		EditObject* editObj = dynamic_cast<EditObject*>(obj);
-		assert(editObj);
 		if (editObj->GetEditID() == editIndex)
 			return obj;
 	}
 	for (auto& obj : this->GetInvisibleObjectAll())
+	{
+		if (obj->GetEditID() == editIndex)
+			return obj;
+	}
+	for (auto& obj : GetTextureObjectAll())
 	{
 		if (obj->GetEditID() == editIndex)
 			return obj;
@@ -141,65 +145,117 @@ Camera * HyEngine::EditScene::GetEditCamera()
 
 bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOption option,  VectorData * pickedPos)
 {
-	for (auto& obj : GetMeshObjectAll())
+	std::vector<GameObject*>& meshContainer = GetMeshObjectAll();
+	/* For Terrain */
+	std::vector<GameObject*>& textureContainer = GetTextureObjectAll();
+
+	std::vector<GameObject*> container;
+	container.insert(container.end(), meshContainer.begin(), meshContainer.end());
+	container.insert(container.end(), textureContainer.begin(), textureContainer.end());
+
+	for (auto& obj : container)
 	{
-		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
-		if (editObj == nullptr) continue;
+// 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+// 		if (editObj == nullptr) continue;
 		//assert(editObj);
-		if (editObj->GetStaticType() == EStaticType::Navigation)
+		if (obj->GetStaticType() == EStaticType::Navigation)
 		{
-			ID3DXMesh* mesh = editObj->GetDxMesh();
-			if (mesh == nullptr) return false;
-			// navmesh picking은 xfile만 가능
-
-			D3DXVECTOR3 origin;
-			D3DXVECTOR3 direction;
-			GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
-			BOOL isHit = false;
-			DWORD faceIndex;
-			FLOAT u;
-			FLOAT v;
-			FLOAT dist;
-			LPD3DXBUFFER allHits;
-			DWORD countOfHits;
-			D3DXVECTOR3 resultPos;
-
-			D3DXMATRIX worldInverse;
-
-			// 변환 전 월드 공간 상의 origin, direction을 저장해둔다.
-			// 미리 저장하는 이유는 나중에 world 공간의 origin과 direction이 사용되기 때문
-			D3DXVECTOR3 worldOrigin = origin;
-			D3DXVECTOR3 worldDirection = direction;
-			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
-			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
-			D3DXVec3TransformNormal(&direction, &direction, &worldInverse); 
-
-			/*D3DXMATRIX worldInverse;
-			D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
-			D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
-			D3DXVec3TransformNormal(&direction, &direction, &worldInverse);*/
-			
-			D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
-			if (isHit)
+			EditMesh* editMesh = dynamic_cast<EditMesh*>(obj);
+			if (editMesh != nullptr)
 			{
-				GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
-				assert(selectedObject);
-				NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
-				//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
-				assert(navMesh);
+				ID3DXMesh* mesh = editMesh->GetDxMesh();
+				if (mesh == nullptr) continue;
+				// navmesh picking은 xfile만 가능
 
-				resultPos = worldOrigin + worldDirection * dist;
-				pickedPos->x = resultPos.x;
-				pickedPos->y = resultPos.y;
-				pickedPos->z = resultPos.z;
+				D3DXVECTOR3 origin;
+				D3DXVECTOR3 direction;
+				GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+				BOOL isHit = false;
+				DWORD faceIndex;
+				FLOAT u;
+				FLOAT v;
+				FLOAT dist;
+				LPD3DXBUFFER allHits;
+				DWORD countOfHits;
+				D3DXVECTOR3 resultPos;
 
-				navMesh->TryPickingCell(pickedPos, resultPos, option);
-			
+				D3DXMATRIX worldInverse;
 
-				return true;
+				// 변환 전 월드 공간 상의 origin, direction을 저장해둔다.
+				// 미리 저장하는 이유는 나중에 world 공간의 origin과 direction이 사용되기 때문
+				D3DXVECTOR3 worldOrigin = origin;
+				D3DXVECTOR3 worldDirection = direction;
+				D3DXMatrixInverse(&worldInverse, nullptr, &obj->m_pTransform->GetWorldMatrix());
+				D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+				D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
 
+				/*D3DXMATRIX worldInverse;
+				D3DXMatrixInverse(&worldInverse, nullptr, &editObj->m_pTransform->GetWorldMatrix());
+				D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+				D3DXVec3TransformNormal(&direction, &direction, &worldInverse);*/
+
+				D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
+				if (isHit)
+				{
+					GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
+					assert(selectedObject);
+					NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
+					//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
+					assert(navMesh);
+
+					resultPos = worldOrigin + worldDirection * dist;
+					pickedPos->x = resultPos.x;
+					pickedPos->y = resultPos.y;
+					pickedPos->z = resultPos.z;
+
+					navMesh->TryPickingCell(pickedPos, resultPos, option);
+
+
+					return true;
+
+				}
 			}
 
+			Terrain* terrain = dynamic_cast<Terrain*>(obj);
+			if (terrain != nullptr)
+			{
+				D3DXVECTOR3 origin;
+				D3DXVECTOR3 direction;
+				GetEditCamera()->UnProjection(&origin, &direction, D3DXVECTOR3(xMousePos, yMousePos, 0));
+				BOOL isHit = false;
+				DWORD faceIndex;
+				FLOAT u;
+				FLOAT v;
+				FLOAT dist;
+				LPD3DXBUFFER allHits;
+				DWORD countOfHits;
+				D3DXVECTOR3 resultPos;
+
+				D3DXMATRIX worldInverse;
+				D3DXMatrixInverse(&worldInverse, nullptr, &obj->m_pTransform->GetWorldMatrix());
+				D3DXVec3TransformCoord(&origin, &origin, &worldInverse);
+				D3DXVec3TransformNormal(&direction, &direction, &worldInverse);
+
+				isHit = terrain->TryPickOnTerrain(origin, direction, &resultPos);
+				if (isHit)
+				{
+
+					GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
+					assert(selectedObject);
+					NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
+					//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
+					assert(navMesh);
+
+					pickedPos->x = resultPos.x;
+					pickedPos->y = resultPos.y;
+					pickedPos->z = resultPos.z;
+
+					navMesh->TryPickingCell(pickedPos, resultPos, option);
+
+
+					return true;
+				}
+			}
 		}
 	}
 	return false;

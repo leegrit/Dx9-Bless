@@ -75,6 +75,7 @@
     <Compile Include="Data\NavMeshData.cs" />
     <Compile Include="Data\SelectInfo.cs" />
     <Compile Include="Data\Strings.cs" />
+    <Compile Include="Data\TerrainData.cs" />
     <Compile Include="Scripts\GameObjectController.cs" />
     <Compile Include="Utility\Timer.cs" />
     <Compile Include="Windows\DebugLoger.cs" />

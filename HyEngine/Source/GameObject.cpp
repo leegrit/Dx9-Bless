@@ -285,6 +285,8 @@ void HyEngine::GameObject::InsertTerrainData(TerrainData * data)
 		m_pTerrainData = new TerrainData();
 	m_pTerrainData->vertexCountX = data->vertexCountX;
 	m_pTerrainData->vertexCountZ = data->vertexCountZ;
+	m_pTerrainData->textureCountX = data->textureCountX;
+	m_pTerrainData->textureCountZ = data->textureCountZ;
 	m_pTerrainData->vertexInterval = data->vertexInterval;
 	strcpy_s(m_pTerrainData->diffuseFilePath, 256, data->diffuseFilePath);
 	strcpy_s(m_pTerrainData->normalFilePath, 256, data->normalFilePath);

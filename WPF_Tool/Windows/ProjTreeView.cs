@@ -36,6 +36,195 @@ namespace WPF_Tool
 
         Dictionary<string, BitmapSource> IconImages = new Dictionary<string, BitmapSource>();
 
+
+        private void ProjectViewInit()
+        {
+            TreeViewItem parent = ProjectAssets;
+            TreeViewItem selectedItem = new TreeViewItem();
+
+
+            bool bFind = FindSelectedItemRecursive(out selectedItem, parent);
+            //Debug.Assert(bFind);
+            // 못찾았을 경우 "Assets" 본인이 선택된 것
+            if (bFind == false)
+                selectedItem = parent;
+
+            // 선택된 item을 찾았을 경우
+            Stack<string> names = new Stack<string>();
+
+            TreeViewItem temp = selectedItem;
+
+            // 우선 본인 header를 넣어준다.
+            names.Push(temp.Header.ToString());
+            while (temp.Header != parent.Header)
+            {
+                TreeViewItem p = temp.Parent as TreeViewItem;
+                temp = temp.Parent as TreeViewItem;
+                names.Push(temp.Header.ToString());
+            }
+
+            // 위 반복이 끝나면
+            // 아래부터 차례대로 본인->부모->Assets(최상단)
+            // 이와같이 문자가 들어가게된다.
+            string path = Paths.ResourcePath;
+
+            // 차례대로 path에 넣어준다.
+            while (names.Count != 0)
+            {
+                path = path + names.Pop() + @"\";
+            }
+
+            ProjectItems.Children.Clear();
+
+            if (System.IO.Directory.Exists(path))
+            {
+                System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(path);
+
+                foreach (var folderItem in info.GetDirectories())
+                {
+                    BitmapSource bitmapSource;
+                    bool isExist = false;
+                    isExist = IconImages.TryGetValue(folderItem.FullName, out bitmapSource);
+                    if (isExist == false)
+                    {
+                        // 이 경우 폴더
+                        Stream imageStreamSource = new FileStream(Paths.SystemPath + @"FolderIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                        PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                        bitmapSource = decoder.Frames[0];
+                    }
+
+                    Image itemImage = new Image();
+                    itemImage.Source = bitmapSource;
+                    itemImage.Width = 90;
+                    itemImage.Height = 70;
+
+                    TextBlock itemText = new TextBlock();
+                    itemText.Text = folderItem.Name;
+                    itemText.TextAlignment = TextAlignment.Center;
+                    itemText.Foreground = Brushes.White;
+                    itemText.Width = 90;
+                    itemText.Height = 20;
+
+                    StackPanel itemPanel = new StackPanel();
+                    itemPanel.VerticalAlignment = VerticalAlignment.Center;
+                    itemPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    itemPanel.Children.Add(itemImage);
+                    itemPanel.Children.Add(itemText);
+
+                    ProjectItems.Children.Add(itemPanel);
+                }
+                foreach (var fileItem in info.GetFiles())
+                {
+                    BitmapSource bitmapSource;
+                    if (fileItem.Extension == ".png")
+                    {
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+                        if (isExist == false)
+                        {
+                            Stream imageStreamSource = new FileStream(fileItem.FullName, FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+                    }
+                    else if (fileItem.Extension == ".tga")
+                    {
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+
+                        if (isExist == false)
+                        {
+                            bitmapSource = default(BitmapSource);
+                            System.Drawing.Bitmap bitMap;
+
+                            Paloma.TargaImage tgaImage = new Paloma.TargaImage(fileItem.FullName);
+                            bitMap = tgaImage.Image;
+                            if (tgaImage.Stride < 3070)
+                            {
+                                var handle = bitMap.GetHbitmap();
+
+
+                                bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                            }
+                            else
+                            {
+                                Stream imageStreamSource = new FileStream(Paths.SystemPath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                                PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                                bitmapSource = decoder.Frames[0];
+                            }
+                            tgaImage.Dispose();
+
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+                    }
+                    else if (fileItem.Extension == ".x" ||
+                        fileItem.Extension == ".X" ||
+                        fileItem.Extension == ".obj")
+                    {
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+                        if (isExist == false)
+                        {
+                            Stream imageStreamSource = new FileStream(Paths.SystemPath + @"MeshIcon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
+
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+                    }
+                    else if (fileItem.Extension == ".mp3")
+                    {
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+                        if (isExist == false)
+                        {
+                            Stream imageStreamSource = new FileStream(Paths.SystemPath + @"Mp3Icon.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
+
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+                    }
+                    else
+                    {
+                        bool isExist = false;
+                        isExist = IconImages.TryGetValue(fileItem.FullName, out bitmapSource);
+                        if (isExist == false)
+                        {
+                            Stream imageStreamSource = new FileStream(Paths.SystemPath + "NoImage.png", FileMode.Open, FileAccess.Read, FileShare.Read);
+                            PngBitmapDecoder decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                            bitmapSource = decoder.Frames[0];
+
+                            IconImages.Add(fileItem.FullName, bitmapSource);
+                        }
+
+                    }
+
+                    Image itemImage = new Image();
+                    itemImage.Source = bitmapSource;
+                    itemImage.Width = 90;
+                    itemImage.Height = 70;
+
+                    TextBlock itemText = new TextBlock();
+                    itemText.Text = fileItem.Name;
+                    itemText.TextAlignment = TextAlignment.Center;
+                    itemText.Foreground = Brushes.White;
+                    itemText.Width = 90;
+                    itemText.Height = 20;
+
+                    StackPanel itemPanel = new StackPanel();
+                    itemPanel.VerticalAlignment = VerticalAlignment.Center;
+                    itemPanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    itemPanel.Children.Add(itemImage);
+                    itemPanel.Children.Add(itemText);
+
+                    ProjectItems.Children.Add(itemPanel);
+                }
+            }
+
+
+        }
         private void SLT_Assets(object sender, RoutedEventArgs e)
         {
 

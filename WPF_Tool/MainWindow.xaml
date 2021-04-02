@@ -30,12 +30,14 @@
                     <MenuItem Header="_Import Hierarchy"  Click="BTN_ImportHierarchy"/>
                     <MenuItem Header="_Import MapData" Click="BTN_ImportMapData"/>
                     <MenuItem Header="_Import NavMesh" Click="BTN_ImportNavMesh"/>
+                    <MenuItem Header="_Import Terrain" Click="BTN_ImportTerrain"/>
                     <MenuItem Header="_Import Effect" />
                     <Separator/>
                     <MenuItem Header="_Export Scene" Click="BTN_ExportScene"/>
                     <MenuItem Header="_Export Hierarchy" Click="BTN_ExportHierarchy"/>
                     <MenuItem Header="_Export MapData"  Click="BTN_ExportMapData"/>
                     <MenuItem Header="_Export NavMesh"  Click="BTN_ExportNavMesh"/>
+                    <MenuItem Header="_Export Terrain"  Click="BTN_ExportTerrain"/>
                     <MenuItem Header="_Export Effect" />
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
@@ -188,7 +190,7 @@
                                 </StackPanel>
                             </GroupBox>
                             
-                            <GroupBox x:Name="TransformData" IsEnabled="True">
+                            <GroupBox x:Name="TransformData" IsEnabled="True" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label Width="100">Transform Data</Label>
                                 </GroupBox.Header>
@@ -247,7 +249,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox x:Name="MeshData" IsEnabled="True" >
+                            <GroupBox x:Name="MeshData" IsEnabled="True" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label>Mesh Data</Label>
                                 </GroupBox.Header>
@@ -268,7 +270,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox x:Name="TerrainData" IsEnabled="True" >
+                            <GroupBox x:Name="TerrainData" IsEnabled="True" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label>Terrain Data</Label>
                                 </GroupBox.Header>
@@ -278,11 +280,25 @@
                                     <TextBlock Height="5"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Width="30" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
-                                        <TextBox Width="30"></TextBox>
+                                        <TextBox x:Name="TerrainX" Width="30" TextAlignment="Center"
+                                                 TextChanged="TerrainX_TextChanged">10</TextBox>
                                         <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
-                                        <TextBox Width="30"></TextBox>
+                                        <TextBox x:Name="TerrainZ" Width="30" TextAlignment="Center"
+                                                 TextChanged="TerrainZ_TextChanged">10</TextBox>
                                         <TextBlock Width="60" HorizontalAlignment="Center" TextAlignment="Center">Interval</TextBlock>
-                                        <TextBox Width="30"></TextBox>
+                                        <TextBox  x:Name="TerrainInterval" Width="30" TextAlignment="Center"
+                                                 TextChanged="TerrainInterval_TextChanged">1</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <TextBlock Width="90" HorizontalAlignment="Left" Margin="10, 0, 0, 0">TextureInfo</TextBlock>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="30" HorizontalAlignment="Center" TextAlignment="Center">X</TextBlock>
+                                        <TextBox x:Name="TerrainTextureX" Width="30" TextAlignment="Center"
+                                                 TextChanged="TerrainTextureX_TextChanged">10</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center">Y</TextBlock>
+                                        <TextBox x:Name="TerrainTextureZ" Width="30" TextAlignment="Center"
+                                                 TextChanged="TerrainTextureZ_TextChanged">10</TextBox>
                                     </StackPanel>
                                     <TextBlock Height="5"/>
                                     <TextBlock Height="5"/>

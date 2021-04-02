@@ -84,7 +84,7 @@ namespace WPF_Tool
 
 
                     Vector3 pickedPos = default(Vector3);
-                    bool isHit = Externs.PickNavMesh((float)actualX, (float)actualY, (int)cellOption, ref pickedPos);
+                    Boolean isHit = Externs.PickNavMesh((float)actualX, (float)actualY, (int)cellOption, ref pickedPos);
                     if (isHit)
                     {
                         bool isNewPrim = false;
@@ -120,7 +120,7 @@ namespace WPF_Tool
                 {
                     Vector3 pickedPos = default(Vector3);
                     int temp = 0;
-                    bool isHit = Externs.PickGameObject((float)actualX, (float)actualY, ref temp, ref pickedPos);
+                    Boolean isHit = Externs.PickGameObject((float)actualX, (float)actualY, ref temp, ref pickedPos);
                     if (isHit)
                     {
                         HierarchyData select = selectedHierarchy;
@@ -135,7 +135,7 @@ namespace WPF_Tool
                 {
                     int resultIndex = -1;
                     Vector3 vec = default(Vector3);
-                    bool isPicked = Externs.PickGameObject((float)actualX, (float)actualY, ref resultIndex, ref vec );
+                    Boolean isPicked = Externs.PickGameObject((float)actualX, (float)actualY, ref resultIndex, ref vec );
                     if (isPicked == true)
                     {
                         SelectedIndex = resultIndex;
