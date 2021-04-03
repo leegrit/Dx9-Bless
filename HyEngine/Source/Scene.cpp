@@ -19,18 +19,6 @@ Scene::Scene()
 }
 Scene::~Scene()
 {
-	/*for (auto& obj : m_opaqueObjects)
-		Object::DestroyImmediate(obj);
-	m_opaqueObjects.clear();
-	for (auto& obj : m_alphaObjects)
-		Object::DestroyImmediate(obj);
-	m_alphaObjects.clear();
-	for (auto& obj : m_textureObjects)
-		Object::DestroyImmediate(obj);
-	m_textureObjects.clear();
-	for (auto& obj : m_alphaTextureObjects)
-		Object::DestroyImmediate(obj);
-	m_alphaObjects.clear();*/
 	for (auto& obj : m_meshObjects)
 		Object::DestroyImmediate(obj);
 	m_meshObjects.clear();

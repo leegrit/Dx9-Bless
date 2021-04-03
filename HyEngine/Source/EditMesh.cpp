@@ -19,8 +19,7 @@ EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
 EditMesh::~EditMesh()
 {
 	Object::Destroy(m_pCollider);
-	m_pMesh.reset();
-	SAFE_DELETE(m_pBaseTex);
+	SAFE_RELEASE(m_pBaseTex);
 }
 
 void EditMesh::Initialize()
