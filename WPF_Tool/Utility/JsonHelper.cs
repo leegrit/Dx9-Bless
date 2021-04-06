@@ -430,6 +430,9 @@ namespace WPF_Tool.Utility
             /* For range */
             lightJson.Add("Range", lightData.range);
 
+            /* For Cone */
+            lightJson.Add("Cone", lightData.cone);
+
             /* For constant */
             lightJson.Add("Constant", lightData.constant);
 
@@ -670,6 +673,9 @@ namespace WPF_Tool.Utility
 
             /* For Range */
             lightData.range = (float)lightDataJson["Range"];
+
+            /* For Cone */
+            lightData.cone = (float)lightDataJson["Cone"];
 
             /* For Constant */
             lightData.range = (float)lightDataJson["Constant"];

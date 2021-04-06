@@ -331,6 +331,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		pShader->SetValue("SpecularIntensity", &light->SpecularIntensity(), sizeof(light->SpecularIntensity()));
 		pShader->SetValue("SpecularPower", &light->SpecularPower(), sizeof(light->SpecularPower()));
 		pShader->SetValue("Range", &light->Range(), sizeof(light->Range()));
+		pShader->SetValue("Cone", &light->Cone(), sizeof(light->Cone()));
 		pShader->SetValue("Constant", &light->Constant(), sizeof(light->Constant()));
 		pShader->SetValue("Linear", &light->Linear(), sizeof(light->Linear()));
 		pShader->SetValue("Quadratic", &light->Quadratic(), sizeof(light->Quadratic()));

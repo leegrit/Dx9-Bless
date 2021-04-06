@@ -582,6 +582,9 @@ namespace WPF_Tool
                         /* Range */
                         LightRange.Text = data.lightData.range.ToString();
 
+                        /* Cone */
+                        Cone.Text = data.lightData.cone.ToString();
+
                         /* Constant */
                         Constant.Text = data.lightData.constant.ToString();
 

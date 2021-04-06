@@ -20,6 +20,7 @@ namespace HyEngine
 		float specularIntensity;
 		float specularPower;
 		float range;
+		float cone;
 		/* For Attenuation */
 		float constant;
 		float linear;

@@ -72,6 +72,7 @@ enum class ELightType
 {
 	DIRECTIONAL,
 	POINT,
+	SPOT
 };
 
 enum class EBillboardType

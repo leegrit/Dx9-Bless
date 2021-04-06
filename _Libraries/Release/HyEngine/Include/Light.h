@@ -19,6 +19,7 @@ namespace HyEngine
 		inline float& SpecularIntensity() { return m_specularIntensity; }
 		inline float&		SpecularPower() { return m_specularPower; }
 		inline float&		Range() { return m_range; }
+		inline float&		Cone() { return m_cone; }
 		inline float&		Constant() { return m_constant; }
 		inline float&		Linear() { return m_linear; }
 		inline float&		Quadratic() { return m_quadratic; }
@@ -34,6 +35,7 @@ namespace HyEngine
 		float m_specularIntensity;
 		float		m_specularPower;
 		float		m_range;
+		float	    m_cone;
 		/* For Attenuation */
 		float		m_constant;
 		float		m_linear;

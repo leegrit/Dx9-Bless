@@ -71,6 +71,7 @@ void HyEngine::LightObject::UpdatedData(EDataType dataType)
 		m_pLight->SpecularIntensity() = m_pLightData->specularIntensity;
 		m_pLight->SpecularPower() = m_pLightData->specularPower;
 		m_pLight->Range() = m_pLightData->range;
+		m_pLight->Cone() = m_pLightData->cone;
 		m_pLight->Constant() = m_pLightData->constant;
 		m_pLight->Linear() = m_pLightData->linear;
 		m_pLight->Quadratic() = m_pLightData->quadratic;

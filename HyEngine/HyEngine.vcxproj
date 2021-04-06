@@ -450,6 +450,7 @@
     <FxCompile Include="..\_Shaders\MeshShader.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\ProgressTexture.fx" />
+    <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\TextureShader.fx" />
     <FxCompile Include="..\_Shaders\UIShader.fx" />
   </ItemGroup>

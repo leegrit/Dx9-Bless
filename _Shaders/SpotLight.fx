@@ -89,7 +89,7 @@ sampler StashSampler = sampler_state
 };
 
 
-void PointLightVS(
+void SpotLightVS(
 	float4 position : POSITION,
 	float2 texcoord : TEXCOORD0,
 	out float4 outPosition : POSITION,
@@ -103,7 +103,7 @@ void PointLightVS(
 	outTexcoord = texcoord;
 }
 
-float4 PointLightPS(
+float4 SpotLightPS(
 	float2 texcoord : TEXCOORD0
 	) : COLOR0
 {
@@ -141,9 +141,28 @@ float4 PointLightPS(
 	if(distance > Range)
 		return stashMap;
 
+	// Turn lightToPixelVec into a unit length vector describing
+	// the pixels direction from the lights position
 	lightToPixelVec = normalize(lightToPixelVec);
 
+	// in which the light strikes the pixels surface
+	float howMuchLight = dot(lightToPixelVec, normal);	
 
+	// If light is striking the front side of the pixel
+	if(howMuchLight > 0.0f)
+	{
+		// Add light to the finalColor of the pixel
+		finalColor += albedoMap.rgb * Diffuse.rgb;
+		
+		// calculate Light's Distance Falloff factor
+		finalColor /= (Constant + (Linear * distance)) + (Quadratic * (distance * distance));
+
+		// Calculate falloff from center to edge of pointlight cone
+		finalColor *= pow(max(dot(-lightToPixelVec, Direction), 0.0f), Cone);
+	}
+
+	// Make sure the values are between 1 and 0
+	finalColor = saturate(finalColor);
 
 	// Return Final color
 	return float4(finalColor.rgb + stashMap.rgb, 1);
@@ -151,11 +170,11 @@ float4 PointLightPS(
 
 
 
-technique PointLight
+technique SpotLight
 {
 	pass P0
 	{
-		VertexShader = compile vs_3_0 PointLightVS();
-		PixelShader = compile ps_3_0 PointLightPS();
+		VertexShader = compile vs_3_0 SpotLightVS();
+		PixelShader = compile ps_3_0 SpotLightPS();
 	}
 }
