@@ -7,7 +7,7 @@
 #include "AnimNameData.h"
 
 HyEngine::EditDynamicMesh::EditDynamicMesh(Scene * scene, GameObject * parent, int editID)
-	: EditObject(ERenderType::RenderMesh, scene, parent, editID),
+	: EditObject(ERenderType::RenderOpaque, scene, parent, editID),
 	m_pLoader(nullptr),
 	m_pAniCtrl(nullptr)
 {
@@ -15,7 +15,7 @@ HyEngine::EditDynamicMesh::EditDynamicMesh(Scene * scene, GameObject * parent, i
 }
 
 HyEngine::EditDynamicMesh::EditDynamicMesh(const EditDynamicMesh & rhs)
-	: EditObject(ERenderType::RenderMesh, rhs.GetScene(), rhs.GetParent(), rhs.GetEditID()),
+	: EditObject(ERenderType::RenderOpaque, rhs.GetScene(), rhs.GetParent(), rhs.GetEditID()),
 	m_pLoader(rhs.m_pLoader),
 	m_pRootFrame(rhs.m_pRootFrame),
 	m_MeshContainerList(rhs.m_MeshContainerList)
@@ -77,11 +77,40 @@ void HyEngine::EditDynamicMesh::Render()
 			pDestVtx // 변환된 정보를 담기위한 정점 정보
 		);
 
+		/* Get Shader */
+		ID3DXEffect* pShader = nullptr;
+		EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
+		assert(pShader);
+
+		/* Get Selected Cam */
+		Camera* pSelectedCamera = nullptr;
+		pSelectedCamera = GetScene()->GetSelectedCamera();
+		assert(pSelectedCamera);
+
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
-			DEVICE->SetTexture(0, pMeshContainer->ppTexture[i]);
-			pMeshContainer->MeshData.pMesh->DrawSubset(i);
+			float farPlane = pSelectedCamera->GetFar();
+			pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
+			pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+			pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+			pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+			pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+			pShader->SetTexture(albedoHandle, pMeshContainer->ppTexture[i]);
+
+			pShader->SetTechnique("GBuffer");
+			pShader->Begin(0, 0);
+			{
+				pShader->BeginPass(0);
+				pMeshContainer->MeshData.pMesh->DrawSubset(i);
+				pShader->EndPass();
+			}
+			pShader->End();
+
+
 		}
 
 		pMeshContainer->pOriMesh->UnlockVertexBuffer();

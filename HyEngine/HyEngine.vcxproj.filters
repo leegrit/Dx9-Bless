@@ -126,14 +126,12 @@
     <ClInclude Include="Include\Application.h">
       <Filter>Application</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Settings.h" />
     <ClInclude Include="Include\ServiceLocator.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Include\Log.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Include\StandardEngineFramework.h" />
     <ClInclude Include="Include\Engine.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -154,12 +152,6 @@
     </ClInclude>
     <ClInclude Include="Include\MathUtils.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Object.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\GameObject.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\VertexTypes.h">
       <Filter>Geometry</Filter>
@@ -242,9 +234,6 @@
     <ClInclude Include="Include\TextureQuad.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\TextureObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Mesh.h">
       <Filter>Geometry</Filter>
     </ClInclude>
@@ -263,17 +252,8 @@
     <ClInclude Include="Include\SphereCollider.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ParticleSystem.h">
-      <Filter>Particle</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ParticleStructure.h">
-      <Filter>Particle</Filter>
-    </ClInclude>
     <ClInclude Include="Include\DxHelper.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\FireworkSystem.h">
-      <Filter>Particle\Samples</Filter>
     </ClInclude>
     <ClInclude Include="Include\FiniteStateMachine.h">
       <Filter>AI\FSM</Filter>
@@ -344,12 +324,6 @@
     <ClInclude Include="Include\RenderTargetChain.h">
       <Filter>Render</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ParticleGun.h">
-      <Filter>Particle\Samples</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\MeshObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Light.h">
       <Filter>Light</Filter>
     </ClInclude>
@@ -364,9 +338,6 @@
     </ClInclude>
     <ClInclude Include="Include\RaycastHit.h">
       <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\BillboardObject.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\fsm.h">
       <Filter>fsm</Filter>
@@ -446,9 +417,6 @@
     <ClInclude Include="Include\MeshAnimator.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Include\EditTransformRect.h">
-      <Filter>Editor\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\DataStructures.h">
       <Filter>GlobalVars</Filter>
     </ClInclude>
@@ -524,9 +492,6 @@
     <ClInclude Include="Include\json-forwards.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Include\DynamicMesh.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\DynamicCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
@@ -539,6 +504,59 @@
     <ClInclude Include="Include\ChunkMapData.h">
       <Filter>Data</Filter>
     </ClInclude>
+    <ClInclude Include="Include\TerrainData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ObjectContainer.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\CollisionCalculator.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Pawn.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\BillboardObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DynamicMesh.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Terrain.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TextureObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ZBillboardObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ZTextureObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Settings.h" />
+    <ClInclude Include="Include\StandardEngineFramework.h" />
+    <ClInclude Include="Include\ShadedMeshObject.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ParticleSystem.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ParticleStructure.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ParticleGun.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
     <ClInclude Include="Include\CrossTextureObject.h">
       <Filter>Object\Old</Filter>
     </ClInclude>
@@ -548,26 +566,26 @@
     <ClInclude Include="Include\DebugGround.h">
       <Filter>Object\Old</Filter>
     </ClInclude>
+    <ClInclude Include="Include\EditTransformRect.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\FireworkSystem.h">
+      <Filter>Object\Old</Filter>
+    </ClInclude>
     <ClInclude Include="Include\MeshObject2.h">
       <Filter>Object\Old</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ShadedMeshObject.h">
-      <Filter>Object\Old</Filter>
+    <ClInclude Include="Include\DeferredQuad.h">
+      <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ZBillboardObject.h">
-      <Filter>Object\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ZTextureObject.h">
-      <Filter>Object\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Pawn.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Terrain.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\TerrainData.h">
+    <ClInclude Include="Include\ColorData.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\LightData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\LightObject.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -597,12 +615,6 @@
     </ClCompile>
     <ClCompile Include="Source\MathUtils.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Object.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\VertexTypes.cpp">
       <Filter>Geometry</Filter>
@@ -667,9 +679,6 @@
     <ClCompile Include="Source\TextureQuad.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TextureObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mesh.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
@@ -688,17 +697,8 @@
     <ClCompile Include="Include\SphereCollider.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ParticleSystem.cpp">
-      <Filter>Particle</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ParticleStructure.cpp">
-      <Filter>Particle</Filter>
-    </ClCompile>
     <ClCompile Include="Source\DxHelper.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FireworkSystem.cpp">
-      <Filter>Particle\Samples</Filter>
     </ClCompile>
     <ClCompile Include="Source\FiniteStateMachine.cpp">
       <Filter>AI\FSM</Filter>
@@ -766,12 +766,6 @@
     <ClCompile Include="Source\RenderTargetChain.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ParticleGun.cpp">
-      <Filter>Particle\Samples</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Light.cpp">
       <Filter>Light</Filter>
     </ClCompile>
@@ -786,9 +780,6 @@
     </ClCompile>
     <ClCompile Include="Source\RaycastHit.cpp">
       <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BillboardObject.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\Skybox.cpp">
       <Filter>Skybox</Filter>
@@ -862,9 +853,6 @@
     <ClCompile Include="Source\MeshAnimator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EditTransformRect.cpp">
-      <Filter>Editor\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EditDynamicMesh.cpp">
       <Filter>Editor\Object</Filter>
     </ClCompile>
@@ -919,9 +907,6 @@
     <ClCompile Include="Source\jsoncpp.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DynamicMesh.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\DynamicCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
@@ -934,6 +919,60 @@
     <ClCompile Include="Source\ChunkMapData.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TerrainData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ObjectContainer.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollisionCalculator.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Pawn.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BillboardObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DynamicMesh.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Terrain.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ZBillboardObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZBillboardObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZTextureObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShadedMeshObject.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleStructure.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleSystem.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleGun.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
     <ClCompile Include="Source\CrossTextureObject.cpp">
       <Filter>Object\Old</Filter>
     </ClCompile>
@@ -943,26 +982,26 @@
     <ClCompile Include="Source\DebugGround.cpp">
       <Filter>Object\Old</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EditTransformRect.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FireworkSystem.cpp">
+      <Filter>Object\Old</Filter>
+    </ClCompile>
     <ClCompile Include="Source\MeshObject2.cpp">
       <Filter>Object\Old</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ShadedMeshObject.cpp">
-      <Filter>Object\Old</Filter>
+    <ClCompile Include="Source\DeferredQuad.cpp">
+      <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ZBillboardObject.cpp">
-      <Filter>Object\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ZTextureObject.cpp">
-      <Filter>Object\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Pawn.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Terrain.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TerrainData.cpp">
+    <ClCompile Include="Source\ColorData.cpp">
       <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightObject.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -976,6 +1015,15 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\UIShader.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\DirectionalLight.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\PointLight.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\GBuffer.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

@@ -23,13 +23,13 @@
 
 enum class ERenderType
 {
-	RenderMesh,
-	RenderD3DXMesh,
-	//RenderOpaque,
-	//RenderAlpha,
-	RenderTexture,
+	//RenderMesh,
+	//RenderD3DXMesh,
+	RenderOpaque,
+	RenderAlpha,
+	//RenderTexture,
 	//AlphaTexture,
-	RenderUI,
+	//RenderUI,
 	None,
 };
 
@@ -72,6 +72,7 @@ enum class ELightType
 {
 	DIRECTIONAL,
 	POINT,
+	SPOT
 };
 
 enum class EBillboardType
@@ -143,6 +144,7 @@ enum class EDataType
 	MeshData,
 	CellData,
 	TerrainData,
+	LightData,
 	End
 };
 

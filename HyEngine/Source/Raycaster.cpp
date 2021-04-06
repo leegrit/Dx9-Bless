@@ -2,6 +2,7 @@
 #include "Raycaster.h"
 #include "Collider.h"
 #include "SphereCollider.h"
+#include "ObjectContainer.h"
 
 bool HyEngine::Raycaster::Raycast(D3DXVECTOR3 origin, D3DXVECTOR3 direction, RaycastHit *& result)
 {
@@ -13,9 +14,9 @@ bool HyEngine::Raycaster::Raycast(D3DXVECTOR3 origin, D3DXVECTOR3 direction, Ray
 	ray.direction = direction;
 	result = nullptr;
 
-	std::vector<Collider*>& dynamicColliders = currentScene->GetDynamicColliderAll();
-	std::vector<Collider*>& staticColliders = currentScene->GetStaticColliderAll();
-	std::vector<Collider*>& multipurposeColliders = currentScene->GetMultipurposeColliderAll();
+	std::vector<Collider*>& dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll();
+	std::vector<Collider*>& staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll();
+	std::vector<Collider*>& multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll();
 
 	auto& dynamics = cpplinq::from_iterators(dynamicColliders.begin(), dynamicColliders.end())
 		>> cpplinq::where([&](const Collider* obj)
@@ -87,9 +88,9 @@ bool HyEngine::Raycaster::Raycast(Ray ray, RaycastHit *& result)
 
 	result = nullptr;
 
-	std::vector<Collider*>& dynamicColliders = currentScene->GetDynamicColliderAll();
-	std::vector<Collider*>& staticColliders = currentScene->GetStaticColliderAll();
-	std::vector<Collider*>& multipurposeColliders = currentScene->GetMultipurposeColliderAll();
+	std::vector<Collider*>& dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll();
+	std::vector<Collider*>& staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll();
+	std::vector<Collider*>& multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll();
 
 	auto& dynamics = cpplinq::from_iterators(dynamicColliders.begin(), dynamicColliders.end())
 		>> cpplinq::where([&](const Collider* obj)
@@ -164,9 +165,9 @@ bool HyEngine::Raycaster::Raycast(D3DXVECTOR3 origin, D3DXVECTOR3 direction, UIN
 	ray.direction = direction;
 	result = nullptr;
 
-	std::vector<Collider*> dynamicColliders = currentScene->GetDynamicColliderAll(layer);
-	std::vector<Collider*> staticColliders = currentScene->GetStaticColliderAll(layer);
-	std::vector<Collider*> multipurposeColliders = currentScene->GetMultipurposeColliderAll(layer);
+	std::vector<Collider*> dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
+	std::vector<Collider*> staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
+	std::vector<Collider*> multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 
 	bool isSucceeded = false;
 	for (auto& col : dynamicColliders)
@@ -207,9 +208,9 @@ bool HyEngine::Raycaster::Raycast(Ray ray, UINT layer, RaycastHit *& result)
 
 	result = nullptr;
 
-	std::vector<Collider*> dynamicColliders = currentScene->GetDynamicColliderAll(layer);
-	std::vector<Collider*> staticColliders = currentScene->GetStaticColliderAll(layer);
-	std::vector<Collider*> multipurposeColliders = currentScene->GetMultipurposeColliderAll(layer);
+	std::vector<Collider*> dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
+	std::vector<Collider*> staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
+	std::vector<Collider*> multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 
 	bool isSucceeded = false;
 	for (auto& col : dynamicColliders)
@@ -256,13 +257,13 @@ bool HyEngine::Raycaster::Raycast(D3DXVECTOR3 origin, D3DXVECTOR3 direction, UIN
 	switch (colliderType)
 	{
 	case EColliderType::Static:
-		colliders = currentScene->GetStaticColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
 		break;
 	case EColliderType::Dynamic:
-		colliders = currentScene->GetDynamicColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
 		break;
 	case EColliderType::Multipurpose:
-		colliders = currentScene->GetMultipurposeColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 		break;
 	default:
 		assert(false);
@@ -293,13 +294,13 @@ bool HyEngine::Raycaster::Raycast(Ray ray, UINT layer, EColliderType colliderTyp
 	switch (colliderType)
 	{
 	case EColliderType::Static:
-		colliders = currentScene->GetStaticColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
 		break;
 	case EColliderType::Dynamic:
-		colliders = currentScene->GetDynamicColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
 		break;
 	case EColliderType::Multipurpose:
-		colliders = currentScene->GetMultipurposeColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 		break;
 	default:
 		assert(false);
@@ -330,9 +331,9 @@ std::vector<RaycastHit*> HyEngine::Raycaster::RaycastHitAll(D3DXVECTOR3 origin, 
 	//result = nullptr;
 	std::vector<RaycastHit*> results;
 
-	std::vector<Collider*>& dynamicColliders = currentScene->GetDynamicColliderAll();
-	std::vector<Collider*>& staticColliders = currentScene->GetStaticColliderAll();
-	std::vector<Collider*>& multipurposeColliders = currentScene->GetMultipurposeColliderAll();
+	std::vector<Collider*>& dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll();
+	std::vector<Collider*>& staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll();
+	std::vector<Collider*>& multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll();
 
 
 	bool isSucceeded = false;
@@ -382,9 +383,9 @@ std::vector<RaycastHit*> HyEngine::Raycaster::RaycastHitAll(D3DXVECTOR3 origin, 
 	//result = nullptr;
 	std::vector<RaycastHit*> results;
 
-	std::vector<Collider*> dynamicColliders = currentScene->GetDynamicColliderAll(layer);
-	std::vector<Collider*> staticColliders = currentScene->GetStaticColliderAll(layer);
-	std::vector<Collider*> multipurposeColliders = currentScene->GetMultipurposeColliderAll(layer);
+	std::vector<Collider*> dynamicColliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
+	std::vector<Collider*> staticColliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
+	std::vector<Collider*> multipurposeColliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 
 
 	bool isSucceeded = false;
@@ -438,13 +439,13 @@ std::vector<RaycastHit*> HyEngine::Raycaster::RaycastHitAll(D3DXVECTOR3 origin, 
 	switch (colliderType)
 	{
 	case EColliderType::Static:
-		colliders = currentScene->GetStaticColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetStaticColliderAll(layer);
 		break;
 	case EColliderType::Dynamic:
-		colliders = currentScene->GetDynamicColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetDynamicColliderAll(layer);
 		break;
 	case EColliderType::Multipurpose:
-		colliders = currentScene->GetMultipurposeColliderAll(layer);
+		colliders = currentScene->GetObjectContainer()->GetMultipurposeColliderAll(layer);
 		break;
 	default:
 		assert(false);

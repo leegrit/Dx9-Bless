@@ -112,7 +112,10 @@ namespace WPF_Tool
         {
             CreateHierarchy(GameObjectType.Terrain);
         }
-
+        private void BTN_CreateLight(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.Light);
+        }
         private void CreateHierarchy(GameObjectType gameObjectType)
         {
             ListBoxItem item = new ListBoxItem();
@@ -141,6 +144,10 @@ namespace WPF_Tool
                     item.Content = HierarchyContent.Terrain;
                     item.Tag = HierarchyTag.Terrain;
                     break;
+                case GameObjectType.Light:
+                    item.Content = HierarchyContent.Light;
+                    item.Tag = HierarchyTag.Light;
+                    break;
             }
 
 
@@ -159,6 +166,9 @@ namespace WPF_Tool
                     item.MouseUp += SelectedGameObject;
                     break;
                 case GameObjectType.Terrain:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.Light:
                     item.MouseUp += SelectedGameObject;
                     break;
             }
@@ -202,6 +212,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.Terrain:
                     Externs.CreateTerrain((uint)index);
+                    break;
+                case GameObjectType.Light:
+                    Externs.CreateLight(index);
                     break;
             }
          

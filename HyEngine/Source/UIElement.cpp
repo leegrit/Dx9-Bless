@@ -9,7 +9,7 @@ UIElement::UIElement(class Scene* scene,
 	const Quaternion rotation,
 	const Vector3 scale,
 	std::wstring tag)
-	: TextureObject(scene, nullptr, ERenderType::RenderUI, imageFilePath,tag)
+	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath,tag)
 {
 	m_pTransform->SetPosition(position);
 	m_pTransform->m_rotation = rotation;
@@ -17,7 +17,7 @@ UIElement::UIElement(class Scene* scene,
 }
 
 HyEngine::UIElement::UIElement(Scene * scene, std::wstring imageFilePath, std::wstring name)
-	: TextureObject(scene, nullptr, ERenderType::RenderUI, imageFilePath, name)
+	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath, name)
 {
 	m_pTransform->SetPosition(0, 0, 0);
 	m_pTransform->SetScale(1, 1, 1);

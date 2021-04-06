@@ -26,7 +26,8 @@ Engine::Engine()
 	UIDGen::Create();
 	PathManager::Create();
 
-	m_pRenderer = new Renderer();
+	
+	//m_pRenderer = new Renderer();
 	m_pMouse = new IO::Mouse();
 	m_pKeyboard = new IO::Keyboard();
 	m_pTimer = new Timer();
@@ -37,7 +38,8 @@ Engine::~Engine()
 	delete m_pTimer;
 	delete m_pKeyboard;
 	delete m_pMouse;
-	delete m_pRenderer;
+	//delete m_pRenderer;
+	Renderer::Release(m_pRenderer);
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
 	PathManager::Destroy();
@@ -47,32 +49,13 @@ bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 {
 	SEND_LOG("Engine Initialize Start");
 	DirectXDevice::Get()->Init(hWnd);
-
+	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
 
 	assert(engineConfig.scenes.size() != 0);
 
 	this->engineConfig = engineConfig;
 	m_scenes = engineConfig.scenes;
-	//if (engineConfig.camera)
-	//{
-	//	m_pCamera = engineConfig.camera;
-	//}
-	//else
-	//{
-	//	m_pCamera = new Camera();
-	//	//m_pCamera->SetView
-	//	// set default camera option
-	//	m_pCamera->SetProjectionMatrix
-	//	(
-	//		D3DX_PI * 0.5f, // 90 - degree
-	//		WinMaxWidth / WinMaxHeight,
-	//		1.0f,
-	//		1000.0f
-	//	);
-	//}
-	//m_pCamera->Initialize();
-
 	SEND_LOG("Engine Initialize End");
 	return false;
 }
@@ -262,10 +245,41 @@ void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3
 
 }
 
+bool HyEngine::Engine::InsertShader(std::wstring key, std::wstring path)
+{
+	auto& iter =  m_shaderMap.find(key);
+	
+	/* already exist */
+	if (iter != m_shaderMap.end())
+		return false;
+
+	ID3DXEffect* shader = nullptr;
+	D3DXCreateEffectFromFile(DEVICE, path.c_str(), nullptr, nullptr, 0, nullptr, &shader, nullptr);
+	assert(shader);
+
+	m_shaderMap.insert(make_pair(key, shader));
+}
+
+bool HyEngine::Engine::TryGetShader(std::wstring key,_Out_ ID3DXEffect ** ppShader)
+{
+	*ppShader = nullptr;
+
+	auto& iter = m_shaderMap.find(key);
+
+	if (iter == m_shaderMap.end())
+		return false;
+
+	*ppShader = iter->second;
+	return true;
+}
+
 
 bool Engine::LoadShaders()
 {
-	// TODO 
+	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer.fx");
+	InsertShader(L"PointLight", PATH->ShadersPathW() + L"PointLight.fx");
+	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
+	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
 	return true;
 }
 

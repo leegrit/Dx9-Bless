@@ -7,7 +7,7 @@
 using namespace HyEngine;
 
 EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
-	: EditObject(ERenderType::RenderMesh, scene, parent, editID)
+	: EditObject(ERenderType::RenderOpaque, scene, parent, editID)
 {
 	m_pMesh = MeshLoader::GetMesh(PATH->ResourcesPath() + "System/Cube.obj");
 	//assert(m_pMesh);
@@ -31,25 +31,79 @@ void EditMesh::Render()
 {
 	GameObject::Render();
 
+	/* Get Shader */
+	ID3DXEffect* pShader = nullptr;
+	EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
+	assert(pShader);
+
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
+	pSelectedCamera = GetScene()->GetSelectedCamera();
+	assert(pSelectedCamera);
+
+
 	if (m_pDxMesh)
 	{
 		for (int i = 0; i < m_mtrls.size(); i++)
 		{
-			DEVICE->SetMaterial(&m_mtrls[i]);
-			DEVICE->SetTexture(0, m_textures[i]);
-			m_pDxMesh->DrawSubset(i);
+			float farPlane = pSelectedCamera->GetFar();
+			pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
+
+
+			/* Set world, view and projection */
+			pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+			pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+			pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+			/* Set world position */
+			pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+			/* Set albedo */
+			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+			pShader->SetTexture(albedoHandle, m_textures[i]);
+
+			pShader->SetTechnique("GBuffer");
+			pShader->Begin(0, 0);
+			{
+				pShader->BeginPass(0);
+				m_pDxMesh->DrawSubset(i);
+				pShader->EndPass();
+			}
+			pShader->End();
 		}
 	}
 	else if (m_pMesh)
 	{
-		assert(m_pMesh);
-		DEVICE->SetStreamSource(0, m_pMesh->GetVertexBuffer(), 0, m_pMesh->GetVertexSize());
-		DEVICE->SetVertexDeclaration(m_pMesh->GetDeclare());
-		DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
+		float farPlane = pSelectedCamera->GetFar();
+		pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
 
-		assert(m_pBaseTex);
-		DEVICE->SetTexture(0, m_pBaseTex);
-		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
+		/* Set world, view and projection */
+		pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+		pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+		pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+		/* Set world position */
+		pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+		/* Set albedo */
+		D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+		pShader->SetTexture(albedoHandle, m_pBaseTex);
+
+		pShader->SetTechnique("GBuffer");
+		pShader->Begin(0, 0);
+		{
+			pShader->BeginPass(0);
+			assert(m_pMesh);
+			DEVICE->SetStreamSource(0, m_pMesh->GetVertexBuffer(), 0, m_pMesh->GetVertexSize());
+			DEVICE->SetVertexDeclaration(m_pMesh->GetDeclare());
+			DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
+
+			assert(m_pBaseTex);
+			DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pMesh->GetVertexCount(), 0, m_pMesh->GetPrimitiveCount());
+			pShader->EndPass();
+		}
+		pShader->End();
+		
 	}
 }
 

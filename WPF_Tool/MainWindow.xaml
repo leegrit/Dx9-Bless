@@ -46,9 +46,10 @@
                     <MenuItem Header="_CreateMapObject"  Click="BTN_CreateMapObject"/>
                     <MenuItem Header="_CreateNavMesh" Click="BTN_CreateNavMesh"/>
                     <MenuItem Header="_CreateTerrain" Click="BTN_CreateTerrain"/>
+                    <MenuItem Header="_CreateLight" Click="BTN_CreateLight" />
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
-                    <MenuItem Header="_CreateLight" />
+                
                 </MenuItem>
                 <MenuItem Header="Component" Height="30" >
                 </MenuItem>
@@ -72,10 +73,9 @@
                             <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
                             <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
                             <MenuItem Header="_CreateTerrain" Foreground="Black" Click="BTN_CreateTerrain"/>
+                            <MenuItem Header="_CreateLight" Foreground ="Black" Click="BTN_CreateLight" />
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
                             <MenuItem Header="_CreateCamera" Foreground="Black" />
-                            <MenuItem Header="_CreateLight" Foreground="Black"/>
-
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
@@ -141,9 +141,8 @@
             <TabItem Header="Inspector">
                 <!-- Inspector -->
                 <StackPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Visible" >
-
-                        <StackPanel Height="685" x:Name="InspectorStackPanel">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Height="685">
+                        <StackPanel  x:Name="InspectorStackPanel">
                             <GroupBox x:Name="ObjectData" IsEnabled="True">
                                 <GroupBox.Header>
                                     <Label Width="100">Object Data</Label>
@@ -354,6 +353,185 @@
                                         <TextBlock Width="10"></TextBlock>
                                         <TextBlock Foreground="White" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center">Cell Count : </TextBlock>
                                         <TextBlock x:Name="CellCount">0</TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox x:Name="LightData" Visibility="Visible">
+                                <GroupBox.Header>
+                                    <Label>Light Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"></TextBlock>
+                                        <TextBlock Foreground="White" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center">Light Type :</TextBlock>
+                                        <ComboBox  x:Name="LightType" Width="130" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="LightType_Selected">
+                                            <ComboBoxItem Content="Directional" />
+                                            <ComboBoxItem Content="PointLight"/>
+                                            <ComboBoxItem Content="SpotLight" />
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Direction</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                        <TextBox x:Name="DirectionX" Width="50" TextChanged="DirectionX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                        <TextBox x:Name="DirectionY" Width="50" TextChanged="DirectionY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                        <TextBox x:Name="DirectionZ" Width="50" TextChanged="DirectionZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Position</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                        <TextBox x:Name="LightPositionX" Width="50" TextChanged="LightPositionX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                        <TextBox x:Name="LightPositionY" Width="50" TextChanged="LightPositionY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                        <TextBox x:Name="LightPositionZ" Width="50" TextChanged="LightPositionZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Ambient</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">R</TextBlock>
+                                        <TextBox x:Name="AmbientR" Width="32" TextChanged="AmbientR_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">G</TextBlock>
+                                        <TextBox x:Name="AmbientG" Width="32" TextChanged="AmbientG_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">B</TextBlock>
+                                        <TextBox x:Name="AmbientB" Width="32" TextChanged="AmbientB_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">A</TextBlock>
+                                        <TextBox x:Name="AmbientA" Width="32" TextChanged="AmbientA_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Ambient Intensity</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider x:Name="AmbientIntensitySlider" Width="175" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True"
+                                                ValueChanged="AmbientIntensity_ValueChanged"/>
+                                        <TextBlock Width="2"/>
+                                        <TextBox x:Name="AmbientIntensityTextBox" Width="32" TextAlignment="Center">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Diffuse</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">R</TextBlock>
+                                        <TextBox x:Name="DiffuseR" Width="32" TextChanged="DiffuseR_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">G</TextBlock>
+                                        <TextBox x:Name="DiffuseG" Width="32" TextChanged="DiffuseG_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">B</TextBlock>
+                                        <TextBox x:Name="DiffuseB" Width="32" TextChanged="DiffuseB_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">A</TextBlock>
+                                        <TextBox x:Name="DiffuseA" Width="32" TextChanged="DiffuseA_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Diffuse Intensity</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider x:Name="DiffuseIntensitySlider" Width="175" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True"
+                                                 ValueChanged="DiffuseIntensity_ValueChanged"/>
+                                        <TextBlock Width="2"/>
+                                        <TextBox  x:Name="DiffuseIntensityTextBox" Width="32" TextAlignment="Center">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Specular</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">R</TextBlock>
+                                        <TextBox x:Name="SpecularR" Width="32" TextChanged="SpecularR_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">G</TextBlock>
+                                        <TextBox x:Name="SpecularG" Width="32" TextChanged="SpecularG_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">B</TextBlock>
+                                        <TextBox x:Name="SpecularB" Width="32" TextChanged="SpecularB_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">A</TextBlock>
+                                        <TextBox x:Name="SpecularA" Width="32" TextChanged="SpecularA_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Specular Intensity</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider x:Name="SpecularIntensitySlider" Width="175" Maximum="1" TickPlacement="BottomRight" TickFrequency="0.05" IsSnapToTickEnabled="True"
+                                                ValueChanged="SpecularIntensity_ValueChanged"/>
+                                        <TextBlock Width="2"/>
+                                        <TextBox  x:Name="SpecularIntensityTextBox" Width="32" TextAlignment="Center">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock >Specular Power</TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Slider x:Name="SpecularPowerSlider" Width="175" Maximum="20" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True"
+                                                ValueChanged="SpecularPower_ValueChanged"/>
+                                        <TextBlock Width="2"/>
+                                        <TextBox  x:Name="SpecularPowerTextBox"  Width="32" TextAlignment="Center">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Width="60">Range</TextBlock>
+                                        <TextBlock Width="10"/>
+                                        <TextBox x:Name="LightRange" Width="130" TextChanged="LightRange_TextChanged">20</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Width="60">Cone</TextBlock>
+                                        <TextBlock Width="10"/>
+                                        <TextBox x:Name="Cone" Width="130" TextChanged="Cone_TextChanged">20</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <Separator>
+                                    </Separator>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Width="60">Constant</TextBlock>
+                                        <TextBlock Width="10"/>
+                                        <TextBox x:Name="Constant" Width="130"  TextChanged="Constant_TextChanged">20</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Width="60">Linear</TextBlock>
+                                        <TextBlock Width="10"/>
+                                        <TextBox x:Name="Linear" Width="130" TextChanged="Linear_TextChanged">20</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Width="60">Quadratic</TextBlock>
+                                        <TextBlock Width="10"/>
+                                        <TextBox x:Name="Quadratic" Width="130"  TextChanged="Quadratic_TextChanged">20</TextBox>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>

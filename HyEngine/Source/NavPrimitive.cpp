@@ -7,7 +7,7 @@
 
 HyEngine::NavPrimitive::NavPrimitive(Scene * scene, GameObject * parent, Cell * cellA, Cell * cellB, Cell * cellC, const ECellOption & cellOption, const unsigned int & group
 	, unsigned int navPrimIndex)
-	: GameObject(ERenderType::RenderTexture, scene, parent, L"NavPrimitive")
+	: GameObject(ERenderType::RenderOpaque, scene, parent, L"NavPrimitive")
 {
 	m_color = D3DXCOLOR(0, 255, 0, 255);
 	m_cells.push_back(cellA);

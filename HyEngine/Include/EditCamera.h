@@ -17,7 +17,7 @@ namespace HyEngine
 		}
 	public:
 		virtual void Initialize() override;
-		virtual void CameraUpdate() override;
+		virtual void Update() override;
 
 	private :
 		D3DXVECTOR3 m_xAxis;

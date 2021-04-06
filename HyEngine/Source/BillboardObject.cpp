@@ -5,7 +5,7 @@ using namespace HyEngine;
 
 
 HyEngine::BillboardObject::BillboardObject(Scene * scene, GameObject* parent, EBillboardType billboardType, std::wstring imageFilePath, std::wstring tag)
-	: TextureObject(scene, parent, ERenderType::RenderTexture, imageFilePath, tag)
+	: TextureObject(scene, parent, ERenderType::RenderOpaque, imageFilePath, tag)
 {
 	m_billboardType = billboardType;
 }

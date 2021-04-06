@@ -18,9 +18,9 @@ void EditCamera::Initialize()
 	GetTransform()->SetPosition(0, 0, -10);
 }
 
-void EditCamera::CameraUpdate()
+void EditCamera::Update()
 {
-	Camera::CameraUpdate();
+	Camera::Update();
 
 	SetProjectionMatrix
 	(

@@ -10,7 +10,7 @@ namespace HyEngine
 		virtual ~Collider();
 	public:
 		virtual void Initialize();
-		void PositionUpdate();
+		void Update();
 		virtual void Render();
 	public:
 

@@ -26,6 +26,8 @@ void HyEngine::Camera::SetProjectionMatrix(float fovy, float screenAspect, float
 		screenNear,
 		screenFar
 	);
+	m_near = screenNear;
+	m_far = screenFar;
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_matProj);
 }
 
@@ -75,6 +77,16 @@ void HyEngine::Camera::SetViewMatrix(const D3DXVECTOR3 & eye, const D3DXVECTOR3 
 	);
 }
 
+float HyEngine::Camera::GetNear() const
+{
+	return m_near;
+}
+
+float HyEngine::Camera::GetFar() const
+{
+	return m_far;
+}
+
 void HyEngine::Camera::Initialize()
 {
 	SetBasicProjection();
@@ -87,7 +99,7 @@ void HyEngine::Camera::Initialize()
 		m_defaultFar);
 }
 
-void HyEngine::Camera::CameraUpdate()
+void HyEngine::Camera::Update()
 {
 	FrustumUpdate();
 	ShakeUpdate();

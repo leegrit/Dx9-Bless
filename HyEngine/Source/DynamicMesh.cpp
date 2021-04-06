@@ -9,7 +9,7 @@
 #include "PathManager.h"
 #include "HierarchyData.h"
 HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent,std::wstring name)
-	: GameObject(ERenderType::RenderMesh, scene, parent, name),
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name),
 	m_pLoader(nullptr),
 	m_pAniCtrl(nullptr)
 {
@@ -72,11 +72,38 @@ void HyEngine::DynamicMesh::Render()
 			pDestVtx // 변환된 정보를 담기위한 정점 정보
 		);
 
+		/* Get Shader */
+		ID3DXEffect* pShader = nullptr;
+		ENGINE->TryGetShader(L"GBuffer", &pShader);
+		assert(pShader);
+
+		/* Get Selected Cam */
+		Camera* pSelectedCamera = nullptr;
+		pSelectedCamera = GetScene()->GetSelectedCamera();
+		assert(pSelectedCamera);
+
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
-			DEVICE->SetTexture(0, pMeshContainer->ppTexture[i]);
-			pMeshContainer->MeshData.pMesh->DrawSubset(i);
+			pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+			pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+			pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+			pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+			pShader->SetTexture(albedoHandle, pMeshContainer->ppTexture[i]);
+
+			pShader->SetTechnique("GBuffer");
+			pShader->Begin(0, 0);
+			{
+				pShader->BeginPass(0);
+				pMeshContainer->MeshData.pMesh->DrawSubset(i);
+				pShader->EndPass();
+			}
+			pShader->End();
+
+
 		}
 
 		pMeshContainer->pOriMesh->UnlockVertexBuffer();

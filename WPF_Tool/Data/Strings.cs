@@ -24,6 +24,7 @@ namespace WPF_Tool.Data
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
         public static string Terrain = "Terrain";
+        public static string Light = "Light";
     }
     public class HierarchyContent
     {
@@ -31,6 +32,7 @@ namespace WPF_Tool.Data
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
         public static string Terrain = "Terrain";
+        public static string Light = "Light";
     }
     public class Paths
     {
@@ -46,6 +48,7 @@ namespace WPF_Tool.Data
         public static string NavMeshData;
         public static string SceneDataPath;
         public static string TerrainDataPath;
+        public static string LightDataPath;
 
     }
 

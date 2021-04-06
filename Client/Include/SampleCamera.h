@@ -19,6 +19,6 @@ public :
 	}
 public:
 	virtual void Initialize() override;
-	virtual void CameraUpdate() override;
+	virtual void Update() override;
 };
 

@@ -13,6 +13,7 @@ namespace WPF_Tool.Data
         MapObject,
         NavMesh,
         Terrain,
+        Light
     }
     public enum EDataType
     {
@@ -21,6 +22,7 @@ namespace WPF_Tool.Data
         NavMesh,
         Scene,
         Terrain,
+        Light
     }
     public enum EKeyState
     {

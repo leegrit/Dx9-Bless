@@ -58,9 +58,7 @@ namespace HyEngine
 			return comVec;
 		}
 
-		void SetActive(bool active);
-		inline bool GetActive() const { return m_bActiveSelf; }
-
+		
 		// Gets the component of the specified type, if it exists.
 		template <typename T>
 		bool TryGetComponent(_Out_ Component** result)
@@ -89,7 +87,7 @@ namespace HyEngine
 		}
 
 		void SetTag(std::wstring tag);
-		
+		virtual void SetActive(bool active) override;
 		inline void SetLayer(UINT layer) { m_layer = layer; }
 		inline UINT GetLayer() { return m_layer; }
 		inline int GetRenderQueue() { return m_renderQueue; }
@@ -129,6 +127,7 @@ namespace HyEngine
 		void InsertMeshData(class MeshData* data);
 		void InsertCellData(class CellData* data);
 		void InsertTerrainData(class TerrainData* data);
+		void InsertLightData(class LightData* data);
 
 		virtual void UpdatedData(EDataType dataType) {};
 		EStaticType GetStaticType() const;
@@ -139,8 +138,6 @@ namespace HyEngine
 		// --------------------------------------
 		// PROPERTIES
 		// --------------------------------------
-
-		bool m_bActiveSelf;
 
 		bool m_bViewFrustumCulled; // ±âº»°ª false
 		//TODO : Layer m_layer;
@@ -170,5 +167,6 @@ namespace HyEngine
 		class MeshData* m_pMeshData = nullptr;
 		class CellData* m_pCellData = nullptr;
 		class TerrainData* m_pTerrainData = nullptr;
+		class LightData* m_pLightData = nullptr;
 	};
 }

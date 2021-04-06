@@ -35,3 +35,5 @@ SetAnimation
 RemoveNavPrim
 CreateTerrain
 InsertTerrainData
+CreateLight
+InsertLightData

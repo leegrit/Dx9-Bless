@@ -23,9 +23,9 @@ void DynamicCamera::Initialize()
 	m_pTransform->SetPosition(0, 10, -10);
 }
 
-void DynamicCamera::CameraUpdate()
+void DynamicCamera::Update()
 {
-	Camera::CameraUpdate();
+	Camera::Update();
 
 	if (KEYBOARD->Press('W'))
 	{

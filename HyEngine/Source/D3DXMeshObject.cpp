@@ -5,7 +5,7 @@ using namespace HyEngine;
 
 
 HyEngine::D3DXMeshObject::D3DXMeshObject(Scene * scene, GameObject * parent, ED3DXMeshType meshType, const std::wstring & name) 
-	: GameObject(ERenderType::RenderD3DXMesh, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 	switch (meshType)
 	{

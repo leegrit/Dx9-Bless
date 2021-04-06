@@ -4,7 +4,7 @@
 #include "SphereCollider.h"
 
 HyEngine::TestMesh::TestMesh(Scene * scene, GameObject * parent)
-	: GameObject(ERenderType::RenderMesh, scene, parent, L"TestMesh")
+	: GameObject(ERenderType::RenderOpaque, scene, parent, L"TestMesh")
 {
 	//assert(false);
 	m_pMesh = MeshLoader::GetMesh("../../../Resources/Mesh/Cube.obj");

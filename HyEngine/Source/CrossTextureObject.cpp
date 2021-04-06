@@ -6,7 +6,7 @@
 using namespace HyEngine;
 
 HyEngine::CrossTextureObject::CrossTextureObject(Scene * scene, GameObject * parent, const std::wstring & textureFilePath, const std::wstring & name)
-	: GameObject(ERenderType::RenderTexture, scene,parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene,parent, name)
 {
 	m_pTexture = (IDirect3DTexture9*)(TextureLoader::GetTexture(textureFilePath));
 }

@@ -2,7 +2,7 @@
 #include "ZBillboardObject.h"
 
 HyEngine::ZBillboardObject::ZBillboardObject(Scene * scene, GameObject* parent, EBillboardType billboardType, std::wstring imageFilePath, std::wstring tag)
-	: ZTextureObject(scene, parent, ERenderType::RenderTexture, imageFilePath, tag)
+	: ZTextureObject(scene, parent, ERenderType::RenderOpaque, imageFilePath, tag)
 {
 	m_billboardType = billboardType;
 }

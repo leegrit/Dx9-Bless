@@ -99,22 +99,16 @@ namespace HyEngine
 
 		void RotateEuler(const Vector3& eulers);
 
-		// old 값들을 새로 채워준다.
-		void Refresh();
 
 
 		//----------------------------------------------------------------------------------------------------------------
 		// DATA
 		//----------------------------------------------------------------------------------------------------------------
 		Vector3			 m_position;
-		Vector3			 m_positionOld;
 		Quaternion		 m_rotation = Quaternion::Identity();
-		Quaternion		 m_rotationOld;
 		// 주의  오일러 값을 건들게 되면 쿼터니언 값은 무시됩니다.
 		Vector3			 m_rotationEuler = Vector3::Zero;
-		Vector3			 m_rotationEulerOld;
 		Vector3		     m_scale;
-		Vector3			 m_scaleOld;
 		const Vector3    m_originalPosition;
 		const Quaternion m_originalRotation;
 

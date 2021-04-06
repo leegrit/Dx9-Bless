@@ -7,7 +7,7 @@
 #include "TerrainData.h"
 
 HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name)
-	: GameObject(ERenderType::RenderTexture, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 	/* Default Texture */
 	try
@@ -22,7 +22,7 @@ HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name
 }
 
 HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name, int editID)
-	: GameObject(ERenderType::RenderTexture, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 	SetEditID(editID);
 	/* Default Texture */

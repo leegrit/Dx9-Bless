@@ -349,14 +349,13 @@ namespace WPF_Tool
             CellData.Visibility = Visibility.Collapsed;
             AnimationData.Visibility = Visibility.Collapsed;
             TerrainData.Visibility = Visibility.Collapsed;
-            
+            LightData.Visibility = Visibility.Collapsed;
             switch (data.type)
             {
                 case GameObjectType.Mesh:
                     {
                         MeshData.Visibility = Visibility.Visible;
                         TransformData.Visibility = Visibility.Visible;
-
 
                         string meshOnlyName = "";
                         string ext = "";
@@ -526,6 +525,74 @@ namespace WPF_Tool
                         Externs.InsertGameData(ref data.gameObjectData);
                         Externs.InsertTerrainData(ref data.terrainData);
 
+                        break;
+                    }
+                case GameObjectType.Light:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        LightData.Visibility = Visibility.Visible;
+
+                        /* LightType */
+                        LightType.SelectedIndex = data.lightData.lightType;
+
+                        /* Direction */
+                        DirectionX.Text = data.lightData.direction.x.ToString();
+                        DirectionY.Text = data.lightData.direction.y.ToString();
+                        DirectionZ.Text = data.lightData.direction.z.ToString();
+
+                        /* Position */
+                        LightPositionX.Text = data.lightData.position.x.ToString();
+                        LightPositionY.Text = data.lightData.position.y.ToString();
+                        LightPositionZ.Text = data.lightData.position.z.ToString();
+
+                        /* Ambient */
+                        AmbientR.Text = data.lightData.ambient.r.ToString();
+                        AmbientG.Text = data.lightData.ambient.g.ToString();
+                        AmbientB.Text = data.lightData.ambient.b.ToString();
+                        AmbientA.Text = data.lightData.ambient.a.ToString();
+
+                        /* Ambient Intensity */
+                        AmbientIntensitySlider.Value = data.lightData.ambientIntensity;
+                        AmbientIntensityTextBox.Text = data.lightData.ambientIntensity.ToString();
+
+                        /* Diffuse */
+                        DiffuseR.Text = data.lightData.diffuse.r.ToString();
+                        DiffuseG.Text = data.lightData.diffuse.g.ToString();
+                        DiffuseB.Text = data.lightData.diffuse.b.ToString();
+                        DiffuseA.Text = data.lightData.diffuse.a.ToString();
+
+                        /* Diffuse Intensity */
+                        DiffuseIntensitySlider.Value = data.lightData.diffuseIntensity;
+                        DiffuseIntensityTextBox.Text = data.lightData.diffuseIntensity.ToString();
+
+                        /* Specular */
+                        SpecularR.Text = data.lightData.specular.r.ToString();
+                        SpecularG.Text = data.lightData.specular.g.ToString();
+                        SpecularB.Text = data.lightData.specular.b.ToString();
+                        SpecularA.Text = data.lightData.specular.a.ToString();
+
+                        /* Specular Intensity */
+                        SpecularIntensitySlider.Value = data.lightData.specularIntensity;
+                        SpecularIntensityTextBox.Text = data.lightData.specularIntensity.ToString();
+
+                        /* Specular Power */
+                        SpecularPowerSlider.Value = data.lightData.specularPower;
+                        SpecularPowerTextBox.Text = data.lightData.specularPower.ToString();
+
+                        /* Range */
+                        LightRange.Text = data.lightData.range.ToString();
+
+                        /* Constant */
+                        Constant.Text = data.lightData.constant.ToString();
+
+                        /* Linear */
+                        Linear.Text = data.lightData.linear.ToString();
+
+                        /* Quadratic */
+                        Quadratic.Text = data.lightData.quadratic.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertLightData(ref data.lightData);
                         break;
                     }
             }

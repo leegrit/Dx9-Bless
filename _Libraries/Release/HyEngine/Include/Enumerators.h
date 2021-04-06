@@ -23,13 +23,13 @@
 
 enum class ERenderType
 {
-	RenderMesh,
-	RenderD3DXMesh,
-	//RenderOpaque,
-	//RenderAlpha,
-	RenderTexture,
+	//RenderMesh,
+	//RenderD3DXMesh,
+	RenderOpaque,
+	RenderAlpha,
+	//RenderTexture,
 	//AlphaTexture,
-	RenderUI,
+	//RenderUI,
 	None,
 };
 
@@ -143,6 +143,7 @@ enum class EDataType
 	MeshData,
 	CellData,
 	TerrainData,
+	LightData,
 	End
 };
 

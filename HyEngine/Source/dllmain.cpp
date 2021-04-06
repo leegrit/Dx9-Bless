@@ -7,6 +7,8 @@
 #include "EditObject.h"
 #include "AnimNameData.h"
 #include "TerrainData.h"
+#include "LightData.h"
+
 using namespace HyEngine;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -182,4 +184,17 @@ extern "C" void WINAPI CreateTerrain(unsigned int editID)
 extern "C" void WINAPI InsertTerrainData(TerrainData* data)
 {
 	EDIT_ENGINE->InsertTerrainData(data);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// FOR LIGHT
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateLight(int editID)
+{
+	EDIT_ENGINE->CreateLight(editID);
+}
+extern "C" void WINAPI InsertLightData(LightData* data)
+{
+	EDIT_ENGINE->InsertLightData(data);
 }

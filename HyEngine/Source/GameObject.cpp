@@ -5,14 +5,15 @@
 #include "MeshData.h"
 #include "CellData.h"
 #include "TerrainData.h"
+#include "Scene.h"
+#include "ObjectContainer.h"
+#include "LightData.h"
 
-using namespace HyEngine;
 using namespace HyEngine;
 
 GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent,  const std::wstring& name)
 	: Object(name),
 	m_renderType(renderType),
-	m_bActiveSelf(true),
 	m_bViewFrustumCulled(false),
 	m_pScene(scene),
 	m_pParent(parent),
@@ -27,72 +28,19 @@ GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject * parent
 	m_pTransform = new Transform(this);
 	switch (renderType)
 	{
-	case ERenderType::RenderMesh :
-		m_pScene->AddMeshObject(this);
+	case ERenderType::RenderOpaque:
+		m_pScene->GetObjectContainer()->AddOpaqueObject(this);
 		break;
-	case ERenderType::RenderTexture:
-		m_pScene->AddTextureObject(this);
-		break;
-	case ERenderType::RenderUI :
-		m_pScene->AddUIObject(this);
+	case ERenderType::RenderAlpha :
+		m_pScene->GetObjectContainer()->AddAlphaObject(this);
 		break;
 	case ERenderType::None:
-		m_pScene->AddInvisibleObject(this);
+		m_pScene->GetObjectContainer()->AddInvisibleObject(this);
 		break;
 	}
 	if (m_pParent)
 		m_pParent->AddChild(this);
 }
-
-
-//GameObject::GameObject(ERenderType renderType, Scene* scene, GameObject* parent, const std::wstring& tag,
-//	const Vector3& originPos,
-//	const Quaternion& originRot,
-//	const Vector3& originScale)
-//	: Object(tag),
-//	m_renderType(renderType),
-//	m_bActiveSelf(true),
-//	m_pScene(scene),
-//	m_pParent(parent),
-//	m_tag(tag)
-//{
-//	m_pTransform = new Transform(this, originPos, originRot, originScale);
-//	/*switch (renderType)
-//	{
-//	case ERenderType::RenderOpaque:
-//		m_pScene->AddOpaqueObject(this);
-//		break;
-//	case ERenderType::RenderAlpha:
-//		m_pScene->AddAlphaObject(this);
-//		break;
-//	case ERenderType::Texture:
-//		m_pScene->AddTextureObject(this);
-//		break;
-//	case ERenderType::AlphaTexture:
-//		m_pScene->AddAlphaTextureObject(this);
-//		break;
-//	case ERenderType::UI:
-//		m_pScene->AddUIObject(this);
-//		break;
-//	case ERenderType::None:
-//		m_pScene->AddInvisibleObject(this);
-//		break;
-//	}*/
-//	switch (renderType)
-//	{
-//	case ERenderType::RenderMesh:
-//		m_pScene->AddMeshObject(this);
-//		break;
-//	case ERenderType::RenderTexture:
-//		m_pScene->AddTextureObject(this);
-//		break;
-//	case ERenderType::RenderUI:
-//		m_pScene->AddUIObject(this);
-//		break;
-//	}
-//	if (m_pParent)
-//		m_pParent->AddChild(this);
-//}
 
 
 GameObject::~GameObject()
@@ -125,7 +73,7 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	m_pTransform->Refresh();
+	//m_pTransform->Refresh();
 	for (auto& com : m_components)
 	{
 		if (com->GetBehaviourType() & BehaviourType::Update)
@@ -189,8 +137,7 @@ std::wstring HyEngine::GameObject::GetTag() const
 		else
 			OnDisable();
 	}
-	
-	m_bActiveSelf = active;
+	Object::SetActive(active);
 }
 
 void HyEngine::GameObject::SetTag(std::wstring tag)
@@ -292,6 +239,17 @@ void HyEngine::GameObject::InsertTerrainData(TerrainData * data)
 	strcpy_s(m_pTerrainData->normalFilePath, 256, data->normalFilePath);
 
 	UpdatedData(EDataType::TerrainData);
+}
+
+void HyEngine::GameObject::InsertLightData(LightData * data)
+{
+	if (m_pLightData == nullptr)
+		m_pLightData = new LightData();
+
+	/* Copy */
+	memcpy(m_pLightData, data, sizeof(LightData));
+
+	UpdatedData(EDataType::LightData);
 }
 
 EStaticType HyEngine::GameObject::GetStaticType() const

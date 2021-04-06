@@ -9,7 +9,7 @@ HyEngine::ParticleSystem::ParticleSystem()
 	m_pVB = nullptr;
 	m_pTexture = nullptr;
 	m_bActive = true;
-	ENGINE->GetActiveScene()->AddParticleSystem(this);
+	//ENGINE->GetActiveScene()->AddParticleSystem(this);
 }
 
 HyEngine::ParticleSystem::~ParticleSystem()

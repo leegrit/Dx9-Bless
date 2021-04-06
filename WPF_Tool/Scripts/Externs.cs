@@ -113,6 +113,12 @@ namespace WPF_Tool.Scripts
 
         [DllImport("HyEngine.dll")]
         public static extern void InsertTerrainData(ref TerrainData terrainData);
-        
+
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateLight(int editID);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void InsertLightData(ref LightData lightData);
+
     }
 }

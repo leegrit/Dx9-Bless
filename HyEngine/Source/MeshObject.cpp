@@ -63,7 +63,7 @@ HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ERenderType
 }
 
 HyEngine::MeshObject::MeshObject(Scene * scene, GameObject * parent, ED3DXMeshType meshType, D3DXCOLOR color, const std::wstring & name)
-	:GameObject(ERenderType::RenderMesh, scene, parent, name),
+	:GameObject(ERenderType::RenderOpaque, scene, parent, name),
 	m_color(color)
 {
 #ifdef TEST_MODE
@@ -145,16 +145,16 @@ void HyEngine::MeshObject::Render()
 		DEVICE->SetVertexDeclaration(m_pMesh->GetDeclare());
 		DEVICE->SetIndices(m_pMesh->GetIndexBuffer());
 	}
-	Light* pGlobalLight = GetScene()->GetGlobalLight();
-	assert(pGlobalLight->Type() == ELightType::DIRECTIONAL);
-	m_pEffect->SetValue("LightDirection", &pGlobalLight->Direction(), sizeof(pGlobalLight->Direction()));
-	m_pEffect->SetValue("Ambient", &pGlobalLight->Ambient(), sizeof(pGlobalLight->Ambient()));
-	m_pEffect->SetValue("AmbientIntensity", &pGlobalLight->AmbientIntensity(), sizeof(pGlobalLight->AmbientIntensity()));
-	m_pEffect->SetValue("Diffuse", &pGlobalLight->Diffuse(), sizeof(pGlobalLight->Diffuse()));
-	m_pEffect->SetValue("DiffuseIntensity", &pGlobalLight->DiffuseIntensity(), sizeof(pGlobalLight->DiffuseIntensity()));
-	m_pEffect->SetValue("Specular", &pGlobalLight->Specular(), sizeof(pGlobalLight->Specular()));
-	m_pEffect->SetValue("SpecularIntensity", &pGlobalLight->SpecularIntensity(), sizeof(pGlobalLight->SpecularIntensity()));
-	m_pEffect->SetValue("SpecularPower", &pGlobalLight->SpecularPower(), sizeof(pGlobalLight->SpecularPower()));
+// 	Light* pGlobalLight = GetScene()->GetGlobalLight();
+// 	assert(pGlobalLight->Type() == ELightType::DIRECTIONAL);
+// 	m_pEffect->SetValue("LightDirection", &pGlobalLight->Direction(), sizeof(pGlobalLight->Direction()));
+// 	m_pEffect->SetValue("Ambient", &pGlobalLight->Ambient(), sizeof(pGlobalLight->Ambient()));
+// 	m_pEffect->SetValue("AmbientIntensity", &pGlobalLight->AmbientIntensity(), sizeof(pGlobalLight->AmbientIntensity()));
+// 	m_pEffect->SetValue("Diffuse", &pGlobalLight->Diffuse(), sizeof(pGlobalLight->Diffuse()));
+// 	m_pEffect->SetValue("DiffuseIntensity", &pGlobalLight->DiffuseIntensity(), sizeof(pGlobalLight->DiffuseIntensity()));
+// 	m_pEffect->SetValue("Specular", &pGlobalLight->Specular(), sizeof(pGlobalLight->Specular()));
+// 	m_pEffect->SetValue("SpecularIntensity", &pGlobalLight->SpecularIntensity(), sizeof(pGlobalLight->SpecularIntensity()));
+// 	m_pEffect->SetValue("SpecularPower", &pGlobalLight->SpecularPower(), sizeof(pGlobalLight->SpecularPower()));
 
 	m_pEffect->SetValue("DissolveAmount", &m_dissolveAmount, sizeof(m_dissolveAmount));
 	m_pEffect->SetValue("FringeAmount", &m_fringeAmount, sizeof(m_fringeAmount));
