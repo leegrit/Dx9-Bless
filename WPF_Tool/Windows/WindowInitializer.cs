@@ -71,6 +71,7 @@ namespace WPF_Tool
             Paths.AssetPath = tempString + @"_Resources\Assets\";
             Paths.SceneDataPath = tempString + @"_Resources\Datas\SceneData\";
             Paths.TerrainDataPath = tempString + @"_Resources\Datas\TerrainData\";
+            Paths.LightDataPath = tempString + @"_Resources\Datas\LightData\";
 
             frameRateCalculator = new FrameRateCalculator();
             cameraController = new CameraController(this);

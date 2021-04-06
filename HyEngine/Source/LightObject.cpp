@@ -12,7 +12,7 @@ HyEngine::LightObject::LightObject(Scene * scene, GameObject * parent, int editI
 
 HyEngine::LightObject::~LightObject()
 {
-
+	Object::Destroy(m_pLight);
 }
 
 void HyEngine::LightObject::Initialize()

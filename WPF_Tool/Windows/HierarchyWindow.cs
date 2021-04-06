@@ -247,6 +247,9 @@ namespace WPF_Tool
                 case GameObjectType.Terrain:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.Light:
+                    item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -274,6 +277,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.Terrain:
                     Externs.CreateTerrain((uint)index);
+                    break;
+                case GameObjectType.Light:
+                    Externs.CreateLight(index);
                     break;
                 default:
                     Debug.Assert(false);

@@ -678,7 +678,7 @@ namespace WPF_Tool.Utility
             lightData.cone = (float)lightDataJson["Cone"];
 
             /* For Constant */
-            lightData.range = (float)lightDataJson["Constant"];
+            lightData.constant = (float)lightDataJson["Constant"];
 
             /* For Linear */
             lightData.linear = (float)lightDataJson["Linear"];
@@ -878,6 +878,9 @@ namespace WPF_Tool.Utility
                     break;
                 case EDataType.Terrain:
                     defaultPath = Paths.TerrainDataPath;
+                    break;
+                case EDataType.Light:
+                    defaultPath = Paths.LightDataPath;
                     break;
                 default:
                     Debug.Assert(false);

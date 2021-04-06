@@ -152,6 +152,18 @@ namespace WPF_Tool
                 MessageBox.Show("Terrain 정보 저장에 성공했습니다.\n FileName : " + fileName, "Terrain Save 성공");
             }
         }
+        private void BTN_ExportLight(object sender, RoutedEventArgs e)
+        {
+            if (hierarchyList.Count == 0) return;
+
+            bool result;
+            string fileName = "";
+            result = JsonHelper.Write(selectedHierarchy, ref fileName);
+            if (result)
+            {
+                MessageBox.Show("Terrain 정보 저장에 성공했습니다.\n FileName : " + fileName, "Terrain Save 성공");
+            }
+        }
         // ---------------------------------------------------------------------------------------------
         // IMPORTS
         // --------------------------------------------------------------------------------------------
@@ -318,6 +330,47 @@ namespace WPF_Tool
                     HierarchyData hierarchyData = new HierarchyData();
 
                     bool result = JsonHelper.Read(ref hierarchyData, text, EDataType.Terrain);
+                    if (result == false)
+                    {
+                        MessageBox.Show("Load에 실패했습니다.\n선택한 파일 :  " + text, "HierarchyData Load Failed");
+                        DebugLog("HierarchyLoadFailed : " + text, ELogType.Warning);
+                        return;
+                    }
+
+                    AddHierarchy(hierarchyData);
+
+                    return;
+                }
+            }
+        }
+        private void BTN_ImportLight(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofdlg = new OpenFileDialog();
+            {
+
+                ofdlg.InitialDirectory = Paths.LightDataPath;
+                ofdlg.CheckFileExists = true;
+                ofdlg.CheckPathExists = true;
+
+                // 파일 열기(값의 유무 확인)
+                if (ofdlg.ShowDialog().GetValueOrDefault())
+                {
+                    int lastIndex = ofdlg.FileName.LastIndexOf("\\");
+                    string text = ofdlg.FileName.Substring(lastIndex + 1);
+                    int extIndex = text.LastIndexOf(".");
+                    string ext = text.Substring(extIndex);
+
+                    if (ext != ".json")
+                    {
+                        // 실패 / 잘못된 포맷
+                        MessageBox.Show("Load에 실패했습니다. 잘못된 format입니다. \n선택한 파일 : " + text, "HierarchyData Load Failed");
+                        DebugLog("HierarchyLoadFailed : " + text, ELogType.Warning);
+                        return;
+                    }
+
+                    HierarchyData hierarchyData = new HierarchyData();
+
+                    bool result = JsonHelper.Read(ref hierarchyData, text, EDataType.Light);
                     if (result == false)
                     {
                         MessageBox.Show("Load에 실패했습니다.\n선택한 파일 :  " + text, "HierarchyData Load Failed");

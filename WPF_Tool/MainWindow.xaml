@@ -31,6 +31,7 @@
                     <MenuItem Header="_Import MapData" Click="BTN_ImportMapData"/>
                     <MenuItem Header="_Import NavMesh" Click="BTN_ImportNavMesh"/>
                     <MenuItem Header="_Import Terrain" Click="BTN_ImportTerrain"/>
+                    <MenuItem Header="_Import Light" Click="BTN_ImportLight"/>
                     <MenuItem Header="_Import Effect" />
                     <Separator/>
                     <MenuItem Header="_Export Scene" Click="BTN_ExportScene"/>
@@ -38,6 +39,7 @@
                     <MenuItem Header="_Export MapData"  Click="BTN_ExportMapData"/>
                     <MenuItem Header="_Export NavMesh"  Click="BTN_ExportNavMesh"/>
                     <MenuItem Header="_Export Terrain"  Click="BTN_ExportTerrain"/>
+                    <MenuItem Header="_Export Light"  Click="BTN_ExportLight"/>
                     <MenuItem Header="_Export Effect" />
                 </MenuItem>
                 <MenuItem Header="GameObject" Height="30" >
