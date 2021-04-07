@@ -63,11 +63,23 @@ void EditMesh::Render()
 			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
 			pShader->SetTexture(albedoHandle, m_textures[i]);
 
+			/* Get Directory path */
+			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastLoadedMeshPath);
+
 			/* Find normal map */
 			std::wstring normalMapName = m_textureNames[i];
 			CString::Replace(&normalMapName, L"_D_", L"_N_");
-			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastLoadedMeshPath);
 			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
+
+			/* Find Emissive map */
+			std::wstring emissiveMapName = m_textureNames[i];
+			CString::Replace(&emissiveMapName, L"_D_", L"_E_");
+			IDirect3DTexture9* emissiveMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + emissiveMapName);
+
+			/* Find Specular map */
+			std::wstring specularMapName = m_textureNames[i];
+			CString::Replace(&specularMapName, L"_D_", L"_SP_");
+			IDirect3DTexture9* specularMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + specularMapName);
 
 			bool hasNormalMap = false;
 
@@ -79,8 +91,38 @@ void EditMesh::Render()
 				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
 				pShader->SetTexture(normalHandle, normalMap);
 			}
+			else
+			{
+				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
+				pShader->SetTexture(normalHandle, NULL);
+			}
 			pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
-			
+
+			/* If emissiveMap exists set texture */
+			if (emissiveMap != nullptr)
+			{
+				D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
+				pShader->SetTexture(emissiveHandle, emissiveMap);
+			}
+			else
+			{
+				D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
+				pShader->SetTexture(emissiveHandle, NULL);
+			}
+
+			/* If specularMap exists, set texture */
+			if (specularMap != nullptr)
+			{
+				D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+				pShader->SetTexture(specularHandle, specularMap);
+			}
+			else
+			{
+				D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+				pShader->SetTexture(specularHandle, NULL);
+			}
+
+			pShader->SetBool("HasEmissiveMap", false);
 			pShader->SetTechnique("GBuffer");
 			pShader->Begin(0, 0);
 			{
@@ -107,7 +149,6 @@ void EditMesh::Render()
 		/* Set albedo */
 		D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
 		pShader->SetTexture(albedoHandle, m_pBaseTex);
-
 		pShader->SetTechnique("GBuffer");
 		pShader->Begin(0, 0);
 		{

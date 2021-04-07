@@ -73,9 +73,6 @@ namespace HyEngine
 
 
 		std::wstring m_lastMeshPath;
-
-
-
 	};
 
 }

@@ -63,14 +63,17 @@ namespace HyEngine
 		// DEFERRED VARIABLES
 		//////////////////////////////////////////////////////////////////////////
 	private: /* RenderTarget Textures*/
+		// depth : rgb에 emissive.rgb, a에 depth값이 저장된다.
 		IDirect3DTexture9 * m_pDepthRTTexture = nullptr;
 		IDirect3DTexture9 * m_pAlbedoRTTexture = nullptr;
 		IDirect3DTexture9 * m_pNormalRTTexture = nullptr;
+		IDirect3DTexture9 * m_pSpecularRTTexture = nullptr;
 
 	private: /* RenderTarget Surfaces */
 		IDirect3DSurface9 * m_pDepthRTSurface = nullptr;
 		IDirect3DSurface9 * m_pAlbedoRTSurface = nullptr;
 		IDirect3DSurface9 * m_pNormalRTSurface = nullptr;
+		IDirect3DSurface9 * m_pSpecularRTSurface = nullptr;
 
 	private: /* For Stash */
 		IDirect3DTexture9 * m_pStashRTTexture = nullptr;

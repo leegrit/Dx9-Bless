@@ -90,8 +90,6 @@ void HyEngine::EditDynamicMesh::Render()
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
-			float farPlane = pSelectedCamera->GetFar();
-			pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
 			pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
 			pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
 			pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
@@ -122,8 +120,9 @@ void HyEngine::EditDynamicMesh::Render()
 				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
 				pShader->SetTexture(normalHandle, NULL);
 			}
-			pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+
 			pShader->SetBool("HasNormalMap", hasNormalMap);
+			pShader->SetBool("HasEmissiveMap", false);
 			pShader->SetTechnique("GBuffer");
 			pShader->Begin(0, 0);
 			{

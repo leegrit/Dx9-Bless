@@ -19,7 +19,7 @@ void HyEngine::Renderer::Setup()
 		WinMaxHeight,
 		D3DX_DEFAULT,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_R32F,
+		D3DFMT_A32B32G32R32F,
 		D3DPOOL_DEFAULT,
 		&m_pDepthRTTexture
 	);
@@ -60,6 +60,19 @@ void HyEngine::Renderer::Setup()
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
+		&m_pSpecularRTTexture
+	);
+	m_pSpecularRTTexture->GetSurfaceLevel(0, &m_pSpecularRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		D3DX_DEFAULT,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8R8G8B8,
+		D3DPOOL_DEFAULT,
 		&m_pStashRTTexture
 	);
 	m_pStashRTTexture->GetSurfaceLevel(0, &m_pStashRTSurface);
@@ -80,6 +93,9 @@ void HyEngine::Renderer::Cleanup()
 	/* Normal */
 	SAFE_RELEASE(m_pNormalRTTexture);
 	SAFE_RELEASE(m_pNormalRTSurface);
+	/* Specular */
+	SAFE_RELEASE(m_pSpecularRTTexture);
+	SAFE_RELEASE(m_pSpecularRTSurface);
 	/* Stash */
 	SAFE_RELEASE(m_pStashRTTexture);
 	SAFE_RELEASE(m_pStashRTSurface);
@@ -94,7 +110,7 @@ void HyEngine::Renderer::ClearBackBuffer()
 
 void HyEngine::Renderer::ClearStashSurface()
 {
-	DEVICE->ColorFill(m_pStashRTSurface, NULL, D3DXCOLOR(0.f, 0.f, 0.f, 0.f));
+	DEVICE->ColorFill(m_pStashRTSurface, NULL, 0x00000000);
 }
 
 void HyEngine::Renderer::Render(Scene * scene)
@@ -154,6 +170,7 @@ void HyEngine::Renderer::SetGBufferMRT()
 	DEVICE->SetRenderTarget(0, m_pDepthRTSurface);
 	DEVICE->SetRenderTarget(1, m_pAlbedoRTSurface);
 	DEVICE->SetRenderTarget(2, m_pNormalRTSurface);
+	DEVICE->SetRenderTarget(3, m_pSpecularRTSurface);
 }
 
 void HyEngine::Renderer::SetLightMRT()
@@ -166,6 +183,7 @@ void HyEngine::Renderer::SetOriginMRT()
 	DEVICE->SetRenderTarget(1, NULL);
 	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
+	DEVICE->SetRenderTarget(4, NULL);
 }
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
@@ -316,6 +334,9 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 		D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
 		pShader->SetTexture(normalHandle, m_pNormalRTTexture);
+
+		D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+		pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
 		D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
 		pShader->SetTexture(stashHandle, m_pStashRTTexture);

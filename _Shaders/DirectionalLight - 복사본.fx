@@ -4,8 +4,6 @@ matrix ViewMatrixInv;
 matrix ProjMatrix;
 matrix ProjMatrixInv;
 
-/* For Specular */
-float3 EyePosition;
 
 /* 나중에 따로 분리 */
 /* For Light Data */
@@ -83,9 +81,7 @@ void DirectionalLightVS(
 	float4 position : POSITION,
 	float2 texcoord : TEXCOORD0,
 	out float4 outPosition : POSITION,
-	out float2 outTexcoord : TEXCOORD0,
-	out float3 outViewDirection : TEXCOORD1,
-	out float3 outReflection : TEXCOORD2
+	out float2 outTexcoord : TEXCOORD0
 )
 {
 	outPosition = mul(position, WorldMatrix);
@@ -93,9 +89,6 @@ void DirectionalLightVS(
 	outPosition = mul(outPosition, ProjMatrix);
 
 	outTexcoord = texcoord;
-
-
-
 }
 
 float4 DirectionalLightPS(
@@ -105,7 +98,6 @@ float4 DirectionalLightPS(
 	float4 depthMap = tex2D(DepthSampler, texcoord);
 	float4 albedoMap = tex2D(AlbedoSampler, texcoord);
 	float4 normalMap = tex2D(NormalSampler, texcoord);
-	float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
 
 
@@ -120,31 +112,6 @@ float4 DirectionalLightPS(
 	float3 emissive = depthMap.rgb;
 	finalColor += lightIntensity * albedoMap.rgb * Diffuse.rgb + emissive;
 
-	/* Calculate world position */
-	float4 worldPos;
-	worldPos.x = texcoord.x * 2.f - 1.f;
-	worldPos.y = texcoord.y * -2.f + 1.f;
-	worldPos.z = depthMap.a;
-	worldPos.w = 1;
-
-	worldPos = mul(worldPos, ProjMatrixInv);
-	worldPos = mul(worldPos, ViewMatrixInv);
-
-	worldPos = worldPos / worldPos.w;
-
-	/* Calculate Specular */
-	float3 specular = float3(0, 0, 0); 
-	if(finalColor.x > 0)
-	{
-		float3 viewDirection = normalize(EyePosition.xyz - worldPos.xyz);
-		float3 reflection = 2 * lightIntensity * normal - lightDir;  //reflect(lightDir, normal);
-		reflection = normalize(reflection);
-		float specularIntensity = saturate(dot(reflection, viewDirection));
-
-		specular = pow(specularIntensity, SpecularPower);
-		specular = specular * specularMap.rgb;
-	}
-	finalColor = saturate(finalColor + specular.rgb);
 
 	// depth rgb is emissive color
 	return float4(finalColor.rgb + stashMap.rgb, 1) ;//+ float4(depthMap.rgb, 1);

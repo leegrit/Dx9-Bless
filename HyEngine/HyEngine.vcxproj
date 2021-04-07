@@ -446,7 +446,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
-    <FxCompile Include="..\_Shaders\GBuffer_BumpTest.fx" />
+    <FxCompile Include="..\_Shaders\GBuffer.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
   </ItemGroup>

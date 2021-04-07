@@ -117,7 +117,7 @@ float4 SpotLightPS(
 	float4 worldPos;
 	worldPos.x = texcoord.x * 2.f - 1.f;
 	worldPos.y = texcoord.y * -2.f + 1.f;
-	worldPos.z = depthMap.x;
+	worldPos.z = depthMap.a;
 	worldPos.w = 1;
 
 	worldPos = mul(worldPos, ProjMatrixInv);
@@ -173,6 +173,7 @@ technique SpotLight
 {
 	pass P0
 	{
+		ZEnable = false;
 		VertexShader = compile vs_3_0 SpotLightVS();
 		PixelShader = compile ps_3_0 SpotLightPS();
 	}

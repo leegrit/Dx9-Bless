@@ -114,7 +114,6 @@ float4 PointLightPS(
 	//float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
 	 
-	float linearZ = depthMap.y * Far;
 
 	/*
 	float4 worldPos;
@@ -130,7 +129,7 @@ float4 PointLightPS(
 	float4 worldPos;
 	worldPos.x = texcoord.x * 2.f - 1.f;
 	worldPos.y = texcoord.y * -2.f + 1.f;
-	worldPos.z = depthMap.x;
+	worldPos.z = depthMap.a;
 	worldPos.w = 1;
 
 	worldPos = mul(worldPos, ProjMatrixInv);
@@ -185,6 +184,7 @@ technique PointLight
 {
 	pass P0
 	{
+		ZEnable = false;
 		VertexShader = compile vs_3_0 PointLightVS();
 		PixelShader = compile ps_3_0 PointLightPS();
 	}

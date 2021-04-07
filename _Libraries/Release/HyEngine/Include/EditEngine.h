@@ -92,6 +92,7 @@ namespace HyEngine
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }
 		inline Timer* GetTimer() const { return m_pTimer; }
+		inline Renderer* GetRenderer() const;
 	private :
 
 		bool Initialize();
