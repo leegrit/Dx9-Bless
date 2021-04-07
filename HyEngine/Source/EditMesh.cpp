@@ -47,6 +47,7 @@ void EditMesh::Render()
 		for (int i = 0; i < m_mtrls.size(); i++)
 		{
 			float farPlane = pSelectedCamera->GetFar();
+
 			pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
 
 
@@ -62,6 +63,24 @@ void EditMesh::Render()
 			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
 			pShader->SetTexture(albedoHandle, m_textures[i]);
 
+			/* Find normal map */
+			std::wstring normalMapName = m_textureNames[i];
+			CString::Replace(&normalMapName, L"_D_", L"_N_");
+			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastLoadedMeshPath);
+			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
+
+			bool hasNormalMap = false;
+
+			/* If normalmap exists, set texture. */
+			if (normalMap != nullptr)
+			{
+				hasNormalMap = true;
+
+				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
+				pShader->SetTexture(normalHandle, normalMap);
+			}
+			pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+			
 			pShader->SetTechnique("GBuffer");
 			pShader->Begin(0, 0);
 			{
@@ -203,9 +222,8 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 						// the MatD3D property doesn't have an ambient value set
 						// when its loaded, so set it now:
 						mtrls[i].MatD3D.Ambient = mtrls[i].MatD3D.Diffuse;
-
 						// save the ith material
-						m_mtrls.push_back(mtrls[i].MatD3D);
+						m_mtrls.push_back(mtrls[i]);
 
 						// check if the ith material has an associative texture
 						if (mtrls[i].pTextureFilename != 0)
@@ -218,12 +236,13 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 								(dirPath + fileName).c_str(),
 								&tex
 							);
-
+							m_textureNames.push_back(fileName);
 							// save the loaded texture
 							m_textures.push_back(tex);
 						}
 						else
 						{
+							m_textureNames.push_back(L"");
 							// no texture for the ith subset
 							m_textures.push_back(0);
 						}
@@ -243,6 +262,55 @@ void HyEngine::EditMesh::UpdatedData(EDataType dataType)
 				adjBuffer->Release();
 
 				assert(SUCCEEDED(hr));
+
+ 
+ 				D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
+ 				DWORD vertexStride = m_pDxMesh->GetNumBytesPerVertex();
+ 				if (SUCCEEDED(m_pDxMesh->GetDeclaration(meshDeclaration)))
+ 				{
+ 					DWORD numDeclarations = 0;
+ 					for (int i = 0; (i < MAX_FVF_DECL_SIZE) && (meshDeclaration[i].Stream != 0xFF); i++)
+ 					{
+ 						numDeclarations++;
+ 					}
+ 					/* Tangent */
+ 					meshDeclaration[numDeclarations].Stream = 0;
+ 					meshDeclaration[numDeclarations].Offset = (WORD)vertexStride;
+ 					meshDeclaration[numDeclarations].Type = D3DDECLTYPE_FLOAT3;
+ 					meshDeclaration[numDeclarations].Method = D3DDECLMETHOD_DEFAULT;
+ 					meshDeclaration[numDeclarations].Usage = D3DDECLUSAGE_TANGENT;
+ 					meshDeclaration[numDeclarations].UsageIndex = 0;
+ 
+ 					/* Binormal */
+ 					meshDeclaration[numDeclarations + 1].Stream = 0;
+ 					meshDeclaration[numDeclarations + 1].Offset = (WORD)(vertexStride + 3 * sizeof(float));
+ 					meshDeclaration[numDeclarations + 1].Type = D3DDECLTYPE_FLOAT3;
+					meshDeclaration[numDeclarations + 1].Method = D3DDECLMETHOD_DEFAULT;
+ 					meshDeclaration[numDeclarations + 1].Usage = D3DDECLUSAGE_BINORMAL;
+ 					meshDeclaration[numDeclarations + 1].UsageIndex = 0;
+ 
+ 					/* Ending element */
+ 					memset(&meshDeclaration[numDeclarations + 2], 0, sizeof(D3DVERTEXELEMENT9));
+ 					meshDeclaration[numDeclarations + 2].Stream = 0xFF;
+ 					meshDeclaration[numDeclarations + 2].Type = D3DDECLTYPE_UNUSED;
+ 
+ 					ID3DXMesh* clonedMesh = nullptr;
+ 					if (SUCCEEDED(m_pDxMesh->CloneMesh(m_pDxMesh->GetOptions(), meshDeclaration, DEVICE, &clonedMesh)))
+ 					{
+ 						m_pDxMesh->Release();
+ 						m_pDxMesh = clonedMesh;
+ 					}
+ 
+ 				}
+ 				m_pDxMesh->UpdateSemantics(meshDeclaration);
+ 
+ 
+ 				/* Get adjacency */
+ 				LPDWORD pAdjacency = new DWORD[m_pDxMesh->GetNumFaces() * 3];
+ 				m_pDxMesh->GenerateAdjacency(0.0001f, pAdjacency);
+ 
+ 				/* Compute tangent vector */
+ 				D3DXComputeTangent(m_pDxMesh, 0, 0, 0, 1, pAdjacency);
 
 
 				// Collider 크기 변경

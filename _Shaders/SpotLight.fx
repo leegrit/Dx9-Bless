@@ -1,4 +1,3 @@
-float Far;
 
 matrix WorldMatrix;
 matrix ViewMatrix;
@@ -44,7 +43,7 @@ sampler DepthSampler = sampler_state
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
-    AddressU = clamp;
+    AddressU = wrap;
     AddressV = clamp;
 };
 texture AlbedoTex;

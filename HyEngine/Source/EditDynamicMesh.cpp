@@ -101,6 +101,29 @@ void HyEngine::EditDynamicMesh::Render()
 			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
 			pShader->SetTexture(albedoHandle, pMeshContainer->ppTexture[i]);
 
+			/* Find normal map */
+			std::wstring normalMapName = pMeshContainer->pTextureNames[i];
+			CString::Replace(&normalMapName, L"_D_", L"_N_");
+			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastMeshPath);
+			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
+			
+			bool hasNormalMap = false;
+			
+			/* If normalmap exists, set texture. */
+			if (normalMap != nullptr)
+			{
+				hasNormalMap = true;
+
+				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
+				pShader->SetTexture(normalHandle, normalMap);
+			}
+			else
+			{
+				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
+				pShader->SetTexture(normalHandle, NULL);
+			}
+			pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+			pShader->SetBool("HasNormalMap", hasNormalMap);
 			pShader->SetTechnique("GBuffer");
 			pShader->Begin(0, 0);
 			{
@@ -109,7 +132,7 @@ void HyEngine::EditDynamicMesh::Render()
 				pShader->EndPass();
 			}
 			pShader->End();
-
+			
 
 		}
 
@@ -161,16 +184,22 @@ void HyEngine::EditDynamicMesh::InitializeMeshes(std::wstring filePath, std::wst
 	);
 	assert(SUCCEEDED(hr));
 
+
+
 	m_pAniCtrl = new AnimationController(pAniCtrl);
 	assert(m_pAniCtrl);
 
 	SAFE_RELEASE(pAniCtrl);
 
+
 	D3DXMATRIX matTemp;
 	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
 
+
+
 	SetupFrameMatrixPointer((D3DXFRAME_DERIVED*)m_pRootFrame);
 
+	
 }
 
 const D3DXFRAME_DERIVED * HyEngine::EditDynamicMesh::GetFrameByName(const char * frameName)

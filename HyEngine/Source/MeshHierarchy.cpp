@@ -35,14 +35,69 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 
 	LPD3DXMESH pMesh = pMeshData->pMesh;
 
+	/* Calculate Tangent */
+	D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
+	DWORD vertexStride = pMesh->GetNumBytesPerVertex();
+	if (SUCCEEDED(pMesh->GetDeclaration(meshDeclaration)))
+	{
+		DWORD numDeclarations = 0;
+		for (int i = 0; (i < MAX_FVF_DECL_SIZE) && (meshDeclaration[i].Stream != 0xFF); i++)
+		{
+			numDeclarations++;
+		}
+		/* Tangent */
+		meshDeclaration[numDeclarations].Stream = 0;
+		meshDeclaration[numDeclarations].Offset = (WORD)vertexStride;
+		meshDeclaration[numDeclarations].Type = D3DDECLTYPE_FLOAT3;
+		meshDeclaration[numDeclarations].Method = D3DDECLMETHOD_DEFAULT;
+		meshDeclaration[numDeclarations].Usage = D3DDECLUSAGE_TANGENT;
+		meshDeclaration[numDeclarations].UsageIndex = 0;
+
+		/* Binormal */
+		meshDeclaration[numDeclarations + 1].Stream = 0;
+		meshDeclaration[numDeclarations + 1].Offset = (WORD)(vertexStride + 3 * sizeof(float));
+		meshDeclaration[numDeclarations + 1].Type = D3DDECLTYPE_FLOAT3;
+		meshDeclaration[numDeclarations + 1].Method = D3DDECLMETHOD_DEFAULT;
+		meshDeclaration[numDeclarations + 1].Usage = D3DDECLUSAGE_BINORMAL;
+		meshDeclaration[numDeclarations + 1].UsageIndex = 0;
+
+		/* Ending element */
+		memset(&meshDeclaration[numDeclarations + 2], 0, sizeof(D3DVERTEXELEMENT9));
+		meshDeclaration[numDeclarations + 2].Stream = 0xFF;
+		meshDeclaration[numDeclarations + 2].Type = D3DDECLTYPE_UNUSED;
+
+		ID3DXMesh* clonedMesh;
+		if (SUCCEEDED(pMesh->CloneMesh(pMesh->GetOptions(), meshDeclaration, DEVICE, &clonedMesh)))
+		{
+			//pMesh->Release();
+			pMesh = clonedMesh;
+		}
+
+	}
+	pMesh->UpdateSemantics(meshDeclaration);
+
+
+	/* Get adjacency */
+	pMeshContainer->pAdjacency = new DWORD[pMesh->GetNumFaces() * 3];
+	pMesh->GenerateAdjacency(0.0001f, pMeshContainer->pAdjacency);
+
+	/* Compute tangent vector */
+	D3DXComputeTangent(pMesh, 0, 0, 0, 1, pMeshContainer->pAdjacency);
+
+
+
+
 	unsigned long numFaces = pMesh->GetNumFaces();
 
-	pMeshContainer->pAdjacency = new unsigned long[numFaces * 3];
-	memcpy(pMeshContainer->pAdjacency, pAdjacency, sizeof(unsigned long) * numFaces * 3);
+// 	pMeshContainer->pAdjacency = new unsigned long[numFaces * 3];
+// 	memcpy(pMeshContainer->pAdjacency, pAdjacency, sizeof(unsigned long) * numFaces * 3);
+// 
+// 	/* 테스트 */
+// 	pMeshContainer->pAdjacency = pAdjacency2;
 
 	unsigned long fvf = pMesh->GetFVF();
 
-	if (!(fvf & D3DFVF_NORMAL))
+	/*if (!(fvf & D3DFVF_NORMAL))
 	{
 		pMesh->CloneMeshFVF(pMesh->GetOptions(),
 			fvf | D3DFVF_NORMAL,
@@ -53,7 +108,8 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	else
 	{
 		pMesh->CloneMeshFVF(pMesh->GetOptions(), fvf, DEVICE, &pMeshContainer->MeshData.pMesh);
-	}
+	}*/
+	pMesh->CloneMesh(pMesh->GetOptions(), meshDeclaration, DEVICE, &pMeshContainer->MeshData.pMesh);
 
 	// 재질의 개수를 채워주는데 없는 경우도 있기 때문에 조건문을 달아준다.
 	pMeshContainer->NumMaterials = (numMaterials == 0 ? 1 : numMaterials);
@@ -65,6 +121,8 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	// 텍스처 동적할당 (재질 개수만큼)
 	pMeshContainer->ppTexture = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
 	ZeroMemory(pMeshContainer->ppTexture, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
+
+	pMeshContainer->pTextureNames = new std::wstring[pMeshContainer->NumMaterials];
 
 	// 재질이 있는 경우
 	if(0 != numMaterials) 
@@ -93,6 +151,7 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 			{
 				return E_FAIL;
 			}
+			pMeshContainer->pTextureNames[i] = CString::CharToWstring( pMeshContainer->pMaterials[i].pTextureFilename);
 		}
 	}
 	else // 재질이 없는 경우
@@ -110,11 +169,18 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	if (nullptr == pSkinInfo) // Skinned Mesh가 아닌 경우 그냥 반환한다.
 		return S_OK;
 
+	pSkinInfo->SetDeclaration(meshDeclaration);
+
+
 	pMeshContainer->pSkinInfo = pSkinInfo;
 	pMeshContainer->pSkinInfo->AddRef();
 
-	pMeshContainer->MeshData.pMesh->CloneMeshFVF(pMeshContainer->MeshData.pMesh->GetOptions(),
+	/*pMeshContainer->MeshData.pMesh->CloneMeshFVF(pMeshContainer->MeshData.pMesh->GetOptions(),
 		pMeshContainer->MeshData.pMesh->GetFVF(),
+		DEVICE,
+		&pMeshContainer->pOriMesh);*/
+	pMesh->CloneMesh(pMesh->GetOptions(),
+		meshDeclaration,
 		DEVICE,
 		&pMeshContainer->pOriMesh);
 

@@ -121,5 +121,6 @@ namespace HyEngine
 			std::uniform_real_distribution<> distr(min, max);
 			return distr(gen);
 		}
+
 	}
 }

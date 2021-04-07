@@ -39,8 +39,9 @@ namespace HyEngine
 
 		// for xfile format
 		ID3DXMesh* m_pDxMesh = nullptr;
-		std::vector<D3DMATERIAL9> m_mtrls;
+		std::vector<D3DXMATERIAL> m_mtrls;
 		std::vector<IDirect3DTexture9*> m_textures;
+		std::vector<std::wstring> m_textureNames;
 
 		std::wstring m_lastLoadedMeshPath;
 

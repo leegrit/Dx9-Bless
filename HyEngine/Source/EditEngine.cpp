@@ -140,7 +140,7 @@ void HyEngine::EditEngine::InitLoggingService()
 
 void HyEngine::EditEngine::LoadShaders()
 {
-	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer.fx");
+	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer_BumpTest.fx");
 	InsertShader(L"PointLight", PATH->ShadersPathW() + L"PointLight.fx");
 	InsertShader(L"SpotLight", PATH->ShadersPathW() + L"SpotLight.fx");
 	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
