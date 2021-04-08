@@ -159,6 +159,12 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 {
 	/* Render Alpha */
+	auto& list = scene->GetObjectContainer()->GetRenderableAlphaAll();
+	if (list.size() == 0) return;
+	for (auto& alpha : list)
+	{
+		alpha->Render();
+	}
 }
 
 void HyEngine::Renderer::SetGBufferMRT()
@@ -183,12 +189,11 @@ void HyEngine::Renderer::SetOriginMRT()
 	DEVICE->SetRenderTarget(1, NULL);
 	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
-	DEVICE->SetRenderTarget(4, NULL);
 }
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
 {
-	auto& list = scene->GetObjectContainer()->GetOpaqueObjectAll();
+	auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
 	if (list.size() == 0) return;
 	for (auto& opaque : list)
 	{
@@ -257,7 +262,7 @@ void HyEngine::Renderer::AmbientPass(Scene * scene)
 
 void HyEngine::Renderer::LightPass(Scene * scene)
 {
-	auto& list = scene->GetObjectContainer()->GetLightAll();
+	auto& list = scene->GetObjectContainer()->GetRenderableLightAll();
 	if (list.size() == 0) return;
 	for (auto& light : list)
 	{

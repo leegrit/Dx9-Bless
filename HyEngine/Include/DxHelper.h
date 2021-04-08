@@ -2,8 +2,10 @@
 
 namespace HyEngine
 {
-	namespace DxHelper
+	class BumpModelVertex;
+	class DxHelper
 	{
+	public :
 		static DWORD Float2DWORD(float f)
 		{
 			return *((DWORD*)&f);
@@ -122,5 +124,9 @@ namespace HyEngine
 			return distr(gen);
 		}
 
-	}
+		static void CalculateTangentBinormal(const BumpModelVertex * vertex1, const BumpModelVertex *  vertex2, const  BumpModelVertex * vertex3,
+			_Out_ D3DXVECTOR3 * tangent, _Out_ D3DXVECTOR3* binormal);
+
+		static void CalculateNormal(const D3DXVECTOR3 * tangent, const D3DXVECTOR3 * binormal, _Out_ D3DXVECTOR3* normal);
+	};
 }

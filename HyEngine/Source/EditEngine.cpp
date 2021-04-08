@@ -150,6 +150,7 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"SpotLight", PATH->ShadersPathW() + L"SpotLight.fx");
 	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
 	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
+	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)

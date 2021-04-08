@@ -6,8 +6,8 @@ matrix ProjMatrix;
 matrix ProjMatrixInv;
 
 
-matrix TempViewMatrix;
-matrix TempProjMatrix;
+/* For Specular */
+float3 EyePosition;
 
 /* 나중에 따로 분리 */
 /* For Light Data */
@@ -111,7 +111,7 @@ float4 SpotLightPS(
 	float4 depthMap  = tex2D(DepthSampler, texcoord);
 	float4 albedoMap = tex2D(AlbedoSampler, texcoord);
 	float4 normalMap = tex2D(NormalSampler, texcoord);
-	//float4 specularMap = tex2D(SpecularSampler, texcoord);
+	float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
 	 
 	float4 worldPos;
@@ -162,6 +162,21 @@ float4 SpotLightPS(
 
 	// Make sure the values are between 1 and 0
 	finalColor = saturate(finalColor);
+
+	/* Calculate Specular */
+	float3 specular = float3(0, 0, 0); 
+	if(finalColor.x > 0)
+	{
+		float3 viewDirection = normalize(EyePosition.xyz - worldPos.xyz);
+		float3 lightDir = normalize(Position.xyz - worldPos.xyz);
+		float3 reflection = reflect(lightDir, normal);
+		reflection = normalize(reflection);
+		float specularIntensity = saturate(dot(reflection, viewDirection));
+
+		specular = pow(specularIntensity, SpecularPower);
+		specular = specular * specularMap.rgb;
+	}
+	finalColor = saturate(finalColor + specular.rgb);
 
 	// Return Final color
 	return float4(finalColor.rgb + stashMap.rgb, 1);

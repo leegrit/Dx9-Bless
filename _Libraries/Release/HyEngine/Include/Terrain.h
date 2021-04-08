@@ -47,6 +47,8 @@ namespace HyEngine
 		size_t m_vertexSize = 0;
 		size_t m_triCount = 0;
 		unsigned int m_fvf;
+		IDirect3DVertexDeclaration9* m_pDeclaration;
+
 
 		IDirect3DIndexBuffer9* m_pIB = nullptr;
 		D3DFORMAT m_indexFMT = D3DFMT_INDEX32;

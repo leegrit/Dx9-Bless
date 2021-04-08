@@ -278,8 +278,10 @@ bool Engine::LoadShaders()
 {
 	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer.fx");
 	InsertShader(L"PointLight", PATH->ShadersPathW() + L"PointLight.fx");
+	InsertShader(L"SpotLight", PATH->ShadersPathW() + L"SpotLight.fx");
 	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
 	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
+	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
 	return true;
 }
 

@@ -121,6 +121,9 @@
     <Filter Include="Object\Old">
       <UniqueIdentifier>{b4aeca92-ab3b-4fcb-9277-413f5ffae1bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Effect">
+      <UniqueIdentifier>{f974b703-af75-4047-8a5e-67249f2796ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -1015,6 +1018,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\GBuffer.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\DiffuseShader.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Ambient.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

@@ -102,6 +102,7 @@ technique AmbientLight
 {
 	pass P0
 	{
+		ZEnable = false;
 		VertexShader = compile vs_3_0 AmbientLightVS();
 		PixelShader = compile ps_3_0 AmbientLightPS();
 	}

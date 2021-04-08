@@ -445,6 +445,8 @@
     <ClCompile Include="ZBillboardObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="..\_Shaders\Ambient.fx" />
+    <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />

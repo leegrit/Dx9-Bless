@@ -105,6 +105,17 @@ void HyEngine::EditDynamicMesh::Render()
 			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastMeshPath);
 			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
 			
+			/* Find Emissive map */
+			std::wstring emissiveMapName = pMeshContainer->pTextureNames[i];
+			CString::Replace(&emissiveMapName, L"_D_", L"_E_");
+			IDirect3DTexture9* emissiveMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + emissiveMapName);
+
+			/* Find Specular map */
+			std::wstring specularMapName = pMeshContainer->pTextureNames[i];
+			CString::Replace(&specularMapName, L"_D_", L"_SP_");
+			IDirect3DTexture9* specularMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + specularMapName);
+
+
 			bool hasNormalMap = false;
 			
 			/* If normalmap exists, set texture. */
@@ -119,6 +130,30 @@ void HyEngine::EditDynamicMesh::Render()
 			{
 				D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
 				pShader->SetTexture(normalHandle, NULL);
+			}
+
+			/* If emissiveMap exists set texture */
+			if (emissiveMap != nullptr)
+			{
+				D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
+				pShader->SetTexture(emissiveHandle, emissiveMap);
+			}
+			else
+			{
+				D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
+				pShader->SetTexture(emissiveHandle, NULL);
+			}
+
+			/* If specularMap exists, set texture */
+			if (specularMap != nullptr)
+			{
+				D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+				pShader->SetTexture(specularHandle, specularMap);
+			}
+			else
+			{
+				D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+				pShader->SetTexture(specularHandle, NULL);
 			}
 
 			pShader->SetBool("HasNormalMap", hasNormalMap);

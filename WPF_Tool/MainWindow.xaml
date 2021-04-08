@@ -358,7 +358,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox x:Name="LightData" Visibility="Visible">
+                            <GroupBox x:Name="LightData" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label>Light Data</Label>
                                 </GroupBox.Header>
