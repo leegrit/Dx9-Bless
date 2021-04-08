@@ -145,6 +145,7 @@ enum class EDataType
 	CellData,
 	TerrainData,
 	LightData,
+	EffectData,
 	End
 };
 

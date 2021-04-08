@@ -6,8 +6,8 @@ namespace HyEngine
 	class ENGINE_DLL Geometry abstract
 	{
 	public :
-		Geometry() {}
-		~Geometry() {};
+		Geometry() = default;
+		virtual ~Geometry();
 	public:
 		template <typename T>
 		static T* CreateGeometry(void* arg)

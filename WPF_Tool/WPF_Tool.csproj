@@ -69,6 +69,7 @@
     <Compile Include="Data\ChunkCellData.cs" />
     <Compile Include="Data\ChunkMapData.cs" />
     <Compile Include="Data\DxColor.cs" />
+    <Compile Include="Data\EffectData.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Data\HierarchyData.cs" />
     <Compile Include="Data\LightData.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Data\SelectInfo.cs" />
     <Compile Include="Data\Strings.cs" />
     <Compile Include="Data\TerrainData.cs" />
+    <Compile Include="Event\EffectDataEvent.cs" />
     <Compile Include="Event\LightDataEvent.cs" />
     <Compile Include="Scripts\GameObjectController.cs" />
     <Compile Include="Utility\Timer.cs" />

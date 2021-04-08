@@ -193,6 +193,8 @@
     <ClInclude Include="Include\EditObject.h" />
     <ClInclude Include="Include\EditScene.h" />
     <ClInclude Include="Include\EditTransformRect.h" />
+    <ClInclude Include="Include\Effect.h" />
+    <ClInclude Include="Include\EffectData.h" />
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Enumerators.h" />
     <ClInclude Include="Include\EnumForEditor.h" />
@@ -238,6 +240,7 @@
     <ClInclude Include="Include\Mesh.h" />
     <ClInclude Include="Include\MeshAnimator.h" />
     <ClInclude Include="Include\MeshData.h" />
+    <ClInclude Include="Include\MeshEffect.h" />
     <ClInclude Include="Include\MeshHierarchy.h" />
     <ClInclude Include="Include\MeshLoader.h" />
     <ClInclude Include="Include\MeshObject.h" />
@@ -286,6 +289,7 @@
     <ClInclude Include="Include\Terrain.h" />
     <ClInclude Include="Include\TerrainData.h" />
     <ClInclude Include="Include\TestMesh.h" />
+    <ClInclude Include="Include\TextureEffect.h" />
     <ClInclude Include="Include\TextureLoader.h" />
     <ClInclude Include="Include\TextureObject.h" />
     <ClInclude Include="Include\TextureQuad.h" />
@@ -349,6 +353,8 @@
     <ClCompile Include="Source\EditObject.cpp" />
     <ClCompile Include="Source\EditScene.cpp" />
     <ClCompile Include="Source\EditTransformRect.cpp" />
+    <ClCompile Include="Source\Effect.cpp" />
+    <ClCompile Include="Source\EffectData.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\EventDispatcher.cpp" />
     <ClCompile Include="Source\FiniteState.cpp" />
@@ -385,6 +391,7 @@
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshAnimator.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
+    <ClCompile Include="Source\MeshEffect.cpp" />
     <ClCompile Include="Source\MeshHierarchy.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
     <ClCompile Include="Source\MeshObject.cpp" />
@@ -425,6 +432,7 @@
     <ClCompile Include="Source\Terrain.cpp" />
     <ClCompile Include="Source\TerrainData.cpp" />
     <ClCompile Include="Source\TestMesh.cpp" />
+    <ClCompile Include="Source\TextureEffect.cpp" />
     <ClCompile Include="Source\TextureLoader.cpp" />
     <ClCompile Include="Source\TextureObject.cpp" />
     <ClCompile Include="Source\TextureQuad.cpp" />
@@ -449,8 +457,10 @@
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
+    <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
+    <FxCompile Include="..\_Shaders\TextureEffect.fx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def" />

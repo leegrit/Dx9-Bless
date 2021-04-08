@@ -590,6 +590,18 @@
     <ClInclude Include="Include\LightObject.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Effect.h">
+      <Filter>Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshEffect.h">
+      <Filter>Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\EffectData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TextureEffect.h">
+      <Filter>Object\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1006,6 +1018,18 @@
     <ClCompile Include="Source\LightObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Effect.cpp">
+      <Filter>Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshEffect.cpp">
+      <Filter>Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EffectData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureEffect.cpp">
+      <Filter>Object\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1024,6 +1048,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\Ambient.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\TextureEffect.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\MeshEffect.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

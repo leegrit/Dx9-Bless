@@ -8,6 +8,7 @@
 #include "AnimNameData.h"
 #include "TerrainData.h"
 #include "LightData.h"
+#include "EffectData.h"
 
 using namespace HyEngine;
 
@@ -197,4 +198,20 @@ extern "C" void WINAPI CreateLight(int editID)
 extern "C" void WINAPI InsertLightData(LightData* data)
 {
 	EDIT_ENGINE->InsertLightData(data);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// FOR EFFECT
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateMeshEffect(int editID)
+{
+	EDIT_ENGINE->CreateMeshEffect(editID);
+}
+extern "C" void WINAPI CreateTextureEffect(int editID)
+{
+	EDIT_ENGINE->CreateTextureEffect(editID);
+}
+extern "C" void WINAPI InsertEffectData(EffectData* data)
+{
+	EDIT_ENGINE->InsertEffectData(data);
 }

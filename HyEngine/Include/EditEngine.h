@@ -85,6 +85,12 @@ namespace HyEngine
 		void CreateLight(int editID);
 		void InsertLightData(class LightData* data);
 
+		/* For Effect */
+		void CreateMeshEffect(int editID);
+		void CreateTextureEffect(int editID);
+		void InsertEffectData(class EffectData * data);
+
+
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
 		//////////////////////////////////////////////////////////////////////////

@@ -350,6 +350,7 @@ namespace WPF_Tool
             AnimationData.Visibility = Visibility.Collapsed;
             TerrainData.Visibility = Visibility.Collapsed;
             LightData.Visibility = Visibility.Collapsed;
+            EffectData.Visibility = Visibility.Collapsed;
             switch (data.type)
             {
                 case GameObjectType.Mesh:
@@ -598,6 +599,197 @@ namespace WPF_Tool
                         Externs.InsertLightData(ref data.lightData);
                         break;
                     }
+                case GameObjectType.MeshEffect:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        EffectData.Visibility = Visibility.Visible;
+
+                        /* EffectType (미사용) */
+                        EffectType.SelectedIndex = data.effectData.effectType;
+
+                        /* MeshFile Name */
+                        string meshOnlyName = "";
+                        int meshIndex = data.effectData.meshPath.LastIndexOf("\\");
+                        if (meshIndex > 0)
+                            meshOnlyName = data.effectData.meshPath.Substring(meshIndex + 1);
+                        EffectMeshFilePath.Text = meshOnlyName;
+
+                        /* AlbedoFile Name */
+                        string albedoOnlyName = "";
+                        int albedoIndex = data.effectData.diffusePath.LastIndexOf("\\");
+                        if (albedoIndex > 0)
+                            albedoOnlyName = data.effectData.diffusePath.Substring(albedoIndex + 1);
+                        EffectAlbedoFilePath.Text = albedoOnlyName;
+
+                        /* AlphaFile Name */
+                        string alphaOnlyName = "";
+                        int alphaIndex = data.effectData.alphaMaskPath.LastIndexOf("\\");
+                        if (alphaIndex > 0)
+                            alphaOnlyName = data.effectData.alphaMaskPath.Substring(alphaIndex + 1);
+                        EffectAlphaFilePath.Text = alphaOnlyName;
+
+                        /*  SpriteFile Name */
+                        string spriteOnlyName = "";
+                        int spriteIndex = data.effectData.spritePath.LastIndexOf("\\");
+                        if (spriteIndex > 0)
+                            spriteOnlyName = data.effectData.spritePath.Substring(spriteIndex + 1);
+                        EffectSpriteFilePath.Text = spriteOnlyName;
+
+                        /* Fade */
+                        EffectFadeIn.IsChecked = data.effectData.fadeIn;
+                        EffectFadeOut.IsChecked = data.effectData.fadeOut;
+
+                        /* Repeat */
+                        EffectRepeat.IsChecked = data.effectData.isRepeat;
+
+                        /* Billboard */
+                        EffectBillboard.IsChecked = data.effectData.isBillboard;
+
+                        /* UV Animation */
+                        EffectUVAnimation.IsChecked = data.effectData.uvAnimation;
+
+                        /* UV Direction */
+                        EffectUVDirectionX.Text = data.effectData.uvDirection.x.ToString();
+                        EffectUVDirectionY.Text = data.effectData.uvDirection.y.ToString();
+                        EffectUVDirectionZ.Text = data.effectData.uvDirection.z.ToString();
+
+                        /* LifeTime */
+                        EffectLifeTime.Text = data.effectData.lifeTime.ToString();
+
+                        /* LoopTime */
+                        EffectLoopTime.Text = data.effectData.loopTime.ToString();
+
+                        /* Begin Position */
+                        EffectBeginPositionX.Text = data.effectData.startPos.x.ToString();
+                        EffectBeginPositionY.Text = data.effectData.startPos.y.ToString();
+                        EffectBeginPositionZ.Text = data.effectData.startPos.z.ToString();
+
+                        /* Begin Rotation */
+                        EffectBeginRotationX.Text = data.effectData.startRot.x.ToString();
+                        EffectBeginRotationY.Text = data.effectData.startRot.y.ToString();
+                        EffectBeginRotationZ.Text = data.effectData.startRot.z.ToString();
+
+                        /* Begin Scale */
+                        EffectBeginScaleX.Text = data.effectData.startScale.x.ToString();
+                        EffectBeginScaleY.Text = data.effectData.startScale.y.ToString();
+                        EffectBeginScaleZ.Text = data.effectData.startScale.z.ToString();
+
+                        /* End Position */
+                        EffectEndPositionX.Text = data.effectData.endPos.x.ToString();
+                        EffectEndPositionY.Text = data.effectData.endPos.y.ToString();
+                        EffectEndPositionZ.Text = data.effectData.endPos.z.ToString();
+
+                        /* End Rotation */
+                        EffectEndRotationX.Text = data.effectData.endRot.x.ToString();
+                        EffectEndRotationY.Text = data.effectData.endRot.y.ToString();
+                        EffectEndRotationZ.Text = data.effectData.endRot.z.ToString();
+
+                        /* End Scale */
+                        EffectEndScaleX.Text = data.effectData.endScale.x.ToString();
+                        EffectEndScaleY.Text = data.effectData.endScale.y.ToString();
+                        EffectEndScaleZ.Text = data.effectData.endScale.z.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertEffectData(ref data.effectData);
+                        break;
+                    }
+                case GameObjectType.TextureEffect:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        EffectData.Visibility = Visibility.Visible;
+
+                        /* EffectType (미사용) */
+                        EffectType.SelectedIndex = data.effectData.effectType;
+
+                        /* MeshFile Name */
+                        string meshOnlyName = "";
+                        int meshIndex = data.effectData.meshPath.LastIndexOf("\\");
+                        if (meshIndex > 0)
+                            meshOnlyName = data.effectData.meshPath.Substring(meshIndex + 1);
+                        EffectMeshFilePath.Text = meshOnlyName;
+
+                        /* AlbedoFile Name */
+                        string albedoOnlyName = "";
+                        int albedoIndex = data.effectData.diffusePath.LastIndexOf("\\");
+                        if (albedoIndex > 0)
+                            albedoOnlyName = data.effectData.diffusePath.Substring(albedoIndex + 1);
+                        EffectAlbedoFilePath.Text = albedoOnlyName;
+
+                        /* AlphaFile Name */
+                        string alphaOnlyName = "";
+                        int alphaIndex = data.effectData.alphaMaskPath.LastIndexOf("\\");
+                        if (alphaIndex > 0)
+                            alphaOnlyName = data.effectData.alphaMaskPath.Substring(alphaIndex + 1);
+                        EffectAlphaFilePath.Text = alphaOnlyName;
+
+                        /*  SpriteFile Name */
+                        string spriteOnlyName = "";
+                        int spriteIndex = data.effectData.spritePath.LastIndexOf("\\");
+                        if (spriteIndex > 0)
+                            spriteOnlyName = data.effectData.spritePath.Substring(spriteIndex + 1);
+                        EffectSpriteFilePath.Text = spriteOnlyName;
+
+                        /* Fade */
+                        EffectFadeIn.IsChecked = data.effectData.fadeIn;
+                        EffectFadeOut.IsChecked = data.effectData.fadeOut;
+
+                        /* Repeat */
+                        EffectRepeat.IsChecked = data.effectData.isRepeat;
+
+                        /* Billboard */
+                        EffectBillboard.IsChecked = data.effectData.isBillboard;
+
+                        /* UV Animation */
+                        EffectUVAnimation.IsChecked = data.effectData.uvAnimation;
+
+                        /* UV Direction */
+                        EffectUVDirectionX.Text = data.effectData.uvDirection.x.ToString();
+                        EffectUVDirectionY.Text = data.effectData.uvDirection.y.ToString();
+                        EffectUVDirectionZ.Text = data.effectData.uvDirection.z.ToString();
+
+                        /* LifeTime */
+                        EffectLifeTime.Text = data.effectData.lifeTime.ToString();
+
+                        /* LoopTime */
+                        EffectLoopTime.Text = data.effectData.loopTime.ToString();
+
+                        /* Begin Position */
+                        EffectBeginPositionX.Text = data.effectData.startPos.x.ToString();
+                        EffectBeginPositionY.Text = data.effectData.startPos.y.ToString();
+                        EffectBeginPositionZ.Text = data.effectData.startPos.z.ToString();
+
+                        /* Begin Rotation */
+                        EffectBeginRotationX.Text = data.effectData.startRot.x.ToString();
+                        EffectBeginRotationY.Text = data.effectData.startRot.y.ToString();
+                        EffectBeginRotationZ.Text = data.effectData.startRot.z.ToString();
+
+                        /* Begin Scale */
+                        EffectBeginScaleX.Text = data.effectData.startScale.x.ToString();
+                        EffectBeginScaleY.Text = data.effectData.startScale.y.ToString();
+                        EffectBeginScaleZ.Text = data.effectData.startScale.z.ToString();
+
+                        /* End Position */
+                        EffectEndPositionX.Text = data.effectData.endPos.x.ToString();
+                        EffectEndPositionY.Text = data.effectData.endPos.y.ToString();
+                        EffectEndPositionZ.Text = data.effectData.endPos.z.ToString();
+
+                        /* End Rotation */
+                        EffectEndRotationX.Text = data.effectData.endRot.x.ToString();
+                        EffectEndRotationY.Text = data.effectData.endRot.y.ToString();
+                        EffectEndRotationZ.Text = data.effectData.endRot.z.ToString();
+
+                        /* End Scale */
+                        EffectEndScaleX.Text = data.effectData.endScale.x.ToString();
+                        EffectEndScaleY.Text = data.effectData.endScale.y.ToString();
+                        EffectEndScaleZ.Text = data.effectData.endScale.z.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertEffectData(ref data.effectData);
+                        break;
+                    }
+                default:
+                    Debug.Assert(false);
+                    break;
             }
 
         }

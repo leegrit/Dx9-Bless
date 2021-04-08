@@ -17,6 +17,7 @@
 #include "ObjectContainer.h"
 #include "LightObject.h"
 #include "LightData.h"
+#include "EffectData.h"
 
 using namespace HyEngine;
 
@@ -151,6 +152,8 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
 	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
 	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
+	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
+	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)
@@ -560,6 +563,31 @@ void HyEngine::EditEngine::InsertLightData(LightData * data)
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->InsertLightData(data);
+}
+
+void HyEngine::EditEngine::CreateMeshEffect(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddMeshEffect(editID);
+}
+
+void HyEngine::EditEngine::CreateTextureEffect(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddTextureEffect(editID);
+}
+
+void HyEngine::EditEngine::InsertEffectData(EffectData * data)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->InsertEffectData(data);
 }
 
 

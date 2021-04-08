@@ -49,6 +49,8 @@
                     <MenuItem Header="_CreateNavMesh" Click="BTN_CreateNavMesh"/>
                     <MenuItem Header="_CreateTerrain" Click="BTN_CreateTerrain"/>
                     <MenuItem Header="_CreateLight" Click="BTN_CreateLight" />
+                    <MenuItem Header="_CreateMeshEffect" Click="BTN_CreateMeshEffect" />
+                    <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
                 
@@ -76,6 +78,8 @@
                             <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
                             <MenuItem Header="_CreateTerrain" Foreground="Black" Click="BTN_CreateTerrain"/>
                             <MenuItem Header="_CreateLight" Foreground ="Black" Click="BTN_CreateLight" />
+                            <MenuItem Header="_CreateMeshEffect" Foreground="Black" Click="BTN_CreateMeshEffect" />
+                            <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
                             <MenuItem Header="_CreateCamera" Foreground="Black" />
                         </ContextMenu>
@@ -145,7 +149,7 @@
                 <StackPanel>
                     <ScrollViewer VerticalScrollBarVisibility="Visible" Height="685">
                         <StackPanel  x:Name="InspectorStackPanel">
-                            <GroupBox x:Name="ObjectData" IsEnabled="True">
+                            <GroupBox x:Name="ObjectData" IsEnabled="True" Visibility="Visible">
                                 <GroupBox.Header>
                                     <Label Width="100">Object Data</Label>
                                 </GroupBox.Header>
@@ -534,6 +538,160 @@
                                         <TextBlock Width="60">Quadratic</TextBlock>
                                         <TextBlock Width="10"/>
                                         <TextBox x:Name="Quadratic" Width="130"  TextChanged="Quadratic_TextChanged">20</TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox x:Name="EffectData" Visibility="Collapsed">
+                                <GroupBox.Header>
+                                    <Label>Effect Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="White" Width="70" VerticalAlignment="Center" HorizontalAlignment="Center">Effect Type</TextBlock>
+                                        <ComboBox x:Name="EffectType" Width="140" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="EffectType_Selected" >
+                                            <ComboBoxItem Content="MeshEffect" />
+                                            <ComboBoxItem Content="TextureEffect"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <Separator/>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55" Text="MeshFile"></TextBlock>
+                                        <TextBox x:Name="EffectMeshFilePath" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_EffectMeshFile" Content="Load"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55" Text="Albedo"></TextBlock>
+                                        <TextBox x:Name="EffectAlbedoFilePath" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_EffectAlbedoFile" Content="Load"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55" Text="Alpha"></TextBlock>
+                                        <TextBox x:Name="EffectAlphaFilePath" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_EffectAlphaFile" Content="Load"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55" Text="Sprite"></TextBlock>
+                                        <TextBox x:Name="EffectSpriteFilePath" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_EffectSpriteFile" Content="Load"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <Separator/>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox x:Name="EffectFadeIn" Width="100" Content="FadeIn" Checked="EffectFadeIn_Checked"/>
+                                        <CheckBox x:Name="EffectFadeOut" Width="100" Content="FadeOut" Checked="EffectFadeOut_Checked"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox x:Name="EffectRepeat" Width="100" Content="Repeat" Checked="EffectRepeat_Checked"/>
+                                        <CheckBox x:Name="EffectBillboard" Width="100" Content="Billboard" Checked="EffectBillboard_Checked"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox x:Name="EffectUVAnimation" Content="UV Animation" Checked="EffectUVAnimation_Checked"/>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <TextBlock >UV Direction</TextBlock>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                        <TextBox x:Name="EffectUVDirectionX" Width="50" TextChanged="EffectUVDirectionX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                        <TextBox x:Name="EffectUVDirectionY" Width="50" TextChanged="EffectUVDirectionY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                        <TextBox x:Name="EffectUVDirectionZ" Width="50" TextChanged="EffectUVDirectionZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height ="15"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="60" Text="LifeTime : "/>
+                                        <TextBox x:Name="EffectLifeTime" Width="30" TextAlignment="Center" TextChanged="EffectLifeTime_TextChanged">0</TextBox>
+                                        <TextBlock Width="23"/>
+                                        <TextBlock Width="65" Text="LoopTime : "/>
+                                        <TextBox x:Name="EffectLoopTime" Width="30" TextAlignment="Center" TextChanged="EffectLoopTime_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <Separator/>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Text="Begin Offset"/>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel>
+                                        <TextBlock >Position</TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectBeginPositionX" Width="50" TextChanged="EffectBeginPositionX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectBeginPositionY" Width="50" TextChanged="EffectBeginPositionY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectBeginPositionZ" Width="50" TextChanged="EffectBeginPositionZ_TextChanged">0</TextBox>
+                                        </StackPanel>
+                                        <TextBlock>Rotation</TextBlock>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectBeginRotationX" Width="50" TextChanged="EffectBeginRotationX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectBeginRotationY" Width="50" TextChanged="EffectBeginRotationY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectBeginRotationZ" Width="50" TextChanged="EffectBeginRotationZ_TextChanged">0</TextBox>
+                                        </StackPanel>
+                                        <TextBlock>Scale</TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectBeginScaleX" Width="50" TextChanged="EffectBeginScaleX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectBeginScaleY" Width="50" TextChanged="EffectBeginScaleY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectBeginScaleZ" Width="50" TextChanged="EffectBeginScaleZ_TextChanged">0</TextBox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <TextBlock Height ="5"/>
+                                    <Separator/>
+                                    <TextBlock Height ="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10"/>
+                                        <TextBlock Text="End Offset"/>
+                                    </StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel>
+                                        <TextBlock >Position</TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectEndPositionX" Width="50" TextChanged="EffectEndPositionX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectEndPositionY" Width="50" TextChanged="EffectEndPositionY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectEndPositionZ" Width="50" TextChanged="EffectEndPositionZ_TextChanged">0</TextBox>
+                                        </StackPanel>
+                                        <TextBlock>Rotation</TextBlock>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectEndRotationX" Width="50" TextChanged="EffectEndRotationX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectEndRotationY" Width="50" TextChanged="EffectEndRotationY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectEndRotationZ" Width="50" TextChanged="EffectEndRotationZ_TextChanged">0</TextBox>
+                                        </StackPanel>
+                                        <TextBlock>Scale</TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleX_MouseDown">X</TextBlock>
+                                            <TextBox x:Name="EffectEndScaleX" Width="50" TextChanged="EffectEndScaleX_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleY_MouseDown">Y</TextBlock>
+                                            <TextBox x:Name="EffectEndScaleY" Width="50" TextChanged="EffectEndScaleY_TextChanged">0</TextBox>
+                                            <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleZ_MouseDown">Z</TextBlock>
+                                            <TextBox x:Name="EffectEndScaleZ" Width="50" TextChanged="EffectEndScaleZ_TextChanged">0</TextBox>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>

@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "ObjectContainer.h"
 #include "LightData.h"
+#include "EffectData.h"
 
 using namespace HyEngine;
 
@@ -250,6 +251,17 @@ void HyEngine::GameObject::InsertLightData(LightData * data)
 	memcpy(m_pLightData, data, sizeof(LightData));
 
 	UpdatedData(EDataType::LightData);
+}
+
+void HyEngine::GameObject::InsertEffectData(EffectData * data)
+{
+	if (m_pEffectData == nullptr)
+		m_pEffectData = new EffectData();
+
+	/* Copy */
+	memcpy(m_pEffectData, data, sizeof(EffectData));
+
+	UpdatedData(EDataType::EffectData);
 }
 
 EStaticType HyEngine::GameObject::GetStaticType() const

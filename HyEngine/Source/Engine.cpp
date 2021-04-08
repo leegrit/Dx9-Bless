@@ -282,6 +282,8 @@ bool Engine::LoadShaders()
 	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
 	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
 	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
+	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
+	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
 	return true;
 }
 

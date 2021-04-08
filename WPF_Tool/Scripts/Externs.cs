@@ -120,5 +120,14 @@ namespace WPF_Tool.Scripts
         [DllImport("HyEngine.dll")]
         public static extern void InsertLightData(ref LightData lightData);
 
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateMeshEffect(int editID);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateTextureEffect(int editID);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void InsertEffectData(ref EffectData effectData);
+
     }
 }

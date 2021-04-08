@@ -37,3 +37,6 @@ CreateTerrain
 InsertTerrainData
 CreateLight
 InsertLightData
+CreateMeshEffect
+CreateTextureEffect
+InsertEffectData

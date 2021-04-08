@@ -40,59 +40,6 @@ namespace WPF_Tool
         {
             CreateHierarchy(GameObjectType.Pawn);
         }
-        //private void BTN_CreateActor(object sender, RoutedEventArgs e)
-        //{
-        //    HierarchyData data = new HierarchyData();
-        //    data.Index = gameObjectIndex;
-        //    data.type = GameObjectType.Actor;
-
-        //    data.gameObjectData = new GameObjectData(data.Index, "Actor");
-        //    data.gameObjectData.tag = Strings.Tags[0];
-        //    data.gameObjectData.layer = 0;
-        //    data.gameObjectData.staticType = 0;
-
-
-        //    data.meshData = new MeshData(data.Index);
-        //    data.mapData = new MapData(data.Index);
-        //    data.navMeshData = new NavMeshData(data.Index);
-
-
-
-        //    // Actor는 생성할 때 xFile을 받아야한다.
-        //    OpenFileDialog ofdlg = new OpenFileDialog();
-        //    {
-        //        // 기본 폴더
-        //        ofdlg.InitialDirectory = Paths.AssetPath;
-        //        ofdlg.CheckFileExists = true; // 파일 존재여부 확인
-        //        ofdlg.CheckPathExists = true; // 폴더 존재여부 확인
-
-        //        // 파일 열기(값의 유무 확인)
-        //        if (ofdlg.ShowDialog().GetValueOrDefault())
-        //        {
-        //            string filePath = ofdlg.FileName.Substring(Paths.ResourcePath.Count());
-
-        //            int index = ofdlg.FileName.LastIndexOf("\\");
-        //            string onlyName = ofdlg.FileName.Substring(index + 1);
-        //            int extIndex = onlyName.LastIndexOf(".");
-        //            string ext = onlyName.Substring(extIndex);
-
-        //            if (ext != ".X" && ext != ".x")
-        //                return;
-
-        //            data.meshData.meshFilePath = filePath;
-
-
-        //        }
-        //    }
-
-
-        //    // TODO
-        //    Externs.AddActor();
-
-
-
-        //    AddHierarchy(data);
-        //}
         private void BTN_CreateNavMesh(object sender, RoutedEventArgs e)
         {
             foreach (var item in hierarchyList)
@@ -116,6 +63,15 @@ namespace WPF_Tool
         {
             CreateHierarchy(GameObjectType.Light);
         }
+        private void BTN_CreateMeshEffect(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.MeshEffect);
+        }
+        private void BTN_CreateTextureEffect(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.TextureEffect);
+        }
+
         private void CreateHierarchy(GameObjectType gameObjectType)
         {
             ListBoxItem item = new ListBoxItem();
@@ -148,6 +104,14 @@ namespace WPF_Tool
                     item.Content = HierarchyContent.Light;
                     item.Tag = HierarchyTag.Light;
                     break;
+                case GameObjectType.MeshEffect:
+                    item.Content = HierarchyContent.MeshEffect;
+                    item.Tag = HierarchyTag.MeshEffect;
+                    break;
+                case GameObjectType.TextureEffect:
+                    item.Content = HierarchyContent.TextureEffect;
+                    item.Tag = HierarchyTag.TextureEffect;
+                    break;
             }
 
 
@@ -171,6 +135,15 @@ namespace WPF_Tool
                 case GameObjectType.Light:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.MeshEffect:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.TextureEffect:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
             }
             
 
@@ -193,6 +166,7 @@ namespace WPF_Tool
             data.mapData = new MapData(index);
             data.navMeshData = new NavMeshData(index);
             data.terrainData = new TerrainData(index);
+            data.effectData = new EffectData(index);
             hierarchyList.Add(data);
 
             switch (gameObjectType)
@@ -215,6 +189,15 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.Light:
                     Externs.CreateLight(index);
+                    break;
+                case GameObjectType.MeshEffect:
+                    Externs.CreateMeshEffect(index);
+                    break;
+                case GameObjectType.TextureEffect:
+                    Externs.CreateTextureEffect(index);
+                    break;
+                default:
+                    Debug.Assert(false);
                     break;
             }
          
@@ -250,6 +233,12 @@ namespace WPF_Tool
                 case GameObjectType.Light:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.MeshEffect:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.TextureEffect:
+                    item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -280,6 +269,12 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.Light:
                     Externs.CreateLight(index);
+                    break;
+                case GameObjectType.MeshEffect:
+                    Externs.CreateMeshEffect(index);
+                    break;
+                case GameObjectType.TextureEffect:
+                    Externs.CreateTextureEffect(index);
                     break;
                 default:
                     Debug.Assert(false);

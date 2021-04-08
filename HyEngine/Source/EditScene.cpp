@@ -10,6 +10,7 @@
 #include "Terrain.h"
 #include "ObjectContainer.h"
 #include "LightObject.h"
+#include "MeshEffect.h"
 
 
 using namespace HyEngine;
@@ -72,6 +73,18 @@ void HyEngine::EditScene::AddLight(int editIndex)
 {
 	LightObject::Create(this, nullptr, editIndex);
 }
+
+void HyEngine::EditScene::AddMeshEffect(int editIndex)
+{
+	MeshEffect::Create(this, editIndex);
+}
+
+void HyEngine::EditScene::AddTextureEffect(int editIndex)
+{
+	// TODO
+	assert(false);
+}
+
 
 GameObject * HyEngine::EditScene::GetGameObject(int editIndex)
 {

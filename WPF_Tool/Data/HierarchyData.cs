@@ -36,6 +36,7 @@ namespace WPF_Tool.Data
         public NavMeshData navMeshData;
         public TerrainData terrainData;
         public LightData lightData;
+        public EffectData effectData;
 
         /* For Editor */
         // 에디터에서만 사용되는 데이터
