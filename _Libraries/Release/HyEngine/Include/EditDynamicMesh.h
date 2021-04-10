@@ -17,6 +17,7 @@ namespace HyEngine
 		virtual void Initialize();
 		virtual void Update() override;
 		virtual void Render() override;
+		virtual void DrawPrimitive() override;
 		virtual void UpdatedData(EDataType dataType) override;
 
 		static EditDynamicMesh* Create(Scene* scene, GameObject* parent, int editID)

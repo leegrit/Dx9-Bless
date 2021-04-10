@@ -18,6 +18,8 @@ namespace HyEngine
 
 	public:
 		virtual void Render();
+		// 단순하게 정점 그리는 내용만 호출하는 함수
+		virtual void DrawPrimitive() {}
 		virtual void Update();
 		virtual void OnEnable() {}
 		virtual void OnDisable() {}

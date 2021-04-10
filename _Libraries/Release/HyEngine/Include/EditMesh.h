@@ -11,6 +11,7 @@ namespace HyEngine
 	public :
 		virtual void Initialize();
 		virtual void Render() override;
+		virtual void DrawPrimitive() override;
 
 		static EditMesh* Create(Scene* scene, GameObject* parent, int editID)
 		{

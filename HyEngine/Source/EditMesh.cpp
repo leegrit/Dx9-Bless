@@ -4,6 +4,9 @@
 #include "GameObjectData.h"
 #include "MeshData.h"
 #include "PathManager.h"
+#include "ObjectContainer.h"
+#include "Light.h"
+
 using namespace HyEngine;
 
 EditMesh::EditMesh(Scene * scene, GameObject * parent, int editID)
@@ -46,9 +49,35 @@ void EditMesh::Render()
 	{
 		for (int i = 0; i < m_mtrls.size(); i++)
 		{
-			float farPlane = pSelectedCamera->GetFar();
+			/* Find Directional Light */
+			Light* directionalLight = nullptr;
+			auto& lights = GetScene()->GetObjectContainer()->GetRenderableLightAll();
+			for (auto& light : lights)
+			{
+				if (light->Type() == ELightType::DIRECTIONAL)
+				{
+					directionalLight = light;
+					break;
+				}
+			}
 
-			pShader->SetValue("Far", &farPlane, sizeof(pSelectedCamera->GetFar()));
+			/* Set Light ViewMatrix */
+			if (directionalLight != nullptr)
+			{
+				D3DXMATRIX lightViewMatrix;
+				D3DXMATRIX lightProjMatrix;
+
+				D3DXMatrixLookAtLH(&lightViewMatrix,
+					&pSelectedCamera->GetPosition().operator D3DXVECTOR3(),
+					&(pSelectedCamera->GetPosition() + directionalLight->Direction()).operator D3DXVECTOR3(),
+					&Vector3::Up
+				);
+				D3DXMatrixOrthoLH(&lightProjMatrix,
+					10000, 10000, -10, 100);
+
+				pShader->SetValue("LightViewMatrix", &lightViewMatrix, sizeof(lightViewMatrix));
+				pShader->SetValue("LightProjMatrix", &lightProjMatrix, sizeof(lightProjMatrix));
+			}
 
 
 			/* Set world, view and projection */
@@ -123,7 +152,10 @@ void EditMesh::Render()
 			}
 
 			pShader->SetBool("HasEmissiveMap", false);
-			pShader->SetTechnique("GBuffer");
+			if (directionalLight != nullptr)
+				pShader->SetTechnique("GBufferWithShadow");
+			else
+				pShader->SetTechnique("GBuffer");
 			pShader->Begin(0, 0);
 			{
 				pShader->BeginPass(0);
@@ -164,6 +196,14 @@ void EditMesh::Render()
 		}
 		pShader->End();
 		
+	}
+}
+
+void HyEngine::EditMesh::DrawPrimitive()
+{
+	for (int i = 0; i < m_mtrls.size(); i++)
+	{
+		m_pDxMesh->DrawSubset(i);
 	}
 }
 
