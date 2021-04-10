@@ -51,11 +51,12 @@ namespace HyEngine
 		void SetPrepareMRT();
 		void SetGBufferMRT();
 		void SetOriginMRT();
+		void SetShadowMapMRT(int cascadeIndex);
 
 		void GeometryPass(Scene* scene);
 		void AmbientPass(Scene* scene);
 		void LightPass(Scene* scene);
-		void ShadowPass(Scene * scene);
+		void ShadowPass(Scene * scene, int casecadeIndex);
 
 		//////////////////////////////////////////////////////////////////////////
 		// FORWARD VARIABLES
@@ -99,8 +100,8 @@ namespace HyEngine
 		bool m_bSetup = false;
 		D3DXCOLOR m_clearColor = 0xff555566;
 		/* For Shadow */
-		D3DXMATRIX m_lightViewMat;
-		D3DXMATRIX m_lightProjMat;
+		D3DXMATRIX m_lightViewMat[NUM_CASCADEDES];
+		D3DXMATRIX m_lightProjMat[NUM_CASCADEDES];
 
 
 		//////////////////////////////////////////////////////////////////////////

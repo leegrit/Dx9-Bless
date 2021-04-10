@@ -22,10 +22,9 @@ float  Constant;
 float  Linear;
 float  Quadratic;
 
-/* For Shadow */
-matrix LightViewMatrix;
-matrix LightProjMatrix;
-float3 LightPosition;
+/* For CasCadeShadowMapping */
+matrix LightViewMatrix[4];
+matrix LightProjMatrix[4];
 
 
 
@@ -76,10 +75,27 @@ sampler SpecularSampler = sampler_state
     AddressU = wrap;
     AddressV = wrap;
 };
-texture ShadowDepthTex;
-sampler ShadowDepthSampler = sampler_state
+
+/* For Cascade ShadowMapping */
+texture ShadowDepthTex0;
+sampler ShadowDepthSampler0 = sampler_state
 {
-	Texture = (ShadowDepthTex);
+	Texture = (ShadowDepthTex0);
+};
+texture ShadowDepthTex1;
+sampler ShadowDepthSampler1 = sampler_state
+{
+	Texture = (ShadowDepthTex1);
+};
+texture ShadowDepthTex2;
+sampler ShadowDepthSampler2 = sampler_state
+{
+	Texture = (ShadowDepthTex2);
+};
+texture ShadowDepthTex3;
+sampler ShadowDepthSampler3 = sampler_state
+{
+	Texture = (ShadowDepthTex3);
 };
 
 texture StashTex;
@@ -124,11 +140,10 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 {
 	/* 여기부터 테스트 반드시 나중에 지울것 */
 	//----------------------------------------------------------
-	//float4 lightDepth = tex2D(ShadowDepthSampler, input.texcoord);
+	//float4 lightDepth2 = tex2D(ShadowDepthSampler0, input.texcoord);
 	//lightDepth.a = 1;
-	//return lightDepth;
-
-
+	//return lightDepth2;
+	
 
 
 	//------------------------------------------------------------
@@ -162,38 +177,104 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
-	float2 projectTexcoord;
+	float3 projectTexcoord;
 
-	float4 lightPos = mul(worldPos, LightViewMatrix);
-	lightPos = mul(lightPos, LightProjMatrix);
+	int cascadeIndex = -1;
+	float4 lightPos;
+	for(int i = 0; i < 4; i++)
+	{
+		lightPos = mul(worldPos, LightViewMatrix[i]);
+		lightPos = mul(lightPos, LightProjMatrix[i]);
+
+		/* Light 기준으로 Texture 좌표를 구한다. */
+		projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
+		projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
+		projectTexcoord.z = lightPos.z / lightPos.w / 2.0f + 0.5f;
+
+		if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y) 
+		&& (saturate(projectTexcoord.z) == projectTexcoord.z))
+		{
+			cascadeIndex = i;
+			break;
+		}
+	}
+	float4 diffuse = Diffuse;
+	float shadowDepth;
+	if(cascadeIndex == 0)
+	{
+		// DEBUG용
+		diffuse = float4(1, 0.5f, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).r;
+		//return diffuse;
+	}
+	if(cascadeIndex == 1)
+	{
+		// DEBUG용
+		diffuse = float4(0.5f, 1, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).r;
+		//return diffuse;
+	}
+	if(cascadeIndex == 2)
+	{
+		// DEBUG용
+		diffuse = float4(0.5f, 0.5f, 1, 1);
+		shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).r;
+
+		//return diffuse;
+	}
+	if(cascadeIndex == 3)
+	{
+		// DEBUG용
+		diffuse = float4(1, 1, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).r;
+
+		//return diffuse;
+	}
+
+	float lightDepth = lightPos.z / lightPos.w;
+	//return float4(lightDepth, lightDepth, lightDepth, 1);
+	lightDepth = lightDepth - bias;
+
+	if(lightDepth < shadowDepth)
+	{
+		shadowFactor = 1;
+	}
+	else
+	{
+		shadowFactor = 0;
+		//return float4(lightDepth, lightDepth, lightDepth, 1);
+	}
+	//float4 lightPos = mul(worldPos, LightViewMatrix0);
+	//lightPos = mul(lightPos, LightProjMatrix0);
 
 	/* Light 기준으로 Texture 좌표를 구한다. */
-	projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
-	projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
+	//projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
+	//projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
 
+	
 
-	if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y))
-	{
+	//if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y))
+	//{
 		/* Light 기준으로 투영된 텍스처 좌표에서 Light기준 Depth값을 샘플링한다. */
 		// GBuffer에서 NormalMap의 alpha값에 shadow depth값을 저장한다.
-		float shadowDepth = tex2D(ShadowDepthSampler, projectTexcoord.xy).r;
+	//	float shadowDepth = tex2D(ShadowDepthSampler, projectTexcoord.xy).r;
 
 		// 빛의 깊이를 계산한다.
-		float lightDepth = lightPos.z / lightPos.w;
+	//	float lightDepth = lightPos.z / lightPos.w;
 		// LightDepth에서 bias를 뺀다.
-		lightDepth = lightDepth - bias;
+	//	lightDepth = lightDepth - bias;
 
 		// Shadow Map값의 깊이와 빛의 깊이를 비교해서 조명처리할지 그림자처리할지 결정한다.
 		// shadowFactor가 0이라면 조명 연산에 shadowFactor가 곱해져 조명연산이 무시된다.
-		if(lightDepth < shadowDepth)
-		{
-			shadowFactor = 1;
-		}
-		else
-		{
-			shadowFactor = 0;
-		}
-	}
+	//	if(lightDepth < shadowDepth)
+	//	{
+	//		shadowFactor = 1;
+	//	}
+	//	else
+	//	{
+	//		shadowFactor = 0;
+	//	}
+	//}
 
 	float3 normal = normalMap * 2 - 1;
 	normal = normalize(normal);
@@ -204,7 +285,7 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 
 	/* depthMap.rgb is emissive */
 	float3 emissive = depthMap.rgb;
-	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * Diffuse.rgb + emissive;
+	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * diffuse.rgb + emissive;
 
 	
 

@@ -20,6 +20,8 @@ void ShadowMapVS(
 
 }
 
+/* For CascadeShadow */
+
 void ShadowMapPS(
 	float4 depthPos : TEXCOORD0,
 	out float4 outLightDepth : COLOR0
@@ -28,6 +30,7 @@ void ShadowMapPS(
 	float lightDepth = (float)depthPos.z / depthPos.w;
 	outLightDepth = float4(lightDepth, lightDepth, lightDepth, 1);
 }
+
 
 technique ShadowMap
 {

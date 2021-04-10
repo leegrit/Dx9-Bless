@@ -64,18 +64,22 @@ void HyEngine::Renderer::Setup()
 	);
 	m_pSpecularRTTexture->GetSurfaceLevel(0, &m_pSpecularRTSurface);
 
-	D3DXCreateTexture
-	(
-		DEVICE,
-		WinMaxWidth,
-		WinMaxHeight,
-		D3DX_DEFAULT,
-		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A32B32G32R32F,
-		D3DPOOL_DEFAULT,
-		&m_pShadowRTTexture
-	);
-	m_pShadowRTTexture->GetSurfaceLevel(0, &m_pShadowRTSurface);
+	for (int i = 0; i < NUM_CASCADEDES; i++)
+	{
+		D3DXCreateTexture
+		(
+			DEVICE,
+			WinMaxWidth,
+			WinMaxHeight,
+			D3DX_DEFAULT,
+			D3DUSAGE_RENDERTARGET,
+			D3DFMT_A32B32G32R32F,
+			D3DPOOL_DEFAULT,
+			&m_pShadowRTTexture[i]
+		);
+		m_pShadowRTTexture[i]->GetSurfaceLevel(0, &m_pShadowRTSurface[i]);
+	}
+	
 
 	D3DXCreateTexture
 	(
@@ -113,8 +117,11 @@ void HyEngine::Renderer::Cleanup()
 	SAFE_RELEASE(m_pSpecularRTSurface);
 
 	/* ShadowMap */
-	SAFE_RELEASE(m_pShadowRTTexture);
-	SAFE_RELEASE(m_pShadowRTSurface);
+	for (int i = 0; i < NUM_CASCADEDES; i++)
+	{
+		SAFE_RELEASE(m_pShadowRTTexture[i]);
+		SAFE_RELEASE(m_pShadowRTSurface[i]);
+	}
 
 	/* Stash */
 	SAFE_RELEASE(m_pStashRTTexture);
@@ -162,9 +169,17 @@ void Renderer::RenderEnd()
 
 void HyEngine::Renderer::PreparePipeline(Scene * scene)
 {
+	// TEST
 	SetPrepareMRT();
-	ClearBackBuffer();
-	ShadowPass(scene);
+	for (int i = 0; i < NUM_CASCADEDES; i++)
+	{
+		SetShadowMapMRT(i);
+		ClearBackBuffer();
+		ShadowPass(scene, i);
+	}
+// 	SetPrepareMRT();
+// 	ClearBackBuffer();
+// 	ShadowPass(scene);
 	SetOriginMRT();
 }
 
@@ -204,11 +219,6 @@ void HyEngine::Renderer::SetPrepareMRT()
 	/* Get Origin */
 	DEVICE->GetRenderTarget(0, &m_pOriginSurface);
 
-	/* Set Multi Render Targets */
-	DEVICE->SetRenderTarget(0, m_pShadowRTSurface);
-	DEVICE->SetRenderTarget(1, NULL);
-	DEVICE->SetRenderTarget(2, NULL);
-	DEVICE->SetRenderTarget(3, NULL);
 }
 
 void HyEngine::Renderer::SetGBufferMRT()
@@ -229,6 +239,15 @@ void HyEngine::Renderer::SetOriginMRT()
 	DEVICE->SetRenderTarget(1, NULL);
 	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetShadowMapMRT(int cascadeIndex)
+{
+	DEVICE->SetRenderTarget(0, m_pShadowRTSurface[cascadeIndex]);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
+
 }
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
@@ -363,28 +382,35 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 		if (light->Type() == ELightType::DIRECTIONAL)
 		{
-			D3DXMATRIX lightViewMatrix;
-			D3DXMATRIX lightProjMatrix;
+			//D3DXMATRIX lightViewMatrix;
+			//D3DXMATRIX lightProjMatrix;
 
-			D3DXVECTOR3 camPos = selectedCam->GetPosition().operator D3DXVECTOR3();
-			D3DXVECTOR3 lightPos = -light->Direction() *1000 + camPos;
-			//D3DXVECTOR3 lightPos = D3DXVECTOR3(-10, -10, 0);
-
-			D3DXMatrixLookAtLH
-			(
-				&lightViewMatrix,
-				&lightPos,
-				&(lightPos + light->Direction()),
-				&Vector3::Up
-			);
+// 			D3DXVECTOR3 camPos = selectedCam->GetPosition().operator D3DXVECTOR3();
+// 			D3DXVECTOR3 lightPos = -light->Direction() *1000 + camPos;
+// 			//D3DXVECTOR3 lightPos = D3DXVECTOR3(-10, -10, 0);
+// 
+// 			D3DXMatrixLookAtLH
+// 			(
+// 				&lightViewMatrix,
+// 				&lightPos,
+// 				&(lightPos + light->Direction()),
+// 				&Vector3::Up
+// 			);
 			//D3DXMatrixPerspectiveFovLH(&lightProjMatrix, D3DXToRadian(90), WinMaxWidth/ WinMaxHeight, 1, 10000);
 			//D3DXMatrixOrthoLH(&lightProjMatrix, 10000, 10000, -10000,10000);
-			D3DXMatrixOrthoLH(&lightProjMatrix, 100, 100, 0, 10000);
+			//D3DXMatrixOrthoLH(&lightProjMatrix, 100, 100, 0, 10000);
 
 			//pShader->SetValue("LightViewMatrix", &lightViewMatrix, sizeof(lightViewMatrix));
 			//pShader->SetValue("LightProjMatrix", &lightProjMatrix, sizeof(lightProjMatrix));
-			pShader->SetValue("LightViewMatrix", &m_lightViewMat, sizeof(m_lightViewMat));
-			pShader->SetValue("LightProjMatrix", &m_lightProjMat, sizeof(m_lightProjMat));
+
+			//for (int i = 0; i < NUM_CASCADEDES; i++)
+			//{
+				pShader->SetMatrixArray("LightViewMatrix", m_lightViewMat, NUM_CASCADEDES);
+				pShader->SetMatrixArray("LightProjMatrix", m_lightProjMat, NUM_CASCADEDES);
+			//}
+
+			//pShader->SetValue("LightViewMatrix", &m_lightViewMat, sizeof(m_lightViewMat));
+			//pShader->SetValue("LightProjMatrix", &m_lightProjMat, sizeof(m_lightProjMat));
 		}
 
 		D3DXMatrixInverse(&viewMatrixInv, NULL, &selectedCam->GetViewMatrix());
@@ -406,8 +432,25 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
 		pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
-		D3DXHANDLE shadowMapHandler = pShader->GetParameterByName(0, "ShadowDepthTex");
-		pShader->SetTexture(shadowMapHandler, m_pShadowRTTexture);
+		/*for (int i = 0; i < NUM_CASCADEDES; i++)
+		{
+			std::string paramName = "ShadowDepthTex" + i;
+			D3DXHANDLE shadowMapHandler = pShader->GetParameterByName(0, paramName.c_str());
+			pShader->SetTexture(shadowMapHandler, m_pShadowRTTexture[i]);
+		}*/
+		D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
+		pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+
+		D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
+		pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+
+		D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
+		pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+
+		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
+		pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+
+		
 
 		D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
 		pShader->SetTexture(stashHandle, m_pStashRTTexture);
@@ -456,7 +499,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 	}
 }
 
-void HyEngine::Renderer::ShadowPass(Scene * scene)
+void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 {
 	auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
 	if (list.size() == 0) return;
@@ -493,7 +536,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene)
 	/* Calculate Cascades algorithm */
 #pragma region Cascade ShadowMapping Algorithm
 	int numCascades = 4; // 4개 분할 
-	/* cascadedEnds[NUM_CASCADES + 1] = {0.0f, 0.2f, 0.4f, 1.0f} */
+						 /* cascadedEnds[NUM_CASCADES + 1] = {0.0f, 0.2f, 0.4f, 1.0f} */
 	float cascadedEnds[4 + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
 
 	D3DXVECTOR3 frustumCorners[8] =
@@ -527,8 +570,8 @@ void HyEngine::Renderer::ShadowPass(Scene * scene)
 	for (int i = 0; i < 4; i++)
 	{
 		D3DXVECTOR3 cornerRay = frustumCorners[i + 4] - frustumCorners[i];
-		D3DXVECTOR3 nearCornerRay = cornerRay * cascadedEnds[0];
-		D3DXVECTOR3 farCornerRay = cornerRay * cascadedEnds[1];
+		D3DXVECTOR3 nearCornerRay = cornerRay * cascadedEnds[cascadeIndex];
+		D3DXVECTOR3 farCornerRay = cornerRay * cascadedEnds[cascadeIndex + 1];
 		frustumCorners[i + 4] = frustumCorners[i] + farCornerRay;
 		frustumCorners[i] = frustumCorners[i] + nearCornerRay;
 	}
@@ -576,52 +619,61 @@ void HyEngine::Renderer::ShadowPass(Scene * scene)
 		&Vector3::Up);
 
 	/* Light Projection Matrix */
-	D3DXMatrixOrthoLH(&lightProjMatrix,
-		maxes.x - mins.x, maxes.y - mins.y,
-		1, cascadedExtents.z);
+// 	D3DXMatrixOrthoLH(&lightProjMatrix,
+// 		maxes.x - mins.x, maxes.y - mins.y,
+// 		1, cascadedExtents.z);
+	D3DXMatrixOrthoOffCenterLH(&lightProjMatrix, mins.x, maxes.x, mins.y, maxes.y, 1, cascadedExtents.z);
 
-	m_lightViewMat = lightViewMatrix;
-	m_lightProjMat = lightProjMatrix;
+
+	m_lightViewMat[cascadeIndex] = lightViewMatrix;
+	m_lightProjMat[cascadeIndex] = lightProjMatrix;
+
 #pragma endregion
-	
+
 
 	//D3DXMATRIX lightViewMatrix;
 	//D3DXMATRIX lightProjMatrix;
 
 	/* 임의의 값 */
-	D3DXVECTOR3 camPos = pSelectedCam->GetPosition().operator D3DXVECTOR3();
-	//D3DXVECTOR3 lightPos = D3DXVECTOR3(-10, -10, 0);
-	D3DXVECTOR3 lightPos = -directionalLight->Direction() * 1000 + camPos;
-
-	D3DXMatrixLookAtLH
-	(
-		&lightViewMatrix,
-		&lightPos,
-		&(lightPos + directionalLight->Direction()),
-		&Vector3::Up
-	);
+// 	D3DXVECTOR3 camPos = pSelectedCam->GetPosition().operator D3DXVECTOR3();
+// 	//D3DXVECTOR3 lightPos = D3DXVECTOR3(-10, -10, 0);
+// 	D3DXVECTOR3 lightPos = -directionalLight->Direction() * 1000 + camPos;
+// 
+// 	D3DXMatrixLookAtLH
+// 	(
+// 		&lightViewMatrix,
+// 		&lightPos,
+// 		&(lightPos + directionalLight->Direction()),
+// 		&Vector3::Up
+// 	);
 	//D3DXMatrixPerspectiveFovLH(&lightProjMatrix, D3DXToRadian(90), WinMaxWidth/ WinMaxHeight, 1, 10000);
 	//D3DXMatrixOrthoLH(&lightProjMatrix, 10000, 10000, -10000, 10000);
-	D3DXMatrixOrthoLH(&lightProjMatrix, 100, 100, 0, 10000);
-	
+	//D3DXMatrixOrthoLH(&lightProjMatrix, 100, 100, 0, 10000);
+
 	//pShader->SetValue("LightViewMatrix", &lightViewMatrix, sizeof(lightViewMatrix));
 	//pShader->SetValue("LightProjMatrix", &lightProjMatrix, sizeof(lightProjMatrix));
-	pShader->SetValue("LightViewMatrix", &m_lightViewMat, sizeof(m_lightViewMat));
-	pShader->SetValue("LightProjMatrix", &m_lightProjMat, sizeof(m_lightProjMat));
+	//pShader->SetValue("LightViewMatrix", &m_lightViewMat, sizeof(m_lightViewMat));
+	//pShader->SetValue("LightProjMatrix", &m_lightProjMat, sizeof(m_lightProjMat));
 
-	for (auto& opaque : list)
-	{
-		pShader->SetValue("WorldMatrix", &opaque->m_pTransform->GetWorldMatrix(), sizeof(opaque->m_pTransform->GetWorldMatrix()));
-
-		pShader->SetTechnique("ShadowMap");
-		pShader->Begin(0, 0);
+		for (auto& opaque : list)
 		{
-			pShader->BeginPass(0);
-			opaque->DrawPrimitive();
-			pShader->EndPass();
+			pShader->SetValue("WorldMatrix", &opaque->m_pTransform->GetWorldMatrix(), sizeof(opaque->m_pTransform->GetWorldMatrix()));
+
+
+			pShader->SetValue("LightViewMatrix", &m_lightViewMat[cascadeIndex], sizeof(m_lightViewMat[cascadeIndex]));
+			pShader->SetValue("LightProjMatrix", &m_lightProjMat[cascadeIndex], sizeof(m_lightProjMat[cascadeIndex]));
+
+			pShader->SetTechnique("ShadowMap");
+			pShader->Begin(0, 0);
+			{
+				pShader->BeginPass(0);
+				opaque->DrawPrimitive();
+				pShader->EndPass();
+
+			}
+			pShader->End();
+
 		}
-		pShader->End();
-	}
 }
 
 Renderer * HyEngine::Renderer::Create()

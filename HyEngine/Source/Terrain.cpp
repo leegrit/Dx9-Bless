@@ -289,6 +289,14 @@ void HyEngine::Terrain::Render()
 
 }
 
+void HyEngine::Terrain::DrawPrimitive()
+{
+	DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
+	DEVICE->SetVertexDeclaration(m_pDeclaration);
+	DEVICE->SetIndices(m_pIB);
+	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_triCount);
+}
+
 void HyEngine::Terrain::UpdatedData(EDataType dataType)
 {
 	if (dataType != EDataType::TerrainData)
