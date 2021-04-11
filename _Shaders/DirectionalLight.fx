@@ -138,16 +138,6 @@ PixelInputType DirectionalLightVS(VertexInputType input)
 
 float4 DirectionalLightPS(PixelInputType input) : COLOR0
 {
-	/* 여기부터 테스트 반드시 나중에 지울것 */
-	//----------------------------------------------------------
-	//float4 lightDepth2 = tex2D(ShadowDepthSampler0, input.texcoord);
-	//lightDepth.a = 1;
-	//return lightDepth2;
-	
-
-
-	//------------------------------------------------------------
-
 	float4 depthMap = tex2D(DepthSampler, input.texcoord);
 	float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
 	float4 normalMap = tex2D(NormalSampler, input.texcoord);
@@ -242,39 +232,7 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	else
 	{
 		shadowFactor = 0;
-		//return float4(lightDepth, lightDepth, lightDepth, 1);
 	}
-	//float4 lightPos = mul(worldPos, LightViewMatrix0);
-	//lightPos = mul(lightPos, LightProjMatrix0);
-
-	/* Light 기준으로 Texture 좌표를 구한다. */
-	//projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
-	//projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
-
-	
-
-	//if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y))
-	//{
-		/* Light 기준으로 투영된 텍스처 좌표에서 Light기준 Depth값을 샘플링한다. */
-		// GBuffer에서 NormalMap의 alpha값에 shadow depth값을 저장한다.
-	//	float shadowDepth = tex2D(ShadowDepthSampler, projectTexcoord.xy).r;
-
-		// 빛의 깊이를 계산한다.
-	//	float lightDepth = lightPos.z / lightPos.w;
-		// LightDepth에서 bias를 뺀다.
-	//	lightDepth = lightDepth - bias;
-
-		// Shadow Map값의 깊이와 빛의 깊이를 비교해서 조명처리할지 그림자처리할지 결정한다.
-		// shadowFactor가 0이라면 조명 연산에 shadowFactor가 곱해져 조명연산이 무시된다.
-	//	if(lightDepth < shadowDepth)
-	//	{
-	//		shadowFactor = 1;
-	//	}
-	//	else
-	//	{
-	//		shadowFactor = 0;
-	//	}
-	//}
 
 	float3 normal = normalMap * 2 - 1;
 	normal = normalize(normal);
