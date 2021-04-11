@@ -238,7 +238,12 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	GeometryPass(scene);
 
 	/* Create Soft ShadowMap */
+	// SoftShadow Origin
+	SetSoftShadowOriginMRT();
 	SoftShadowPass(scene);
+	// SoftShadow Blur
+	SetSoftShadowMRT();
+	SoftShadowBlurPass(scene);
 
 	SetOriginMRT();
 	ClearStashSurface();
@@ -300,14 +305,24 @@ void HyEngine::Renderer::GetOriginMRT()
 
 void HyEngine::Renderer::SetSoftShadowOriginMRT()
 {
+	DEVICE->SetRenderTarget(0, m_pSoftShadowOriginRTSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
 }
 
 void HyEngine::Renderer::SetSoftShadowBlurXMRT()
 {
+	/* Áö¿ì±â */
+	assert(false);
 }
 
 void HyEngine::Renderer::SetSoftShadowMRT()
 {
+	DEVICE->SetRenderTarget(0, m_pSoftShadowRTSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
 }
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
@@ -479,6 +494,9 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
 		pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
 
+
+		D3DXHANDLE softShadowHandler = pShader->GetParameterByName(0, "SoftShadowTex");
+		pShader->SetTexture(softShadowHandler, m_pSoftShadowRTTexture);
 		
 
 		D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
@@ -767,6 +785,64 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
 
 	pShader->SetTechnique("SoftShadowMapping");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+	}
+	pShader->End();
+}
+
+void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
+{
+	/* Set Stream */
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	/* Shader Load */
+	ID3DXEffect* pShader = nullptr;
+
+#ifdef _EDITOR
+	EDIT_ENGINE->TryGetShader(L"Blur", &pShader);
+#else
+	ENGINE->TryGetShader(L"Blur", &pShader);
+#endif
+	assert(pShader);
+
+	/* World, View, Porj */
+	D3DXMATRIX worldMatrix;
+	D3DXMATRIX viewMatrix;
+	D3DXMATRIX projMatrix;
+	
+	/* Set Matrices */
+	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&viewMatrix);
+
+	/* Set Matrix to shader */
+	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
+	pShader->SetValue("ViewMatrix", &viewMatrix, sizeof(viewMatrix));
+	pShader->SetValue("ProjMatrix", &projMatrix, sizeof(projMatrix));
+
+	/* Set SourceSize */
+	D3DXVECTOR2 sourceSize = D3DXVECTOR2(WinMaxWidth, WinMaxHeight);
+	pShader->SetValue("SourceSize", &sourceSize, sizeof(sourceSize));
+	
+	/* Set Source */
+	D3DXHANDLE sourceHandle = pShader->GetParameterByName(0, "SourceTex");
+	pShader->SetTexture(sourceHandle, m_pSoftShadowOriginRTTexture);
+
+	pShader->SetTechnique("Blur");
 	pShader->Begin(0, 0);
 	{
 		pShader->BeginPass(0);

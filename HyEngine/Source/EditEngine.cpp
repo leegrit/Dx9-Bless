@@ -155,6 +155,9 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
 	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
 	InsertShader(L"ShadowMap", PATH->ShadersPathW() + L"ShadowMap.fx");
+	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
+	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
+
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)

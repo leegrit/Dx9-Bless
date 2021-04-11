@@ -48,15 +48,22 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	private:
 		/* For Multi Render Target */
-		void SetPrepareMRT();
 		void SetGBufferMRT();
 		void SetOriginMRT();
 		void SetShadowMapMRT(int cascadeIndex);
+		void GetOriginMRT();
+		/* For SoftShadow */
+		void SetSoftShadowOriginMRT();
+		void SetSoftShadowBlurXMRT();
+		void SetSoftShadowMRT();
 
+	private :
 		void GeometryPass(Scene* scene);
 		void AmbientPass(Scene* scene);
 		void LightPass(Scene* scene);
 		void ShadowPass(Scene * scene, int casecadeIndex);
+		void SoftShadowPass(Scene* scene);
+		void SoftShadowBlurPass(Scene* scene);
 
 		//////////////////////////////////////////////////////////////////////////
 		// FORWARD VARIABLES
@@ -82,6 +89,15 @@ namespace HyEngine
 		IDirect3DSurface9 * m_pNormalRTSurface = nullptr;
 		IDirect3DSurface9 * m_pSpecularRTSurface = nullptr;
 		IDirect3DSurface9 * m_pShadowRTSurface[NUM_CASCADEDES] = { nullptr };
+
+	private : /* For SoftShadow */
+		IDirect3DTexture9 * m_pSoftShadowOriginRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowOriginRTSurface = nullptr;
+		IDirect3DTexture9 * m_pSoftShadowBlurXRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowBlurXRTSurface = nullptr;
+		/* SoftShadow result map */
+		IDirect3DTexture9 * m_pSoftShadowRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowRTSurface = nullptr;
 
 	private: /* For Stash */
 		IDirect3DTexture9 * m_pStashRTTexture = nullptr;

@@ -98,6 +98,14 @@ sampler ShadowDepthSampler3 = sampler_state
 	Texture = (ShadowDepthTex3);
 };
 
+texture SoftShadowTex;
+sampler SoftShadowSampler = sampler_state
+{
+	Texture = (SoftShadowTex);
+};
+
+
+
 texture StashTex;
 sampler StashSampler = sampler_state
 {
@@ -138,6 +146,12 @@ PixelInputType DirectionalLightVS(VertexInputType input)
 
 float4 DirectionalLightPS(PixelInputType input) : COLOR0
 {
+	/*테스트*/
+	//-----------------------------------------------
+	float4 softShadowMap = tex2D(SoftShadowSampler, input.texcoord);
+	return softShadowMap;
+
+	//-----------------------------------------------
 	float4 depthMap = tex2D(DepthSampler, input.texcoord);
 	float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
 	float4 normalMap = tex2D(NormalSampler, input.texcoord);
