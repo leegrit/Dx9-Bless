@@ -63,17 +63,22 @@ void HyEngine::NavPrimitive::Render()
 	/* vertex의 위치를 cell의 위치로 업데이트해준다. */
 	ColorVertex * vertices = m_pColorTriangle->LockVertices();
 	{
+		/* For resolve ZFighting */
+		float bias = 0;
+#ifdef _DEBUG
+		bias = 0.01f;
+#endif
 
 		vertices[(int)EPoint::POINT_A].x = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.x();
-		vertices[(int)EPoint::POINT_A].y = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.y();
+		vertices[(int)EPoint::POINT_A].y = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.y() + bias;
 		vertices[(int)EPoint::POINT_A].z = m_cells[(int)EPoint::POINT_A]->m_pTransform->m_position.z();
 
 		vertices[(int)EPoint::POINT_B].x = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.x();
-		vertices[(int)EPoint::POINT_B].y = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.y();
+		vertices[(int)EPoint::POINT_B].y = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.y() + bias;
 		vertices[(int)EPoint::POINT_B].z = m_cells[(int)EPoint::POINT_B]->m_pTransform->m_position.z();
 
 		vertices[(int)EPoint::POINT_C].x = m_cells[(int)EPoint::POINT_C]->m_pTransform->m_position.x();
-		vertices[(int)EPoint::POINT_C].y = m_cells[(int)EPoint::POINT_C]->m_pTransform->m_position.y();
+		vertices[(int)EPoint::POINT_C].y = m_cells[(int)EPoint::POINT_C]->m_pTransform->m_position.y() + bias;
 		vertices[(int)EPoint::POINT_C].z = m_cells[(int)EPoint::POINT_C]->m_pTransform->m_position.z();
 
 	}

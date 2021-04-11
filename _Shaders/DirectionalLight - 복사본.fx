@@ -158,8 +158,6 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	float4 specularMap = tex2D(SpecularSampler, input.texcoord);
 	float4 stashMap = tex2D(StashSampler, input.texcoord);
 
-	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).r;
-
 	/* Calculate world position */
 	float4 worldPos;
 	worldPos.x = input.texcoord.x * 2.f - 1.f;
@@ -171,6 +169,84 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	worldPos = mul(worldPos, ViewMatrixInv);
 	worldPos = worldPos / worldPos.w;
 
+	/* Calculate Shadow */
+	// Shadow 연산을 통해 빛을 받는곳은 shadowFactor를 1로 
+	// 빛을 받지 않는 곳은 factor를 0으로 설정하여 이후에 계산되는 
+	// 광원 연산에 shadow factor를 곱해주어 그림자가 진 곳은 
+	// 빛을 받지 않게 설정한다.
+	// emissive, ambient는 덧셈 연산이기에 영향을 받지 않는다.
+	float shadowFactor = 1; // default 1
+	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
+	float bias = 0.001f;
+
+	/* Calculate  */
+	// vertex의 light 공간으로 변환된 값이 필요하다.
+	float3 projectTexcoord;
+
+	int cascadeIndex = -1;
+	float4 lightPos;
+	for(int i = 0; i < 4; i++)
+	{
+		lightPos = mul(worldPos, LightViewMatrix[i]);
+		lightPos = mul(lightPos, LightProjMatrix[i]);
+
+		/* Light 기준으로 Texture 좌표를 구한다. */
+		projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
+		projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
+		projectTexcoord.z = lightPos.z / lightPos.w / 2.0f + 0.5f;
+
+		if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y) 
+		&& (saturate(projectTexcoord.z) == projectTexcoord.z))
+		{
+			cascadeIndex = i;
+			break;
+		}
+	}
+	float4 diffuse = Diffuse;
+	float shadowDepth;
+	if(cascadeIndex == 0)
+	{
+		// DEBUG용
+		diffuse = float4(1, 0.5f, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).r;
+		//return diffuse;
+	}
+	if(cascadeIndex == 1)
+	{
+		// DEBUG용
+		diffuse = float4(0.5f, 1, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).r;
+		//return diffuse;
+	}
+	if(cascadeIndex == 2)
+	{
+		// DEBUG용
+		diffuse = float4(0.5f, 0.5f, 1, 1);
+		shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).r;
+
+		//return diffuse;
+	}
+	if(cascadeIndex == 3)
+	{
+		// DEBUG용
+		diffuse = float4(1, 1, 0.5f, 1);
+		shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).r;
+
+		//return diffuse;
+	}
+
+	float lightDepth = lightPos.z / lightPos.w;
+	//return float4(lightDepth, lightDepth, lightDepth, 1);
+	lightDepth = lightDepth - bias;
+
+	if(lightDepth < shadowDepth)
+	{
+		shadowFactor = 1;
+	}
+	else
+	{
+		shadowFactor = 0;
+	}
 
 	float3 normal = normalMap * 2 - 1;
 	normal = normalize(normal);
@@ -181,7 +257,7 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 
 	/* depthMap.rgb is emissive */
 	float3 emissive = depthMap.rgb;
-	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * Diffuse.rgb + emissive;
+	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * diffuse.rgb + emissive;
 
 	
 

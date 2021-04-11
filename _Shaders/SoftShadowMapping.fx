@@ -134,7 +134,7 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	// emissive, ambient는 덧셈 연산이기에 영향을 받지 않는다.
 	float shadowFactor = 1; // default 1
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
-	float bias = 0.001f;
+	float bias = 0.01f;
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
@@ -203,6 +203,7 @@ technique SoftShadowMapping
 	pass P0
 	{
 		ZEnable = false;
+		CULLMODE = CCW;
 		VertexShader = compile vs_3_0 SoftShadowMappingVS();
 		PixelShader = compile ps_3_0 SoftShadowMappingPS();
 	}

@@ -482,17 +482,26 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
 		/* For CascadeShadowMapping */
-		D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
-		pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
-
-		D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
-		pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
-
-		D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
-		pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
-
-		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
-		pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+		if (NUM_CASCADEDES > 0)
+		{
+			D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
+			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+		}
+		if (NUM_CASCADEDES > 1)
+		{
+			D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
+			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+		}
+		if (NUM_CASCADEDES > 2)
+		{
+			D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
+			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+		}
+		if (NUM_CASCADEDES > 3)
+		{
+			D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
+			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+		}
 
 
 		D3DXHANDLE softShadowHandler = pShader->GetParameterByName(0, "SoftShadowTex");
@@ -772,18 +781,26 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
 	/* For CascadeShadowMapping */
-	D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
-	pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
-
-	D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
-	pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
-
-	D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
-	pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
-
-	D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
-	pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
-
+	if (NUM_CASCADEDES > 0)
+	{
+		D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
+		pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+	}
+	if (NUM_CASCADEDES > 1)
+	{
+		D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
+		pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+	}
+	if (NUM_CASCADEDES > 2)
+	{
+		D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
+		pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+	}
+	if (NUM_CASCADEDES > 3)
+	{
+		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
+		pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+	}
 	pShader->SetTechnique("SoftShadowMapping");
 	pShader->Begin(0, 0);
 	{
