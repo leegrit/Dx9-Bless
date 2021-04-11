@@ -90,6 +90,45 @@ void HyEngine::Renderer::Setup()
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
+		&m_pSoftShadowOriginRTTexture
+	);
+	m_pSoftShadowOriginRTTexture->GetSurfaceLevel(0, &m_pSoftShadowOriginRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		D3DX_DEFAULT,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&m_pSoftShadowBlurXRTTexture
+	);
+	m_pSoftShadowBlurXRTTexture->GetSurfaceLevel(0, &m_pSoftShadowBlurXRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		D3DX_DEFAULT,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8R8G8B8,
+		D3DPOOL_DEFAULT,
+		&m_pSoftShadowRTTexture
+	);
+	m_pSoftShadowRTTexture->GetSurfaceLevel(0, &m_pSoftShadowRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		D3DX_DEFAULT,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8R8G8B8,
+		D3DPOOL_DEFAULT,
 		&m_pStashRTTexture
 	);
 	m_pStashRTTexture->GetSurfaceLevel(0, &m_pStashRTSurface);
@@ -123,6 +162,14 @@ void HyEngine::Renderer::Cleanup()
 		SAFE_RELEASE(m_pShadowRTSurface[i]);
 	}
 
+	/* SoftShadowMap */
+	SAFE_RELEASE(m_pSoftShadowOriginRTTexture);
+	SAFE_RELEASE(m_pSoftShadowOriginRTSurface);
+	SAFE_RELEASE(m_pSoftShadowBlurXRTTexture);
+	SAFE_RELEASE(m_pSoftShadowBlurXRTSurface);
+	SAFE_RELEASE(m_pSoftShadowRTTexture);
+	SAFE_RELEASE(m_pSoftShadowRTSurface);
+
 	/* Stash */
 	SAFE_RELEASE(m_pStashRTTexture);
 	SAFE_RELEASE(m_pStashRTSurface);
@@ -142,6 +189,8 @@ void HyEngine::Renderer::ClearStashSurface()
 
 void HyEngine::Renderer::Render(Scene * scene)
 {
+	GetOriginMRT();
+
 	/* For shadowMap */
 	PreparePipeline(scene);
 
@@ -169,8 +218,7 @@ void Renderer::RenderEnd()
 
 void HyEngine::Renderer::PreparePipeline(Scene * scene)
 {
-	// TEST
-	SetPrepareMRT();
+	/* Create CascadeShadow Map  */
 	for (int i = 0; i < NUM_CASCADEDES; i++)
 	{
 		SetShadowMapMRT(i);
@@ -188,6 +236,9 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 
 	/* Render For GBuffer */
 	GeometryPass(scene);
+
+	/* Create Soft ShadowMap */
+	SoftShadowPass(scene);
 
 	SetOriginMRT();
 	ClearStashSurface();
@@ -210,13 +261,6 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	{
 		alpha->Render();
 	}
-}
-
-void HyEngine::Renderer::SetPrepareMRT()
-{
-	/* Get Origin */
-	DEVICE->GetRenderTarget(0, &m_pOriginSurface);
-
 }
 
 void HyEngine::Renderer::SetGBufferMRT()
@@ -246,6 +290,24 @@ void HyEngine::Renderer::SetShadowMapMRT(int cascadeIndex)
 	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
 
+}
+
+void HyEngine::Renderer::GetOriginMRT()
+{
+	/* Get Origin */
+	DEVICE->GetRenderTarget(0, &m_pOriginSurface);
+}
+
+void HyEngine::Renderer::SetSoftShadowOriginMRT()
+{
+}
+
+void HyEngine::Renderer::SetSoftShadowBlurXMRT()
+{
+}
+
+void HyEngine::Renderer::SetSoftShadowMRT()
+{
 }
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
@@ -612,6 +674,114 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		pShader->End();
 
 	}
+}
+
+void HyEngine::Renderer::SoftShadowPass(Scene * scene)
+{
+	/* Find Directional Light */
+	Light* directionalLight = nullptr;
+	for(auto& light : scene->GetObjectContainer()->GetRenderableLightAll())
+	{
+		if (light->Type() == ELightType::DIRECTIONAL)
+		{
+			directionalLight = light;
+			break;
+		}
+	}
+	if (directionalLight == nullptr)
+		return;
+
+
+	/* World, View, Porj */
+	D3DXMATRIX worldMatrix;
+	D3DXMATRIX viewMatrix;
+	D3DXMATRIX projMatrix;
+
+	/* Camera Matrix Inverse */
+	D3DXMATRIX viewMatrixInv;
+	D3DXMATRIX projMatrixInv;
+
+	/* Set Matrices */
+	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&viewMatrix);
+
+
+	/* Set Stream */
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	/* Shader Load */
+	ID3DXEffect* pShader = nullptr;
+
+#ifdef _EDITOR
+	EDIT_ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
+#else
+	ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
+#endif
+	assert(pShader);
+
+	Camera* selectedCam = scene->GetSelectedCamera();
+	assert(selectedCam);
+
+	D3DXMatrixInverse(&viewMatrixInv, NULL, &selectedCam->GetViewMatrix());
+	D3DXMatrixInverse(&projMatrixInv, NULL, &selectedCam->GetProjectionMatrix());
+
+	/* Set Matrix to shader */
+	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
+	pShader->SetValue("ViewMatrix", &viewMatrix, sizeof(viewMatrix));
+	pShader->SetValue("ProjMatrix", &projMatrix, sizeof(projMatrix));
+
+	pShader->SetValue("ViewMatrixInv", &viewMatrixInv, sizeof(viewMatrixInv));
+	pShader->SetValue("ProjMatrixInv", &projMatrixInv, sizeof(projMatrixInv));
+
+	pShader->SetMatrixArray("LightViewMatrix", m_lightViewMat, NUM_CASCADEDES);
+	pShader->SetMatrixArray("LightProjMatrix", m_lightProjMat, NUM_CASCADEDES);
+
+
+	/* Set GBuffer */
+	D3DXHANDLE depthHandle = pShader->GetParameterByName(0, "DepthTex");
+	pShader->SetTexture(depthHandle, m_pDepthRTTexture);
+
+	D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+	pShader->SetTexture(albedoHandle, m_pAlbedoRTTexture);
+
+	D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
+	pShader->SetTexture(normalHandle, m_pNormalRTTexture);
+
+	D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
+	pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
+
+	/* For CascadeShadowMapping */
+	D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
+	pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+
+	D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
+	pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+
+	D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
+	pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+
+	D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
+	pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+
+	pShader->SetTechnique("SoftShadowMapping");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+	}
+	pShader->End();
 }
 
 Renderer * HyEngine::Renderer::Create()

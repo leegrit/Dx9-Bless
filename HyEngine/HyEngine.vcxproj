@@ -454,12 +454,14 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\Ambient.fx" />
+    <FxCompile Include="..\_Shaders\Blur.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\ShadowMap.fx" />
+    <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />
   </ItemGroup>

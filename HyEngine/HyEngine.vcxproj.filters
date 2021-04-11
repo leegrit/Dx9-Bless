@@ -1059,6 +1059,12 @@
     <FxCompile Include="..\_Shaders\ShadowMap.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\Blur.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\SoftShadowMapping.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">
