@@ -98,7 +98,7 @@
     <Link>
       <ModuleDefinitionFile>HyEngine.def</ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\_Libraries\Debug\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\_Libraries\Debug\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -212,11 +212,19 @@
     <ClInclude Include="Include\Geometry.h" />
     <ClInclude Include="Include\GlobalVars.h" />
     <ClInclude Include="Include\GroupMapObject.h" />
+    <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\HierarchyData.h" />
     <ClInclude Include="Include\ILight.h" />
     <ClInclude Include="Include\ImageButton.h" />
     <ClInclude Include="Include\ImageSwitchButton.h" />
-    <ClInclude Include="Include\IMesh.h" />
+    <ClInclude Include="Include\imconfig.h" />
+    <ClInclude Include="Include\imgui.h" />
+    <ClInclude Include="Include\imgui_impl_dx9.h" />
+    <ClInclude Include="Include\imgui_impl_win32.h" />
+    <ClInclude Include="Include\imgui_internal.h" />
+    <ClInclude Include="Include\imstb_rectpack.h" />
+    <ClInclude Include="Include\imstb_textedit.h" />
+    <ClInclude Include="Include\imstb_truetype.h" />
     <ClInclude Include="Include\IndexBuffer.h" />
     <ClInclude Include="Include\IndexTypes.h" />
     <ClInclude Include="Include\IRenderable.h" />
@@ -242,6 +250,7 @@
     <ClInclude Include="Include\MeshData.h" />
     <ClInclude Include="Include\MeshEffect.h" />
     <ClInclude Include="Include\MeshHierarchy.h" />
+    <ClInclude Include="Include\MeshHierarchyLoader.h" />
     <ClInclude Include="Include\MeshLoader.h" />
     <ClInclude Include="Include\MeshObject.h" />
     <ClInclude Include="Include\MeshObject2.h" />
@@ -283,6 +292,7 @@
     <ClInclude Include="Include\Settings.h" />
     <ClInclude Include="Include\CString.h" />
     <ClInclude Include="Include\StateMachine.h" />
+    <ClInclude Include="Include\StaticMesh.h" />
     <ClInclude Include="Include\StayInRadiusBehaviour.h" />
     <ClInclude Include="Include\StringForEditor.h" />
     <ClInclude Include="Include\Strings.h" />
@@ -299,6 +309,7 @@
     <ClInclude Include="Include\UIButton.h" />
     <ClInclude Include="Include\UIDGen.h" />
     <ClInclude Include="Include\UIElement.h" />
+    <ClInclude Include="Include\UIElement2.h" />
     <ClInclude Include="Include\UIPanel.h" />
     <ClInclude Include="Include\UpdateDispatcher.h" />
     <ClInclude Include="Include\VectorData.h" />
@@ -368,10 +379,17 @@
     <ClCompile Include="Source\GameObjectData.cpp" />
     <ClCompile Include="Source\Geometry.cpp" />
     <ClCompile Include="Source\GroupMapObject.cpp" />
+    <ClCompile Include="Source\Gui.cpp" />
     <ClCompile Include="Source\HierarchyData.cpp" />
     <ClCompile Include="Source\ImageButton.cpp" />
     <ClCompile Include="Source\ImageSwitchButton.cpp" />
-    <ClCompile Include="Source\IMesh.cpp" />
+    <ClCompile Include="Source\imgui.cpp" />
+    <ClCompile Include="Source\imgui_demo.cpp" />
+    <ClCompile Include="Source\imgui_draw.cpp" />
+    <ClCompile Include="Source\imgui_impl_dx9.cpp" />
+    <ClCompile Include="Source\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\imgui_tables.cpp" />
+    <ClCompile Include="Source\imgui_widgets.cpp" />
     <ClCompile Include="Source\IndexBuffer.cpp" />
     <ClCompile Include="Source\IndexTypes.cpp" />
     <ClCompile Include="Source\jsoncpp.cpp" />
@@ -393,6 +411,7 @@
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\MeshEffect.cpp" />
     <ClCompile Include="Source\MeshHierarchy.cpp" />
+    <ClCompile Include="Source\MeshHierarchyLoader.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
     <ClCompile Include="Source\MeshObject.cpp" />
     <ClCompile Include="Source\MeshObject2.cpp" />
@@ -428,6 +447,7 @@
     <ClCompile Include="Source\Shape.cpp" />
     <ClCompile Include="Source\Skybox.cpp" />
     <ClCompile Include="Source\StateMachine.cpp" />
+    <ClCompile Include="Source\StaticMesh.cpp" />
     <ClCompile Include="Source\StayInRadiusBehaviour.cpp" />
     <ClCompile Include="Source\Terrain.cpp" />
     <ClCompile Include="Source\TerrainData.cpp" />
@@ -442,6 +462,7 @@
     <ClCompile Include="Source\UIButton.cpp" />
     <ClCompile Include="Source\UIDGen.cpp" />
     <ClCompile Include="Source\UIElement.cpp" />
+    <ClCompile Include="Source\UIElement2.cpp" />
     <ClCompile Include="Source\UIPanel.cpp" />
     <ClCompile Include="Source\UpdateDispatcher.cpp" />
     <ClCompile Include="Source\VectorData.cpp" />
@@ -455,6 +476,7 @@
   <ItemGroup>
     <FxCompile Include="..\_Shaders\Ambient.fx" />
     <FxCompile Include="..\_Shaders\Blur.fx" />
+    <FxCompile Include="..\_Shaders\Collider.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />

@@ -73,7 +73,7 @@ void HyEngine::Renderer::Setup()
 			WinMaxHeight,
 			D3DX_DEFAULT,
 			D3DUSAGE_RENDERTARGET,
-			D3DFMT_A32B32G32R32F,
+			D3DFMT_A8R8G8B8,
 			D3DPOOL_DEFAULT,
 			&m_pShadowRTTexture[i]
 		);
@@ -266,7 +266,17 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	{
 		alpha->Render();
 	}
+
+	/* Render Collider */
+#ifdef _DEBUG
+	auto& colliders = scene->GetObjectContainer()->GetRenderableColliderAll();
+	for (auto& collider : colliders)
+	{
+		collider->Render();
+	}
+#endif
 }
+
 
 void HyEngine::Renderer::SetGBufferMRT()
 {
@@ -339,7 +349,7 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 void HyEngine::Renderer::AmbientPass(Scene * scene)
 {
 	/* 임시 데이터 */
-	float ambientFactor = 0.1f;
+	float ambientFactor = 0.5f;
 
 	D3DXMATRIX worldMatrix;
 	D3DXMATRIX viewMatrix;
@@ -357,11 +367,10 @@ void HyEngine::Renderer::AmbientPass(Scene * scene)
 	D3DXMatrixIdentity(&viewMatrix);
 
 	ID3DXEffect* pShader = nullptr;
-#ifndef _EDITOR
-	ENGINE->TryGetShader(L"Ambient", &pShader);
-#else
-	EDIT_ENGINE->TryGetShader(L"Ambient", &pShader);
-#endif
+	if (ENGINE)
+		ENGINE->TryGetShader(L"Ambient", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"Ambient", &pShader);
 	assert(pShader);
 
 	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
@@ -423,27 +432,24 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		/* 테스트용 */
 		if (light->Type() == ELightType::POINT)
 		{
-#ifndef _EDITOR
-			ENGINE->TryGetShader(L"PointLight", &pShader);
-#else 
-			EDIT_ENGINE->TryGetShader(L"PointLight", &pShader);
-#endif 
+			if (ENGINE)
+				ENGINE->TryGetShader(L"PointLight", &pShader);
+			else
+				EDIT_ENGINE->TryGetShader(L"PointLight", &pShader);
 		}
 		else if (light->Type() == ELightType::DIRECTIONAL)
 		{
-#ifndef _EDITOR
-			ENGINE->TryGetShader(L"DirectionalLight", &pShader);
-#else
-			EDIT_ENGINE->TryGetShader(L"DirectionalLight", &pShader);
-#endif
+			if (ENGINE)
+				ENGINE->TryGetShader(L"DirectionalLight", &pShader);
+			else
+				EDIT_ENGINE->TryGetShader(L"DirectionalLight", &pShader);
 		}
 		else if (light->Type() == ELightType::SPOT)
 		{
-#ifndef _EDITOR
-			ENGINE->TryGetShader(L"SpotLight", &pShader);
-#else
-			EDIT_ENGINE->TryGetShader(L"SpotLight", &pShader);
-#endif
+			if (ENGINE)
+				ENGINE->TryGetShader(L"SpotLight", &pShader);
+			else
+				EDIT_ENGINE->TryGetShader(L"SpotLight", &pShader);
 		}
 
 		assert(pShader);
@@ -562,11 +568,10 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 
 	/* shader load */
 	ID3DXEffect* pShader = nullptr;
-#ifndef _EDITOR
-	ENGINE->TryGetShader(L"ShadowMap", &pShader);
-#else 
-	EDIT_ENGINE->TryGetShader(L"ShadowMap", &pShader);
-#endif 
+	if (ENGINE)
+		ENGINE->TryGetShader(L"ShadowMap", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"ShadowMap", &pShader);
 
 	/* Get Selected Cam */
 	Camera* pSelectedCam = nullptr;
@@ -593,14 +598,14 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 #pragma region Cascade ShadowMapping Algorithm
 	int numCascades = 4; // 4개 분할 
 						 /* cascadedEnds[NUM_CASCADES + 1] = {0.0f, 0.2f, 0.4f, 1.0f} */
-	float cascadedEnds[4 + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
+	float cascadedEnds[4 + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
 
 	D3DXVECTOR3 frustumCorners[8] =
 	{
-		D3DXVECTOR3(-1.0f,  1.0f, 0.0f),
-		D3DXVECTOR3(1.0f,  1.0f, 0.0f),
-		D3DXVECTOR3(1.0f, -1.0f, 0.0f),
-		D3DXVECTOR3(-1.0f, -1.0f, 0.0f),
+		D3DXVECTOR3(-1.0f,  1.0f, -1.0f),
+		D3DXVECTOR3(1.0f,  1.0f, -1.0f),
+		D3DXVECTOR3(1.0f, -1.0f, -1.0f),
+		D3DXVECTOR3(-1.0f, -1.0f, -1.0f),
 		D3DXVECTOR3(-1.0f,  1.0f,  1.0f),
 		D3DXVECTOR3(1.0f,  1.0f,  1.0f),
 		D3DXVECTOR3(1.0f, -1.0f,  1.0f),
@@ -741,12 +746,10 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 
 	/* Shader Load */
 	ID3DXEffect* pShader = nullptr;
-
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
-#else
-	ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
-#endif
+	if (ENGINE)
+		ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"SoftShadowMapping", &pShader);
 	assert(pShader);
 
 	Camera* selectedCam = scene->GetSelectedCamera();
@@ -829,11 +832,11 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 	/* Shader Load */
 	ID3DXEffect* pShader = nullptr;
 
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"Blur", &pShader);
-#else
-	ENGINE->TryGetShader(L"Blur", &pShader);
-#endif
+	if (ENGINE)
+		ENGINE->TryGetShader(L"Blur", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"Blur", &pShader);
+
 	assert(pShader);
 
 	/* World, View, Porj */

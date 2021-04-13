@@ -16,6 +16,7 @@ class SampleScene : public Scene
 	virtual void Load() override;
 	virtual void Unload() override;
 	virtual void LoadAsync(std::function<void(int, int)> onProgress) override;
+	virtual void RenderGUI() override;
 
 public :
 

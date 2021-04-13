@@ -61,6 +61,9 @@ namespace WPF_Tool
         }
         private void BTN_EffectAlbedoFile(object sender, RoutedEventArgs e)
         {
+              // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             OpenFileDialog ofdlg = new OpenFileDialog();
             {
                 // 기본 폴더
@@ -180,8 +183,12 @@ namespace WPF_Tool
         #region TextChanged
         private void EffectUVDirectionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded =  float.TryParse(item.Text, out result);
@@ -194,8 +201,12 @@ namespace WPF_Tool
         }
         private void EffectUVDirectionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -208,8 +219,12 @@ namespace WPF_Tool
         }
         private void EffectUVDirectionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -223,8 +238,12 @@ namespace WPF_Tool
 
         private void EffectLifeTime_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -237,8 +256,12 @@ namespace WPF_Tool
         }
         private void EffectLoopTime_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -251,8 +274,12 @@ namespace WPF_Tool
         }
         private void EffectBeginPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -265,8 +292,12 @@ namespace WPF_Tool
         }
         private void EffectBeginPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -279,8 +310,12 @@ namespace WPF_Tool
         }
         private void EffectBeginPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -293,8 +328,12 @@ namespace WPF_Tool
         }
         private void EffectBeginRotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -307,8 +346,12 @@ namespace WPF_Tool
         }
         private void EffectBeginRotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -321,8 +364,12 @@ namespace WPF_Tool
         }
         private void EffectBeginRotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -335,8 +382,12 @@ namespace WPF_Tool
         }
         private void EffectBeginScaleX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -349,8 +400,12 @@ namespace WPF_Tool
         }
         private void EffectBeginScaleY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -363,8 +418,12 @@ namespace WPF_Tool
         }
         private void EffectBeginScaleZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -377,8 +436,12 @@ namespace WPF_Tool
         }
         private void EffectEndPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -391,8 +454,12 @@ namespace WPF_Tool
         }
         private void EffectEndPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -405,8 +472,12 @@ namespace WPF_Tool
         }
         private void EffectEndPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -419,8 +490,12 @@ namespace WPF_Tool
         }
         private void EffectEndRotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -433,8 +508,12 @@ namespace WPF_Tool
         }
         private void EffectEndRotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -447,8 +526,12 @@ namespace WPF_Tool
         }
         private void EffectEndRotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -461,8 +544,12 @@ namespace WPF_Tool
         }
         private void EffectEndScaleX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -475,8 +562,12 @@ namespace WPF_Tool
         }
         private void EffectEndScaleY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);
@@ -489,8 +580,12 @@ namespace WPF_Tool
         }
         private void EffectEndScaleZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool isSucceeded = float.TryParse(item.Text, out result);

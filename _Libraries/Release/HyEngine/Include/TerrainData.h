@@ -5,8 +5,8 @@ namespace HyEngine
 #pragma pack(push, 1)
 	struct TerrainData
 	{
-		unsigned int vertexCountX;
-		unsigned int vertexCountZ;
+		int vertexCountX;
+		int vertexCountZ;
 		float textureCountX;
 		float textureCountZ;
 		float vertexInterval;

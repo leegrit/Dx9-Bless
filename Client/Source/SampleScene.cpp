@@ -10,6 +10,9 @@
 #include "NavMesh.h"
 #include "Pawn.h"
 #include "ObjectContainer.h"
+#include "LightObject.h"
+#include "Terrain.h"
+
 
 void SampleScene::Update()
 {
@@ -33,26 +36,20 @@ void SampleScene::Load()
 	SelectCamera(L"SampleCamera");
 
 
-	Skybox* skybox = new Skybox(camera, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
-	skybox->Initialize();
+	//Skybox* skybox = new Skybox(camera, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
+	//skybox->Initialize();
 	//SetSkybox(skybox);
-	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Sample_NavMesh.json");
+	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/FirstNavMesh.json");
 	
-	m_pPawn = Pawn::Create(this, nullptr, navMesh, PATH->DatasPathW() + L"HierarchyData/Sample_Elf.json");
-	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_6.json");
+	m_pPawn = Pawn::Create(this, nullptr, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
+	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/FirstChunkMap.json");
 
-	Light * light = new Light();
-	light->Type() = ELightType::POINT;
-	light->Diffuse() = D3DXCOLOR(3.0f, 3.0f, 3.0f, 3.0f);
-	light->Position() = D3DXVECTOR4( m_pPawn->m_pTransform->m_position.operator D3DXVECTOR3(), 1);
-	light->Range() = 10;
-	light->Constant() = 0.0f;
-	light->Linear() = 0.2f;
-	light->Exp() = 0.0f;
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/FirstTerrain.json");
 
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/FirstDirLight.json");
 
-	
-	GetObjectContainer()->AddLight(light);
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/FirstPointLight.json");
+
 }
 
 void SampleScene::Unload()
@@ -61,4 +58,28 @@ void SampleScene::Unload()
 
 void SampleScene::LoadAsync(std::function<void(int, int)> onProgress)
 {
+}
+
+void SampleScene::RenderGUI()
+{
+	Gui::Get()->ShowFPS();
+	/* Test */
+// 	static bool bOpen = true;
+// 	ImGui::SetNextWindowPos({ WinMaxWidth - 100, 15 });
+// 	ImGui::SetNextWindowSize(ImVec2(200, 15));
+// 	ImGui::Begin
+// 	(
+// 		"FPS",
+// 		&bOpen,
+// 		ImGuiWindowFlags_NoBackground |
+// 		ImGuiWindowFlags_NoTitleBar |
+// 		ImGuiWindowFlags_NoResize |
+// 		ImGuiWindowFlags_NoMove
+// 	);
+// 	{
+// 		string frame = "FPS : " + to_string((int)ImGui::GetIO().Framerate);
+// 		ImGui::Text(frame.c_str());
+// 	}
+// 	ImGui::End();
+	
 }

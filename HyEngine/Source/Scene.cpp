@@ -22,6 +22,7 @@ Scene::Scene()
 }
 Scene::~Scene()
 {
+	SAFE_DELETE(m_pSkybox);
 	SAFE_DELETE(m_pObjectContainer);
 	EventDispatcher::Cleanup();
 }
@@ -136,14 +137,28 @@ void HyEngine::Scene::RenderScene(Renderer * renderer)
 	renderer->Render(this);
 }
 
+void HyEngine::Scene::RenderGUI()
+{
+}
+
 bool HyEngine::Scene::SelectCamera(std::wstring name)
 {
 	return m_pObjectContainer->TryGetInvisibleObject(name, (GameObject**)&m_pSelectedCamera);
 }
 
+void HyEngine::Scene::SetSkybox(Skybox * skybox)
+{
+	m_pSkybox = skybox;
+}
+
 Camera * HyEngine::Scene::GetSelectedCamera() const
 {
 	return m_pSelectedCamera;
+}
+
+Skybox * HyEngine::Scene::GetSkybox() const
+{
+	return m_pSkybox;
 }
 
 ObjectContainer * HyEngine::Scene::GetObjectContainer() const

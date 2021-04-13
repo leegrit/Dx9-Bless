@@ -24,6 +24,7 @@ namespace WPF_Tool
         {
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
 
@@ -35,8 +36,12 @@ namespace WPF_Tool
 
         private void DirectionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float dirX;
@@ -50,9 +55,12 @@ namespace WPF_Tool
         }
         private void DirectionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float dirY;
@@ -66,9 +74,12 @@ namespace WPF_Tool
         }
         private void DirectionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float dirZ;
@@ -82,9 +93,12 @@ namespace WPF_Tool
         }
         private void LightPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float posX;
@@ -98,9 +112,12 @@ namespace WPF_Tool
         }
         private void LightPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float posY;
@@ -114,9 +131,12 @@ namespace WPF_Tool
         }
         private void LightPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float posZ;
@@ -130,9 +150,12 @@ namespace WPF_Tool
         }
         private void AmbientR_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float ambientR;
@@ -146,8 +169,12 @@ namespace WPF_Tool
         }
         private void AmbientG_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float ambientG;
@@ -161,8 +188,12 @@ namespace WPF_Tool
         }
         private void AmbientB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float ambientB;
@@ -176,8 +207,12 @@ namespace WPF_Tool
         }
         private void AmbientA_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float ambientA;
@@ -191,8 +226,12 @@ namespace WPF_Tool
         }
         private void AmbientIntensity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             var slider = sender as Slider;
 
             double value = slider.Value;
@@ -205,8 +244,12 @@ namespace WPF_Tool
         }
         private void DiffuseR_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float diffuseR;
@@ -220,8 +263,12 @@ namespace WPF_Tool
         }
         private void DiffuseG_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float diffuseG;
@@ -235,8 +282,12 @@ namespace WPF_Tool
         }
         private void DiffuseB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float diffuseB;
@@ -250,8 +301,12 @@ namespace WPF_Tool
         }
         private void DiffuseA_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float diffuseA;
@@ -265,8 +320,12 @@ namespace WPF_Tool
         }
         private void DiffuseIntensity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             var slider = sender as Slider;
 
             double value = slider.Value;
@@ -279,8 +338,13 @@ namespace WPF_Tool
         }
         private void SpecularR_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
+
             TextBox textBox = sender as TextBox;
 
             float specularR;
@@ -294,8 +358,12 @@ namespace WPF_Tool
         }
         private void SpecularG_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float specularG;
@@ -309,8 +377,12 @@ namespace WPF_Tool
         }
         private void SpecularB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float specularB;
@@ -324,8 +396,12 @@ namespace WPF_Tool
         }
         private void SpecularA_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float specularA;
@@ -339,9 +415,12 @@ namespace WPF_Tool
         }
         private void SpecularIntensity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             var slider = sender as Slider;
 
             double value = slider.Value;
@@ -354,9 +433,12 @@ namespace WPF_Tool
         }
         private void SpecularPower_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             var slider = sender as Slider;
 
             double value = slider.Value;
@@ -369,9 +451,12 @@ namespace WPF_Tool
         }
         private void LightRange_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float range;
@@ -385,9 +470,12 @@ namespace WPF_Tool
         }
         private void Cone_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
-
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float cone;
@@ -401,8 +489,12 @@ namespace WPF_Tool
         }
         private void Constant_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
 
             TextBox textBox = sender as TextBox;
 
@@ -417,8 +509,12 @@ namespace WPF_Tool
         }
         private void Linear_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
 
             TextBox textBox = sender as TextBox;
 
@@ -433,8 +529,12 @@ namespace WPF_Tool
         }
         private void Quadratic_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (bWindowInit == false)
                 return;
+            ValueChangeEvent();
 
             TextBox textBox = sender as TextBox;
 

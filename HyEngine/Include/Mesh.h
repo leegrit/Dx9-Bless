@@ -1,37 +1,32 @@
 #pragma once
+#include "GameObject.h"
+
 namespace HyEngine
 {
-	class ENGINE_DLL Mesh
+	class Mesh abstract : public GameObject
 	{
-
-	public :
-		Mesh();
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTOR & DESTRUCTOR 
+		//////////////////////////////////////////////////////////////////////////
+	protected :
+		explicit Mesh(ERenderType renderType, Scene * scene, GameObject* parent, std::wstring name);
 		virtual ~Mesh();
 
+		//////////////////////////////////////////////////////////////////////////
+		// INHERITED
+		//////////////////////////////////////////////////////////////////////////
 	public :
-		void Load(std::string filePath) ;
-		IDirect3DVertexBuffer9* GetVertexBuffer();
-		int GetVertexSize();
-		int GetVertexCount();
-		IDirect3DIndexBuffer9* GetIndexBuffer();
-		int GetPrimitiveCount();
-		IDirect3DVertexDeclaration9* GetDeclare();
+		virtual void Render() override;
+		virtual void DrawPrimitive() override;
+		virtual void UpdatedData(EDataType dataType) override;
 
-		float GetRadius();
-	protected :
-		int m_primCount;
-		// vertex
-		int m_vertexSize;
-		int m_vertexCount;
-		int m_indexCount;
-		IDirect3DVertexBuffer9 * m_pVertexBuffer = nullptr;
+		//////////////////////////////////////////////////////////////////////////
+		// VIRTUAL
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		virtual bool ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _Out_ float * radius);
 
-		IDirect3DIndexBuffer9 * m_pIndexBuffer = nullptr;
-
-		IDirect3DVertexDeclaration9* m_pDeclare = nullptr;
-
-		// 
-		float m_radius;
 
 	};
+
 }

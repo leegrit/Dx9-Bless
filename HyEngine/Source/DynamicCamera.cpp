@@ -43,24 +43,35 @@ void DynamicCamera::Update()
 	{
 		m_pTransform->Translate(m_pTransform->Right() * m_speed * TIMER->getDeltaTime());
 	}
+	if (MOUSE->Down(1))
+	{
+		lastClickedPos = MOUSE->GetPosition();
+		lastClickedRot = m_pTransform->m_rotationEuler.operator D3DXVECTOR3();
+	}
 	if (MOUSE->Press(1))
 	{
 		D3DXVECTOR3 mousePos = MOUSE->GetPosition();
 
-		mousePos.x = WinMaxWidth - mousePos.x;
-		mousePos.y = WinMaxHeight - mousePos.y;
+		D3DXVECTOR3 offset = mousePos - lastClickedPos;
 
-		mousePos.x = mousePos.x - WinMaxWidth * 0.5f;
-		float xWeight = std::abs(mousePos.x) / (WinMaxWidth * 0.5f);
-		mousePos.y = mousePos.y - WinMaxHeight * 0.5f;
-		float yWeight = std::abs(mousePos.y) / (WinMaxHeight * 0.5f);
-		mousePos.z = 0;
+		m_pTransform->m_rotationEuler.x() = lastClickedRot.x - offset.y;
+		m_pTransform->m_rotationEuler.y() = lastClickedRot.y + offset.x;
 
-		D3DXVec3Normalize(&mousePos, &mousePos);
-
-
-		m_pTransform->m_rotationEuler.x() = m_pTransform->m_rotationEuler.x() + mousePos.y * m_xRotMax;
-		m_pTransform->m_rotationEuler.y() = m_pTransform->m_rotationEuler.y() + mousePos.x * m_yRotMax;
+// 
+// 		mousePos.x = WinMaxWidth - mousePos.x;
+// 		mousePos.y = WinMaxHeight - mousePos.y;
+// 
+// 		mousePos.x = mousePos.x - WinMaxWidth * 0.5f;
+// 		float xWeight = std::abs(mousePos.x) / (WinMaxWidth * 0.5f);
+// 		mousePos.y = mousePos.y - WinMaxHeight * 0.5f;
+// 		float yWeight = std::abs(mousePos.y) / (WinMaxHeight * 0.5f);
+// 		mousePos.z = 0;
+// 
+// 		D3DXVec3Normalize(&mousePos, &mousePos);
+// 
+// 
+// 		m_pTransform->m_rotationEuler.x() = m_pTransform->m_rotationEuler.x() + mousePos.y * m_xRotMax;
+// 		m_pTransform->m_rotationEuler.y() = m_pTransform->m_rotationEuler.y() + mousePos.x * m_yRotMax;
 	}
 
 

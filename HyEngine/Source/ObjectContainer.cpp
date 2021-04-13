@@ -384,6 +384,23 @@ std::vector<GameObject*>& HyEngine::ObjectContainer::GetInvisibleObjectAll()
 	return m_invisibleObjects;
 }
 
+std::vector<Collider*> HyEngine::ObjectContainer::GetRenderableColliderAll()
+{
+	std::vector<Collider*> mergedVec;
+
+	mergedVec.insert(mergedVec.end(), m_dynamicColliders.begin(), m_dynamicColliders.end());
+	mergedVec.insert(mergedVec.end(), m_staticColliders.begin(), m_staticColliders.end());
+	mergedVec.insert(mergedVec.end(), m_multipurposeColliders.begin(), m_multipurposeColliders.end());
+
+	return cpplinq::from_iterators(mergedVec.begin(), mergedVec.end())
+		>> cpplinq::where([&](Collider* collider)
+	{
+		if (collider->GetActive() == false) return false;
+		if (collider->m_bWantsDestroy == true) return false;
+		return true;
+	}) >> cpplinq::to_vector();
+}
+
 std::vector<Collider*>& HyEngine::ObjectContainer::GetDynamicColliderAll()
 {
 	return m_dynamicColliders;

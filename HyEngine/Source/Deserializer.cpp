@@ -8,6 +8,9 @@
 #include "NavMeshData.h"
 #include "CellData.h"
 #include "ChunkMapData.h"
+#include "TerrainData.h"
+#include "LightData.h"
+
 
 shared_ptr<HierarchyData> HyEngine::Deserializer::Deserialize(std::wstring jsonPath)
 {
@@ -15,12 +18,7 @@ shared_ptr<HierarchyData> HyEngine::Deserializer::Deserialize(std::wstring jsonP
 	Json::ReadData(jsonPath, &root);
 
 	shared_ptr<HierarchyData> result = std::make_shared<HierarchyData>();
-// 	result->gameObjectData = new GameObjectData();
-// 	result->meshData = new MeshData();
-// 	result->mapData = new MapData();
-// 	result->navMeshData = new NavMeshData();
 
-	//Json::Value hierarchyDataJson = root["Hierarchy"];
 
 	/* For GameObjectData */
 	Json::Value gameObjectDataJson = root[JsonKey::GameObjectData];
@@ -57,6 +55,38 @@ shared_ptr<HierarchyData> HyEngine::Deserializer::Deserialize(std::wstring jsonP
 
 	Json::GetValue(navMeshJson, JsonKey::Index, result->navMeshData->index);
 	Json::GetValue(navMeshJson, JsonKey::CellCount, result->navMeshData->cellCount);
+	
+	/* For Terrain */
+	Json::Value terrainJson = root[JsonKey::TerrainData];
+
+	Json::GetValue(terrainJson, JsonKey::VertexCountX, result->terrainData->vertexCountX);
+	Json::GetValue(terrainJson, JsonKey::VertexCountZ, result->terrainData->vertexCountZ);
+	Json::GetValue(terrainJson, JsonKey::TextureCountX, result->terrainData->textureCountX);
+	Json::GetValue(terrainJson, JsonKey::TextureCountZ, result->terrainData->textureCountZ);
+	Json::GetValue(terrainJson, JsonKey::VertexInterval, result->terrainData->vertexInterval);
+	Json::GetValue(terrainJson, JsonKey::DiffuseFilePath, result->terrainData->diffuseFilePath, 256);
+	Json::GetValue(terrainJson, JsonKey::NormalFilePath, result->terrainData->normalFilePath, 256);
+
+	/* For Light */
+	Json::Value lightJson = root[JsonKey::LightData];
+
+	Json::GetValue(lightJson, JsonKey::LightType, result->lightData->lightType);	
+	Json::GetValue(lightJson, JsonKey::Direction, result->lightData->direction);
+	Json::GetValue(lightJson, JsonKey::Position, result->lightData->position);
+	Json::GetValue(lightJson, JsonKey::Ambient, result->lightData->ambient);
+	Json::GetValue(lightJson, JsonKey::AmbientIntensity, result->lightData->ambientIntensity);
+	Json::GetValue(lightJson, JsonKey::Diffuse, result->lightData->diffuse);
+	Json::GetValue(lightJson, JsonKey::DiffuseIntensity, result->lightData->diffuseIntensity);
+	Json::GetValue(lightJson, JsonKey::Specular, result->lightData->specular);
+	Json::GetValue(lightJson, JsonKey::SpecularIntensity, result->lightData->specularIntensity);
+	Json::GetValue(lightJson, JsonKey::SpecularPower, result->lightData->specularPower);
+	Json::GetValue(lightJson, JsonKey::Range, result->lightData->range);
+	Json::GetValue(lightJson, JsonKey::Cone, result->lightData->cone);
+	Json::GetValue(lightJson, JsonKey::Constant, result->lightData->constant);
+	Json::GetValue(lightJson, JsonKey::Linear, result->lightData->linear);
+	Json::GetValue(lightJson, JsonKey::Quadratic, result->lightData->quadratic);
+
+
 
 	/* For Cells */
 	for (int i = 0; i < result->navMeshData->cellCount; i++)

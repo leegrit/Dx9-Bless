@@ -89,26 +89,9 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 
 	unsigned long numFaces = pMesh->GetNumFaces();
 
-// 	pMeshContainer->pAdjacency = new unsigned long[numFaces * 3];
-// 	memcpy(pMeshContainer->pAdjacency, pAdjacency, sizeof(unsigned long) * numFaces * 3);
-// 
-// 	/* 테스트 */
-// 	pMeshContainer->pAdjacency = pAdjacency2;
 
 	unsigned long fvf = pMesh->GetFVF();
 
-	/*if (!(fvf & D3DFVF_NORMAL))
-	{
-		pMesh->CloneMeshFVF(pMesh->GetOptions(),
-			fvf | D3DFVF_NORMAL,
-			DEVICE,
-			&pMeshContainer->MeshData.pMesh);
-		D3DXComputeNormals(pMeshContainer->MeshData.pMesh, pMeshContainer->pAdjacency);
-	}
-	else
-	{
-		pMesh->CloneMeshFVF(pMesh->GetOptions(), fvf, DEVICE, &pMeshContainer->MeshData.pMesh);
-	}*/
 	pMesh->CloneMesh(pMesh->GetOptions(), meshDeclaration, DEVICE, &pMeshContainer->MeshData.pMesh);
 
 	// 재질의 개수를 채워주는데 없는 경우도 있기 때문에 조건문을 달아준다.
@@ -121,6 +104,9 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	// 텍스처 동적할당 (재질 개수만큼)
 	pMeshContainer->ppTexture = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
 	ZeroMemory(pMeshContainer->ppTexture, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
+
+	pMeshContainer->ppNormal = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
+	ZeroMemory(pMeshContainer->ppNormal, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
 
 	pMeshContainer->pTextureNames = new std::wstring[pMeshContainer->NumMaterials];
 
@@ -151,6 +137,18 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 			{
 				return E_FAIL;
 			}
+			/* For Others map */
+			std::wstring name = fileName;
+			std::wstring dirPath = fullPath;
+			dirPath = Path::GetDirectoryName(dirPath);
+
+			/* Find Normal Map */
+			std::wstring normalMapName = name;
+			CString::Replace(&normalMapName, L"_D_", L"_N_");
+			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
+
+			pMeshContainer->ppNormal[i] = normalMap;
+
 			pMeshContainer->pTextureNames[i] = CString::CharToWstring( pMeshContainer->pMaterials[i].pTextureFilename);
 		}
 	}
@@ -164,6 +162,7 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 		pMeshContainer->pMaterials[0].MatD3D.Power = 0.f;
 
 		pMeshContainer->ppTexture[0] = NULL;
+		pMeshContainer->ppNormal[0] = NULL;
 	}
 
 	if (nullptr == pSkinInfo) // Skinned Mesh가 아닌 경우 그냥 반환한다.

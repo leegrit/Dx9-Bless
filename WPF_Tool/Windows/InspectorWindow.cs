@@ -66,31 +66,6 @@ namespace WPF_Tool
 
                             Externs.InsertMeshData(ref data.meshData);
                             ShowInspector(data);
-//                             if (data.type == GameObjectType.Pawn)
-//                             {
-//                                 // 여기서 애니메이션 개수를 구한 후 
-//                                 // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
-//                                 int animCount = Externs.GetAnimationCount();
-//                                 AnimationCount.Text = animCount.ToString();
-//                                 AnimationIndex.Text = (0).ToString(); // 기본값 0
-// 
-//                                 // 여기서 비우고 아래에서 다시 채워준다.
-//                                 AnimationComboBox.Items.Clear();
-//                                 for (int animIndex = 0; animIndex < animCount; animIndex++)
-//                                 {
-//                                     IntPtr animName = Externs.GetAnimationName(animIndex);
-//                                     if (animName == null) continue;
-// 
-//                                     string convertedName = Marshal.PtrToStringUni(animName);
-// 
-//                                     ComboBoxItem item = new ComboBoxItem();
-//                                     item.Uid = animIndex.ToString();
-//                                     item.Content = convertedName;
-//                                     item.Selected += Animation_Selected;
-//                                     AnimationComboBox.Items.Add(item);
-//                                 }
-// 
-//                             }
 
                             break;
                         }
@@ -238,6 +213,7 @@ namespace WPF_Tool
         }
         private void SLT_MapGroup(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
 
@@ -255,6 +231,7 @@ namespace WPF_Tool
         
         private void Tag_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
 
@@ -275,6 +252,7 @@ namespace WPF_Tool
 
         private void Layer_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
             for (int i = 0; i < hierarchyList.Count; i++)
@@ -293,6 +271,7 @@ namespace WPF_Tool
 
         private void Static_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
             for (int i = 0; i < hierarchyList.Count; i++)
@@ -310,6 +289,7 @@ namespace WPF_Tool
         }
         private void Animation_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBoxItem item = sender as ComboBoxItem;
             int index = Int32.Parse(item.Uid);
             AnimationIndex.Text = item.Uid;
@@ -317,18 +297,21 @@ namespace WPF_Tool
         }
         private void Active_Checked(object sender, RoutedEventArgs e)
         {
-            if (bWindowInit)
-                Externs.ActiveEditObject();
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            Externs.ActiveEditObject();
         }
 
         private void Active_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (bWindowInit)
-                Externs.InactiveEditObject();
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            Externs.InactiveEditObject();
         }
 
         public void ShowInspector(HierarchyData data)
         {
+            ValueChangeEvent();
             GameObjectName.Text = data.gameObjectData.name;
             ObjectTag.SelectedIndex = data.tagIndex;
             ObjectLayer.SelectedIndex = data.layerIndex;
@@ -426,6 +409,8 @@ namespace WPF_Tool
                         Externs.InsertGameData(ref data.gameObjectData);
                         Externs.InsertMeshData(ref data.meshData);
 
+                        
+
                         // 아래 데이터들은 Insert를 마친 후 세팅되어야한다.
                         // 여기서 애니메이션 개수를 구한 후 
                         // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
@@ -434,22 +419,36 @@ namespace WPF_Tool
                         AnimationIndex.Text = (0).ToString(); // 기본값 0
 
                         // 여기서 비우고 아래에서 다시 채워준다.
-                        AnimationComboBox.Items.Clear();
+                        //AnimationComboBox.Items.Clear();
+                        if (animCount >= AnimationComboBox.Items.Count)
+                        {
+                            float addCount = animCount - AnimationComboBox.Items.Count;
+                            for (int i = 0; i < addCount; i++)
+                            {
+                                ComboBoxItem item = new ComboBoxItem();
+                                AnimationComboBox.Items.Add(item);
+                            }
+                        }
                         for (int animIndex = 0; animIndex < animCount; animIndex++)
                         {
                             AnimNameData animName = default(AnimNameData);
-                           Externs.GetAnimationName(ref animName, animIndex);
+                            Externs.GetAnimationName(ref animName, animIndex);
+
+                            ComboBoxItem item = AnimationComboBox.Items[animIndex] as ComboBoxItem;
                             
-                            //String convertedName = Marshal.PtrToStringUni(animName);
-                            ComboBoxItem item = new ComboBoxItem();
                             item.Uid = animIndex.ToString();
                             item.Content = animName.name;
                             item.Selected += Animation_Selected;
-
-                            AnimationComboBox.Items.Add(item);
+                            
+                        }
+                        for (int i = animCount; i < AnimationComboBox.Items.Count; i++)
+                        {
+                            ((ComboBoxItem)AnimationComboBox.Items[i]).Visibility = Visibility.Collapsed;
                         }
                         // 기본값
                         AnimationComboBox.SelectedIndex = 0;
+
+                        
                         break;
                     }
                 case GameObjectType.NavMesh:
@@ -920,6 +919,9 @@ namespace WPF_Tool
 
         private void CellPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (isSelecting) return;
+            ValueChangeEvent();
+
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -950,6 +952,10 @@ namespace WPF_Tool
         }
         private void CellPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -980,6 +986,10 @@ namespace WPF_Tool
         }
         private void CellPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -1010,6 +1020,10 @@ namespace WPF_Tool
 
         private void PositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1027,6 +1041,10 @@ namespace WPF_Tool
         }
         private void PositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1045,6 +1063,10 @@ namespace WPF_Tool
 
         private void PositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1063,6 +1085,10 @@ namespace WPF_Tool
 
         private void RotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1081,6 +1107,10 @@ namespace WPF_Tool
 
         private void RotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1099,6 +1129,10 @@ namespace WPF_Tool
 
         private void RotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1117,6 +1151,10 @@ namespace WPF_Tool
 
         private void ScaleX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1135,6 +1173,10 @@ namespace WPF_Tool
 
         private void ScaleY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1153,6 +1195,10 @@ namespace WPF_Tool
 
         private void ScaleZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -1171,8 +1217,12 @@ namespace WPF_Tool
 
         private void EditCamPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1185,8 +1235,12 @@ namespace WPF_Tool
         }
         private void EditCamPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1200,8 +1254,12 @@ namespace WPF_Tool
 
         private void EditCamPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1214,8 +1272,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1228,8 +1290,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1242,8 +1308,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1256,8 +1326,12 @@ namespace WPF_Tool
         }
         private void EditCamMoveSpeed_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1267,8 +1341,12 @@ namespace WPF_Tool
         }
         private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1286,8 +1364,12 @@ namespace WPF_Tool
         }
         private void MeshFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1303,8 +1385,12 @@ namespace WPF_Tool
         }
         private void DiffuseFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1320,40 +1406,60 @@ namespace WPF_Tool
         }
         private void TerrainX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountX = UInt32.Parse( item.Text);
+            selectedHierarchy.terrainData.vertexCountX = Int32.Parse( item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountZ = UInt32.Parse(item.Text);
+            selectedHierarchy.terrainData.vertexCountZ = Int32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.textureCountX = UInt32.Parse(item.Text);
+            selectedHierarchy.terrainData.textureCountX = Int32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             selectedHierarchy.terrainData.textureCountZ = UInt32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainInterval_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool bSuccess = float.TryParse(item.Text, out result);

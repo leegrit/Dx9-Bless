@@ -603,8 +603,8 @@ namespace WPF_Tool.Utility
                 terrainData = default(TerrainData);
                 return false;
             }
-            terrainData.vertexCountX = (uint)jsonTerrainData["VertexCountX"];
-            terrainData.vertexCountZ = (uint)jsonTerrainData["VertexCountZ"];
+            terrainData.vertexCountX = (int)jsonTerrainData["VertexCountX"];
+            terrainData.vertexCountZ = (int)jsonTerrainData["VertexCountZ"];
             terrainData.textureCountX = (float)jsonTerrainData["TextureCountX"];
             terrainData.textureCountZ = (float)jsonTerrainData["TextureCountZ"];
             terrainData.vertexInterval = (float)jsonTerrainData["VertexInterval"];

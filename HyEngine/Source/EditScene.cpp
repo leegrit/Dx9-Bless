@@ -11,6 +11,8 @@
 #include "ObjectContainer.h"
 #include "LightObject.h"
 #include "MeshEffect.h"
+#include "StaticMesh.h"
+#include "DynamicMesh.h"
 
 
 using namespace HyEngine;
@@ -49,14 +51,14 @@ void HyEngine::EditScene::LateLoadScene()
 void HyEngine::EditScene::AddMeshObject(int editIndex)
 {
 	//Ring::Create(this, nullptr);
-	EditMesh::Create(this, nullptr, editIndex);
+	StaticMesh::Create(this, nullptr, editIndex);
 	
 	//EditMesh::Create(this, nullptr);
 }
 
 void HyEngine::EditScene::AddPawn(int editIndex)
 {
-	EditDynamicMesh::Create(this, nullptr, editIndex);
+	DynamicMesh::Create(this, nullptr, editIndex);
 }
 
 void HyEngine::EditScene::AddNavMesh(int editIndex)
@@ -170,10 +172,10 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 		//assert(editObj);
 		if (obj->GetStaticType() == EStaticType::Navigation)
 		{
-			EditMesh* editMesh = dynamic_cast<EditMesh*>(obj);
+			StaticMesh* editMesh = dynamic_cast<StaticMesh*>(obj);
 			if (editMesh != nullptr)
 			{
-				ID3DXMesh* mesh = editMesh->GetDxMesh();
+				ID3DXMesh* mesh = editMesh->GetMesh();
 				if (mesh == nullptr) continue;
 				// navmesh picking은 xfile만 가능
 

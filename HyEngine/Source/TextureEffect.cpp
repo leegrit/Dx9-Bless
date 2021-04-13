@@ -44,11 +44,10 @@ void HyEngine::TextureEffect::Render()
 
 	/* Get Shader */
 	ID3DXEffect* pShader = nullptr;
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"TextureEffect", &pShader);
-#else
-	ENGINE->TryGetShader(L"TextureEffect", &pShader);
-#endif
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"TextureEffect", &pShader);
+	else
+		ENGINE->TryGetShader(L"TextureEffect", &pShader);
 	assert(pShader);
 
 	/* Get Selected Cam */

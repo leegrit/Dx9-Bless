@@ -79,6 +79,50 @@ void Json::SetValue(Json::Value & parent, string name, Vector3 & vec)
 	assert(false);
 }
 
+void Json::GetValue(Json::Value & parent, string name, VectorData & vec)
+{
+	Json::Value valueJson = parent[name];
+	// TEST
+	vec.x = valueJson[JsonKey::X].asFloat();
+	vec.y = valueJson[JsonKey::Y].asFloat();
+	vec.z = valueJson[JsonKey::Z].asFloat();
+}
+
+void Json::SetValue(Json::Value & parent, string name, VectorData & vec)
+{
+	assert(false);
+}
+
+void Json::GetValue(Json::Value & parent, string name, D3DXCOLOR & color)
+{
+	Json::Value valueJson = parent[name];
+	// TEST
+	color.r = valueJson[JsonKey::R].asFloat();
+	color.g = valueJson[JsonKey::G].asFloat();
+	color.b = valueJson[JsonKey::B].asFloat();
+	color.a = valueJson[JsonKey::A].asFloat();
+}
+
+void Json::SetValue(Json::Value & parent, string name, D3DXCOLOR & color)
+{
+	assert(false);
+}
+
+void Json::GetValue(Json::Value & parent, string name, ColorData & color)
+{
+	Json::Value valueJson = parent[name];
+	// TEST
+	color.r = valueJson[JsonKey::R].asFloat();
+	color.g = valueJson[JsonKey::G].asFloat();
+	color.b = valueJson[JsonKey::B].asFloat();
+	color.a = valueJson[JsonKey::A].asFloat();
+}
+
+void Json::SetValue(Json::Value & parent, string name, ColorData & color)
+{
+	assert(false);
+}
+
 
 void Json::GetValue(Json::Value & parent, string name, string & value)
 {

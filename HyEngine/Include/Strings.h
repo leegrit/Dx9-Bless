@@ -30,6 +30,9 @@ namespace JsonKey
 	const std::string MeshData = "MeshData";
 	const std::string MapData = "MapData";
 	const std::string NavMeshData = "NavMeshData";
+	const std::string TerrainData = "TerrainData";
+	const std::string LightData = "LightData";
+	const std::string EffectData = "EffectData";
 
 	const std::string Index = "Index";
 	const std::string Name = "Name";
@@ -56,4 +59,32 @@ namespace JsonKey
 	const std::string PositionZ = "PositionZ";
 	const std::string Option = "Option";
 
+	/* For Terrain Data */
+	const std::string VertexCountX = "VertexCountX";
+	const std::string VertexCountZ = "VertexCountZ";
+	const std::string TextureCountX = "TextureCountX";
+	const std::string TextureCountZ = "TextureCountZ";
+	const std::string VertexInterval = "VertexInterval";
+	const std::string DiffuseFilePath = "DiffuseFilePath";
+	const std::string NormalFilePath = "NormalFilePath";
+
+	/* For Light Data */
+	const std::string LightType = "LightType";
+	const std::string Direction = "Direction";
+	const std::string Ambient = "Ambient";
+	const std::string R = "R";
+	const std::string G = "G";
+	const std::string B = "B";
+	const std::string A = "A";
+	const std::string AmbientIntensity = "AmbientIntensity";
+	const std::string Diffuse = "Diffuse";
+	const std::string DiffuseIntensity = "DiffuseIntensity";
+	const std::string Specular = "Specular";
+	const std::string SpecularIntensity = "SpecularIntensity";
+	const std::string SpecularPower = "SpecularPower";
+	const std::string Range = "Range";
+	const std::string Cone = "Cone";
+	const std::string Constant = "Constant";
+	const std::string Linear = "Linear";
+	const std::string Quadratic = "Quadratic";
 }

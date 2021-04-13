@@ -281,7 +281,7 @@ namespace WPF_Tool
                     break;
             }
             // SelectedIndex Property에서 Select, ShowInspector, InsertData 모두 해준다.
-            SelectedIndex = index;
+            SelectedNewIndex = index;
 
             // 여기서 리스트를 복사해준다.
             // 아래 로직은 cells가 아직 없다는 전제로 

@@ -43,6 +43,8 @@ struct D3DXFRAME_DERIVED : public D3DXFRAME
 struct D3DXMESHCONTAINER_DERIVED : public D3DXMESHCONTAINER
 {
 	LPDIRECT3DTEXTURE9* ppTexture;
+	LPDIRECT3DTEXTURE9* ppNormal;
+
 	std::wstring*		pTextureNames;
 	// 원본 메쉬
 	LPD3DXMESH			pOriMesh;

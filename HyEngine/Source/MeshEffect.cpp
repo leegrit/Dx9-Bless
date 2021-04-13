@@ -51,11 +51,10 @@ void HyEngine::MeshEffect::Render()
 
 	/* Get Shader */
 	ID3DXEffect* pShader = nullptr;
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"MeshEffect", &pShader);
-#else
-	ENGINE->TryGetShader(L"MeshEffect", &pShader);
-#endif
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"MeshEffect", &pShader);
+	else
+		ENGINE->TryGetShader(L"MeshEffect", &pShader);
 	assert(pShader);
 
 	/* Get Selected Cam */

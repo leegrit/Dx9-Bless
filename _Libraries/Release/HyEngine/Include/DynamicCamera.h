@@ -22,6 +22,8 @@ public:
 	virtual void Update() override;
 
 private :
+	D3DXVECTOR3 lastClickedPos;
+	D3DXVECTOR3 lastClickedRot;
 	float m_speed = 10;
 	float m_xRotMax = 70;
 	float m_yRotMax = 70;

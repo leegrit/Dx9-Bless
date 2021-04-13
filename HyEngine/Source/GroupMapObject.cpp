@@ -3,6 +3,7 @@
 #include "ChunkMapData.h"
 #include "Deserializer.h"
 #include "MapObject.h"
+#include "StaticMesh.h"
 
 HyEngine::GroupMapObject::GroupMapObject(Scene * scene, GameObject * parent, std::wstring name)
 	: GameObject(ERenderType::None, scene, parent, name)
@@ -20,7 +21,7 @@ void HyEngine::GroupMapObject::Initialize(std::wstring dataPath)
 	
 	for (int i = 0; i < data->mapCount; i++)
 	{
-		MapObject::Create(GetScene(), this, L"MapObject_" + i, data->hierarchies[i]);
+		StaticMesh::Create(GetScene(), this, L"MapObject_" + i, data->hierarchies[i]);
 	}
 }
 

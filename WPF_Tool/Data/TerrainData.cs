@@ -22,10 +22,10 @@ namespace WPF_Tool.Data
             diffuseFilePath = "";
             normalFilePath = "";
         }
-        [MarshalAs(UnmanagedType.U4)]
-        public uint vertexCountX;
-        [MarshalAs(UnmanagedType.U4)]
-        public uint vertexCountZ;
+        [MarshalAs(UnmanagedType.I4)]
+        public int vertexCountX;
+        [MarshalAs(UnmanagedType.I4)]
+        public int vertexCountZ;
         [MarshalAs(UnmanagedType.R4)]
         public float textureCountX;
         [MarshalAs(UnmanagedType.R4)]

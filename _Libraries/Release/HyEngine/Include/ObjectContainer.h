@@ -67,6 +67,7 @@ namespace HyEngine
 		std::vector<GameObject*> GetRenderableAlphaAll();
 		std::vector<GameObject*>& GetInvisibleObjectAll();
 
+		std::vector<Collider*> GetRenderableColliderAll();
 		std::vector<Collider*>& GetDynamicColliderAll();
 		std::vector<Collider*>& GetStaticColliderAll();
 		std::vector<Collider*>& GetMultipurposeColliderAll();

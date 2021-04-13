@@ -5,13 +5,14 @@ namespace HyEngine
 {
 
 	/* LightObject는 Editor를 위한 오브젝트, 통일성을 위해 사용된다.            */
-	class LightObject : public GameObject
+	class ENGINE_DLL LightObject : public GameObject
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
 	private :
 		LightObject(Scene* scene, GameObject* parent, int editID);
+		LightObject(Scene* scene, GameObject* parent);
 		virtual ~LightObject();
 
 		//////////////////////////////////////////////////////////////////////////
@@ -19,7 +20,7 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	private :
 		void Initialize();
-
+		void Initialize(std::wstring dataPath);
 		
 
 		//////////////////////////////////////////////////////////////////////////
@@ -45,6 +46,12 @@ namespace HyEngine
 		{
 			LightObject* obj = new LightObject(scene, parent, editID);
 			obj->Initialize();
+			return obj;
+		}
+		static LightObject * Create(Scene* scene, GameObject * parent, std::wstring dataPath)
+		{
+			LightObject * obj = new LightObject(scene, parent);
+			obj->Initialize(dataPath);
 			return obj;
 		}
 	};

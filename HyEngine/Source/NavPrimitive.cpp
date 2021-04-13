@@ -85,11 +85,10 @@ void HyEngine::NavPrimitive::Render()
 
 	/* GetShader */
 	ID3DXEffect* pShader = nullptr;
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"DiffuseShader", &pShader);
-#else
-	ENGINE->TryGetShader(L"DiffuseShader", &pShader);
-#endif 
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"DiffuseShader", &pShader);
+	else
+		ENGINE->TryGetShader(L"DiffuseShader", &pShader);
 	assert(pShader);
 
 	/* Get Selected cam */

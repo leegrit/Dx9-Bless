@@ -18,6 +18,8 @@
 #include "LightObject.h"
 #include "LightData.h"
 #include "EffectData.h"
+#include "StaticMesh.h"
+#include "DynamicMesh.h"
 
 using namespace HyEngine;
 
@@ -157,7 +159,7 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"ShadowMap", PATH->ShadersPathW() + L"ShadowMap.fx");
 	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
 	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
-
+	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)
@@ -321,12 +323,12 @@ bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out
 	});
 	for (auto& obj : sortedVec)
 	{
-		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+		StaticMesh* editObj = dynamic_cast<StaticMesh*>(obj);
 		if (editObj != nullptr)
 		{
 
 			// picking은 xfile만 가능
-			ID3DXMesh* mesh = editObj->GetDxMesh();
+			ID3DXMesh* mesh = editObj->GetMesh();
 			if (mesh == nullptr) continue;
 
 			D3DXVECTOR3 origin;
@@ -444,13 +446,13 @@ void HyEngine::EditEngine::SetEditCameraRot(float xRot, float yRot, float zRot)
 
 void HyEngine::EditEngine::TranslateToMesh()
 {
-	EditMesh* editMesh = dynamic_cast<EditMesh*>(m_pSelectedObject);
+	Mesh* editMesh = dynamic_cast<Mesh*>(m_pSelectedObject);
 	if (editMesh == nullptr) return;
 
 	float radius;
 	D3DXVECTOR3 center;
 
-	bool bFinish = editMesh->CalcBounds(&center, &radius);
+	bool bFinish = editMesh->ComputeBoundingSphere(&center, &radius);
 	if (bFinish == false)
 		return;
 
@@ -511,7 +513,7 @@ void HyEngine::EditEngine::RemoveNavPrim(int navPrimIndex)
 
 int HyEngine::EditEngine::GetAnimationCount()
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 
 	int count = obj->GetAnimationCount();
@@ -521,7 +523,7 @@ int HyEngine::EditEngine::GetAnimationCount()
 
 void HyEngine::EditEngine::GetAnimationName(_Out_ AnimNameData* outString, int index)
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 	 obj->GetAnimationName(outString, index);
 	return;
@@ -529,7 +531,7 @@ void HyEngine::EditEngine::GetAnimationName(_Out_ AnimNameData* outString, int i
 
 void HyEngine::EditEngine::SetAnimation(int index)
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 	CString a;
 

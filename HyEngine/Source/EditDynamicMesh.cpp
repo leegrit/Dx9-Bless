@@ -8,7 +8,7 @@
 #include "ObjectContainer.h"
 #include "EditScene.h"
 #include "Light.h"
-
+#include "PathManager.h"
 
 
 HyEngine::EditDynamicMesh::EditDynamicMesh(Scene * scene, GameObject * parent, int editID)
@@ -111,7 +111,7 @@ void HyEngine::EditDynamicMesh::Render()
 			/* Find normal map */
 			std::wstring normalMapName = pMeshContainer->pTextureNames[i];
 			CString::Replace(&normalMapName, L"_D_", L"_N_");
-			std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + m_lastMeshPath);
+			std::wstring dirPath = Path::GetDirectoryName(PATH->ResourcesPathW() + m_lastMeshPath);
 			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
 			
 			/* Find Emissive map */
@@ -233,8 +233,8 @@ void HyEngine::EditDynamicMesh::UpdatedData(EDataType dataType)
 	std::wstring meshPathExt = HyEngine::Path::GetExtension(meshPath);
 	if (meshPath == m_lastMeshPath) return;
 	m_lastMeshPath = meshPath;
-	std::wstring dirPath = Path::GetDirectoryName(ResourcePath::ResourcesPath + meshPath);
-	std::wstring fileName = Path::GetFileName(ResourcePath::ResourcesPath + meshPath);
+	std::wstring dirPath = Path::GetDirectoryName(PATH->ResourcesPathW() + meshPath);
+	std::wstring fileName = Path::GetFileName(PATH->ResourcesPathW() + meshPath);
 
 	if (std::wcscmp(meshPathExt.c_str(), L"x") != 0 && std::wcscmp(meshPathExt.c_str(), L"X") != 0)
 		return;
@@ -274,11 +274,9 @@ void HyEngine::EditDynamicMesh::InitializeMeshes(std::wstring filePath, std::wst
 	SAFE_RELEASE(pAniCtrl);
 
 
+
 	D3DXMATRIX matTemp;
 	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
-
-
-
 	SetupFrameMatrixPointer((D3DXFRAME_DERIVED*)m_pRootFrame);
 
 	

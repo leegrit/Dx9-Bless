@@ -8,6 +8,7 @@
 #include "EventDispatcher.h"
 #include "ScriptableData.h"
 #include "PathManager.h"
+#include "Gui.h"
 
 using namespace HyEngine;
 
@@ -115,6 +116,7 @@ void Engine::SimulateFrame()
 	m_fontInfos.clear();
 
 	//m_pCamera->Update();
+
 	m_pKeyboard->Update();
 	m_pMouse->Update();
 	/*__try
@@ -135,6 +137,7 @@ void Engine::SimulateFrame()
 		// 나중에 이 정보를 활용해서 렌더쪽에서 컬 처리 후 그린다.
 		m_pActiveScene->ViewFrustumCull();
 	}
+
 	while (m_eventQueue.size())
 	{
 		m_eventQueue.back()();
@@ -148,10 +151,14 @@ void Engine::RenderFrame()
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_pCamera->GetProjectionMatrix());
 	//DEVICE->SetTransform(D3DTS_VIEW, &m_pCamera->GetViewMatrix());
 
-
+	Gui::Get()->Update();
 	if (m_pActiveScene)
+	{
 		m_pActiveScene->RenderScene(m_pRenderer);
-
+		m_pActiveScene->RenderGUI();
+	}
+	
+	Gui::Get()->Render();
 	RenderFont();
 	m_pRenderer->RenderEnd();
 }
@@ -284,6 +291,10 @@ bool Engine::LoadShaders()
 	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
 	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
 	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
+	InsertShader(L"ShadowMap", PATH->ShadersPathW() + L"ShadowMap.fx");
+	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
+	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
+	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
 	return true;
 }
 

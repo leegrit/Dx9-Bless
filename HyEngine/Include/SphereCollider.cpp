@@ -2,11 +2,12 @@
 #include "Collider.h"
 #include "SphereCollider.h"
 #include "Constants.h"
-HyEngine::SphereCollider::SphereCollider(EColliderType colliderType, GameObject* owner, int radius,UINT targetLayer, std::function<void(Collider*)>onCollision)
+HyEngine::SphereCollider::SphereCollider(EColliderType colliderType, GameObject* owner, int radius,UINT targetLayer, D3DXCOLOR color, std::function<void(Collider*)>onCollision)
 	: Collider(EColliderShape::Sphere, colliderType, owner,targetLayer, onCollision),
-	m_radius(radius)
+	m_radius(radius),
+	m_color(color)
 {
-
+	
 }
 
 HyEngine::SphereCollider::~SphereCollider()
@@ -32,18 +33,42 @@ void HyEngine::SphereCollider::Initialize()
 void HyEngine::SphereCollider::Render()
 {
 	Collider::Render();
-	D3DMATERIAL9 matrl;
-	matrl = WHITE_MTRL;
-	matrl.Diffuse.a = 255;
-	matrl.Diffuse.r = 0;
-	matrl.Diffuse.g = 255;
-	matrl.Diffuse.b = 0;
-	DEVICE->SetMaterial(&matrl);
-	DWORD oldLight;
-	DEVICE->GetRenderState(D3DRS_LIGHTING, &oldLight);
-	DEVICE->SetRenderState(D3DRS_LIGHTING, TRUE);
-	m_pSphereMesh->DrawSubset(0);
-	DEVICE->SetRenderState(D3DRS_LIGHTING, oldLight);
+	if (m_pSphereMesh == nullptr) return;
+
+	/* Get Shader */
+	ID3DXEffect * pShader = nullptr;
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"Collider", &pShader);
+	else
+		ENGINE->TryGetShader(L"Collider", &pShader);
+
+	assert(pShader);
+
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
+
+	if(IS_EDITOR)
+		pSelectedCamera = EDIT_SCENE->GetSelectedCamera();
+	else
+		pSelectedCamera = SCENE->GetSelectedCamera();
+
+	assert(pSelectedCamera);
+
+	/* Set world, view and projection */
+	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+	pShader->SetValue("ColliderColor", &m_color, sizeof(m_color));
+
+	pShader->SetTechnique("Collider");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		m_pSphereMesh->DrawSubset(0);
+		pShader->EndPass();
+	}
+	pShader->End();
 }
 
 void HyEngine::SphereCollider::Calculate(Collider * other) const

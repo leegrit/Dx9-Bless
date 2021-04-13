@@ -154,6 +154,12 @@ std::wstring HyEngine::CString::CharToWstring(const char * utf8Bytes)
 	return converter.from_bytes(utf8Bytes);
 }
 
+std::string HyEngine::CString::CharToString(const char * utf8Bytes)
+{
+	std::wstring str = CharToWstring(utf8Bytes);
+	return ToString(str);
+}
+
 std::wstring HyEngine::CString::stringToWstring(const char * utf8Bytes, const size_t numBytes)
 {
 	//setup converter

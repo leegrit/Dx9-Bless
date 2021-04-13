@@ -71,8 +71,7 @@ namespace HyEngine
 		class AnimationController* m_pAniCtrl;
 
 		std::list<D3DXMESHCONTAINER_DERIVED*> m_MeshContainerList;
-
-
+		std::vector<std::wstring> m_animationNames;
 		std::wstring m_lastMeshPath;
 	};
 

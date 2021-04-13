@@ -3,11 +3,19 @@
 #include "Light.h"
 #include "ObjectContainer.h"
 #include "LightData.h"
+#include "HierarchyData.h"
+#include "Deserializer.h"
+
 
 HyEngine::LightObject::LightObject(Scene * scene, GameObject * parent, int editID)
 	:GameObject(ERenderType::None, scene, parent, L"Light")
 {
 	SetEditID(editID);
+}
+
+HyEngine::LightObject::LightObject(Scene * scene, GameObject * parent)
+	: GameObject(ERenderType::None, scene, parent, L"Light")
+{
 }
 
 HyEngine::LightObject::~LightObject()
@@ -20,6 +28,17 @@ void HyEngine::LightObject::Initialize()
 	/* 미리 등록 후 값 변경 시 즉시 적용되게 한다.*/
 	m_pLight = new Light();
 	GetScene()->GetObjectContainer()->AddLight(m_pLight);
+}
+
+void HyEngine::LightObject::Initialize(std::wstring dataPath)
+{
+	m_pLight = new Light();
+	GetScene()->GetObjectContainer()->AddLight(m_pLight);
+
+	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
+
+	InsertGameData(data->gameObjectData);
+	InsertLightData(data->lightData);
 }
 
 void HyEngine::LightObject::Update()

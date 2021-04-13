@@ -89,7 +89,7 @@
 
             </TabItem>
         </TabControl>
-        <TabControl Grid.Row="1" Grid.Column="1">
+        <TabControl Grid.Row="1" Grid.Column="1" SelectionChanged="SceneTab_SelectionChanged">
             <TabItem Header="Scene">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" >
@@ -140,7 +140,14 @@
 
             </TabItem>
             <TabItem Header="Game">
-
+                <StackPanel>
+                    <Image x:Name="imgelt_Game"
+                           MouseMove="Dx_MouseMove" MouseDown="Dx_MouseDown" MouseUp="Dx_MouseUp">
+                        <Image.Source>
+                            <i:D3DImage x:Name="d3dimg_Game"/>
+                        </Image.Source>
+                    </Image>
+                </StackPanel>
             </TabItem>
         </TabControl>
         <TabControl x:Name="InspectorTab" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">

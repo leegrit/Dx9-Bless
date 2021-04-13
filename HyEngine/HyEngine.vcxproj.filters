@@ -109,9 +109,6 @@
     <Filter Include="GlobalVars">
       <UniqueIdentifier>{9c209f0e-6750-4ed2-8791-f4266d5555aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mesh">
-      <UniqueIdentifier>{65509b8b-bc02-4707-b10b-02b8196ae3c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{d4e5a9ce-f705-4629-b524-b91b13be0930}</UniqueIdentifier>
     </Filter>
@@ -123,6 +120,24 @@
     </Filter>
     <Filter Include="Object\Effect">
       <UniqueIdentifier>{f974b703-af75-4047-8a5e-67249f2796ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Mesh">
+      <UniqueIdentifier>{ecdf886e-1229-41a8-a61d-bac3744a46e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Old">
+      <UniqueIdentifier>{e1a2d1c8-a21c-4954-9392-03a72681183a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicMesh">
+      <UniqueIdentifier>{65509b8b-bc02-4707-b10b-02b8196ae3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Loader">
+      <UniqueIdentifier>{f167965a-83d7-4224-a79a-486b39bd4eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{a4a08871-1ea7-4891-8cd8-08565732a182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{13a9f0eb-9b7a-4880-b074-9cac4bfd5d81}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +228,6 @@
     <ClInclude Include="Include\IndexTypes.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\IUserInterface.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Include\ISkybox.h">
       <Filter>Skybox</Filter>
     </ClInclude>
@@ -237,17 +249,8 @@
     <ClInclude Include="Include\TextureQuad.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Mesh.h">
-      <Filter>Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\TextureLoader.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Include\MeshLoader.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\UIElement.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Include\Collider.h">
       <Filter>Physics</Filter>
@@ -306,19 +309,7 @@
     <ClInclude Include="Include\UpdateDispatcher.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="Include\UIPanel.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\UIButton.h">
-      <Filter>UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ImageSwitchButton.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Include\BumpMesh.h">
-      <Filter>Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\IMesh.h">
       <Filter>Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Include\ObjData.h">
@@ -329,9 +320,6 @@
     </ClInclude>
     <ClInclude Include="Include\Light.h">
       <Filter>Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ProgressBar.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Include\Ray.h">
       <Filter>Physics</Filter>
@@ -354,14 +342,8 @@
     <ClInclude Include="Include\ZTextureQuad.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\ImageButton.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Include\CrossTextureQuad.h">
       <Filter>Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ProgressVerticalBar.h">
-      <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Include\Ring.h">
       <Filter>Export\Sample</Filter>
@@ -442,10 +424,10 @@
       <Filter>Editor\Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\MeshHierarchy.h">
-      <Filter>Mesh</Filter>
+      <Filter>DynamicMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\AnimationController.h">
-      <Filter>Mesh</Filter>
+      <Filter>DynamicMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\PathManager.h">
       <Filter>Scripts</Filter>
@@ -520,9 +502,6 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\BillboardObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\DynamicMesh.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\GameObject.h">
@@ -601,6 +580,75 @@
     </ClInclude>
     <ClInclude Include="Include\TextureEffect.h">
       <Filter>Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\DynamicMesh.h">
+      <Filter>Object\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\StaticMesh.h">
+      <Filter>Object\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Mesh.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIPanel.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ImageButton.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ImageSwitchButton.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IUserInterface.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ProgressBar.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ProgressVerticalBar.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIButton.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIElement.h">
+      <Filter>UI\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIElement2.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\TextureLoader.h">
+      <Filter>Utilities\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\MeshHierarchyLoader.h">
+      <Filter>Utilities\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imgui_impl_dx9.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Gui.h">
+      <Filter>Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -694,17 +742,8 @@
     <ClCompile Include="Source\TextureQuad.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TextureLoader.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshLoader.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIElement.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collider.cpp">
       <Filter>Physics</Filter>
@@ -760,19 +799,7 @@
     <ClCompile Include="Source\UpdateDispatcher.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UIPanel.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIButton.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ImageSwitchButton.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BumpMesh.cpp">
-      <Filter>Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\IMesh.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Source\ObjData.cpp">
@@ -783,9 +810,6 @@
     </ClCompile>
     <ClCompile Include="Source\Light.cpp">
       <Filter>Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProgressBar.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Ray.cpp">
       <Filter>Physics</Filter>
@@ -805,14 +829,8 @@
     <ClCompile Include="Source\ZTextureQuad.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ImageButton.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CrossTextureQuad.cpp">
       <Filter>Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProgressVerticalBar.cpp">
-      <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\dllmain.cpp">
       <Filter>Export</Filter>
@@ -872,10 +890,10 @@
       <Filter>Editor\Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshHierarchy.cpp">
-      <Filter>Mesh</Filter>
+      <Filter>DynamicMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\AnimationController.cpp">
-      <Filter>Mesh</Filter>
+      <Filter>DynamicMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\PathManager.cpp">
       <Filter>Scripts</Filter>
@@ -947,9 +965,6 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\BillboardObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DynamicMesh.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameObject.cpp">
@@ -1030,6 +1045,69 @@
     <ClCompile Include="Source\TextureEffect.cpp">
       <Filter>Object\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DynamicMesh.cpp">
+      <Filter>Object\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StaticMesh.cpp">
+      <Filter>Object\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ImageButton.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ImageSwitchButton.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProgressBar.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProgressVerticalBar.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIButton.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIElement.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIPanel.cpp">
+      <Filter>UI\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIElement2.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TextureLoader.cpp">
+      <Filter>Utilities\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshHierarchyLoader.cpp">
+      <Filter>Utilities\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_impl_dx9.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Gui.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1063,6 +1141,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\SoftShadowMapping.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Collider.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

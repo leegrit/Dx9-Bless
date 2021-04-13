@@ -5,6 +5,8 @@
 #include "TextureLoader.h"
 #include "PathManager.h"
 #include "TerrainData.h"
+#include "HierarchyData.h"
+#include "Deserializer.h"
 
 using namespace HyEngine;
 
@@ -222,6 +224,14 @@ void HyEngine::Terrain::Initialize()
 	m_pVB->Unlock();
 }
 
+void HyEngine::Terrain::Initialize(std::wstring dataPath)
+{
+	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
+
+	InsertGameData(data->gameObjectData);
+	InsertTerrainData(data->terrainData);
+}
+
 void HyEngine::Terrain::Update()
 {
 	GameObject::Update();
@@ -233,11 +243,10 @@ void HyEngine::Terrain::Render()
 
 	/* Get Shader */
 	ID3DXEffect * pShader = nullptr;
-#ifdef _EDITOR
-	EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
-#else
-	ENGINE->TryGetShader(L"GBuffer", &pShader);
-#endif
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
+	else
+		ENGINE->TryGetShader(L"GBuffer", &pShader);
 	assert(pShader);
 
 	/* Get Selected Cam */
@@ -615,4 +624,18 @@ bool HyEngine::Terrain::TryPickOnTerrain(D3DXVECTOR3 origin, D3DXVECTOR3 directi
 		}
 	}
 	return false;
+}
+
+bool HyEngine::Terrain::ComputeBoundingSphere( _Out_ D3DXVECTOR3 * center, _Out_ float * radius)
+{
+	float halfX = m_vertexCountX * m_vertexInterval * 0.5f;
+	float halfZ = m_vertexCountZ * m_vertexInterval * 0.5f;
+
+	center->x = m_pTransform->m_position.x() + halfX;
+	center->y = m_pTransform->m_position.y();
+	center->z = m_pTransform->m_position.z() + halfZ;
+
+	*radius = std::max(halfX, halfZ);
+
+	return true;
 }

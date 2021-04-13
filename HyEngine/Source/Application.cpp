@@ -1,5 +1,6 @@
 #include "StandardEngineFramework.h"
 #include "Application.h"
+#include "Gui.h"
 
 HWND g_hWnd;
 
@@ -12,12 +13,15 @@ Application::Application(LPCWSTR appName)
 {
 	// LOG
 	InitLoggingService();
+
 	Engine::Create();
+
 }
 
 
 Application::~Application()
 {
+	Gui::Destroy();
 	Engine::Destroy();
 }
 
@@ -34,7 +38,9 @@ bool Application::Init(HINSTANCE hInstance, int nCmdShow, EngineConfig engineCon
 
 	// ENGINE
 	ENGINE->Initialize(m_hWnd, engineConfig);
+	Gui::Create();
 	ENGINE->Load();
+
 
 	return true;
 }
@@ -156,6 +162,7 @@ LRESULT Application::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	MOUSE->InputProc(umessage, wparam, lparam);
+	Gui::Get()->MsgProc(hwnd, umessage, wparam, lparam);
 	switch (umessage)
 	{
 	case WM_DESTROY:	// Check if the window is being destroyed.

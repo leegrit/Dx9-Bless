@@ -1,5 +1,6 @@
 #include "StandardEngineFramework.h"
 #include "UIElement.h"
+#include "..\Include\UIElement2.h"
 
 using namespace HyEngine;
 
@@ -9,7 +10,7 @@ UIElement::UIElement(class Scene* scene,
 	const Quaternion rotation,
 	const Vector3 scale,
 	std::wstring tag)
-	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath,tag)
+	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath, tag)
 {
 	m_pTransform->SetPosition(position);
 	m_pTransform->m_rotation = rotation;
@@ -23,21 +24,14 @@ HyEngine::UIElement::UIElement(Scene * scene, std::wstring imageFilePath, std::w
 	m_pTransform->SetScale(1, 1, 1);
 }
 
-UIElement::~UIElement()
+HyEngine::UIElement::~UIElement()
 {
-
 }
 
-
-void UIElement::Initialize()
+void HyEngine::UIElement::Initialize()
 {
-	TextureObject::Initialize();
 }
 
-void UIElement::Render()
+void HyEngine::UIElement::Render()
 {
-	TextureObject::Render();
-	m_pEffect->SetValue("ViewMatrix", &CAMERA->GetIdentityViewMatrix(), sizeof(D3DXMATRIX));
-	m_pEffect->SetValue("ProjMatrix", &CAMERA->GetOrthoMatrix(), sizeof(D3DXMATRIX));
-
 }
