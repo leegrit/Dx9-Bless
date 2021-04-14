@@ -22,6 +22,7 @@ namespace HyEngine
 		void AddLight(int editIndex);
 		void AddMeshEffect(int editIndex);
 		void AddTextureEffect(int editIndex);
+		void AddUIPanel(int editIndex);
 
 
 		GameObject* GetGameObject(int editIndex);

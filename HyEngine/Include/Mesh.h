@@ -3,7 +3,7 @@
 
 namespace HyEngine
 {
-	class Mesh abstract : public GameObject
+	class ENGINE_DLL Mesh abstract : public GameObject
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR 

@@ -49,6 +49,8 @@ namespace HyEngine
 
 		int m_slices = 10;
 		int m_stacks = 10;
+
+		ID3DXEffect * m_pShader = nullptr;
 	};
 
 }

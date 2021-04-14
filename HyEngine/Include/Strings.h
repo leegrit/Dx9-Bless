@@ -10,6 +10,17 @@ namespace EngineTags
 	static std::wstring Enemy = L"Enemy";
 }
 
+namespace RenderEvent
+{
+	static std::string RenderBegin = "RenderEvent.RenderBegin";
+	static std::string RenderEnd = "RenderEvent.RenderEnd";
+}
+
+namespace EngineEvent
+{
+	static std::string ModeChanged = "EngineEvent.ModeChanged";
+}
+
 
 namespace DefaultPath
 {

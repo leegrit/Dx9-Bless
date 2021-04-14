@@ -198,6 +198,7 @@
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Enumerators.h" />
     <ClInclude Include="Include\EnumForEditor.h" />
+    <ClInclude Include="Include\Equipment.h" />
     <ClInclude Include="Include\EventDispatcher.h" />
     <ClInclude Include="Include\FiniteState.h" />
     <ClInclude Include="Include\FiniteStateMachine.h" />
@@ -215,8 +216,6 @@
     <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\HierarchyData.h" />
     <ClInclude Include="Include\ILight.h" />
-    <ClInclude Include="Include\ImageButton.h" />
-    <ClInclude Include="Include\ImageSwitchButton.h" />
     <ClInclude Include="Include\imconfig.h" />
     <ClInclude Include="Include\imgui.h" />
     <ClInclude Include="Include\imgui_impl_dx9.h" />
@@ -229,7 +228,6 @@
     <ClInclude Include="Include\IndexTypes.h" />
     <ClInclude Include="Include\IRenderable.h" />
     <ClInclude Include="Include\ISkybox.h" />
-    <ClInclude Include="Include\IUserInterface.h" />
     <ClInclude Include="Include\json-forwards.h" />
     <ClInclude Include="Include\json.h" />
     <ClInclude Include="Include\JsonHelper.h" />
@@ -269,8 +267,6 @@
     <ClInclude Include="Include\Path.h" />
     <ClInclude Include="Include\PathManager.h" />
     <ClInclude Include="Include\Pawn.h" />
-    <ClInclude Include="Include\ProgressBar.h" />
-    <ClInclude Include="Include\ProgressVerticalBar.h" />
     <ClInclude Include="Include\Ray.h" />
     <ClInclude Include="Include\Raycaster.h" />
     <ClInclude Include="Include\RaycastHit.h" />
@@ -306,10 +302,9 @@
     <ClInclude Include="Include\Timer.h" />
     <ClInclude Include="Include\Transform.h" />
     <ClInclude Include="Include\TransformData.h" />
-    <ClInclude Include="Include\UIButton.h" />
+    <ClInclude Include="Include\UIData.h" />
     <ClInclude Include="Include\UIDGen.h" />
     <ClInclude Include="Include\UIElement.h" />
-    <ClInclude Include="Include\UIElement2.h" />
     <ClInclude Include="Include\UIPanel.h" />
     <ClInclude Include="Include\UpdateDispatcher.h" />
     <ClInclude Include="Include\VectorData.h" />
@@ -367,6 +362,7 @@
     <ClCompile Include="Source\Effect.cpp" />
     <ClCompile Include="Source\EffectData.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Equipment.cpp" />
     <ClCompile Include="Source\EventDispatcher.cpp" />
     <ClCompile Include="Source\FiniteState.cpp" />
     <ClCompile Include="Source\FiniteStateMachine.cpp" />
@@ -381,8 +377,6 @@
     <ClCompile Include="Source\GroupMapObject.cpp" />
     <ClCompile Include="Source\Gui.cpp" />
     <ClCompile Include="Source\HierarchyData.cpp" />
-    <ClCompile Include="Source\ImageButton.cpp" />
-    <ClCompile Include="Source\ImageSwitchButton.cpp" />
     <ClCompile Include="Source\imgui.cpp" />
     <ClCompile Include="Source\imgui_demo.cpp" />
     <ClCompile Include="Source\imgui_draw.cpp" />
@@ -429,8 +423,6 @@
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\PathManager.cpp" />
     <ClCompile Include="Source\Pawn.cpp" />
-    <ClCompile Include="Source\ProgressBar.cpp" />
-    <ClCompile Include="Source\ProgressVerticalBar.cpp" />
     <ClCompile Include="Source\Ray.cpp" />
     <ClCompile Include="Source\Raycaster.cpp" />
     <ClCompile Include="Source\RaycastHit.cpp" />
@@ -459,10 +451,9 @@
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\TransformData.cpp" />
-    <ClCompile Include="Source\UIButton.cpp" />
+    <ClCompile Include="Source\UIData.cpp" />
     <ClCompile Include="Source\UIDGen.cpp" />
     <ClCompile Include="Source\UIElement.cpp" />
-    <ClCompile Include="Source\UIElement2.cpp" />
     <ClCompile Include="Source\UIPanel.cpp" />
     <ClCompile Include="Source\UpdateDispatcher.cpp" />
     <ClCompile Include="Source\VectorData.cpp" />
@@ -483,9 +474,11 @@
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\ShadowMap.fx" />
+    <FxCompile Include="..\_Shaders\Skybox.fx" />
     <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />
+    <FxCompile Include="..\_Shaders\UIPanel.fx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def" />

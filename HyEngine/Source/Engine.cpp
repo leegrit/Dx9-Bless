@@ -9,6 +9,7 @@
 #include "ScriptableData.h"
 #include "PathManager.h"
 #include "Gui.h"
+#include "MeshHierarchyLoader.h"
 
 using namespace HyEngine;
 
@@ -20,7 +21,8 @@ IMPLEMENT_SINGLETON(Engine)
 Engine::Engine()
 	: 
 	m_bLoading(false),
-	m_bIsPaused(false)
+	m_bIsPaused(false),
+	m_gameMode(EGameMode::GAME_MODE)
 {
 	SEND_LOG("Engine Created");
 	DirectXDevice::Create();
@@ -44,6 +46,7 @@ Engine::~Engine()
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
 	PathManager::Destroy();
+	MeshHierarchyLoader::Clear();
 }
 
 bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
@@ -121,15 +124,24 @@ void Engine::SimulateFrame()
 	m_pMouse->Update();
 	/*__try
 	{*/
-		UpdateDispatcher::Update();
+	UpdateDispatcher::Update();
 	/*}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 #ifdef _DEBUG
-		
+
 		<< "UpdateDispatcher Exception" << std::endl;
 #endif
 	}*/
+
+	if (KEYBOARD->Up(VK_TAB))
+	{
+		if (GetGameMode() == EGameMode::GAME_MODE)
+			SetGameMode(EGameMode::EDIT_MODE);
+		else
+			SetGameMode(EGameMode::GAME_MODE);
+		EventDispatcher::TriggerEvent(EngineEvent::ModeChanged);
+	}
 	if (m_pActiveScene)
 	{
 		m_pActiveScene->UpdateScene();
@@ -166,6 +178,26 @@ void Engine::RenderFrame()
 Scene * Engine::GetActiveScene()
 {
 	return m_pActiveScene;
+}
+
+void HyEngine::Engine::SetGameMode(EGameMode mode)
+{
+	m_gameMode = mode;
+}
+
+EGameMode HyEngine::Engine::GetGameMode() const
+{
+	return m_gameMode;
+}
+
+void HyEngine::Engine::SetFPS(float fps)
+{
+	m_fps = fps;
+}
+
+float HyEngine::Engine::GetFPS() const
+{
+	return m_fps;
 }
 
 void HyEngine::Engine::SwitchScene(int sceneNumber)
@@ -295,6 +327,8 @@ bool Engine::LoadShaders()
 	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
 	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
 	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
+	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
+	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
 	return true;
 }
 

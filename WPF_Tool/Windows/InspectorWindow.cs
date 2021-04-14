@@ -334,6 +334,7 @@ namespace WPF_Tool
             TerrainData.Visibility = Visibility.Collapsed;
             LightData.Visibility = Visibility.Collapsed;
             EffectData.Visibility = Visibility.Collapsed;
+            UIData.Visibility = Visibility.Collapsed;
             switch (data.type)
             {
                 case GameObjectType.Mesh:
@@ -786,6 +787,20 @@ namespace WPF_Tool
                         Externs.InsertEffectData(ref data.effectData);
                         break;
                     }
+                case GameObjectType.UIPanel:
+                    UIData.Visibility = Visibility.Visible;
+                    TransformData.Visibility = Visibility.Visible;
+
+                    /* MeshFile Name */
+                    string textureOnlyName = "";
+                    int textureIndex = data.uiData.textureFilePath.LastIndexOf("\\");
+                    if (textureIndex > 0)
+                        textureOnlyName = data.uiData.textureFilePath.Substring(textureIndex + 1);
+                    UITextureName.Text = textureOnlyName;
+
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    Externs.InsertUIData(ref data.uiData);
+                    break;
                 default:
                     Debug.Assert(false);
                     break;

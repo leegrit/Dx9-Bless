@@ -90,6 +90,10 @@ namespace HyEngine
 		void CreateTextureEffect(int editID);
 		void InsertEffectData(class EffectData * data);
 
+		/* For UIPanel */
+		void CreateUIPanel(int editID);
+		void InsertUIData(class UIData * data);
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER

@@ -130,16 +130,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\ActionComponent.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\Player.cpp" />
+    <ClCompile Include="..\Source\PlayerAction.cpp" />
+    <ClCompile Include="..\Source\PlayerCamera.cpp" />
+    <ClCompile Include="..\Source\PlayerController.cpp" />
+    <ClCompile Include="..\Source\PlayerNormalAttack.cpp" />
     <ClCompile Include="..\Source\SampleCamera.cpp" />
     <ClCompile Include="..\Source\SampleLoadingScene.cpp" />
     <ClCompile Include="..\Source\SampleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Include\ActionComponent.h" />
+    <ClInclude Include="..\Include\Enumerators.h" />
+    <ClInclude Include="..\Include\Player.h" />
+    <ClInclude Include="..\Include\PlayerAction.h" />
+    <ClInclude Include="..\Include\PlayerCamera.h" />
+    <ClInclude Include="..\Include\PlayerController.h" />
+    <ClInclude Include="..\Include\PlayerNormalAttack.h" />
     <ClInclude Include="..\Include\SampleCamera.h" />
     <ClInclude Include="..\Include\SampleLoadingScene.h" />
     <ClInclude Include="..\Include\SampleScene.h" />
     <ClInclude Include="..\Include\stdafx.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

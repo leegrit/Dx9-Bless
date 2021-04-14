@@ -13,7 +13,7 @@
 #include "MeshEffect.h"
 #include "StaticMesh.h"
 #include "DynamicMesh.h"
-
+#include "UIPanel.h"
 
 using namespace HyEngine;
 
@@ -85,6 +85,11 @@ void HyEngine::EditScene::AddTextureEffect(int editIndex)
 {
 	// TODO
 	assert(false);
+}
+
+void HyEngine::EditScene::AddUIPanel(int editIndex)
+{
+	UIPanel::Create(this, nullptr, editIndex);
 }
 
 

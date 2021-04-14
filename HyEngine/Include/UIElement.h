@@ -1,31 +1,44 @@
 #pragma once
-
-#include "TextureObject.h"
+#include "GameObject.h"
 
 namespace HyEngine
 {
-
-	class ENGINE_DLL UIElement abstract : public TextureObject
+	/* 임시 */
+	// 이름이 겹쳐서 잠시 Element2로 했지만 나중에 변경해야한다.
+	// 나중에 ui 만들기 위한 깡통
+	class ENGINE_DLL  UIElement abstract : public GameObject
 	{
-	protected :
-		explicit UIElement(class Scene* scene,
-			std::wstring imageFilePath,
-			const Vector3 position,
-			const Quaternion rotation,
-			const Vector3 scale,
-			std::wstring tag);
-		explicit UIElement(class Scene* scene,
-			std::wstring imageFilePath,
-			std::wstring name
-		);
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTOR & DESTRUCTOR
+		//////////////////////////////////////////////////////////////////////////
+	protected:
+		/* For Editor */
+		explicit UIElement(Scene * scene, GameObject* parent, int editID);
+		explicit UIElement(Scene* scene, std::wstring name);
 		virtual ~UIElement();
 
+		//////////////////////////////////////////////////////////////////////////
+		// INHERITED
+		//////////////////////////////////////////////////////////////////////////
 	public :
-		virtual void Initialize() override;
+		virtual void Initialize();
 		virtual void Render() override;
+		virtual void UpdatedData(EDataType dataType) override;
 
+		//////////////////////////////////////////////////////////////////////////
+		// VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		class TextureQuad * m_pTextureQuad;
 
-
+		//////////////////////////////////////////////////////////////////////////
+		// FACTORY METHOD
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		/* For Editor */
+		static UIElement * Create(Scene * scene, GameObject* parent, int editID);
+		/* For Client */
+		static UIElement * Create(Scene* scene);
 	};
 }
 

@@ -9,6 +9,7 @@
 #include "TerrainData.h"
 #include "LightData.h"
 #include "EffectData.h"
+#include "UIData.h"
 
 using namespace HyEngine;
 
@@ -214,4 +215,16 @@ extern "C" void WINAPI CreateTextureEffect(int editID)
 extern "C" void WINAPI InsertEffectData(EffectData* data)
 {
 	EDIT_ENGINE->InsertEffectData(data);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// FOR UI
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateUIPanel(int editID)
+{
+	EDIT_ENGINE->CreateUIPanel(editID);
+}
+extern "C" void WINAPI InsertUIData(UIData* data)
+{
+	EDIT_ENGINE->InsertUIData(data);
 }

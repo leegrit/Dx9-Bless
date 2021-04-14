@@ -13,6 +13,24 @@
     <ClCompile Include="..\Source\SampleLoadingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Player.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerController.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ActionComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerNormalAttack.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerAction.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -27,6 +45,18 @@
     <Filter Include="Component">
       <UniqueIdentifier>{3a20c14d-fdef-4fb0-9d65-bf6652dc1ad7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{5fe1632a-db79-4df2-85ee-da0f67a27dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{176de74f-e67f-4af6-a82b-435378d6e6d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Player">
+      <UniqueIdentifier>{449da871-9386-4d73-a0e4-0a929219caaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GlobalVars">
+      <UniqueIdentifier>{5e2094c6-28f1-4257-a916-c109f37d4949}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\stdafx.h" />
@@ -39,5 +69,30 @@
     <ClInclude Include="..\Include\SampleLoadingScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Player.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerController.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Enumerators.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\Include\PlayerCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ActionComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerNormalAttack.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerAction.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
   </ItemGroup>
 </Project>

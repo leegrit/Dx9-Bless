@@ -26,7 +26,7 @@ namespace HyEngine
 		virtual void UpdatedData(EDataType dataType) override;
 		virtual bool ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _Out_ float * radius);
 
-		
+	
 
 		//////////////////////////////////////////////////////////////////////////
 		// INITIALIZERS
@@ -47,7 +47,12 @@ namespace HyEngine
 		void SetAnimationSet(const unsigned int& index);
 		void PlayAnimationSet(const float& timeDelta);
 
-
+		//////////////////////////////////////////////////////////////////////////
+		// CALLBACK
+		//////////////////////////////////////////////////////////////////////////
+	public:
+		void OnRenderBegin(void*);
+		void OnRenderEnd(void*);
 
 		//////////////////////////////////////////////////////////////////////////
 		// FOR EDITOR
@@ -74,6 +79,7 @@ namespace HyEngine
 		std::vector<std::string> m_animationNames;
 		std::list<D3DXMESHCONTAINER_DERIVED*> m_MeshContainerList;
 		std::wstring m_lastMeshPath;
+		ID3DXEffect* m_pShader = nullptr;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

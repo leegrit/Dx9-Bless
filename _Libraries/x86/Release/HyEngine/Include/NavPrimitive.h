@@ -41,7 +41,7 @@ namespace HyEngine
 		// ±âº» 100
 		unsigned int m_group = 100;
 
-
+		ID3DXEffect* m_pShader = nullptr;
 	};
 }
 

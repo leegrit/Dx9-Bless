@@ -84,12 +84,14 @@ void HyEngine::NavPrimitive::Render()
 	}
 
 	/* GetShader */
-	ID3DXEffect* pShader = nullptr;
-	if (IS_EDITOR)
-		EDIT_ENGINE->TryGetShader(L"DiffuseShader", &pShader);
-	else
-		ENGINE->TryGetShader(L"DiffuseShader", &pShader);
-	assert(pShader);
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"DiffuseShader", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"DiffuseShader", &m_pShader);
+	}
+	assert(m_pShader);
 
 	/* Get Selected cam */
 	Camera* pSelectedCamera = nullptr;
@@ -97,14 +99,14 @@ void HyEngine::NavPrimitive::Render()
 	assert(pSelectedCamera);
 
 	/* Set world, view and projection */
-	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
-	pShader->SetTechnique("DiffuseShader");
-	pShader->Begin(0, 0);
+	m_pShader->SetTechnique("DiffuseShader");
+	m_pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
+		m_pShader->BeginPass(0);
 
 		DEVICE->SetStreamSource(0, m_pColorTriangle->GetVertexBuffer(), 0, m_pColorTriangle->GetVertexSize());
 		DEVICE->SetVertexDeclaration(m_pColorTriangle->GetDeclare());
@@ -112,9 +114,9 @@ void HyEngine::NavPrimitive::Render()
 		DEVICE->SetIndices(m_pColorTriangle->GetIndexBuffer());
 		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_pColorTriangle->GetVertexCount(), 0, m_pColorTriangle->GetPrimitiveCount());
 
-		pShader->EndPass();
+		m_pShader->EndPass();
 	}
-	pShader->End();
+	m_pShader->End();
 
 // 
 // 	DWORD oldLightEnable;

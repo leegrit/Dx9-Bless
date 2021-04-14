@@ -131,6 +131,7 @@ namespace HyEngine
 		void InsertTerrainData(class TerrainData* data);
 		void InsertLightData(class LightData* data);
 		void InsertEffectData(class EffectData* data);
+		void InsertUIData(class UIData* data);
 
 		virtual void UpdatedData(EDataType dataType) {};
 		EStaticType GetStaticType() const;
@@ -172,5 +173,6 @@ namespace HyEngine
 		class TerrainData* m_pTerrainData = nullptr;
 		class LightData* m_pLightData = nullptr;
 		class EffectData* m_pEffectData = nullptr;
+		class UIData* m_pUIData = nullptr;
 	};
 }

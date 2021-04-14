@@ -27,6 +27,8 @@ void DynamicCamera::Update()
 {
 	Camera::Update();
 
+	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE) return;
+
 	if (KEYBOARD->Press('W'))
 	{
 		m_pTransform->Translate(m_pTransform->Forward() * m_speed * TIMER->getDeltaTime());

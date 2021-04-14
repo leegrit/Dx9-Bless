@@ -63,8 +63,8 @@ void HyEngine::Gui::ShowDemoGUI()
 void HyEngine::Gui::ShowFPS()
 {
 	static bool bOpen = true;
-	ImGui::SetNextWindowPos({ WinMaxWidth - 100, 15 });
-	ImGui::SetNextWindowSize(ImVec2(200, 15));
+	ImGui::SetNextWindowPos({ 100 , 15 });
+	ImGui::SetNextWindowSize(ImVec2(400, 100));
 	ImGui::Begin
 	(
 		"FPS",
@@ -75,11 +75,64 @@ void HyEngine::Gui::ShowFPS()
 		ImGuiWindowFlags_NoMove
 	);
 	{
-		string frame = "FPS : " + to_string((int)ImGui::GetIO().Framerate);
+		string frame = "FPS : " + to_string(ENGINE->GetFPS());
 		ImGui::Text(frame.c_str());
 	}
 	ImGui::End();
+}
 
+void HyEngine::Gui::ShowGameMode()
+{
+	string modeName;
+
+	switch (ENGINE->GetGameMode())
+	{
+	case EGameMode::EDIT_MODE :
+		modeName = "EDIT_MODE";
+		break;
+	case EGameMode::GAME_MODE :
+		modeName = "GAME_MODE";
+		break;
+	default :
+		assert(false);
+		break;
+	}
+	static bool bOpen = true;
+	ImGui::SetNextWindowPos({ WinMaxWidth - WinMaxWidth * 0.5f, 15 });
+	ImGui::SetNextWindowSize(ImVec2(400, 100));
+	ImGui::Begin
+	(
+		"MODE",
+		&bOpen,
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove
+	);
+	{
+		ImGui::Text(modeName.c_str());
+	}
+	ImGui::End();
+}
+
+void HyEngine::Gui::ShowTextInput(char * result, int size, float xPos, float yPos)
+{
+	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE) return;
+	ImGui::SetNextWindowPos({ xPos, yPos });
+	ImGui::SetNextWindowSize(ImVec2(300, 200));
+	ImGui::Begin
+	(
+		"TextInputWindow",
+		&m_bOpen,
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_MenuBar
+	);
+	{
+		ImGui::InputText("Text Input", result, size);
+	}
+	ImGui::End();
 }
 
 void HyEngine::Gui::ApplyStyle()
@@ -92,7 +145,8 @@ void HyEngine::Gui::ApplyStyle()
 	float fontSize = 15.0f;
 	float roundness = 2.0f;
 	ImVec4 white = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-	ImVec4 text = ImVec4(0.76f, 0.77f, 0.8f, 1.0f);
+	//ImVec4 text = ImVec4(0.76f, 0.77f, 0.8f, 1.0f);
+	ImVec4 text = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
 	ImVec4 black = ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 	ImVec4 backgroundVeryDark = ImVec4(0.08f, 0.086f, 0.094f, 1.00f);
 	ImVec4 backgroundDark = ImVec4(0.117f, 0.121f, 0.145f, 1.00f);

@@ -129,5 +129,11 @@ namespace WPF_Tool.Scripts
         [DllImport("HyEngine.dll")]
         public static extern void InsertEffectData(ref EffectData effectData);
 
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateUIPanel(int editID);
+
+        [DllImport("HyEngine.dll")]
+        public static extern void InsertUIData(ref UIData effectData);
+
     }
 }

@@ -71,6 +71,10 @@ namespace WPF_Tool
         {
             CreateHierarchy(GameObjectType.TextureEffect);
         }
+        private void BTN_CreateUIPanel(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.UIPanel);
+        }
 
         private void CreateHierarchy(GameObjectType gameObjectType)
         {
@@ -112,6 +116,13 @@ namespace WPF_Tool
                     item.Content = HierarchyContent.TextureEffect;
                     item.Tag = HierarchyTag.TextureEffect;
                     break;
+                case GameObjectType.UIPanel:
+                    item.Content = HierarchyContent.UIPanel;
+                    item.Tag = HierarchyTag.UIPanel;
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
             }
 
 
@@ -141,6 +152,9 @@ namespace WPF_Tool
                 case GameObjectType.TextureEffect:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.UIPanel:
+                    item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -167,6 +181,7 @@ namespace WPF_Tool
             data.navMeshData = new NavMeshData(index);
             data.terrainData = new TerrainData(index);
             data.effectData = new EffectData(index);
+            data.uiData = new UIData(index);
             hierarchyList.Add(data);
 
             switch (gameObjectType)
@@ -195,6 +210,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.TextureEffect:
                     Externs.CreateTextureEffect(index);
+                    break;
+                case GameObjectType.UIPanel:
+                    Externs.CreateUIPanel(index);
                     break;
                 default:
                     Debug.Assert(false);
@@ -239,6 +257,9 @@ namespace WPF_Tool
                 case GameObjectType.TextureEffect:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.UIPanel:
+                    item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -275,6 +296,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.TextureEffect:
                     Externs.CreateTextureEffect(index);
+                    break;
+                case GameObjectType.UIPanel:
+                    Externs.CreateUIPanel(index);
                     break;
                 default:
                     Debug.Assert(false);

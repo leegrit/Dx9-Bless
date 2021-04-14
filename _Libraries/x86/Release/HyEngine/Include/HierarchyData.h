@@ -16,6 +16,7 @@ namespace HyEngine
 		class TerrainData* terrainData;
 		class LightData* lightData;
 		class EffectData* effectData;
+		class UIData* uiData;
 		std::vector<class CellData*> cells;
 	};
 

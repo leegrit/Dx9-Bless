@@ -28,11 +28,17 @@ HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent, int editI
 
 HyEngine::DynamicMesh::~DynamicMesh()
 {
+	EventDispatcher::RemoveEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()));
+	EventDispatcher::RemoveEventListener(RenderEvent::RenderEnd, to_string(GetInstanceID()));
 	m_MeshContainerList.clear();
 }
 
 void HyEngine::DynamicMesh::Initialize(std::wstring dataPath)
 {
+
+	EventDispatcher::AddEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderBegin,this, placeholders::_1));
+	EventDispatcher::AddEventListener(RenderEvent::RenderEnd, to_string(GetInstanceID()), std::bind( &DynamicMesh::OnRenderEnd,this, placeholders::_1));
+
 	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
 	InsertGameData(data->gameObjectData);
 	InsertMeshData(data->meshData);
@@ -69,33 +75,34 @@ void HyEngine::DynamicMesh::Render()
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
 
-		for (ULONG i = 0; i < pMeshContainer->numBones; i++)
-			pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
+		//for (ULONG i = 0; i < pMeshContainer->numBones; i++)
+		//	pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
 
-		void* pSrcVtx = nullptr;
-		void* pDestVtx = nullptr;
+		//void* pSrcVtx = nullptr;
+		//void* pDestVtx = nullptr;
 
-		pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
-		pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
+		//pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
+		//pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
 
 		// 소프트웨어 스키닝을 수행하는 함수.
 		// 스키닝 뿐 아니라 애니메이션 변경 시,
 		// 뼈대들과 정점 정보들의 변경을 동시에 수행해주기도 한다.
-		pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
-			pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
-			NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
-			pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
-			pDestVtx // 변환된 정보를 담기위한 정점 정보
-		);
+		//pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
+		//	pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
+		//	NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
+		//	pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
+		//	pDestVtx // 변환된 정보를 담기위한 정점 정보
+		//);
 
 		/* Get Shader */
-		ID3DXEffect* pShader = nullptr;
-		if (ENGINE)
-			ENGINE->TryGetShader(L"GBuffer", &pShader);
-		else
-			EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
-
-		assert(pShader);
+		if (m_pShader == nullptr)
+		{
+			if (ENGINE)
+				ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			else
+				EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		}
+		assert(m_pShader);
 
 		/* Get Selected Cam */
 		Camera* pSelectedCamera = nullptr;
@@ -105,23 +112,23 @@ void HyEngine::DynamicMesh::Render()
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
-			pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-			pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-			pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+			m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+			m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+			m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
-			pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+			m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 
-			D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
-			pShader->SetTexture(albedoHandle, pMeshContainer->ppTexture[i]);
+			D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+			m_pShader->SetTexture(albedoHandle, pMeshContainer->ppTexture[i]);
 
-			D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
-			pShader->SetTexture(normalHandle, pMeshContainer->ppNormal[i]);
+			D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+			m_pShader->SetTexture(normalHandle, pMeshContainer->ppNormal[i]);
 
-			D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
-			pShader->SetTexture(emissiveHandle, NULL);
+			D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+			m_pShader->SetTexture(emissiveHandle, NULL);
 
-			D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
-			pShader->SetTexture(specularHandle, NULL);
+			D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+			m_pShader->SetTexture(specularHandle, NULL);
 
 			bool hasNormalMap = false;
 			if (pMeshContainer->ppNormal[i] != nullptr)
@@ -129,20 +136,20 @@ void HyEngine::DynamicMesh::Render()
 				hasNormalMap = true;
 			}
 
-			pShader->SetBool("HasNormalMap", hasNormalMap);
-			pShader->SetBool("HasEmissiveMap", false);
-			pShader->SetTechnique("GBuffer");
-			pShader->Begin(0, 0);
+			m_pShader->SetBool("HasNormalMap", hasNormalMap);
+			m_pShader->SetBool("HasEmissiveMap", false);
+			m_pShader->SetTechnique("GBuffer");
+			m_pShader->Begin(0, 0);
 			{
-				pShader->BeginPass(0);
+				m_pShader->BeginPass(0);
 				pMeshContainer->MeshData.pMesh->DrawSubset(i);
-				pShader->EndPass();
+				m_pShader->EndPass();
 			}
-			pShader->End();
+			m_pShader->End();
 		}
 
-		pMeshContainer->pOriMesh->UnlockVertexBuffer();
-		pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
+		//pMeshContainer->pOriMesh->UnlockVertexBuffer();
+	//	pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
 	}
 }
 
@@ -155,24 +162,24 @@ void HyEngine::DynamicMesh::DrawPrimitive()
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
 
-		for (ULONG i = 0; i < pMeshContainer->numBones; i++)
-			pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
+		//for (ULONG i = 0; i < pMeshContainer->numBones; i++)
+		//	pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
 
-		void* pSrcVtx = nullptr;
-		void* pDestVtx = nullptr;
+		//void* pSrcVtx = nullptr;
+		//void* pDestVtx = nullptr;
 
-		pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
-		pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
+		//pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
+		//pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
 
 		// 소프트웨어 스키닝을 수행하는 함수.
 		// 스키닝 뿐 아니라 애니메이션 변경 시,
 		// 뼈대들과 정점 정보들의 변경을 동시에 수행해주기도 한다.
-		pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
-			pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
-			NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
-			pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
-			pDestVtx // 변환된 정보를 담기위한 정점 정보
-		);
+		//pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
+		//	pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
+		//	NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
+		//	pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
+		//	pDestVtx // 변환된 정보를 담기위한 정점 정보
+		//);
 
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
@@ -180,8 +187,8 @@ void HyEngine::DynamicMesh::DrawPrimitive()
 			pMeshContainer->MeshData.pMesh->DrawSubset(i);
 		}
 
-		pMeshContainer->pOriMesh->UnlockVertexBuffer();
-		pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
+		//pMeshContainer->pOriMesh->UnlockVertexBuffer();
+		//pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
 	}
 }
 
@@ -314,6 +321,44 @@ void HyEngine::DynamicMesh::PlayAnimationSet(const float & timeDelta)
 	D3DXMATRIX matTemp;
 
 	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
+}
+
+void HyEngine::DynamicMesh::OnRenderBegin(void*)
+{
+	auto iter = m_MeshContainerList.begin();
+	auto iter_end = m_MeshContainerList.end();
+
+	for (; iter != iter_end; iter++)
+	{
+		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
+
+		for (ULONG i = 0; i < pMeshContainer->numBones; i++)
+			pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
+
+		void* pSrcVtx = nullptr;
+		void* pDestVtx = nullptr;
+
+		pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
+		pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
+
+		// 소프트웨어 스키닝을 수행하는 함수.
+		// 스키닝 뿐 아니라 애니메이션 변경 시,
+		// 뼈대들과 정점 정보들의 변경을 동시에 수행해주기도 한다.
+		pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
+			pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
+			NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
+			pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
+			pDestVtx // 변환된 정보를 담기위한 정점 정보
+		);
+
+
+		pMeshContainer->pOriMesh->UnlockVertexBuffer();
+		pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
+	}
+}
+
+void HyEngine::DynamicMesh::OnRenderEnd(void*)
+{
 }
 
 void HyEngine::DynamicMesh::InitializeAnimationNames()

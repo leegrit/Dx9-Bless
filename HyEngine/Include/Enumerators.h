@@ -146,6 +146,7 @@ enum class EDataType
 	TerrainData,
 	LightData,
 	EffectData,
+	UIData,
 	End
 };
 
@@ -153,4 +154,10 @@ enum class ECellEditMode
 {
 	Similar, // 근처 버텍스도 같이 이동
 	Selected, // 선택한 버텍스만 이동
+};
+
+enum class EGameMode
+{
+	GAME_MODE,
+	EDIT_MODE
 };

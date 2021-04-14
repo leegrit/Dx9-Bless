@@ -67,15 +67,15 @@ void HyEngine::Effect::Update()
 {
 	GameObject::Update();
 
-	if (TIMER)
-	{
-		m_curLifeTime += TIMER->getDeltaTime();
-		m_totalLifeTime += TIMER->getDeltaTime();
-	}
-	else
+	if (IS_EDITOR)
 	{
 		m_curLifeTime += EDIT_TIMER->getDeltaTime();
 		m_totalLifeTime += EDIT_TIMER->getDeltaTime();
+	}
+	else
+	{
+		m_curLifeTime += TIMER->getDeltaTime();
+		m_totalLifeTime += TIMER->getDeltaTime();
 	}
 
 	/* Die */

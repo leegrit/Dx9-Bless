@@ -153,10 +153,6 @@
 
 // UI 
 #include "UIElement.h"
-#include "UIButton.h"
-#include "ImageButton.h"
-#include "ProgressBar.h"
-#include "ProgressVerticalBar.h"
 #include "UIPanel.h"
 
 #ifdef _DEBUG

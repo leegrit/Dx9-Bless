@@ -20,6 +20,7 @@
 #include "EffectData.h"
 #include "StaticMesh.h"
 #include "DynamicMesh.h"
+#include "UIData.h"
 
 using namespace HyEngine;
 
@@ -160,6 +161,9 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
 	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
 	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
+	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
+	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
+
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)
@@ -594,6 +598,22 @@ void HyEngine::EditEngine::InsertEffectData(EffectData * data)
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->InsertEffectData(data);
+}
+
+void HyEngine::EditEngine::CreateUIPanel(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddUIPanel(editID);
+}
+
+void HyEngine::EditEngine::InsertUIData(UIData * data)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->InsertUIData(data);
 }
 
 

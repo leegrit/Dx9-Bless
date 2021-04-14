@@ -43,13 +43,14 @@ void HyEngine::StaticMesh::Render()
 	GameObject::Render();
 
 	/* Get Shader */
-	ID3DXEffect* pShader = nullptr;
-	if (IS_EDITOR)
-		EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
-	else
-		ENGINE->TryGetShader(L"GBuffer", &pShader);
-
-	assert(pShader);
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+	}
+	assert(m_pShader);
 
 	/* Get Selected Cam */
 	Camera* pSelectedCamera = nullptr;
@@ -59,42 +60,42 @@ void HyEngine::StaticMesh::Render()
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		/* Set world, view and projection */
-		pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-		pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-		pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+		m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+		m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+		m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
 		/* Set world position */
-		pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+		m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 	
 		/* Set albedo */
-		D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
-		pShader->SetTexture(albedoHandle, m_textures[i]);
+		D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+		m_pShader->SetTexture(albedoHandle, m_textures[i]);
 
 		/* Set NormalMap */
-		D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
-		pShader->SetTexture(normalHandle, m_normals[i]);
+		D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+		m_pShader->SetTexture(normalHandle, m_normals[i]);
 
 		/* Set Emissive */
-		D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
-		pShader->SetTexture(emissiveHandle, m_emissives[i]);
+		D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+		m_pShader->SetTexture(emissiveHandle, m_emissives[i]);
 
 		/* Set Specular */
-		D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
-		pShader->SetTexture(specularHandle, m_speculars[i]);
+		D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+		m_pShader->SetTexture(specularHandle, m_speculars[i]);
 
 		bool hasNormalMap = false;
 		if (m_normals[i] != nullptr)
 			hasNormalMap = true;
-		pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+		m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
 
-		pShader->SetTechnique("GBuffer");
-		pShader->Begin(0, 0);
+		m_pShader->SetTechnique("GBuffer");
+		m_pShader->Begin(0, 0);
 		{
-			pShader->BeginPass(0);
+			m_pShader->BeginPass(0);
 			m_pMesh->DrawSubset(i);
-			pShader->EndPass();
+			m_pShader->EndPass();
 		}
-		pShader->End();
+		m_pShader->End();
 	}
 }
 
@@ -296,13 +297,7 @@ bool HyEngine::StaticMesh::ComputeBoundingSphere(D3DXVECTOR3 * center, float * r
 
 	m_pMesh->UnlockVertexBuffer();
 
-
-// 
-// 	float scaleFactor = std::max(m_pTransform->m_scale.x(), m_pTransform->m_scale.y());
-// 	scaleFactor = std::max(scaleFactor, m_pTransform->m_scale.z());
-// 	// scale영향 받도록한다.
-// 	*radius *= scaleFactor;
-
+	
 	return true;
 }
 

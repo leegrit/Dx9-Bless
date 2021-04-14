@@ -18,9 +18,7 @@ HyEngine::TextureEffect::TextureEffect(Scene * scene)
 
 HyEngine::TextureEffect::~TextureEffect()
 {
-	SAFE_DELETE(m_pTextureQuad);
-	SAFE_RELEASE(m_pDiffuseMap);
-	SAFE_RELEASE(m_pAlphaMask);
+
 }
 
 void HyEngine::TextureEffect::OnEnable()

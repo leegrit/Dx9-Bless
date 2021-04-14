@@ -40,3 +40,5 @@ InsertLightData
 CreateMeshEffect
 CreateTextureEffect
 InsertEffectData
+CreateUIPanel
+InsertUIData

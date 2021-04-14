@@ -108,8 +108,8 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	pMeshContainer->ppNormal = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
 	ZeroMemory(pMeshContainer->ppNormal, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
 
-	pMeshContainer->pTextureNames = new std::wstring[pMeshContainer->NumMaterials];
-
+	pMeshContainer->pTextureNames.reserve(pMeshContainer->NumMaterials);// = new std::wstring[pMeshContainer->NumMaterials];
+	pMeshContainer->pTextureNames.resize(pMeshContainer->NumMaterials);
 	// 재질이 있는 경우
 	if(0 != numMaterials) 
 	{
@@ -232,6 +232,7 @@ STDMETHODIMP HyEngine::MeshHierarchy::DestroyMeshContainer(LPD3DXMESHCONTAINER p
 		SAFE_RELEASE(pMeshContainer->ppTexture[i]);
 
 	SAFE_DELETE_ARRAY(pMeshContainer->ppTexture);
+	SAFE_DELETE_ARRAY(pMeshContainer->ppNormal);
 	
 	SAFE_RELEASE(pMeshContainer->pOriMesh);
 	SAFE_RELEASE(pMeshContainer->MeshData.pMesh);

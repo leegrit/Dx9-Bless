@@ -1,37 +1,49 @@
 #include "StandardEngineFramework.h"
 #include "UIElement.h"
-#include "..\Include\UIElement2.h"
 
 using namespace HyEngine;
 
-UIElement::UIElement(class Scene* scene,
-	std::wstring imageFilePath,
-	const Vector3 position,
-	const Quaternion rotation,
-	const Vector3 scale,
-	std::wstring tag)
-	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath, tag)
+HyEngine::UIElement::UIElement(Scene * scene, GameObject * parent, int editID)
+	: GameObject(ERenderType::RenderAlpha, scene, parent, L"UIElement")
 {
-	m_pTransform->SetPosition(position);
-	m_pTransform->m_rotation = rotation;
-	m_pTransform->SetScale(scale);
+	SetEditID(editID);
 }
 
-HyEngine::UIElement::UIElement(Scene * scene, std::wstring imageFilePath, std::wstring name)
-	: TextureObject(scene, nullptr, ERenderType::RenderOpaque, imageFilePath, name)
-{
-	m_pTransform->SetPosition(0, 0, 0);
-	m_pTransform->SetScale(1, 1, 1);
-}
-
-HyEngine::UIElement::~UIElement()
+HyEngine::UIElement::UIElement(Scene * scene, std::wstring name)
+	: GameObject(ERenderType::RenderAlpha, scene, nullptr, name)
 {
 }
 
-void HyEngine::UIElement::Initialize()
+UIElement::~UIElement()
 {
+
 }
 
-void HyEngine::UIElement::Render()
+
+void UIElement::Initialize()
 {
+
+}
+
+
+
+void UIElement::Render()
+{
+	GameObject::Render();
+
+}
+
+void HyEngine::UIElement::UpdatedData(EDataType dataType)
+{
+
+}
+
+UIElement * HyEngine::UIElement::Create(Scene * scene, GameObject * parent, int editID)
+{
+	return nullptr;
+}
+
+UIElement * HyEngine::UIElement::Create(Scene * scene)
+{
+	return nullptr;
 }

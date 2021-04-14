@@ -15,7 +15,8 @@ namespace WPF_Tool.Data
         Terrain,
         Light,
         MeshEffect,
-        TextureEffect
+        TextureEffect,
+        UIPanel
     }
     public enum EDataType
     {

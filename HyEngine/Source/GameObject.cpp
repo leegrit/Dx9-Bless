@@ -9,6 +9,7 @@
 #include "ObjectContainer.h"
 #include "LightData.h"
 #include "EffectData.h"
+#include "UIData.h"
 
 using namespace HyEngine;
 
@@ -262,6 +263,16 @@ void HyEngine::GameObject::InsertEffectData(EffectData * data)
 	memcpy(m_pEffectData, data, sizeof(EffectData));
 
 	UpdatedData(EDataType::EffectData);
+}
+
+void HyEngine::GameObject::InsertUIData(UIData * data)
+{
+	if (m_pUIData == nullptr)
+		m_pUIData = new UIData();
+	/* Copy */
+	memcpy(m_pUIData, data, sizeof(UIData));
+
+	UpdatedData(EDataType::UIData);
 }
 
 EStaticType HyEngine::GameObject::GetStaticType() const

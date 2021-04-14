@@ -400,6 +400,9 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 	NavPrimitive * navPrimitive = nullptr;
 	navPrimitive = dynamic_cast<NavPrimitive*>(obj);
 
+	UIElement* uiElement = nullptr;
+	uiElement = dynamic_cast<UIElement*>(obj);
+
 	/* 메쉬인경우 */
 	if (mesh != nullptr)
 	{
@@ -429,6 +432,10 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 		result = IsInFrustumWithMesh(center, radius);
 	}
 	else if (navPrimitive != nullptr)
+	{
+		result = true;
+	}
+	else if (uiElement != nullptr)
 	{
 		result = true;
 	}

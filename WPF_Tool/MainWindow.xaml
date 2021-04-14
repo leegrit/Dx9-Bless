@@ -50,7 +50,8 @@
                     <MenuItem Header="_CreateTerrain" Click="BTN_CreateTerrain"/>
                     <MenuItem Header="_CreateLight" Click="BTN_CreateLight" />
                     <MenuItem Header="_CreateMeshEffect" Click="BTN_CreateMeshEffect" />
-                    <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
+                    <MenuItem Header="_CreateTextureEffect" Click="BTN_CreateTextureEffect" />
+                    <MenuItem Header="_CreateUIPanel"  Click="BTN_CreateUIPanel" />
                     <MenuItem Header="_CreateEffect" />
                     <MenuItem Header="_CreateCamera"/>
                 
@@ -80,6 +81,7 @@
                             <MenuItem Header="_CreateLight" Foreground ="Black" Click="BTN_CreateLight" />
                             <MenuItem Header="_CreateMeshEffect" Foreground="Black" Click="BTN_CreateMeshEffect" />
                             <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
+                            <MenuItem Header="_CreateUIPanel"  Foreground="Black"  Click="BTN_CreateUIPanel" />
                             <MenuItem Header="_CreateEffect" Foreground="Black" />
                             <MenuItem Header="_CreateCamera" Foreground="Black" />
                         </ContextMenu>
@@ -699,6 +701,20 @@
                                             <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="ScaleZ_MouseDown">Z</TextBlock>
                                             <TextBox x:Name="EffectEndScaleZ" Width="50" TextChanged="EffectEndScaleZ_TextChanged">0</TextBox>
                                         </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox x:Name="UIData" IsEnabled="True" Visibility="Visible">
+                                <GroupBox.Header>
+                                    <Label>UI Data</Label>
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <TextBlock Height="5"/>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <TextBlock Width="55"><Run Text="Texture"/></TextBlock>
+                                        <TextBox x:Name="UITextureName" Width="100" />
+                                        <TextBlock Width="5"/>
+                                        <Button Width="60" Click="BTN_UITextureLoad" Content="Load"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>

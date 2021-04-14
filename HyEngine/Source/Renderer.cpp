@@ -7,6 +7,7 @@
 #include "DeferredQuad.h"
 #include "Light.h"
 #include "PathManager.h"
+#include "Skybox.h"
 
 
 void HyEngine::Renderer::Setup()
@@ -189,7 +190,9 @@ void HyEngine::Renderer::ClearStashSurface()
 
 void HyEngine::Renderer::Render(Scene * scene)
 {
-	GetOriginMRT();
+	/* For Skybox */
+	if(scene->GetSkybox() != nullptr)
+		scene->GetSkybox()->Render();
 
 	/* For shadowMap */
 	PreparePipeline(scene);
@@ -199,25 +202,28 @@ void HyEngine::Renderer::Render(Scene * scene)
 
 	/* For alpha object without light */
 	ForwardPipeline(scene);
+
 }
 
 void Renderer::RenderBegin()
 {
 	DEVICE->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER, m_clearColor, 1.f, 0);
 	DEVICE->BeginScene();
-
+	EventDispatcher::TriggerEvent(RenderEvent::RenderBegin);
 
 }
 
 void Renderer::RenderEnd()
 {
-
+	EventDispatcher::TriggerEvent(RenderEvent::RenderEnd);
 	DEVICE->EndScene();
 	DEVICE->Present(nullptr, nullptr, g_hWnd, nullptr);
 }
 
 void HyEngine::Renderer::PreparePipeline(Scene * scene)
 {
+	GetOriginMRT();
+
 	/* Create CascadeShadow Map  */
 	for (int i = 0; i < NUM_CASCADEDES; i++)
 	{

@@ -24,6 +24,7 @@ Scene::~Scene()
 {
 	SAFE_DELETE(m_pSkybox);
 	SAFE_DELETE(m_pObjectContainer);
+	SAFE_DELETE(m_pCollisionCalculator);
 	EventDispatcher::Cleanup();
 }
 
@@ -42,7 +43,8 @@ void HyEngine::Scene::UnloadScene()
 void HyEngine::Scene::UpdateScene()
 {
 	m_pObjectContainer->ClearGarbage();
-
+	if(m_pSkybox != nullptr)
+		m_pSkybox->Update();
 	/* Opaque */
 	for (auto& opaque : m_pObjectContainer->GetOpaqueObjectAll())
 	{

@@ -156,27 +156,69 @@ void HyEngine::Skybox::Render()
 {
 	assert(m_isInit);
 
-	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
-	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	/* Get Shader */
+	ID3DXEffect* pShader = nullptr;
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"Skybox", &pShader);
+	else
+		ENGINE->TryGetShader(L"Skybox", &pShader);
 
-	DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
-	DEVICE->SetFVF(TextureCubeVertex::FVF);
+	assert(pShader);
 
-	DEVICE->SetIndices(m_pIndexBuffer);
-	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	DEVICE->SetLight(0, &m_light);//임시
-	BOOL lightEnable;
-	DEVICE->GetLightEnable(0, &lightEnable);
-	DEVICE->LightEnable(0, TRUE);//임시
 
-	DEVICE->SetTexture(0, m_pTexture);
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
 
-	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+	if (IS_EDITOR)
+		pSelectedCamera = EDIT_SCENE->GetSelectedCamera();
+	else
+		pSelectedCamera = SCENE->GetSelectedCamera();
 
-	DEVICE->LightEnable(0, lightEnable);//임시
-										//DEVICE->SetLight(0, NULL); //임시
-	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	assert(pSelectedCamera);
+
+	/* Set world, view and projection */
+	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+	/* Set Texture */
+	D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+	pShader->SetTexture(albedoHandle, m_pTexture);
+
+	pShader->SetTechnique("Skybox");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
+		DEVICE->SetFVF(TextureCubeVertex::FVF);
+		DEVICE->SetIndices(m_pIndexBuffer);
+		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+		pShader->EndPass();
+	}
+	pShader->End();
+
+// 	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
+// 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+// 
+// 	DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
+// 	DEVICE->SetFVF(TextureCubeVertex::FVF);
+// 
+// 	DEVICE->SetIndices(m_pIndexBuffer);
+// 	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+// 	DEVICE->SetLight(0, &m_light);//임시
+// 	BOOL lightEnable;
+// 	DEVICE->GetLightEnable(0, &lightEnable);
+// 	DEVICE->LightEnable(0, TRUE);//임시
+// 
+// 	DEVICE->SetTexture(0, m_pTexture);
+// 
+// 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+// 
+// 	DEVICE->LightEnable(0, lightEnable);//임시
+// 										//DEVICE->SetLight(0, NULL); //임시
+// 	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+// 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
 }
 
 TextureCubeVertex * HyEngine::Skybox::LockVertices()

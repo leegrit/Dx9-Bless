@@ -55,9 +55,7 @@ void HyEngine::Collider::Render()
 
 bool HyEngine::Collider::GetActive() const
 {
-	assert(m_pOwner);
-
-	return m_pOwner->GetActive();
+	return m_bActiveSelf;
 }
 
 void HyEngine::Collider::Calculate(Collider * other) const

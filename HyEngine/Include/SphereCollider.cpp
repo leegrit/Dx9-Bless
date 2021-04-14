@@ -36,13 +36,14 @@ void HyEngine::SphereCollider::Render()
 	if (m_pSphereMesh == nullptr) return;
 
 	/* Get Shader */
-	ID3DXEffect * pShader = nullptr;
-	if (IS_EDITOR)
-		EDIT_ENGINE->TryGetShader(L"Collider", &pShader);
-	else
-		ENGINE->TryGetShader(L"Collider", &pShader);
-
-	assert(pShader);
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"Collider", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"Collider", &m_pShader);
+	}
+	assert(m_pShader);
 
 	/* Get Selected Cam */
 	Camera* pSelectedCamera = nullptr;
@@ -55,20 +56,20 @@ void HyEngine::SphereCollider::Render()
 	assert(pSelectedCamera);
 
 	/* Set world, view and projection */
-	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
-	pShader->SetValue("ColliderColor", &m_color, sizeof(m_color));
+	m_pShader->SetValue("ColliderColor", &m_color, sizeof(m_color));
 
-	pShader->SetTechnique("Collider");
-	pShader->Begin(0, 0);
+	m_pShader->SetTechnique("Collider");
+	m_pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
+		m_pShader->BeginPass(0);
 		m_pSphereMesh->DrawSubset(0);
-		pShader->EndPass();
+		m_pShader->EndPass();
 	}
-	pShader->End();
+	m_pShader->End();
 }
 
 void HyEngine::SphereCollider::Calculate(Collider * other) const

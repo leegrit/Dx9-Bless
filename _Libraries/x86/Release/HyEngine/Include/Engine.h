@@ -45,6 +45,10 @@ namespace HyEngine
 		inline Timer* GetTimer() const { return m_pTimer; }
 	public:
 		class Scene* GetActiveScene();
+		void SetGameMode(EGameMode mode);
+		EGameMode GetGameMode() const;
+		void SetFPS(float fps);
+		float GetFPS() const;
 		void SwitchScene(int sceneNumber);
 		void ShowLoadingScene(class SceneTransition* sceneTransiion);
 		void HideLoadingScene();
@@ -85,9 +89,9 @@ namespace HyEngine
 		IO::Keyboard *m_pKeyboard;
 		IO::Mouse *m_pMouse;
 		Timer *m_pTimer;
-
 		//class Camera* m_pCamera;
 	private:
+		float m_fps;
 
 		// engine state
 		bool m_bIsPaused;
@@ -95,7 +99,7 @@ namespace HyEngine
 		int m_currentLevel;
 		// THREADED LOADING
 		bool m_bLoading;
-
+		EGameMode m_gameMode;
 	private:
 
 		class Renderer * m_pRenderer;

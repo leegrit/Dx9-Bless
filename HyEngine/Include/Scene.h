@@ -1,5 +1,4 @@
 #pragma once
-#include "IUserInterface.h"
 #include "ISkybox.h"
 #include "ILight.h"
 #include "Object.h"

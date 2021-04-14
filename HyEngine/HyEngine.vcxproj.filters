@@ -590,33 +590,6 @@
     <ClInclude Include="Include\Mesh.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Include\UIPanel.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ImageButton.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ImageSwitchButton.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\IUserInterface.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ProgressBar.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\ProgressVerticalBar.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\UIButton.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\UIElement.h">
-      <Filter>UI\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\UIElement2.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Include\TextureLoader.h">
       <Filter>Utilities\Loader</Filter>
     </ClInclude>
@@ -649,6 +622,18 @@
     </ClInclude>
     <ClInclude Include="Include\Gui.h">
       <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIElement.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIPanel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\UIData.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Equipment.h">
+      <Filter>Object\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1054,30 +1039,6 @@
     <ClCompile Include="Source\Mesh.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ImageButton.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ImageSwitchButton.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProgressBar.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProgressVerticalBar.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIButton.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIElement.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIPanel.cpp">
-      <Filter>UI\Old</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\UIElement2.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TextureLoader.cpp">
       <Filter>Utilities\Loader</Filter>
     </ClCompile>
@@ -1107,6 +1068,18 @@
     </ClCompile>
     <ClCompile Include="Source\Gui.cpp">
       <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIElement.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIPanel.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIData.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Equipment.cpp">
+      <Filter>Object\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1144,6 +1117,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\Collider.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Skybox.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\UIPanel.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
