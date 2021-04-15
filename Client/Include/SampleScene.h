@@ -26,12 +26,21 @@ public :
 public :
 	void OnModeChanged(void*);
 
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+public :
+	GameObject* GetPlayer();
+
+
 private :
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;
 
 	// test
-	Pawn* m_pPawn;
+	class Player* m_pPlayer;
 
 	Equipment * m_pEquip;
 

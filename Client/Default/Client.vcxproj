@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\ActionComponent.cpp" />
+    <ClCompile Include="..\Source\Character.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Player.cpp" />
     <ClCompile Include="..\Source\PlayerAction.cpp" />
@@ -140,9 +141,16 @@
     <ClCompile Include="..\Source\SampleCamera.cpp" />
     <ClCompile Include="..\Source\SampleLoadingScene.cpp" />
     <ClCompile Include="..\Source\SampleScene.cpp" />
+    <ClCompile Include="..\Source\Skeletone.cpp" />
+    <ClCompile Include="..\Source\SkeletoneAttack.cpp" />
+    <ClCompile Include="..\Source\SkeletoneDie.cpp" />
+    <ClCompile Include="..\Source\SkeletoneHit.cpp" />
+    <ClCompile Include="..\Source\SkeletoneIdle.cpp" />
+    <ClCompile Include="..\Source\SkeletoneMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\ActionComponent.h" />
+    <ClInclude Include="..\Include\Character.h" />
     <ClInclude Include="..\Include\Enumerators.h" />
     <ClInclude Include="..\Include\Player.h" />
     <ClInclude Include="..\Include\PlayerAction.h" />
@@ -152,6 +160,12 @@
     <ClInclude Include="..\Include\SampleCamera.h" />
     <ClInclude Include="..\Include\SampleLoadingScene.h" />
     <ClInclude Include="..\Include\SampleScene.h" />
+    <ClInclude Include="..\Include\Skeletone.h" />
+    <ClInclude Include="..\Include\SkeletoneAttack.h" />
+    <ClInclude Include="..\Include\SkeletoneDie.h" />
+    <ClInclude Include="..\Include\SkeletoneHit.h" />
+    <ClInclude Include="..\Include\SkeletoneIdle.h" />
+    <ClInclude Include="..\Include\SkeletoneMove.h" />
     <ClInclude Include="..\Include\stdafx.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

@@ -67,20 +67,11 @@
     <Filter Include="AI\BehaviourTree">
       <UniqueIdentifier>{052aa570-1032-414c-a300-b5ee84c43ffb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Render">
-      <UniqueIdentifier>{3677e1ee-195c-41b8-ad5a-aaa4c40ebbf4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Render\InputAssembler">
-      <UniqueIdentifier>{b8530b82-0e85-48d2-84af-0e412fd4139e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Skybox">
       <UniqueIdentifier>{35c40f65-8b53-46b0-8b04-e1fb38f19c16}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{74ecb3fd-c1b4-4b79-a7a1-ae64f6f09add}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="fsm">
-      <UniqueIdentifier>{10b6a98d-a669-456c-91b5-1a7e0f429973}</UniqueIdentifier>
     </Filter>
     <Filter Include="Export">
       <UniqueIdentifier>{e18e7145-e73a-40d3-8522-fe482779fec1}</UniqueIdentifier>
@@ -138,6 +129,15 @@
     </Filter>
     <Filter Include="Gui">
       <UniqueIdentifier>{13a9f0eb-9b7a-4880-b074-9cac4bfd5d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{3677e1ee-195c-41b8-ad5a-aaa4c40ebbf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\InputAssembler">
+      <UniqueIdentifier>{b8530b82-0e85-48d2-84af-0e412fd4139e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM">
+      <UniqueIdentifier>{10b6a98d-a669-456c-91b5-1a7e0f429973}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -331,7 +331,7 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="Include\fsm.h">
-      <Filter>fsm</Filter>
+      <Filter>FSM</Filter>
     </ClInclude>
     <ClInclude Include="Include\Skybox.h">
       <Filter>Skybox</Filter>

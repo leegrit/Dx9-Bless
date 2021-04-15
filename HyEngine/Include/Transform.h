@@ -97,6 +97,10 @@ namespace HyEngine
 		void LookAt(Transform& target);
 		void LookAt(Vector3& position);
 
+		void LookAtEuler(Transform& target);
+		void LookAtEuler(D3DXVECTOR3& position);
+
+
 		void RotateEuler(const Vector3& eulers);
 
 

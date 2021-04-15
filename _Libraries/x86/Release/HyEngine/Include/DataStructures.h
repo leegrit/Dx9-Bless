@@ -34,14 +34,49 @@ struct ENGINE_DLL EngineConfig
 	int defaultSceneIndex;
 };
 
-
-struct D3DXFRAME_DERIVED : public D3DXFRAME
-{
-	D3DXMATRIX CombinedTransformMatrix;
-};
-
 struct D3DXMESHCONTAINER_DERIVED : public D3DXMESHCONTAINER
 {
+	D3DXMESHCONTAINER_DERIVED() = default;
+	D3DXMESHCONTAINER_DERIVED(const D3DXMESHCONTAINER_DERIVED& rhs)
+	{
+		if (rhs.Name != nullptr)
+			strcpy_s(Name, strlen(rhs.Name), rhs.Name);
+		else
+			Name = nullptr;
+
+		MeshData = rhs.MeshData;
+
+		pMaterials = rhs.pMaterials;
+		pEffects = rhs.pEffects;
+		NumMaterials = rhs.NumMaterials;
+		pAdjacency = rhs.pAdjacency;
+		pSkinInfo = rhs.pSkinInfo;
+
+		if (rhs.pNextMeshContainer != nullptr)
+			pNextMeshContainer = new D3DXMESHCONTAINER_DERIVED(*(D3DXMESHCONTAINER_DERIVED*)rhs.pNextMeshContainer);
+		else
+			pNextMeshContainer = nullptr;
+
+		ppTexture = rhs.ppTexture;
+		ppNormal = rhs.ppNormal;
+
+		pTextureNames = rhs.pTextureNames;
+
+		pOriMesh = rhs.pOriMesh;
+
+		numBones = rhs.numBones;
+		pFrameOffsetMatrix = new D3DXMATRIX();
+		if(rhs.pFrameOffsetMatrix != nullptr)
+			*pFrameOffsetMatrix = *rhs.pFrameOffsetMatrix;
+
+		ppFrameCombinedMatrix = new D3DXMATRIX*[numBones];
+
+		for (ULONG i = 0; i < numBones; i++)
+			pFrameOffsetMatrix[i] = *pSkinInfo->GetBoneOffsetMatrix(i);
+
+		pRenderingMatrix = new D3DXMATRIX();
+		*pRenderingMatrix = *rhs.pRenderingMatrix;
+	}
 	LPDIRECT3DTEXTURE9* ppTexture;
 	LPDIRECT3DTEXTURE9* ppNormal;
 
@@ -60,4 +95,35 @@ struct D3DXMESHCONTAINER_DERIVED : public D3DXMESHCONTAINER
 
 	D3DXMATRIX*			pRenderingMatrix;
 
+};
+
+
+struct D3DXFRAME_DERIVED : public D3DXFRAME
+{
+	D3DXFRAME_DERIVED() = default;
+	D3DXFRAME_DERIVED(const D3DXFRAME_DERIVED& rhs)
+	{
+		if (rhs.pFrameSibling != nullptr)
+			pFrameSibling = new D3DXFRAME(*rhs.pFrameSibling);
+		else
+			pFrameSibling = nullptr;
+
+		if (rhs.pFrameFirstChild != nullptr)
+			pFrameFirstChild = new D3DXFRAME(*rhs.pFrameFirstChild);
+		else
+			pFrameFirstChild = nullptr;
+
+		if (rhs.Name != nullptr)
+			strcpy_s(Name, strlen(rhs.Name), rhs.Name);
+		else
+			Name = nullptr;
+
+		TransformationMatrix = rhs.TransformationMatrix;
+
+		if (rhs.pMeshContainer != nullptr)
+			pMeshContainer = new D3DXMESHCONTAINER_DERIVED(*(D3DXMESHCONTAINER_DERIVED*)rhs.pMeshContainer);
+		else
+			pMeshContainer = nullptr;
+	}
+	D3DXMATRIX CombinedTransformMatrix;
 };

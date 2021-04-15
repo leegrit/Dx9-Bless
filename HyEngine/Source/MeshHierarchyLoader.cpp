@@ -53,8 +53,11 @@ bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchy(std::wstring filePath,_O
 
 	HierarchyedMesh * result = meshHierarchyMap[filePath];
 
-	*ppAniCtrl = result->pAniCtrl;
+	//*ppAniCtrl = result->pAniCtrl;
+	*ppAniCtrl = new AnimationController(*result->pAniCtrl);
 	*ppRootFrame = result->pRootFrame;
+	//*ppRootFrame = new D3DXFRAME_DERIVED(*(D3DXFRAME_DERIVED*)result->pRootFrame);
+	//**ppRootFrame = *result->pRootFrame;
 	return true;
 }
 

@@ -190,10 +190,6 @@ void HyEngine::Renderer::ClearStashSurface()
 
 void HyEngine::Renderer::Render(Scene * scene)
 {
-	/* For Skybox */
-	if(scene->GetSkybox() != nullptr)
-		scene->GetSkybox()->Render();
-
 	/* For shadowMap */
 	PreparePipeline(scene);
 
@@ -239,6 +235,10 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 {
 	SetGBufferMRT();
 	ClearBackBuffer();
+
+	/* For Skybox */
+	if (scene->GetSkybox() != nullptr)
+		scene->GetSkybox()->Render();
 
 	/* Render For GBuffer */
 	GeometryPass(scene);

@@ -1,9 +1,9 @@
 #pragma once
-#include "Pawn.h"
+#include "Character.h"
 
 using namespace HyEngine;
 
-class Player final : public Pawn
+class Player final : public Character
 {
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTOR & DESTRUCTOR
@@ -18,7 +18,7 @@ private :
 	//////////////////////////////////////////////////////////////////////////
 public :
 	virtual void Initialize(std::wstring dataPath) override;
-
+	virtual void OnCollision(Collider * other) override;
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -26,5 +26,6 @@ public :
 	//////////////////////////////////////////////////////////////////////////
 public :
 	static Player* Create(Scene* pScene, NavMesh* pNavMesh, std::wstring dataPath);
+
 };
 

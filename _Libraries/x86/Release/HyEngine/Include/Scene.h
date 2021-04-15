@@ -61,6 +61,7 @@ namespace HyEngine
 	public:
 		bool SelectCamera(std::wstring name);
 		void SetSkybox(Skybox* skybox);
+		void SetPlayer(GameObject* pPlayer);
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
@@ -68,6 +69,7 @@ namespace HyEngine
 	public :
 		Camera* GetSelectedCamera() const;
 		Skybox* GetSkybox() const;
+		GameObject* GetPlayer();
 		class ObjectContainer* GetObjectContainer() const;
 
 		//////////////////////////////////////////////////////////////////////////
@@ -82,6 +84,7 @@ namespace HyEngine
 	private:
 		Camera* m_pSelectedCamera = nullptr;
 		Skybox* m_pSkybox = nullptr;
+		GameObject* m_pPlayer = nullptr;
 		class ObjectContainer * m_pObjectContainer = nullptr;
 		class CollisionCalculator * m_pCollisionCalculator = nullptr;
 

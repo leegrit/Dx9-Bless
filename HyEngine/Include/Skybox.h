@@ -23,6 +23,8 @@ namespace HyEngine
 
 	private :
 		bool m_isInit = false;
+
+		ID3DXEffect* m_pShader = nullptr;
 		// vertex
 		int m_vertexSize;
 		int m_vertexCount;

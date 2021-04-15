@@ -17,6 +17,8 @@
 #include "PlayerCamera.h"
 #include "UIPanel.h"
 #include "Equipment.h"
+#include "Skeletone.h"
+
 using namespace HyEngine;
 
 void SampleScene::Update()
@@ -41,16 +43,17 @@ void SampleScene::Load()
 
 	m_pEditCam = DynamicCamera::Create(this, nullptr, L"SampleCamera");
 	//AddCamera(L"SampleCamera", camera);
-	SelectCamera(L"SampleCamera");
+
 
 
 	
 	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/FirstNavMesh.json");
 	
-	m_pPawn = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
+	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
+	SetPlayer(m_pPlayer);
 
-
-	m_pGameCam = PlayerCamera::Create(this, m_pPawn, L"PlayerCamera");
+	m_pGameCam = PlayerCamera::Create(this, m_pPlayer, L"PlayerCamera");
+	SelectCamera(L"PlayerCamera");
 	Skybox* skybox = new Skybox(m_pGameCam, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
 	skybox->Initialize();
 	SetSkybox(skybox);
@@ -63,8 +66,15 @@ void SampleScene::Load()
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/FirstPointLight.json");
 
 
-	m_pEquip =	Equipment::Create(this, m_pPawn, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
+	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
 	
+	/* For Enemy */
+	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+	enemy2->m_pTransform->SetPosition(0, 0, 0);
+	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+
+
 	/* For UI */
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -300, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"ClassMark");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(-270, -280, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"HPBack");

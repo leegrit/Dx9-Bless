@@ -43,8 +43,7 @@ void HyEngine::Scene::UnloadScene()
 void HyEngine::Scene::UpdateScene()
 {
 	m_pObjectContainer->ClearGarbage();
-	if(m_pSkybox != nullptr)
-		m_pSkybox->Update();
+	
 	/* Opaque */
 	for (auto& opaque : m_pObjectContainer->GetOpaqueObjectAll())
 	{
@@ -68,6 +67,9 @@ void HyEngine::Scene::UpdateScene()
 			invisible->m_bWantsDestroy == false)
 			invisible->Update();
 	}
+
+	if (m_pSkybox != nullptr)
+		m_pSkybox->Update();
 
 	/* Dynamic */
 	for (auto& dynamic : m_pObjectContainer->GetDynamicColliderAll())
@@ -153,6 +155,11 @@ void HyEngine::Scene::SetSkybox(Skybox * skybox)
 	m_pSkybox = skybox;
 }
 
+void HyEngine::Scene::SetPlayer(GameObject * pPlayer)
+{
+	m_pPlayer = pPlayer;
+}
+
 Camera * HyEngine::Scene::GetSelectedCamera() const
 {
 	return m_pSelectedCamera;
@@ -161,6 +168,11 @@ Camera * HyEngine::Scene::GetSelectedCamera() const
 Skybox * HyEngine::Scene::GetSkybox() const
 {
 	return m_pSkybox;
+}
+
+GameObject * HyEngine::Scene::GetPlayer()
+{
+	return m_pPlayer;
 }
 
 ObjectContainer * HyEngine::Scene::GetObjectContainer() const

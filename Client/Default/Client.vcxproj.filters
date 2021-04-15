@@ -31,6 +31,27 @@
     <ClCompile Include="..\Source\PlayerAction.cpp">
       <Filter>Scripts\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Character.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneIdle.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneAttack.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneDie.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneMove.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Skeletone.cpp">
+      <Filter>GameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneHit.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -56,6 +77,15 @@
     </Filter>
     <Filter Include="GlobalVars">
       <UniqueIdentifier>{5e2094c6-28f1-4257-a916-c109f37d4949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM">
+      <UniqueIdentifier>{2aabe641-c9c0-4f0b-85c9-e3c654d0a8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy">
+      <UniqueIdentifier>{fe8dce37-a3ad-4aa7-8b30-fc256e1209c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Skeletone">
+      <UniqueIdentifier>{c3bd7a07-879f-43ee-933b-b4e6a6f3b536}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +120,27 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerAction.h">
       <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Character.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneIdle.h">
+      <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneMove.h">
+      <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneAttack.h">
+      <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneDie.h">
+      <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Skeletone.h">
+      <Filter>GameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneHit.h">
+      <Filter>FSM\Skeletone</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

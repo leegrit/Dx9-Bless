@@ -45,7 +45,7 @@ void HyEngine::Collider::Update()
 	result += m_pOwner->m_pTransform->Up() * m_offset.y();
 
 	m_pTransform->SetPosition(result);
-	m_pTransform->m_rotation = m_pOwner->m_pTransform->m_rotation;
+	//m_pTransform->m_rotation = m_pOwner->m_pTransform->m_rotation;
 }
 
 void HyEngine::Collider::Render()

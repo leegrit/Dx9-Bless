@@ -158,6 +158,10 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	float4 specularMap = tex2D(SpecularSampler, input.texcoord);
 	float4 stashMap = tex2D(StashSampler, input.texcoord);
 
+	/* Skybox */
+	if (specularMap.a == 0.2)
+		return albedoMap;
+
 	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).r;
 
 	/* Calculate world position */

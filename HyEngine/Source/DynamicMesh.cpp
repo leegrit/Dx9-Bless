@@ -24,6 +24,9 @@ HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent, int editI
 	m_pAniCtrl(nullptr)
 {
 	SetEditID(editID);
+	EventDispatcher::AddEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderBegin, this, placeholders::_1));
+	EventDispatcher::AddEventListener(RenderEvent::RenderEnd, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderEnd, this, placeholders::_1));
+
 }
 
 HyEngine::DynamicMesh::~DynamicMesh()
@@ -327,6 +330,7 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 {
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
+	
 
 	for (; iter != iter_end; iter++)
 	{
@@ -428,4 +432,21 @@ void HyEngine::DynamicMesh::SetupFrameMatrixPointer(D3DXFRAME_DERIVED * frame)
 
 	if (frame->pFrameFirstChild != nullptr)
 		SetupFrameMatrixPointer((D3DXFRAME_DERIVED*)frame->pFrameFirstChild);
+}
+
+void HyEngine::DynamicMesh::UpdateBoneMatrix(D3DXFRAME_DERIVED * frame)
+{
+	if (frame->pMeshContainer != nullptr)
+	{
+		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (D3DXMESHCONTAINER_DERIVED*)frame->pMeshContainer;
+		for (UINT i = 0; i < pMeshContainer->numBones; i++)
+			pMeshContainer->pFrameOffsetMatrix[i] = *pMeshContainer->pSkinInfo->GetBoneOffsetMatrix(i);
+	}
+
+	if (frame->pFrameSibling != nullptr)
+		UpdateBoneMatrix((D3DXFRAME_DERIVED*)frame->pFrameSibling);
+	
+	if (frame->pFrameFirstChild != nullptr)
+		UpdateBoneMatrix((D3DXFRAME_DERIVED*)frame->pFrameFirstChild);
+
 }

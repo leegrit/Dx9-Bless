@@ -68,6 +68,7 @@ namespace HyEngine
 	private:
 		void UpdateFrameMatrix(D3DXFRAME_DERIVED* frame, const D3DXMATRIX* parentMatrix);
 		void SetupFrameMatrixPointer(D3DXFRAME_DERIVED* frame);
+		void UpdateBoneMatrix(D3DXFRAME_DERIVED* frame);
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES

@@ -5,8 +5,9 @@
 
 
 Player::Player(Scene * pScene, NavMesh * pNavMesh)
-	:Pawn(pScene, nullptr, pNavMesh)
+	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8)
 {
+	SetLayer(Layer::Player);
 }
 
 Player::~Player()
@@ -28,4 +29,8 @@ Player * Player::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPat
 	Player* player = new Player(pScene, pNavMesh);
 	player->Initialize(dataPath);
 	return player;
+}
+
+void Player::OnCollision(Collider * other)
+{
 }

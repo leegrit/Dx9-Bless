@@ -421,7 +421,7 @@ namespace WPF_Tool
 
                         // 여기서 비우고 아래에서 다시 채워준다.
                         //AnimationComboBox.Items.Clear();
-                        if (animCount >= AnimationComboBox.Items.Count)
+                        if (animCount > AnimationComboBox.Items.Count)
                         {
                             float addCount = animCount - AnimationComboBox.Items.Count;
                             for (int i = 0; i < addCount; i++)
@@ -440,6 +440,8 @@ namespace WPF_Tool
                             item.Uid = animIndex.ToString();
                             item.Content = animName.name;
                             item.Selected += Animation_Selected;
+
+                            item.Visibility = Visibility.Visible;
                             
                         }
                         for (int i = animCount; i < AnimationComboBox.Items.Count; i++)

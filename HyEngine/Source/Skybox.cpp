@@ -157,13 +157,15 @@ void HyEngine::Skybox::Render()
 	assert(m_isInit);
 
 	/* Get Shader */
-	ID3DXEffect* pShader = nullptr;
-	if (IS_EDITOR)
-		EDIT_ENGINE->TryGetShader(L"Skybox", &pShader);
-	else
-		ENGINE->TryGetShader(L"Skybox", &pShader);
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+	}
 
-	assert(pShader);
+	assert(m_pShader);
 
 
 	/* Get Selected Cam */
@@ -173,29 +175,54 @@ void HyEngine::Skybox::Render()
 		pSelectedCamera = EDIT_SCENE->GetSelectedCamera();
 	else
 		pSelectedCamera = SCENE->GetSelectedCamera();
+	//m_pTransform->SetPosition(pSelectedCamera->m_pTransform->m_position);
 
 	assert(pSelectedCamera);
-
+	D3DXMATRIX identityMat;
+	D3DXMatrixIdentity(&identityMat);
 	/* Set world, view and projection */
-	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	
+	/* Set world Position */
+	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 
-	/* Set Texture */
-	D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
-	pShader->SetTexture(albedoHandle, m_pTexture);
 
-	pShader->SetTechnique("Skybox");
-	pShader->Begin(0, 0);
+	/* Set albedo */
+	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "SkyboxTex");
+	m_pShader->SetTexture(albedoHandle, m_pTexture);
+
+	/* Set albedo */
+	//D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+	//m_pShader->SetTexture(albedoHandle, m_pTexture);
+
+	/* Set NormalMap */
+	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+	m_pShader->SetTexture(normalHandle, NULL);
+
+	/* Set Emissive */
+	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+	m_pShader->SetTexture(emissiveHandle, NULL);
+
+	/* Set Specular */
+	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+	m_pShader->SetTexture(specularHandle, NULL);
+
+	bool hasNormalMap = false;
+	m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+
+	m_pShader->SetTechnique("GBuffer_Skybox");
+	m_pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
+		m_pShader->BeginPass(0);
 		DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
 		DEVICE->SetFVF(TextureCubeVertex::FVF);
 		DEVICE->SetIndices(m_pIndexBuffer);
 		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
-		pShader->EndPass();
+		m_pShader->EndPass();
 	}
-	pShader->End();
+	m_pShader->End();
 
 // 	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
 // 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
