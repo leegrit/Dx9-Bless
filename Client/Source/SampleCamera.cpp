@@ -23,8 +23,8 @@ void SampleCamera::Initialize()
 	m_pTransform->SetPosition(0, 10, -10);
 }
 
-void SampleCamera::CameraUpdate()
+void SampleCamera::Update()
 {
-	Camera::CameraUpdate();
+	Camera::Update();
 	SetViewMatrix(Vector3(0, 0, 0).operator D3DXVECTOR3());
 }

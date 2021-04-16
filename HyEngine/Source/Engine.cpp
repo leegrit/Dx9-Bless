@@ -8,6 +8,8 @@
 #include "EventDispatcher.h"
 #include "ScriptableData.h"
 #include "PathManager.h"
+#include "Gui.h"
+#include "MeshHierarchyLoader.h"
 
 using namespace HyEngine;
 
@@ -19,14 +21,16 @@ IMPLEMENT_SINGLETON(Engine)
 Engine::Engine()
 	: 
 	m_bLoading(false),
-	m_bIsPaused(false)
+	m_bIsPaused(false),
+	m_gameMode(EGameMode::GAME_MODE)
 {
 	SEND_LOG("Engine Created");
 	DirectXDevice::Create();
 	UIDGen::Create();
 	PathManager::Create();
 
-	m_pRenderer = new Renderer();
+	
+	//m_pRenderer = new Renderer();
 	m_pMouse = new IO::Mouse();
 	m_pKeyboard = new IO::Keyboard();
 	m_pTimer = new Timer();
@@ -37,42 +41,25 @@ Engine::~Engine()
 	delete m_pTimer;
 	delete m_pKeyboard;
 	delete m_pMouse;
-	delete m_pRenderer;
+	//delete m_pRenderer;
+	Renderer::Release(m_pRenderer);
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
 	PathManager::Destroy();
+	MeshHierarchyLoader::Clear();
 }
 
 bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 {
 	SEND_LOG("Engine Initialize Start");
 	DirectXDevice::Get()->Init(hWnd);
-
+	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
 
 	assert(engineConfig.scenes.size() != 0);
 
 	this->engineConfig = engineConfig;
 	m_scenes = engineConfig.scenes;
-	//if (engineConfig.camera)
-	//{
-	//	m_pCamera = engineConfig.camera;
-	//}
-	//else
-	//{
-	//	m_pCamera = new Camera();
-	//	//m_pCamera->SetView
-	//	// set default camera option
-	//	m_pCamera->SetProjectionMatrix
-	//	(
-	//		D3DX_PI * 0.5f, // 90 - degree
-	//		WinMaxWidth / WinMaxHeight,
-	//		1.0f,
-	//		1000.0f
-	//	);
-	//}
-	//m_pCamera->Initialize();
-
 	SEND_LOG("Engine Initialize End");
 	return false;
 }
@@ -132,19 +119,29 @@ void Engine::SimulateFrame()
 	m_fontInfos.clear();
 
 	//m_pCamera->Update();
+
 	m_pKeyboard->Update();
 	m_pMouse->Update();
 	/*__try
 	{*/
-		UpdateDispatcher::Update();
+	UpdateDispatcher::Update();
 	/*}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
 #ifdef _DEBUG
-		
+
 		<< "UpdateDispatcher Exception" << std::endl;
 #endif
 	}*/
+
+	if (KEYBOARD->Up(VK_TAB))
+	{
+		if (GetGameMode() == EGameMode::GAME_MODE)
+			SetGameMode(EGameMode::EDIT_MODE);
+		else
+			SetGameMode(EGameMode::GAME_MODE);
+		EventDispatcher::TriggerEvent(EngineEvent::ModeChanged);
+	}
 	if (m_pActiveScene)
 	{
 		m_pActiveScene->UpdateScene();
@@ -152,6 +149,7 @@ void Engine::SimulateFrame()
 		// 나중에 이 정보를 활용해서 렌더쪽에서 컬 처리 후 그린다.
 		m_pActiveScene->ViewFrustumCull();
 	}
+
 	while (m_eventQueue.size())
 	{
 		m_eventQueue.back()();
@@ -165,10 +163,14 @@ void Engine::RenderFrame()
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_pCamera->GetProjectionMatrix());
 	//DEVICE->SetTransform(D3DTS_VIEW, &m_pCamera->GetViewMatrix());
 
-
+	Gui::Get()->Update();
 	if (m_pActiveScene)
+	{
 		m_pActiveScene->RenderScene(m_pRenderer);
-
+		m_pActiveScene->RenderGUI();
+	}
+	
+	Gui::Get()->Render();
 	RenderFont();
 	m_pRenderer->RenderEnd();
 }
@@ -176,6 +178,26 @@ void Engine::RenderFrame()
 Scene * Engine::GetActiveScene()
 {
 	return m_pActiveScene;
+}
+
+void HyEngine::Engine::SetGameMode(EGameMode mode)
+{
+	m_gameMode = mode;
+}
+
+EGameMode HyEngine::Engine::GetGameMode() const
+{
+	return m_gameMode;
+}
+
+void HyEngine::Engine::SetFPS(float fps)
+{
+	m_fps = fps;
+}
+
+float HyEngine::Engine::GetFPS() const
+{
+	return m_fps;
 }
 
 void HyEngine::Engine::SwitchScene(int sceneNumber)
@@ -262,10 +284,51 @@ void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3
 
 }
 
+bool HyEngine::Engine::InsertShader(std::wstring key, std::wstring path)
+{
+	auto& iter =  m_shaderMap.find(key);
+	
+	/* already exist */
+	if (iter != m_shaderMap.end())
+		return false;
+
+	ID3DXEffect* shader = nullptr;
+	D3DXCreateEffectFromFile(DEVICE, path.c_str(), nullptr, nullptr, 0, nullptr, &shader, nullptr);
+	assert(shader);
+
+	m_shaderMap.insert(make_pair(key, shader));
+}
+
+bool HyEngine::Engine::TryGetShader(std::wstring key,_Out_ ID3DXEffect ** ppShader)
+{
+	*ppShader = nullptr;
+
+	auto& iter = m_shaderMap.find(key);
+
+	if (iter == m_shaderMap.end())
+		return false;
+
+	*ppShader = iter->second;
+	return true;
+}
+
 
 bool Engine::LoadShaders()
 {
-	// TODO 
+	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer.fx");
+	InsertShader(L"PointLight", PATH->ShadersPathW() + L"PointLight.fx");
+	InsertShader(L"SpotLight", PATH->ShadersPathW() + L"SpotLight.fx");
+	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
+	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
+	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
+	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
+	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
+	InsertShader(L"ShadowMap", PATH->ShadersPathW() + L"ShadowMap.fx");
+	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
+	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
+	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
+	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
+	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
 	return true;
 }
 

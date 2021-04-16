@@ -54,6 +54,11 @@ namespace HyEngine
 
 		void DrawText(const TCHAR* text, D3DXVECTOR3 position , D3DXVECTOR3 scale, D3DCOLOR color);
 		void DrawTextFormat(D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR* text, int args, ... );
+
+		/* For Shader */
+	public :
+		bool InsertShader(std::wstring key, std::wstring path);
+		bool TryGetShader(std::wstring key, _Out_ ID3DXEffect** ppShader);
 	private:
 
 
@@ -106,6 +111,9 @@ namespace HyEngine
 		std::unordered_map<std::wstring, class ScriptableData*> m_scriptableDatas;
 
 		std::vector<FontInfo> m_fontInfos;
+
+		/* For Shader */
+		std::unordered_map<std::wstring, ID3DXEffect*> m_shaderMap;
 	};
 
 }

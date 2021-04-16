@@ -24,6 +24,10 @@ namespace WPF_Tool.Data
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
         public static string Terrain = "Terrain";
+        public static string Light = "Light";
+        public static string MeshEffect = "MeshEffect";
+        public static string TextureEffect = "TextureEffect";
+        public static string UIPanel = "UIPanel";
     }
     public class HierarchyContent
     {
@@ -31,6 +35,10 @@ namespace WPF_Tool.Data
         public static string MapObject = "MapObject";
         public static string NavMesh = "NavMesh";
         public static string Terrain = "Terrain";
+        public static string Light = "Light";
+        public static string MeshEffect = "MeshEffect";
+        public static string TextureEffect = "TextureEffect";
+        public static string UIPanel = "UIPanel";
     }
     public class Paths
     {
@@ -46,6 +54,8 @@ namespace WPF_Tool.Data
         public static string NavMeshData;
         public static string SceneDataPath;
         public static string TerrainDataPath;
+        public static string LightDataPath;
+        public static string EffectDataPath;
 
     }
 

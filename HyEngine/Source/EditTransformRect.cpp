@@ -3,7 +3,7 @@
 #include "DiffuseQuad.h"
 
 HyEngine::EditTransformRect::EditTransformRect(Scene * scene, GameObject * parent)
-	:GameObject(ERenderType::RenderTexture, scene, parent, L"TransformRect")
+	:GameObject(ERenderType::RenderOpaque, scene, parent, L"TransformRect")
 {
 
 }

@@ -156,27 +156,96 @@ void HyEngine::Skybox::Render()
 {
 	assert(m_isInit);
 
-	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
-	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	/* Get Shader */
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+	}
 
-	DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
-	DEVICE->SetFVF(TextureCubeVertex::FVF);
+	assert(m_pShader);
 
-	DEVICE->SetIndices(m_pIndexBuffer);
-	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	DEVICE->SetLight(0, &m_light);//임시
-	BOOL lightEnable;
-	DEVICE->GetLightEnable(0, &lightEnable);
-	DEVICE->LightEnable(0, TRUE);//임시
 
-	DEVICE->SetTexture(0, m_pTexture);
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
 
-	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+	if (IS_EDITOR)
+		pSelectedCamera = EDIT_SCENE->GetSelectedCamera();
+	else
+		pSelectedCamera = SCENE->GetSelectedCamera();
+	//m_pTransform->SetPosition(pSelectedCamera->m_pTransform->m_position);
 
-	DEVICE->LightEnable(0, lightEnable);//임시
-										//DEVICE->SetLight(0, NULL); //임시
-	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+	assert(pSelectedCamera);
+	D3DXMATRIX identityMat;
+	D3DXMatrixIdentity(&identityMat);
+	/* Set world, view and projection */
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	
+	/* Set world Position */
+	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+
+	/* Set albedo */
+	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "SkyboxTex");
+	m_pShader->SetTexture(albedoHandle, m_pTexture);
+
+	/* Set albedo */
+	//D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+	//m_pShader->SetTexture(albedoHandle, m_pTexture);
+
+	/* Set NormalMap */
+	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+	m_pShader->SetTexture(normalHandle, NULL);
+
+	/* Set Emissive */
+	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+	m_pShader->SetTexture(emissiveHandle, NULL);
+
+	/* Set Specular */
+	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+	m_pShader->SetTexture(specularHandle, NULL);
+
+	bool hasNormalMap = false;
+	m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
+
+	m_pShader->SetTechnique("GBuffer_Skybox");
+	m_pShader->Begin(0, 0);
+	{
+		m_pShader->BeginPass(0);
+		DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
+		DEVICE->SetFVF(TextureCubeVertex::FVF);
+		DEVICE->SetIndices(m_pIndexBuffer);
+		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+		m_pShader->EndPass();
+	}
+	m_pShader->End();
+
+// 	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
+// 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+// 
+// 	DEVICE->SetStreamSource(0, m_pVertexBuffer, 0, m_vertexSize);
+// 	DEVICE->SetFVF(TextureCubeVertex::FVF);
+// 
+// 	DEVICE->SetIndices(m_pIndexBuffer);
+// 	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+// 	DEVICE->SetLight(0, &m_light);//임시
+// 	BOOL lightEnable;
+// 	DEVICE->GetLightEnable(0, &lightEnable);
+// 	DEVICE->LightEnable(0, TRUE);//임시
+// 
+// 	DEVICE->SetTexture(0, m_pTexture);
+// 
+// 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_primitiveCount);
+// 
+// 	DEVICE->LightEnable(0, lightEnable);//임시
+// 										//DEVICE->SetLight(0, NULL); //임시
+// 	DEVICE->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+// 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
 }
 
 TextureCubeVertex * HyEngine::Skybox::LockVertices()

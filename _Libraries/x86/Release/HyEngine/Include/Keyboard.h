@@ -1,0 +1,38 @@
+#pragma once
+
+#define MAX_INPUT_KEY 255
+#define MAX_INPUT_MOUSE 8 
+
+namespace HyEngine
+{
+	namespace IO
+	{
+		class Keyboard
+		{
+		public:
+			Keyboard();
+			~Keyboard();
+
+		public:
+
+			void Update();
+
+			bool Down(DWORD key) { return keyMap[key] == KEY_INPUT_STATUS_DOWN; }
+			bool Up(DWORD key) { return keyMap[key] == KEY_INPUT_STATUS_UP; }
+			bool Press(DWORD key) { return keyMap[key] == KEY_INPUT_STATUS_PRESS; }
+
+
+			byte keyState[MAX_INPUT_KEY];
+			byte keyOldState[MAX_INPUT_KEY];
+			byte keyMap[MAX_INPUT_KEY];
+
+			enum
+			{
+				KEY_INPUT_STATUS_NONE = 0,
+				KEY_INPUT_STATUS_DOWN,
+				KEY_INPUT_STATUS_UP,
+				KEY_INPUT_STATUS_PRESS,
+			};
+		};
+	}
+}

@@ -6,9 +6,9 @@
 //#define FULL_SCREEN
 #endif
 
-
-
-
+#ifdef EXPORTS_ENGINE
+#define _EDITOR
+#endif
 
 #pragma warning(disable : 4251)
 #pragma warning(disable : 4503)
@@ -41,6 +41,16 @@
 /* jsoncpp */
 #include "json-forwards.h"
 #include "Json.h"
+
+#include "imgui.h"
+
+/* ImGui */
+#include "imgui.h"
+#include "imgui_internal.h"
+#include "imgui_impl_dx9.h"
+#include "imgui_impl_win32.h"
+//#pragma comment(lib, "ImGui.lib")
+
 // #include <Jsoncpp/Include/json.h>
 // #pragma comment(lib, "Jsoncpp/Lib/jsoncpp.lib")
 
@@ -84,6 +94,7 @@
 #include "CString.h"
 #include "Functor.h"
 #include "Path.h"
+#include "Gui.h"
 
 
 // Data
@@ -122,6 +133,11 @@
 #define SEND_LOG_DEBUG(Message) 
 #endif
 
+
+/* Editor 환경인지 Client인지 확인용도 */
+// EditEngine이 Null이라면 Client
+#define IS_EDITOR EditEngine::Get()
+
 #define ENGINE Engine::Get()
 #define KEYBOARD Engine::Get()->GetKeyboard()
 #define MOUSE Engine::Get()->GetMouse()
@@ -129,7 +145,6 @@
 #define SCENE Engine::Get()->GetActiveScene()
 #define CAMERA Engine::Get()->GetActiveScene()->GetSelectedCamera()
 #define PLAYER Engine::Get()->GetActiveScene()->GetPlayer()
-
 
 #define EDIT_ENGINE EditEngine::Get()
 #define EDIT_KEYBOARD EditEngine::Get()->GetKeyboard()

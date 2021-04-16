@@ -66,31 +66,6 @@ namespace WPF_Tool
 
                             Externs.InsertMeshData(ref data.meshData);
                             ShowInspector(data);
-//                             if (data.type == GameObjectType.Pawn)
-//                             {
-//                                 // 여기서 애니메이션 개수를 구한 후 
-//                                 // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
-//                                 int animCount = Externs.GetAnimationCount();
-//                                 AnimationCount.Text = animCount.ToString();
-//                                 AnimationIndex.Text = (0).ToString(); // 기본값 0
-// 
-//                                 // 여기서 비우고 아래에서 다시 채워준다.
-//                                 AnimationComboBox.Items.Clear();
-//                                 for (int animIndex = 0; animIndex < animCount; animIndex++)
-//                                 {
-//                                     IntPtr animName = Externs.GetAnimationName(animIndex);
-//                                     if (animName == null) continue;
-// 
-//                                     string convertedName = Marshal.PtrToStringUni(animName);
-// 
-//                                     ComboBoxItem item = new ComboBoxItem();
-//                                     item.Uid = animIndex.ToString();
-//                                     item.Content = convertedName;
-//                                     item.Selected += Animation_Selected;
-//                                     AnimationComboBox.Items.Add(item);
-//                                 }
-// 
-//                             }
 
                             break;
                         }
@@ -238,6 +213,7 @@ namespace WPF_Tool
         }
         private void SLT_MapGroup(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
 
@@ -255,6 +231,7 @@ namespace WPF_Tool
         
         private void Tag_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
 
@@ -275,6 +252,7 @@ namespace WPF_Tool
 
         private void Layer_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
             for (int i = 0; i < hierarchyList.Count; i++)
@@ -293,6 +271,7 @@ namespace WPF_Tool
 
         private void Static_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBox item = sender as ComboBox;
             int comboBoxIndex = item.SelectedIndex;
             for (int i = 0; i < hierarchyList.Count; i++)
@@ -310,6 +289,7 @@ namespace WPF_Tool
         }
         private void Animation_Selected(object sender, RoutedEventArgs e)
         {
+            ValueChangeEvent();
             ComboBoxItem item = sender as ComboBoxItem;
             int index = Int32.Parse(item.Uid);
             AnimationIndex.Text = item.Uid;
@@ -317,18 +297,21 @@ namespace WPF_Tool
         }
         private void Active_Checked(object sender, RoutedEventArgs e)
         {
-            if (bWindowInit)
-                Externs.ActiveEditObject();
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            Externs.ActiveEditObject();
         }
 
         private void Active_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (bWindowInit)
-                Externs.InactiveEditObject();
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            Externs.InactiveEditObject();
         }
 
         public void ShowInspector(HierarchyData data)
         {
+            ValueChangeEvent();
             GameObjectName.Text = data.gameObjectData.name;
             ObjectTag.SelectedIndex = data.tagIndex;
             ObjectLayer.SelectedIndex = data.layerIndex;
@@ -349,14 +332,15 @@ namespace WPF_Tool
             CellData.Visibility = Visibility.Collapsed;
             AnimationData.Visibility = Visibility.Collapsed;
             TerrainData.Visibility = Visibility.Collapsed;
-            
+            LightData.Visibility = Visibility.Collapsed;
+            EffectData.Visibility = Visibility.Collapsed;
+            UIData.Visibility = Visibility.Collapsed;
             switch (data.type)
             {
                 case GameObjectType.Mesh:
                     {
                         MeshData.Visibility = Visibility.Visible;
                         TransformData.Visibility = Visibility.Visible;
-
 
                         string meshOnlyName = "";
                         string ext = "";
@@ -426,6 +410,8 @@ namespace WPF_Tool
                         Externs.InsertGameData(ref data.gameObjectData);
                         Externs.InsertMeshData(ref data.meshData);
 
+                        
+
                         // 아래 데이터들은 Insert를 마친 후 세팅되어야한다.
                         // 여기서 애니메이션 개수를 구한 후 
                         // 각 애니메이션의 이름을 얻어와서 띄워줘야한다.
@@ -434,22 +420,38 @@ namespace WPF_Tool
                         AnimationIndex.Text = (0).ToString(); // 기본값 0
 
                         // 여기서 비우고 아래에서 다시 채워준다.
-                        AnimationComboBox.Items.Clear();
+                        //AnimationComboBox.Items.Clear();
+                        if (animCount > AnimationComboBox.Items.Count)
+                        {
+                            float addCount = animCount - AnimationComboBox.Items.Count;
+                            for (int i = 0; i < addCount; i++)
+                            {
+                                ComboBoxItem item = new ComboBoxItem();
+                                AnimationComboBox.Items.Add(item);
+                            }
+                        }
                         for (int animIndex = 0; animIndex < animCount; animIndex++)
                         {
                             AnimNameData animName = default(AnimNameData);
-                           Externs.GetAnimationName(ref animName, animIndex);
+                            Externs.GetAnimationName(ref animName, animIndex);
+
+                            ComboBoxItem item = AnimationComboBox.Items[animIndex] as ComboBoxItem;
                             
-                            //String convertedName = Marshal.PtrToStringUni(animName);
-                            ComboBoxItem item = new ComboBoxItem();
                             item.Uid = animIndex.ToString();
                             item.Content = animName.name;
                             item.Selected += Animation_Selected;
 
-                            AnimationComboBox.Items.Add(item);
+                            item.Visibility = Visibility.Visible;
+                            
+                        }
+                        for (int i = animCount; i < AnimationComboBox.Items.Count; i++)
+                        {
+                            ((ComboBoxItem)AnimationComboBox.Items[i]).Visibility = Visibility.Collapsed;
                         }
                         // 기본값
                         AnimationComboBox.SelectedIndex = 0;
+
+                        
                         break;
                     }
                 case GameObjectType.NavMesh:
@@ -528,6 +530,282 @@ namespace WPF_Tool
 
                         break;
                     }
+                case GameObjectType.Light:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        LightData.Visibility = Visibility.Visible;
+
+                        /* LightType */
+                        LightType.SelectedIndex = data.lightData.lightType;
+
+                        /* Direction */
+                        DirectionX.Text = data.lightData.direction.x.ToString();
+                        DirectionY.Text = data.lightData.direction.y.ToString();
+                        DirectionZ.Text = data.lightData.direction.z.ToString();
+
+                        /* Position */
+                        LightPositionX.Text = data.lightData.position.x.ToString();
+                        LightPositionY.Text = data.lightData.position.y.ToString();
+                        LightPositionZ.Text = data.lightData.position.z.ToString();
+
+                        /* Ambient */
+                        AmbientR.Text = data.lightData.ambient.r.ToString();
+                        AmbientG.Text = data.lightData.ambient.g.ToString();
+                        AmbientB.Text = data.lightData.ambient.b.ToString();
+                        AmbientA.Text = data.lightData.ambient.a.ToString();
+
+                        /* Ambient Intensity */
+                        AmbientIntensitySlider.Value = data.lightData.ambientIntensity;
+                        AmbientIntensityTextBox.Text = data.lightData.ambientIntensity.ToString();
+
+                        /* Diffuse */
+                        DiffuseR.Text = data.lightData.diffuse.r.ToString();
+                        DiffuseG.Text = data.lightData.diffuse.g.ToString();
+                        DiffuseB.Text = data.lightData.diffuse.b.ToString();
+                        DiffuseA.Text = data.lightData.diffuse.a.ToString();
+
+                        /* Diffuse Intensity */
+                        DiffuseIntensitySlider.Value = data.lightData.diffuseIntensity;
+                        DiffuseIntensityTextBox.Text = data.lightData.diffuseIntensity.ToString();
+
+                        /* Specular */
+                        SpecularR.Text = data.lightData.specular.r.ToString();
+                        SpecularG.Text = data.lightData.specular.g.ToString();
+                        SpecularB.Text = data.lightData.specular.b.ToString();
+                        SpecularA.Text = data.lightData.specular.a.ToString();
+
+                        /* Specular Intensity */
+                        SpecularIntensitySlider.Value = data.lightData.specularIntensity;
+                        SpecularIntensityTextBox.Text = data.lightData.specularIntensity.ToString();
+
+                        /* Specular Power */
+                        SpecularPowerSlider.Value = data.lightData.specularPower;
+                        SpecularPowerTextBox.Text = data.lightData.specularPower.ToString();
+
+                        /* Range */
+                        LightRange.Text = data.lightData.range.ToString();
+
+                        /* Cone */
+                        Cone.Text = data.lightData.cone.ToString();
+
+                        /* Constant */
+                        Constant.Text = data.lightData.constant.ToString();
+
+                        /* Linear */
+                        Linear.Text = data.lightData.linear.ToString();
+
+                        /* Quadratic */
+                        Quadratic.Text = data.lightData.quadratic.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertLightData(ref data.lightData);
+                        break;
+                    }
+                case GameObjectType.MeshEffect:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        EffectData.Visibility = Visibility.Visible;
+
+                        /* EffectType (미사용) */
+                        EffectType.SelectedIndex = data.effectData.effectType;
+
+                        /* MeshFile Name */
+                        string meshOnlyName = "";
+                        int meshIndex = data.effectData.meshPath.LastIndexOf("\\");
+                        if (meshIndex > 0)
+                            meshOnlyName = data.effectData.meshPath.Substring(meshIndex + 1);
+                        EffectMeshFilePath.Text = meshOnlyName;
+
+                        /* AlbedoFile Name */
+                        string albedoOnlyName = "";
+                        int albedoIndex = data.effectData.diffusePath.LastIndexOf("\\");
+                        if (albedoIndex > 0)
+                            albedoOnlyName = data.effectData.diffusePath.Substring(albedoIndex + 1);
+                        EffectAlbedoFilePath.Text = albedoOnlyName;
+
+                        /* AlphaFile Name */
+                        string alphaOnlyName = "";
+                        int alphaIndex = data.effectData.alphaMaskPath.LastIndexOf("\\");
+                        if (alphaIndex > 0)
+                            alphaOnlyName = data.effectData.alphaMaskPath.Substring(alphaIndex + 1);
+                        EffectAlphaFilePath.Text = alphaOnlyName;
+
+                        /*  SpriteFile Name */
+                        string spriteOnlyName = "";
+                        int spriteIndex = data.effectData.spritePath.LastIndexOf("\\");
+                        if (spriteIndex > 0)
+                            spriteOnlyName = data.effectData.spritePath.Substring(spriteIndex + 1);
+                        EffectSpriteFilePath.Text = spriteOnlyName;
+
+                        /* Fade */
+                        EffectFadeIn.IsChecked = data.effectData.fadeIn;
+                        EffectFadeOut.IsChecked = data.effectData.fadeOut;
+
+                        /* Repeat */
+                        EffectRepeat.IsChecked = data.effectData.isRepeat;
+
+                        /* Billboard */
+                        EffectBillboard.IsChecked = data.effectData.isBillboard;
+
+                        /* UV Animation */
+                        EffectUVAnimation.IsChecked = data.effectData.uvAnimation;
+
+                        /* UV Direction */
+                        EffectUVDirectionX.Text = data.effectData.uvDirection.x.ToString();
+                        EffectUVDirectionY.Text = data.effectData.uvDirection.y.ToString();
+                        EffectUVDirectionZ.Text = data.effectData.uvDirection.z.ToString();
+
+                        /* LifeTime */
+                        EffectLifeTime.Text = data.effectData.lifeTime.ToString();
+
+                        /* LoopTime */
+                        EffectLoopTime.Text = data.effectData.loopTime.ToString();
+
+                        /* Begin Position */
+                        EffectBeginPositionX.Text = data.effectData.startPos.x.ToString();
+                        EffectBeginPositionY.Text = data.effectData.startPos.y.ToString();
+                        EffectBeginPositionZ.Text = data.effectData.startPos.z.ToString();
+
+                        /* Begin Rotation */
+                        EffectBeginRotationX.Text = data.effectData.startRot.x.ToString();
+                        EffectBeginRotationY.Text = data.effectData.startRot.y.ToString();
+                        EffectBeginRotationZ.Text = data.effectData.startRot.z.ToString();
+
+                        /* Begin Scale */
+                        EffectBeginScaleX.Text = data.effectData.startScale.x.ToString();
+                        EffectBeginScaleY.Text = data.effectData.startScale.y.ToString();
+                        EffectBeginScaleZ.Text = data.effectData.startScale.z.ToString();
+
+                        /* End Position */
+                        EffectEndPositionX.Text = data.effectData.endPos.x.ToString();
+                        EffectEndPositionY.Text = data.effectData.endPos.y.ToString();
+                        EffectEndPositionZ.Text = data.effectData.endPos.z.ToString();
+
+                        /* End Rotation */
+                        EffectEndRotationX.Text = data.effectData.endRot.x.ToString();
+                        EffectEndRotationY.Text = data.effectData.endRot.y.ToString();
+                        EffectEndRotationZ.Text = data.effectData.endRot.z.ToString();
+
+                        /* End Scale */
+                        EffectEndScaleX.Text = data.effectData.endScale.x.ToString();
+                        EffectEndScaleY.Text = data.effectData.endScale.y.ToString();
+                        EffectEndScaleZ.Text = data.effectData.endScale.z.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertEffectData(ref data.effectData);
+                        break;
+                    }
+                case GameObjectType.TextureEffect:
+                    {
+                        TransformData.Visibility = Visibility.Visible;
+                        EffectData.Visibility = Visibility.Visible;
+
+                        /* EffectType (미사용) */
+                        EffectType.SelectedIndex = data.effectData.effectType;
+
+                        /* MeshFile Name */
+                        string meshOnlyName = "";
+                        int meshIndex = data.effectData.meshPath.LastIndexOf("\\");
+                        if (meshIndex > 0)
+                            meshOnlyName = data.effectData.meshPath.Substring(meshIndex + 1);
+                        EffectMeshFilePath.Text = meshOnlyName;
+
+                        /* AlbedoFile Name */
+                        string albedoOnlyName = "";
+                        int albedoIndex = data.effectData.diffusePath.LastIndexOf("\\");
+                        if (albedoIndex > 0)
+                            albedoOnlyName = data.effectData.diffusePath.Substring(albedoIndex + 1);
+                        EffectAlbedoFilePath.Text = albedoOnlyName;
+
+                        /* AlphaFile Name */
+                        string alphaOnlyName = "";
+                        int alphaIndex = data.effectData.alphaMaskPath.LastIndexOf("\\");
+                        if (alphaIndex > 0)
+                            alphaOnlyName = data.effectData.alphaMaskPath.Substring(alphaIndex + 1);
+                        EffectAlphaFilePath.Text = alphaOnlyName;
+
+                        /*  SpriteFile Name */
+                        string spriteOnlyName = "";
+                        int spriteIndex = data.effectData.spritePath.LastIndexOf("\\");
+                        if (spriteIndex > 0)
+                            spriteOnlyName = data.effectData.spritePath.Substring(spriteIndex + 1);
+                        EffectSpriteFilePath.Text = spriteOnlyName;
+
+                        /* Fade */
+                        EffectFadeIn.IsChecked = data.effectData.fadeIn;
+                        EffectFadeOut.IsChecked = data.effectData.fadeOut;
+
+                        /* Repeat */
+                        EffectRepeat.IsChecked = data.effectData.isRepeat;
+
+                        /* Billboard */
+                        EffectBillboard.IsChecked = data.effectData.isBillboard;
+
+                        /* UV Animation */
+                        EffectUVAnimation.IsChecked = data.effectData.uvAnimation;
+
+                        /* UV Direction */
+                        EffectUVDirectionX.Text = data.effectData.uvDirection.x.ToString();
+                        EffectUVDirectionY.Text = data.effectData.uvDirection.y.ToString();
+                        EffectUVDirectionZ.Text = data.effectData.uvDirection.z.ToString();
+
+                        /* LifeTime */
+                        EffectLifeTime.Text = data.effectData.lifeTime.ToString();
+
+                        /* LoopTime */
+                        EffectLoopTime.Text = data.effectData.loopTime.ToString();
+
+                        /* Begin Position */
+                        EffectBeginPositionX.Text = data.effectData.startPos.x.ToString();
+                        EffectBeginPositionY.Text = data.effectData.startPos.y.ToString();
+                        EffectBeginPositionZ.Text = data.effectData.startPos.z.ToString();
+
+                        /* Begin Rotation */
+                        EffectBeginRotationX.Text = data.effectData.startRot.x.ToString();
+                        EffectBeginRotationY.Text = data.effectData.startRot.y.ToString();
+                        EffectBeginRotationZ.Text = data.effectData.startRot.z.ToString();
+
+                        /* Begin Scale */
+                        EffectBeginScaleX.Text = data.effectData.startScale.x.ToString();
+                        EffectBeginScaleY.Text = data.effectData.startScale.y.ToString();
+                        EffectBeginScaleZ.Text = data.effectData.startScale.z.ToString();
+
+                        /* End Position */
+                        EffectEndPositionX.Text = data.effectData.endPos.x.ToString();
+                        EffectEndPositionY.Text = data.effectData.endPos.y.ToString();
+                        EffectEndPositionZ.Text = data.effectData.endPos.z.ToString();
+
+                        /* End Rotation */
+                        EffectEndRotationX.Text = data.effectData.endRot.x.ToString();
+                        EffectEndRotationY.Text = data.effectData.endRot.y.ToString();
+                        EffectEndRotationZ.Text = data.effectData.endRot.z.ToString();
+
+                        /* End Scale */
+                        EffectEndScaleX.Text = data.effectData.endScale.x.ToString();
+                        EffectEndScaleY.Text = data.effectData.endScale.y.ToString();
+                        EffectEndScaleZ.Text = data.effectData.endScale.z.ToString();
+
+                        Externs.InsertGameData(ref data.gameObjectData);
+                        Externs.InsertEffectData(ref data.effectData);
+                        break;
+                    }
+                case GameObjectType.UIPanel:
+                    UIData.Visibility = Visibility.Visible;
+                    TransformData.Visibility = Visibility.Visible;
+
+                    /* MeshFile Name */
+                    string textureOnlyName = "";
+                    int textureIndex = data.uiData.textureFilePath.LastIndexOf("\\");
+                    if (textureIndex > 0)
+                        textureOnlyName = data.uiData.textureFilePath.Substring(textureIndex + 1);
+                    UITextureName.Text = textureOnlyName;
+
+                    Externs.InsertGameData(ref data.gameObjectData);
+                    Externs.InsertUIData(ref data.uiData);
+                    break;
+                default:
+                    Debug.Assert(false);
+                    break;
             }
 
         }
@@ -658,6 +936,9 @@ namespace WPF_Tool
 
         private void CellPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (isSelecting) return;
+            ValueChangeEvent();
+
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -688,6 +969,10 @@ namespace WPF_Tool
         }
         private void CellPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -718,6 +1003,10 @@ namespace WPF_Tool
         }
         private void CellPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             if (ToolManager.ToolMode != EToolMode.NavMeshTool)
                 return;
             TextBox textBox = sender as TextBox;
@@ -748,6 +1037,10 @@ namespace WPF_Tool
 
         private void PositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -765,6 +1058,10 @@ namespace WPF_Tool
         }
         private void PositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -783,6 +1080,10 @@ namespace WPF_Tool
 
         private void PositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -801,6 +1102,10 @@ namespace WPF_Tool
 
         private void RotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -819,6 +1124,10 @@ namespace WPF_Tool
 
         private void RotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -837,6 +1146,10 @@ namespace WPF_Tool
 
         private void RotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -855,6 +1168,10 @@ namespace WPF_Tool
 
         private void ScaleX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -873,6 +1190,10 @@ namespace WPF_Tool
 
         private void ScaleY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -891,6 +1212,10 @@ namespace WPF_Tool
 
         private void ScaleZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             foreach (var hierarchyItem in hierarchyList)
@@ -909,8 +1234,12 @@ namespace WPF_Tool
 
         private void EditCamPositionX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -923,8 +1252,12 @@ namespace WPF_Tool
         }
         private void EditCamPositionY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -938,8 +1271,12 @@ namespace WPF_Tool
 
         private void EditCamPositionZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -952,8 +1289,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -966,8 +1307,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationY_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -980,8 +1325,12 @@ namespace WPF_Tool
         }
         private void EditCamRotationZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -994,8 +1343,12 @@ namespace WPF_Tool
         }
         private void EditCamMoveSpeed_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
 
             float value;
@@ -1005,8 +1358,12 @@ namespace WPF_Tool
         }
         private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1024,8 +1381,12 @@ namespace WPF_Tool
         }
         private void MeshFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1041,8 +1402,12 @@ namespace WPF_Tool
         }
         private void DiffuseFile_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox textBox = sender as TextBox;
             for (int i = 0; i < hierarchyList.Count; i++)
             {
@@ -1058,40 +1423,60 @@ namespace WPF_Tool
         }
         private void TerrainX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountX = UInt32.Parse( item.Text);
+            selectedHierarchy.terrainData.vertexCountX = Int32.Parse( item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountZ = UInt32.Parse(item.Text);
+            selectedHierarchy.terrainData.vertexCountZ = Int32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureX_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.textureCountX = UInt32.Parse(item.Text);
+            selectedHierarchy.terrainData.textureCountX = Int32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureZ_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             selectedHierarchy.terrainData.textureCountZ = UInt32.Parse(item.Text);
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainInterval_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
             if (!bWindowInit)
                 return;
+            ValueChangeEvent();
             TextBox item = sender as TextBox;
             float result;
             bool bSuccess = float.TryParse(item.Text, out result);

@@ -29,7 +29,7 @@ namespace HyEngine
 		}
 
 		float x, y, z;
-		D3DCOLOR color;
+		D3DXCOLOR color;
 
 		static const DWORD FVF;
 	};
@@ -94,9 +94,8 @@ namespace HyEngine
 		float x, y, z;
 		float u, v;
 		float normalX, normalY, normalZ;
-		float binormalX, binormalY, binormalZ;
 		float tangentX, tangentY, tangentZ;
-
+		float binormalX, binormalY, binormalZ;
 	};
 
 	class ENGINE_DLL TextureCubeVertex

@@ -6,6 +6,9 @@ namespace HyEngine
 	class ENGINE_DLL TextureQuad : public Geometry
 	{
 		friend class Geometry;
+	public :
+		TextureQuad() = default;
+		virtual ~TextureQuad() = default;
 	protected :
 		// Inherited via Geometry
 		virtual void Initialize(void * arg) override;

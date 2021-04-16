@@ -118,6 +118,7 @@ namespace WPF_Tool
                 }
                 else if (ToolManager.ToolMode == EToolMode.PickTool && Keyboard.IsKeyDown(Key.LeftCtrl))
                 {
+                    ValueChangeEvent();
                     Vector3 pickedPos = default(Vector3);
                     int temp = 0;
                     Boolean isHit = Externs.PickGameObject((float)actualX, (float)actualY, ref temp, ref pickedPos);

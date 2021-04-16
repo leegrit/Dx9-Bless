@@ -1,5 +1,6 @@
 #include "StandardEngineFramework.h"
 #include "Application.h"
+#include "Gui.h"
 
 HWND g_hWnd;
 
@@ -12,12 +13,15 @@ Application::Application(LPCWSTR appName)
 {
 	// LOG
 	InitLoggingService();
+
 	Engine::Create();
+
 }
 
 
 Application::~Application()
 {
+	Gui::Destroy();
 	Engine::Destroy();
 }
 
@@ -34,7 +38,9 @@ bool Application::Init(HINSTANCE hInstance, int nCmdShow, EngineConfig engineCon
 
 	// ENGINE
 	ENGINE->Initialize(m_hWnd, engineConfig);
+	Gui::Create();
 	ENGINE->Load();
+
 
 	return true;
 }
@@ -82,8 +88,6 @@ void Application::Run()
 			{
 				ENGINE->SimulateFrame();
 
-				// 렌더도 제한
-				//ENGINE->RenderFrame();
 				accumulatedTime -= m_dt;
 				nLoops++;
 			}
@@ -156,6 +160,7 @@ LRESULT Application::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	MOUSE->InputProc(umessage, wparam, lparam);
+	Gui::Get()->MsgProc(hwnd, umessage, wparam, lparam);
 	switch (umessage)
 	{
 	case WM_DESTROY:	// Check if the window is being destroyed.
@@ -255,7 +260,7 @@ void Application::InitWindow()
 	SetForegroundWindow(m_hWnd);//실행시켰을때 제일위로 올라오게하는것
 	SetFocus(m_hWnd);//포커스 , 키보드나 마우스를 눌렀을때 조작이되는창.
 
-	ShowCursor(false);
+	ShowCursor(true);
 
 	::g_hWnd = m_hWnd;
 }
@@ -300,6 +305,7 @@ void Application::CalculateFrameStatistics()
 		nFrames = 0;
 		elapsedTime += 1.0;
 	}
+	ENGINE->SetFPS(m_fps);
 }
 
 void Application::InitLoggingService()

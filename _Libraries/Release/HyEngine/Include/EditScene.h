@@ -19,6 +19,10 @@ namespace HyEngine
 		void AddPawn(int editIndex);
 		void AddNavMesh(int editIndex);
 		void AddTerrain(int editIndex);
+		void AddLight(int editIndex);
+		void AddMeshEffect(int editIndex);
+		void AddTextureEffect(int editIndex);
+
 
 		GameObject* GetGameObject(int editIndex);
 		class Camera* GetEditCamera();

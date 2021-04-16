@@ -3,24 +3,15 @@
 
 using namespace HyEngine;
 
-UIElement::UIElement(class Scene* scene,
-	std::wstring imageFilePath,
-	const Vector3 position,
-	const Quaternion rotation,
-	const Vector3 scale,
-	std::wstring tag)
-	: TextureObject(scene, nullptr, ERenderType::RenderUI, imageFilePath,tag)
+HyEngine::UIElement::UIElement(Scene * scene, GameObject * parent, int editID)
+	: GameObject(ERenderType::RenderAlpha, scene, parent, L"UIElement")
 {
-	m_pTransform->SetPosition(position);
-	m_pTransform->m_rotation = rotation;
-	m_pTransform->SetScale(scale);
+	SetEditID(editID);
 }
 
-HyEngine::UIElement::UIElement(Scene * scene, std::wstring imageFilePath, std::wstring name)
-	: TextureObject(scene, nullptr, ERenderType::RenderUI, imageFilePath, name)
+HyEngine::UIElement::UIElement(Scene * scene, std::wstring name)
+	: GameObject(ERenderType::RenderAlpha, scene, nullptr, name)
 {
-	m_pTransform->SetPosition(0, 0, 0);
-	m_pTransform->SetScale(1, 1, 1);
 }
 
 UIElement::~UIElement()
@@ -31,13 +22,28 @@ UIElement::~UIElement()
 
 void UIElement::Initialize()
 {
-	TextureObject::Initialize();
+
 }
+
+
 
 void UIElement::Render()
 {
-	TextureObject::Render();
-	m_pEffect->SetValue("ViewMatrix", &CAMERA->GetIdentityViewMatrix(), sizeof(D3DXMATRIX));
-	m_pEffect->SetValue("ProjMatrix", &CAMERA->GetOrthoMatrix(), sizeof(D3DXMATRIX));
+	GameObject::Render();
 
+}
+
+void HyEngine::UIElement::UpdatedData(EDataType dataType)
+{
+
+}
+
+UIElement * HyEngine::UIElement::Create(Scene * scene, GameObject * parent, int editID)
+{
+	return nullptr;
+}
+
+UIElement * HyEngine::UIElement::Create(Scene * scene)
+{
+	return nullptr;
 }

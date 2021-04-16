@@ -1,7 +1,9 @@
 #include "StandardEngineFramework.h"
 #include "Camera.h"
 #include "Scene.h"
-#include "MeshObject.h"
+#include "Mesh.h"
+#include "Terrain.h"
+#include "NavPrimitive.h"
 
 using namespace HyEngine;
 
@@ -26,6 +28,8 @@ void HyEngine::Camera::SetProjectionMatrix(float fovy, float screenAspect, float
 		screenNear,
 		screenFar
 	);
+	m_near = screenNear;
+	m_far = screenFar;
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_matProj);
 }
 
@@ -75,6 +79,16 @@ void HyEngine::Camera::SetViewMatrix(const D3DXVECTOR3 & eye, const D3DXVECTOR3 
 	);
 }
 
+float HyEngine::Camera::GetNear() const
+{
+	return m_near;
+}
+
+float HyEngine::Camera::GetFar() const
+{
+	return m_far;
+}
+
 void HyEngine::Camera::Initialize()
 {
 	SetBasicProjection();
@@ -87,7 +101,7 @@ void HyEngine::Camera::Initialize()
 		m_defaultFar);
 }
 
-void HyEngine::Camera::CameraUpdate()
+void HyEngine::Camera::Update()
 {
 	FrustumUpdate();
 	ShakeUpdate();
@@ -376,38 +390,59 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 	assert(obj != nullptr);	
 
 	bool result = false;
-	// 메쉬인지 확인한다.
-	MeshObject* meshObj = nullptr;
-	meshObj = dynamic_cast<MeshObject*>(obj);
-	if (meshObj != nullptr)
+
+	Mesh* mesh = nullptr;
+	mesh = dynamic_cast<Mesh*>(obj);
+
+	Terrain * terrain = nullptr;
+	terrain = dynamic_cast<Terrain*>(obj);
+
+	NavPrimitive * navPrimitive = nullptr;
+	navPrimitive = dynamic_cast<NavPrimitive*>(obj);
+
+	UIElement* uiElement = nullptr;
+	uiElement = dynamic_cast<UIElement*>(obj);
+
+	/* 메쉬인경우 */
+	if (mesh != nullptr)
 	{
-		// 메쉬인경우
-		D3DXVECTOR3 dir = m_pTransform->m_position - meshObj->m_pTransform->m_position;
-		D3DXVec3Normalize(&dir, &dir);
-		float scale = std::max({ meshObj->m_pTransform->m_scale.x(), meshObj->m_pTransform->m_scale.y(), meshObj->m_pTransform->m_scale.z() });
+		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
+		float radius = 0;
+		bool isSucceeded =  mesh->ComputeBoundingSphere(&center, &radius);
 
-		D3DXVECTOR3 pos = dir * (meshObj->GetRadius() * scale);
-		float radiusResult = D3DXVec3Length(&pos);
+		if (isSucceeded == false)
+		{
+			SEND_LOG_WARNING("Mesh CompiuteBoundingSphere Failed");
+			return;
+		}
 
-		result = IsInFrustumWithMesh(obj->m_pTransform->m_position.operator D3DXVECTOR3(), radiusResult);
-		//if (result == false)
-		//{
-
-			
-
-
-		//	result = IsInFrustum(pos);
-		//}
-
+		result = IsInFrustumWithMesh(center, radius);
 	}
-	else // 아닌 경우
+	else if (terrain != nullptr)
+	{
+		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
+		float radius = 0;
+		bool isSucceeded = terrain->ComputeBoundingSphere(&center, &radius);
+		if (isSucceeded == false)
+		{
+			SEND_LOG_WARNING("Terrain CompiuteBoundingSphere Failed");
+			return;
+		}
+
+		result = IsInFrustumWithMesh(center, radius);
+	}
+	else if (navPrimitive != nullptr)
+	{
+		result = true;
+	}
+	else if (uiElement != nullptr)
+	{
+		result = true;
+	}
+	else
 	{
 		result = IsInFrustum(obj->m_pTransform->m_position.operator D3DXVECTOR3());
-
 	}
-
-	
-	
 
 	// frustum 안에 있으면 cull을 하지 않는다. 
 	obj->SetViewFrustumCulled(!result);

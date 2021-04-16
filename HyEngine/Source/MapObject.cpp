@@ -5,7 +5,7 @@
 #include "MeshData.h"
 #include "PathManager.h"
 HyEngine::MapObject::MapObject(Scene * scene, GameObject * parent, std::wstring name)
-	: GameObject(ERenderType::RenderMesh, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 
 }
@@ -28,11 +28,39 @@ void HyEngine::MapObject::Render()
 	GameObject::Render();
 	// 지금 임시로 FixedPipeline 사용, 이후 바꿔야한다.
 
+	/* Get Shader */
+	ID3DXEffect* pShader = nullptr;
+	ENGINE->TryGetShader(L"GBuffer", &pShader);
+	assert(pShader);
+
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
+	pSelectedCamera = GetScene()->GetSelectedCamera();
+	assert(pSelectedCamera);
+
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
-		DEVICE->SetMaterial(&m_mtrls[i]);
-		DEVICE->SetTexture(0, m_textures[i]);
-		m_pMesh->DrawSubset(i);
+		/* Set world, view and projection */
+		pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+		pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+		pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+		/* Set world position */
+		pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+		/* Set albedo */
+		D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+		pShader->SetTexture(albedoHandle, m_textures[i]);
+
+		pShader->SetTechnique("GBuffer");
+		pShader->Begin(0, 0);
+		{
+			pShader->BeginPass(0);
+			m_pMesh->DrawSubset(i);
+			pShader->EndPass();
+		}
+		pShader->End();
+
 	}
 }
 

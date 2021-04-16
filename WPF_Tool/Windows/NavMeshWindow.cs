@@ -55,6 +55,7 @@ namespace WPF_Tool
 
         public void AddCell(Vector3 position, bool bSendExterns = false)
         {
+            ValueChangeEvent();
             CellData data = new Data.CellData();
             data.cellIndex = cellIndex++;
             data.position = position;

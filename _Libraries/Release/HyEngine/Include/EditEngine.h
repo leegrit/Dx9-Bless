@@ -18,6 +18,13 @@ namespace HyEngine
 		void Update();
 	private: /* For.Logger */
 		void InitLoggingService();
+	
+		/* For Shader */
+	private :
+		void LoadShaders();
+	public:
+		bool InsertShader(std::wstring key, std::wstring path);
+		bool TryGetShader(std::wstring key, _Out_ ID3DXEffect** ppShader);
 		//////////////////////////////////////////////////////////////////////////
 		// EXPORTS
 		//////////////////////////////////////////////////////////////////////////
@@ -70,9 +77,19 @@ namespace HyEngine
 		void GetAnimationName(_Out_ class AnimNameData* outString, int index);
 		void SetAnimation(int index);
 
-		/* For.Terrain */
+		/* For Terrain */
 		void CreateTerrain(unsigned int editID);
 		void InsertTerrainData(class TerrainData* data);
+
+		/* For Light */
+		void CreateLight(int editID);
+		void InsertLightData(class LightData* data);
+
+		/* For Effect */
+		void CreateMeshEffect(int editID);
+		void CreateTextureEffect(int editID);
+		void InsertEffectData(class EffectData * data);
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
@@ -81,6 +98,7 @@ namespace HyEngine
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }
 		inline Timer* GetTimer() const { return m_pTimer; }
+		inline Renderer* GetRenderer() const;
 	private :
 
 		bool Initialize();
@@ -104,6 +122,10 @@ namespace HyEngine
 		bool m_bLoading;
 		bool m_bGameMode = false;
 		GameObject* m_pSelectedObject = nullptr;
+
+
+		/* For Shader */
+		std::unordered_map<std::wstring, ID3DXEffect*> m_shaderMap;
 	};
 
 }

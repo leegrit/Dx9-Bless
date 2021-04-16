@@ -7,6 +7,10 @@
 #include "EditObject.h"
 #include "AnimNameData.h"
 #include "TerrainData.h"
+#include "LightData.h"
+#include "EffectData.h"
+#include "UIData.h"
+
 using namespace HyEngine;
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -182,4 +186,45 @@ extern "C" void WINAPI CreateTerrain(unsigned int editID)
 extern "C" void WINAPI InsertTerrainData(TerrainData* data)
 {
 	EDIT_ENGINE->InsertTerrainData(data);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// FOR LIGHT
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateLight(int editID)
+{
+	EDIT_ENGINE->CreateLight(editID);
+}
+extern "C" void WINAPI InsertLightData(LightData* data)
+{
+	EDIT_ENGINE->InsertLightData(data);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// FOR EFFECT
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateMeshEffect(int editID)
+{
+	EDIT_ENGINE->CreateMeshEffect(editID);
+}
+extern "C" void WINAPI CreateTextureEffect(int editID)
+{
+	EDIT_ENGINE->CreateTextureEffect(editID);
+}
+extern "C" void WINAPI InsertEffectData(EffectData* data)
+{
+	EDIT_ENGINE->InsertEffectData(data);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// FOR UI
+//////////////////////////////////////////////////////////////////////////
+extern "C" void WINAPI CreateUIPanel(int editID)
+{
+	EDIT_ENGINE->CreateUIPanel(editID);
+}
+extern "C" void WINAPI InsertUIData(UIData* data)
+{
+	EDIT_ENGINE->InsertUIData(data);
 }

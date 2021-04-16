@@ -8,6 +8,12 @@
 #include "NavMesh.h"
 #include "EditDynamicMesh.h"
 #include "Terrain.h"
+#include "ObjectContainer.h"
+#include "LightObject.h"
+#include "MeshEffect.h"
+#include "StaticMesh.h"
+#include "DynamicMesh.h"
+#include "UIPanel.h"
 
 using namespace HyEngine;
 
@@ -20,13 +26,13 @@ void HyEngine::EditScene::Load()
 {
 	m_pEditCamera = EditCamera::Create(this, nullptr);
 	Camera * camera = m_pEditCamera;
-	AddCamera(camera->GetName(), camera);
+	//AddCamera(camera->GetName(), camera);
 	SelectCamera(camera->GetName());
 
-	Light* light = Light::CreateDirectionalLight();
-	light->Specular() = D3DXVECTOR4(1, 1, 1, 1);
-	light->Ambient() = D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1);
-	SetGlobalLight(light);
+	//Light* light = Light::CreateDirectionalLight();
+	//light->Specular() = D3DXVECTOR4(1, 1, 1, 1);
+	//light->Ambient() = D3DXVECTOR4(0.5f, 0.5f, 0.5f, 1);
+	//SetGlobalLight(light);
 }
 
 void HyEngine::EditScene::Unload()
@@ -45,14 +51,14 @@ void HyEngine::EditScene::LateLoadScene()
 void HyEngine::EditScene::AddMeshObject(int editIndex)
 {
 	//Ring::Create(this, nullptr);
-	EditMesh::Create(this, nullptr, editIndex);
+	StaticMesh::Create(this, nullptr, editIndex);
 	
 	//EditMesh::Create(this, nullptr);
 }
 
 void HyEngine::EditScene::AddPawn(int editIndex)
 {
-	EditDynamicMesh::Create(this, nullptr, editIndex);
+	DynamicMesh::Create(this, nullptr, editIndex);
 }
 
 void HyEngine::EditScene::AddNavMesh(int editIndex)
@@ -65,20 +71,31 @@ void HyEngine::EditScene::AddTerrain(int editIndex)
 	Terrain::Create(this, nullptr, editIndex);
 }
 
+void HyEngine::EditScene::AddLight(int editIndex)
+{
+	LightObject::Create(this, nullptr, editIndex);
+}
+
+void HyEngine::EditScene::AddMeshEffect(int editIndex)
+{
+	MeshEffect::Create(this, editIndex);
+}
+
+void HyEngine::EditScene::AddTextureEffect(int editIndex)
+{
+	// TODO
+	assert(false);
+}
+
+void HyEngine::EditScene::AddUIPanel(int editIndex)
+{
+	UIPanel::Create(this, nullptr, editIndex);
+}
+
+
 GameObject * HyEngine::EditScene::GetGameObject(int editIndex)
 {
-	for (auto& obj : GetMeshObjectAll())
-	{
-		EditObject* editObj = dynamic_cast<EditObject*>(obj);
-		if (editObj->GetEditID() == editIndex)
-			return obj;
-	}
-	for (auto& obj : this->GetInvisibleObjectAll())
-	{
-		if (obj->GetEditID() == editIndex)
-			return obj;
-	}
-	for (auto& obj : GetTextureObjectAll())
+	for (auto& obj : GetObjectContainer()->GetGameObjectAll())
 	{
 		if (obj->GetEditID() == editIndex)
 			return obj;
@@ -145,25 +162,25 @@ Camera * HyEngine::EditScene::GetEditCamera()
 
 bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOption option,  VectorData * pickedPos)
 {
-	std::vector<GameObject*>& meshContainer = GetMeshObjectAll();
+	std::vector<GameObject*>& opaqueContainer =  GetObjectContainer()->GetOpaqueObjectAll();
 	/* For Terrain */
-	std::vector<GameObject*>& textureContainer = GetTextureObjectAll();
+	//std::vector<GameObject*>& textureContainer = GetTextureObjectAll();
 
-	std::vector<GameObject*> container;
-	container.insert(container.end(), meshContainer.begin(), meshContainer.end());
-	container.insert(container.end(), textureContainer.begin(), textureContainer.end());
+	//std::vector<GameObject*> container;
+	//container.insert(container.end(), meshContainer.begin(), meshContainer.end());
+	//container.insert(container.end(), textureContainer.begin(), textureContainer.end());
 
-	for (auto& obj : container)
+	for (auto& obj : opaqueContainer)
 	{
 // 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
 // 		if (editObj == nullptr) continue;
 		//assert(editObj);
 		if (obj->GetStaticType() == EStaticType::Navigation)
 		{
-			EditMesh* editMesh = dynamic_cast<EditMesh*>(obj);
+			StaticMesh* editMesh = dynamic_cast<StaticMesh*>(obj);
 			if (editMesh != nullptr)
 			{
-				ID3DXMesh* mesh = editMesh->GetDxMesh();
+				ID3DXMesh* mesh = editMesh->GetMesh();
 				if (mesh == nullptr) continue;
 				// navmesh picking은 xfile만 가능
 

@@ -6,7 +6,7 @@
 using namespace HyEngine;
 
 DebugGround::DebugGround(Scene * scene, GameObject* parent)
-	: GameObject(ERenderType::RenderTexture, scene, parent,L"Debug_Ground")
+	: GameObject(ERenderType::RenderOpaque, scene, parent,L"Debug_Ground")
 {
 	Initialize();
 }

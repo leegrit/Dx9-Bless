@@ -26,6 +26,8 @@ namespace HyEngine
 
 		inline std::wstring GetName() const { return m_name; }
 		inline void SetName(std::wstring name) { m_name = name; }
+		virtual void SetActive(bool active);
+		inline bool GetActive() const { return m_bActiveSelf; }
 
 	public :
 
@@ -58,7 +60,7 @@ namespace HyEngine
 
 	public:
 		bool m_bWantsDestroy;
-
+		bool m_bActiveSelf;
 
 	};
 }

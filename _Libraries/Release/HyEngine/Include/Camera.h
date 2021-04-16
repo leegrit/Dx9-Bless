@@ -12,7 +12,8 @@ namespace HyEngine
 		virtual ~Camera();
 
 		virtual void Initialize();
-		virtual void CameraUpdate();
+		//virtual void CameraUpdate();
+		virtual void Update() override;
 
 		static Camera* Create(Scene* scene, std::wstring tag)
 		{
@@ -26,6 +27,8 @@ namespace HyEngine
 		void SetLongProjection();
 		void SetViewMatrix(const D3DXVECTOR3& target);
 		void SetViewMatrix(const D3DXVECTOR3 & eye, const D3DXVECTOR3 & target);
+		float GetNear() const;
+		float GetFar() const;
 		Vector3 GetPosition() const;
 		Quaternion GetRotation() const;
 		Vector3 GetRotationEuler() const;
@@ -69,6 +72,8 @@ namespace HyEngine
 		float m_defaultNear = 1.f;
 		float m_defaultFar = 2000.f;
 		float m_longestFar = 5000.f;
+		float m_near = 1;
+		float m_far = 2000.f;
 		
 
 		D3DXMATRIX m_matProj;

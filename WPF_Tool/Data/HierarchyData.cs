@@ -35,6 +35,10 @@ namespace WPF_Tool.Data
         public MapData mapData;
         public NavMeshData navMeshData;
         public TerrainData terrainData;
+        public LightData lightData;
+        public EffectData effectData;
+        public UIData uiData;
+
         /* For Editor */
         // 에디터에서만 사용되는 데이터
         public List<CellData> cells;

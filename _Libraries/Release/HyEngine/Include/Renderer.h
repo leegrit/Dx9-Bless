@@ -2,6 +2,10 @@
 
 #include "IRenderable.h"
 
+/* For Cascade Shadow */
+// MAX = 4
+#define NUM_CASCADEDES 4
+
 namespace HyEngine
 {
 	/*
@@ -9,40 +13,120 @@ namespace HyEngine
 	*/
 	class ENGINE_DLL Renderer
 	{
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTUR & DESTRUCTOR 
+		//////////////////////////////////////////////////////////////////////////
+	private:
+		Renderer() = default;
+		~Renderer() = default;
+
 	public:
-		Renderer();
-		~Renderer();
+		void Setup();
+		void Cleanup();
+		void ClearBackBuffer();
+		void ClearStashSurface();
 
-		void Render(IRenderable * renderable);
-		void RenderList(std::vector<IRenderable* > renderables);
-
+	public: /* For Render */
+		void Render(Scene* scene);
 		void RenderBegin();
 		void RenderEnd();
 
+		//////////////////////////////////////////////////////////////////////////
+		// PIPELINES
+		//////////////////////////////////////////////////////////////////////////
+	private:
+		/* For ShaderMap */
+		void PreparePipeline(Scene* scene);
+		/* For Lights */
+		void DeferredPipeline(Scene* scene);
+		/* For Alpha */
+		void ForwardPipeline(Scene* scene);
 
-		// default setter 
-		void SetOpaqueContext();
 
-		void SetAlphaContext();
-		
-		void SetEnableLight(std::vector<std::pair<int, D3DLIGHT9>> lights);
-		void SetEnableLight();
-		void SetDisableLight(std::vector<std::pair<int, D3DLIGHT9>> lights);
-		void SetDisableLight();
-		void EnableUIContext();
-		void DisableUIContext();
 
-		void BeginRenderEvent(std::wstring message);
-		void EndRenderEvent(std::wstring message);
+		//////////////////////////////////////////////////////////////////////////
+		// DEFERRED METHODES
+		//////////////////////////////////////////////////////////////////////////
+	private:
+		/* For Multi Render Target */
+		void SetGBufferMRT();
+		void SetOriginMRT();
+		void SetShadowMapMRT(int cascadeIndex);
+		void GetOriginMRT();
+		/* For SoftShadow */
+		void SetSoftShadowOriginMRT();
+		void SetSoftShadowBlurXMRT();
+		void SetSoftShadowMRT();
 
 	private :
-		D3DXCOLOR m_clearColor = 0xff555566;
+		void GeometryPass(Scene* scene);
+		void AmbientPass(Scene* scene);
+		void LightPass(Scene* scene);
+		void ShadowPass(Scene * scene, int casecadeIndex);
+		void SoftShadowPass(Scene* scene);
+		void SoftShadowBlurPass(Scene* scene);
 
-		D3DXMATRIX m_identityMat;
-		D3DXMATRIX m_orthoMat;
-		//D3DXCOLOR clearColor = D3DCOLOR_ARGB(255, 255, 0, 0);
-		D3DMATERIAL9 m_material;
-		D3DLIGHT9 m_light;
+		//////////////////////////////////////////////////////////////////////////
+		// FORWARD VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private:
+
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// DEFERRED VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private: /* RenderTarget Textures*/
+		// depth : rgb에 emissive.rgb, a에 depth값이 저장된다.
+		IDirect3DTexture9 * m_pDepthRTTexture = nullptr;
+		IDirect3DTexture9 * m_pAlbedoRTTexture = nullptr;
+		IDirect3DTexture9 * m_pNormalRTTexture = nullptr;
+		IDirect3DTexture9 * m_pSpecularRTTexture = nullptr;
+		IDirect3DTexture9 * m_pShadowRTTexture[NUM_CASCADEDES] = {nullptr};
+
+	private: /* RenderTarget Surfaces */
+		IDirect3DSurface9 * m_pDepthRTSurface = nullptr;
+		IDirect3DSurface9 * m_pAlbedoRTSurface = nullptr;
+		IDirect3DSurface9 * m_pNormalRTSurface = nullptr;
+		IDirect3DSurface9 * m_pSpecularRTSurface = nullptr;
+		IDirect3DSurface9 * m_pShadowRTSurface[NUM_CASCADEDES] = { nullptr };
+
+	private : /* For SoftShadow */
+		IDirect3DTexture9 * m_pSoftShadowOriginRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowOriginRTSurface = nullptr;
+		IDirect3DTexture9 * m_pSoftShadowBlurXRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowBlurXRTSurface = nullptr;
+		/* SoftShadow result map */
+		IDirect3DTexture9 * m_pSoftShadowRTTexture = nullptr;
+		IDirect3DSurface9 * m_pSoftShadowRTSurface = nullptr;
+
+	private: /* For Stash */
+		IDirect3DTexture9 * m_pStashRTTexture = nullptr;
+		IDirect3DSurface9 * m_pStashRTSurface = nullptr;
+
+	private: /* For Original Surface */
+		IDirect3DSurface9 * m_pOriginSurface = nullptr;
+
+	private :
+		class DeferredQuad * m_pResultScreen = nullptr;
+
+		//////////////////////////////////////////////////////////////////////////
+		// RENDERER VARIABLES 
+		//////////////////////////////////////////////////////////////////////////
+	private:
+		bool m_bSetup = false;
+		D3DXCOLOR m_clearColor = 0xff555566;
+		/* For Shadow */
+		D3DXMATRIX m_lightViewMat[NUM_CASCADEDES];
+		D3DXMATRIX m_lightProjMat[NUM_CASCADEDES];
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// FACTORY METHODES
+		//////////////////////////////////////////////////////////////////////////
+	public:
+		static Renderer* Create();
+		static void Release(Renderer* pRenderer);
 	};
 
 }

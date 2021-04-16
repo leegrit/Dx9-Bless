@@ -5,9 +5,13 @@
 #include "TextureLoader.h"
 #include "PathManager.h"
 #include "TerrainData.h"
+#include "HierarchyData.h"
+#include "Deserializer.h"
+
+using namespace HyEngine;
 
 HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name)
-	: GameObject(ERenderType::RenderTexture, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 	/* Default Texture */
 	try
@@ -22,7 +26,7 @@ HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name
 }
 
 HyEngine::Terrain::Terrain(Scene * scene, GameObject * parent, std::wstring name, int editID)
-	: GameObject(ERenderType::RenderTexture, scene, parent, name)
+	: GameObject(ERenderType::RenderOpaque, scene, parent, name)
 {
 	SetEditID(editID);
 	/* Default Texture */
@@ -45,10 +49,20 @@ HyEngine::Terrain::~Terrain()
 
 void HyEngine::Terrain::Initialize()
 {
-	m_vertexSize = sizeof(TextureVertex);
+	m_vertexSize = sizeof(BumpModelVertex);
 	m_vertexCount = m_vertexCountX * m_vertexCountZ;
 	m_triCount = (m_vertexCountX - 1) * (m_vertexCountZ - 1) * 2;
-	m_fvf = TextureVertex::FVF;
+	//m_fvf = BumpModelVertex::FVF;
+	D3DVERTEXELEMENT9 element[] =
+	{
+		{0, 0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0},
+		{0, 12, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0},
+		{0, 20, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0},
+		{0, 32, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TANGENT, 0},
+		{0, 44, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_BINORMAL, 0},
+		D3DDECL_END()
+	};
+	DEVICE->CreateVertexDeclaration(element, &m_pDeclaration);
 
 	m_indexSize = sizeof(Index32);
 	m_indexFMT = D3DFMT_INDEX32;
@@ -77,8 +91,8 @@ void HyEngine::Terrain::Initialize()
 	assert(SUCCEEDED(hr));
 
 
-	TextureVertex* pVertices = nullptr;
-	
+	BumpModelVertex* pVertices = nullptr;
+
 	m_vtxPositions.clear();
 	m_pVB->Lock(0, 0, (void**)&pVertices, 0);
 	{
@@ -115,12 +129,21 @@ void HyEngine::Terrain::Initialize()
 				));
 				pVertices[index].u = uv.x * m_textureCountX;
 				pVertices[index].v = uv.y * m_textureCountZ;
+
+				/* Normal */
+				pVertices[index].normalX = 0;
+				pVertices[index].normalY = 1;
+				pVertices[index].normalZ = 0;
+
+				/* Tangent */
+
 			}
 		}
 	}
 	m_pVB->Unlock();
 
 	Index32* pIndices = nullptr;
+	std::vector<Index32> indicesVec;
 
 	m_pIB->Lock(0, 0, (void**)&pIndices, 0);
 	{
@@ -139,16 +162,74 @@ void HyEngine::Terrain::Initialize()
 				pIndices[triIndex]._1 = index + m_vertexCountX;
 				pIndices[triIndex]._2 = index + m_vertexCountX + 1;
 				pIndices[triIndex++]._3 = index + 1;
+				indicesVec.push_back(pIndices[triIndex - 1]);
 
 				/* left triangle */
 				pIndices[triIndex]._1 = index + m_vertexCountX;
 				pIndices[triIndex]._2 = index + 1;
 				pIndices[triIndex++]._3 = index;
+				indicesVec.push_back(pIndices[triIndex - 1]);
+
 			}
 		}
 	}
 	m_pIB->Unlock();
 
+	/* Calculate normal, tangent, binormal */
+	// 위에서 필요한 모든 정보 구성이 완료된 후에 
+	// 완료된 정보를 사용하여 tangent, binormal을 구한다.
+	pVertices = nullptr;
+	m_pVB->Lock(0, 0, (void**)&pVertices, 0);
+	{
+		for (UINT i = 0; i < indicesVec.size(); i++)
+		{
+			D3DXVECTOR3 tangent;
+			D3DXVECTOR3 binormal;
+			D3DXVECTOR3 normal;
+
+			/* Calculate Tangent binormal */
+			DxHelper::CalculateTangentBinormal
+			(
+				&pVertices[indicesVec[i]._1],
+				&pVertices[indicesVec[i]._2],
+				&pVertices[indicesVec[i]._3],
+				&tangent,
+				&binormal
+			);
+
+			/* Calculate Normal */
+			DxHelper::CalculateNormal
+			(
+				&tangent,
+				&binormal,
+				&normal
+			);
+
+			/* Set Normal */
+			pVertices[indicesVec[i]._1].normalX = normal.x;
+			pVertices[indicesVec[i]._2].normalY = normal.y;
+			pVertices[indicesVec[i]._3].normalZ = normal.z;
+
+			/* Set Tangent */
+			pVertices[indicesVec[i]._1].tangentX = tangent.x;
+			pVertices[indicesVec[i]._2].tangentY = tangent.y;
+			pVertices[indicesVec[i]._3].tangentZ = tangent.z;
+
+			/* Set Binormal */
+			pVertices[indicesVec[i]._1].binormalX = binormal.x;
+			pVertices[indicesVec[i]._2].binormalY = binormal.y;
+			pVertices[indicesVec[i]._3].binormalZ = binormal.z;
+		}
+	}
+	m_pVB->Unlock();
+}
+
+void HyEngine::Terrain::Initialize(std::wstring dataPath)
+{
+	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
+
+	InsertGameData(data->gameObjectData);
+	InsertTerrainData(data->terrainData);
 }
 
 void HyEngine::Terrain::Update()
@@ -159,17 +240,74 @@ void HyEngine::Terrain::Update()
 void HyEngine::Terrain::Render()
 {
 	GameObject::Render();
-	if(m_pTexture)
-		DEVICE->SetTexture(0, m_pTexture);
-	if (m_pNormal)
-	{
-		// TODO
-	}
-	DEVICE->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
-	DEVICE->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
+	/* Get Shader */
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+	}
+	assert(m_pShader);
+
+	/* Get Selected Cam */
+	Camera* pSelectedCamera = nullptr;
+	pSelectedCamera = GetScene()->GetSelectedCamera();
+	assert(pSelectedCamera);
+
+	/* Set world, view, and projection */
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+	/* Set world position */
+	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+
+	/* Sel albedo */
+	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+	m_pShader->SetTexture(albedoHandle, m_pTexture);
+
+	/* Set Normal */
+	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+	m_pShader->SetTexture(normalHandle, m_pNormal);
+
+	/* Set Emissive */
+	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+	m_pShader->SetTexture(emissiveHandle, NULL);
+
+	/* Set Sepcular */
+	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+	m_pShader->SetTexture(specularHandle, NULL);
+
+	/* Set SpecularMask */
+	D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+	m_pShader->SetTexture(specularMaskHandle, NULL);
+
+	bool hasNormalMap = m_pNormal ? true : false;
+
+	m_pShader->SetBool("HasNormalMap", hasNormalMap);
+
+	m_pShader->SetTechnique("GBuffer");
+	m_pShader->Begin(0, 0);
+	{
+		m_pShader->BeginPass(0);
+
+		DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
+		DEVICE->SetVertexDeclaration(m_pDeclaration);
+		DEVICE->SetIndices(m_pIB);
+		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_triCount);
+
+		m_pShader->EndPass();
+	}
+	m_pShader->End();
+
+}
+
+void HyEngine::Terrain::DrawPrimitive(ID3DXEffect* m_pShader)
+{
 	DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
-	DEVICE->SetFVF(m_fvf);
+	DEVICE->SetVertexDeclaration(m_pDeclaration);
 	DEVICE->SetIndices(m_pIB);
 	DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_triCount);
 }
@@ -212,7 +350,7 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 	m_textureCountX = m_pTerrainData->textureCountX;
 	m_textureCountZ = m_pTerrainData->textureCountZ;
 	m_vertexInterval = m_pTerrainData->vertexInterval;
-	
+
 	std::wstring diffusePath = CString::CharToWstring(m_pTerrainData->diffuseFilePath);
 	IDirect3DTexture9* tempTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->ResourcesPathW() + diffusePath);
 	if (tempTexture != nullptr)
@@ -226,16 +364,24 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 
 
 	/* 변경된 데이터 기반으로 재구성 */
-	m_vertexSize = sizeof(TextureVertex);
+	m_vertexSize = sizeof(BumpModelVertex);
 	m_vertexCount = m_vertexCountX * m_vertexCountZ;
 	m_triCount = (m_vertexCountX - 1) * (m_vertexCountZ - 1) * 2;
-	m_fvf = TextureVertex::FVF;
+	//m_fvf = BumpModelVertex::FVF;
+	D3DVERTEXELEMENT9 element[] =
+	{
+		{ 0, 0, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_POSITION, 0 },
+		{ 0, 12, D3DDECLTYPE_FLOAT2, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TEXCOORD, 0 },
+		{ 0, 20, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_NORMAL, 0 },
+		{ 0, 32, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_TANGENT, 0 },
+		{ 0, 44, D3DDECLTYPE_FLOAT3, D3DDECLMETHOD_DEFAULT, D3DDECLUSAGE_BINORMAL, 0 },
+		D3DDECL_END()
+	};
+	DEVICE->CreateVertexDeclaration(element, &m_pDeclaration);
 
 	m_indexSize = sizeof(Index32);
 	m_indexFMT = D3DFMT_INDEX32;
 
-	SAFE_RELEASE(m_pVB);
-	SAFE_RELEASE(m_pIB);
 	HRESULT hr;
 	hr = DEVICE->CreateVertexBuffer
 	(
@@ -260,8 +406,9 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 	assert(SUCCEEDED(hr));
 
 
-	TextureVertex* pVertices = nullptr;
+	BumpModelVertex* pVertices = nullptr;
 
+	m_vtxPositions.clear();
 	m_pVB->Lock(0, 0, (void**)&pVertices, 0);
 	{
 		size_t index = 0;
@@ -297,12 +444,21 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 				));
 				pVertices[index].u = uv.x * m_textureCountX;
 				pVertices[index].v = uv.y * m_textureCountZ;
+
+				/* Normal */
+				pVertices[index].normalX = 0;
+				pVertices[index].normalY = 1;
+				pVertices[index].normalZ = 0;
+
+				/* Tangent */
+
 			}
 		}
 	}
 	m_pVB->Unlock();
 
 	Index32* pIndices = nullptr;
+	std::vector<Index32> indicesVec;
 
 	m_pIB->Lock(0, 0, (void**)&pIndices, 0);
 	{
@@ -321,15 +477,66 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 				pIndices[triIndex]._1 = index + m_vertexCountX;
 				pIndices[triIndex]._2 = index + m_vertexCountX + 1;
 				pIndices[triIndex++]._3 = index + 1;
+				indicesVec.push_back(pIndices[triIndex - 1]);
 
 				/* left triangle */
 				pIndices[triIndex]._1 = index + m_vertexCountX;
 				pIndices[triIndex]._2 = index + 1;
 				pIndices[triIndex++]._3 = index;
+				indicesVec.push_back(pIndices[triIndex - 1]);
+
 			}
 		}
 	}
 	m_pIB->Unlock();
+
+	/* Calculate normal, tangent, binormal */
+	// 위에서 필요한 모든 정보 구성이 완료된 후에 
+	// 완료된 정보를 사용하여 tangent, binormal을 구한다.
+	pVertices = nullptr;
+	m_pVB->Lock(0, 0, (void**)&pVertices, 0);
+	{
+		for (UINT i = 0; i < indicesVec.size(); i++)
+		{
+			D3DXVECTOR3 tangent;
+			D3DXVECTOR3 binormal;
+			D3DXVECTOR3 normal;
+
+			/* Calculate Tangent binormal */
+			DxHelper::CalculateTangentBinormal
+			(
+				&pVertices[indicesVec[i]._1],
+				&pVertices[indicesVec[i]._2],
+				&pVertices[indicesVec[i]._3],
+				&tangent,
+				&binormal
+			);
+
+			/* Calculate Normal */
+			DxHelper::CalculateNormal
+			(
+				&tangent,
+				&binormal,
+				&normal
+			);
+
+			/* Set Normal */
+			pVertices[indicesVec[i]._1].normalX = normal.x;
+			pVertices[indicesVec[i]._2].normalY = normal.y;
+			pVertices[indicesVec[i]._3].normalZ = normal.z;
+
+			/* Set Tangent */
+			pVertices[indicesVec[i]._1].tangentX = tangent.x;
+			pVertices[indicesVec[i]._2].tangentY = tangent.y;
+			pVertices[indicesVec[i]._3].tangentZ = tangent.z;
+
+			/* Set Binormal */
+			pVertices[indicesVec[i]._1].binormalX = binormal.x;
+			pVertices[indicesVec[i]._2].binormalY = binormal.y;
+			pVertices[indicesVec[i]._3].binormalZ = binormal.z;
+		}
+	}
+	m_pVB->Unlock();
 
 }
 
@@ -369,17 +576,17 @@ bool HyEngine::Terrain::TryPickOnTerrain(D3DXVECTOR3 origin, D3DXVECTOR3 directi
 
 				*pPickedPos = result;
 				return true;
-// 				/* PickedPos is local position */
-// 				*pPickedPos = D3DXVECTOR3
-// 				(
-// 					m_vtxPositions[indices[1]].x + u * (m_vtxPositions[indices[0]].x - m_vtxPositions[indices[1]].x),
-// 					0.0f,
-// 					m_vtxPositions[indices[1]].z + v * (m_vtxPositions[indices[2]].z - m_vtxPositions[indices[1]].z)
-// 				);
-// 				
-// 				/* Must be translated to world space */
-// 				D3DXVec3TransformCoord(pPickedPos, pPickedPos, &m_pTransform->GetWorldMatrix());
-// 				return true;
+				// 				/* PickedPos is local position */
+				// 				*pPickedPos = D3DXVECTOR3
+				// 				(
+				// 					m_vtxPositions[indices[1]].x + u * (m_vtxPositions[indices[0]].x - m_vtxPositions[indices[1]].x),
+				// 					0.0f,
+				// 					m_vtxPositions[indices[1]].z + v * (m_vtxPositions[indices[2]].z - m_vtxPositions[indices[1]].z)
+				// 				);
+				// 				
+				// 				/* Must be translated to world space */
+				// 				D3DXVec3TransformCoord(pPickedPos, pPickedPos, &m_pTransform->GetWorldMatrix());
+				// 				return true;
 			}
 
 
@@ -407,20 +614,34 @@ bool HyEngine::Terrain::TryPickOnTerrain(D3DXVECTOR3 origin, D3DXVECTOR3 directi
 
 				*pPickedPos = result;
 
-// 
-// 				/* PickedPos is local position */
-// 				*pPickedPos = D3DXVECTOR3
-// 				(
-// 					m_vtxPositions[indices[2]].x + u * (m_vtxPositions[indices[1]].x - m_vtxPositions[indices[2]].x),
-// 					0.0f,
-// 					m_vtxPositions[indices[2]].z + v * (m_vtxPositions[indices[0]].z - m_vtxPositions[indices[2]].z)
-// 				);
-// 
-// 				/* Must be translated to world space */
-// 				D3DXVec3TransformCoord(pPickedPos, pPickedPos, &m_pTransform->GetWorldMatrix());
+				// 
+				// 				/* PickedPos is local position */
+				// 				*pPickedPos = D3DXVECTOR3
+				// 				(
+				// 					m_vtxPositions[indices[2]].x + u * (m_vtxPositions[indices[1]].x - m_vtxPositions[indices[2]].x),
+				// 					0.0f,
+				// 					m_vtxPositions[indices[2]].z + v * (m_vtxPositions[indices[0]].z - m_vtxPositions[indices[2]].z)
+				// 				);
+				// 
+				// 				/* Must be translated to world space */
+				// 				D3DXVec3TransformCoord(pPickedPos, pPickedPos, &m_pTransform->GetWorldMatrix());
 				return true;
 			}
 		}
 	}
 	return false;
+}
+
+bool HyEngine::Terrain::ComputeBoundingSphere( _Out_ D3DXVECTOR3 * center, _Out_ float * radius)
+{
+	float halfX = m_vertexCountX * m_vertexInterval * 0.5f;
+	float halfZ = m_vertexCountZ * m_vertexInterval * 0.5f;
+
+	center->x = m_pTransform->m_position.x() + halfX;
+	center->y = m_pTransform->m_position.y();
+	center->z = m_pTransform->m_position.z() + halfZ;
+
+	*radius = std::max(halfX, halfZ);
+
+	return true;
 }

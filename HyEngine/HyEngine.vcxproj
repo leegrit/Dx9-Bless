@@ -98,7 +98,7 @@
     <Link>
       <ModuleDefinitionFile>HyEngine.def</ModuleDefinitionFile>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\_Libraries\Debug\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\_Libraries\Debug\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -163,6 +163,8 @@
     <ClInclude Include="Include\ChunkMapData.h" />
     <ClInclude Include="Include\CohesionBehaviour.h" />
     <ClInclude Include="Include\Collider.h" />
+    <ClInclude Include="Include\CollisionCalculator.h" />
+    <ClInclude Include="Include\ColorData.h" />
     <ClInclude Include="Include\ColorTriangle.h" />
     <ClInclude Include="Include\Component.h" />
     <ClInclude Include="Include\CompositeBehaviour.h" />
@@ -174,6 +176,7 @@
     <ClInclude Include="Include\DataLoader.h" />
     <ClInclude Include="Include\DataStructures.h" />
     <ClInclude Include="Include\DebugGround.h" />
+    <ClInclude Include="Include\DeferredQuad.h" />
     <ClInclude Include="Include\Defines.h" />
     <ClInclude Include="Include\Deserializer.h" />
     <ClInclude Include="Include\DiffuseQuad.h" />
@@ -190,9 +193,12 @@
     <ClInclude Include="Include\EditObject.h" />
     <ClInclude Include="Include\EditScene.h" />
     <ClInclude Include="Include\EditTransformRect.h" />
+    <ClInclude Include="Include\Effect.h" />
+    <ClInclude Include="Include\EffectData.h" />
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Enumerators.h" />
     <ClInclude Include="Include\EnumForEditor.h" />
+    <ClInclude Include="Include\Equipment.h" />
     <ClInclude Include="Include\EventDispatcher.h" />
     <ClInclude Include="Include\FiniteState.h" />
     <ClInclude Include="Include\FiniteStateMachine.h" />
@@ -207,22 +213,29 @@
     <ClInclude Include="Include\Geometry.h" />
     <ClInclude Include="Include\GlobalVars.h" />
     <ClInclude Include="Include\GroupMapObject.h" />
+    <ClInclude Include="Include\Gui.h" />
     <ClInclude Include="Include\HierarchyData.h" />
     <ClInclude Include="Include\ILight.h" />
-    <ClInclude Include="Include\ImageButton.h" />
-    <ClInclude Include="Include\ImageSwitchButton.h" />
-    <ClInclude Include="Include\IMesh.h" />
+    <ClInclude Include="Include\imconfig.h" />
+    <ClInclude Include="Include\imgui.h" />
+    <ClInclude Include="Include\imgui_impl_dx9.h" />
+    <ClInclude Include="Include\imgui_impl_win32.h" />
+    <ClInclude Include="Include\imgui_internal.h" />
+    <ClInclude Include="Include\imstb_rectpack.h" />
+    <ClInclude Include="Include\imstb_textedit.h" />
+    <ClInclude Include="Include\imstb_truetype.h" />
     <ClInclude Include="Include\IndexBuffer.h" />
     <ClInclude Include="Include\IndexTypes.h" />
     <ClInclude Include="Include\IRenderable.h" />
     <ClInclude Include="Include\ISkybox.h" />
-    <ClInclude Include="Include\IUserInterface.h" />
     <ClInclude Include="Include\json-forwards.h" />
     <ClInclude Include="Include\json.h" />
     <ClInclude Include="Include\JsonHelper.h" />
     <ClInclude Include="Include\Keyboard.h" />
     <ClInclude Include="Include\Layer.h" />
     <ClInclude Include="Include\Light.h" />
+    <ClInclude Include="Include\LightData.h" />
+    <ClInclude Include="Include\LightObject.h" />
     <ClInclude Include="Include\Line.h" />
     <ClInclude Include="Include\LinearMath.h" />
     <ClInclude Include="Include\LoadingScene.h" />
@@ -233,16 +246,19 @@
     <ClInclude Include="Include\Mesh.h" />
     <ClInclude Include="Include\MeshAnimator.h" />
     <ClInclude Include="Include\MeshData.h" />
+    <ClInclude Include="Include\MeshEffect.h" />
     <ClInclude Include="Include\MeshHierarchy.h" />
+    <ClInclude Include="Include\MeshHierarchyLoader.h" />
     <ClInclude Include="Include\MeshLoader.h" />
-    <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\MeshObject.h" />
+    <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\Mouse.h" />
     <ClInclude Include="Include\NavMesh.h" />
     <ClInclude Include="Include\NavMeshData.h" />
     <ClInclude Include="Include\NavPrimitive.h" />
     <ClInclude Include="Include\ObjData.h" />
     <ClInclude Include="Include\Object.h" />
+    <ClInclude Include="Include\ObjectContainer.h" />
     <ClInclude Include="Include\ObjectEditor.h" />
     <ClInclude Include="Include\ObjLoader.h" />
     <ClInclude Include="Include\ParticleGun.h" />
@@ -251,8 +267,6 @@
     <ClInclude Include="Include\Path.h" />
     <ClInclude Include="Include\PathManager.h" />
     <ClInclude Include="Include\Pawn.h" />
-    <ClInclude Include="Include\ProgressBar.h" />
-    <ClInclude Include="Include\ProgressVerticalBar.h" />
     <ClInclude Include="Include\Ray.h" />
     <ClInclude Include="Include\Raycaster.h" />
     <ClInclude Include="Include\RaycastHit.h" />
@@ -274,19 +288,21 @@
     <ClInclude Include="Include\Settings.h" />
     <ClInclude Include="Include\CString.h" />
     <ClInclude Include="Include\StateMachine.h" />
+    <ClInclude Include="Include\StaticMesh.h" />
     <ClInclude Include="Include\StayInRadiusBehaviour.h" />
     <ClInclude Include="Include\StringForEditor.h" />
     <ClInclude Include="Include\Strings.h" />
     <ClInclude Include="Include\Terrain.h" />
     <ClInclude Include="Include\TerrainData.h" />
     <ClInclude Include="Include\TestMesh.h" />
+    <ClInclude Include="Include\TextureEffect.h" />
     <ClInclude Include="Include\TextureLoader.h" />
     <ClInclude Include="Include\TextureObject.h" />
     <ClInclude Include="Include\TextureQuad.h" />
     <ClInclude Include="Include\Timer.h" />
     <ClInclude Include="Include\Transform.h" />
     <ClInclude Include="Include\TransformData.h" />
-    <ClInclude Include="Include\UIButton.h" />
+    <ClInclude Include="Include\UIData.h" />
     <ClInclude Include="Include\UIDGen.h" />
     <ClInclude Include="Include\UIElement.h" />
     <ClInclude Include="Include\UIPanel.h" />
@@ -315,6 +331,8 @@
     <ClCompile Include="Source\ChunkMapData.cpp" />
     <ClCompile Include="Source\CohesionBehaviour.cpp" />
     <ClCompile Include="Source\Collider.cpp" />
+    <ClCompile Include="Source\CollisionCalculator.cpp" />
+    <ClCompile Include="Source\ColorData.cpp" />
     <ClCompile Include="Source\ColorTriangle.cpp" />
     <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\CompositeBehaviour.cpp" />
@@ -324,6 +342,7 @@
     <ClCompile Include="Source\D3DXMeshObject.cpp" />
     <ClCompile Include="Source\DataLoader.cpp" />
     <ClCompile Include="Source\DebugGround.cpp" />
+    <ClCompile Include="Source\DeferredQuad.cpp" />
     <ClCompile Include="Source\Deserializer.cpp" />
     <ClCompile Include="Source\DiffuseQuad.cpp" />
     <ClCompile Include="Source\DirectXDevice.cpp" />
@@ -340,7 +359,10 @@
     <ClCompile Include="Source\EditObject.cpp" />
     <ClCompile Include="Source\EditScene.cpp" />
     <ClCompile Include="Source\EditTransformRect.cpp" />
+    <ClCompile Include="Source\Effect.cpp" />
+    <ClCompile Include="Source\EffectData.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Equipment.cpp" />
     <ClCompile Include="Source\EventDispatcher.cpp" />
     <ClCompile Include="Source\FiniteState.cpp" />
     <ClCompile Include="Source\FiniteStateMachine.cpp" />
@@ -353,10 +375,15 @@
     <ClCompile Include="Source\GameObjectData.cpp" />
     <ClCompile Include="Source\Geometry.cpp" />
     <ClCompile Include="Source\GroupMapObject.cpp" />
+    <ClCompile Include="Source\Gui.cpp" />
     <ClCompile Include="Source\HierarchyData.cpp" />
-    <ClCompile Include="Source\ImageButton.cpp" />
-    <ClCompile Include="Source\ImageSwitchButton.cpp" />
-    <ClCompile Include="Source\IMesh.cpp" />
+    <ClCompile Include="Source\imgui.cpp" />
+    <ClCompile Include="Source\imgui_demo.cpp" />
+    <ClCompile Include="Source\imgui_draw.cpp" />
+    <ClCompile Include="Source\imgui_impl_dx9.cpp" />
+    <ClCompile Include="Source\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\imgui_tables.cpp" />
+    <ClCompile Include="Source\imgui_widgets.cpp" />
     <ClCompile Include="Source\IndexBuffer.cpp" />
     <ClCompile Include="Source\IndexTypes.cpp" />
     <ClCompile Include="Source\jsoncpp.cpp" />
@@ -364,6 +391,8 @@
     <ClCompile Include="Source\Keyboard.cpp" />
     <ClCompile Include="Source\Layer.cpp" />
     <ClCompile Include="Source\Light.cpp" />
+    <ClCompile Include="Source\LightData.cpp" />
+    <ClCompile Include="Source\LightObject.cpp" />
     <ClCompile Include="Source\Line.cpp" />
     <ClCompile Include="Source\LinearMath.cpp" />
     <ClCompile Include="Source\LoadingScene.cpp" />
@@ -374,16 +403,19 @@
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshAnimator.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
+    <ClCompile Include="Source\MeshEffect.cpp" />
     <ClCompile Include="Source\MeshHierarchy.cpp" />
+    <ClCompile Include="Source\MeshHierarchyLoader.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
-    <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\MeshObject.cpp" />
+    <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\NavMesh.cpp" />
     <ClCompile Include="Source\NavMeshData.cpp" />
     <ClCompile Include="Source\NavPrimitive.cpp" />
     <ClCompile Include="Source\ObjData.cpp" />
     <ClCompile Include="Source\Object.cpp" />
+    <ClCompile Include="Source\ObjectContainer.cpp" />
     <ClCompile Include="Source\ObjectEditor.cpp" />
     <ClCompile Include="Source\ParticleGun.cpp" />
     <ClCompile Include="Source\ParticleStructure.cpp" />
@@ -391,8 +423,6 @@
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\PathManager.cpp" />
     <ClCompile Include="Source\Pawn.cpp" />
-    <ClCompile Include="Source\ProgressBar.cpp" />
-    <ClCompile Include="Source\ProgressVerticalBar.cpp" />
     <ClCompile Include="Source\Ray.cpp" />
     <ClCompile Include="Source\Raycaster.cpp" />
     <ClCompile Include="Source\RaycastHit.cpp" />
@@ -409,17 +439,19 @@
     <ClCompile Include="Source\Shape.cpp" />
     <ClCompile Include="Source\Skybox.cpp" />
     <ClCompile Include="Source\StateMachine.cpp" />
+    <ClCompile Include="Source\StaticMesh.cpp" />
     <ClCompile Include="Source\StayInRadiusBehaviour.cpp" />
     <ClCompile Include="Source\Terrain.cpp" />
     <ClCompile Include="Source\TerrainData.cpp" />
     <ClCompile Include="Source\TestMesh.cpp" />
+    <ClCompile Include="Source\TextureEffect.cpp" />
     <ClCompile Include="Source\TextureLoader.cpp" />
     <ClCompile Include="Source\TextureObject.cpp" />
     <ClCompile Include="Source\TextureQuad.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
     <ClCompile Include="Source\TransformData.cpp" />
-    <ClCompile Include="Source\UIButton.cpp" />
+    <ClCompile Include="Source\UIData.cpp" />
     <ClCompile Include="Source\UIDGen.cpp" />
     <ClCompile Include="Source\UIElement.cpp" />
     <ClCompile Include="Source\UIPanel.cpp" />
@@ -430,12 +462,23 @@
     <ClCompile Include="Source\ZBillboardObject.cpp" />
     <ClCompile Include="Source\ZTextureObject.cpp" />
     <ClCompile Include="Source\ZTextureQuad.cpp" />
+    <ClCompile Include="ZBillboardObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\_Shaders\MeshShader.fx" />
-    <FxCompile Include="..\_Shaders\ProgressTexture.fx" />
-    <FxCompile Include="..\_Shaders\TextureShader.fx" />
-    <FxCompile Include="..\_Shaders\UIShader.fx" />
+    <FxCompile Include="..\_Shaders\Ambient.fx" />
+    <FxCompile Include="..\_Shaders\Blur.fx" />
+    <FxCompile Include="..\_Shaders\Collider.fx" />
+    <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
+    <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
+    <FxCompile Include="..\_Shaders\GBuffer.fx" />
+    <FxCompile Include="..\_Shaders\MeshEffect.fx" />
+    <FxCompile Include="..\_Shaders\PointLight.fx" />
+    <FxCompile Include="..\_Shaders\ShadowMap.fx" />
+    <FxCompile Include="..\_Shaders\Skybox.fx" />
+    <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
+    <FxCompile Include="..\_Shaders\SpotLight.fx" />
+    <FxCompile Include="..\_Shaders\TextureEffect.fx" />
+    <FxCompile Include="..\_Shaders\UIPanel.fx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def" />

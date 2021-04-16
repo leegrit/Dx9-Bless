@@ -19,23 +19,20 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		virtual void Initialize();
+		virtual void Initialize(std::wstring dataPath);
 		virtual void Update() override;
 		virtual void Render() override;
+		virtual void DrawPrimitive() override;
 		virtual void UpdatedData(EDataType dataType) override;
 
-		static Terrain* Create(Scene* scene, GameObject* parent, int editID)
-		{
-			Terrain* terrain = new Terrain(scene, parent,L"Terrain", editID);
-			terrain->Initialize();
-			return terrain;
-		}
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// PUBLIC METHODS
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		bool TryPickOnTerrain(D3DXVECTOR3 origin, D3DXVECTOR3 direction, _Out_ D3DXVECTOR3 * pPickedPos);
-
+		bool ComputeBoundingSphere(_Out_ D3DXVECTOR3* center, _Out_ float* radius);
 
 
 		//////////////////////////////////////////////////////////////////////////
@@ -47,6 +44,8 @@ namespace HyEngine
 		size_t m_vertexSize = 0;
 		size_t m_triCount = 0;
 		unsigned int m_fvf;
+		IDirect3DVertexDeclaration9* m_pDeclaration;
+
 
 		IDirect3DIndexBuffer9* m_pIB = nullptr;
 		D3DFORMAT m_indexFMT = D3DFMT_INDEX32;
@@ -67,6 +66,23 @@ namespace HyEngine
 		float m_textureCountX = 20.f;
 		float m_textureCountZ = 20.f;
 		float m_vertexInterval = 1.f;
+
+		//////////////////////////////////////////////////////////////////////////
+		// FACTORY METHOD
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		static Terrain* Create(Scene* scene, GameObject* parent, int editID)
+		{
+			Terrain* terrain = new Terrain(scene, parent, L"Terrain", editID);
+			terrain->Initialize();
+			return terrain;
+		}
+		static Terrain* Create(Scene* scene, GameObject * parent, std::wstring dataPath)
+		{
+			Terrain* terrain = new Terrain(scene, parent, L"Terrain");
+			terrain->Initialize(dataPath);
+			return terrain;
+		}
 	};
 }
 

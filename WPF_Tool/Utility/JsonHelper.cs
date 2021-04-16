@@ -8,6 +8,7 @@ using WPF_Tool.Data;
 using System.IO;
 using Microsoft.Win32;
 using System.Diagnostics;
+using WPF_Tool.Math;
 
 namespace WPF_Tool.Utility
 {
@@ -36,6 +37,9 @@ namespace WPF_Tool.Utility
                     break;
                 case GameObjectType.Terrain:
                     SaveJsonFile(EDataType.Terrain, dataJson, fileName, ref outFileName);
+                    break;
+                case GameObjectType.Light:
+                    SaveJsonFile(EDataType.Light, dataJson, fileName, ref outFileName);
                     break;
             }
             return true;
@@ -276,6 +280,9 @@ namespace WPF_Tool.Utility
             var terrainJson = ConvertToJson(hierarchyData.terrainData);
             hierarchyJson.Add("TerrainData", terrainJson);
 
+            var lightJson = ConvertToJson(hierarchyData.lightData);
+            hierarchyJson.Add("LightData", lightJson);
+
             for (int i = 0; i < hierarchyData.navMeshData.cellCount; i++)
             {
                 var cellJson = new JObject();
@@ -365,51 +372,127 @@ namespace WPF_Tool.Utility
             terrainJson.Add("NormalFilePath", terrainData.normalFilePath);
             return terrainJson;
         }
+        private static JObject ConvertToJson(LightData lightData)
+        {
+            var lightJson = new JObject();
+            lightJson.Add("LightType", lightData.lightType);
+
+            /* For Direction */ 
+            var directionJson = new JObject();
+            directionJson.Add("X", lightData.direction.x);
+            directionJson.Add("Y", lightData.direction.y);
+            directionJson.Add("Z", lightData.direction.z);
+            lightJson.Add("Direction", directionJson);
+
+            /* For Position */
+            var positionJson = new JObject();
+            positionJson.Add("X", lightData.position.x);
+            positionJson.Add("Y", lightData.position.y);
+            positionJson.Add("Z", lightData.position.z);
+            lightJson.Add("Position", positionJson);
+
+            /* For Ambient */
+            var ambientJson = new JObject();
+            ambientJson.Add("R", lightData.ambient.r);
+            ambientJson.Add("G", lightData.ambient.g);
+            ambientJson.Add("B", lightData.ambient.b);
+            ambientJson.Add("A", lightData.ambient.a);
+            lightJson.Add("Ambient", ambientJson);
+
+            /* For ambient intensity */
+            lightJson.Add("AmbientIntensity", lightData.ambientIntensity);
+
+            /* For Diffuse */
+            var diffuseJson = new JObject();
+            diffuseJson.Add("R", lightData.diffuse.r);
+            diffuseJson.Add("G", lightData.diffuse.g);
+            diffuseJson.Add("B", lightData.diffuse.b);
+            diffuseJson.Add("A", lightData.diffuse.a);
+            lightJson.Add("Diffuse", diffuseJson);
+
+            /* For diffuse intensity */
+            lightJson.Add("DiffuseIntensity", lightData.diffuseIntensity);
+
+            /* For Specular */
+            var specularJson = new JObject();
+            specularJson.Add("R", lightData.specular.r);
+            specularJson.Add("G", lightData.specular.g);
+            specularJson.Add("B", lightData.specular.b);
+            specularJson.Add("A", lightData.specular.a);
+            lightJson.Add("Specular", specularJson);
+
+            /* For specular intensity */
+            lightJson.Add("SpecularIntensity", lightData.specularIntensity);
+
+            /* For specular power */
+            lightJson.Add("SpecularPower", lightData.specularPower);
+
+            /* For range */
+            lightJson.Add("Range", lightData.range);
+
+            /* For Cone */
+            lightJson.Add("Cone", lightData.cone);
+
+            /* For constant */
+            lightJson.Add("Constant", lightData.constant);
+
+            /* For linear */
+            lightJson.Add("Linear", lightData.linear);
+
+            /* For quadratic */
+            lightJson.Add("Quadratic", lightData.quadratic);
+
+            return lightJson;
+        }
         #endregion
 
 
         // 각 Inject 함수를 통해 json 버전에 관계없이 값을 읽을 수 있게 한다.
         #region Injections
-        private static bool InjectHierarchyData(out HierarchyData hierarchyData, JToken parentToekn)
+        private static bool InjectHierarchyData(out HierarchyData hierarchyData, JToken parentToken)
         {
            // var readJson = JObject.Parse(text);
 
             // Json Parse
             HierarchyData data = new HierarchyData();
-            data.type = (GameObjectType)((int)parentToekn["Type"]);
-            data.Index = (int)parentToekn["Index"];
-            data.tagIndex = (int)parentToekn["TagIndex"];
-            data.layerIndex = (int)parentToekn["LayerIndex"];
-            data.staticIndex = (int)parentToekn["StaticIndex"];
+            data.type = (GameObjectType)((int)parentToken["Type"]);
+            data.Index = (int)parentToken["Index"];
+            data.tagIndex = (int)parentToken["TagIndex"];
+            data.layerIndex = (int)parentToken["LayerIndex"];
+            data.staticIndex = (int)parentToken["StaticIndex"];
 
 
 
 
             GameObjectData gameObjectData;
-            InjectGameObjectData(out gameObjectData, parentToekn);
+            InjectGameObjectData(out gameObjectData, parentToken);
             data.gameObjectData = gameObjectData;
 
             MeshData meshData;
-            InjectMeshData(out meshData, parentToekn);
+            InjectMeshData(out meshData, parentToken);
             data.meshData = meshData;
 
             MapData mapData;
-            InjectMapData(out mapData, parentToekn);
+            InjectMapData(out mapData, parentToken);
             data.mapData = mapData;
 
             NavMeshData navMeshData;
-            InjectNavMeshData(out navMeshData, parentToekn);
+            InjectNavMeshData(out navMeshData, parentToken);
             data.navMeshData = navMeshData;
 
             TerrainData terrainData;
-            InjectTerrainData(out terrainData, parentToekn);
+            InjectTerrainData(out terrainData, parentToken);
             data.terrainData = terrainData;
+
+            LightData lightData;
+            InjectLightData(out lightData, parentToken);
+            data.lightData = lightData;
 
             data.cells = new List<CellData>();
             for (int j = 0; j < navMeshData.cellCount; j++)
             {
                 CellData cellData;
-                InjectCellData(out cellData, j, parentToekn);
+                InjectCellData(out cellData, j, parentToken);
                 data.cells.Add(cellData);
             }
 
@@ -520,13 +603,88 @@ namespace WPF_Tool.Utility
                 terrainData = default(TerrainData);
                 return false;
             }
-            terrainData.vertexCountX = (uint)jsonTerrainData["VertexCountX"];
-            terrainData.vertexCountZ = (uint)jsonTerrainData["VertexCountZ"];
+            terrainData.vertexCountX = (int)jsonTerrainData["VertexCountX"];
+            terrainData.vertexCountZ = (int)jsonTerrainData["VertexCountZ"];
             terrainData.textureCountX = (float)jsonTerrainData["TextureCountX"];
             terrainData.textureCountZ = (float)jsonTerrainData["TextureCountZ"];
             terrainData.vertexInterval = (float)jsonTerrainData["VertexInterval"];
             terrainData.diffuseFilePath = (string)jsonTerrainData["DiffuseFilePath"];
             terrainData.normalFilePath = (string)jsonTerrainData["NormalFilePath"];
+
+            return true;
+        }
+        private static bool InjectLightData(out LightData lightData, JToken parentToken)
+        {
+            var lightDataJson = parentToken["LightData"];
+
+            lightData = default(LightData);
+            if (lightDataJson == null)
+            {
+                return false;
+            }
+
+            /* For light type */
+            lightData.lightType = (int)lightDataJson["LightType"];
+
+            /* For direction */
+            var directionJson = lightDataJson["Direction"];
+            lightData.direction.x = (float)directionJson["X"];
+            lightData.direction.y = (float)directionJson["Y"];
+            lightData.direction.z = (float)directionJson["Z"];
+
+            /* For position */
+            var positionJson = lightDataJson["Position"];
+            lightData.position.x = (float)positionJson["X"];
+            lightData.position.y = (float)positionJson["Y"];
+            lightData.position.z = (float)positionJson["Z"];
+
+            /* For ambient */
+            var ambientJson = lightDataJson["Ambient"];
+            lightData.ambient.r = (float)ambientJson["R"];
+            lightData.ambient.g = (float)ambientJson["G"];
+            lightData.ambient.b = (float)ambientJson["B"];
+            lightData.ambient.a = (float)ambientJson["A"];
+
+            /* For ambient intensity */
+            lightData.ambientIntensity = (float)lightDataJson["AmbientIntensity"];
+
+            /* For diffuse */
+            var diffuseJson = lightDataJson["Diffuse"];
+            lightData.diffuse.r = (float)diffuseJson["R"];
+            lightData.diffuse.g = (float)diffuseJson["G"];
+            lightData.diffuse.b = (float)diffuseJson["B"];
+            lightData.diffuse.a = (float)diffuseJson["A"];
+
+            /* For diffuse intensity */
+            lightData.diffuseIntensity = (float)lightDataJson["DiffuseIntensity"];
+
+            /* For specular */
+            var specularJson = lightDataJson["Specular"];
+            lightData.specular.r = (float)specularJson["R"];
+            lightData.specular.g = (float)specularJson["G"];
+            lightData.specular.b = (float)specularJson["B"];
+            lightData.specular.a = (float)specularJson["A"];
+
+            /* For specular intensity */
+            lightData.specularIntensity = (float)lightDataJson["SpecularIntensity"];
+
+            /* For specular power */
+            lightData.specularPower = (float)lightDataJson["SpecularPower"];
+
+            /* For Range */
+            lightData.range = (float)lightDataJson["Range"];
+
+            /* For Cone */
+            lightData.cone = (float)lightDataJson["Cone"];
+
+            /* For Constant */
+            lightData.constant = (float)lightDataJson["Constant"];
+
+            /* For Linear */
+            lightData.linear = (float)lightDataJson["Linear"];
+
+            /* For Exp */
+            lightData.quadratic = (float)lightDataJson["Quadratic"];
 
             return true;
         }
@@ -663,6 +821,30 @@ namespace WPF_Tool.Utility
                     }
                     outFileName = fileName + ".json";
                     break;
+                case EDataType.Light:
+                    if (System.IO.Directory.Exists(Paths.LightDataPath))
+                    {
+                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.LightDataPath);
+                        int count = 0;
+                        foreach (var item in info.GetFiles())
+                        {
+                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                            {
+                                count++;
+                                // 같은게 있으면 count를 늘려준다.
+                                // 중복이 여러 개 있을 수도 있기 때문.
+                            }
+                        }
+                        if (count != 0)
+                            fileName = fileName + count;
+                    }
+
+                    using (StreamWriter sw = new StreamWriter(Paths.LightDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    {
+                        sw.Write(json.ToString());
+                    }
+                    outFileName = fileName + ".json";
+                    break;
                 default:
                     outFileName = default(string);
                     Debug.Assert(false);
@@ -696,6 +878,9 @@ namespace WPF_Tool.Utility
                     break;
                 case EDataType.Terrain:
                     defaultPath = Paths.TerrainDataPath;
+                    break;
+                case EDataType.Light:
+                    defaultPath = Paths.LightDataPath;
                     break;
                 default:
                     Debug.Assert(false);

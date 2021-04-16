@@ -3,6 +3,13 @@
 
 using namespace HyEngine;
 
+HyEngine::Geometry::~Geometry()
+{
+	SAFE_RELEASE(m_pDeclare);
+	SAFE_RELEASE(m_pVertexBuffer);
+	SAFE_RELEASE(m_pIndexBuffer);
+}
+
 IDirect3DVertexBuffer9 * Geometry::GetVertexBuffer()
 {
 	return m_pVertexBuffer;

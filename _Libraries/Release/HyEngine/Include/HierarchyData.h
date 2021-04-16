@@ -13,6 +13,9 @@ namespace HyEngine
 		class MeshData * meshData;
 		class MapData* mapData;
 		class NavMeshData* navMeshData;
+		class TerrainData* terrainData;
+		class LightData* lightData;
+		class EffectData* effectData;
 		std::vector<class CellData*> cells;
 	};
 

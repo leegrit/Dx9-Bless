@@ -14,6 +14,13 @@
 #include "PathManager.h"
 #include "TerrainData.h"
 #include "Terrain.h"
+#include "ObjectContainer.h"
+#include "LightObject.h"
+#include "LightData.h"
+#include "EffectData.h"
+#include "StaticMesh.h"
+#include "DynamicMesh.h"
+#include "UIData.h"
 
 using namespace HyEngine;
 
@@ -34,7 +41,8 @@ EditEngine::EditEngine()
 	DirectXDevice::Create();
 	UIDGen::Create();
 	PathManager::Create();
-	m_pRenderer = new Renderer();
+
+	//m_pRenderer = new Renderer();
 	m_pTimer = new Timer();
 	m_pMouse = new IO::Mouse();
 	m_pKeyboard = new IO::Keyboard();
@@ -47,7 +55,7 @@ void EditEngine::DestroyResources()
 	DirectXDevice::Destroy();
 	UIDGen::Destroy();
 	PathManager::Destroy();
-	SAFE_DELETE(m_pRenderer);
+	Renderer::Release(m_pRenderer);
 	SAFE_DELETE(m_pTimer);
 
 }
@@ -65,11 +73,17 @@ EditEngine::~EditEngine()
 
 
 
+inline Renderer * HyEngine::EditEngine::GetRenderer() const
+{
+	return m_pRenderer;
+}
+
 bool EditEngine::Initialize()
 {
 	HRESULT hr = EnsureHWND();
 	assert(SUCCEEDED(hr));
 	DirectXDevice::Get()->Init(m_hWnd);
+	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
 	return true;
 }
@@ -79,6 +93,8 @@ bool EditEngine::Load()
 	m_bLoading = true;
 	m_pEditScene = new EditScene();
 	m_pEditScene->LoadScene();
+
+	LoadShaders();
 
 
 	m_bLoading = false;
@@ -130,6 +146,54 @@ void HyEngine::EditEngine::InitLoggingService()
 	ServiceLocator::getFileLogger()->print<SeverityType::info>("The file logger was created successfully.");
 #endif
 }
+
+void HyEngine::EditEngine::LoadShaders()
+{
+	InsertShader(L"GBuffer", PATH->ShadersPathW() + L"GBuffer.fx");
+	InsertShader(L"PointLight", PATH->ShadersPathW() + L"PointLight.fx");
+	InsertShader(L"SpotLight", PATH->ShadersPathW() + L"SpotLight.fx");
+	InsertShader(L"Ambient", PATH->ShadersPathW() + L"Ambient.fx");
+	InsertShader(L"DirectionalLight", PATH->ShadersPathW() + L"DirectionalLight.fx");
+	InsertShader(L"DiffuseShader", PATH->ShadersPathW() + L"DiffuseShader.fx");
+	InsertShader(L"MeshEffect", PATH->ShadersPathW() + L"MeshEffect.fx");
+	InsertShader(L"TextureEffect", PATH->ShadersPathW() + L"TextureEffect.fx");
+	InsertShader(L"ShadowMap", PATH->ShadersPathW() + L"ShadowMap.fx");
+	InsertShader(L"SoftShadowMapping", PATH->ShadersPathW() + L"SoftShadowMapping.fx");
+	InsertShader(L"Blur", PATH->ShadersPathW() + L"Blur.fx");
+	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
+	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
+	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
+
+}
+
+bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)
+{
+	auto& iter = m_shaderMap.find(key);
+
+	/* already exist */
+	if (iter != m_shaderMap.end())
+		return false;
+
+	ID3DXEffect* shader = nullptr;
+	D3DXCreateEffectFromFile(DEVICE, path.c_str(), nullptr, nullptr, 0, nullptr, &shader, nullptr);
+	assert(shader);
+
+	m_shaderMap.insert(make_pair(key, shader));
+}
+
+bool HyEngine::EditEngine::TryGetShader(std::wstring key, _Out_ ID3DXEffect ** ppShader)
+{
+	*ppShader = nullptr;
+
+	auto& iter = m_shaderMap.find(key);
+
+	if (iter == m_shaderMap.end())
+		return false;
+
+	*ppShader = iter->second;
+	return true;
+}
+
 
 void EditEngine::GetBackBuffer(IDirect3DSurface9 ** ppSurface)
 {
@@ -224,25 +288,9 @@ void HyEngine::EditEngine::RemoveGameObject(int index)
 	assert(scene);
 	EditScene * editScene = dynamic_cast<EditScene*>(scene);
 	assert(editScene);
-	for (auto& obj : editScene->GetMeshObjectAll())
+	for (auto& obj : editScene->GetObjectContainer()->GetGameObjectAll())
 	{
-		EditObject* editObj = dynamic_cast<EditObject*>(obj);
-		if (editObj->GetEditID() == index)
-		{
-			Object::Destroy(editObj);
-			return;
-		}
-	}
-	for (auto& obj : editScene->GetInvisibleObjectAll())
-	{
-		if (obj->GetEditID() == index)
-		{
-			Object::Destroy(obj);
-			return;
-		}
-	}
-	for (auto& obj : editScene->GetTextureObjectAll())
-	{
+		//EditObject* editObj = dynamic_cast<EditObject*>(obj);
 		if (obj->GetEditID() == index)
 		{
 			Object::Destroy(obj);
@@ -253,9 +301,9 @@ void HyEngine::EditEngine::RemoveGameObject(int index)
 
 bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out_ int * resultIndex, _Out_ VectorData* pickedPos)
 {
-	std::vector<GameObject*>& meshObjs = GetScene()->GetMeshObjectAll();
+	std::vector<GameObject*>& meshObjs = GetScene()->GetObjectContainer()->GetOpaqueObjectAll();
 	/* For Terrain */
-	std::vector<GameObject*>& textureObjs = GetScene()->GetTextureObjectAll();
+	std::vector<GameObject*>& textureObjs = GetScene()->GetObjectContainer()->GetAlphaObjectAll();
 	
 	/* Merge */
 	std::vector<GameObject*> sortedVec;
@@ -279,12 +327,12 @@ bool HyEngine::EditEngine::PickGameObject(float xMousePos, float yMousePos, _Out
 	});
 	for (auto& obj : sortedVec)
 	{
-		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
+		StaticMesh* editObj = dynamic_cast<StaticMesh*>(obj);
 		if (editObj != nullptr)
 		{
 
 			// picking은 xfile만 가능
-			ID3DXMesh* mesh = editObj->GetDxMesh();
+			ID3DXMesh* mesh = editObj->GetMesh();
 			if (mesh == nullptr) continue;
 
 			D3DXVECTOR3 origin;
@@ -402,13 +450,13 @@ void HyEngine::EditEngine::SetEditCameraRot(float xRot, float yRot, float zRot)
 
 void HyEngine::EditEngine::TranslateToMesh()
 {
-	EditMesh* editMesh = dynamic_cast<EditMesh*>(m_pSelectedObject);
+	Mesh* editMesh = dynamic_cast<Mesh*>(m_pSelectedObject);
 	if (editMesh == nullptr) return;
 
 	float radius;
 	D3DXVECTOR3 center;
 
-	bool bFinish = editMesh->CalcBounds(&center, &radius);
+	bool bFinish = editMesh->ComputeBoundingSphere(&center, &radius);
 	if (bFinish == false)
 		return;
 
@@ -469,7 +517,7 @@ void HyEngine::EditEngine::RemoveNavPrim(int navPrimIndex)
 
 int HyEngine::EditEngine::GetAnimationCount()
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 
 	int count = obj->GetAnimationCount();
@@ -479,7 +527,7 @@ int HyEngine::EditEngine::GetAnimationCount()
 
 void HyEngine::EditEngine::GetAnimationName(_Out_ AnimNameData* outString, int index)
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 	 obj->GetAnimationName(outString, index);
 	return;
@@ -487,7 +535,7 @@ void HyEngine::EditEngine::GetAnimationName(_Out_ AnimNameData* outString, int i
 
 void HyEngine::EditEngine::SetAnimation(int index)
 {
-	EditDynamicMesh* obj = dynamic_cast<EditDynamicMesh*>(m_pSelectedObject);
+	DynamicMesh* obj = dynamic_cast<DynamicMesh*>(m_pSelectedObject);
 	assert(obj);
 	CString a;
 
@@ -509,6 +557,63 @@ void HyEngine::EditEngine::InsertTerrainData(TerrainData * data)
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->InsertTerrainData(data);
+}
+
+void HyEngine::EditEngine::CreateLight(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddLight(editID);
+}
+
+void HyEngine::EditEngine::InsertLightData(LightData * data)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->InsertLightData(data);
+}
+
+void HyEngine::EditEngine::CreateMeshEffect(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddMeshEffect(editID);
+}
+
+void HyEngine::EditEngine::CreateTextureEffect(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddTextureEffect(editID);
+}
+
+void HyEngine::EditEngine::InsertEffectData(EffectData * data)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->InsertEffectData(data);
+}
+
+void HyEngine::EditEngine::CreateUIPanel(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddUIPanel(editID);
+}
+
+void HyEngine::EditEngine::InsertUIData(UIData * data)
+{
+	if (m_pSelectedObject == nullptr)
+		return;
+	m_pSelectedObject->InsertUIData(data);
 }
 
 

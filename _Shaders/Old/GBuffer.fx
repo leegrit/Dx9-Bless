@@ -1,16 +1,17 @@
+float Far;
 matrix WorldMatrix;
 matrix ViewMatrix;
 matrix ProjMatrix;
-float4 WorldPosition;
-texture CubeTex;
-sampler CubeSampler = sampler_state
+
+texture AlbedoTex;
+sampler AlbedoSampler = sampler_state
 {
-	Texture = (CubeTex);
+	Texture = (AlbedoTex);
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
+    AddressU = wrap;
+    AddressV = wrap;
 };
 texture DepthTex;
 sampler DepthSampler = sampler_state
@@ -19,18 +20,8 @@ sampler DepthSampler = sampler_state
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
-};
-texture AlbedoTex;
-sampler AlbedoSampler = sampler_state
-{
-	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
+    AddressU = wrap;
+    AddressV = wrap;
 };
 texture NormalTex;
 sampler NormalSampler = sampler_state
@@ -39,10 +30,9 @@ sampler NormalSampler = sampler_state
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
+    AddressU = wrap;
+    AddressV = wrap;
 };
-
 
 void GBufferVS(
 	float4 position : POSITION,
@@ -54,22 +44,20 @@ void GBufferVS(
 	out float2 outTexcoord : TEXCOORD1
 )
 {
-	position.w = 1;
-	//float4 worldPos;
+    /* Position */ 
     outPosition = mul(position, WorldMatrix);
-	//worldPos = outPosition;
 	outPosition = mul(outPosition, ViewMatrix);
-	//worldViewPos = outPosition;
 	outPosition = mul(outPosition, ProjMatrix);
 
-	// depth in view coordinate, store in x
-//	float depth= (float)outPosition.z / (float)outPosition.w;
-	
-	outDepthPos = outPosition ;
-	//outDepth .x = depth;
-	//outDepth.y = 1;
+    /* Depth */ 
+	outDepthPos = outPosition;
+
+    /* Texcoord */ 
 	outTexcoord = texcoord;
-	outNormal = normal;
+
+    /* Normal */
+	outNormal = normalize(mul(float4(normal, 0.f), WorldMatrix));;
+	//outNormal = normal;
 }
 
 void GBufferPS(
@@ -81,52 +69,20 @@ void GBufferPS(
 	out float4 outNormal : COLOR2
 	)
 {
-	float4 baseColor = tex2D(CubeSampler, texcoord);
-	
+	float4 albedo = tex2D(AlbedoSampler, texcoord);
 
-
+	/* Depth */
 	float depth =  (float)depthPosition.z / depthPosition.w;  
-	
-	outDepth = float4(depth, depth, depth, 1);
-	
-	outAlbedo = baseColor;
-	outAlbedo.a = 0.5f;
+	//outDepth = float4(float2(depth, depthPosition.w / Far), 0, 1);
+	outDepth = float4(depth, depth, depth, 0);
 
-	outNormal.r = normal.x;
-	outNormal.g = normal.y;
-	outNormal.b = normal.z;
+    /* Albedo */
+    outAlbedo = albedo;
+
+    /* Normal */
+	outNormal =float4(  normal, 1);//float4(normal * 0.5f + 0.5f, 1.0f);
+	outNormal = float4(normal * 0.5f + 0.5f, 1);
 	outNormal.a = 1;
-}
-
-void GBufferWithBlurPS(
-	float4 depthPosition : TEXCOORD0,
-	float3 normal : NORMAL,
-	float2 texcoord : TEXCOORD1,
-	out float4 outDepth : COLOR0,
-	out float4 outAlbedo : COLOR1,
-	out float4 outNormal : COLOR2,
-	out float4 blurMask : COLOR3
-	)
-{
-	float4 baseColor = tex2D(CubeSampler, texcoord);
-	
-
-
-	float depth =  (float)depthPosition.z / depthPosition.w;  
-	
-	outDepth = float4(depth, depth, depth, 1);
-	
-	outAlbedo = baseColor;
-
-	outNormal.r = normal.x;
-	outNormal.g = normal.y;
-	outNormal.b = normal.z;
-	outNormal.a = 1;
-
-	blurMask.r = 0;
-	blurMask.g = 0;
-	blurMask.b = 0;
-	blurMask.a = 1;
 }
 
 
@@ -134,19 +90,8 @@ technique GBuffer
 {
 	pass P0
 	{
+		
 		VertexShader = compile vs_3_0 GBufferVS();
 		PixelShader = compile ps_3_0 GBufferPS();
 	}
 };
-
-technique GBufferWithBlur
-{
-	pass P0
-	{
-		AlphaBlendEnable = true;
-		SrcBlend = SrcAlpha;
-		DestBlend = InvSrcAlpha;
-		VertexShader = compile vs_3_0 GBufferVS();
-		PixelShader = compile ps_3_0 GBufferWithBlurPS();
-	}
-}

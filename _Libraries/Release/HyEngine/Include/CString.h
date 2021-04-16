@@ -36,6 +36,7 @@ namespace HyEngine
 		static string ToString(wstring str);
 
 		static std::wstring CharToWstring(const char* utf8Bytes);
+		static std::string CharToString(const char* utf8Bytes);
 		static std::wstring stringToWstring(const char* utf8Bytes, const size_t numBytes);
 
 
