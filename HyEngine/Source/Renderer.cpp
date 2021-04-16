@@ -74,7 +74,7 @@ void HyEngine::Renderer::Setup()
 			WinMaxHeight,
 			D3DX_DEFAULT,
 			D3DUSAGE_RENDERTARGET,
-			D3DFMT_A8R8G8B8,
+			D3DFMT_A8,
 			D3DPOOL_DEFAULT,
 			&m_pShadowRTTexture[i]
 		);
@@ -89,7 +89,7 @@ void HyEngine::Renderer::Setup()
 		WinMaxHeight,
 		D3DX_DEFAULT,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowOriginRTTexture
 	);
@@ -102,7 +102,7 @@ void HyEngine::Renderer::Setup()
 		WinMaxHeight,
 		D3DX_DEFAULT,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowBlurXRTTexture
 	);
@@ -115,7 +115,7 @@ void HyEngine::Renderer::Setup()
 		WinMaxHeight,
 		D3DX_DEFAULT,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowRTTexture
 	);

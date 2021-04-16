@@ -28,7 +28,7 @@ void ShadowMapPS(
 )
 {
 	float lightDepth = (float)depthPos.z / depthPos.w;
-	outLightDepth = float4(lightDepth, lightDepth, lightDepth, 1);
+	outLightDepth = float4(lightDepth, lightDepth, lightDepth, lightDepth);
 }
 
 

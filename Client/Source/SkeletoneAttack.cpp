@@ -9,6 +9,10 @@ void SkeletoneAttack::Enter()
 
 void SkeletoneAttack::Update()
 {
+	if (m_component->IsDamaged())
+	{
+		m_component->GetState()->Set("Hit");
+	}
 	bool animEnd = false;
 	animEnd = m_component->IsAnimationSetEnd();
 	if (animEnd == true)

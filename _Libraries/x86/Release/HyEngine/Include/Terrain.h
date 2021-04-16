@@ -39,6 +39,7 @@ namespace HyEngine
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
 	private : /* For.Render */
+		ID3DXEffect * m_pShader = nullptr;
 		IDirect3DVertexBuffer9* m_pVB = nullptr;
 		size_t m_vertexCount = 0; 
 		size_t m_vertexSize = 0;

@@ -168,33 +168,12 @@ void HyEngine::DynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
 
-		//for (ULONG i = 0; i < pMeshContainer->numBones; i++)
-		//	pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
-
-		//void* pSrcVtx = nullptr;
-		//void* pDestVtx = nullptr;
-
-		//pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
-		//pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
-
-		// 소프트웨어 스키닝을 수행하는 함수.
-		// 스키닝 뿐 아니라 애니메이션 변경 시,
-		// 뼈대들과 정점 정보들의 변경을 동시에 수행해주기도 한다.
-		//pMeshContainer->pSkinInfo->UpdateSkinnedMesh(
-		//	pMeshContainer->pRenderingMatrix, // 뼈의 최종 변환 상태
-		//	NULL, // 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어야하지만 안넣어줘도 상관없음 
-		//	pSrcVtx, // 변하지 않는 원본 메쉬의 정점 정보
-		//	pDestVtx // 변환된 정보를 담기위한 정점 정보
-		//);
-
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
 			pMeshContainer->MeshData.pMesh->DrawSubset(i);
 		}
 
-		//pMeshContainer->pOriMesh->UnlockVertexBuffer();
-		//pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
 	}
 }
 
@@ -334,7 +313,10 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
 	
-	m_pAniCtrl->PlayAnimationSet(TIMER->getDeltaTime());
+	if (IS_EDITOR)
+		m_pAniCtrl->PlayAnimationSet(EDIT_TIMER->getDeltaTime());
+	else
+		m_pAniCtrl->PlayAnimationSet(TIMER->getDeltaTime());
 
 	D3DXMATRIX matTemp;
 

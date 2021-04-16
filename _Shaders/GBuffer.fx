@@ -28,7 +28,7 @@ sampler AlbedoSampler = sampler_state
 	Texture = (AlbedoTex);
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
-    MipFilter = None;
+    MipFilter = LINEAR;
     AddressU = wrap;
     AddressV = wrap;
 };

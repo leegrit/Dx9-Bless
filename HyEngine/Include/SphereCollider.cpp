@@ -33,6 +33,18 @@ void HyEngine::SphereCollider::Initialize()
 void HyEngine::SphereCollider::Render()
 {
 	Collider::Render();
+#ifdef _DEBUG
+	if (IS_EDITOR)
+	{
+
+	}
+	else
+	{
+		/* EDIT_MODE에만 그린다. */
+		if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+			return;
+	}
+
 	if (m_pSphereMesh == nullptr) return;
 
 	/* Get Shader */
@@ -70,6 +82,7 @@ void HyEngine::SphereCollider::Render()
 		m_pShader->EndPass();
 	}
 	m_pShader->End();
+#endif
 }
 
 void HyEngine::SphereCollider::Calculate(Collider * other) const

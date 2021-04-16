@@ -13,8 +13,8 @@ void SkeletoneHit::Enter()
 	D3DXVec3Normalize(&forward, &forward);
 	
 	float dot = D3DXVec3Dot(&dir, &forward);
-	/* 내적 결과가 음수일 경우 정면에서 공격당한 것 */
-	if (dot <= 0) 
+	/* 내적 결과가 양수일 경우 정면에서 공격당한 것 */
+	if (dot > 0) 
 	{
 		m_component->SetAnimationSet(15);
 	}
@@ -28,6 +28,11 @@ void SkeletoneHit::Enter()
 
 void SkeletoneHit::Update()
 {
+	if (m_component->IsDamaged())
+	{
+		m_component->SetAnimationSet(14);
+		m_component->GetState()->Set("Hit");
+	}
 	bool animEnd = false;
 	animEnd = m_component->IsAnimationSetEnd();
 	if (animEnd == true)
@@ -42,4 +47,5 @@ void SkeletoneHit::Late_Update()
 
 void SkeletoneHit::Exit()
 {
+	m_component->SetDamagedState(false);
 }

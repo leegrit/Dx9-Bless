@@ -35,7 +35,7 @@ sampler AlbedoSampler = sampler_state
 	Texture = (AlbedoTex);
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
-    MipFilter = None;
+    MipFilter = LINEAR;
     AddressU = wrap;
     AddressV = wrap;
 };
@@ -162,7 +162,7 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	if (specularMap.a == 0.2)
 		return albedoMap;
 
-	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).r;
+	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).a;
 
 	/* Calculate world position */
 	float4 worldPos;

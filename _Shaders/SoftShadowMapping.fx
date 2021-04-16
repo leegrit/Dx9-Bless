@@ -162,23 +162,23 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	float shadowDepth;
 	if(cascadeIndex == 0)
 	{
-		shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).r;
+		shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
 		//return diffuse;
 	}
 	if(cascadeIndex == 1)
 	{
-		shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).r;
+		shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).a;
 		//return diffuse;
 	}
 	if(cascadeIndex == 2)
 	{
-		shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).r;
+		shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).a;
 
 		//return diffuse;
 	}
 	if(cascadeIndex == 3)
 	{
-		shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).r;
+		shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).a;
 
 		//return diffuse;
 	}
@@ -194,7 +194,7 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	{
 		shadowFactor = 0;
 	}
-	return float4(shadowFactor, shadowFactor, shadowFactor, 1);
+	return float4(shadowFactor, shadowFactor, shadowFactor, shadowFactor);
 }
 
 

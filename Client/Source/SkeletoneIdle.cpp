@@ -9,7 +9,7 @@ void SkeletoneIdle::Enter()
 
 void SkeletoneIdle::Update()
 {
-	if (m_component->IsHit())
+	if (m_component->IsDamaged())
 	{
 		m_component->GetState()->Set("Hit");
 	}

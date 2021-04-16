@@ -34,9 +34,17 @@ public :
 private :
 	void UpdateAction();
 
+	//////////////////////////////////////////////////////////////////////////
+	// VARIABLES
+	//////////////////////////////////////////////////////////////////////////
 private :
+	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[3] = { 5, 52, 51 };
+	int m_animIndexes[3] = { 27, 26, 25 };
+
+	/* For Attack Logic */
+	bool m_bSendDamage = false;
+	std::vector<GameObject*> m_hitEnemies;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

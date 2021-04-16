@@ -24,6 +24,16 @@ void Character::Update()
 	Pawn::Update();
 }
 
+bool Character::IsDamaged() const
+{
+	return m_isDamaged;
+}
+
+bool Character::IsDied() const
+{
+	return m_isDied;
+}
+
 float Character::GetMoveSpeed() const
 {
 	return m_moveSpeed;
@@ -58,7 +68,30 @@ void Character::SetParams(float moveSpd, float maxHP, float maxMP)
 	m_curMP = maxMP;
 }
 
+void Character::SetDamagedState(bool isDamaged)
+{
+	m_isDamaged = isDamaged;
+}
+
 UINT Character::GetTargetLayer()
 {
 	return Layer::Default;
+}
+
+void Character::SendDamage(GameObject * sender, float damage)
+{
+	assert(m_isDied == false);
+
+	float resultHP = m_curHP - damage;
+	if (resultHP <= 0)
+	{
+		m_curHP = 0;
+	}
+	else
+		m_curHP = resultHP;
+
+	if (m_curHP <= 0)
+		m_isDied = true;
+	else
+		m_isDamaged = true;
 }

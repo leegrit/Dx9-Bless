@@ -97,7 +97,10 @@ void SampleScene::RenderGUI()
 #ifdef _DEBUG
 	Gui::Get()->ShowFPS();
 	Gui::Get()->ShowGameMode();
-	
+
+	//Gui::Get()->BeginUI();
+
+//	Gui::Get()->EndUI();
 	Gui::Get()->ShowTextInput(temp, 256, 200, 200);
 
 #endif

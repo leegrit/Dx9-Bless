@@ -83,6 +83,10 @@ void HyEngine::StaticMesh::Render()
 		D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
 		m_pShader->SetTexture(specularHandle, m_speculars[i]);
 
+		/* Set SpecularMask */
+		D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+		m_pShader->SetTexture(specularMaskHandle, NULL);
+
 		bool hasNormalMap = false;
 		if (m_normals[i] != nullptr)
 			hasNormalMap = true;

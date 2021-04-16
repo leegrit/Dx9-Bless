@@ -31,7 +31,11 @@ namespace HyEngine
 		// FOR IMGUI
 		//////////////////////////////////////////////////////////////////////////
 	public :
-
+		void BeginUI();
+		void EndUI();
+		void InputText(std::string label, _Out_ char* result, int size);
+		void InputInt(std::string label, _Out_ int* result);
+		void InputFloat(std::string label, _Out_ float* result);
 
 	private :
 		void ApplyStyle();

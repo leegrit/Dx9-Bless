@@ -19,14 +19,15 @@ protected:
 public:
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
-
+	
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER
 	//////////////////////////////////////////////////////////////////////////
 public:
-	bool IsHit() const { return m_isHit; }
 	/* For Status */
+	bool IsDamaged() const;
+	bool IsDied() const;
 	float GetMoveSpeed() const;
 	float GetMaxHP() const;
 	float GetCurHP() const;
@@ -38,7 +39,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 public :
 	void SetParams(float moveSpd, float maxHP, float maxMP);
-
+	void SetDamagedState(bool isDamaged);
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -48,12 +49,20 @@ public :
 	virtual UINT GetTargetLayer();
 	virtual void OnCollision(Collider* other) PURE;
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void SendDamage(GameObject* sender, float damage);
+
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
 private :
 	Collider* m_pCollider;
-	bool m_isHit = false;
+	bool m_isDamaged = false;
+	bool m_isDied = false;
 
 	/* Status */
 	float m_moveSpeed;
@@ -61,6 +70,8 @@ private :
 	float m_curHP;
 	float m_maxMP;
 	float m_curMP;
+
+	
 	
 };
 

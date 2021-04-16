@@ -45,7 +45,7 @@ void ActionComponent::Update()
 		m_curSequence = m_nextSequence;
 		if (m_curSequence != 0)
 		{
-			animEnd = pMesh->IsAnimationSetEnd(0.3);
+			animEnd = pMesh->IsAnimationSetEnd(0.5);
 		}
 		else
 			animEnd = true;
@@ -70,7 +70,7 @@ void ActionComponent::Update()
 		DynamicMesh * pMesh = dynamic_cast<DynamicMesh*>(GetGameObject());
 		assert(pMesh);
 
-		bool animEnd = pMesh->IsAnimationSetEnd(0.3);
+		bool animEnd = pMesh->IsAnimationSetEnd(0.5);
 
 		if (animEnd == true)
 		{
@@ -95,6 +95,11 @@ void ActionComponent::OnDisable()
 {
 }
 
+
+float ActionComponent::GetAttackDamage() const
+{
+	return m_damage;
+}
 
 void ActionComponent::SetParams(float atkDelay, int seqCount,  float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset)
 {

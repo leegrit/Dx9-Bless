@@ -135,6 +135,42 @@ void HyEngine::Gui::ShowTextInput(char * result, int size, float xPos, float yPo
 	ImGui::End();
 }
 
+void HyEngine::Gui::BeginUI()
+{
+	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE) return;
+	ImGui::SetNextWindowPos({ WinMaxWidth - 200, WinMaxHeight - 200 });
+	ImGui::SetNextWindowSize(ImVec2(300, 200));
+	ImGui::Begin
+	(
+		"TextInputWindow",
+		&m_bOpen,
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_MenuBar
+	);
+}
+
+void HyEngine::Gui::EndUI()
+{
+	ImGui::End();
+}
+
+void HyEngine::Gui::InputText(std::string label, _Out_ char * result, int size)
+{
+	ImGui::InputText(label.c_str(), result, size);
+}
+
+void HyEngine::Gui::InputInt(std::string label,_Out_ int * result)
+{
+	ImGui::InputInt(label.c_str(), result);
+}
+
+void HyEngine::Gui::InputFloat(std::string label, _Out_ float * result)
+{
+	ImGui::InputFloat(label.c_str(), result);
+}
+
 void HyEngine::Gui::ApplyStyle()
 {
 	ImGui::GetIO().ConfigWindowsResizeFromEdges = true;

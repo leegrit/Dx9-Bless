@@ -230,6 +230,9 @@ void HyEngine::Equipment::Render()
 		D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
 		m_pShader->SetTexture(specularHandle, m_speculars[i]);
 
+		D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+		m_pShader->SetTexture(specularMaskHandle, NULL);
+
 		bool hasNormalMap = false;
 		if (m_normals[i] != nullptr)
 			hasNormalMap = true;
@@ -256,7 +259,7 @@ void HyEngine::Equipment::DrawPrimitive(ID3DXEffect* pShader)
 	}
 	else
 		pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-
+	pShader->CommitChanges();
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		m_pMesh->DrawSubset(i);

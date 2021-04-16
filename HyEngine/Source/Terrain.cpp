@@ -242,12 +242,14 @@ void HyEngine::Terrain::Render()
 	GameObject::Render();
 
 	/* Get Shader */
-	ID3DXEffect * pShader = nullptr;
-	if (IS_EDITOR)
-		EDIT_ENGINE->TryGetShader(L"GBuffer", &pShader);
-	else
-		ENGINE->TryGetShader(L"GBuffer", &pShader);
-	assert(pShader);
+	if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+	}
+	assert(m_pShader);
 
 	/* Get Selected Cam */
 	Camera* pSelectedCamera = nullptr;
@@ -255,50 +257,54 @@ void HyEngine::Terrain::Render()
 	assert(pSelectedCamera);
 
 	/* Set world, view, and projection */
-	pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-	pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
 	/* Set world position */
-	pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 
 	/* Sel albedo */
-	D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
-	pShader->SetTexture(albedoHandle, m_pTexture);
+	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+	m_pShader->SetTexture(albedoHandle, m_pTexture);
 
 	/* Set Normal */
-	D3DXHANDLE normalHandle = pShader->GetParameterByName(0, "NormalTex");
-	pShader->SetTexture(normalHandle, m_pNormal);
+	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+	m_pShader->SetTexture(normalHandle, m_pNormal);
 
 	/* Set Emissive */
-	D3DXHANDLE emissiveHandle = pShader->GetParameterByName(0, "EmissiveTex");
-	pShader->SetTexture(emissiveHandle, NULL);
+	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+	m_pShader->SetTexture(emissiveHandle, NULL);
 
 	/* Set Sepcular */
-	D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
-	pShader->SetTexture(specularHandle, NULL);
+	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+	m_pShader->SetTexture(specularHandle, NULL);
+
+	/* Set SpecularMask */
+	D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+	m_pShader->SetTexture(specularMaskHandle, NULL);
 
 	bool hasNormalMap = m_pNormal ? true : false;
 
-	pShader->SetBool("HasNormalMap", hasNormalMap);
+	m_pShader->SetBool("HasNormalMap", hasNormalMap);
 
-	pShader->SetTechnique("GBuffer");
-	pShader->Begin(0, 0);
+	m_pShader->SetTechnique("GBuffer");
+	m_pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
+		m_pShader->BeginPass(0);
 
 		DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
 		DEVICE->SetVertexDeclaration(m_pDeclaration);
 		DEVICE->SetIndices(m_pIB);
 		DEVICE->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, m_vertexCount, 0, m_triCount);
 
-		pShader->EndPass();
+		m_pShader->EndPass();
 	}
-	pShader->End();
+	m_pShader->End();
 
 }
 
-void HyEngine::Terrain::DrawPrimitive(ID3DXEffect* pShader)
+void HyEngine::Terrain::DrawPrimitive(ID3DXEffect* m_pShader)
 {
 	DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
 	DEVICE->SetVertexDeclaration(m_pDeclaration);
