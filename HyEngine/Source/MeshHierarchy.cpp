@@ -108,6 +108,9 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 	pMeshContainer->ppNormal = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
 	ZeroMemory(pMeshContainer->ppNormal, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
 
+	pMeshContainer->ppSpecularMask = new LPDIRECT3DTEXTURE9[pMeshContainer->NumMaterials];
+	ZeroMemory(pMeshContainer->ppSpecularMask, sizeof(LPDIRECT3DTEXTURE9) * pMeshContainer->NumMaterials);
+
 	pMeshContainer->pTextureNames.reserve(pMeshContainer->NumMaterials);// = new std::wstring[pMeshContainer->NumMaterials];
 	pMeshContainer->pTextureNames.resize(pMeshContainer->NumMaterials);
 	// 재질이 있는 경우
@@ -146,8 +149,13 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 			std::wstring normalMapName = name;
 			CString::Replace(&normalMapName, L"_D_", L"_N_");
 			IDirect3DTexture9* normalMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + normalMapName);
-
 			pMeshContainer->ppNormal[i] = normalMap;
+
+			/* Find Specular Mask */
+			std::wstring specularMaskName = name;
+			CString::Replace(&specularMaskName, L"_D_", L"_C_");
+			IDirect3DTexture9* specularMask = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + specularMaskName);
+			pMeshContainer->ppSpecularMask[i] = specularMask;
 
 			pMeshContainer->pTextureNames[i] = CString::CharToWstring( pMeshContainer->pMaterials[i].pTextureFilename);
 		}

@@ -77,13 +77,13 @@
     },
     "DiffuseIntensity": 0.0,
     "Specular": {
-      "R": 0.0,
-      "G": 0.0,
-      "B": 0.0,
+      "R": 1.0,
+      "G": 1.0,
+      "B": 1.0,
       "A": 0.0
     },
-    "SpecularIntensity": 0.0,
-    "SpecularPower": 0.0,
+    "SpecularIntensity": 1.0,
+    "SpecularPower": 2.0,
     "Range": 0.0,
     "Cone": 0.0,
     "Constant": 0.0,

@@ -199,7 +199,10 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 		float specularIntensity = saturate(dot(reflection, viewDirection));
 
 		specular = pow(specularIntensity, SpecularPower);
-		specular = specular * shadowFactor * specularMap.rgb;
+		if(specularMap.a > 0)
+			specular = specular * shadowFactor;
+		else
+			specular = specular * shadowFactor * specularMap.rgb;
 	}
 	finalColor = saturate(finalColor + specular.rgb);
 

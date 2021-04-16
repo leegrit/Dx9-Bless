@@ -133,6 +133,9 @@ void HyEngine::DynamicMesh::Render()
 			D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
 			m_pShader->SetTexture(specularHandle, NULL);
 
+			D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+			m_pShader->SetTexture(specularMaskHandle, pMeshContainer->ppSpecularMask[i]);
+
 			bool hasNormalMap = false;
 			if (pMeshContainer->ppNormal[i] != nullptr)
 			{
@@ -156,7 +159,7 @@ void HyEngine::DynamicMesh::Render()
 	}
 }
 
-void HyEngine::DynamicMesh::DrawPrimitive()
+void HyEngine::DynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
@@ -319,11 +322,11 @@ void HyEngine::DynamicMesh::PlayAnimationSet(const float & timeDelta)
 	if (m_pAniCtrl == nullptr)
 		return;
 
-	m_pAniCtrl->PlayAnimationSet(timeDelta);
-
-	D3DXMATRIX matTemp;
-
-	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
+// 	m_pAniCtrl->PlayAnimationSet(timeDelta);
+// 
+// 	D3DXMATRIX matTemp;
+// 
+// 	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
 }
 
 void HyEngine::DynamicMesh::OnRenderBegin(void*)
@@ -331,7 +334,11 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
 	
+	m_pAniCtrl->PlayAnimationSet(TIMER->getDeltaTime());
 
+	D3DXMATRIX matTemp;
+
+	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
 	for (; iter != iter_end; iter++)
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);

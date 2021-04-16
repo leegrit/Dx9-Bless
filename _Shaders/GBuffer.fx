@@ -45,6 +45,9 @@ sampler NormalSampler = sampler_state
     AddressU = wrap;
     AddressV = wrap;
 };
+/* Specular */
+// rgb = specularMap
+// a = specularMask
 texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
@@ -59,6 +62,16 @@ texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
 {
 	Texture = (EmissiveTex);
+	MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    MipFilter = None;
+    AddressU = wrap;
+    AddressV = wrap;
+};
+texture SpecularMaskTex;
+sampler SpecularMaskSampler = sampler_state
+{
+	Texture = (SpecularMaskTex);
 	MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
@@ -114,7 +127,7 @@ void GBufferPS(
 	float4 albedo = tex2D(AlbedoSampler, texcoord);
 	float4 emissive = tex2D(EmissiveSampler, texcoord);
 	float4 specular = tex2D(SpecularSampler, texcoord);
-
+	float4 specularMask =tex2D(SpecularMaskSampler, texcoord);
 
 
 	/* Depth */
@@ -128,6 +141,7 @@ void GBufferPS(
 
 	/* Specular */
 	outSpecular = specular;
+	outSpecular.a = specularMask.b;
 	
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);

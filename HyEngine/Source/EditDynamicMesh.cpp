@@ -182,9 +182,9 @@ void HyEngine::EditDynamicMesh::Render()
 	}
 }
 
-void HyEngine::EditDynamicMesh::DrawPrimitive()
+void HyEngine::EditDynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
-	EditObject::DrawPrimitive();
+	EditObject::DrawPrimitive(pShader);
 
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();

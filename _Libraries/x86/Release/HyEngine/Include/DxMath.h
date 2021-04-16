@@ -54,7 +54,7 @@ namespace HyEngine
 			cosAngle = D3DXToDegree(cosAngle);
 
 			// 외적의 z성분으로 방향이 결정된다.
-			float angle = (a.x * b.y - a.y * b.x > 0.0f) ? cosAngle : -cosAngle;
+			float angle = (a.x * b.z - a.z * b.x > 0.0f) ? cosAngle : -cosAngle;
 			return angle;
 		}
 		// Swap two vector3's

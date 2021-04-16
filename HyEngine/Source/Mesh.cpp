@@ -14,7 +14,7 @@ void HyEngine::Mesh::Render()
 {
 }
 
-void HyEngine::Mesh::DrawPrimitive()
+void HyEngine::Mesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 
 }

@@ -174,7 +174,10 @@ float4 PointLightPS(
 		float specularIntensity = saturate(dot(reflection, viewDirection));
 
 		specular = pow(specularIntensity, SpecularPower);
-		specular = specular * specularMap.rgb;
+		if(specularMap.a > 0)
+			specular = specular;
+		else
+			specular = specular * specularMap.rgb;
 	}
 	finalColor = saturate(finalColor + specular.rgb);
 

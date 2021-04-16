@@ -12,7 +12,7 @@ namespace HyEngine
 	public:
 		//virtual void Initialize();
 		virtual void Render() override;
-		virtual void DrawPrimitive() override {}
+		virtual void DrawPrimitive(ID3DXEffect* pShader) override {}
 	public :
 // 		void InsertGameData(class GameObjectData* data);
 // 		void InsertMeshData(class MeshData* data);

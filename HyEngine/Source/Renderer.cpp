@@ -705,7 +705,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		pShader->Begin(0, 0);
 		{
 			pShader->BeginPass(0);
-			opaque->DrawPrimitive();
+			opaque->DrawPrimitive(pShader);
 			pShader->EndPass();
 
 		}

@@ -99,9 +99,9 @@ void HyEngine::StaticMesh::Render()
 	}
 }
 
-void HyEngine::StaticMesh::DrawPrimitive()
+void HyEngine::StaticMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
-	GameObject::DrawPrimitive();
+	GameObject::DrawPrimitive(pShader);
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		m_pMesh->DrawSubset(i);

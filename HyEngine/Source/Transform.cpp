@@ -246,17 +246,30 @@ void HyEngine::Transform::LookAtEuler(Transform & target)
 
 void HyEngine::Transform::LookAtEuler(D3DXVECTOR3 & position)
 {
+	/* only y */
 	D3DXVECTOR3 dir = position - m_position.operator D3DXVECTOR3();
 
-	D3DXVECTOR3 axis = *D3DXVec3Cross(&axis, &Up().operator D3DXVECTOR3(), &dir);
+	//dir.y = 0;
+	//D3DXVec3Normalize(&dir, &dir);
+	//D3DXVECTOR3 forward = Forward().operator D3DXVECTOR3();
+	D3DXVECTOR3 forward = Vector3::Forward;
+	float angle = DxMath::GetAngle(dir, forward);
+	if (angle > 0)
+		angle -= 360;
+	//float angle = std::acosf(D3DXVec3Dot(D3DXVec3Normalize(&dir, &dir), D3DXVec3Normalize(&forward, &forward)));
+	m_rotationEuler.y() = ( angle);
 
-	D3DXMATRIX matRot;
-	D3DXVECTOR3 up;
-	float angle = std::acosf(D3DXVec3Dot(D3DXVec3Normalize(&dir, &dir), D3DXVec3Normalize(&up, &Up().operator D3DXVECTOR3())));
+// 
+// 	D3DXVECTOR3 axis = *D3DXVec3Cross(&axis, &Vector3::Up, &dir);
+// 
+// 	D3DXMATRIX matRot;
+// 	D3DXVECTOR3 up;
+// 	float angle = std::acosf(D3DXVec3Dot(D3DXVec3Normalize(&dir, &dir), D3DXVec3Normalize(&up, &Up().operator D3DXVECTOR3())));
+// 
+// 	D3DXMatrixRotationAxis(&matRot, &axis, angle);
+// 
+// 	m_rotationEuler =  DxMath::RotationMatrixToEulerAngles(matRot);
 
-	D3DXMatrixRotationAxis(&matRot, &axis, angle);
-
-	m_rotationEuler =  DxMath::RotationMatrixToEulerAngles(matRot);
 }
 
 void Transform::RotateEuler(const Vector3 & eulers)

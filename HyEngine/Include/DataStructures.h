@@ -40,11 +40,15 @@ struct D3DXMESHCONTAINER_DERIVED : public D3DXMESHCONTAINER
 	D3DXMESHCONTAINER_DERIVED(const D3DXMESHCONTAINER_DERIVED& rhs)
 	{
 		if (rhs.Name != nullptr)
-			strcpy_s(Name, strlen(rhs.Name), rhs.Name);
+			strcpy_s(Name, strlen(rhs.Name) + 1, rhs.Name);
 		else
 			Name = nullptr;
-
-		MeshData = rhs.MeshData;
+		
+		MeshData.Type = rhs.MeshData.Type;
+		D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
+		rhs.MeshData.pMesh->GetDeclaration(meshDeclaration);
+		rhs.MeshData.pMesh->CloneMesh(rhs.MeshData.pMesh->GetOptions(), meshDeclaration,
+			DEVICE, &MeshData.pMesh);
 
 		pMaterials = rhs.pMaterials;
 		pEffects = rhs.pEffects;
@@ -79,6 +83,7 @@ struct D3DXMESHCONTAINER_DERIVED : public D3DXMESHCONTAINER
 	}
 	LPDIRECT3DTEXTURE9* ppTexture;
 	LPDIRECT3DTEXTURE9* ppNormal;
+	LPDIRECT3DTEXTURE9* ppSpecularMask;
 
 	std::vector<std::wstring>		pTextureNames;
 	// 원본 메쉬
@@ -114,7 +119,7 @@ struct D3DXFRAME_DERIVED : public D3DXFRAME
 			pFrameFirstChild = nullptr;
 
 		if (rhs.Name != nullptr)
-			strcpy_s(Name, strlen(rhs.Name), rhs.Name);
+			strcpy_s(Name, strlen(rhs.Name) + 1, rhs.Name);
 		else
 			Name = nullptr;
 

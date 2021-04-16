@@ -298,7 +298,7 @@ void HyEngine::Terrain::Render()
 
 }
 
-void HyEngine::Terrain::DrawPrimitive()
+void HyEngine::Terrain::DrawPrimitive(ID3DXEffect* pShader)
 {
 	DEVICE->SetStreamSource(0, m_pVB, 0, m_vertexSize);
 	DEVICE->SetVertexDeclaration(m_pDeclaration);

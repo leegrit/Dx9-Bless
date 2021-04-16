@@ -246,9 +246,17 @@ void HyEngine::Equipment::Render()
 	}
 }
 
-void HyEngine::Equipment::DrawPrimitive()
+void HyEngine::Equipment::DrawPrimitive(ID3DXEffect* pShader)
 {
-	GameObject::DrawPrimitive();
+	GameObject::DrawPrimitive(pShader);
+	if (m_pParentBoneMatrix != nullptr)
+	{
+		D3DXMATRIX resultWorld = m_pTransform->GetWorldMatrix() * (*m_pParentBoneMatrix * m_pParentWorldMatrix);
+		pShader->SetValue("WorldMatrix", &resultWorld, sizeof(resultWorld));
+	}
+	else
+		pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		m_pMesh->DrawSubset(i);

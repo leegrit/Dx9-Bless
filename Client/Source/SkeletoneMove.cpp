@@ -28,6 +28,7 @@ void SkeletoneMove::Update()
 	D3DXVec3Normalize(&dir, &dir);
 
 	m_component->m_pTransform->LookAtEuler(playerPos);
+	std::cout << m_component->m_pTransform->m_rotationEuler.y() << std::endl;
 	m_component->m_pTransform->Translate(dir * m_component->GetMoveSpeed() * TIMER->getDeltaTime());
 }
 

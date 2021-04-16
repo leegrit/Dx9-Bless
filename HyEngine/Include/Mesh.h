@@ -17,7 +17,7 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		virtual void Render() override;
-		virtual void DrawPrimitive() override;
+		virtual void DrawPrimitive(ID3DXEffect* pShader) override;
 		virtual void UpdatedData(EDataType dataType) override;
 
 		//////////////////////////////////////////////////////////////////////////

@@ -22,7 +22,7 @@ namespace HyEngine
 		virtual void Initialize(std::wstring dataPath);
 		virtual void Update() override;
 		virtual void Render() override;
-		virtual void DrawPrimitive() override;
+		virtual void DrawPrimitive(ID3DXEffect* pShader) override;
 		virtual void UpdatedData(EDataType dataType) override;
 
 		
