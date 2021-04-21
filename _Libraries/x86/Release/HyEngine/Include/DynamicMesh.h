@@ -35,6 +35,13 @@ namespace HyEngine
 		void InitializeMeshes(std::wstring filePath, std::wstring fileName);
 
 		//////////////////////////////////////////////////////////////////////////
+		// SETTER & GETTER
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		void SetSkinningType(ESkinningType type);
+		ESkinningType GetSkinningType() const;
+
+		//////////////////////////////////////////////////////////////////////////
 		// PUBLIC METHODS
 		//////////////////////////////////////////////////////////////////////////
 	public:
@@ -69,6 +76,7 @@ namespace HyEngine
 		void UpdateFrameMatrix(D3DXFRAME_DERIVED* frame, const D3DXMATRIX* parentMatrix);
 		void SetupFrameMatrixPointer(D3DXFRAME_DERIVED* frame);
 		void UpdateBoneMatrix(D3DXFRAME_DERIVED* frame);
+		void SetupBoneTextures();
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
@@ -81,6 +89,9 @@ namespace HyEngine
 		std::list<D3DXMESHCONTAINER_DERIVED*> m_MeshContainerList;
 		std::wstring m_lastMeshPath;
 		ID3DXEffect* m_pShader = nullptr;
+		std::vector<IDirect3DTexture9*> m_boneTextures;
+		std::vector< D3DXMATRIX**>m_palettes;
+		ESkinningType m_skinningType;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

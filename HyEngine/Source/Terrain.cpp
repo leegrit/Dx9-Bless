@@ -367,6 +367,8 @@ void HyEngine::Terrain::UpdatedData(EDataType dataType)
 	m_vertexSize = sizeof(BumpModelVertex);
 	m_vertexCount = m_vertexCountX * m_vertexCountZ;
 	m_triCount = (m_vertexCountX - 1) * (m_vertexCountZ - 1) * 2;
+	if (m_triCount <= 0) return;
+
 	//m_fvf = BumpModelVertex::FVF;
 	D3DVERTEXELEMENT9 element[] =
 	{

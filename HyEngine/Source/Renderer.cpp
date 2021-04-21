@@ -25,7 +25,6 @@ void HyEngine::Renderer::Setup()
 		&m_pDepthRTTexture
 	);
 	m_pDepthRTTexture->GetSurfaceLevel(0, &m_pDepthRTSurface);
-
 	D3DXCreateTexture
 	(
 		DEVICE,
@@ -569,8 +568,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 {
-	auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
-	if (list.size() == 0) return;
+
 
 	/* shader load */
 	ID3DXEffect* pShader = nullptr;
@@ -693,14 +691,22 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 
 #pragma endregion
 
+	//pSelectedCam->BeginFrustumCull(lightViewMatrix, lightProjMatrix);
+
+	auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
+	if (list.size() == 0) return;
+
 	for (auto& opaque : list)
 	{
+		//bool culled = pSelectedCam->FrustumCulling(opaque);
+		//if (culled) continue;
+
 		pShader->SetValue("WorldMatrix", &opaque->m_pTransform->GetWorldMatrix(), sizeof(opaque->m_pTransform->GetWorldMatrix()));
 
 
 		pShader->SetValue("LightViewMatrix", &m_lightViewMat[cascadeIndex], sizeof(m_lightViewMat[cascadeIndex]));
 		pShader->SetValue("LightProjMatrix", &m_lightProjMat[cascadeIndex], sizeof(m_lightProjMat[cascadeIndex]));
-
+		pShader->SetBool("IsSkinnedMesh", false);
 		pShader->SetTechnique("ShadowMap");
 		pShader->Begin(0, 0);
 		{
@@ -712,6 +718,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		pShader->End();
 
 	}
+	//pSelectedCam->EndFrustumCull();
 }
 
 void HyEngine::Renderer::SoftShadowPass(Scene * scene)

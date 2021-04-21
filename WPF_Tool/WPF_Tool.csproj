@@ -16,11 +16,11 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\x64\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -89,6 +89,7 @@
     <Compile Include="Windows\DirectWindow.cs" />
     <Compile Include="Windows\DockWindow.cs" />
     <Compile Include="Windows\HierarchyWindow.cs" />
+    <Compile Include="Windows\HotKeyWindow.cs" />
     <Compile Include="Windows\InspectorWindow.cs" />
     <Compile Include="Windows\NavMeshWindow.cs" />
     <Compile Include="Windows\ProjTreeView.cs" />

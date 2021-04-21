@@ -67,28 +67,29 @@
         </StackPanel>
         <TabControl Grid.Row ="1">
             <TabItem Header="Hierarchy">
-                <!-- 여기서 하이어라키 -->
-                <ListBox x:Name="HierarchyList"
+
+                <StackPanel>
+                    <!-- 여기서 하이어라키 -->
+                    <ListBox x:Name="HierarchyList"
                          HorizontalAlignment="Left"
-                         VerticalAlignment="Top" Height="870" Width="198">
-                    <ListBox.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="_CreateMesh" Foreground="Black" Click="BTN_CreateMesh"/>
-                            <MenuItem Header="_CreatePawn" Foreground="Black"  Click="BTN_CreatePawn"/>
-                            <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
-                            <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
-                            <MenuItem Header="_CreateTerrain" Foreground="Black" Click="BTN_CreateTerrain"/>
-                            <MenuItem Header="_CreateLight" Foreground ="Black" Click="BTN_CreateLight" />
-                            <MenuItem Header="_CreateMeshEffect" Foreground="Black" Click="BTN_CreateMeshEffect" />
-                            <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
-                            <MenuItem Header="_CreateUIPanel"  Foreground="Black"  Click="BTN_CreateUIPanel" />
-                            <MenuItem Header="_CreateEffect" Foreground="Black" />
-                            <MenuItem Header="_CreateCamera" Foreground="Black" />
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
-
-
+                         VerticalAlignment="Top" Height="450" Width="198">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="_CreateMesh" Foreground="Black" Click="BTN_CreateMesh"/>
+                                <MenuItem Header="_CreatePawn" Foreground="Black"  Click="BTN_CreatePawn"/>
+                                <MenuItem Header="_CreateMapObject" Foreground="Black" Click="BTN_CreateMapObject"/>
+                                <MenuItem Header="_CreateNavMesh" Foreground="Black" Click="BTN_CreateNavMesh"/>
+                                <MenuItem Header="_CreateTerrain" Foreground="Black" Click="BTN_CreateTerrain"/>
+                                <MenuItem Header="_CreateLight" Foreground ="Black" Click="BTN_CreateLight" />
+                                <MenuItem Header="_CreateMeshEffect" Foreground="Black" Click="BTN_CreateMeshEffect" />
+                                <MenuItem Header="_CreateTextureEffect" Foreground="Black" Click="BTN_CreateTextureEffect" />
+                                <MenuItem Header="_CreateUIPanel"  Foreground="Black"  Click="BTN_CreateUIPanel" />
+                                <MenuItem Header="_CreateEffect" Foreground="Black" />
+                                <MenuItem Header="_CreateCamera" Foreground="Black" />
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                </StackPanel>
             </TabItem>
         </TabControl>
         <TabControl Grid.Row="1" Grid.Column="1" SelectionChanged="SceneTab_SelectionChanged">
@@ -165,7 +166,7 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal" >
                                         <TextBlock Width="10"></TextBlock>
-                                        <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        <CheckBox x:Name="ActiveCheckBox" VerticalAlignment="Center" HorizontalAlignment="Center"
                                   Checked="Active_Checked"
                                   Unchecked="Active_Unchecked"  
                                   IsChecked="True"/>
@@ -174,7 +175,12 @@
                                         <TextBox Width="120" x:Name="GameObjectName" TextChanged="GameObjectName_TextChanged" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Width="40"></TextBlock>
+                                        <TextBlock Width="10"></TextBlock>
+                                        <CheckBox x:Name="FixCheckBox" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                  Checked="Fix_Checked"
+                                  Unchecked="Fix_Unchecked"  
+                                  IsChecked="False"/>
+                                        <TextBlock Width="10"></TextBlock>
                                         <TextBlock Foreground="White" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center">Tag</TextBlock>
                                         <ComboBox  x:Name="ObjectTag" Width="120" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="Tag_Selected">
                                             <ComboBoxItem Content="Default" />
@@ -704,7 +710,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
-                            <GroupBox x:Name="UIData" IsEnabled="True" Visibility="Visible">
+                            <GroupBox x:Name="UIData" IsEnabled="True" Visibility="Collapsed">
                                 <GroupBox.Header>
                                     <Label>UI Data</Label>
                                 </GroupBox.Header>
@@ -817,56 +823,71 @@
             </TabItem>
             <TabItem Header="Setting">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
-                <StackPanel>
-                    <GroupBox x:Name="EditCamSettingGroup">
-                        <GroupBox.Header>
-                            <Label  Content="Editor Camera Setting"/>
-                        </GroupBox.Header>
-                        <StackPanel>
-                            <TextBlock Height="5"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="80" Foreground="White" Text="Move Speed  "/>
-                                <TextBox x:Name="TEXTBOX_EditCamSpeed" Width="135" Foreground="White" Text="0"
-                                         TextChanged="EditCamMoveSpeed_TextChanged"/>
-                            </StackPanel>
-                            <TextBlock Height="5"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="80" Foreground="White" Text="Far"/>
-                                <TextBox Width="135" Foreground="White" Text="10000" IsEnabled="False"/>
-                            </StackPanel>
-                            <TextBlock Height="5"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="80" Foreground="White" Text="Near"/>
-                                <TextBox Width="135" Foreground="White" Text="1" IsEnabled="False"/>
-                            </StackPanel>
-                            <TextBlock Height="5"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="80" Foreground="White" Text="Fov"/>
-                                <TextBox Width="135" Foreground="White" Text="90" IsEnabled="False"/>
-                            </StackPanel>
-                             <TextBlock Height="5"/>
+                    <StackPanel>
+                        <GroupBox x:Name="EditCamSettingGroup">
+                            <GroupBox.Header>
+                                <Label  Content="Editor Camera Setting"/>
+                            </GroupBox.Header>
                             <StackPanel>
-                                <TextBlock >Position</TextBlock>
+                                <TextBlock Height="5"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
-                                    <TextBox x:Name="EditCamPositionX" Width="50" TextChanged="EditCamPositionX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
-                                    <TextBox x:Name="EditCamPositionY" Width="50" TextChanged="EditCamPositionY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
-                                    <TextBox x:Name="EditCamPositionZ" Width="50" TextChanged="EditCamPositionZ_TextChanged">0</TextBox>
+                                    <TextBlock Width="80" Foreground="White" Text="Move Speed  "/>
+                                    <TextBox x:Name="TEXTBOX_EditCamSpeed" Width="135" Foreground="White" Text="0"
+                                         TextChanged="EditCamMoveSpeed_TextChanged"/>
                                 </StackPanel>
-                                <TextBlock>Rotation</TextBlock>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
-                                    <TextBox x:Name="EditCamRotationX" Width="50" TextChanged="EditCamRotationX_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
-                                    <TextBox x:Name="EditCamRotationY" Width="50" TextChanged="EditCamRotationY_TextChanged">0</TextBox>
-                                    <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
-                                    <TextBox x:Name="EditCamRotationZ" Width="50" TextChanged="EditCamRotationZ_TextChanged">0</TextBox>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80" Foreground="White" Text="Far"/>
+                                    <TextBox Width="135" Foreground="White" Text="10000" IsEnabled="False"/>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80" Foreground="White" Text="Near"/>
+                                    <TextBox Width="135" Foreground="White" Text="1" IsEnabled="False"/>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80" Foreground="White" Text="Fov"/>
+                                    <TextBox Width="135" Foreground="White" Text="90" IsEnabled="False"/>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel>
+                                    <TextBlock >Position</TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionX_MouseDown">X</TextBlock>
+                                        <TextBox x:Name="EditCamPositionX" Width="50" TextChanged="EditCamPositionX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionY_MouseDown">Y</TextBlock>
+                                        <TextBox x:Name="EditCamPositionY" Width="50" TextChanged="EditCamPositionY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="PositionZ_MouseDown">Z</TextBlock>
+                                        <TextBox x:Name="EditCamPositionZ" Width="50" TextChanged="EditCamPositionZ_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock>Rotation</TextBlock>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center"  MouseDown="RotationX_MouseDown">X</TextBlock>
+                                        <TextBox x:Name="EditCamRotationX" Width="50" TextChanged="EditCamRotationX_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationY_MouseDown">Y</TextBlock>
+                                        <TextBox x:Name="EditCamRotationY" Width="50" TextChanged="EditCamRotationY_TextChanged">0</TextBox>
+                                        <TextBlock Width="20" HorizontalAlignment="Center" TextAlignment="Center" MouseDown="RotationZ_MouseDown">Z</TextBlock>
+                                        <TextBox x:Name="EditCamRotationZ" Width="50" TextChanged="EditCamRotationZ_TextChanged">0</TextBox>
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </GroupBox>
+                        </GroupBox>
+                        <GroupBox x:Name="ToolSettingGroup">
+                            <GroupBox.Header>
+                                <Label  Content="Tool Setting"/>
+                            </GroupBox.Header>
+                            <StackPanel>
+                                <TextBlock Height="5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="133" Foreground="White" Text="Transform Move Speed  "/>
+                                    <TextBox x:Name="TEXTBOX_TransformMoveSpeed" Width="87" Foreground="White" Text="0"
+                                         TextChanged="TransformMoveSpeed_TextChanged"/>
+                                </StackPanel>
+                                <TextBlock Height="5"/>
+
+                            </StackPanel>
+                        </GroupBox>
                         <GroupBox x:Name="EngineConfig">
                             <GroupBox.Header>
                                 <Label Content="EngineConfig"/>
@@ -880,10 +901,10 @@
                                 <CheckBox Content="Full Screen"/>
                                 <Separator/>
                                 <CheckBox Content="ViewFrustum Cull"/>
-                                
+
                             </StackPanel>
                         </GroupBox>
-                </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </TabItem>
         </TabControl>

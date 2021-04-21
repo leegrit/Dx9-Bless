@@ -1,12 +1,12 @@
-{
+﻿{
   "Type": 5,
-  "Index": 2,
+  "Index": 92,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 2,
-    "Name": "DirectionalLight",
+    "Index": 92,
+    "Name": "Light",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
@@ -29,16 +29,16 @@
     }
   },
   "MeshData": {
-    "Index": 2,
+    "Index": 92,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 2,
+    "Index": 92,
     "Group": 0
   },
   "NavMeshData": {
-    "Index": 1,
+    "Index": 8,
     "CellCount": 0
   },
   "TerrainData": {
@@ -53,9 +53,9 @@
   "LightData": {
     "LightType": 0,
     "Direction": {
-      "X": 1.0,
-      "Y": 0.0,
-      "Z": 0.0
+      "X": 0.2,
+      "Y": -0.3,
+      "Z": 0.6
     },
     "Position": {
       "X": 0.0,
@@ -73,7 +73,7 @@
       "R": 1.0,
       "G": 1.0,
       "B": 1.0,
-      "A": 1.0
+      "A": 0.0
     },
     "DiffuseIntensity": 0.0,
     "Specular": {
@@ -83,7 +83,7 @@
       "A": 0.0
     },
     "SpecularIntensity": 0.0,
-    "SpecularPower": 0.0,
+    "SpecularPower": 3.0,
     "Range": 0.0,
     "Cone": 0.0,
     "Constant": 0.0,

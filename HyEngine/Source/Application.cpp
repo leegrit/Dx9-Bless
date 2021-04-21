@@ -82,18 +82,23 @@ void Application::Run()
 			// accumulate the elapsed time since the last frame
 			accumulatedTime += TIMER->getUnscaleDeltaTime();
 			
-			// now update the game logic with fixed delta time as often as possible
-			nLoops = 0;
-			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
+			if (accumulatedTime >= m_dt)
 			{
-				ENGINE->SimulateFrame();
-
 				accumulatedTime -= m_dt;
-				nLoops++;
+				ENGINE->SimulateFrame();
+				ENGINE->RenderFrame();
 			}
+// 			nLoops = 0;
+// 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
+// 			{
+// 				ENGINE->SimulateFrame();
+// 
+// 				accumulatedTime -= m_dt;
+// 				nLoops++;
+// 			}
 
 			// peek into the future and generate the output
-			ENGINE->RenderFrame();
+			//ENGINE->RenderFrame();
 		}
 	}
 

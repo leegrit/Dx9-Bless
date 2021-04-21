@@ -60,6 +60,12 @@ namespace HyEngine
 		void ViewFrustumCulling(const std::vector<GameObject*>& objs);
 		
 		bool IsInFrustumWithOutFar(D3DXVECTOR3& position);
+
+		/* 다른 용도로 컬링이 사용될 때 쓰는 함수 */
+		// Begin에 plane을 교체하고, End 때 원래 카메라 절두체로 되돌린다.
+		void BeginFrustumCull(D3DXMATRIX viewMat, D3DXMATRIX projMat);
+		bool FrustumCulling(GameObject* obj);
+		void EndFrustumCull();
 	protected :
 
 	protected:

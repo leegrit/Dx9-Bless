@@ -1,0 +1,52 @@
+#pragma once
+#include "GameObject.h"
+
+namespace HyEngine
+{
+	class HierarchyData;
+	class ENGINE_DLL MapObject : public GameObject
+	{
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTOR & DESTRUCTOR
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		explicit MapObject(Scene* scene, GameObject* parent, std::wstring name);
+		virtual ~MapObject();
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// INHERITED
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		virtual void Initialize(shared_ptr<HierarchyData> data);
+		virtual void Render() override;
+		virtual void UpdatedData(EDataType dataType) override;
+
+		static MapObject* Create(Scene* scene, GameObject* parent, std::wstring name, shared_ptr<HierarchyData> data)
+		{
+			MapObject* mesh = new MapObject(scene, parent, name);
+			mesh->Initialize(data);
+			return mesh;
+		}
+
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHODS
+		//////////////////////////////////////////////////////////////////////////
+	public :
+
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		ID3DXMesh* m_pMesh = nullptr;
+		std::vector<D3DMATERIAL9> m_mtrls;
+		std::vector<IDirect3DTexture9*> m_textures;
+
+
+	};
+
+}

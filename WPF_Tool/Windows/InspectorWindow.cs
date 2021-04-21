@@ -159,7 +159,12 @@ namespace WPF_Tool
             }
 
             selectedItem.Items.Clear();
-            Externs.RemoveNavPrim(Int32.Parse(selectedItem.Uid));
+            int value = 0;
+            bool isParse = Int32.TryParse(selectedItem.Uid, out value);
+            if (isParse == false)
+                return;
+
+            Externs.RemoveNavPrim(value);
 
             selected.navMeshData.cellCount = selected.cells.Count;
         }
@@ -291,7 +296,10 @@ namespace WPF_Tool
         {
             ValueChangeEvent();
             ComboBoxItem item = sender as ComboBoxItem;
-            int index = Int32.Parse(item.Uid);
+            int index;
+            bool isParse = Int32.TryParse(item.Uid, out index);
+            if (isParse == false)
+                return;
             AnimationIndex.Text = item.Uid;
             Externs.SetAnimation(index);
         }
@@ -308,6 +316,23 @@ namespace WPF_Tool
             ValueChangeEvent();
             Externs.InactiveEditObject();
         }
+        private void Fix_Checked(object sender, RoutedEventArgs e)
+        {
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            selectedHierarchy.bFix = true;
+            ShowInspector(selectedHierarchy);
+            //Externs.ActiveEditObject();
+        }
+
+        private void Fix_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (bWindowInit == false) return;
+            ValueChangeEvent();
+            selectedHierarchy.bFix = false;
+            ShowInspector(selectedHierarchy);
+            //Externs.InactiveEditObject();
+        }
 
         public void ShowInspector(HierarchyData data)
         {
@@ -316,12 +341,13 @@ namespace WPF_Tool
             ObjectTag.SelectedIndex = data.tagIndex;
             ObjectLayer.SelectedIndex = data.layerIndex;
             ObjectStatic.SelectedIndex = data.staticIndex;
-            PositionX.Text = data.gameObjectData.transform.position.x.ToString();
-            PositionY.Text = data.gameObjectData.transform.position.y.ToString();
-            PositionZ.Text = data.gameObjectData.transform.position.z.ToString();
-            RotationX.Text = data.gameObjectData.transform.rotation.x.ToString();
-            RotationY.Text = data.gameObjectData.transform.rotation.y.ToString();
-            RotationZ.Text = data.gameObjectData.transform.rotation.z.ToString();
+            FixCheckBox.IsChecked = data.bFix;
+            PositionX.Text = data.gameObjectData.transform.position.x.ToString("N2");
+            PositionY.Text = data.gameObjectData.transform.position.y.ToString("N2");
+            PositionZ.Text = data.gameObjectData.transform.position.z.ToString("N2");
+            RotationX.Text = data.gameObjectData.transform.rotation.x.ToString("N2");
+            RotationY.Text = data.gameObjectData.transform.rotation.y.ToString("N2");
+            RotationZ.Text = data.gameObjectData.transform.rotation.z.ToString("N2");
             ScaleX.Text = data.gameObjectData.transform.scale.x.ToString();
             ScaleY.Text = data.gameObjectData.transform.scale.y.ToString();
             ScaleZ.Text = data.gameObjectData.transform.scale.z.ToString();
@@ -539,7 +565,7 @@ namespace WPF_Tool
                         LightType.SelectedIndex = data.lightData.lightType;
 
                         /* Direction */
-                        DirectionX.Text = data.lightData.direction.x.ToString();
+                        DirectionX.Text = data.lightData.direction.x.ToString("N2");
                         DirectionY.Text = data.lightData.direction.y.ToString();
                         DirectionZ.Text = data.lightData.direction.z.ToString();
 
@@ -806,6 +832,30 @@ namespace WPF_Tool
                 default:
                     Debug.Assert(false);
                     break;
+            }
+            if (data.bFix == true)
+            {
+                TransformData.IsEnabled = false;
+                MapData.IsEnabled = false;
+                MeshData.IsEnabled = false;
+                TerrainData.IsEnabled = false;
+                AnimationData.IsEnabled = false;
+                CellData.IsEnabled = false;
+                LightData.IsEnabled = false;
+                EffectData.IsEnabled = false;
+                UIData.IsEnabled = false;
+            }
+            else
+            {
+                TransformData.IsEnabled = true;
+                MapData.IsEnabled = true;
+                MeshData.IsEnabled = true;
+                TerrainData.IsEnabled = true;
+                AnimationData.IsEnabled = true;
+                CellData.IsEnabled = true;
+                LightData.IsEnabled = true;
+                EffectData.IsEnabled = true;
+                UIData.IsEnabled = true;
             }
 
         }
@@ -1243,7 +1293,9 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             Vector3 editCamPos = default(Vector3);
             Externs.GetEditCameraPos(ref editCamPos);
@@ -1261,7 +1313,11 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (!isParse)
+            {
+                return;
+            }
 
             Vector3 editCamPos = default(Vector3);
             Externs.GetEditCameraPos(ref editCamPos);
@@ -1280,7 +1336,9 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             Vector3 editCamPos = default(Vector3);
             Externs.GetEditCameraPos(ref editCamPos);
@@ -1298,7 +1356,9 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             Vector3 editCamRot = default(Vector3);
             Externs.GetEditCameraRot(ref editCamRot);
@@ -1316,7 +1376,9 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             Vector3 editCamRot = default(Vector3);
             Externs.GetEditCameraRot(ref editCamRot);
@@ -1334,7 +1396,9 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             Vector3 editCamRot = default(Vector3);
             Externs.GetEditCameraRot(ref editCamRot);
@@ -1352,9 +1416,27 @@ namespace WPF_Tool
             TextBox textBox = sender as TextBox;
 
             float value;
-            value = float.Parse(textBox.Text);
+            bool isParse = float.TryParse(textBox.Text, out value);
+            if (isParse == false)
+                return;
 
             cameraController.SetMoveSpeed(value);
+        }
+        private void TransformMoveSpeed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (isSelecting)
+                return;
+            if (!bWindowInit)
+                return;
+            ValueChangeEvent();
+            TextBox textBox = sender as TextBox;
+            float value;
+            bool isParse = float.TryParse(textBox.Text, out value);
+
+            if (isParse == true)
+            {
+                gameObjectController.SetMoveSpeed(value);
+            }
         }
         private void GameObjectName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -1430,7 +1512,11 @@ namespace WPF_Tool
                 return;
             ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountX = Int32.Parse( item.Text);
+            int value;
+            bool isParse = Int32.TryParse(item.Text, out value);
+            if (isParse == false)
+                return;
+            selectedHierarchy.terrainData.vertexCountX = value;
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainZ_TextChanged(object sender, TextChangedEventArgs e)
@@ -1442,7 +1528,12 @@ namespace WPF_Tool
                 return;
             ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.vertexCountZ = Int32.Parse(item.Text);
+            int value;
+            bool isParse = Int32.TryParse(item.Text, out value);
+            if (isParse == false)
+                return;
+
+            selectedHierarchy.terrainData.vertexCountZ = value;
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureX_TextChanged(object sender, TextChangedEventArgs e)
@@ -1454,7 +1545,11 @@ namespace WPF_Tool
                 return;
             ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.textureCountX = Int32.Parse(item.Text);
+            int value;
+            bool isParse = Int32.TryParse(item.Text, out value);
+            if (isParse == false)
+                return;
+            selectedHierarchy.terrainData.textureCountX = value;
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainTextureZ_TextChanged(object sender, TextChangedEventArgs e)
@@ -1466,7 +1561,11 @@ namespace WPF_Tool
                 return;
             ValueChangeEvent();
             TextBox item = sender as TextBox;
-            selectedHierarchy.terrainData.textureCountZ = UInt32.Parse(item.Text);
+            int value;
+            bool isParse = Int32.TryParse(item.Text, out value);
+            if (isParse == false)
+                return;
+            selectedHierarchy.terrainData.textureCountZ = value;
             Externs.InsertTerrainData(ref selectedHierarchy.terrainData);
         }
         private void TerrainInterval_TextChanged(object sender, TextChangedEventArgs e)

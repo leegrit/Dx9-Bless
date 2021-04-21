@@ -329,6 +329,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"Collider", PATH->ShadersPathW() + L"Collider.fx");
 	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
 	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
+	InsertShader(L"SkinnedMesh", PATH->ShadersPathW() + L"SkinnedMesh.fx");
 	return true;
 }
 

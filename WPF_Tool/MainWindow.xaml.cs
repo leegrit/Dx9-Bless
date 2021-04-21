@@ -103,6 +103,10 @@ namespace WPF_Tool
             EditCamRotationZ.Text = editCamRot.z.ToString("N3");
 
             TEXTBOX_EditCamSpeed.Text = cameraController.GetMoveSpeed().ToString("N3");
+
+
+            HotKeyUpdate();
+
             if (GameMode == false && bUpdate == true)
                 Externs.Update();
             else if(GameMode == true)
@@ -210,7 +214,7 @@ namespace WPF_Tool
             {
                 case Key.Delete:
                     if (selectedIndex == -1) return;
-
+                    ValueChangeEvent();
                     int index = 0;
                     foreach (var hierarchyItem in hierarchyList)
                     {
@@ -236,6 +240,7 @@ namespace WPF_Tool
         {
             CellList.Items.Clear();
 
+            ValueChangeEvent();
         }
 
         List<HierarchyData> hierarchyList = new List<HierarchyData>();
@@ -270,11 +275,17 @@ namespace WPF_Tool
         int gameObjectIndex = 0;
         IInputElement lastFocusedElement;
         HierarchyData selectedHierarchy;
+        HierarchyData copyHierarchy;
         private int selectedIndex = -1;
         public int SelectedIndex
         {
             set
             {
+                if (value == -1)
+                {
+                    selectedIndex = -1;
+                    return;
+                }
                 isSelecting = true;
                 selectedIndex = value;
                 Externs.SelectEditObject(selectedIndex);

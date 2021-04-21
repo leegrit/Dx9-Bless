@@ -8,8 +8,8 @@
 bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchy(std::wstring filePath,_Out_ AnimationController ** ppAniCtrl,_Out_ D3DXFRAME ** ppRootFrame)
 {
 	auto& iter = meshHierarchyMap.find(filePath);
-	//if (meshHierarchyMap.end() == iter)
-	//{
+	if (meshHierarchyMap.end() == iter)
+	{
 		std::wstring dirPath = Path::GetDirectoryName(filePath);
 		/* Create Hierarchy Allocator */
 		MeshHierarchy * pLoader = new MeshHierarchy(dirPath);
@@ -52,7 +52,14 @@ bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchy(std::wstring filePath,_O
 
 		*ppAniCtrl = pAnimationController;
 		*ppRootFrame = (D3DXFRAME_DERIVED*)pRootFrame;
-	//}
+	}
+	else
+	{
+		HierarchyedMesh * result = meshHierarchyMap[filePath];
+
+		*ppAniCtrl = new AnimationController(*result->pAniCtrl);
+		*ppRootFrame = result->pRootFrame;
+	}
 // 	else
 // 	{
 // 		HierarchyedMesh * result = meshHierarchyMap[filePath];

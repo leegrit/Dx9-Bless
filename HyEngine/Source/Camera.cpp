@@ -482,3 +482,112 @@ bool HyEngine::Camera::IsInFrustumWithOutFar(D3DXVECTOR3 & position)
 
 	return true;
 }
+
+void HyEngine::Camera::BeginFrustumCull(D3DXMATRIX viewMat, D3DXMATRIX projMat)
+{
+	D3DXMATRIX M = viewMat * projMat;
+
+	m_leftPlane.a = M._14 + M._11;
+	m_leftPlane.b = M._24 + M._21;
+	m_leftPlane.c = M._34 + M._31;
+	m_leftPlane.d = M._44 + M._41;
+	D3DXPlaneNormalize(&m_leftPlane, &m_leftPlane);
+
+	m_rightPlane.a = M._14 - M._11;
+	m_rightPlane.b = M._24 - M._21;
+	m_rightPlane.c = M._34 - M._31;
+	m_rightPlane.d = M._44 - M._41;
+	D3DXPlaneNormalize(&m_rightPlane, &m_rightPlane);
+
+	m_topPlane.a = M._14 + M._12;
+	m_topPlane.b = M._24 + M._22;
+	m_topPlane.c = M._34 + M._32;
+	m_topPlane.d = M._44 + M._42;
+	D3DXPlaneNormalize(&m_topPlane, &m_topPlane);
+
+	m_bottomPlane.a = M._14 + M._12;
+	m_bottomPlane.b = M._24 + M._22;
+	m_bottomPlane.c = M._34 + M._32;
+	m_bottomPlane.d = M._44 + M._42;
+	D3DXPlaneNormalize(&m_bottomPlane, &m_bottomPlane);
+
+	m_nearPlane.a = M._13;
+	m_nearPlane.b = M._23;
+	m_nearPlane.c = M._33;
+	m_nearPlane.d = M._43;
+	D3DXPlaneNormalize(&m_nearPlane, &m_nearPlane);
+
+	m_farPlane.a = M._14 - M._13;
+	m_farPlane.b = M._24 - M._23;
+	m_farPlane.c = M._34 - M._33;
+	m_farPlane.d = M._44 - M._43;
+	D3DXPlaneNormalize(&m_farPlane, &m_farPlane);
+}
+
+bool HyEngine::Camera::FrustumCulling(GameObject * obj)
+{
+	assert(obj != nullptr);
+
+	bool result = false;
+
+	Mesh* mesh = nullptr;
+	mesh = dynamic_cast<Mesh*>(obj);
+
+	Terrain * terrain = nullptr;
+	terrain = dynamic_cast<Terrain*>(obj);
+
+	NavPrimitive * navPrimitive = nullptr;
+	navPrimitive = dynamic_cast<NavPrimitive*>(obj);
+
+	UIElement* uiElement = nullptr;
+	uiElement = dynamic_cast<UIElement*>(obj);
+
+	/* 메쉬인경우 */
+	if (mesh != nullptr)
+	{
+		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
+		float radius = 0;
+		bool isSucceeded = mesh->ComputeBoundingSphere(&center, &radius);
+
+		if (isSucceeded == false)
+		{
+			SEND_LOG_WARNING("Mesh CompiuteBoundingSphere Failed");
+			return true;
+		}
+
+		result = IsInFrustumWithMesh(center, radius);
+	}
+	else if (terrain != nullptr)
+	{
+		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
+		float radius = 0;
+		bool isSucceeded = terrain->ComputeBoundingSphere(&center, &radius);
+		if (isSucceeded == false)
+		{
+			SEND_LOG_WARNING("Terrain CompiuteBoundingSphere Failed");
+			return true;
+		}
+
+		result = IsInFrustumWithMesh(center, radius);
+	}
+	else if (navPrimitive != nullptr)
+	{
+		result = true;
+	}
+	else if (uiElement != nullptr)
+	{
+		result = true;
+	}
+	else
+	{
+		result = IsInFrustum(obj->m_pTransform->m_position.operator D3DXVECTOR3());
+	}
+
+	return !result;
+}
+
+void HyEngine::Camera::EndFrustumCull()
+{
+	/* 원상복귀 */
+	FrustumUpdate();
+}

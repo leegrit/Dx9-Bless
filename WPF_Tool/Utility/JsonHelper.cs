@@ -16,8 +16,31 @@ namespace WPF_Tool.Utility
     {
         public static bool Write(HierarchyData data, ref string outFileName)
         {
-            string fileName;
-            fileName = data.gameObjectData.name;
+            string fileName = null;
+            switch (data.type)
+            {
+                case GameObjectType.Mesh:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.HierarchyDataPath);
+                    break;
+                case GameObjectType.Pawn:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.HierarchyDataPath);
+                    break;
+                case GameObjectType.MapObject:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.HierarchyDataPath);
+                    break;
+                case GameObjectType.NavMesh:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.NavMeshData);
+                    break;
+                case GameObjectType.Terrain:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.TerrainDataPath);
+                    break;
+                case GameObjectType.Light:
+                    fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Hierarchy", ".json", Paths.LightDataPath);
+                    break;
+            }
+            if (fileName == null) return false;
+            //string fileName;
+            // fileName = data.gameObjectData.name;
 
             var dataJson = ConvertToJson(data);
 
@@ -46,8 +69,10 @@ namespace WPF_Tool.Utility
         }
         public static bool Write(ChunkMapData data, ref string outFileName)
         {
-            string fileName;
-            fileName = "ChunkMap_" + data.group.ToString();
+            string fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "ChunkMapData", ".json", Paths.MapDataPath);
+            if (fileName == null) return false;
+            // string fileName;
+            //fileName = "ChunkMap_" + data.group.ToString();
 
 
             var dataJson = new JObject();
@@ -105,7 +130,8 @@ namespace WPF_Tool.Utility
 
         public static bool Write(List<HierarchyData> datas, ref string outFileName)
         {
-            string fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Scene", ".json");
+            string fileName = ShowSaveFileDialog("Json files (*.json)|*.json|Text files (*.txt)|*.txt", 0, "Scene", ".json", Paths.SceneDataPath);
+            if (fileName == null) return false;
             outFileName = fileName;
             var sceneJson = new JObject();
             sceneJson.Add("HierarchyCount", datas.Count);
@@ -696,99 +722,114 @@ namespace WPF_Tool.Utility
             switch (type)
             {
                 case EDataType.Hierarchy:
-                    if (System.IO.Directory.Exists(Paths.HierarchyDataPath))
-                    {
-                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.HierarchyDataPath);
-                        int count = 0;
-                        foreach (var item in info.GetFiles())
-                        {
-                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
-                            {
-                                count++;
-                                // 같은게 있으면 count를 늘려준다.
-                                // 중복이 여러 개 있을 수도 있기 때문.
-                            }
-                        }
-                        if (count != 0)
-                            fileName = fileName + count;
-                    }
+                    //if (System.IO.Directory.Exists(Paths.HierarchyDataPath))
+                    //{
+                    //    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.HierarchyDataPath);
+                    //    int count = 0;
+                    //    foreach (var item in info.GetFiles())
+                    //    {
+                    //        if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                    //        {
+                    //            count++;
+                    //            // 같은게 있으면 count를 늘려준다.
+                    //            // 중복이 여러 개 있을 수도 있기 때문.
+                    //        }
+                    //    }
+                    //    if (count != 0)
+                    //        fileName = fileName + count;
+                    //}
 
-                    using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //using (StreamWriter sw = new StreamWriter(Paths.HierarchyDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //{
+                    //    sw.Write(json.ToString());
+                    //}
+                    //outFileName = fileName + ".json";
+                    using (StreamWriter sw = new StreamWriter( fileName , false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
-                    outFileName = fileName + ".json";
+                    outFileName = fileName;
                     break;
 
                 case EDataType.Map:
                     // map data는 만약 중복일 경우 덮어쓰는데
                     // 실수를 방지하기 위해 backup폴더에 저장해두고 덮어쓴다.
-                    if (System.IO.Directory.Exists(Paths.MapDataPath))
-                    {
-                        string backupFileName = fileName;
-                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.MapDataPath);
+                    //if (System.IO.Directory.Exists(Paths.MapDataPath))
+                    //{
+                    //    string backupFileName = fileName;
+                    //    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.MapDataPath);
 
-                        int count = 0;
-                        foreach (var item in info.GetFiles())
-                        {
-                            if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
-                            {
-                                count++;
-                            }
-                        }
-                        if (count != 0)
-                        {
-                            backupFileName = backupFileName + count;
-
-
-
-                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
-                            {
-                                sw.Write(json.ToString());
-                            }
-                        }
-                    }
+                    //    int count = 0;
+                    //    foreach (var item in info.GetFiles())
+                    //    {
+                    //        if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
+                    //        {
+                    //            count++;
+                    //        }
+                    //    }
+                    //    if (count != 0)
+                    //    {
+                    //        backupFileName = backupFileName + count;
 
 
-                    using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json",false, new UTF8Encoding(false)))
+
+                    //        using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
+                    //        {
+                    //            sw.Write(json.ToString());
+                    //        }
+                    //    }
+                    //}
+
+
+                    //using (StreamWriter sw = new StreamWriter(Paths.MapDataPath + fileName + ".json",false, new UTF8Encoding(false)))
+                    //{
+                    //    sw.Write(json.ToString());
+                    //}
+                    //outFileName = fileName + ".json";
+                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
                     {
                         sw.Write(json.ToString());
                     }
-                    outFileName = fileName + ".json";
+                    outFileName = fileName;
                     break;
                 case EDataType.NavMesh:
-                    if (System.IO.Directory.Exists(Paths.NavMeshData))
-                    {
-                        string backupFileName = fileName;
-                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.NavMeshData);
+                    //if (System.IO.Directory.Exists(Paths.NavMeshData))
+                    //{
+                    //    string backupFileName = fileName;
+                    //    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.NavMeshData);
 
-                        int count = 0;
-                        foreach (var item in info.GetFiles())
-                        {
-                            if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
-                            {
-                                count++;
-                            }
-                        }
-                        if (count != 0)
-                        {
-                            backupFileName = backupFileName + count;
-
-
-
-                            using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
-                            {
-                                sw.Write(json.ToString());
-                            }
-                        }
-                    }
+                    //    int count = 0;
+                    //    foreach (var item in info.GetFiles())
+                    //    {
+                    //        if (item.Name == backupFileName + ".json" || item.Name == backupFileName + count + ".json")
+                    //        {
+                    //            count++;
+                    //        }
+                    //    }
+                    //    if (count != 0)
+                    //    {
+                    //        backupFileName = backupFileName + count;
 
 
-                    using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, new UTF8Encoding(false)))
+
+                    //        using (StreamWriter sw = new StreamWriter(Paths.BackupPath + backupFileName + ".json", false, new UTF8Encoding(false)))
+                    //        {
+                    //            sw.Write(json.ToString());
+                    //        }
+                    //    }
+                    //}
+
+
+                    //using (StreamWriter sw = new StreamWriter(Paths.NavMeshData + fileName + ".json", false, new UTF8Encoding(false)))
+                    //{
+                    //    sw.Write(json.ToString());
+                    //}
+                    //outFileName = fileName + ".json";
+                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
                     {
                         sw.Write(json.ToString());
                     }
-                    outFileName = fileName + ".json";
+                    outFileName = fileName;
                     break;
                 case EDataType.Scene:
                     using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
@@ -798,52 +839,62 @@ namespace WPF_Tool.Utility
                     outFileName = fileName;
                     break;
                 case EDataType.Terrain:
-                    if (System.IO.Directory.Exists(Paths.TerrainDataPath))
-                    {
-                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.TerrainDataPath);
-                        int count = 0;
-                        foreach (var item in info.GetFiles())
-                        {
-                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
-                            {
-                                count++;
-                                // 같은게 있으면 count를 늘려준다.
-                                // 중복이 여러 개 있을 수도 있기 때문.
-                            }
-                        }
-                        if (count != 0)
-                            fileName = fileName + count;
-                    }
+                    //if (System.IO.Directory.Exists(Paths.TerrainDataPath))
+                    //{
+                    //    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.TerrainDataPath);
+                    //    int count = 0;
+                    //    foreach (var item in info.GetFiles())
+                    //    {
+                    //        if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                    //        {
+                    //            count++;
+                    //            // 같은게 있으면 count를 늘려준다.
+                    //            // 중복이 여러 개 있을 수도 있기 때문.
+                    //        }
+                    //    }
+                    //    if (count != 0)
+                    //        fileName = fileName + count;
+                    //}
 
-                    using (StreamWriter sw = new StreamWriter(Paths.TerrainDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //using (StreamWriter sw = new StreamWriter(Paths.TerrainDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //{
+                    //    sw.Write(json.ToString());
+                    //}
+                    //outFileName = fileName + ".json";
+                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
                     {
                         sw.Write(json.ToString());
                     }
-                    outFileName = fileName + ".json";
+                    outFileName = fileName;
                     break;
                 case EDataType.Light:
-                    if (System.IO.Directory.Exists(Paths.LightDataPath))
-                    {
-                        System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.LightDataPath);
-                        int count = 0;
-                        foreach (var item in info.GetFiles())
-                        {
-                            if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
-                            {
-                                count++;
-                                // 같은게 있으면 count를 늘려준다.
-                                // 중복이 여러 개 있을 수도 있기 때문.
-                            }
-                        }
-                        if (count != 0)
-                            fileName = fileName + count;
-                    }
+                    //if (System.IO.Directory.Exists(Paths.LightDataPath))
+                    //{
+                    //    System.IO.DirectoryInfo info = new System.IO.DirectoryInfo(Paths.LightDataPath);
+                    //    int count = 0;
+                    //    foreach (var item in info.GetFiles())
+                    //    {
+                    //        if (item.Name == fileName + ".json" || item.Name == fileName + count + ".json")
+                    //        {
+                    //            count++;
+                    //            // 같은게 있으면 count를 늘려준다.
+                    //            // 중복이 여러 개 있을 수도 있기 때문.
+                    //        }
+                    //    }
+                    //    if (count != 0)
+                    //        fileName = fileName + count;
+                    //}
 
-                    using (StreamWriter sw = new StreamWriter(Paths.LightDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //using (StreamWriter sw = new StreamWriter(Paths.LightDataPath + fileName + ".json", false, new UTF8Encoding(false)))
+                    //{
+                    //    sw.Write(json.ToString());
+                    //}
+                    //outFileName = fileName + ".json";
+                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
                     {
                         sw.Write(json.ToString());
                     }
-                    outFileName = fileName + ".json";
+                    outFileName = fileName;
                     break;
                 default:
                     outFileName = default(string);
@@ -902,13 +953,15 @@ namespace WPF_Tool.Utility
             string filter,
             int filterIndex,
             string defaultFileName,
-            string defaultExtension
+            string defaultExtension,
+            string initialDirectory
         )
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.InitialDirectory = Paths.SceneDataPath;
-                           
+            saveFileDialog.InitialDirectory = initialDirectory;
+
+
             saveFileDialog.Filter = filter;
             saveFileDialog.FilterIndex = filterIndex + 1;
             saveFileDialog.FileName = defaultFileName;

@@ -75,6 +75,7 @@ namespace HyEngine
 						events.erase(events.begin() + i);
 					}
 				}
+				m_theRouter[eventType] = events;
 			}
 			// 함수 비교가 불가능해서 
 			// 특정 함수만 제거할 수 없음

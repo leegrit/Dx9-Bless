@@ -8,6 +8,8 @@ Player::Player(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8)
 {
 	SetLayer(Layer::Player);
+
+	SetSkinningType(ESkinningType::HardwareSkinning);
 }
 
 Player::~Player()

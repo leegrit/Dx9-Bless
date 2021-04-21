@@ -28,12 +28,52 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 {
 	D3DXMESHCONTAINER_DERIVED* pMeshContainer = new D3DXMESHCONTAINER_DERIVED();
 	ZeroMemory(pMeshContainer, sizeof(D3DXMESHCONTAINER_DERIVED));
-
+	
 	Allocate_Name(&pMeshContainer->Name, name);
 
 	pMeshContainer->MeshData.Type = D3DXMESHTYPE_MESH;
 
 	LPD3DXMESH pMesh = pMeshData->pMesh;
+
+	/* Get adjacency */
+	pMeshContainer->pAdjacency = new DWORD[pMesh->GetNumFaces() * 3];
+	pMesh->GenerateAdjacency(0.0001f, pMeshContainer->pAdjacency);
+
+	/* Get Face */
+	DWORD paletteEntry = pSkinInfo->GetNumBones();
+	DWORD maxVtxInfl;
+	pSkinInfo->GetMaxVertexInfluences(&maxVtxInfl);
+	DWORD numBoneComboEntries = 0;
+	//ID3DXBuffer* pBoneComboTable = nullptr;
+	ID3DXMesh * pSkinnedMesh = nullptr;
+
+
+	/* Convert To IndexedBlendedMesh */
+	//////////////////////////////////////////////////////////////////////////
+#pragma region Convert To IndexedBlendedMesh
+	
+	HRESULT hr = pSkinInfo->ConvertToIndexedBlendedMesh
+	(
+		pMesh,
+		pMesh->GetOptions(),//D3DXMESH_MANAGED | D3DXMESH_WRITEONLY,
+		paletteEntry,
+		pMeshContainer->pAdjacency,
+		NULL,
+		NULL,
+		NULL,
+		&maxVtxInfl,
+		&numBoneComboEntries,
+		&pMeshContainer->pBoneCombinationBuf,
+		&pSkinnedMesh
+	);
+	assert(SUCCEEDED(hr));
+
+
+	pMesh = pSkinnedMesh;
+	
+	
+#pragma endregion
+	//////////////////////////////////////////////////////////////////////////
 
 	/* Calculate Tangent */
 	D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
@@ -75,24 +115,26 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 
 	}
 	pMesh->UpdateSemantics(meshDeclaration);
-
-
-	/* Get adjacency */
-	pMeshContainer->pAdjacency = new DWORD[pMesh->GetNumFaces() * 3];
-	pMesh->GenerateAdjacency(0.0001f, pMeshContainer->pAdjacency);
-
+	
 	/* Compute tangent vector */
 	D3DXComputeTangent(pMesh, 0, 0, 0, 1, pMeshContainer->pAdjacency);
 
 
 
+	//unsigned long numFaces = pMesh->GetNumFaces();
 
+	/* Get Face */
 	unsigned long numFaces = pMesh->GetNumFaces();
-
 
 	unsigned long fvf = pMesh->GetFVF();
 
 	pMesh->CloneMesh(pMesh->GetOptions(), meshDeclaration, DEVICE, &pMeshContainer->MeshData.pMesh);
+
+
+	pMeshContainer->MeshData.pMesh->GetAttributeTable(NULL, &pMeshContainer->numAttributeGroups);
+	pMeshContainer->pAttributeTable = new D3DXATTRIBUTERANGE[pMeshContainer->numAttributeGroups];
+	pMeshContainer->MeshData.pMesh->GetAttributeTable(pMeshContainer->pAttributeTable, NULL);
+
 
 	// 재질의 개수를 채워주는데 없는 경우도 있기 때문에 조건문을 달아준다.
 	pMeshContainer->NumMaterials = (numMaterials == 0 ? 1 : numMaterials);
@@ -177,8 +219,8 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 		return S_OK;
 
 	pSkinInfo->SetDeclaration(meshDeclaration);
-
-
+	//pSkinInfo->Remap(pMesh->GetNumVertices(), (DWORD*)pRemapVtx->GetBufferPointer());
+	
 	pMeshContainer->pSkinInfo = pSkinInfo;
 	pMeshContainer->pSkinInfo->AddRef();
 

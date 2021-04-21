@@ -9,6 +9,33 @@ namespace WPF_Tool.Data
 {
     public class HierarchyData
     {
+        public HierarchyData()
+        {
+
+        }
+        public HierarchyData(HierarchyData data)
+        {
+            type = data.type;
+            Index = data.index;
+            tagIndex = data.tagIndex;
+            layerIndex = data.layerIndex;
+            staticIndex = data.staticIndex;
+            gameObjectData = data.gameObjectData;
+            meshData = data.meshData;
+            mapData = data.mapData;
+            navMeshData = data.navMeshData;
+            terrainData = data.terrainData;
+            lightData = data.lightData;
+            effectData = data.effectData;
+            uiData = data.uiData;
+            if (data.cells != null)
+            {
+                for (int i = 0; i < data.cells.Count; i++)
+                {
+                    cells.Add(data.cells[i]);
+                }
+            }
+        }
         public GameObjectType type;
         private int index;
         public int Index
@@ -28,6 +55,8 @@ namespace WPF_Tool.Data
         public int tagIndex;
         public int layerIndex;
         public int staticIndex;
+        /* Fix가 true일 때 다른 값 변경 불가능하다. */
+        public bool bFix; 
 
         /* Serialized Data */
         public GameObjectData gameObjectData;

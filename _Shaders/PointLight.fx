@@ -113,7 +113,7 @@ float4 PointLightPS(
 	float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
 	 
-	if (specularMap.a == 0.2) discard;
+	//if (specularMap.a == 0.2) discard;
 
 	float4 worldPos;
 	worldPos.x = texcoord.x * 2.f - 1.f;

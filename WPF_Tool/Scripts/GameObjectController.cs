@@ -47,6 +47,11 @@ namespace WPF_Tool.Scripts
             Mouse.AddMouseUpHandler(obj, OnMouseUp);
         }
 
+        public void SetMoveSpeed(float speed)
+        {
+            moveSpeed = speed;
+        }
+
 
         public void PickPositionX(HierarchyData data)
         {
@@ -164,6 +169,10 @@ namespace WPF_Tool.Scripts
         {
             if (clickState == EClickState.None)
                 return;
+
+            if (clickedData.bFix == true)
+                return;
+
 
             Point point = Mouse.GetPosition((IInputElement)dependencyObject);
             Vector2 curPos;

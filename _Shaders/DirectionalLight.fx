@@ -159,8 +159,8 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	float4 stashMap = tex2D(StashSampler, input.texcoord);
 
 	/* Skybox */
-	if (specularMap.a == 0.2)
-		return albedoMap;
+	//if (specularMap.a <= 0.0001)
+	//	return albedoMap;
 
 	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).a;
 

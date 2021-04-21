@@ -106,6 +106,8 @@ void HyEngine::StaticMesh::Render()
 void HyEngine::StaticMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 	GameObject::DrawPrimitive(pShader);
+	pShader->SetBool("IsSkinnedMesh", false);
+	pShader->CommitChanges();
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		m_pMesh->DrawSubset(i);
@@ -199,7 +201,10 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 					{
 						m_textureNames.push_back(L"");
 						// no texture for the ith subset
-						m_textures.push_back(0);
+						m_textures.push_back(NULL);
+						m_normals.push_back(NULL);
+						m_emissives.push_back(NULL);
+						m_speculars.push_back(NULL);
 					}
 				}
 			}

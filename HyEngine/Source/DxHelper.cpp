@@ -1,6 +1,8 @@
 #include "StandardEngineFramework.h"
 #include "DxHelper.h"
 #include "VertexTypes.h"
+#include "Terrain.h"
+#include "NavPrimitive.h"
 
 using namespace HyEngine;
 
@@ -67,6 +69,8 @@ void DxHelper::CalculateNormal(const D3DXVECTOR3 * tangent, const D3DXVECTOR3 * 
 	normal->y = normal->y / length;
 	normal->z = normal->z / length;
 }
+
+
 
 // void DxHelper::CalculateNormal(const D3DXVECTOR3 * tangent, const D3DXVECTOR3 * binormal, _Out_ D3DXVECTOR3* normal)
 // {

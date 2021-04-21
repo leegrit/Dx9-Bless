@@ -128,5 +128,7 @@ namespace HyEngine
 			_Out_ D3DXVECTOR3 * tangent, _Out_ D3DXVECTOR3* binormal);
 
 		static void CalculateNormal(const D3DXVECTOR3 * tangent, const D3DXVECTOR3 * binormal, _Out_ D3DXVECTOR3* normal);
+
+
 	};
 }

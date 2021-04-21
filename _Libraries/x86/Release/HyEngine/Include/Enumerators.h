@@ -161,3 +161,9 @@ enum class EGameMode
 	GAME_MODE,
 	EDIT_MODE
 };
+
+enum class ESkinningType
+{
+	SoftwareSkinning,
+	HardwareSkinning,
+};

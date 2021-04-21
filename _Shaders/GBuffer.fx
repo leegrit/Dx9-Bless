@@ -214,7 +214,7 @@ void GBufferSkyboxPS(
 	outDepth = float4(0, 0, 0, 0);
 	outAlbedo = albedo;
 	outNormal = float4(0, 0, 0, 0);
-	outSpecular = float4(0, 0, 0, 0.2);
+	outSpecular = float4(0, 0, 0, 0);
 
 }
 

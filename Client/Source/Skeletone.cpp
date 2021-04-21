@@ -10,6 +10,8 @@ Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5)
 {
 	SetLayer(Layer::Enemy);
+
+	SetSkinningType(ESkinningType::HardwareSkinning);
 }
 
 Skeletone::~Skeletone()
