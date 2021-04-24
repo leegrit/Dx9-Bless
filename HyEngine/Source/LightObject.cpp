@@ -44,6 +44,14 @@ void HyEngine::LightObject::Initialize(std::wstring dataPath)
 void HyEngine::LightObject::Update()
 {
 	GameObject::Update();
+	if (GetViewFrustumCulled() == true)
+	{
+		m_pLight->SetActive(false);
+	}
+	else
+	{
+		m_pLight->SetActive(true);
+	}
 }
 
 void HyEngine::LightObject::UpdatedData(EDataType dataType)
@@ -107,4 +115,9 @@ void HyEngine::LightObject::OnDisable()
 {
 	GameObject::OnDisable();
 	m_pLight->SetActive(false);
+}
+
+Light * HyEngine::LightObject::GetLight()
+{
+	return m_pLight;
 }

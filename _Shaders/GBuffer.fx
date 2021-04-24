@@ -311,7 +311,7 @@ void GBufferWithShadowPS(
 		outNormal.rgb = float3(bumpNormal * 0.5f + 0.5f).rgb;
 	
 	}
-}
+};
 
 technique GBuffer
 {

@@ -135,7 +135,51 @@ void HyEngine::Renderer::Setup()
 
 	m_pResultScreen = new DeferredQuad();
 
+	
 	m_bSetup = true;
+}
+
+void HyEngine::Renderer::SetupOcclusion()
+{
+	/* Create the query */
+	DEVICE->CreateQuery(D3DQUERYTYPE_OCCLUSION, &m_pQuery);
+
+	/* Get the display mode to obtain the format */
+	D3DDISPLAYMODE mode;
+	DEVICE->GetDisplayMode(0, &mode);
+
+	HRESULT hr = D3DXCreateTexture
+	(
+		DEVICE,
+		320, // WinMaxWidth
+		240, // WinMaxHeight
+		1,
+		D3DUSAGE_RENDERTARGET,
+		mode.Format,
+		D3DPOOL_DEFAULT,
+		&m_pOcclusionTexture
+	);
+	assert(SUCCEEDED(hr));
+
+	/* Obtain the surface */
+	D3DSURFACE_DESC desc;
+	m_pOcclusionTexture->GetSurfaceLevel(0, &m_pOcclusionSurface);
+	m_pOcclusionSurface->GetDesc(&desc);
+
+	/* Create the render to surface */
+	hr = D3DXCreateRenderToSurface
+	(
+		DEVICE,
+		desc.Width,
+		desc.Height,
+		desc.Format,
+		TRUE,
+		D3DFMT_D16,
+		&m_pOcclusionRender
+	);
+	assert(SUCCEEDED(hr));
+
+
 }
 
 void HyEngine::Renderer::Cleanup()
@@ -175,6 +219,13 @@ void HyEngine::Renderer::Cleanup()
 	SAFE_RELEASE(m_pStashRTSurface);
 
 	SAFE_DELETE(m_pResultScreen);
+
+	/* Occlusion Query */
+	SAFE_RELEASE(m_pQuery);
+	SAFE_RELEASE(m_pOcclusionRender);
+	SAFE_RELEASE(m_pOcclusionSurface);
+	SAFE_RELEASE(m_pOcclusionTexture);
+
 }
 
 void HyEngine::Renderer::ClearBackBuffer()
@@ -185,6 +236,100 @@ void HyEngine::Renderer::ClearBackBuffer()
 void HyEngine::Renderer::ClearStashSurface()
 {
 	DEVICE->ColorFill(m_pStashRTSurface, NULL, 0x00000000);
+}
+
+void HyEngine::Renderer::OcclusionCull(Scene* scene)
+{
+	auto& objects = scene->GetObjectContainer()->GetRenderableOpaqueAll();
+	
+	// TODO : 나중에 미리 로드했다가 사용하는 방식으로 변경
+	ID3DXEffect * pShader = nullptr;
+	if (IS_EDITOR)
+		EDIT_ENGINE->TryGetShader(L"OcclusionQuery", &pShader);
+	else
+		ENGINE->TryGetShader(L"OcclusionQuery", &pShader);
+
+	/* First, Render every object's boundingMesh */
+	for(int i = 0; i < objects.size(); i++)
+	{
+		Mesh* mesh = dynamic_cast<Mesh*>(objects[i]);
+		if (mesh == nullptr)
+			continue;
+
+		pShader->SetTechnique("OcclusionQuery");
+		pShader->Begin(0, 0);
+		{
+			pShader->BeginPass(0);
+			mesh->RenderBoundingMesh(pShader);
+			pShader->EndPass();
+		}
+		pShader->End();
+	}
+
+	/* Now, Render each boundingMesh again, except this time, count how many pixels are visible */ 
+	/* By using an occlusion query. We are guaranteed to get the right amoung, */
+	/* Since all the bounding mesh have already been rendered */
+	for (int i = 0; i < objects.size(); i++)
+	{
+		Mesh* mesh = dynamic_cast<Mesh*>(objects[i]);
+		if (mesh == nullptr)
+			continue;
+
+		/* Start Query */
+		m_pQuery->Issue(D3DISSUE_BEGIN);
+
+		/* Render */
+		pShader->SetTechnique("OcclusionQuery");
+		pShader->Begin(0, 0);
+		{
+			pShader->BeginPass(0);
+			mesh->RenderBoundingMesh(pShader);
+			pShader->EndPass();
+		}
+		pShader->End();
+
+		/* End the query, get the data */
+		m_pQuery->Issue(D3DISSUE_END);
+
+		/* Loop until the data becomes available */
+		DWORD pixelsVisible = 0;
+
+		while (m_pQuery->GetData((void*)&pixelsVisible,
+			sizeof(DWORD), D3DGETDATA_FLUSH) == S_FALSE)
+		{
+			if (pixelsVisible == 0)
+			{
+				int a = 0;
+				/* No pixels visible, do not render */
+				//mesh->OcclusionCulled(true);
+			}
+			else
+			{
+				int a = 0;
+
+				/* Pixel visible, render */
+				//mesh->OcclusionCulled(false);
+			}
+		}
+
+	}
+
+}
+
+void HyEngine::Renderer::OcclusionBegin()
+{
+	HRESULT hr;
+	hr = m_pOcclusionRender->BeginScene(m_pOcclusionSurface, NULL);
+	assert(SUCCEEDED(hr));
+
+	DEVICE->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(200, 200, 200), 1.0f, 0);
+}
+
+void HyEngine::Renderer::OcclusionEnd()
+{
+	m_pOcclusionRender->EndScene(0);
+
+	//D3DXSaveSurfaceToFile(L"buffer.bmp", D3DXIFF_BMP, m_pOcclusionSurface, NULL, NULL);
 }
 
 void HyEngine::Renderer::Render(Scene * scene)
@@ -269,6 +414,14 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	if (list.size() == 0) return;
 	for (auto& alpha : list)
 	{
+		Mesh* mesh = dynamic_cast<Mesh*>(alpha);
+		if (mesh != nullptr)
+		{
+			if (mesh->IsOcclusionCulled() == true)
+			{
+				continue;
+			}
+		}
 		alpha->Render();
 	}
 
@@ -346,6 +499,11 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 	if (list.size() == 0) return;
 	for (auto& opaque : list)
 	{
+		Mesh* mesh = dynamic_cast<Mesh*>(opaque);
+		if (mesh != nullptr && mesh->IsOcclusionCulled() == true)
+		{
+			continue;
+		}
 		opaque->Render();
 	}
 
@@ -562,7 +720,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 			pShader->EndPass();
 		}
 		pShader->End();
-		DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_NONE);
+		DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_POINT);
 	}
 }
 
@@ -602,7 +760,10 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 #pragma region Cascade ShadowMapping Algorithm
 	int numCascades = 4; // 4개 분할 
 						 /* cascadedEnds[NUM_CASCADES + 1] = {0.0f, 0.2f, 0.4f, 1.0f} */
-	float cascadedEnds[4 + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
+	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
+	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
+	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.3f, 0.6f, 1.0f };
 
 	D3DXVECTOR3 frustumCorners[8] =
 	{
@@ -698,6 +859,11 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 
 	for (auto& opaque : list)
 	{
+		Mesh* mesh = dynamic_cast<Mesh*>(opaque);
+		if (mesh != nullptr && mesh->IsOcclusionCulled() == true)
+		{
+			continue;
+		}
 		//bool culled = pSelectedCam->FrustumCulling(opaque);
 		//if (culled) continue;
 
@@ -897,6 +1063,7 @@ Renderer * HyEngine::Renderer::Create()
 {
 	Renderer* pRenderer = new Renderer();
 	pRenderer->Setup();
+	pRenderer->SetupOcclusion();
 	return pRenderer;
 }
 

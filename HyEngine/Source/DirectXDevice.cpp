@@ -46,7 +46,7 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 
 	d3dpp.BackBufferWidth = WinMaxWidth;
 	d3dpp.BackBufferHeight = WinMaxHeight;
-	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
+	d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 	d3dpp.BackBufferCount = 1;
 
 	d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;

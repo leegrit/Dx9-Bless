@@ -27,7 +27,7 @@ void EditCamera::Update()
 		D3DX_PI * 0.5f, // 90 - degree
 		WinMaxWidth / WinMaxHeight,
 		1.0f,
-		10000.0f
+		3000.0f
 	);
 	D3DXVECTOR3 target;
 	target = (GetTransform()->m_position + GetTransform()->Forward() * 10).operator D3DXVECTOR3();

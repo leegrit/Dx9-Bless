@@ -4,6 +4,10 @@
 #include "Mesh.h"
 #include "Terrain.h"
 #include "NavPrimitive.h"
+#include "LightObject.h"
+#include "Light.h"
+
+
 
 using namespace HyEngine;
 
@@ -332,53 +336,71 @@ bool HyEngine::Camera::IsInFrustumWithMesh(D3DXVECTOR3 & position, float radius)
 	작으면 밖, 0이면 동일한 위치
 	여섯 면을 모두 검사한다.
 	*/
-	if (D3DXPlaneDotCoord(&m_leftPlane, &position) < 0.0f)
+	if (D3DXPlaneDotCoord(&m_leftPlane, &position) < -radius)
 	{
-		float length =
-			(m_leftPlane.a * position.x + m_leftPlane.b * position.y + m_leftPlane.c * position.z + m_leftPlane.d) / std::sqrt(m_leftPlane.a * m_leftPlane.a + m_leftPlane.b * m_leftPlane.b + m_leftPlane.c * m_leftPlane.c);
-		if(length >= radius)
-			return false;
+		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_rightPlane, &position) < 0.0f) 
+	if (D3DXPlaneDotCoord(&m_rightPlane, &position) < -radius)
 	{
-		float length =
-			(m_rightPlane.a * position.x + m_rightPlane.b * position.y + m_rightPlane.c * position.z + m_rightPlane.d) / std::sqrt(m_rightPlane.a * m_rightPlane.a + m_rightPlane.b * m_rightPlane.b + m_rightPlane.c * m_rightPlane.c);
-		if (length >= radius)
-			return false;
+		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_topPlane, &position) < 0.0f)
+	if (D3DXPlaneDotCoord(&m_topPlane, &position) < -radius)
 	{
-		float length =
-			(m_topPlane.a * position.x + m_topPlane.b * position.y + m_topPlane.c * position.z + m_topPlane.d) / std::sqrt(m_topPlane.a * m_topPlane.a + m_topPlane.b * m_topPlane.b + m_topPlane.c * m_topPlane.c);
-		if (length >= radius)
-			return false;
+		return false;
 	}
 
 
-	if (D3DXPlaneDotCoord(&m_bottomPlane, &position) < 0.0f)
+	if (D3DXPlaneDotCoord(&m_bottomPlane, &position) < -radius)
 	{
-		float length =
-			(m_bottomPlane.a * position.x + m_bottomPlane.b * position.y + m_bottomPlane.c * position.z + m_bottomPlane.d) / std::sqrt(m_bottomPlane.a * m_bottomPlane.a + m_bottomPlane.b * m_bottomPlane.b + m_bottomPlane.c * m_bottomPlane.c);
-		if (length >= radius)
-			return false;
+		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_nearPlane, &position) < 0.0f)
+	if (D3DXPlaneDotCoord(&m_nearPlane, &position) < -radius)
 	{
-		float length =
-			(m_nearPlane.a * position.x + m_nearPlane.b * position.y + m_nearPlane.c * position.z + m_nearPlane.d) / std::sqrt(m_nearPlane.a * m_nearPlane.a + m_nearPlane.b * m_nearPlane.b + m_nearPlane.c * m_nearPlane.c);
-		if (length >= radius)
-			return false;
+		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_farPlane, &position) < 0.0f)
+	if (D3DXPlaneDotCoord(&m_farPlane, &position) < -radius)
 	{
-		float length =
-			(m_farPlane.a * position.x + m_farPlane.b * position.y + m_farPlane.c * position.z + m_farPlane.d) / std::sqrt(m_farPlane.a * m_farPlane.a + m_farPlane.b * m_farPlane.b + m_farPlane.c * m_farPlane.c);
-		if (length >= radius)
-			return false;
+		return false;
+	}
+
+	return true;
+}
+
+bool HyEngine::Camera::IsInFrustumWithRadius(D3DXVECTOR3 position, float radius)
+{
+	if (D3DXPlaneDotCoord(&m_leftPlane, &position) < -radius)
+	{
+		return false;
+	}
+
+	if (D3DXPlaneDotCoord(&m_rightPlane, &position) < -radius)
+	{
+		return false;
+	}
+
+	if (D3DXPlaneDotCoord(&m_topPlane, &position) < -radius)
+	{
+		return false;
+	}
+
+
+	if (D3DXPlaneDotCoord(&m_bottomPlane, &position) < -radius)
+	{
+		return false;
+	}
+
+	if (D3DXPlaneDotCoord(&m_nearPlane, &position) < -radius)
+	{
+		return false;
+	}
+
+	if (D3DXPlaneDotCoord(&m_farPlane, &position) < -radius)
+	{
+		return false;
 	}
 
 	return true;
@@ -403,13 +425,15 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 	UIElement* uiElement = nullptr;
 	uiElement = dynamic_cast<UIElement*>(obj);
 
+
 	/* 메쉬인경우 */
 	if (mesh != nullptr)
 	{
 		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
 		float radius = 0;
 		bool isSucceeded =  mesh->ComputeBoundingSphere(&center, &radius);
-
+		D3DXVec3TransformCoord(&center, &center, &mesh->m_pTransform->GetWorldMatrix());
+		radius = radius * mesh->m_pTransform->m_scale.x();
 		if (isSucceeded == false)
 		{
 			SEND_LOG_WARNING("Mesh CompiuteBoundingSphere Failed");
@@ -420,7 +444,8 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 	}
 	else if (terrain != nullptr)
 	{
-		D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
+		result = true;
+		/*D3DXVECTOR3 center = D3DXVECTOR3(0, 0, 0);
 		float radius = 0;
 		bool isSucceeded = terrain->ComputeBoundingSphere(&center, &radius);
 		if (isSucceeded == false)
@@ -429,7 +454,7 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 			return;
 		}
 
-		result = IsInFrustumWithMesh(center, radius);
+		result = IsInFrustumWithMesh(center, radius);*/
 	}
 	else if (navPrimitive != nullptr)
 	{
@@ -448,11 +473,28 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 	obj->SetViewFrustumCulled(!result);
 }
 
+void HyEngine::Camera::ViewFrustumCulling(Light * light)
+{
+	if (light->Type() == ELightType::DIRECTIONAL)
+		return;
+
+	bool result = IsInFrustumWithMesh(light->Position(), light->Range());
+
+	light->IsCulled() = !result;
+}
+
 void HyEngine::Camera::ViewFrustumCulling(const std::vector<GameObject*>& objs)
 {
 	for (auto& obj : objs)
 	{
 		ViewFrustumCulling(obj);
+	}
+}
+void HyEngine::Camera::ViewFrustumCulling(const std::vector<Light*>& lights)
+{
+	for (auto& light : lights)
+	{
+		ViewFrustumCulling(light);
 	}
 }
 

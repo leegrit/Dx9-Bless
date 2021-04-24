@@ -53,9 +53,9 @@
   "LightData": {
     "LightType": 0,
     "Direction": {
-      "X": 0.2,
-      "Y": -0.3,
-      "Z": 0.6
+      "X": 0.1,
+      "Y": -0.6,
+      "Z": 0.3
     },
     "Position": {
       "X": 0.0,

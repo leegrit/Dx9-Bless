@@ -3,7 +3,7 @@
 
 namespace HyEngine
 {
-
+	class Light;
 	class ENGINE_DLL Camera : public GameObject
 	{
 	public:
@@ -57,8 +57,10 @@ namespace HyEngine
 	public : // Culling
 		
 		void ViewFrustumCulling(GameObject* obj);
+		void ViewFrustumCulling(Light* light);
 		void ViewFrustumCulling(const std::vector<GameObject*>& objs);
-		
+		void ViewFrustumCulling(const std::vector<Light*>& lights);
+
 		bool IsInFrustumWithOutFar(D3DXVECTOR3& position);
 
 		/* 다른 용도로 컬링이 사용될 때 쓰는 함수 */

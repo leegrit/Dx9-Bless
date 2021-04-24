@@ -4,7 +4,7 @@
 
 /* For Cascade Shadow */
 // MAX = 4
-#define NUM_CASCADEDES 4
+#define NUM_CASCADEDES 3
 
 namespace HyEngine
 {
@@ -19,12 +19,23 @@ namespace HyEngine
 	private:
 		Renderer() = default;
 		~Renderer() = default;
+		
+		//////////////////////////////////////////////////////////////////////////
+		// SETUP
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		void Setup();
+		void SetupOcclusion();
 
 	public:
-		void Setup();
 		void Cleanup();
 		void ClearBackBuffer();
 		void ClearStashSurface();
+		
+	public : /* For Occlusion Query */
+		void OcclusionCull(Scene* scene);
+		void OcclusionBegin();
+		void OcclusionEnd();
 
 	public: /* For Render */
 		void Render(Scene* scene);
@@ -65,6 +76,15 @@ namespace HyEngine
 		void ShadowPass(Scene * scene, int casecadeIndex);
 		void SoftShadowPass(Scene* scene);
 		void SoftShadowBlurPass(Scene* scene);
+
+		//////////////////////////////////////////////////////////////////////////
+		// OCCLUSION QUERY VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private:
+		IDirect3DQuery9* m_pQuery = nullptr;
+		ID3DXRenderToSurface * m_pOcclusionRender; // Occlusion's render to surface
+		IDirect3DSurface9* m_pOcclusionSurface; // Occlusion's surface that is uses
+		IDirect3DTexture9 * m_pOcclusionTexture; 
 
 		//////////////////////////////////////////////////////////////////////////
 		// FORWARD VARIABLES

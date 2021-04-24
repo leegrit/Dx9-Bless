@@ -110,11 +110,6 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 
 

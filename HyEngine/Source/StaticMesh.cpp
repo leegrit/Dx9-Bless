@@ -46,9 +46,9 @@ void HyEngine::StaticMesh::Render()
 	if (m_pShader == nullptr)
 	{
 		if (IS_EDITOR)
-			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			EDIT_ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
 		else
-			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
 	}
 	assert(m_pShader);
 
@@ -87,12 +87,20 @@ void HyEngine::StaticMesh::Render()
 		D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
 		m_pShader->SetTexture(specularMaskHandle, NULL);
 
+		/* Set DiffuseMask */
+		D3DXHANDLE diffuseMaskHandle = m_pShader->GetParameterByName(0, "DiffuseMaskTex");
+		m_pShader->SetTexture(diffuseMaskHandle, m_diffuseMasks[i]);
+
+
 		bool hasNormalMap = false;
 		if (m_normals[i] != nullptr)
 			hasNormalMap = true;
 		m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
 
-		m_pShader->SetTechnique("GBuffer");
+		if (m_diffuseMasks[i] == nullptr)
+			m_pShader->SetTechnique("StaticMesh");
+		else
+			m_pShader->SetTechnique("StaticMaskedMesh");
 		m_pShader->Begin(0, 0);
 		{
 			m_pShader->BeginPass(0);
@@ -196,6 +204,12 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 						CString::Replace(&specularMapName, L"_D_", L"_SP_");
 						IDirect3DTexture9* specularMap = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + specularMapName);
 						m_speculars.push_back(specularMap);
+
+						/* Find DiffuseMask */
+						std::wstring diffuseMaskName = fileName;
+						CString::Replace(&diffuseMaskName, L"_D_", L"_DM_");
+						IDirect3DTexture9* diffuseMask = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + diffuseMaskName);
+						m_diffuseMasks.push_back(diffuseMask);
 					}
 					else
 					{
@@ -272,7 +286,15 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 			/* Compute tangent vector */
 			D3DXComputeTangent(m_pMesh, 0, 0, 0, 1, pAdjacency);
 
+			/* Create BoundingMesh */
+			D3DXVECTOR3 center;
+			float radius;
+			ComputeBoundingSphere(&center, &radius);
 
+			radius = radius * m_pTransform->m_scale.x();
+
+			/* Create */
+			CreateBoundingMesh(center, radius);
 
 		}
 	}
@@ -292,15 +314,17 @@ bool HyEngine::StaticMesh::ComputeBoundingSphere(D3DXVECTOR3 * center, float * r
 	DWORD numVertices = m_pMesh->GetNumVertices();
 
 	// get the fvf flags
-	DWORD fvfSize = D3DXGetFVFVertexSize(m_pMesh->GetFVF());
-
+	//DWORD fvfSize = D3DXGetFVFVertexSize(m_pMesh->GetFVF());
+	D3DVERTEXELEMENT9 element[MAX_FVF_DECL_SIZE];
+	m_pMesh->GetDeclaration(element);
+	UINT declSize = D3DXGetDeclVertexSize(element, 0);
 	// lock the vertex buffer
 	m_pMesh->LockVertexBuffer(0, (void**)&ptr);
 
 	HRESULT hr;
 	hr = D3DXComputeBoundingSphere((D3DXVECTOR3*)ptr,
 		numVertices,
-		fvfSize,
+		declSize,
 		center, radius);
 	assert(SUCCEEDED(hr));
 
@@ -326,15 +350,17 @@ bool HyEngine::StaticMesh::CalcBounds(D3DXVECTOR3 * center, float * radius)
 	DWORD numVertices = m_pMesh->GetNumVertices();
 
 	// get the fvf flags
-	DWORD fvfSize = D3DXGetFVFVertexSize(m_pMesh->GetFVF());
-
+	//DWORD fvfSize = D3DXGetFVFVertexSize(m_pMesh->GetFVF());
+	D3DVERTEXELEMENT9 element[MAX_FVF_DECL_SIZE];
+	m_pMesh->GetDeclaration(element);
+	UINT declSize = D3DXGetDeclVertexSize(element, 0);
 	// lock the vertex buffer
 	m_pMesh->LockVertexBuffer(0, (void**)&ptr);
 
 	HRESULT hr;
 	hr = D3DXComputeBoundingSphere((D3DXVECTOR3*)ptr,
 		numVertices,
-		fvfSize,
+		declSize,
 		center, radius);
 	assert(SUCCEEDED(hr));
 

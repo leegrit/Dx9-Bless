@@ -1,12 +1,33 @@
 #include "StandardEngineFramework.h"
 #include "ObjectContainer.h"
 #include "Light.h"
+#include "StaticMesh.h"
+#include "DynamicMesh.h"
+#include "UIElement.h"
+#include "Effect.h"
 
 
 using namespace HyEngine;
 
+HyEngine::ObjectContainer::ObjectContainer()
+{
+	EventDispatcher::AddEventListener(EngineEvent::ObjectDestroyed, "ObjectContainer", [&](void*) 
+	{
+		m_bDirtyFlag = true;
+		m_bObjectDestroyed = true;
+	});
+}
+HyEngine::ObjectContainer::~ObjectContainer()
+{
+	EventDispatcher::RemoveEventListener(EngineEvent::ObjectDestroyed, "ObjectContainer");
+}
+
+
 void HyEngine::ObjectContainer::ClearGarbage()
 {
+	if (m_bObjectDestroyed == false)
+		return;
+
 	std::vector<Object*> garbages;
 
 	/* Opaque objects */
@@ -91,6 +112,8 @@ void HyEngine::ObjectContainer::ClearGarbage()
 
 	for (auto& garbage : garbages)
 		Object::DestroyImmediate(garbage);
+
+	m_bObjectDestroyed = false;
 }
 
 void HyEngine::ObjectContainer::ClearAll()
@@ -179,6 +202,7 @@ void HyEngine::ObjectContainer::AddOpaqueObject(GameObject * obj)
 	}
 
 	m_opaqueObjects.push_back(obj);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddAlphaObject(GameObject * obj)
@@ -194,6 +218,7 @@ void HyEngine::ObjectContainer::AddAlphaObject(GameObject * obj)
 	}
 
 	m_alphaObjects.push_back(obj);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddInvisibleObject(GameObject * obj)
@@ -208,6 +233,7 @@ void HyEngine::ObjectContainer::AddInvisibleObject(GameObject * obj)
 		}
 	}
 	m_invisibleObjects.push_back(obj);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddDynamicCollider(Collider * col)
@@ -220,6 +246,7 @@ void HyEngine::ObjectContainer::AddDynamicCollider(Collider * col)
 		}
 	}
 	m_dynamicColliders.push_back(col);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddStaticCollider(Collider * col)
@@ -232,6 +259,7 @@ void HyEngine::ObjectContainer::AddStaticCollider(Collider * col)
 		}
 	}
 	m_staticColliders.push_back(col);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddMultipurposeCollider(Collider * col)
@@ -244,6 +272,7 @@ void HyEngine::ObjectContainer::AddMultipurposeCollider(Collider * col)
 		}
 	}
 	m_multipurposeColliders.push_back(col);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::AddLight(Light * light)
@@ -253,6 +282,7 @@ void HyEngine::ObjectContainer::AddLight(Light * light)
 		assert(l != light);
 	}
 	m_lights.push_back(light);
+	m_bDirtyFlag = true;
 }
 
 void HyEngine::ObjectContainer::SetSkybox(Skybox * skybox)
@@ -427,8 +457,30 @@ std::vector<Light*> HyEngine::ObjectContainer::GetRenderableLightAll()
 		>> cpplinq::where([&](Light* light)
 	{
 		if (light->m_bWantsDestroy == true) return false;
+		if (light->GetActive() == false) return false;
+		if (light->IsCulled() == true) return false;
 		return true;
 	}) >> cpplinq::to_vector();
+}
+
+std::vector<GameObject*>& HyEngine::ObjectContainer::GetStaticMeshAll()
+{
+	return m_staticMeshes;
+}
+
+std::vector<GameObject*>& HyEngine::ObjectContainer::GetDynamicMeshAll()
+{
+	return m_dynamicMeshes;
+}
+
+std::vector<GameObject*>& HyEngine::ObjectContainer::GetUIElementAll()
+{
+	return m_uiElements;
+}
+
+std::vector<GameObject*>& HyEngine::ObjectContainer::GetEffectAll()
+{
+	return m_effects;
 }
 
 std::vector<GameObject*>& HyEngine::ObjectContainer::GetOpaqueObjectAll(UINT layer)
@@ -549,4 +601,51 @@ std::vector<Collider*>& HyEngine::ObjectContainer::GetMultipurposeColliderAll(UI
 	}
 	else
 		return iter->second;
+}
+
+void HyEngine::ObjectContainer::SeperateContainers()
+{
+	if (m_bDirtyFlag == false)
+		return;
+
+	m_staticMeshes.clear();
+	m_dynamicMeshes.clear();
+	m_uiElements.clear();
+	m_effects.clear();
+
+	for (auto& obj : m_opaqueObjects)
+	{
+		StaticMesh* staticMesh = dynamic_cast<StaticMesh*>(obj);
+		if (staticMesh != nullptr)
+		{
+			m_staticMeshes.push_back(staticMesh);
+			continue;
+		}
+
+		DynamicMesh* dynamicMesh = dynamic_cast<DynamicMesh*>(obj);
+		if (dynamicMesh != nullptr)
+		{
+			m_dynamicMeshes.push_back(dynamicMesh);
+			continue;
+		}
+	}
+	for (auto& obj : m_alphaObjects)
+	{
+		UIElement* uiElement = dynamic_cast<UIElement*>(obj);
+		if (uiElement != nullptr)
+		{
+			m_uiElements.push_back(uiElement);
+			continue;
+		}
+
+		Effect* effect = dynamic_cast<Effect*>(obj);
+		if (effect != nullptr)
+		{
+			m_effects.push_back(effect);
+			continue;
+		}
+	}
+
+
+	m_bDirtyFlag = false;
 }

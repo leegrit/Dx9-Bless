@@ -103,10 +103,14 @@ bool EditEngine::Load()
 
 void EditEngine::Render()
 {
+	/* Occlusion Query */
+	/*
+	m_pRenderer->OcclusionBegin();
+	m_pRenderer->OcclusionCull(m_pEditScene);
+	m_pRenderer->OcclusionEnd();
+	*/
 	m_pRenderer->RenderBegin();
-
 	m_pEditScene->RenderScene(m_pRenderer);
-
 	m_pRenderer->RenderEnd();
 }
 
@@ -165,7 +169,8 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
 	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
 	InsertShader(L"SkinnedMesh", PATH->ShadersPathW() + L"SkinnedMesh.fx");
-
+	InsertShader(L"StaticMesh", PATH->ShadersPathW() + L"StaticMesh.fx");
+	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)

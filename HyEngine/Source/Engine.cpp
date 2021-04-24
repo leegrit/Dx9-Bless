@@ -159,6 +159,13 @@ void Engine::SimulateFrame()
 
 void Engine::RenderFrame()
 {
+	if (m_pActiveScene == nullptr) return;
+
+	/* Occlusion Query */
+	m_pRenderer->OcclusionBegin();
+	m_pRenderer->OcclusionCull(m_pActiveScene);
+	m_pRenderer->OcclusionEnd();
+
 	m_pRenderer->RenderBegin();
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_pCamera->GetProjectionMatrix());
 	//DEVICE->SetTransform(D3DTS_VIEW, &m_pCamera->GetViewMatrix());
@@ -330,6 +337,8 @@ bool Engine::LoadShaders()
 	InsertShader(L"Skybox", PATH->ShadersPathW() + L"Skybox.fx");
 	InsertShader(L"UIPanel", PATH->ShadersPathW() + L"UIPanel.fx");
 	InsertShader(L"SkinnedMesh", PATH->ShadersPathW() + L"SkinnedMesh.fx");
+	InsertShader(L"StaticMesh", PATH->ShadersPathW() + L"StaticMesh.fx");
+	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
 	return true;
 }
 

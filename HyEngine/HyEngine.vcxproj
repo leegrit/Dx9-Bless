@@ -487,12 +487,14 @@
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
+    <FxCompile Include="..\_Shaders\OcclusionQuery.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
     <FxCompile Include="..\_Shaders\ShadowMap.fx" />
     <FxCompile Include="..\_Shaders\SkinnedMesh.fx" />
     <FxCompile Include="..\_Shaders\Skybox.fx" />
     <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
+    <FxCompile Include="..\_Shaders\StaticMesh.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />
     <FxCompile Include="..\_Shaders\UIPanel.fx" />
   </ItemGroup>

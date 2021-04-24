@@ -43,6 +43,7 @@ namespace HyEngine
 		std::vector<IDirect3DTexture9*> m_normals;
 		std::vector<IDirect3DTexture9*> m_emissives;
 		std::vector<IDirect3DTexture9*> m_speculars;
+		std::vector<IDirect3DTexture9*> m_diffuseMasks; // green »ç¿ë
 		std::vector<std::wstring> m_textureNames;
 		ID3DXEffect* m_pShader = nullptr;
 		std::wstring m_lastLoadedMeshPath;

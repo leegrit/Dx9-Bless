@@ -23,6 +23,7 @@ namespace HyEngine
 		inline float&		Constant() { return m_constant; }
 		inline float&		Linear() { return m_linear; }
 		inline float&		Quadratic() { return m_quadratic; }
+		inline bool&		IsCulled() { return m_bCulled; }
 	private :
 		ELightType m_lightType;
 		D3DXVECTOR3 m_direction; // using directional light
@@ -40,6 +41,9 @@ namespace HyEngine
 		float		m_constant;
 		float		m_linear;
 		float		m_quadratic;
+
+		/* Culling */
+		bool m_bCulled;
 
 	public :
 		static Light * CreateDirectionalLight()

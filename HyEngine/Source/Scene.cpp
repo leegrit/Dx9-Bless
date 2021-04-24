@@ -42,15 +42,27 @@ void HyEngine::Scene::UnloadScene()
 
 void HyEngine::Scene::UpdateScene()
 {
+	m_pObjectContainer->SeperateContainers();
 	m_pObjectContainer->ClearGarbage();
 	
+	/* DynamicMesh */
+	for (auto& obj : m_pObjectContainer->GetDynamicMeshAll())
+	{
+		if (obj->GetActive() == true &&
+			obj->m_bWantsDestroy == false)
+			obj->Update();
+	}
+
+	// opaque´Â DynamicMesh·Î ´ëÃ¼µÊ. 
 	/* Opaque */
-	for (auto& opaque : m_pObjectContainer->GetOpaqueObjectAll())
+	/*for (auto& opaque : m_pObjectContainer->GetOpaqueObjectAll())
 	{
 		if (opaque->GetActive() == true &&
 			opaque->m_bWantsDestroy == false)
 			opaque->Update();
-	}
+	}*/
+	
+
 
 	/* Alpha */
 	for (auto& alpha : m_pObjectContainer->GetAlphaObjectAll())
@@ -189,6 +201,10 @@ void HyEngine::Scene::ViewFrustumCull()
 	m_pSelectedCamera->ViewFrustumCulling
 	(
 		m_pObjectContainer->GetAlphaObjectAll()
+	);
+	m_pSelectedCamera->ViewFrustumCulling
+	(
+		m_pObjectContainer->GetLightAll()
 	);
 }
 

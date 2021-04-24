@@ -587,9 +587,6 @@
     <ClInclude Include="Include\StaticMesh.h">
       <Filter>Object\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Mesh.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\TextureLoader.h">
       <Filter>Utilities\Loader</Filter>
     </ClInclude>
@@ -633,6 +630,9 @@
       <Filter>Data</Filter>
     </ClInclude>
     <ClInclude Include="Include\Equipment.h">
+      <Filter>Object\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Mesh.h">
       <Filter>Object\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1036,9 +1036,6 @@
     <ClCompile Include="Source\StaticMesh.cpp">
       <Filter>Object\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TextureLoader.cpp">
       <Filter>Utilities\Loader</Filter>
     </ClCompile>
@@ -1079,6 +1076,9 @@
       <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="Source\Equipment.cpp">
+      <Filter>Object\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
       <Filter>Object\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1126,6 +1126,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\SkinnedMesh.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\StaticMesh.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\OcclusionQuery.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
