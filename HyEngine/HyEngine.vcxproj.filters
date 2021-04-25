@@ -252,9 +252,6 @@
     <ClInclude Include="Include\TextureQuad.h">
       <Filter>Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Include\MeshLoader.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Collider.h">
       <Filter>Physics</Filter>
     </ClInclude>
@@ -641,6 +638,9 @@
     <ClInclude Include="Include\QuadTree.h">
       <Filter>Optimization</Filter>
     </ClInclude>
+    <ClInclude Include="Include\MeshLoader.h">
+      <Filter>Utilities\Loader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -732,9 +732,6 @@
     </ClCompile>
     <ClCompile Include="Source\TextureQuad.cpp">
       <Filter>Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshLoader.cpp">
-      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collider.cpp">
       <Filter>Physics</Filter>
@@ -1089,6 +1086,9 @@
     </ClCompile>
     <ClCompile Include="Source\QuadTree.cpp">
       <Filter>Optimization</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshLoader.cpp">
+      <Filter>Utilities\Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

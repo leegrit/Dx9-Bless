@@ -170,6 +170,9 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 	//container.insert(container.end(), meshContainer.begin(), meshContainer.end());
 	//container.insert(container.end(), textureContainer.begin(), textureContainer.end());
 
+	D3DXVECTOR3 resultPosition= D3DXVECTOR3(0, 0, 0);
+	float minDist = FLT_MAX;
+	bool anyHit = false;
 	for (auto& obj : opaqueContainer)
 	{
 // 		EditMesh* editObj = dynamic_cast<EditMesh*>(obj);
@@ -214,21 +217,27 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 				D3DXIntersect(mesh, &origin, &direction, &isHit, &faceIndex, &u, &v, &dist, &allHits, &countOfHits);
 				if (isHit)
 				{
-					GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
-					assert(selectedObject);
-					NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
-					//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
-					assert(navMesh);
+					Camera* cam = GetEditCamera();
 
 					resultPos = worldOrigin + worldDirection * dist;
-					pickedPos->x = resultPos.x;
-					pickedPos->y = resultPos.y;
-					pickedPos->z = resultPos.z;
+					float dist = D3DXVec3Length(&(cam->m_pTransform->m_position.operator D3DXVECTOR3() - resultPos));
+				
 
-					navMesh->TryPickingCell(pickedPos, resultPos, option);
+					if (minDist > dist)
+					{
+						anyHit = true;
+						minDist = dist;
+						resultPosition = resultPos;
+						pickedPos->x = resultPos.x;
+						pickedPos->y = resultPos.y;
+						pickedPos->z = resultPos.z;
+					}
+					
+
+					
 
 
-					return true;
+					//return true;
 
 				}
 			}
@@ -256,24 +265,35 @@ bool HyEngine::EditScene::PickNavMesh(float xMousePos, float yMousePos, ECellOpt
 				isHit = terrain->TryPickOnTerrain(origin, direction, &resultPos);
 				if (isHit)
 				{
+					Camera* cam = GetEditCamera();
 
-					GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
-					assert(selectedObject);
-					NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
-					//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
-					assert(navMesh);
+					float dist = D3DXVec3Length(&(cam->m_pTransform->m_position.operator D3DXVECTOR3() - resultPos));
 
-					pickedPos->x = resultPos.x;
-					pickedPos->y = resultPos.y;
-					pickedPos->z = resultPos.z;
+					if (minDist > dist)
+					{
+						anyHit = true;
+						minDist = dist;
+						resultPosition = resultPos;
+						pickedPos->x = resultPos.x;
+						pickedPos->y = resultPos.y;
+						pickedPos->z = resultPos.z;
+					}
 
-					navMesh->TryPickingCell(pickedPos, resultPos, option);
 
-
-					return true;
+					//return true;
 				}
 			}
 		}
+	}
+
+	if (anyHit)
+	{
+		GameObject* selectedObject = EDIT_ENGINE->GetSelectedObject();
+		NavMesh* navMesh = dynamic_cast<NavMesh*>(selectedObject);
+		//// 해당 함수는 navMesh가 선택된 상태에서 들어와야한다.
+		assert(navMesh);
+		navMesh->TryPickingCell(pickedPos, resultPosition, option);
+		return true;
 	}
 	return false;
 }

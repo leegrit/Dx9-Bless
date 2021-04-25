@@ -46,9 +46,14 @@ void SampleScene::Load()
 
 
 
+	//////////////////////////////////////////////////////////////////////////
+	// NAVMESH
+	//////////////////////////////////////////////////////////////////////////
+	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Hieracon_NavMesh.json");
 	
-	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/FirstNavMesh.json");
-	
+	//////////////////////////////////////////////////////////////////////////
+	// PLAYER
+	//////////////////////////////////////////////////////////////////////////
 	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
 	SetPlayer(m_pPlayer);
 
@@ -57,25 +62,75 @@ void SampleScene::Load()
 	Skybox* skybox = new Skybox(m_pGameCam, PATH->ResourcesPathW() + L"Assets/SkyBox/SkyBox_0.dds");
 	skybox->Initialize();
 	SetSkybox(skybox);
-	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/FirstChunkMap.json");
 
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/FirstTerrain.json");
+	//////////////////////////////////////////////////////////////////////////
+	// MAP
+	//////////////////////////////////////////////////////////////////////////
+	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/Hierarcon_Map.json");
 
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/FirstDirLight.json");
+	//////////////////////////////////////////////////////////////////////////
+	// TERRAIN
+	//////////////////////////////////////////////////////////////////////////
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon1.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon2.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon3.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon4.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon5.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon6.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon7.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon8.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon9.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon10.json");
 
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/FirstPointLight.json");
 
+	//////////////////////////////////////////////////////////////////////////
+	// LIGHT
+	//////////////////////////////////////////////////////////////////////////
+	/* Directional Light */
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
 
+	/* Point Light */
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_1.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_2.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_3.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_4.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_5.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_6.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_7.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_8.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_9.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_10.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_11.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_12.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_13.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_14.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_15.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_16.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_17.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_18.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_19.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_20.json");
+
+	//////////////////////////////////////////////////////////////////////////
+	// EQUIPMENT
+	//////////////////////////////////////////////////////////////////////////
 	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
 	
-	/* For Enemy */
+
+	//////////////////////////////////////////////////////////////////////////
+	// ENEMY
+	//////////////////////////////////////////////////////////////////////////
 	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+	enemy1->m_pTransform->m_position += D3DXVECTOR3(50, 0, 0);
 	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
-	enemy2->m_pTransform->SetPosition(0, 0, 0);
+	enemy2->m_pTransform->m_position += D3DXVECTOR3(0, 0, 0);
 	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+	enemy3->m_pTransform->m_position += D3DXVECTOR3(0, 0, 50);
 
 
-	/* For UI */
+	//////////////////////////////////////////////////////////////////////////
+	// UI
+	//////////////////////////////////////////////////////////////////////////
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -300, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"ClassMark");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(-270, -280, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"HPBack");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(270, -280, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"MPBack");

@@ -1,20 +1,20 @@
 {
   "Type": 1,
-  "Index": 11,
+  "Index": 590,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 11,
+    "Index": 590,
     "Name": "Skeletone",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": -78.6398,
-        "Y": -3.81469727E-06,
-        "Z": -15.6162224
+        "X": 1805.76074,
+        "Y": -1.52587891E-05,
+        "Z": 767.6598
       },
       "Rotation": {
         "X": 0.0,
@@ -22,19 +22,19 @@
         "Z": 0.0
       },
       "Scale": {
-        "X": 1.0,
-        "Y": 1.0,
-        "Z": 1.0
+        "X": 3.0,
+        "Y": 3.0,
+        "Z": 3.0
       }
     }
   },
   "MeshData": {
-    "Index": 11,
+    "Index": 590,
     "MeshFilePath": "Assets\\Mesh\\Unit\\Skeleton\\Skeleton_00.X",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 11,
+    "Index": 590,
     "Group": 0
   },
   "NavMeshData": {

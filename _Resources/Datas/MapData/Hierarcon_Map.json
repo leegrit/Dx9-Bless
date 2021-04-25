@@ -30138,13 +30138,13 @@
     "Index": 339,
     "TagIndex": 0,
     "LayerIndex": 0,
-    "StaticIndex": 0,
+    "StaticIndex": 1,
     "GameObjectData": {
       "Index": 339,
       "Name": "Hieracon267",
       "Tag": "Default",
       "Layer": 0,
-      "StaticType": 0,
+      "StaticType": 1,
       "Transform": {
         "Position": {
           "X": 1801.24,
@@ -30417,13 +30417,13 @@
     "Index": 342,
     "TagIndex": 0,
     "LayerIndex": 0,
-    "StaticIndex": 0,
+    "StaticIndex": 1,
     "GameObjectData": {
       "Index": 342,
       "Name": "Hieracon266",
       "Tag": "Default",
       "Layer": 0,
-      "StaticType": 0,
+      "StaticType": 1,
       "Transform": {
         "Position": {
           "X": 1803.75,
@@ -30510,13 +30510,13 @@
     "Index": 343,
     "TagIndex": 0,
     "LayerIndex": 0,
-    "StaticIndex": 0,
+    "StaticIndex": 1,
     "GameObjectData": {
       "Index": 343,
       "Name": "Hieracon253",
       "Tag": "Default",
       "Layer": 0,
-      "StaticType": 0,
+      "StaticType": 1,
       "Transform": {
         "Position": {
           "X": 1444.84,

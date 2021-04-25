@@ -146,18 +146,19 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 			DWORD numMtrls = 0;
 
 
-			hr = D3DXLoadMeshFromX
-			(
-				(PATH->ResourcesPathW() + meshPath).c_str(),
-				D3DXMESH_MANAGED,
-				DEVICE,
-				&adjBuffer,
-				&mtrlBuffer,
-				0,
-				&numMtrls,
-				&m_pMesh
-			);
-			assert(SUCCEEDED(hr));
+// 			hr = D3DXLoadMeshFromX
+// 			(
+// 				(PATH->ResourcesPathW() + meshPath).c_str(),
+// 				D3DXMESH_MANAGED,
+// 				DEVICE,
+// 				&adjBuffer,
+// 				&mtrlBuffer,
+// 				0,
+// 				&numMtrls,
+// 				&m_pMesh
+// 			);
+			bool isSucceeded = MeshLoader::TryGetMesh(PATH->ResourcesPathW() + meshPath, &adjBuffer, &mtrlBuffer, &numMtrls, &m_pMesh);
+			assert(isSucceeded);
 
 			if (mtrlBuffer != 0 && numMtrls != 0)
 			{

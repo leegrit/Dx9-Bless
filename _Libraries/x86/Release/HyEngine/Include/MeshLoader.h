@@ -2,6 +2,25 @@
 #include "Mesh.h"
 namespace HyEngine
 {
+	struct SMesh
+	{
+		ID3DXBuffer* pAdjBuffer = nullptr;
+		ID3DXBuffer* pMtrlBuffer = nullptr;
+		DWORD numMtrls = 0;
+		ID3DXMesh* pMesh = nullptr;
+	};
+	class ENGINE_DLL MeshLoader
+	{
+		
+	public :
+		static bool TryGetMesh(std::wstring filePath, _Out_ ID3DXBuffer** ppAdjBuffer, _Out_ ID3DXBuffer** ppMtrlBuffer, _Out_ DWORD * pNumMtrls, _Out_ ID3DXMesh** ppMesh);
+
+
+		static void Clear();
+
+	private :
+		static std::unordered_map<std::wstring, SMesh*> meshMap;
+	};
 // 		class ENGINE_DLL MeshLoader
 // 		{
 // 		public:
