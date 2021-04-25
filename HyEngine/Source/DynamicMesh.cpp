@@ -395,6 +395,7 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 						&pMeshContainer->pFrameOffsetMatrix[matrixIndex],
 						pMeshContainer->ppFrameCombinedMatrix[matrixIndex]
 					);
+
 				}
 			}
 		}

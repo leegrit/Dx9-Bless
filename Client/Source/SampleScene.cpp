@@ -71,16 +71,17 @@ void SampleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// TERRAIN
 	//////////////////////////////////////////////////////////////////////////
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon1.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon2.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon3.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon4.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon5.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon6.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon7.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon8.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon9.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon10.json");
+	//Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/FirstTerrain.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_1.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_2.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_3.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_4.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_5.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_6.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_7.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_8.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_9.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_10.json");
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -92,7 +93,7 @@ void SampleScene::Load()
 	/* Point Light */
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_1.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_2.json");
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_3.json");
+	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_3.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_4.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_5.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_6.json");
@@ -109,13 +110,13 @@ void SampleScene::Load()
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_17.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_18.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_19.json");
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_20.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_20.json");*/
 
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
 	//////////////////////////////////////////////////////////////////////////
 	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
-	
+	//m_pEquip->m_pTransform->SetScale(1, 1, 1);
 
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY

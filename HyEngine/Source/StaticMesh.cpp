@@ -223,69 +223,69 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 					}
 				}
 			}
-			mtrlBuffer->Release();
-
-			hr = m_pMesh->OptimizeInplace
-			(
-				D3DXMESHOPT_ATTRSORT |
-				D3DXMESHOPT_COMPACT |
-				D3DXMESHOPT_VERTEXCACHE,
-				(DWORD*)adjBuffer->GetBufferPointer(),
-				0, 0, 0
-			);
-
-			adjBuffer->Release();
-
-			assert(SUCCEEDED(hr));
-
-
-			D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
-			DWORD vertexStride = m_pMesh->GetNumBytesPerVertex();
-			if (SUCCEEDED(m_pMesh->GetDeclaration(meshDeclaration)))
-			{
-				DWORD numDeclarations = 0;
-				for (int i = 0; (i < MAX_FVF_DECL_SIZE) && (meshDeclaration[i].Stream != 0xFF); i++)
-				{
-					numDeclarations++;
-				}
-				/* Tangent */
-				meshDeclaration[numDeclarations].Stream = 0;
-				meshDeclaration[numDeclarations].Offset = (WORD)vertexStride;
-				meshDeclaration[numDeclarations].Type = D3DDECLTYPE_FLOAT3;
-				meshDeclaration[numDeclarations].Method = D3DDECLMETHOD_DEFAULT;
-				meshDeclaration[numDeclarations].Usage = D3DDECLUSAGE_TANGENT;
-				meshDeclaration[numDeclarations].UsageIndex = 0;
-
-				/* Binormal */
-				meshDeclaration[numDeclarations + 1].Stream = 0;
-				meshDeclaration[numDeclarations + 1].Offset = (WORD)(vertexStride + 3 * sizeof(float));
-				meshDeclaration[numDeclarations + 1].Type = D3DDECLTYPE_FLOAT3;
-				meshDeclaration[numDeclarations + 1].Method = D3DDECLMETHOD_DEFAULT;
-				meshDeclaration[numDeclarations + 1].Usage = D3DDECLUSAGE_BINORMAL;
-				meshDeclaration[numDeclarations + 1].UsageIndex = 0;
-
-				/* Ending element */
-				memset(&meshDeclaration[numDeclarations + 2], 0, sizeof(D3DVERTEXELEMENT9));
-				meshDeclaration[numDeclarations + 2].Stream = 0xFF;
-				meshDeclaration[numDeclarations + 2].Type = D3DDECLTYPE_UNUSED;
-
-				ID3DXMesh* clonedMesh = nullptr;
-				if (SUCCEEDED(m_pMesh->CloneMesh(m_pMesh->GetOptions(), meshDeclaration, DEVICE, &clonedMesh)))
-				{
-					m_pMesh->Release();
-					m_pMesh = clonedMesh;
-				}
-
-			}
-			m_pMesh->UpdateSemantics(meshDeclaration);
-
-
-			/* Get adjacency */
-			LPDWORD pAdjacency = new DWORD[m_pMesh->GetNumFaces() * 3];
-			m_pMesh->GenerateAdjacency(0.0001f, pAdjacency);
-
-			/* Compute tangent vector */
-			D3DXComputeTangent(m_pMesh, 0, 0, 0, 1, pAdjacency);
+			//mtrlBuffer->Release();
+// 
+// 			hr = m_pMesh->OptimizeInplace
+// 			(
+// 				D3DXMESHOPT_ATTRSORT |
+// 				D3DXMESHOPT_COMPACT |
+// 				D3DXMESHOPT_VERTEXCACHE,
+// 				(DWORD*)adjBuffer->GetBufferPointer(),
+// 				0, 0, 0
+// 			);
+// 
+// 			//adjBuffer->Release();
+// 
+// 			assert(SUCCEEDED(hr));
+// 
+// 
+// 			D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
+// 			DWORD vertexStride = m_pMesh->GetNumBytesPerVertex();
+// 			if (SUCCEEDED(m_pMesh->GetDeclaration(meshDeclaration)))
+// 			{
+// 				DWORD numDeclarations = 0;
+// 				for (int i = 0; (i < MAX_FVF_DECL_SIZE) && (meshDeclaration[i].Stream != 0xFF); i++)
+// 				{
+// 					numDeclarations++;
+// 				}
+// 				/* Tangent */
+// 				meshDeclaration[numDeclarations].Stream = 0;
+// 				meshDeclaration[numDeclarations].Offset = (WORD)vertexStride;
+// 				meshDeclaration[numDeclarations].Type = D3DDECLTYPE_FLOAT3;
+// 				meshDeclaration[numDeclarations].Method = D3DDECLMETHOD_DEFAULT;
+// 				meshDeclaration[numDeclarations].Usage = D3DDECLUSAGE_TANGENT;
+// 				meshDeclaration[numDeclarations].UsageIndex = 0;
+// 
+// 				/* Binormal */
+// 				meshDeclaration[numDeclarations + 1].Stream = 0;
+// 				meshDeclaration[numDeclarations + 1].Offset = (WORD)(vertexStride + 3 * sizeof(float));
+// 				meshDeclaration[numDeclarations + 1].Type = D3DDECLTYPE_FLOAT3;
+// 				meshDeclaration[numDeclarations + 1].Method = D3DDECLMETHOD_DEFAULT;
+// 				meshDeclaration[numDeclarations + 1].Usage = D3DDECLUSAGE_BINORMAL;
+// 				meshDeclaration[numDeclarations + 1].UsageIndex = 0;
+// 
+// 				/* Ending element */
+// 				memset(&meshDeclaration[numDeclarations + 2], 0, sizeof(D3DVERTEXELEMENT9));
+// 				meshDeclaration[numDeclarations + 2].Stream = 0xFF;
+// 				meshDeclaration[numDeclarations + 2].Type = D3DDECLTYPE_UNUSED;
+// 
+// 				ID3DXMesh* clonedMesh = nullptr;
+// 				if (SUCCEEDED(m_pMesh->CloneMesh(m_pMesh->GetOptions(), meshDeclaration, DEVICE, &clonedMesh)))
+// 				{
+// 					m_pMesh->Release();
+// 					m_pMesh = clonedMesh;
+// 				}
+// 
+// 			}
+// 			m_pMesh->UpdateSemantics(meshDeclaration);
+// 
+// 
+// 			/* Get adjacency */
+// 			LPDWORD pAdjacency = new DWORD[m_pMesh->GetNumFaces() * 3];
+// 			m_pMesh->GenerateAdjacency(0.0001f, pAdjacency);
+// 
+// 			/* Compute tangent vector */
+// 			D3DXComputeTangent(m_pMesh, 0, 0, 0, 1, pAdjacency);
 
 			/* Create BoundingMesh */
 			D3DXVECTOR3 center;

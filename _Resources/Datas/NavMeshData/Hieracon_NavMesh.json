@@ -1,11 +1,11 @@
-﻿{
+{
   "Type": 3,
-  "Index": 589,
+  "Index": 559,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 589,
+    "Index": 559,
     "Name": "NavMesh",
     "Tag": "Default",
     "Layer": 0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 589,
+    "Index": 559,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 589,
+    "Index": 559,
     "Group": 0
   },
   "NavMeshData": {

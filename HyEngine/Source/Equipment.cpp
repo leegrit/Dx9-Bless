@@ -8,10 +8,12 @@ HyEngine::Equipment::Equipment(Scene * scene, GameObject * pOwner, std::wstring 
 	m_pOwner(pOwner)
 {
 	//strcpy_s(m_boneName, 256, "");
+	EventDispatcher::AddEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()), std::bind(&Equipment::OnRenderBegin, this, placeholders::_1));
 }
 
 HyEngine::Equipment::~Equipment()
 {
+	EventDispatcher::RemoveEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()));
 }
 
 void HyEngine::Equipment::Initialize(std::wstring xFilePath, std::wstring boneName)
@@ -171,11 +173,7 @@ void HyEngine::Equipment::Initialize(std::wstring xFilePath, std::wstring boneNa
 void HyEngine::Equipment::Update()
 {
 	GameObject::Update();
-	DynamicMesh* mesh = dynamic_cast<DynamicMesh*>(m_pOwner);
-	assert(mesh);
-
-
-	m_pParentWorldMatrix = mesh->m_pTransform->GetWorldMatrix();
+	
 
 }
 
@@ -301,6 +299,15 @@ bool HyEngine::Equipment::ComputeBoundingSphere(D3DXVECTOR3 * center, float * ra
 
 
 	return true;
+}
+
+void HyEngine::Equipment::OnRenderBegin(void *)
+{
+	DynamicMesh* mesh = dynamic_cast<DynamicMesh*>(m_pOwner);
+	assert(mesh);
+
+
+	m_pParentWorldMatrix = mesh->m_pTransform->GetWorldMatrix();
 }
 
 

@@ -786,7 +786,7 @@ namespace WPF_Tool.Utility
                     //    sw.Write(json.ToString());
                     //}
                     //outFileName = fileName + ".json";
-                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(fileName, false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
@@ -825,14 +825,14 @@ namespace WPF_Tool.Utility
                     //    sw.Write(json.ToString());
                     //}
                     //outFileName = fileName + ".json";
-                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(fileName, false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
                     outFileName = fileName;
                     break;
                 case EDataType.Scene:
-                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(fileName, false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
@@ -861,7 +861,7 @@ namespace WPF_Tool.Utility
                     //    sw.Write(json.ToString());
                     //}
                     //outFileName = fileName + ".json";
-                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(fileName, false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }
@@ -890,7 +890,7 @@ namespace WPF_Tool.Utility
                     //    sw.Write(json.ToString());
                     //}
                     //outFileName = fileName + ".json";
-                    using (StreamWriter sw = new StreamWriter(fileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter(fileName, false, new UTF8Encoding(false)))
                     {
                         sw.Write(json.ToString());
                     }

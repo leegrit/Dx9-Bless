@@ -1,11 +1,11 @@
-﻿{
+{
   "Type": 5,
-  "Index": 92,
+  "Index": 556,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 92,
+    "Index": 556,
     "Name": "Light",
     "Tag": "Default",
     "Layer": 0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 92,
+    "Index": 556,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 92,
+    "Index": 556,
     "Group": 0
   },
   "NavMeshData": {

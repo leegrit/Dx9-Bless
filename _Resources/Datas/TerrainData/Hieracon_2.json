@@ -1,20 +1,20 @@
-﻿{
+{
   "Type": 4,
-  "Index": 192,
+  "Index": 561,
   "TagIndex": 0,
   "LayerIndex": 0,
-  "StaticIndex": 1,
+  "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 192,
+    "Index": 561,
     "Name": "Terrain",
     "Tag": "Default",
     "Layer": 0,
-    "StaticType": 1,
+    "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": -5000.0,
-        "Y": 0.0,
-        "Z": -500.0
+        "X": -250.0,
+        "Y": 425.61,
+        "Z": 2520.34
       },
       "Rotation": {
         "X": 0.0,
@@ -29,16 +29,16 @@
     }
   },
   "MeshData": {
-    "Index": 192,
+    "Index": 561,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 192,
+    "Index": 561,
     "Group": 0
   },
   "NavMeshData": {
-    "Index": 7,
+    "Index": 27,
     "CellCount": 0
   },
   "TerrainData": {
@@ -47,8 +47,8 @@
     "TextureCountX": 20.0,
     "TextureCountZ": 20.0,
     "VertexInterval": 500.0,
-    "DiffuseFilePath": "Assets\\Tile\\Tile_D_0.tga",
-    "NormalFilePath": "Assets\\Tile\\Tile_N_0.tga"
+    "DiffuseFilePath": "Assets\\Tile\\Tile_D_1.tga",
+    "NormalFilePath": "Assets\\Tile\\Tile_N_1.tga"
   },
   "LightData": {
     "LightType": 0,

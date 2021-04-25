@@ -1,11 +1,11 @@
-﻿{
+{
   "Type": 5,
-  "Index": 191,
+  "Index": 558,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 191,
+    "Index": 558,
     "Name": "Point2",
     "Tag": "Default",
     "Layer": 0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 191,
+    "Index": 558,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 191,
+    "Index": 558,
     "Group": 0
   },
   "NavMeshData": {

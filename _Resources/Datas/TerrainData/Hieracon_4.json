@@ -1,18 +1,18 @@
-﻿{
+{
   "Type": 4,
-  "Index": 29,
+  "Index": 563,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 1,
   "GameObjectData": {
-    "Index": 29,
-    "Name": "Hieracon_3",
+    "Index": 563,
+    "Name": "Terrain_4",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 1,
     "Transform": {
       "Position": {
-        "X": -247.79,
+        "X": 2568.21,
         "Y": 425.609863,
         "Z": 2367.6
       },
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 29,
+    "Index": 563,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 29,
+    "Index": 563,
     "Group": 0
   },
   "NavMeshData": {

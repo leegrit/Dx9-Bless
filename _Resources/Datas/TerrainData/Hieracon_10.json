@@ -1,20 +1,20 @@
-﻿{
+{
   "Type": 4,
-  "Index": 27,
+  "Index": 569,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 27,
-    "Name": "Terrain",
+    "Index": 569,
+    "Name": "Terrain_10",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": -250.0,
-        "Y": 425.61,
-        "Z": 2520.34
+        "X": -4750.0,
+        "Y": 373.61,
+        "Z": 849.94
       },
       "Rotation": {
         "X": 0.0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 27,
+    "Index": 569,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 27,
+    "Index": 569,
     "Group": 0
   },
   "NavMeshData": {
