@@ -55,6 +55,7 @@ namespace HyEngine
 		bool IsInFrustum(D3DXVECTOR3 & position);
 		bool IsInFrustumWithMesh(D3DXVECTOR3 & position, float radius);
 	public : // Culling
+		bool IsInFrustumWithRadius(D3DXVECTOR3 position, float radius);
 		
 		void ViewFrustumCulling(GameObject* obj);
 		void ViewFrustumCulling(Light* light);

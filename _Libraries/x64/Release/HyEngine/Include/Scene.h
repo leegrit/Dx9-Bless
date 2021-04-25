@@ -14,6 +14,7 @@ namespace HyEngine
 	class NavMesh;
 	class Light;
 	class Skybox;
+	class QuadTree;
 	class ENGINE_DLL Scene
 	{
 		friend class Object;
@@ -85,6 +86,7 @@ namespace HyEngine
 		Camera* m_pSelectedCamera = nullptr;
 		Skybox* m_pSkybox = nullptr;
 		GameObject* m_pPlayer = nullptr;
+		QuadTree* m_pQuadTree = nullptr;
 		class ObjectContainer * m_pObjectContainer = nullptr;
 		class CollisionCalculator * m_pCollisionCalculator = nullptr;
 

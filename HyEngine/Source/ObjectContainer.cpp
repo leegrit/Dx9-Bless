@@ -364,6 +364,11 @@ Skybox * HyEngine::ObjectContainer::GetSkybox() const
 	return m_pSkybox;
 }
 
+bool HyEngine::ObjectContainer::GetDirtyFlag()
+{
+	return m_bDirtyFlag;
+}
+
 std::vector<GameObject*> HyEngine::ObjectContainer::GetGameObjectAll()
 {
 	std::vector<GameObject*> mergedVec;

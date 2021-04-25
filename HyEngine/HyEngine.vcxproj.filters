@@ -139,6 +139,9 @@
     <Filter Include="FSM">
       <UniqueIdentifier>{10b6a98d-a669-456c-91b5-1a7e0f429973}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Optimization">
+      <UniqueIdentifier>{fff089eb-f049-4ffd-8cab-05703d7ae068}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Application.h">
@@ -635,6 +638,9 @@
     <ClInclude Include="Include\Mesh.h">
       <Filter>Object\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Include\QuadTree.h">
+      <Filter>Optimization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1080,6 +1086,9 @@
     </ClCompile>
     <ClCompile Include="Source\Mesh.cpp">
       <Filter>Object\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuadTree.cpp">
+      <Filter>Optimization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

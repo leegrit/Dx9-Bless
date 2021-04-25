@@ -78,6 +78,23 @@ bool HyEngine::Mesh::IsOcclusionCulled()
 	return m_occlusionCulled;
 }
 
+D3DXVECTOR3 HyEngine::Mesh::GetBoundingCenter()
+{
+	return m_boundingCenter;
+}
+
+D3DXVECTOR3 HyEngine::Mesh::GetBoundingWorldPos()
+{
+	D3DXVECTOR3 pos;
+	D3DXVec3TransformCoord(&pos, &m_boundingCenter, &m_pTransform->GetWorldMatrix());
+	return pos;
+}
+
+float HyEngine::Mesh::GetBoundingRadius()
+{
+	return m_boundingRadius;
+}
+
 void HyEngine::Mesh::CreateBoundingMesh(D3DXVECTOR3 center, float radius)
 {
 	D3DXCreateSphere
@@ -90,4 +107,5 @@ void HyEngine::Mesh::CreateBoundingMesh(D3DXVECTOR3 center, float radius)
 		0
 	);
 	m_boundingCenter = center;
+	m_boundingRadius = radius;
 }

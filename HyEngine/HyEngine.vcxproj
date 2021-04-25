@@ -282,6 +282,7 @@
     <ClInclude Include="Include\Path.h" />
     <ClInclude Include="Include\PathManager.h" />
     <ClInclude Include="Include\Pawn.h" />
+    <ClInclude Include="Include\QuadTree.h" />
     <ClInclude Include="Include\Ray.h" />
     <ClInclude Include="Include\Raycaster.h" />
     <ClInclude Include="Include\RaycastHit.h" />
@@ -438,6 +439,7 @@
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\PathManager.cpp" />
     <ClCompile Include="Source\Pawn.cpp" />
+    <ClCompile Include="Source\QuadTree.cpp" />
     <ClCompile Include="Source\Ray.cpp" />
     <ClCompile Include="Source\Raycaster.cpp" />
     <ClCompile Include="Source\RaycastHit.cpp" />

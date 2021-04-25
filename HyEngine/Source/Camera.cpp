@@ -372,7 +372,7 @@ bool HyEngine::Camera::IsInFrustumWithMesh(D3DXVECTOR3 & position, float radius)
 
 bool HyEngine::Camera::IsInFrustumWithRadius(D3DXVECTOR3 position, float radius)
 {
-	if (D3DXPlaneDotCoord(&m_leftPlane, &position) < -radius)
+	if (D3DXPlaneDotCoord(&m_leftPlane, &position)  < -radius)
 	{
 		return false;
 	}
@@ -393,12 +393,12 @@ bool HyEngine::Camera::IsInFrustumWithRadius(D3DXVECTOR3 position, float radius)
 		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_nearPlane, &position) < -radius)
+	if (D3DXPlaneDotCoord(&m_nearPlane, &position)   < -radius)
 	{
 		return false;
 	}
 
-	if (D3DXPlaneDotCoord(&m_farPlane, &position) < -radius)
+	if (D3DXPlaneDotCoord(&m_farPlane, &position)  < -radius)
 	{
 		return false;
 	}

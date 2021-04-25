@@ -14,10 +14,11 @@ namespace HyEngine
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
 	public:
-		ObjectContainer() = default;
-		~ObjectContainer() = default;
+		ObjectContainer();
+		~ObjectContainer();
 
-
+	public:
+		void SeperateContainers();
 
 	public:
 		void ClearGarbage();
@@ -58,6 +59,7 @@ namespace HyEngine
 
 
 		Skybox* GetSkybox() const;
+		bool GetDirtyFlag();
 
 	public: /* Getter for all objects */
 		std::vector<GameObject*> GetGameObjectAll();
@@ -75,6 +77,12 @@ namespace HyEngine
 		std::vector<Light*>& GetLightAll();
 		std::vector<Light*> GetRenderableLightAll();
 
+	public : /* Getter for Seperated Object */
+		std::vector<GameObject*>& GetStaticMeshAll();
+		std::vector<GameObject*>& GetDynamicMeshAll();
+		std::vector<GameObject*>& GetUIElementAll();
+		std::vector<GameObject*>& GetEffectAll();
+
 	public: /* Getter for all objects within layer */
 		std::vector<GameObject*>& GetOpaqueObjectAll(UINT layer);
 		std::vector<GameObject*>& GetAlphaObjectAll(UINT layer);
@@ -83,6 +91,9 @@ namespace HyEngine
 		std::vector<Collider*>& GetDynamicColliderAll(UINT layer);
 		std::vector<Collider*>& GetStaticColliderAll(UINT layer);
 		std::vector<Collider*>& GetMultipurposeColliderAll(UINT layer);
+
+	private :
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// OBJECT CONTAINERS
@@ -106,6 +117,19 @@ namespace HyEngine
 		std::unordered_map<std::wstring, Camera*> m_cameras;
 		std::vector<Light*> m_lights;
 		Skybox* m_pSkybox;
+
+		// StaticMesh
+		// DynamicMesh
+	private :
+		/* Seperated Objects */
+		std::vector<GameObject*> m_staticMeshes;
+		std::vector<GameObject*> m_dynamicMeshes;
+		std::vector<GameObject*> m_uiElements;
+		std::vector<GameObject*> m_effects;
+
+		// 오브젝트 내역이 변경되었을 때(ex 오브젝트 생성, 삭제)
+		bool m_bDirtyFlag = false;
+		bool m_bObjectDestroyed = false;
 
 	private: /* For Cache */
 		std::unordered_map<UINT, std::vector<GameObject*>> m_opaqueCache;

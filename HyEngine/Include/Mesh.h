@@ -34,6 +34,9 @@ namespace HyEngine
 		void RenderBoundingMesh(ID3DXEffect* pEffect);
 		void OcclusionCulled(bool isCulled);
 		bool IsOcclusionCulled();
+		D3DXVECTOR3 GetBoundingCenter();
+		D3DXVECTOR3 GetBoundingWorldPos();
+		float GetBoundingRadius();
 
 		//////////////////////////////////////////////////////////////////////////
 		// PROTECTED METHOD
@@ -49,6 +52,7 @@ namespace HyEngine
 		ID3DXMesh* m_pBoundingMesh = nullptr;
 		bool m_occlusionCulled = false;
 		D3DXVECTOR3 m_boundingCenter;
+		float m_boundingRadius;
 	};
 
 }

@@ -59,6 +59,7 @@ namespace HyEngine
 
 
 		Skybox* GetSkybox() const;
+		bool GetDirtyFlag();
 
 	public: /* Getter for all objects */
 		std::vector<GameObject*> GetGameObjectAll();

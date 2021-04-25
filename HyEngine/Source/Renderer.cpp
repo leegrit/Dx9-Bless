@@ -763,7 +763,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.3f, 0.6f, 1.0f };
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.1f, 0.2f, 1.0f };
 
 	D3DXVECTOR3 frustumCorners[8] =
 	{
@@ -945,9 +945,31 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	pShader->SetValue("ViewMatrixInv", &viewMatrixInv, sizeof(viewMatrixInv));
 	pShader->SetValue("ProjMatrixInv", &projMatrixInv, sizeof(projMatrixInv));
 
-	pShader->SetMatrixArray("LightViewMatrix", m_lightViewMat, NUM_CASCADEDES);
-	pShader->SetMatrixArray("LightProjMatrix", m_lightProjMat, NUM_CASCADEDES);
 
+	/* Shadow Map Sort */
+	// 카메라 방향벡터와 광원의 방향을 내적해서
+	// 양수면 그대로, 음수면 순서 거꾸로
+	D3DXVECTOR3 camDir = selectedCam->m_pTransform->Forward();
+	D3DXVec3Normalize(&camDir, &camDir);
+	D3DXVECTOR3 lightDir = directionalLight->Direction();
+	D3DXVec3Normalize(&lightDir, &lightDir);
+	float isReverse = -D3DXVec3Dot(&camDir, &lightDir);
+	D3DXMATRIX lightViewMat[NUM_CASCADEDES];
+	D3DXMATRIX lightProjMat[NUM_CASCADEDES];
+
+	if (isReverse)
+	{
+		for (int i = 0; i < NUM_CASCADEDES; i++)
+		{
+			lightViewMat[i] = m_lightViewMat[NUM_CASCADEDES - 1 - i];
+			lightProjMat[i] = m_lightProjMat[NUM_CASCADEDES - 1 - i];
+		}
+	}
+
+	pShader->SetMatrixArray("LightViewMatrix", lightViewMat, NUM_CASCADEDES);
+	pShader->SetMatrixArray("LightProjMatrix", lightProjMat, NUM_CASCADEDES);
+
+	
 
 	/* Set GBuffer */
 	D3DXHANDLE depthHandle = pShader->GetParameterByName(0, "DepthTex");
@@ -962,26 +984,40 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
 	pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
+	
+
 	/* For CascadeShadowMapping */
 	if (NUM_CASCADEDES > 0)
 	{
 		D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
-		pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+		if(isReverse)
+			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 0]);
+		else
+			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
 	}
 	if (NUM_CASCADEDES > 1)
 	{
 		D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
-		pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+		if(isReverse)
+			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 1]);
+		else
+			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
 	}
 	if (NUM_CASCADEDES > 2)
 	{
 		D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
-		pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+		if(isReverse)
+			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 2]);
+		else
+			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
 	}
 	if (NUM_CASCADEDES > 3)
 	{
 		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
-		pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
+		if(isReverse)
+			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 3]);
+		else
+			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
 	}
 	pShader->SetTechnique("SoftShadowMapping");
 	pShader->Begin(0, 0);

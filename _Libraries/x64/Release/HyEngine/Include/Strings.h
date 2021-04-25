@@ -19,6 +19,7 @@ namespace RenderEvent
 namespace EngineEvent
 {
 	static std::string ModeChanged = "EngineEvent.ModeChanged";
+	static std::string ObjectDestroyed = "EngineEvent.ObjectDestroyed";
 }
 
 

@@ -24,7 +24,7 @@ void EditCamera::Update()
 
 	SetProjectionMatrix
 	(
-		D3DX_PI * 0.5f, // 90 - degree
+		D3DXToRadian(60), // 90 - degree
 		WinMaxWidth / WinMaxHeight,
 		1.0f,
 		3000.0f

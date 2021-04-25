@@ -11,6 +11,7 @@
 #include "NavMesh.h"
 #include "ObjectContainer.h"
 #include "CollisionCalculator.h"
+#include "QuadTree.h"
 
 using namespace HyEngine;
 
@@ -19,18 +20,22 @@ Scene::Scene()
 {
 	m_pCollisionCalculator = new CollisionCalculator();
 	m_pObjectContainer = new ObjectContainer();
+	m_pQuadTree = new QuadTree();
 }
 Scene::~Scene()
 {
 	SAFE_DELETE(m_pSkybox);
 	SAFE_DELETE(m_pObjectContainer);
 	SAFE_DELETE(m_pCollisionCalculator);
+	SAFE_DELETE(m_pQuadTree);
 	EventDispatcher::Cleanup();
 }
 
 void HyEngine::Scene::LoadScene()
 {
 	Load();
+	m_pObjectContainer->SeperateContainers();
+	m_pQuadTree->Build(m_pObjectContainer->GetStaticMeshAll());
 }
 
 void HyEngine::Scene::UnloadScene()
@@ -42,6 +47,17 @@ void HyEngine::Scene::UnloadScene()
 
 void HyEngine::Scene::UpdateScene()
 {
+	if (IS_EDITOR)
+	{
+		/* 해당 로직은 EDITOR에서만 사용된다. */
+		// Client에서는 Load할 때 Static mesh로드를 마치고
+		// 런타임중에 변경이 없어야한다.
+		if (m_pObjectContainer->GetDirtyFlag())
+		{
+			m_pObjectContainer->SeperateContainers();
+			m_pQuadTree->Build(m_pObjectContainer->GetStaticMeshAll());
+		}
+	}
 	m_pObjectContainer->SeperateContainers();
 	m_pObjectContainer->ClearGarbage();
 	
@@ -194,9 +210,11 @@ ObjectContainer * HyEngine::Scene::GetObjectContainer() const
 
 void HyEngine::Scene::ViewFrustumCull()
 {
+	m_pQuadTree->QuadTreeCull(m_pSelectedCamera);
+
 	m_pSelectedCamera->ViewFrustumCulling
 	(
-		m_pObjectContainer->GetOpaqueObjectAll()
+		m_pObjectContainer->GetDynamicMeshAll()
 	);
 	m_pSelectedCamera->ViewFrustumCulling
 	(
