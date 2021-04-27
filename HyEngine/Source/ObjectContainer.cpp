@@ -153,7 +153,7 @@ void HyEngine::ObjectContainer::ClearAll()
 		Object::DestroyImmediate(light);
 	m_lights.clear();
 
-	SAFE_DELETE(m_pSkybox);
+
 }
 
 void HyEngine::ObjectContainer::ClearCache()

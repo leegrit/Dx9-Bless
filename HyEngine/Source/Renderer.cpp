@@ -240,8 +240,8 @@ void HyEngine::Renderer::ClearStashSurface()
 
 void HyEngine::Renderer::OcclusionCull(Scene* scene)
 {
-	auto& objects = scene->GetObjectContainer()->GetRenderableOpaqueAll();
-	
+	//auto& objects = scene->GetObjectContainer()->GetRenderableOpaqueAll();
+	auto& objects = m_renderableOpaque;
 	// TODO : 나중에 미리 로드했다가 사용하는 방식으로 변경
 	ID3DXEffect * pShader = nullptr;
 	if (IS_EDITOR)
@@ -341,7 +341,7 @@ void HyEngine::Renderer::Render(Scene * scene)
 	DeferredPipeline(scene);
 
 	/* For alpha object without light */
-	ForwardPipeline(scene);
+	//ForwardPipeline(scene);
 
 }
 
@@ -351,6 +351,10 @@ void Renderer::RenderBegin()
 	DEVICE->BeginScene();
 	EventDispatcher::TriggerEvent(RenderEvent::RenderBegin);
 
+	if (SCENE)
+	{
+		m_renderableOpaque = SCENE->GetObjectContainer()->GetRenderableOpaqueAll();
+	}
 }
 
 void Renderer::RenderEnd()
@@ -365,12 +369,12 @@ void HyEngine::Renderer::PreparePipeline(Scene * scene)
 	GetOriginMRT();
 
 	/* Create CascadeShadow Map  */
-	for (int i = 0; i < NUM_CASCADEDES; i++)
+	/*for (int i = 0; i < NUM_CASCADEDES; i++)
 	{
 		SetShadowMapMRT(i);
 		ClearBackBuffer();
 		ShadowPass(scene, i);
-	}
+	}*/
 
 	SetOriginMRT();
 }
@@ -389,11 +393,11 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 
 	/* Create Soft ShadowMap */
 	// SoftShadow Origin
-	SetSoftShadowOriginMRT();
-	SoftShadowPass(scene);
-	// SoftShadow Blur
-	SetSoftShadowMRT();
-	SoftShadowBlurPass(scene);
+	//SetSoftShadowOriginMRT();
+	//SoftShadowPass(scene);
+	//// SoftShadow Blur
+	//SetSoftShadowMRT();
+	//SoftShadowBlurPass(scene);
 
 	SetOriginMRT();
 	ClearStashSurface();
@@ -402,8 +406,9 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	AmbientPass(scene);
 
 	/* Render For Backbuffer */
-	LightPass(scene);
+	//LightPass(scene);
 
+	//LinearFilterPass();
 
 }
 
@@ -415,23 +420,17 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	for (auto& alpha : list)
 	{
 		Mesh* mesh = dynamic_cast<Mesh*>(alpha);
-		if (mesh != nullptr)
-		{
-			if (mesh->IsOcclusionCulled() == true)
-			{
-				continue;
-			}
-		}
+
 		alpha->Render();
 	}
 
 	/* Render Collider */
 #ifdef _DEBUG
-	auto& colliders = scene->GetObjectContainer()->GetRenderableColliderAll();
+	/*auto& colliders = scene->GetObjectContainer()->GetRenderableColliderAll();
 	for (auto& collider : colliders)
 	{
 		collider->Render();
-	}
+	}*/
 #endif
 }
 
@@ -495,16 +494,21 @@ void HyEngine::Renderer::SetSoftShadowMRT()
 
 void HyEngine::Renderer::GeometryPass(Scene * scene)
 {
-	auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
+	//auto& list = scene->GetObjectContainer()->GetRenderableOpaqueAll();
+	auto& list = m_renderableOpaque;
+
+#ifdef _DEBUG
+	std::cout << "Renderable Count : " << list.size() << std::endl;
+#endif
 	if (list.size() == 0) return;
 	for (auto& opaque : list)
 	{
 		Mesh* mesh = dynamic_cast<Mesh*>(opaque);
-		if (mesh != nullptr && mesh->IsOcclusionCulled() == true)
+		/*if (mesh != nullptr && mesh->IsOcclusionCulled() == true)
 		{
 			continue;
-		}
-		opaque->Render();
+		}*/
+		//opaque->Render();
 	}
 
 }
@@ -720,7 +724,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 			pShader->EndPass();
 		}
 		pShader->End();
-		DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_POINT);
+		DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_NONE);
 	}
 }
 
@@ -763,14 +767,15 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.1f, 0.3f, 0.6f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.1f, 0.2f, 1.0f };
+	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
 
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.15f , 0.7f};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =
 	{
-		D3DXVECTOR3(-1.0f,  1.0f, -1.0f),
-		D3DXVECTOR3(1.0f,  1.0f, -1.0f),
-		D3DXVECTOR3(1.0f, -1.0f, -1.0f),
-		D3DXVECTOR3(-1.0f, -1.0f, -1.0f),
+		D3DXVECTOR3(-1.0f,  1.0f, 0.0f),
+		D3DXVECTOR3(1.0f,  1.0f, 0.0f),
+		D3DXVECTOR3(1.0f, -1.0f, 0.0f),
+		D3DXVECTOR3(-1.0f, -1.0f, 0.0f),
 		D3DXVECTOR3(-1.0f,  1.0f,  1.0f),
 		D3DXVECTOR3(1.0f,  1.0f,  1.0f),
 		D3DXVECTOR3(1.0f, -1.0f,  1.0f),
@@ -844,7 +849,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		&frustumCenter,
 		&Vector3::Up);
 
-	D3DXMatrixOrthoOffCenterLH(&lightProjMatrix, mins.x, maxes.x, mins.y, maxes.y, 1, cascadedExtents.z);
+	D3DXMatrixOrthoOffCenterLH(&lightProjMatrix, mins.x, maxes.x, mins.y, maxes.y, 0, cascadedExtents.z);
 
 
 	m_lightViewMat[cascadeIndex] = lightViewMatrix;
@@ -913,7 +918,7 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	D3DXMATRIX projMatrixInv;
 
 	/* Set Matrices */
-	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 100);
 	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
@@ -950,10 +955,17 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	// 카메라 방향벡터와 광원의 방향을 내적해서
 	// 양수면 그대로, 음수면 순서 거꾸로
 	D3DXVECTOR3 camDir = selectedCam->m_pTransform->Forward();
+	camDir.y = 0;
 	D3DXVec3Normalize(&camDir, &camDir);
 	D3DXVECTOR3 lightDir = directionalLight->Direction();
+	lightDir.y = 0;
 	D3DXVec3Normalize(&lightDir, &lightDir);
-	float isReverse = -D3DXVec3Dot(&camDir, &lightDir);
+	float temp = D3DXVec3Dot(&camDir, &lightDir);
+	bool isReverse = false;
+	if (temp > 0)
+		isReverse = false;
+	else
+		isReverse = true;
 	D3DXMATRIX lightViewMat[NUM_CASCADEDES];
 	D3DXMATRIX lightProjMat[NUM_CASCADEDES];
 
@@ -963,6 +975,14 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 		{
 			lightViewMat[i] = m_lightViewMat[NUM_CASCADEDES - 1 - i];
 			lightProjMat[i] = m_lightProjMat[NUM_CASCADEDES - 1 - i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < NUM_CASCADEDES; i++)
+		{
+			lightViewMat[i] = m_lightViewMat[i];
+			lightProjMat[i] = m_lightProjMat[i];
 		}
 	}
 
@@ -1093,6 +1113,56 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 		pShader->EndPass();
 	}
 	pShader->End();
+}
+
+void HyEngine::Renderer::LinearFilterPass()
+{
+	D3DXMATRIX worldMatrix;
+	D3DXMATRIX viewMatrix;
+	D3DXMATRIX projMatrix;
+
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&viewMatrix);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"LinearFilter", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"LinearFilter", &pShader);
+	assert(pShader);
+
+	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
+	pShader->SetValue("ViewMatrix", &viewMatrix, sizeof(viewMatrix));
+	pShader->SetValue("ProjMatrix", &projMatrix, sizeof(projMatrix));
+
+
+	/* Albedo */
+	D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
+	pShader->SetTexture(stashHandle, m_pStashRTTexture);
+
+
+	pShader->SetTechnique("LinearFilter");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+	}
+	pShader->End();
+	//DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_NONE);
 }
 
 Renderer * HyEngine::Renderer::Create()

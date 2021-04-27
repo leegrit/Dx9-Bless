@@ -47,7 +47,7 @@ float4 BlurPS(float2 texcoord:TEXCOORD0) : COLOR0
 	float y;
 	float2 uv;
 
-	for(int blur = 1; blur < 4; blur++)
+	for(int blur = 1; blur < 10; blur++)
 	{
 		for(int i = 0; i < 8; i++)
 		{

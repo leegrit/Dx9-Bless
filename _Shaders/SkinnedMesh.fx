@@ -178,8 +178,6 @@ void SkinnedMeshPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
-	if(HasNormalMap == true)
-	{
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);
 		
@@ -196,7 +194,7 @@ void SkinnedMeshPS(
 
 		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
 	
-	}
+	
 }
 
 

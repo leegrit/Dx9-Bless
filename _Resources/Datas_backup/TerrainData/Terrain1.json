@@ -1,0 +1,93 @@
+﻿{
+  "Type": 4,
+  "Index": 26,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 1,
+  "GameObjectData": {
+    "Index": 26,
+    "Name": "Hieracon_1",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 1,
+    "Transform": {
+      "Position": {
+        "X": -500.0,
+        "Y": 0.0,
+        "Z": -500.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 26,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 26,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 7,
+    "CellCount": 0
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 500.0,
+    "DiffuseFilePath": "Assets\\Tile\\Tile_D_0.tga",
+    "NormalFilePath": "Assets\\Tile\\Tile_N_0.tga"
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  }
+}

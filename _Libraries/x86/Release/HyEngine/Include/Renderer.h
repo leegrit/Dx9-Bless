@@ -4,7 +4,7 @@
 
 /* For Cascade Shadow */
 // MAX = 4
-#define NUM_CASCADEDES 3
+#define NUM_CASCADEDES 4
 
 namespace HyEngine
 {
@@ -76,6 +76,7 @@ namespace HyEngine
 		void ShadowPass(Scene * scene, int casecadeIndex);
 		void SoftShadowPass(Scene* scene);
 		void SoftShadowBlurPass(Scene* scene);
+		void LinearFilterPass();
 
 		//////////////////////////////////////////////////////////////////////////
 		// OCCLUSION QUERY VARIABLES
@@ -140,6 +141,7 @@ namespace HyEngine
 		D3DXMATRIX m_lightViewMat[NUM_CASCADEDES];
 		D3DXMATRIX m_lightProjMat[NUM_CASCADEDES];
 
+		std::vector<GameObject*> m_renderableOpaque;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHODES

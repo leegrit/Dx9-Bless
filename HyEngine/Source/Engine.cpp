@@ -142,7 +142,7 @@ void Engine::SimulateFrame()
 			SetGameMode(EGameMode::GAME_MODE);
 		EventDispatcher::TriggerEvent(EngineEvent::ModeChanged);
 	}
-	if (m_pActiveScene)
+	if (m_pActiveScene != m_pLoadingScene)
 	{
 		m_pActiveScene->UpdateScene();
 		// 여기서 오브젝트의 변경된 사항을 갖고 컬링한다.
@@ -160,11 +160,14 @@ void Engine::SimulateFrame()
 void Engine::RenderFrame()
 {
 	if (m_pActiveScene == nullptr) return;
-
+	// 임시
+	if (m_pActiveScene == m_pLoadingScene) return;
+	
 	/* Occlusion Query */
-	m_pRenderer->OcclusionBegin();
+
+	/*m_pRenderer->OcclusionBegin();
 	m_pRenderer->OcclusionCull(m_pActiveScene);
-	m_pRenderer->OcclusionEnd();
+	m_pRenderer->OcclusionEnd();*/
 
 	m_pRenderer->RenderBegin();
 	//DEVICE->SetTransform(D3DTS_PROJECTION, &m_pCamera->GetProjectionMatrix());
@@ -339,6 +342,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"SkinnedMesh", PATH->ShadersPathW() + L"SkinnedMesh.fx");
 	InsertShader(L"StaticMesh", PATH->ShadersPathW() + L"StaticMesh.fx");
 	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
+	InsertShader(L"LinearFilter", PATH->ShadersPathW() + L"LinearFilter.fx");
 	return true;
 }
 

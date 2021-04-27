@@ -1,0 +1,117 @@
+{
+  "Type": 3,
+  "Index": 4,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 4,
+    "Name": "NavMesh",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 4,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 4,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 4,
+    "CellCount": 3
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  },
+  "Cell_0": {
+    "CellIndex": 0,
+    "PositionX": 0,
+    "PositionY": 0,
+    "PositionZ": 0,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_1": {
+    "CellIndex": 1,
+    "PositionX": 2,
+    "PositionY": 0,
+    "PositionZ": 3,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_2": {
+    "CellIndex": 2,
+    "PositionX": 3,
+    "PositionY": 0,
+    "PositionZ": 0,
+    "Option": 0,
+    "Group": 100
+  }
+}

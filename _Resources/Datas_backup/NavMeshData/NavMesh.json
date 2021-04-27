@@ -1,0 +1,749 @@
+{
+  "Type": 3,
+  "Index": 10,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 10,
+    "Name": "NavMesh",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 10,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 10,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 10,
+    "CellCount": 82
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  },
+  "Cell_0": {
+    "CellIndex": 0,
+    "PositionX": -124,
+    "PositionY": 0,
+    "PositionZ": 268,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_1": {
+    "CellIndex": 1,
+    "PositionX": -114,
+    "PositionY": 0,
+    "PositionZ": 82,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_2": {
+    "CellIndex": 2,
+    "PositionX": -256,
+    "PositionY": 0,
+    "PositionZ": 205,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_3": {
+    "CellIndex": 3,
+    "PositionX": -288,
+    "PositionY": 0,
+    "PositionZ": 264,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_4": {
+    "CellIndex": 4,
+    "PositionX": -124,
+    "PositionY": 0,
+    "PositionZ": 268,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_5": {
+    "CellIndex": 5,
+    "PositionX": -256,
+    "PositionY": 0,
+    "PositionZ": 205,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_6": {
+    "CellIndex": 6,
+    "PositionX": -380,
+    "PositionY": 0,
+    "PositionZ": 286,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_7": {
+    "CellIndex": 7,
+    "PositionX": -288,
+    "PositionY": 0,
+    "PositionZ": 264,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_8": {
+    "CellIndex": 8,
+    "PositionX": -360,
+    "PositionY": 0,
+    "PositionZ": 183,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_9": {
+    "CellIndex": 9,
+    "PositionX": -360,
+    "PositionY": 0,
+    "PositionZ": 183,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_10": {
+    "CellIndex": 10,
+    "PositionX": -288,
+    "PositionY": 0,
+    "PositionZ": 264,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_11": {
+    "CellIndex": 11,
+    "PositionX": -256,
+    "PositionY": 0,
+    "PositionZ": 205,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_12": {
+    "CellIndex": 12,
+    "PositionX": -114,
+    "PositionY": 0,
+    "PositionZ": 82,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_13": {
+    "CellIndex": 13,
+    "PositionX": -129,
+    "PositionY": 0,
+    "PositionZ": -74,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_14": {
+    "CellIndex": 14,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_15": {
+    "CellIndex": 15,
+    "PositionX": -256,
+    "PositionY": 0,
+    "PositionZ": 205,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_16": {
+    "CellIndex": 16,
+    "PositionX": -114,
+    "PositionY": 0,
+    "PositionZ": 82,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_17": {
+    "CellIndex": 17,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_18": {
+    "CellIndex": 18,
+    "PositionX": -360,
+    "PositionY": 0,
+    "PositionZ": 183,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_19": {
+    "CellIndex": 19,
+    "PositionX": -256,
+    "PositionY": 0,
+    "PositionZ": 205,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_20": {
+    "CellIndex": 20,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_21": {
+    "CellIndex": 21,
+    "PositionX": -129,
+    "PositionY": 0,
+    "PositionZ": -74,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_22": {
+    "CellIndex": 22,
+    "PositionX": -153,
+    "PositionY": 0,
+    "PositionZ": -190,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_23": {
+    "CellIndex": 23,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_24": {
+    "CellIndex": 24,
+    "PositionX": -153,
+    "PositionY": 0,
+    "PositionZ": -190,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_25": {
+    "CellIndex": 25,
+    "PositionX": -351,
+    "PositionY": 0,
+    "PositionZ": -57,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_26": {
+    "CellIndex": 26,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_27": {
+    "CellIndex": 27,
+    "PositionX": -360,
+    "PositionY": 0,
+    "PositionZ": 183,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_28": {
+    "CellIndex": 28,
+    "PositionX": -262,
+    "PositionY": 0,
+    "PositionZ": 7,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_29": {
+    "CellIndex": 29,
+    "PositionX": -351,
+    "PositionY": 0,
+    "PositionZ": -57,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_30": {
+    "CellIndex": 30,
+    "PositionX": -114,
+    "PositionY": 0,
+    "PositionZ": 82,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_31": {
+    "CellIndex": 31,
+    "PositionX": -51,
+    "PositionY": 0,
+    "PositionZ": -65,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_32": {
+    "CellIndex": 32,
+    "PositionX": -129,
+    "PositionY": 0,
+    "PositionZ": -74,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_33": {
+    "CellIndex": 33,
+    "PositionX": -114,
+    "PositionY": 0,
+    "PositionZ": 82,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_34": {
+    "CellIndex": 34,
+    "PositionX": -58,
+    "PositionY": 0,
+    "PositionZ": 56,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_35": {
+    "CellIndex": 35,
+    "PositionX": -51,
+    "PositionY": 0,
+    "PositionZ": -65,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_36": {
+    "CellIndex": 36,
+    "PositionX": -58,
+    "PositionY": 0,
+    "PositionZ": 56,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_37": {
+    "CellIndex": 37,
+    "PositionX": -5,
+    "PositionY": 0,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_38": {
+    "CellIndex": 38,
+    "PositionX": -51,
+    "PositionY": 0,
+    "PositionZ": -65,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_39": {
+    "CellIndex": 39,
+    "PositionX": -5,
+    "PositionY": 0,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_40": {
+    "CellIndex": 40,
+    "PositionX": -10,
+    "PositionY": 0,
+    "PositionZ": -48,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_41": {
+    "CellIndex": 41,
+    "PositionX": -51,
+    "PositionY": 0,
+    "PositionZ": -65,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_42": {
+    "CellIndex": 42,
+    "PositionX": -5,
+    "PositionY": 0,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_43": {
+    "CellIndex": 43,
+    "PositionX": 94,
+    "PositionY": 74,
+    "PositionZ": 40,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_44": {
+    "CellIndex": 44,
+    "PositionX": -10,
+    "PositionY": 0,
+    "PositionZ": -48,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_45": {
+    "CellIndex": 45,
+    "PositionX": 94,
+    "PositionY": 74,
+    "PositionZ": 40,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_46": {
+    "CellIndex": 46,
+    "PositionX": 93,
+    "PositionY": 72,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_47": {
+    "CellIndex": 47,
+    "PositionX": -10,
+    "PositionY": 0,
+    "PositionZ": -48,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_48": {
+    "CellIndex": 51,
+    "PositionX": 94,
+    "PositionY": 74,
+    "PositionZ": 40,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_49": {
+    "CellIndex": 52,
+    "PositionX": 257,
+    "PositionY": 190,
+    "PositionZ": 39,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_50": {
+    "CellIndex": 53,
+    "PositionX": 93,
+    "PositionY": 72,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_51": {
+    "CellIndex": 54,
+    "PositionX": 257,
+    "PositionY": 190,
+    "PositionZ": 39,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_52": {
+    "CellIndex": 55,
+    "PositionX": 257,
+    "PositionY": 186,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_53": {
+    "CellIndex": 56,
+    "PositionX": 93,
+    "PositionY": 72,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_54": {
+    "CellIndex": 60,
+    "PositionX": 257,
+    "PositionY": 190,
+    "PositionZ": 39,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_55": {
+    "CellIndex": 61,
+    "PositionX": 280,
+    "PositionY": 207,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_56": {
+    "CellIndex": 62,
+    "PositionX": 257,
+    "PositionY": 186,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_57": {
+    "CellIndex": 63,
+    "PositionX": 280,
+    "PositionY": 207,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_58": {
+    "CellIndex": 64,
+    "PositionX": 280,
+    "PositionY": 206,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_59": {
+    "CellIndex": 65,
+    "PositionX": 257,
+    "PositionY": 186,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_60": {
+    "CellIndex": 66,
+    "PositionX": 280,
+    "PositionY": 207,
+    "PositionZ": 41,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_61": {
+    "CellIndex": 67,
+    "PositionX": 316,
+    "PositionY": 208,
+    "PositionZ": 45,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_62": {
+    "CellIndex": 68,
+    "PositionX": 280,
+    "PositionY": 206,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_63": {
+    "CellIndex": 69,
+    "PositionX": 306,
+    "PositionY": 208,
+    "PositionZ": 43,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_64": {
+    "CellIndex": 70,
+    "PositionX": 304,
+    "PositionY": 208,
+    "PositionZ": -53,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_65": {
+    "CellIndex": 71,
+    "PositionX": 280,
+    "PositionY": 206,
+    "PositionZ": -46,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_66": {
+    "CellIndex": 72,
+    "PositionX": 306,
+    "PositionY": 208,
+    "PositionZ": 43,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_67": {
+    "CellIndex": 73,
+    "PositionX": 306,
+    "PositionY": 208,
+    "PositionZ": 44,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_68": {
+    "CellIndex": 74,
+    "PositionX": 417,
+    "PositionY": 208,
+    "PositionZ": 50,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_69": {
+    "CellIndex": 75,
+    "PositionX": 304,
+    "PositionY": 208,
+    "PositionZ": -53,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_70": {
+    "CellIndex": 76,
+    "PositionX": 417,
+    "PositionY": 208,
+    "PositionZ": 50,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_71": {
+    "CellIndex": 77,
+    "PositionX": 419,
+    "PositionY": 208,
+    "PositionZ": -51,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_72": {
+    "CellIndex": 78,
+    "PositionX": 304,
+    "PositionY": 208,
+    "PositionZ": -53,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_73": {
+    "CellIndex": 79,
+    "PositionX": 419,
+    "PositionY": 208,
+    "PositionZ": -51,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_74": {
+    "CellIndex": 80,
+    "PositionX": 420,
+    "PositionY": 239,
+    "PositionZ": -96,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_75": {
+    "CellIndex": 81,
+    "PositionX": 304,
+    "PositionY": 208,
+    "PositionZ": -53,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_76": {
+    "CellIndex": 82,
+    "PositionX": 420,
+    "PositionY": 239,
+    "PositionZ": -96,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_77": {
+    "CellIndex": 83,
+    "PositionX": 322,
+    "PositionY": 241,
+    "PositionZ": -101,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_78": {
+    "CellIndex": 84,
+    "PositionX": 304,
+    "PositionY": 208,
+    "PositionZ": -53,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_79": {
+    "CellIndex": 85,
+    "PositionX": 420,
+    "PositionY": 239,
+    "PositionZ": -96,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_80": {
+    "CellIndex": 86,
+    "PositionX": 423,
+    "PositionY": 292,
+    "PositionZ": -178,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_81": {
+    "CellIndex": 87,
+    "PositionX": 321,
+    "PositionY": 239,
+    "PositionZ": -96,
+    "Option": 0,
+    "Group": 100
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "Type": 1,
+  "Index": 6,
+  "TagIndex": 2,
+  "LayerIndex": 2,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 6,
+    "Name": "Sample_Elf",
+    "Tag": "Player",
+    "Layer": 2,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 14.54668,
+        "Y": 16.84218,
+        "Z": 2.627014
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 6,
+    "MeshFilePath": "Assets\\Mesh\\Unit\\Elf\\Elf_00.x",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 6,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 6,
+    "CellCount": 0
+  }
+}

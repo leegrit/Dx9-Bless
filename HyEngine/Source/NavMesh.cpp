@@ -15,11 +15,11 @@ HyEngine::NavMesh::NavMesh(Scene* scene, GameObject* parent)
 
 HyEngine::NavMesh::~NavMesh()
 {
-	for (auto& cell : m_pickedCell)
-		Object::Destroy(cell);
+// 	for (auto& cell : m_pickedCell)
+// 		Object::Destroy(cell);
 	m_pickedCell.clear();
-	for (auto& prim : m_navPrimitives)
-		Object::Destroy(prim);
+// 	for (auto& prim : m_navPrimitives)
+// 		Object::Destroy(prim);
 	m_navPrimitives.clear();
 
 }

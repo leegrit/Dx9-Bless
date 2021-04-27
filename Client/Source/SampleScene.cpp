@@ -44,18 +44,20 @@ void SampleScene::Load()
 	m_pEditCam = DynamicCamera::Create(this, nullptr, L"SampleCamera");
 	//AddCamera(L"SampleCamera", camera);
 
-
+	int a = (UINT)-1;
+	int b = D3DX_DEFAULT;
 
 	//////////////////////////////////////////////////////////////////////////
 	// NAVMESH
 	//////////////////////////////////////////////////////////////////////////
-	NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Hieracon_NavMesh.json");
-	
+	//NavMesh* navMesh=	NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Hieracon_NavMesh.json");
+	NavMesh* navMesh = NavMesh::Create(this, nullptr, PATH->DatasPathW() + L"NavMeshData/Hieracon_NavMesh.json");
 	//////////////////////////////////////////////////////////////////////////
 	// PLAYER
 	//////////////////////////////////////////////////////////////////////////
 	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
 	SetPlayer(m_pPlayer);
+	//m_pPlayer->m_pTransform->SetScale(0.1f, 0.1f, 0.1f);
 
 	m_pGameCam = PlayerCamera::Create(this, m_pPlayer, L"PlayerCamera");
 	SelectCamera(L"PlayerCamera");
@@ -67,11 +69,14 @@ void SampleScene::Load()
 	// MAP
 	//////////////////////////////////////////////////////////////////////////
 	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/Hierarcon_Map.json");
-
+	/*for (int i = 0; i < 500; i++)
+	{
+		GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_Small.json");
+	}*/
 	//////////////////////////////////////////////////////////////////////////
 	// TERRAIN
 	//////////////////////////////////////////////////////////////////////////
-	//Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/FirstTerrain.json");
+	//Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Terrain_Small.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_1.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_2.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_3.json");
@@ -88,11 +93,12 @@ void SampleScene::Load()
 	// LIGHT
 	//////////////////////////////////////////////////////////////////////////
 	/* Directional Light */
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
+	//LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Light_Small.json");
 
 	/* Point Light */
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_1.json");
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_2.json");
+	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_1.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_2.json");*/
 	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_3.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_4.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_5.json");
@@ -116,17 +122,17 @@ void SampleScene::Load()
 	// EQUIPMENT
 	//////////////////////////////////////////////////////////////////////////
 	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
-	//m_pEquip->m_pTransform->SetScale(1, 1, 1);
+	//m_pEquip->m_pTransform->SetScale(0.1f, 0.1f, 0.1f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
 	//////////////////////////////////////////////////////////////////////////
-	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
+	/*auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
 	enemy1->m_pTransform->m_position += D3DXVECTOR3(50, 0, 0);
 	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
 	enemy2->m_pTransform->m_position += D3DXVECTOR3(0, 0, 0);
 	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone.json");
-	enemy3->m_pTransform->m_position += D3DXVECTOR3(0, 0, 50);
+	enemy3->m_pTransform->m_position += D3DXVECTOR3(0, 0, 50);*/
 
 
 	//////////////////////////////////////////////////////////////////////////

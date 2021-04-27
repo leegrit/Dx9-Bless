@@ -55,7 +55,7 @@ void Application::Run()
 
 	while (!m_bAppWantsExit)
 	{
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -82,12 +82,13 @@ void Application::Run()
 			// accumulate the elapsed time since the last frame
 			accumulatedTime += TIMER->getUnscaleDeltaTime();
 			
-			if (accumulatedTime >= m_dt)
-			{
+// 			if (accumulatedTime >= m_dt)
+// 			{
 				accumulatedTime -= m_dt;
 				ENGINE->SimulateFrame();
 				ENGINE->RenderFrame();
-			}
+			//}
+			//ENGINE->RenderFrame();
 // 			nLoops = 0;
 // 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
 // 			{

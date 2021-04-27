@@ -134,7 +134,7 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	// emissive, ambient는 덧셈 연산이기에 영향을 받지 않는다.
 	float shadowFactor = 1; // default 1
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
-	float bias = 0.01f;
+	float bias = 0.06f;
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
@@ -142,6 +142,7 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 
 	int cascadeIndex = -1;
 	float4 lightPos;
+	float shadowDepth;
 	for(int i = 0; i < 4; i++)
 	{
 		lightPos = mul(worldPos, LightViewMatrix[i]);
@@ -154,48 +155,50 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 
 		if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y) 
 		&& (saturate(projectTexcoord.z) == projectTexcoord.z))
-		{
+		{	
 			cascadeIndex = i;
-			break;
+			if (cascadeIndex == 0)
+			{
+				shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
+				//return diffuse;
+			}
+			if (cascadeIndex == 1)
+			{
+				shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).a;
+				//return diffuse;
+			}
+			if (cascadeIndex == 2)
+			{
+				shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).a;
+
+				//return diffuse;
+			}
+			if (cascadeIndex == 3)
+			{
+				shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).a;
+
+				//return diffuse;
+			}
+			float lightDepth = lightPos.z / lightPos.w;
+			lightDepth = lightDepth - bias;
+
+			if (lightDepth < shadowDepth)
+			{
+				shadowFactor = 1;
+			}
+			else
+			{
+				shadowFactor = 0;
+				break;
+			}
+
 		}
 	}
-	float shadowDepth;
-	if(cascadeIndex == 0)
-	{
-		shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
-		//return diffuse;
-	}
-	if(cascadeIndex == 1)
-	{
-		shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).a;
-		//return diffuse;
-	}
-	if(cascadeIndex == 2)
-	{
-		shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).a;
+	
 
-		//return diffuse;
-	}
-	if(cascadeIndex == 3)
-	{
-		shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).a;
 
-		//return diffuse;
-	}
-
-	float lightDepth = lightPos.z / lightPos.w;
-	lightDepth = lightDepth - bias;
-
-	if(lightDepth < shadowDepth)
-	{
-		shadowFactor = 1;
-	}
-	else
-	{
-		shadowFactor = 0;
-	}
 	return float4(shadowFactor, shadowFactor, shadowFactor, shadowFactor);
-}
+	};
 
 
 technique SoftShadowMapping

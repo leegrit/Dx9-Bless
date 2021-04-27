@@ -36,7 +36,9 @@ private :
 	GameObject* m_pPlayer = nullptr;
 
 	/* For Movement */
+	//float m_distanceToTarget = 1;
 	float m_distanceToTarget = 100;
+
 
 	/* For Rotation  */
 	D3DXVECTOR3 m_mouseCenter;

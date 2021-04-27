@@ -16,29 +16,16 @@ texture CubeTex;
 sampler CubeSampler = sampler_state
 {
 	Texture = (CubeTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
 };
 texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
 };
 texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
     AddressU = clamp;
     AddressV = clamp;
 };
@@ -46,31 +33,16 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
 };
 texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
 };
 texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = clamp;
-    AddressV = clamp;
 };
 
 void AmbientLightVS(

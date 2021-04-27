@@ -146,11 +146,43 @@ void GBufferPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
-	if(HasNormalMap == true)
-	{
+}
+void GBufferWithNormalPS(
+	float4 depthPosition : TEXCOORD0,
+	float3 normal : NORMAL,
+	float2 texcoord : TEXCOORD1,
+	float3x3 tangentWorldMat : TEXCOORD2,
+	out float4 outDepth : COLOR0,
+	out float4 outAlbedo : COLOR1,
+	out float4 outNormal : COLOR2,
+	out float4 outSpecular : COLOR3
+)
+{
+	float4 albedo = tex2D(AlbedoSampler, texcoord);
+	float4 emissive = tex2D(EmissiveSampler, texcoord);
+	float4 specular = tex2D(SpecularSampler, texcoord);
+	float4 specularMask = tex2D(SpecularMaskSampler, texcoord);
+
+
+	/* Depth */
+	float depth = (float)depthPosition.z / depthPosition.w;
+
+
+	outDepth = float4(emissive.r, emissive.g, emissive.b, depth);
+
+	/* Albedo */
+	outAlbedo = albedo;
+
+	/* Specular */
+	outSpecular = specular;
+	outSpecular.a = specularMask.b;
+
+	/* Normal */
+	outNormal = float4(normal * 0.5f + 0.5f, 1);
+
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);
-		
+
 		/* convert -1 ~ 1*/
 		bumpMap = (bumpMap * 2.0f) - 1.0f;
 
@@ -163,8 +195,8 @@ void GBufferPS(
 		bumpNormal = normalize(bumpNormal);
 
 		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
-	
-	}
+
+
 }
 void GBufferSkyboxVS(
 	float4 position : POSITION,
@@ -321,7 +353,14 @@ technique GBuffer
 		PixelShader = compile ps_3_0 GBufferPS();
 	}
 };
-
+technique GBufferWithNormal
+{
+	pass P0
+	{
+		VertexShader = compile vs_3_0 GBufferVS();
+		PixelShader = compile ps_3_0 GBufferWithNormalPS();
+	}
+};
 technique GBuffer_Skybox
 {
 	pass P0

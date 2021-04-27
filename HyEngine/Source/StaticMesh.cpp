@@ -20,7 +20,6 @@ HyEngine::StaticMesh::StaticMesh(Scene * scene, GameObject * parent, std::wstrin
 	: Mesh(ERenderType::RenderOpaque, scene, parent, name),
 	m_pMesh(nullptr)
 {
-
 }
 
 HyEngine::StaticMesh::~StaticMesh()

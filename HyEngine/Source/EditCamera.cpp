@@ -15,7 +15,7 @@ void EditCamera::Initialize()
 {
 	Camera::Initialize();
 
-	GetTransform()->SetPosition(0, 0, -10);
+	GetTransform()->SetPosition(0, 0, 0);
 }
 
 void EditCamera::Update()
@@ -24,10 +24,10 @@ void EditCamera::Update()
 
 	SetProjectionMatrix
 	(
-		D3DXToRadian(60), // 90 - degree
+		D3DXToRadian(45), // 90 - degree
 		WinMaxWidth / WinMaxHeight,
-		1.0f,
-		3000.0f
+		1,//0.01f,
+		1000//15.0f
 	);
 	D3DXVECTOR3 target;
 	target = (GetTransform()->m_position + GetTransform()->Forward() * 10).operator D3DXVECTOR3();

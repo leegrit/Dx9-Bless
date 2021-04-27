@@ -143,8 +143,8 @@ void StaticMeshPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
-	if(HasNormalMap == true)
-	{
+	//if(HasNormalMap == true)
+	//{
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);
 		
@@ -161,7 +161,7 @@ void StaticMeshPS(
 
 		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
 	
-	}
+	//}
 }
 
 void StaticMaskedMeshPS(
@@ -200,8 +200,8 @@ void StaticMaskedMeshPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
-	if(HasNormalMap == true)
-	{
+	//if(HasNormalMap == true)
+	//{
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);
 		
@@ -218,13 +218,15 @@ void StaticMaskedMeshPS(
 
 		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
 	
-	}
+	//}
 }
 
 technique StaticMesh
 {
 	pass P0
 	{
+		CULLMODE = CCW;
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 StaticMeshVS();
 		PixelShader = compile ps_3_0 StaticMeshPS();
 	}
@@ -234,6 +236,8 @@ technique StaticMaskedMesh
 {
 	pass P0
 	{
+		CULLMODE = CCW;
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 StaticMeshVS();
 		PixelShader = compile ps_3_0 StaticMaskedMeshPS();
 	}
