@@ -39,6 +39,9 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	//MinFilter = POINT;
 	//MagFilter = POINT;
 	/*MinFilter = LINEAR;
@@ -51,6 +54,9 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -63,6 +69,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -75,6 +84,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -87,6 +99,9 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 };
@@ -142,7 +157,7 @@ float4 PointLightPS(
 
 	// if pixel is too far, return zero
 	if(d > Range)
-		return stashMap;
+		discard;
 
 	// Turn lightToPixelVec into a unit length vector describing
 	// the pixels direction from the lights position

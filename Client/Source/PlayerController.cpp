@@ -7,7 +7,7 @@ PlayerController::PlayerController(GameObject * pOwner)
 	:Component(BehaviourType::Update, pOwner, L"PlayerController")
 {
 	//m_speed = 0.5f;
-	m_speed = 500.f;
+	m_speed = 50.f;
 	m_playerState = EPlayerState::Idle;
 }
 

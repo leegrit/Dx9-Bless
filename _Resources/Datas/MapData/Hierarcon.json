@@ -1,6 +1,6 @@
 {
   "Group": 0,
-  "MapCount": 158,
+  "MapCount": 195,
   "Hierarchy_0": {
     "Type": 2,
     "Index": 3,
@@ -7350,12 +7350,12 @@
   },
   "Hierarchy_79": {
     "Type": 2,
-    "Index": 86,
+    "Index": 84,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 86,
+      "Index": 84,
       "Name": "Hieracon109",
       "Tag": "Default",
       "Layer": 0,
@@ -7379,12 +7379,12 @@
       }
     },
     "MeshData": {
-      "Index": 86,
+      "Index": 84,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon109.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 86,
+      "Index": 84,
       "Group": 0
     },
     "NavMeshData": {
@@ -7443,12 +7443,12 @@
   },
   "Hierarchy_80": {
     "Type": 2,
-    "Index": 87,
+    "Index": 85,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 87,
+      "Index": 85,
       "Name": "Hieracon109",
       "Tag": "Default",
       "Layer": 0,
@@ -7472,12 +7472,12 @@
       }
     },
     "MeshData": {
-      "Index": 87,
+      "Index": 85,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon109.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 87,
+      "Index": 85,
       "Group": 0
     },
     "NavMeshData": {
@@ -7536,12 +7536,12 @@
   },
   "Hierarchy_81": {
     "Type": 2,
-    "Index": 88,
+    "Index": 86,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 88,
+      "Index": 86,
       "Name": "Hieracon121",
       "Tag": "Default",
       "Layer": 0,
@@ -7565,12 +7565,12 @@
       }
     },
     "MeshData": {
-      "Index": 88,
+      "Index": 86,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon121.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 88,
+      "Index": 86,
       "Group": 0
     },
     "NavMeshData": {
@@ -7629,12 +7629,12 @@
   },
   "Hierarchy_82": {
     "Type": 2,
-    "Index": 89,
+    "Index": 87,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 89,
+      "Index": 87,
       "Name": "Hieracon80",
       "Tag": "Default",
       "Layer": 0,
@@ -7642,7 +7642,7 @@
       "Transform": {
         "Position": {
           "X": 403.42,
-          "Y": 66.33,
+          "Y": 44.81,
           "Z": 376.75
         },
         "Rotation": {
@@ -7658,12 +7658,12 @@
       }
     },
     "MeshData": {
-      "Index": 89,
+      "Index": 87,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon80.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 89,
+      "Index": 87,
       "Group": 0
     },
     "NavMeshData": {
@@ -7722,12 +7722,12 @@
   },
   "Hierarchy_83": {
     "Type": 2,
-    "Index": 90,
+    "Index": 88,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 90,
+      "Index": 88,
       "Name": "Hieracon109",
       "Tag": "Default",
       "Layer": 0,
@@ -7751,12 +7751,12 @@
       }
     },
     "MeshData": {
-      "Index": 90,
+      "Index": 88,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon109.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 90,
+      "Index": 88,
       "Group": 0
     },
     "NavMeshData": {
@@ -7815,12 +7815,12 @@
   },
   "Hierarchy_84": {
     "Type": 2,
-    "Index": 91,
+    "Index": 89,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 91,
+      "Index": 89,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -7829,7 +7829,7 @@
         "Position": {
           "X": -361.26,
           "Y": 136.0,
-          "Z": 331.55
+          "Z": 330.75
         },
         "Rotation": {
           "X": 0.0,
@@ -7844,12 +7844,12 @@
       }
     },
     "MeshData": {
-      "Index": 91,
+      "Index": 89,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 91,
+      "Index": 89,
       "Group": 0
     },
     "NavMeshData": {
@@ -7908,12 +7908,12 @@
   },
   "Hierarchy_85": {
     "Type": 2,
-    "Index": 92,
+    "Index": 90,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 92,
+      "Index": 90,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -7937,12 +7937,12 @@
       }
     },
     "MeshData": {
-      "Index": 92,
+      "Index": 90,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 92,
+      "Index": 90,
       "Group": 0
     },
     "NavMeshData": {
@@ -8001,12 +8001,12 @@
   },
   "Hierarchy_86": {
     "Type": 2,
-    "Index": 93,
+    "Index": 91,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 93,
+      "Index": 91,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -8030,12 +8030,12 @@
       }
     },
     "MeshData": {
-      "Index": 93,
+      "Index": 91,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 93,
+      "Index": 91,
       "Group": 0
     },
     "NavMeshData": {
@@ -8094,12 +8094,12 @@
   },
   "Hierarchy_87": {
     "Type": 2,
-    "Index": 94,
+    "Index": 92,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 94,
+      "Index": 92,
       "Name": "Hieracon121",
       "Tag": "Default",
       "Layer": 0,
@@ -8123,12 +8123,12 @@
       }
     },
     "MeshData": {
-      "Index": 94,
+      "Index": 92,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon121.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 94,
+      "Index": 92,
       "Group": 0
     },
     "NavMeshData": {
@@ -8187,12 +8187,12 @@
   },
   "Hierarchy_88": {
     "Type": 2,
-    "Index": 95,
+    "Index": 93,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 95,
+      "Index": 93,
       "Name": "Hieracon14",
       "Tag": "Default",
       "Layer": 0,
@@ -8216,12 +8216,12 @@
       }
     },
     "MeshData": {
-      "Index": 95,
+      "Index": 93,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon14.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 95,
+      "Index": 93,
       "Group": 0
     },
     "NavMeshData": {
@@ -8280,12 +8280,12 @@
   },
   "Hierarchy_89": {
     "Type": 2,
-    "Index": 96,
+    "Index": 94,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 96,
+      "Index": 94,
       "Name": "Hieracon14",
       "Tag": "Default",
       "Layer": 0,
@@ -8309,12 +8309,12 @@
       }
     },
     "MeshData": {
-      "Index": 96,
+      "Index": 94,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon14.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 96,
+      "Index": 94,
       "Group": 0
     },
     "NavMeshData": {
@@ -8373,12 +8373,12 @@
   },
   "Hierarchy_90": {
     "Type": 2,
-    "Index": 97,
+    "Index": 95,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 97,
+      "Index": 95,
       "Name": "Hieracon14",
       "Tag": "Default",
       "Layer": 0,
@@ -8402,12 +8402,12 @@
       }
     },
     "MeshData": {
-      "Index": 97,
+      "Index": 95,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon14.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 97,
+      "Index": 95,
       "Group": 0
     },
     "NavMeshData": {
@@ -8466,12 +8466,12 @@
   },
   "Hierarchy_91": {
     "Type": 2,
-    "Index": 98,
+    "Index": 96,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 98,
+      "Index": 96,
       "Name": "Hieracon14",
       "Tag": "Default",
       "Layer": 0,
@@ -8495,12 +8495,12 @@
       }
     },
     "MeshData": {
-      "Index": 98,
+      "Index": 96,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon14.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 98,
+      "Index": 96,
       "Group": 0
     },
     "NavMeshData": {
@@ -8559,12 +8559,12 @@
   },
   "Hierarchy_92": {
     "Type": 2,
-    "Index": 99,
+    "Index": 97,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 99,
+      "Index": 97,
       "Name": "Hieracon128",
       "Tag": "Default",
       "Layer": 0,
@@ -8588,12 +8588,12 @@
       }
     },
     "MeshData": {
-      "Index": 99,
+      "Index": 97,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon128.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 99,
+      "Index": 97,
       "Group": 0
     },
     "NavMeshData": {
@@ -8652,12 +8652,12 @@
   },
   "Hierarchy_93": {
     "Type": 2,
-    "Index": 100,
+    "Index": 98,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 100,
+      "Index": 98,
       "Name": "Hieracon60",
       "Tag": "Default",
       "Layer": 0,
@@ -8681,12 +8681,12 @@
       }
     },
     "MeshData": {
-      "Index": 100,
+      "Index": 98,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon60.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 100,
+      "Index": 98,
       "Group": 0
     },
     "NavMeshData": {
@@ -8745,12 +8745,12 @@
   },
   "Hierarchy_94": {
     "Type": 2,
-    "Index": 101,
+    "Index": 99,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 101,
+      "Index": 99,
       "Name": "Hieracon57",
       "Tag": "Default",
       "Layer": 0,
@@ -8774,12 +8774,12 @@
       }
     },
     "MeshData": {
-      "Index": 101,
+      "Index": 99,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon57.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 101,
+      "Index": 99,
       "Group": 0
     },
     "NavMeshData": {
@@ -8838,12 +8838,12 @@
   },
   "Hierarchy_95": {
     "Type": 2,
-    "Index": 102,
+    "Index": 100,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 102,
+      "Index": 100,
       "Name": "Hieracon57",
       "Tag": "Default",
       "Layer": 0,
@@ -8867,12 +8867,12 @@
       }
     },
     "MeshData": {
-      "Index": 102,
+      "Index": 100,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon57.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 102,
+      "Index": 100,
       "Group": 0
     },
     "NavMeshData": {
@@ -8931,12 +8931,12 @@
   },
   "Hierarchy_96": {
     "Type": 2,
-    "Index": 103,
+    "Index": 101,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 103,
+      "Index": 101,
       "Name": "Hieracon57",
       "Tag": "Default",
       "Layer": 0,
@@ -8960,12 +8960,12 @@
       }
     },
     "MeshData": {
-      "Index": 103,
+      "Index": 101,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon57.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 103,
+      "Index": 101,
       "Group": 0
     },
     "NavMeshData": {
@@ -9024,12 +9024,12 @@
   },
   "Hierarchy_97": {
     "Type": 2,
-    "Index": 104,
+    "Index": 102,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 104,
+      "Index": 102,
       "Name": "Hieracon57",
       "Tag": "Default",
       "Layer": 0,
@@ -9053,12 +9053,12 @@
       }
     },
     "MeshData": {
-      "Index": 104,
+      "Index": 102,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon57.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 104,
+      "Index": 102,
       "Group": 0
     },
     "NavMeshData": {
@@ -9117,12 +9117,12 @@
   },
   "Hierarchy_98": {
     "Type": 2,
-    "Index": 105,
+    "Index": 103,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 105,
+      "Index": 103,
       "Name": "Hieracon60",
       "Tag": "Default",
       "Layer": 0,
@@ -9146,12 +9146,12 @@
       }
     },
     "MeshData": {
-      "Index": 105,
+      "Index": 103,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon60.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 105,
+      "Index": 103,
       "Group": 0
     },
     "NavMeshData": {
@@ -9210,12 +9210,12 @@
   },
   "Hierarchy_99": {
     "Type": 2,
-    "Index": 106,
+    "Index": 104,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 106,
+      "Index": 104,
       "Name": "Hieracon60",
       "Tag": "Default",
       "Layer": 0,
@@ -9239,12 +9239,12 @@
       }
     },
     "MeshData": {
-      "Index": 106,
+      "Index": 104,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon60.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 106,
+      "Index": 104,
       "Group": 0
     },
     "NavMeshData": {
@@ -9303,12 +9303,12 @@
   },
   "Hierarchy_100": {
     "Type": 2,
-    "Index": 107,
+    "Index": 105,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 107,
+      "Index": 105,
       "Name": "Hieracon59",
       "Tag": "Default",
       "Layer": 0,
@@ -9332,12 +9332,12 @@
       }
     },
     "MeshData": {
-      "Index": 107,
+      "Index": 105,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 107,
+      "Index": 105,
       "Group": 0
     },
     "NavMeshData": {
@@ -9396,12 +9396,12 @@
   },
   "Hierarchy_101": {
     "Type": 2,
-    "Index": 108,
+    "Index": 106,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 108,
+      "Index": 106,
       "Name": "Hieracon59",
       "Tag": "Default",
       "Layer": 0,
@@ -9425,12 +9425,12 @@
       }
     },
     "MeshData": {
-      "Index": 108,
+      "Index": 106,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 108,
+      "Index": 106,
       "Group": 0
     },
     "NavMeshData": {
@@ -9489,12 +9489,12 @@
   },
   "Hierarchy_102": {
     "Type": 2,
-    "Index": 109,
+    "Index": 107,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 109,
+      "Index": 107,
       "Name": "Hieracon55",
       "Tag": "Default",
       "Layer": 0,
@@ -9518,12 +9518,12 @@
       }
     },
     "MeshData": {
-      "Index": 109,
+      "Index": 107,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon55.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 109,
+      "Index": 107,
       "Group": 0
     },
     "NavMeshData": {
@@ -9582,12 +9582,12 @@
   },
   "Hierarchy_103": {
     "Type": 2,
-    "Index": 110,
+    "Index": 108,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 110,
+      "Index": 108,
       "Name": "Hieracon55",
       "Tag": "Default",
       "Layer": 0,
@@ -9611,12 +9611,12 @@
       }
     },
     "MeshData": {
-      "Index": 110,
+      "Index": 108,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon55.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 110,
+      "Index": 108,
       "Group": 0
     },
     "NavMeshData": {
@@ -9675,12 +9675,12 @@
   },
   "Hierarchy_104": {
     "Type": 2,
-    "Index": 111,
+    "Index": 109,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 111,
+      "Index": 109,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -9704,12 +9704,12 @@
       }
     },
     "MeshData": {
-      "Index": 111,
+      "Index": 109,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 111,
+      "Index": 109,
       "Group": 0
     },
     "NavMeshData": {
@@ -9768,12 +9768,12 @@
   },
   "Hierarchy_105": {
     "Type": 2,
-    "Index": 112,
+    "Index": 110,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 112,
+      "Index": 110,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -9797,12 +9797,12 @@
       }
     },
     "MeshData": {
-      "Index": 112,
+      "Index": 110,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 112,
+      "Index": 110,
       "Group": 0
     },
     "NavMeshData": {
@@ -9861,12 +9861,12 @@
   },
   "Hierarchy_106": {
     "Type": 2,
-    "Index": 113,
+    "Index": 111,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 113,
+      "Index": 111,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -9890,12 +9890,12 @@
       }
     },
     "MeshData": {
-      "Index": 113,
+      "Index": 111,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 113,
+      "Index": 111,
       "Group": 0
     },
     "NavMeshData": {
@@ -9954,12 +9954,12 @@
   },
   "Hierarchy_107": {
     "Type": 2,
-    "Index": 114,
+    "Index": 112,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 114,
+      "Index": 112,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -9983,12 +9983,12 @@
       }
     },
     "MeshData": {
-      "Index": 114,
+      "Index": 112,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 114,
+      "Index": 112,
       "Group": 0
     },
     "NavMeshData": {
@@ -10047,12 +10047,12 @@
   },
   "Hierarchy_108": {
     "Type": 2,
-    "Index": 115,
+    "Index": 113,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 115,
+      "Index": 113,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -10076,12 +10076,12 @@
       }
     },
     "MeshData": {
-      "Index": 115,
+      "Index": 113,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 115,
+      "Index": 113,
       "Group": 0
     },
     "NavMeshData": {
@@ -10140,12 +10140,12 @@
   },
   "Hierarchy_109": {
     "Type": 2,
-    "Index": 116,
+    "Index": 114,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 116,
+      "Index": 114,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -10169,12 +10169,12 @@
       }
     },
     "MeshData": {
-      "Index": 116,
+      "Index": 114,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 116,
+      "Index": 114,
       "Group": 0
     },
     "NavMeshData": {
@@ -10233,12 +10233,12 @@
   },
   "Hierarchy_110": {
     "Type": 2,
-    "Index": 117,
+    "Index": 115,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 117,
+      "Index": 115,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -10262,12 +10262,12 @@
       }
     },
     "MeshData": {
-      "Index": 117,
+      "Index": 115,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 117,
+      "Index": 115,
       "Group": 0
     },
     "NavMeshData": {
@@ -10326,12 +10326,12 @@
   },
   "Hierarchy_111": {
     "Type": 2,
-    "Index": 118,
+    "Index": 116,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 118,
+      "Index": 116,
       "Name": "Hieracon283",
       "Tag": "Default",
       "Layer": 0,
@@ -10355,12 +10355,12 @@
       }
     },
     "MeshData": {
-      "Index": 118,
+      "Index": 116,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon283.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 118,
+      "Index": 116,
       "Group": 0
     },
     "NavMeshData": {
@@ -10419,12 +10419,12 @@
   },
   "Hierarchy_112": {
     "Type": 2,
-    "Index": 127,
+    "Index": 125,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 127,
+      "Index": 125,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -10448,12 +10448,12 @@
       }
     },
     "MeshData": {
-      "Index": 127,
+      "Index": 125,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 127,
+      "Index": 125,
       "Group": 0
     },
     "NavMeshData": {
@@ -10512,12 +10512,12 @@
   },
   "Hierarchy_113": {
     "Type": 2,
-    "Index": 128,
+    "Index": 126,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 128,
+      "Index": 126,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -10541,12 +10541,12 @@
       }
     },
     "MeshData": {
-      "Index": 128,
+      "Index": 126,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 128,
+      "Index": 126,
       "Group": 0
     },
     "NavMeshData": {
@@ -10605,12 +10605,12 @@
   },
   "Hierarchy_114": {
     "Type": 2,
-    "Index": 129,
+    "Index": 127,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 129,
+      "Index": 127,
       "Name": "Hieracon6",
       "Tag": "Default",
       "Layer": 0,
@@ -10634,12 +10634,12 @@
       }
     },
     "MeshData": {
-      "Index": 129,
+      "Index": 127,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon6.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 129,
+      "Index": 127,
       "Group": 0
     },
     "NavMeshData": {
@@ -10698,12 +10698,12 @@
   },
   "Hierarchy_115": {
     "Type": 2,
-    "Index": 130,
+    "Index": 128,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 130,
+      "Index": 128,
       "Name": "Hieracon14",
       "Tag": "Default",
       "Layer": 0,
@@ -10727,12 +10727,12 @@
       }
     },
     "MeshData": {
-      "Index": 130,
+      "Index": 128,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon14.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 130,
+      "Index": 128,
       "Group": 0
     },
     "NavMeshData": {
@@ -10791,12 +10791,12 @@
   },
   "Hierarchy_116": {
     "Type": 2,
-    "Index": 131,
+    "Index": 129,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 131,
+      "Index": 129,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -10820,12 +10820,12 @@
       }
     },
     "MeshData": {
-      "Index": 131,
+      "Index": 129,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 131,
+      "Index": 129,
       "Group": 0
     },
     "NavMeshData": {
@@ -10884,12 +10884,12 @@
   },
   "Hierarchy_117": {
     "Type": 2,
-    "Index": 132,
+    "Index": 130,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 132,
+      "Index": 130,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -10913,12 +10913,12 @@
       }
     },
     "MeshData": {
-      "Index": 132,
+      "Index": 130,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 132,
+      "Index": 130,
       "Group": 0
     },
     "NavMeshData": {
@@ -10977,12 +10977,12 @@
   },
   "Hierarchy_118": {
     "Type": 2,
-    "Index": 133,
+    "Index": 131,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 133,
+      "Index": 131,
       "Name": "Hieracon32",
       "Tag": "Default",
       "Layer": 0,
@@ -11006,12 +11006,12 @@
       }
     },
     "MeshData": {
-      "Index": 133,
+      "Index": 131,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon32.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 133,
+      "Index": 131,
       "Group": 0
     },
     "NavMeshData": {
@@ -11070,12 +11070,12 @@
   },
   "Hierarchy_119": {
     "Type": 2,
-    "Index": 134,
+    "Index": 132,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 134,
+      "Index": 132,
       "Name": "Hieracon32",
       "Tag": "Default",
       "Layer": 0,
@@ -11099,12 +11099,12 @@
       }
     },
     "MeshData": {
-      "Index": 134,
+      "Index": 132,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon32.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 134,
+      "Index": 132,
       "Group": 0
     },
     "NavMeshData": {
@@ -11163,12 +11163,12 @@
   },
   "Hierarchy_120": {
     "Type": 2,
-    "Index": 135,
+    "Index": 133,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 135,
+      "Index": 133,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -11192,12 +11192,12 @@
       }
     },
     "MeshData": {
-      "Index": 135,
+      "Index": 133,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 135,
+      "Index": 133,
       "Group": 0
     },
     "NavMeshData": {
@@ -11256,12 +11256,12 @@
   },
   "Hierarchy_121": {
     "Type": 2,
-    "Index": 136,
+    "Index": 134,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 136,
+      "Index": 134,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -11285,12 +11285,12 @@
       }
     },
     "MeshData": {
-      "Index": 136,
+      "Index": 134,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 136,
+      "Index": 134,
       "Group": 0
     },
     "NavMeshData": {
@@ -11349,12 +11349,12 @@
   },
   "Hierarchy_122": {
     "Type": 2,
-    "Index": 137,
+    "Index": 135,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 137,
+      "Index": 135,
       "Name": "Hieracon32",
       "Tag": "Default",
       "Layer": 0,
@@ -11378,12 +11378,12 @@
       }
     },
     "MeshData": {
-      "Index": 137,
+      "Index": 135,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon32.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 137,
+      "Index": 135,
       "Group": 0
     },
     "NavMeshData": {
@@ -11442,12 +11442,12 @@
   },
   "Hierarchy_123": {
     "Type": 2,
-    "Index": 138,
+    "Index": 136,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 138,
+      "Index": 136,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -11471,12 +11471,12 @@
       }
     },
     "MeshData": {
-      "Index": 138,
+      "Index": 136,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 138,
+      "Index": 136,
       "Group": 0
     },
     "NavMeshData": {
@@ -11535,12 +11535,12 @@
   },
   "Hierarchy_124": {
     "Type": 2,
-    "Index": 139,
+    "Index": 137,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 139,
+      "Index": 137,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -11564,12 +11564,12 @@
       }
     },
     "MeshData": {
-      "Index": 139,
+      "Index": 137,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 139,
+      "Index": 137,
       "Group": 0
     },
     "NavMeshData": {
@@ -11628,12 +11628,12 @@
   },
   "Hierarchy_125": {
     "Type": 2,
-    "Index": 140,
+    "Index": 138,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 140,
+      "Index": 138,
       "Name": "Hieracon17",
       "Tag": "Default",
       "Layer": 0,
@@ -11657,12 +11657,12 @@
       }
     },
     "MeshData": {
-      "Index": 140,
+      "Index": 138,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 140,
+      "Index": 138,
       "Group": 0
     },
     "NavMeshData": {
@@ -11721,12 +11721,12 @@
   },
   "Hierarchy_126": {
     "Type": 2,
-    "Index": 141,
+    "Index": 139,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 141,
+      "Index": 139,
       "Name": "Hieracon32",
       "Tag": "Default",
       "Layer": 0,
@@ -11750,12 +11750,12 @@
       }
     },
     "MeshData": {
-      "Index": 141,
+      "Index": 139,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon32.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 141,
+      "Index": 139,
       "Group": 0
     },
     "NavMeshData": {
@@ -11814,12 +11814,12 @@
   },
   "Hierarchy_127": {
     "Type": 2,
-    "Index": 142,
+    "Index": 140,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 142,
+      "Index": 140,
       "Name": "Hieracon120",
       "Tag": "Default",
       "Layer": 0,
@@ -11843,12 +11843,12 @@
       }
     },
     "MeshData": {
-      "Index": 142,
+      "Index": 140,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon120.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 142,
+      "Index": 140,
       "Group": 0
     },
     "NavMeshData": {
@@ -11907,12 +11907,12 @@
   },
   "Hierarchy_128": {
     "Type": 2,
-    "Index": 146,
+    "Index": 141,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 146,
+      "Index": 141,
       "Name": "Hieracon156",
       "Tag": "Default",
       "Layer": 0,
@@ -11936,12 +11936,12 @@
       }
     },
     "MeshData": {
-      "Index": 146,
+      "Index": 141,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon156.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 146,
+      "Index": 141,
       "Group": 0
     },
     "NavMeshData": {
@@ -12000,12 +12000,12 @@
   },
   "Hierarchy_129": {
     "Type": 2,
-    "Index": 147,
+    "Index": 142,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 147,
+      "Index": 142,
       "Name": "Hieracon157",
       "Tag": "Default",
       "Layer": 0,
@@ -12013,7 +12013,7 @@
       "Transform": {
         "Position": {
           "X": -503.26,
-          "Y": 1.17000735,
+          "Y": 1.17,
           "Z": -32.64
         },
         "Rotation": {
@@ -12029,12 +12029,12 @@
       }
     },
     "MeshData": {
-      "Index": 147,
+      "Index": 142,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon157.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 147,
+      "Index": 142,
       "Group": 0
     },
     "NavMeshData": {
@@ -12093,12 +12093,12 @@
   },
   "Hierarchy_130": {
     "Type": 2,
-    "Index": 148,
+    "Index": 143,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 148,
+      "Index": 143,
       "Name": "Hieracon159",
       "Tag": "Default",
       "Layer": 0,
@@ -12122,12 +12122,12 @@
       }
     },
     "MeshData": {
-      "Index": 148,
+      "Index": 143,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon159.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 148,
+      "Index": 143,
       "Group": 0
     },
     "NavMeshData": {
@@ -12186,12 +12186,12 @@
   },
   "Hierarchy_131": {
     "Type": 2,
-    "Index": 149,
+    "Index": 144,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 149,
+      "Index": 144,
       "Name": "Hieracon158",
       "Tag": "Default",
       "Layer": 0,
@@ -12215,12 +12215,12 @@
       }
     },
     "MeshData": {
-      "Index": 149,
+      "Index": 144,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon158.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 149,
+      "Index": 144,
       "Group": 0
     },
     "NavMeshData": {
@@ -12279,12 +12279,12 @@
   },
   "Hierarchy_132": {
     "Type": 2,
-    "Index": 150,
+    "Index": 145,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 150,
+      "Index": 145,
       "Name": "Hieracon158",
       "Tag": "Default",
       "Layer": 0,
@@ -12308,12 +12308,12 @@
       }
     },
     "MeshData": {
-      "Index": 150,
+      "Index": 145,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon158.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 150,
+      "Index": 145,
       "Group": 0
     },
     "NavMeshData": {
@@ -12372,12 +12372,12 @@
   },
   "Hierarchy_133": {
     "Type": 2,
-    "Index": 151,
+    "Index": 146,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 151,
+      "Index": 146,
       "Name": "Hieracon165",
       "Tag": "Default",
       "Layer": 0,
@@ -12401,12 +12401,12 @@
       }
     },
     "MeshData": {
-      "Index": 151,
+      "Index": 146,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon165.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 151,
+      "Index": 146,
       "Group": 0
     },
     "NavMeshData": {
@@ -12465,12 +12465,12 @@
   },
   "Hierarchy_134": {
     "Type": 2,
-    "Index": 153,
+    "Index": 147,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 153,
+      "Index": 147,
       "Name": "Hieracon165",
       "Tag": "Default",
       "Layer": 0,
@@ -12494,12 +12494,12 @@
       }
     },
     "MeshData": {
-      "Index": 153,
+      "Index": 147,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon165.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 153,
+      "Index": 147,
       "Group": 0
     },
     "NavMeshData": {
@@ -12558,12 +12558,12 @@
   },
   "Hierarchy_135": {
     "Type": 2,
-    "Index": 154,
+    "Index": 148,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 154,
+      "Index": 148,
       "Name": "Hieracon160",
       "Tag": "Default",
       "Layer": 0,
@@ -12587,12 +12587,12 @@
       }
     },
     "MeshData": {
-      "Index": 154,
+      "Index": 148,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon160.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 154,
+      "Index": 148,
       "Group": 0
     },
     "NavMeshData": {
@@ -12651,12 +12651,12 @@
   },
   "Hierarchy_136": {
     "Type": 2,
-    "Index": 155,
+    "Index": 149,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 155,
+      "Index": 149,
       "Name": "Hieracon171",
       "Tag": "Default",
       "Layer": 0,
@@ -12680,12 +12680,12 @@
       }
     },
     "MeshData": {
-      "Index": 155,
+      "Index": 149,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon171.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 155,
+      "Index": 149,
       "Group": 0
     },
     "NavMeshData": {
@@ -12744,12 +12744,12 @@
   },
   "Hierarchy_137": {
     "Type": 2,
-    "Index": 156,
+    "Index": 150,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 156,
+      "Index": 150,
       "Name": "Hieracon163",
       "Tag": "Default",
       "Layer": 0,
@@ -12773,12 +12773,12 @@
       }
     },
     "MeshData": {
-      "Index": 156,
+      "Index": 150,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon163.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 156,
+      "Index": 150,
       "Group": 0
     },
     "NavMeshData": {
@@ -12837,12 +12837,12 @@
   },
   "Hierarchy_138": {
     "Type": 2,
-    "Index": 157,
+    "Index": 151,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 157,
+      "Index": 151,
       "Name": "Hieracon164",
       "Tag": "Default",
       "Layer": 0,
@@ -12850,7 +12850,7 @@
       "Transform": {
         "Position": {
           "X": -416.59,
-          "Y": 2.19881248,
+          "Y": 2.2,
           "Z": -37.47
         },
         "Rotation": {
@@ -12866,12 +12866,12 @@
       }
     },
     "MeshData": {
-      "Index": 157,
+      "Index": 151,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon164.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 157,
+      "Index": 151,
       "Group": 0
     },
     "NavMeshData": {
@@ -12930,12 +12930,12 @@
   },
   "Hierarchy_139": {
     "Type": 2,
-    "Index": 158,
+    "Index": 152,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 158,
+      "Index": 152,
       "Name": "Hieracon164",
       "Tag": "Default",
       "Layer": 0,
@@ -12959,12 +12959,12 @@
       }
     },
     "MeshData": {
-      "Index": 158,
+      "Index": 152,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon164.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 158,
+      "Index": 152,
       "Group": 0
     },
     "NavMeshData": {
@@ -13023,12 +13023,12 @@
   },
   "Hierarchy_140": {
     "Type": 2,
-    "Index": 159,
+    "Index": 153,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 159,
+      "Index": 153,
       "Name": "Hieracon121",
       "Tag": "Default",
       "Layer": 0,
@@ -13036,7 +13036,7 @@
       "Transform": {
         "Position": {
           "X": -367.99,
-          "Y": -7.62939453E-06,
+          "Y": 0.0,
           "Z": 46.44
         },
         "Rotation": {
@@ -13052,12 +13052,12 @@
       }
     },
     "MeshData": {
-      "Index": 159,
+      "Index": 153,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon121.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 159,
+      "Index": 153,
       "Group": 0
     },
     "NavMeshData": {
@@ -13116,19 +13116,19 @@
   },
   "Hierarchy_141": {
     "Type": 2,
-    "Index": 160,
+    "Index": 154,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 160,
+      "Index": 154,
       "Name": "Hieracon126",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -478.3025,
+          "X": -478.3,
           "Y": 0.0,
           "Z": 68.9
         },
@@ -13145,12 +13145,12 @@
       }
     },
     "MeshData": {
-      "Index": 160,
+      "Index": 154,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon126.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 160,
+      "Index": 154,
       "Group": 0
     },
     "NavMeshData": {
@@ -13209,12 +13209,12 @@
   },
   "Hierarchy_142": {
     "Type": 2,
-    "Index": 161,
+    "Index": 155,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 161,
+      "Index": 155,
       "Name": "Hieracon82",
       "Tag": "Default",
       "Layer": 0,
@@ -13238,12 +13238,12 @@
       }
     },
     "MeshData": {
-      "Index": 161,
+      "Index": 155,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon82.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 161,
+      "Index": 155,
       "Group": 0
     },
     "NavMeshData": {
@@ -13302,12 +13302,12 @@
   },
   "Hierarchy_143": {
     "Type": 2,
-    "Index": 163,
+    "Index": 156,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 163,
+      "Index": 156,
       "Name": "Hieracon148",
       "Tag": "Default",
       "Layer": 0,
@@ -13331,12 +13331,12 @@
       }
     },
     "MeshData": {
-      "Index": 163,
+      "Index": 156,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon148.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 163,
+      "Index": 156,
       "Group": 0
     },
     "NavMeshData": {
@@ -13395,12 +13395,12 @@
   },
   "Hierarchy_144": {
     "Type": 2,
-    "Index": 164,
+    "Index": 157,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 164,
+      "Index": 157,
       "Name": "Hieracon148",
       "Tag": "Default",
       "Layer": 0,
@@ -13424,12 +13424,12 @@
       }
     },
     "MeshData": {
-      "Index": 164,
+      "Index": 157,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon148.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 164,
+      "Index": 157,
       "Group": 0
     },
     "NavMeshData": {
@@ -13488,12 +13488,12 @@
   },
   "Hierarchy_145": {
     "Type": 2,
-    "Index": 165,
+    "Index": 158,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 165,
+      "Index": 158,
       "Name": "Hieracon149",
       "Tag": "Default",
       "Layer": 0,
@@ -13501,7 +13501,7 @@
       "Transform": {
         "Position": {
           "X": -291.82,
-          "Y": -3.81469727E-06,
+          "Y": 0.0,
           "Z": 134.57
         },
         "Rotation": {
@@ -13517,12 +13517,12 @@
       }
     },
     "MeshData": {
-      "Index": 165,
+      "Index": 158,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon149.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 165,
+      "Index": 158,
       "Group": 0
     },
     "NavMeshData": {
@@ -13581,12 +13581,12 @@
   },
   "Hierarchy_146": {
     "Type": 2,
-    "Index": 166,
+    "Index": 159,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 166,
+      "Index": 159,
       "Name": "Hieracon149",
       "Tag": "Default",
       "Layer": 0,
@@ -13610,12 +13610,12 @@
       }
     },
     "MeshData": {
-      "Index": 166,
+      "Index": 159,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon149.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 166,
+      "Index": 159,
       "Group": 0
     },
     "NavMeshData": {
@@ -13674,12 +13674,12 @@
   },
   "Hierarchy_147": {
     "Type": 2,
-    "Index": 167,
+    "Index": 160,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 167,
+      "Index": 160,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -13703,12 +13703,12 @@
       }
     },
     "MeshData": {
-      "Index": 167,
+      "Index": 160,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 167,
+      "Index": 160,
       "Group": 0
     },
     "NavMeshData": {
@@ -13767,12 +13767,12 @@
   },
   "Hierarchy_148": {
     "Type": 2,
-    "Index": 169,
+    "Index": 161,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 169,
+      "Index": 161,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -13796,12 +13796,12 @@
       }
     },
     "MeshData": {
-      "Index": 169,
+      "Index": 161,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 169,
+      "Index": 161,
       "Group": 0
     },
     "NavMeshData": {
@@ -13860,12 +13860,12 @@
   },
   "Hierarchy_149": {
     "Type": 2,
-    "Index": 170,
+    "Index": 162,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 170,
+      "Index": 162,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -13889,12 +13889,12 @@
       }
     },
     "MeshData": {
-      "Index": 170,
+      "Index": 162,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 170,
+      "Index": 162,
       "Group": 0
     },
     "NavMeshData": {
@@ -13953,12 +13953,12 @@
   },
   "Hierarchy_150": {
     "Type": 2,
-    "Index": 171,
+    "Index": 163,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 171,
+      "Index": 163,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -13982,12 +13982,12 @@
       }
     },
     "MeshData": {
-      "Index": 171,
+      "Index": 163,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 171,
+      "Index": 163,
       "Group": 0
     },
     "NavMeshData": {
@@ -14046,12 +14046,12 @@
   },
   "Hierarchy_151": {
     "Type": 2,
-    "Index": 172,
+    "Index": 164,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 172,
+      "Index": 164,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -14075,12 +14075,12 @@
       }
     },
     "MeshData": {
-      "Index": 172,
+      "Index": 164,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 172,
+      "Index": 164,
       "Group": 0
     },
     "NavMeshData": {
@@ -14139,12 +14139,12 @@
   },
   "Hierarchy_152": {
     "Type": 2,
-    "Index": 173,
+    "Index": 165,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 173,
+      "Index": 165,
       "Name": "Hieracon70",
       "Tag": "Default",
       "Layer": 0,
@@ -14168,12 +14168,12 @@
       }
     },
     "MeshData": {
-      "Index": 173,
+      "Index": 165,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 173,
+      "Index": 165,
       "Group": 0
     },
     "NavMeshData": {
@@ -14232,12 +14232,12 @@
   },
   "Hierarchy_153": {
     "Type": 2,
-    "Index": 175,
+    "Index": 166,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 175,
+      "Index": 166,
       "Name": "Hieracon72",
       "Tag": "Default",
       "Layer": 0,
@@ -14261,12 +14261,12 @@
       }
     },
     "MeshData": {
-      "Index": 175,
+      "Index": 166,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon72.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 175,
+      "Index": 166,
       "Group": 0
     },
     "NavMeshData": {
@@ -14325,12 +14325,12 @@
   },
   "Hierarchy_154": {
     "Type": 2,
-    "Index": 176,
+    "Index": 167,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 176,
+      "Index": 167,
       "Name": "Hieracon72",
       "Tag": "Default",
       "Layer": 0,
@@ -14354,12 +14354,12 @@
       }
     },
     "MeshData": {
-      "Index": 176,
+      "Index": 167,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon72.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 176,
+      "Index": 167,
       "Group": 0
     },
     "NavMeshData": {
@@ -14418,12 +14418,12 @@
   },
   "Hierarchy_155": {
     "Type": 2,
-    "Index": 177,
+    "Index": 168,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 177,
+      "Index": 168,
       "Name": "Hieracon72",
       "Tag": "Default",
       "Layer": 0,
@@ -14447,12 +14447,12 @@
       }
     },
     "MeshData": {
-      "Index": 177,
+      "Index": 168,
       "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon72.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 177,
+      "Index": 168,
       "Group": 0
     },
     "NavMeshData": {
@@ -14511,12 +14511,12 @@
   },
   "Hierarchy_156": {
     "Type": 2,
-    "Index": 178,
+    "Index": 169,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 178,
+      "Index": 169,
       "Name": "Hieracon72",
       "Tag": "Default",
       "Layer": 0,
@@ -14530,6 +14530,843 @@
         "Rotation": {
           "X": 0.0,
           "Y": -18.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 169,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon72.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 169,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 175,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_157": {
+    "Type": 2,
+    "Index": 170,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 170,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -353.51,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 170,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 170,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_158": {
+    "Type": 2,
+    "Index": 171,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 171,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -329.59,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 171,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 171,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_159": {
+    "Type": 2,
+    "Index": 172,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 172,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -305.03,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 172,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 172,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_160": {
+    "Type": 2,
+    "Index": 173,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 173,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -280.71,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 173,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 173,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_161": {
+    "Type": 2,
+    "Index": 174,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 174,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -256.63,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 174,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 174,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_162": {
+    "Type": 2,
+    "Index": 175,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 175,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -232.55,
+          "Y": -1.52587891E-05,
+          "Z": 77.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 175,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 175,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_163": {
+    "Type": 2,
+    "Index": 176,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 176,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -448.45,
+          "Y": -3.81469727E-06,
+          "Z": 30.12
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 176,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 176,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_164": {
+    "Type": 2,
+    "Index": 177,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 177,
+      "Name": "Hieracon70",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -448.45,
+          "Y": -3.81469727E-06,
+          "Z": 54.28
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 177,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon70.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 177,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_165": {
+    "Type": 2,
+    "Index": 178,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 178,
+      "Name": "Hieracon72",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -446.21,
+          "Y": 0.0,
+          "Z": 77.9
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -68.8,
           "Z": 0.0
         },
         "Scale": {
@@ -14602,7 +15439,100 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_157": {
+  "Hierarchy_166": {
+    "Type": 2,
+    "Index": 179,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 179,
+      "Name": "Hieracon72",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -433.54,
+          "Y": -7.62939453E-06,
+          "Z": 97.34
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -250.56,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 179,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon72.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 179,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 175,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_167": {
     "Type": 2,
     "Index": 180,
     "TagIndex": 0,
@@ -14616,13 +15546,13 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -353.51,
-          "Y": -1.52587891E-05,
-          "Z": 77.16
+          "X": -432.04,
+          "Y": -9.536743E-07,
+          "Z": 122.44
         },
         "Rotation": {
           "X": 0.0,
-          "Y": 0.0,
+          "Y": 90.0,
           "Z": 0.0
         },
         "Scale": {
@@ -14643,6 +15573,2517 @@
     },
     "NavMeshData": {
       "Index": 167,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_168": {
+    "Type": 2,
+    "Index": 181,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 181,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -249.18,
+          "Y": -7.62939453E-06,
+          "Z": -64.67
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 181,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 181,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 192,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_169": {
+    "Type": 2,
+    "Index": 182,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 182,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -369.86,
+          "Y": 0.0,
+          "Z": 22.98
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 182,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 182,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 192,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_170": {
+    "Type": 2,
+    "Index": 183,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 183,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -455.27,
+          "Y": 1.87,
+          "Z": 45.66
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 183,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 183,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 192,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_171": {
+    "Type": 2,
+    "Index": 184,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 184,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -355.01,
+          "Y": 0.0,
+          "Z": 131.77
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 184,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 184,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 192,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_172": {
+    "Type": 2,
+    "Index": 185,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 185,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -227.58,
+          "Y": -1.90734863E-06,
+          "Z": 86.87
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 185,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 185,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 192,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_173": {
+    "Type": 2,
+    "Index": 186,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 186,
+      "Name": "Hieracon285",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 57.19,
+          "Y": 71.13,
+          "Z": 473.69
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 186,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon285.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 186,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 197,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_174": {
+    "Type": 2,
+    "Index": 187,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 187,
+      "Name": "Hieracon285",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -44.35,
+          "Y": 71.1275558,
+          "Z": 470.34
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 187,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon285.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 187,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 197,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_175": {
+    "Type": 2,
+    "Index": 188,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 188,
+      "Name": "Hieracon285",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 57.16,
+          "Y": 114.71,
+          "Z": 545.84
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 188,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon285.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 188,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 197,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_176": {
+    "Type": 2,
+    "Index": 189,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 189,
+      "Name": "Hieracon285",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -44.01,
+          "Y": 115.04,
+          "Z": 545.23
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 189,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon285.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 189,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 197,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_177": {
+    "Type": 2,
+    "Index": 190,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 190,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 479.04,
+          "Y": 140.96,
+          "Z": 383.28
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 190,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 190,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_178": {
+    "Type": 2,
+    "Index": 191,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 191,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 479.0392,
+          "Y": 140.96,
+          "Z": 304.08
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 191,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 191,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_179": {
+    "Type": 2,
+    "Index": 192,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 192,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 479.0392,
+          "Y": 140.96,
+          "Z": 224.88
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 192,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 192,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_180": {
+    "Type": 2,
+    "Index": 193,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 193,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 479.0392,
+          "Y": 140.96,
+          "Z": 146.48
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 193,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 193,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_181": {
+    "Type": 2,
+    "Index": 194,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 194,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 479.0392,
+          "Y": 140.96,
+          "Z": 462.48
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 194,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 194,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_182": {
+    "Type": 2,
+    "Index": 195,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 195,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -361.26,
+          "Y": 136.0,
+          "Z": 409.15
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 195,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 195,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 36,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_183": {
+    "Type": 2,
+    "Index": 196,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 196,
+      "Name": "Hieracon57",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 181.57,
+          "Y": 43.14,
+          "Z": 189.8
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 196,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon57.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 196,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 111,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_184": {
+    "Type": 2,
+    "Index": 197,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 197,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 154.81,
+          "Y": 41.6,
+          "Z": 251.53
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 197,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 197,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 209,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_185": {
+    "Type": 2,
+    "Index": 198,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 198,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 154.67,
+          "Y": 41.599968,
+          "Z": 396.09
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 198,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 198,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 209,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_186": {
+    "Type": 2,
+    "Index": 199,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 199,
+      "Name": "Hieracon59",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -150.95,
+          "Y": 43.13,
+          "Z": 424.99
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 199,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon59.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 199,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 209,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_187": {
+    "Type": 2,
+    "Index": 200,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 200,
+      "Name": "Hieracon109",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 295.7,
+          "Y": 0.0,
+          "Z": -55.13
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -206.4,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.15,
+          "Y": 0.15,
+          "Z": 0.15
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 200,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon109.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 200,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 83,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_188": {
+    "Type": 2,
+    "Index": 201,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 201,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 355.4,
+          "Y": 96.0,
+          "Z": -137.62
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 201,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 201,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_189": {
+    "Type": 2,
+    "Index": 202,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 202,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 355.4,
+          "Y": 96.0,
+          "Z": -57.62
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 202,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 202,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_190": {
+    "Type": 2,
+    "Index": 203,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 203,
+      "Name": "Hieracon17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 355.4,
+          "Y": 96.0,
+          "Z": 18.38
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 203,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 203,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 202,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_191": {
+    "Type": 2,
+    "Index": 204,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 204,
+      "Name": "Hieracon62",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -27.67,
+          "Y": 9.61,
+          "Z": -214.79
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 204,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon62.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 204,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 216,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_192": {
+    "Type": 2,
+    "Index": 205,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 205,
+      "Name": "Hieracon62",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 40.33,
+          "Y": 9.61,
+          "Z": -168.39
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 205,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon62.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 205,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 216,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_193": {
+    "Type": 2,
+    "Index": 206,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 206,
+      "Name": "Hieracon63",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 40.38,
+          "Y": 9.48,
+          "Z": -198.27
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 206,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon63.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 206,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 218,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_194": {
+    "Type": 2,
+    "Index": 207,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 207,
+      "Name": "Hieracon64",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -28.35,
+          "Y": 10.27,
+          "Z": -193.98
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 207,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Hieracon\\Hieracon64.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 207,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 219,
       "CellCount": 0
     },
     "TerrainData": {

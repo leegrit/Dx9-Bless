@@ -86,7 +86,7 @@ void HyEngine::StaticMesh::Render()
 	assert(pSelectedCamera);
 
 	
-	std::cout << "MaxNumMtrls : " << maxNumMatrls << std::endl;
+	//std::cout << "MaxNumMtrls : " << maxNumMatrls << std::endl;
 	/* Set world, view and projection */
 	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
 	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));

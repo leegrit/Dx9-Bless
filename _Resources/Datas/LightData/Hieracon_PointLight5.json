@@ -1,20 +1,20 @@
 {
   "Type": 5,
-  "Index": 139,
+  "Index": 122,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 139,
+    "Index": 122,
     "Name": "PointLight5",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": 220.5196,
-        "Y": 30.4908218,
-        "Z": -45.0977936
+        "X": 220.52,
+        "Y": 30.49,
+        "Z": -45.1
       },
       "Rotation": {
         "X": 0.0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 139,
+    "Index": 122,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 139,
+    "Index": 122,
     "Group": 0
   },
   "NavMeshData": {

@@ -57,7 +57,7 @@ void SampleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
 	SetPlayer(m_pPlayer);
-	//m_pPlayer->m_pTransform->SetScale(0.1f, 0.1f, 0.1f);
+	m_pPlayer->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
 
 	m_pGameCam = PlayerCamera::Create(this, m_pPlayer, L"PlayerCamera");
 	SelectCamera(L"PlayerCamera");
@@ -68,7 +68,7 @@ void SampleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// MAP
 	//////////////////////////////////////////////////////////////////////////
-	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/Hierarcon_Map.json");
+	GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/Hierarcon.json");
 	/*for (int i = 0; i < 500; i++)
 	{
 		GroupMapObject::Create(this, nullptr, L"Group", PATH->DatasPathW() + L"MapData/ChunkMap_Small.json");
@@ -77,26 +77,36 @@ void SampleScene::Load()
 	// TERRAIN
 	//////////////////////////////////////////////////////////////////////////
 	//Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Terrain_Small.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_1.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_2.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_3.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_4.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_Terrain0.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_Terrain1.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_Terrain2.json");
+	/*Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_4.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_5.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_6.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_7.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_8.json");
 	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_9.json");
-	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_10.json");
+	Terrain::Create(this, nullptr, PATH->DatasPathW() + L"TerrainData/Hieracon_10.json");*/
 
 
 	//////////////////////////////////////////////////////////////////////////
 	// LIGHT
 	//////////////////////////////////////////////////////////////////////////
 	/* Directional Light */
-	//LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Light_Small.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
+	//LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Light_Small.json");
 
 	/* Point Light */
+	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight0.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight1.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight2.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight3.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight4.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight5.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight6.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight7.json");*/
+
+
 	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_1.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_2.json");*/
 	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/PointLight_3.json");

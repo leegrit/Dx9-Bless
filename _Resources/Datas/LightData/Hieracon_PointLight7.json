@@ -1,20 +1,20 @@
 {
   "Type": 5,
-  "Index": 141,
+  "Index": 124,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 141,
+    "Index": 124,
     "Name": "PointLight7",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": 223.603287,
-        "Y": 27.0634136,
-        "Z": 13.8178005
+        "X": 223.6,
+        "Y": 27.06,
+        "Z": 13.82
       },
       "Rotation": {
         "X": 0.0,
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 141,
+    "Index": 124,
     "MeshFilePath": "",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 141,
+    "Index": 124,
     "Group": 0
   },
   "NavMeshData": {

@@ -367,6 +367,9 @@ void Renderer::RenderEnd()
 	DEVICE->EndScene();
 	DEVICE->Present(nullptr, nullptr, g_hWnd, nullptr);
 
+	D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
+	D3DXSaveTextureToFile(L"Stash.bmp", D3DXIFF_BMP, m_pStashRTTexture, NULL);
+
 	/*for (int i = 0; i < 4; i++)
 	{
 		std::wstring test = L"Cascade" + to_wstring(i);
@@ -414,12 +417,12 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	ClearStashSurface();
 	
 	/* Ambient Pass */
-	AmbientPass(scene);
+	//AmbientPass(scene);
 
 	/* Render For Backbuffer */
 	LightPass(scene);
 
-	LinearFilterPass();
+	//LinearFilterPass();
 
 }
 
@@ -538,7 +541,7 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 	auto& list = m_renderableOpaque;
 
 #ifdef _DEBUG
-	std::cout << "Renderable Count : " << list.size() << std::endl;
+	//std::cout << "Renderable Count : " << list.size() << std::endl;
 #endif
 	if (list.size() == 0) return;
 	for (auto& opaque : list)
@@ -556,7 +559,7 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 void HyEngine::Renderer::AmbientPass(Scene * scene)
 {
 	/* 임시 데이터 */
-	float ambientFactor = 0.5f;
+	float ambientFactor = 0.4f;// 0.5f;
 
 	D3DXMATRIX worldMatrix;
 	D3DXMATRIX viewMatrix;
@@ -570,7 +573,8 @@ void HyEngine::Renderer::AmbientPass(Scene * scene)
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, 1, 1, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 	ID3DXEffect* pShader = nullptr;
@@ -607,7 +611,7 @@ void HyEngine::Renderer::AmbientPass(Scene * scene)
 		pShader->EndPass();
 	}
 	pShader->End();
-	DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_NONE/*D3DTEXF_POINT*/);
+	DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL,D3DTEXF_NONE/*D3DTEXF_POINT*/);
 }
 
 void HyEngine::Renderer::LightPass(Scene * scene)
@@ -630,8 +634,10 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		DEVICE->SetIndices(m_pResultScreen->_ib);
 
 		D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-		D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+		D3DXMatrixIdentity(&worldMatrix);
+		//D3DXMatrixScaling(&worldMatrix, 1, 1, 1);
 		D3DXMatrixIdentity(&viewMatrix);
+
 
 		/* shader load */
 		ID3DXEffect* pShader = nullptr;
@@ -808,7 +814,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.3f, 0.6f, 0.9f, 1.0f }; 
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f, 0.6f, 1.0f };//, 1.0f }; 
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f };// , 0.1f, 0.15f, 0.2f
 //};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =
@@ -963,7 +969,8 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 
 	/* Set Matrices */
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 100);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 
@@ -1125,7 +1132,8 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 	
 	/* Set Matrices */
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 	/* Set Matrix to shader */
@@ -1169,8 +1177,10 @@ void HyEngine::Renderer::LinearFilterPass()
 	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
+
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 	ID3DXEffect* pShader = nullptr;

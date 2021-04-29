@@ -33,6 +33,9 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -48,6 +51,9 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -63,6 +69,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -75,6 +84,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -118,8 +130,11 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
-	MinFilter = POINT;
-	MagFilter = POINT;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
+	/*MinFilter = POINT;
+	MagFilter = POINT;*/
 };
 
 
@@ -190,7 +205,8 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 
 	/* depthMap.rgb is emissive */
 	float3 emissive = depthMap.rgb;
-	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * Diffuse.rgb + emissive;
+	float3 ambient = albedoMap.rgb * Ambient.rgb;
+	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * Diffuse.rgb + ambient + emissive;
 
 	
 
