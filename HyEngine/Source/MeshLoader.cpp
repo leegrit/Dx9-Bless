@@ -28,7 +28,7 @@ bool HyEngine::MeshLoader::TryGetMesh(std::wstring filePath, _Out_ ID3DXBuffer *
 			&numMtrls,
 			&pMesh
 		);
-		assert(SUCCEEDED(hr));
+		//assert(SUCCEEDED(hr));
 
 		hr = pMesh->OptimizeInplace
 		(
@@ -38,7 +38,7 @@ bool HyEngine::MeshLoader::TryGetMesh(std::wstring filePath, _Out_ ID3DXBuffer *
 			(DWORD*)pAdjBuffer->GetBufferPointer(),
 			0, 0, 0
 		);
-		assert(SUCCEEDED(hr));
+		//assert(SUCCEEDED(hr));
 
 		D3DVERTEXELEMENT9 meshDeclaration[MAX_FVF_DECL_SIZE];
 		DWORD vertexStride = pMesh->GetNumBytesPerVertex();
