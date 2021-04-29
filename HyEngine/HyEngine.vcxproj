@@ -287,6 +287,7 @@
     <ClInclude Include="Include\Raycaster.h" />
     <ClInclude Include="Include\RaycastHit.h" />
     <ClInclude Include="Include\Renderer.h" />
+    <ClInclude Include="Include\RenderGroup.h" />
     <ClInclude Include="Include\RenderTargetChain.h" />
     <ClInclude Include="Include\Ring.h" />
     <ClInclude Include="Include\Scene.h" />
@@ -305,6 +306,7 @@
     <ClInclude Include="Include\CString.h" />
     <ClInclude Include="Include\StateMachine.h" />
     <ClInclude Include="Include\StaticMesh.h" />
+    <ClInclude Include="Include\StaticMeshGroup.h" />
     <ClInclude Include="Include\StayInRadiusBehaviour.h" />
     <ClInclude Include="Include\StringForEditor.h" />
     <ClInclude Include="Include\Strings.h" />
@@ -444,6 +446,7 @@
     <ClCompile Include="Source\Raycaster.cpp" />
     <ClCompile Include="Source\RaycastHit.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\RenderGroup.cpp" />
     <ClCompile Include="Source\RenderTargetChain.cpp" />
     <ClCompile Include="Source\Ring.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
@@ -457,6 +460,7 @@
     <ClCompile Include="Source\Skybox.cpp" />
     <ClCompile Include="Source\StateMachine.cpp" />
     <ClCompile Include="Source\StaticMesh.cpp" />
+    <ClCompile Include="Source\StaticMeshGroup.cpp" />
     <ClCompile Include="Source\StayInRadiusBehaviour.cpp" />
     <ClCompile Include="Source\Terrain.cpp" />
     <ClCompile Include="Source\TerrainData.cpp" />
@@ -488,6 +492,7 @@
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
+    <FxCompile Include="..\_Shaders\LinearFilter.fx" />
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\OcclusionQuery.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />

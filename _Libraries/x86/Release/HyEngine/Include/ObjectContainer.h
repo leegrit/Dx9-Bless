@@ -8,6 +8,7 @@ namespace HyEngine
 	class NavMesh;
 	class Light;
 	class Skybox;
+	class StaticMesh;
 	class ENGINE_DLL ObjectContainer
 	{
 		//////////////////////////////////////////////////////////////////////////

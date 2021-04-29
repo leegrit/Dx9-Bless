@@ -33,11 +33,13 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = POINT;
+	MagFilter = POINT;*/
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = LINEAR;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 /* DepthMap */
 // rgb = emissive
@@ -46,11 +48,13 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	MinFilter = LINEAR;
+	/*MinFilter = POINT;
+	MagFilter = POINT;*/
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -59,21 +63,25 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = POINT;
+	MagFilter = POINT;*/
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = POINT;
+	MagFilter = POINT;*/
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 /* For Cascade ShadowMapping */
@@ -110,6 +118,8 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
+	MinFilter = POINT;
+	MagFilter = POINT;
 };
 
 

@@ -36,7 +36,8 @@ namespace HyEngine
 		// -----------------------------------
 		static void Destroy(Object* obj)
 		{
-			if(obj)
+			EventDispatcher::TriggerEvent(EngineEvent::ObjectDestroyed);
+			if (obj)
 				obj->m_bWantsDestroy = true;
 		}
 		// this function must be called by scene.

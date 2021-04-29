@@ -7,31 +7,31 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 texture AlphaMaskTex;
 sampler AlphaMaskSampler = sampler_state
 {
 	Texture = (AlphaMaskTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 

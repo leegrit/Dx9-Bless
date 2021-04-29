@@ -9,11 +9,11 @@ texture SourceTex;
 sampler SourceSampler = sampler_state
 {
 	Texture = (SourceTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 void BlurVS

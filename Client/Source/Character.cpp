@@ -80,7 +80,9 @@ UINT Character::GetTargetLayer()
 
 void Character::SendDamage(GameObject * sender, float damage)
 {
-	assert(m_isDied == false);
+	if (m_isDied == true)
+		return;
+
 
 	float resultHP = m_curHP - damage;
 	if (resultHP <= 0)

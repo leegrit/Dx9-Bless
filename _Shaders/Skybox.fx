@@ -7,11 +7,11 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 

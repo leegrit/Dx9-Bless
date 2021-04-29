@@ -13,6 +13,10 @@ void SkeletoneAttack::Update()
 	{
 		m_component->GetState()->Set("Hit");
 	}
+	if (m_component->IsDamaged())
+	{
+		m_component->GetState()->Set("Die");
+	}
 	bool animEnd = false;
 	animEnd = m_component->IsAnimationSetEnd();
 	if (animEnd == true)

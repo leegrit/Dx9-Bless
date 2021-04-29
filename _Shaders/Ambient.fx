@@ -26,8 +26,8 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-    AddressU = clamp;
-    AddressV = clamp;
+    /*AddressU = clamp;
+    AddressV = clamp;*/
 };
 texture NormalTex;
 sampler NormalSampler = sampler_state

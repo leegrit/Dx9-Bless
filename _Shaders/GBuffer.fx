@@ -17,9 +17,11 @@ samplerCUBE SkyboxSampler = sampler_state
 	Texture = (SkyboxTex);
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
+	MagFilter = LINEAR;
 	MipFilter = None;
 	AddressU = Mirror;
-	AddressV = Mirror;
+	AddressV = Mirror;*/
 };
 
 texture AlbedoTex;
@@ -27,10 +29,12 @@ sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
 	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = LINEAR;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -40,10 +44,12 @@ sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
 	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 /* Specular */
 // rgb = specularMap
@@ -53,30 +59,36 @@ sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
 	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
 {
 	Texture = (EmissiveTex);
 	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
 	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 
@@ -350,7 +362,7 @@ technique GBuffer
 	pass P0
 	{
 		VertexShader = compile vs_3_0 GBufferVS();
-		PixelShader = compile ps_3_0 GBufferPS();
+		PixelShader = compile ps_3_0 GBufferWithNormalPS();
 	}
 };
 technique GBufferWithNormal

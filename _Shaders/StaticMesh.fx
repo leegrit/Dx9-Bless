@@ -1,4 +1,4 @@
-float Far;
+
 matrix WorldMatrix;
 matrix ViewMatrix;
 matrix ProjMatrix;
@@ -9,14 +9,12 @@ bool HasEmissiveMap;
 
 
 texture AlbedoTex;
-sampler AlbedoSampler = sampler_state
+sampler AlbedoSampler= sampler_state
 {
 	Texture = (AlbedoTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = LINEAR;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -26,10 +24,8 @@ sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 /* Specular */
 // rgb = specularMap
@@ -39,30 +35,24 @@ sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
 {
 	Texture = (EmissiveTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 
 texture DiffuseMaskTex;
@@ -70,10 +60,8 @@ sampler DiffuseMaskSampler = sampler_state
 {
 	Texture = (DiffuseMaskTex);
 	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
 };
 
 
@@ -225,6 +213,7 @@ technique StaticMesh
 {
 	pass P0
 	{
+
 		CULLMODE = CCW;
 		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 StaticMeshVS();

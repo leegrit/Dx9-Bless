@@ -27,7 +27,7 @@ void EditCamera::Update()
 		D3DXToRadian(45), // 90 - degree
 		WinMaxWidth / WinMaxHeight,
 		1,//0.01f,
-		1000//15.0f
+		700//15.0f
 	);
 	D3DXVECTOR3 target;
 	target = (GetTransform()->m_position + GetTransform()->Forward() * 10).operator D3DXVECTOR3();

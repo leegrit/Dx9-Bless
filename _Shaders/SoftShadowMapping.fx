@@ -15,11 +15,6 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 /* DepthMap */
 // rgb = emissive
@@ -28,11 +23,6 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -41,21 +31,16 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 
 /* For Cascade ShadowMapping */
@@ -134,7 +119,8 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	// emissive, ambient는 덧셈 연산이기에 영향을 받지 않는다.
 	float shadowFactor = 1; // default 1
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
-	float bias = 0.06f;
+	//float bias = 0.06f;
+	float bias = 0.006f;
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
@@ -143,6 +129,33 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	int cascadeIndex = -1;
 	float4 lightPos;
 	float shadowDepth;
+
+		//lightPos = mul(worldPos, LightViewMatrix[0]);
+		//lightPos = mul(lightPos, LightProjMatrix[0]);
+
+		///* Light 기준으로 Texture 좌표를 구한다. */
+		//projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
+		//projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
+		//projectTexcoord.z = lightPos.z / lightPos.w / 2.0f + 0.5f;
+
+		//if ((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y)
+		//	&& (saturate(projectTexcoord.z) == projectTexcoord.z))
+		//{
+		//	shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
+		//	float lightDepth = lightPos.z / lightPos.w;
+		//	lightDepth = lightDepth - bias;
+		//	if (lightDepth < shadowDepth)
+		//	{
+		//		shadowFactor = 1;
+		//	}
+		//	else
+		//	{
+		//		shadowFactor = 0;
+		//	}
+		//}
+		//else
+		//	shadowFactor = 1;
+
 	for(int i = 0; i < 4; i++)
 	{
 		lightPos = mul(worldPos, LightViewMatrix[i]);
@@ -160,37 +173,70 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 			if (cascadeIndex == 0)
 			{
 				shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
-				//return diffuse;
+				float lightDepth = lightPos.z / lightPos.w;
+				lightDepth = lightDepth - bias;
+
+				if (lightDepth < shadowDepth)
+				{
+					shadowFactor = 1;
+				}
+				else
+				{
+					shadowFactor = 0;
+				}
+				break;
 			}
 			if (cascadeIndex == 1)
 			{
 				shadowDepth = tex2D(ShadowDepthSampler1, projectTexcoord.xy).a;
-				//return diffuse;
+				float lightDepth = lightPos.z / lightPos.w;
+				lightDepth = lightDepth - bias;
+
+				if (lightDepth < shadowDepth)
+				{
+					shadowFactor = 1;
+				}
+				else
+				{
+					shadowFactor = 0;
+				}
+				break;
 			}
 			if (cascadeIndex == 2)
 			{
 				shadowDepth = tex2D(ShadowDepthSampler2, projectTexcoord.xy).a;
 
-				//return diffuse;
+				float lightDepth = lightPos.z / lightPos.w;
+				lightDepth = lightDepth - bias;
+
+				if (lightDepth < shadowDepth)
+				{
+					shadowFactor = 1;
+				}
+				else
+				{
+					shadowFactor = 0;
+				}
+				break;
 			}
 			if (cascadeIndex == 3)
 			{
 				shadowDepth = tex2D(ShadowDepthSampler3, projectTexcoord.xy).a;
 
-				//return diffuse;
-			}
-			float lightDepth = lightPos.z / lightPos.w;
-			lightDepth = lightDepth - bias;
+				float lightDepth = lightPos.z / lightPos.w;
+				lightDepth = lightDepth - bias;
 
-			if (lightDepth < shadowDepth)
-			{
-				shadowFactor = 1;
-			}
-			else
-			{
-				shadowFactor = 0;
+				if (lightDepth < shadowDepth)
+				{
+					shadowFactor = 1;
+				}
+				else
+				{
+					shadowFactor = 0;
+				}
 				break;
 			}
+			
 
 		}
 	}

@@ -1,6 +1,8 @@
 #pragma once
 #include "Mesh.h"
 
+#define MAX_SUBSET_COUNT 16
+
 namespace HyEngine
 {
 	class HierarchyData;
@@ -32,6 +34,11 @@ namespace HyEngine
 		ID3DXMesh* GetMesh() const;
 		bool CalcBounds(_Out_ D3DXVECTOR3* center, _Out_ float * radius);
 
+		/////////////////////////////////////////////////////aawwawaawwwwaaw/////////////////////
+		// PUBLIC METHOD
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		std::wstring GetMeshPath() const;
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
@@ -48,7 +55,13 @@ namespace HyEngine
 		ID3DXEffect* m_pShader = nullptr;
 		std::wstring m_lastLoadedMeshPath;
 
-
+		/* Handles */
+		D3DXHANDLE m_albedoHandle;
+		D3DXHANDLE m_normalHandle;
+		D3DXHANDLE m_emissiveHandle;
+		D3DXHANDLE m_specularHandle;
+		D3DXHANDLE m_specularMaskHandle;
+		D3DXHANDLE m_diffuseMaskHandle;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

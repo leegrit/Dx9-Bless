@@ -641,6 +641,12 @@
     <ClInclude Include="Include\MeshLoader.h">
       <Filter>Utilities\Loader</Filter>
     </ClInclude>
+    <ClInclude Include="Include\RenderGroup.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\StaticMeshGroup.h">
+      <Filter>Object\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1090,6 +1096,12 @@
     <ClCompile Include="Source\MeshLoader.cpp">
       <Filter>Utilities\Loader</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RenderGroup.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StaticMeshGroup.cpp">
+      <Filter>Object\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1141,6 +1153,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\OcclusionQuery.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\LinearFilter.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

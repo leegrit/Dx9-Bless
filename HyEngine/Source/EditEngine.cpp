@@ -171,6 +171,7 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"SkinnedMesh", PATH->ShadersPathW() + L"SkinnedMesh.fx");
 	InsertShader(L"StaticMesh", PATH->ShadersPathW() + L"StaticMesh.fx");
 	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
+	InsertShader(L"LinearFilter", PATH->ShadersPathW() + L"LinearFilter.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)

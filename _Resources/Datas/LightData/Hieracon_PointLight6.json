@@ -1,0 +1,93 @@
+{
+  "Type": 5,
+  "Index": 140,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 140,
+    "Name": "PointLight6",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": -205.558411,
+        "Y": 32.05697,
+        "Z": -45.097805
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 140,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 140,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 134,
+    "CellCount": 0
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 2,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": -205.0,
+      "Y": 27.0,
+      "Z": 10.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.9,
+      "G": 0.4,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 100.0,
+    "Cone": 0.0,
+    "Constant": 0.5,
+    "Linear": 0.0,
+    "Quadratic": 0.005
+  }
+}

@@ -117,9 +117,9 @@
           "Z": 0.0
         },
         "Scale": {
-          "X": 0.01,
-          "Y": 0.01,
-          "Z": 0.01
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
@@ -200,9 +200,9 @@
       "StaticType": 1,
       "Transform": {
         "Position": {
-          "X": -4.0,
+          "X": -265.68,
           "Y": 0.0,
-          "Z": -0.56
+          "Z": -11.36
         },
         "Rotation": {
           "X": 0.0,
@@ -232,9 +232,9 @@
     "TerrainData": {
       "VertexCountX": 2,
       "VertexCountZ": 2,
-      "TextureCountX": 8.0,
-      "TextureCountZ": 8.0,
-      "VertexInterval": 10.0,
+      "TextureCountX": 10.0,
+      "TextureCountZ": 10.0,
+      "VertexInterval": 500.0,
       "DiffuseFilePath": "Assets\\Tile\\Tile_D_0.tga",
       "NormalFilePath": "Assets\\Tile\\Tile_N_0.tga"
     },
@@ -295,7 +295,7 @@
         "Position": {
           "X": 0.83,
           "Y": -1.1920929E-07,
-          "Z": 6.09
+          "Z": 171.61
         },
         "Rotation": {
           "X": 0.0,
@@ -303,9 +303,9 @@
           "Z": 0.0
         },
         "Scale": {
-          "X": 0.002,
-          "Y": 0.002,
-          "Z": 0.002
+          "X": 0.1,
+          "Y": 0.1,
+          "Z": 0.1
         }
       }
     },

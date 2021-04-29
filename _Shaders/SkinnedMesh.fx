@@ -13,11 +13,11 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = LINEAR;
     AddressU = wrap;
-    AddressV = wrap;
+    AddressV = wrap;*/
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -26,11 +26,6 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 /* Specular */
 // rgb = specularMap
@@ -39,31 +34,16 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
 {
 	Texture = (EmissiveTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
-	MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;
 };
 
 

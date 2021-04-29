@@ -652,5 +652,16 @@ void HyEngine::ObjectContainer::SeperateContainers()
 	}
 
 
+	/* Sort */
+	std::sort(m_staticMeshes.begin(), m_staticMeshes.end(), 
+		[](GameObject* a, GameObject* b) ->bool
+	{
+		StaticMesh* staticMeshLeft = (StaticMesh*)a;
+		StaticMesh* staticMeshRight = (StaticMesh*)b;
+		return staticMeshLeft->GetMeshPath() > staticMeshRight->GetMeshPath();
+	});
+
+
+
 	m_bDirtyFlag = false;
 }

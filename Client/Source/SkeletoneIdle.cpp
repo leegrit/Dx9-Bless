@@ -13,6 +13,10 @@ void SkeletoneIdle::Update()
 	{
 		m_component->GetState()->Set("Hit");
 	}
+	if (m_component->IsDied())
+	{
+		m_component->GetState()->Set("Die");
+	}
 
 	D3DXVECTOR3 skeletonePos = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
 	D3DXVECTOR3 playerPos = PLAYER->m_pTransform->m_position.operator D3DXVECTOR3();

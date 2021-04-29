@@ -101,28 +101,28 @@ void HyEngine::Scene::UpdateScene()
 
 	
 	/* Dynamic */
-	//for (auto& dynamic : m_pObjectContainer->GetDynamicColliderAll())
-	//{
-	//	if (dynamic->GetActive() == true &&
-	//		dynamic->m_bWantsDestroy == false)
-	//		dynamic->Update();
-	//}
+	for (auto& dynamic : m_pObjectContainer->GetDynamicColliderAll())
+	{
+		if (dynamic->GetActive() == true &&
+			dynamic->m_bWantsDestroy == false)
+			dynamic->Update();
+	}
 
-	///* Static */
-	//for (auto& staticCol : m_pObjectContainer->GetStaticColliderAll())
-	//{
-	//	if (staticCol->GetActive() == true &&
-	//		staticCol->m_bWantsDestroy == false)
-	//		staticCol->Update();
-	//}
+	/* Static */
+	for (auto& staticCol : m_pObjectContainer->GetStaticColliderAll())
+	{
+		if (staticCol->GetActive() == true &&
+			staticCol->m_bWantsDestroy == false)
+			staticCol->Update();
+	}
 
-	///* Multipurpose */
-	//for (auto& multipurpose : m_pObjectContainer->GetMultipurposeColliderAll())
-	//{
-	//	if (multipurpose->GetActive() == true &&
-	//		multipurpose->m_bWantsDestroy == false)
-	//		multipurpose->Update();
-	//}
+	/* Multipurpose */
+	for (auto& multipurpose : m_pObjectContainer->GetMultipurposeColliderAll())
+	{
+		if (multipurpose->GetActive() == true &&
+			multipurpose->m_bWantsDestroy == false)
+			multipurpose->Update();
+	}
 	
 
 	/* Collision Calculate */

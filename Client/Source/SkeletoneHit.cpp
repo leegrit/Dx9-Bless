@@ -33,6 +33,10 @@ void SkeletoneHit::Update()
 		m_component->SetAnimationSet(14);
 		m_component->GetState()->Set("Hit");
 	}
+	if (m_component->IsDied())
+	{
+		m_component->GetState()->Set("Die");
+	}
 	bool animEnd = false;
 	animEnd = m_component->IsAnimationSetEnd();
 	if (animEnd == true)
