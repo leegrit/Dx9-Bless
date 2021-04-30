@@ -29,6 +29,11 @@ void Enemy::Update()
 	Character::Update();
 }
 
+void Enemy::Render()
+{
+	Character::Render();
+}
+
 void Enemy::AddHitOthers(GameObject * other)
 {
 	for (auto& obj : m_hitOthers)

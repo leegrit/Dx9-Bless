@@ -967,7 +967,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 
 void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 {
-	DEVICE->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, 0xffffffff, 1.0f, 0);
+	DEVICE->Clear(0, 0, D3DCLEAR_TARGET, 0xffffffff, 1.0f, 0);
 	if (IS_CLIENT)
 	{
 		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderShadow);

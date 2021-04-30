@@ -1,12 +1,12 @@
 #include "StandardEngineFramework.h"
 #include "DirectXDevice.h"
-
+#include "PathManager.h"
 
 IMPLEMENT_SINGLETON(DirectXDevice)
 
 DirectXDevice::DirectXDevice()
 {
-	AddFontResourceEx(L"../Resources/Fonts/koverwatch.ttf", FR_PRIVATE, NULL);
+	
 }
 
 
@@ -19,6 +19,8 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 {
 	SEND_LOG("DirectDevice Initialize Start");
 
+	AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/NEXON_Gothic.ttf").c_str(), FR_PRIVATE, NULL);
+	//AddFontResourceEx(L"../Resources/Fonts/koverwatch.ttf", FR_PRIVATE, NULL);
 
 	m_hWnd = hwnd;
 	D3DCAPS9 DeviceCap;

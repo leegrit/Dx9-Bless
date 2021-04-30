@@ -216,6 +216,8 @@ technique StaticMesh
 
 		CULLMODE = CCW;
 		AlphaBlendEnable = false;
+		ZEnable = true;
+		ZWriteEnable = true;
 		VertexShader = compile vs_3_0 StaticMeshVS();
 		PixelShader = compile ps_3_0 StaticMeshPS();
 	}
@@ -227,6 +229,8 @@ technique StaticMaskedMesh
 	{
 		CULLMODE = CCW;
 		AlphaBlendEnable = false;
+		ZEnable = true;
+		ZWriteEnable = true;
 		VertexShader = compile vs_3_0 StaticMeshVS();
 		PixelShader = compile ps_3_0 StaticMaskedMeshPS();
 	}

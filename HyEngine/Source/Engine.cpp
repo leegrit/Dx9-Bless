@@ -313,6 +313,19 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVE
 	m_fontInfos.push_back(info);
 }
 
+void HyEngine::Engine::DrawText(const TCHAR * text, D3DXMATRIX mat, D3DCOLOR color)
+{
+	FontInfo info;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	wsprintf(info.textBuff, text);
+	info.matTrans = mat;
+	info.textColor = color;
+
+	m_fontInfos.push_back(info);
+}
+
 void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR * text, int args, ...)
 {
 	FontInfo info;
@@ -402,12 +415,17 @@ void HyEngine::Engine::RenderFont()
 {
 	DIRECT_SPRITE->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 
+	/*DWORD old;
+	DEVICE->GetRenderState(D3DRS_ZENABLE, &old);
+	DEVICE->SetRenderState(D3DRS_ZENABLE, true);
+	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
+	DEVICE->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);*/
 	for (auto& fontInfo : m_fontInfos)
 	{
 		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);
 		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr, 0, fontInfo.textColor);
 	}
-	
+	//DEVICE->SetRenderState(D3DRS_ZENABLE, old);
 
 	DIRECT_SPRITE->End();
 }

@@ -36,7 +36,7 @@ namespace HyEngine
 		void InputText(std::string label, _Out_ char* result, int size);
 		void InputInt(std::string label, _Out_ int* result);
 		void InputFloat(std::string label, _Out_ float* result);
-
+		void ShowGUI(std::vector<std::function<void()>> functions);
 		void ShowEditRenderOption();
 	private :
 		void ApplyStyle();
@@ -45,8 +45,8 @@ namespace HyEngine
 		bool m_bOpen = true;
 
 		/* EditGUI */
-		ImVec2 m_editGUIPos = ImVec2(WinMaxWidth - 500, 200);
-		ImVec2 m_offset = ImVec2(0, 50);
+		ImVec2 m_editGUIPos = ImVec2(WinMaxWidth - 300, 100);
+		ImVec2 m_offset = ImVec2(0, 25);
 		ImVec2 m_size = ImVec2(300, 200);
 		int m_guiCount = 0;
 	};

@@ -47,5 +47,18 @@ private :
 public:
 	/* 임시 무기 위치 찾기 위해 사용 */
 	static char temp[256];
+
+
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// TEST
+	//////////////////////////////////////////////////////////////////////////
+private :
+	int fontPosX = 0;
+	int fontPosY = 0;
+	int fontPosZ = 0;
+	int fontScaleX = 0;
+	int fontScaleY = 0;
 };
 

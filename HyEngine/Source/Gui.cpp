@@ -171,7 +171,9 @@ void HyEngine::Gui::InputText(std::string label, _Out_ char * result, int size)
 
 void HyEngine::Gui::InputInt(std::string label,_Out_ int * result)
 {
-	static bool bInputIntOpen = true;
+	ImGui::InputInt(label.c_str(), result);
+
+	/*static bool bInputIntOpen = true;
 	ImVec2 offset = { m_offset.x * m_guiCount, m_offset.y * m_guiCount };
 	ImVec2 pos = { m_editGUIPos.x + offset.x, m_editGUIPos.y + offset.y };
 
@@ -180,7 +182,7 @@ void HyEngine::Gui::InputInt(std::string label,_Out_ int * result)
 	ImGui::SetNextWindowSize(m_size);
 	ImGui::Begin
 	(
-		"InputInt",
+		label.c_str(),
 		&bInputIntOpen,
 		ImGuiWindowFlags_NoBackground |
 		ImGuiWindowFlags_NoTitleBar |
@@ -190,7 +192,7 @@ void HyEngine::Gui::InputInt(std::string label,_Out_ int * result)
 	{
 		ImGui::InputInt(label.c_str(), result);
 	}
-	ImGui::End();
+	ImGui::End();*/
 }
 
 void HyEngine::Gui::InputFloat(std::string label, _Out_ float * result)
@@ -213,6 +215,33 @@ void HyEngine::Gui::InputFloat(std::string label, _Out_ float * result)
 	);
 	{
 		ImGui::InputFloat(label.c_str(), result);
+	}
+	ImGui::End();
+}
+
+void HyEngine::Gui::ShowGUI(std::vector<std::function<void()>> functions)
+{
+	static bool bInputIntOpen = true;
+	//ImVec2 offset = { m_offset.x * m_guiCount, m_offset.y * m_guiCount };
+	//ImVec2 pos = { m_editGUIPos.x + offset.x, m_editGUIPos.y + offset.y };
+
+	//m_guiCount++;
+	ImGui::SetNextWindowPos(m_editGUIPos);
+	ImGui::SetNextWindowSize(m_size);
+	ImGui::Begin
+	(
+		"GUI",
+		&bInputIntOpen,
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove
+	);
+	{
+		for (auto func : functions)
+		{
+			func();
+		}
 	}
 	ImGui::End();
 }
@@ -255,6 +284,12 @@ void HyEngine::Gui::ShowEditRenderOption()
 	}
 	ImGui::End();
 }
+//
+//void HyEngine::Gui::TEST()
+//{
+//	int a;
+//	ImGui::InputInt("Test", &a);
+//}
 
 void HyEngine::Gui::ApplyStyle()
 {

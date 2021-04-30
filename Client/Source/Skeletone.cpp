@@ -6,6 +6,7 @@
 #include "SkeletoneHit.h"
 #include "SkeletoneIdle.h"
 #include "SkeletoneMove.h"
+#include "NameFont.h"
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
 	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5)
@@ -39,6 +40,9 @@ void Skeletone::Initialize(std::wstring dataPath)
 	m_state.Add<SkeletoneDied>(this, "Died");
 
 	m_state.Initialize("Idle");
+
+	m_pNameFont = new NameFont();
+	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.5f, 0.5f), D3DXVECTOR3(0, 12, 0), -30, D3DXCOLOR(1, 0, 0, 1));
 }
 
 void Skeletone::Update()
@@ -46,6 +50,13 @@ void Skeletone::Update()
 	Character::Update();
 
 	m_state.Update();
+}
+
+void Skeletone::Render()
+{
+	Enemy::Render();
+
+	m_pNameFont->RenderFont();
 }
 
 UINT Skeletone::GetTargetLayer() 

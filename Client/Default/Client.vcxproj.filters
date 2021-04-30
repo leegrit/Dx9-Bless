@@ -97,6 +97,12 @@
     <ClCompile Include="..\Source\QuestEvent.cpp">
       <Filter>GameEvent\Events</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\DamageFontScatter.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NameFont.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -146,6 +152,9 @@
     </Filter>
     <Filter Include="GameEvent\Events">
       <UniqueIdentifier>{7f1aaeb1-a812-440f-9ca0-9bf0a0b3a363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{5ff35c57-6752-4bc5-ae46-09bb8a8d9969}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +255,12 @@
     </ClInclude>
     <ClInclude Include="..\Include\QuestEvent.h">
       <Filter>GameEvent\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DamageFontScatter.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NameFont.h">
+      <Filter>Font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

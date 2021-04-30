@@ -32,6 +32,11 @@ void Character::Update()
 	Pawn::Update();
 }
 
+void Character::Render()
+{
+	Pawn::Render();
+}
+
 bool Character::IsDamaged() const
 {
 	return m_isDamaged;

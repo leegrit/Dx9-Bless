@@ -35,6 +35,8 @@ void SampleScene::Update()
 // 	{
 // 		m_pPawn->m_pTransform->Translate(-m_pPawn->m_pTransform->Forward() * 10 * TIMER->getDeltaTime());
 // 	}
+
+	ENGINE->DrawText(L"TEST FONT", D3DXVECTOR3(fontPosX, fontPosY, fontPosZ), D3DXVECTOR3(fontScaleX, fontScaleY, 1), D3DXCOLOR(1, 0, 0, 1));
 }
 
 void SampleScene::Load()
@@ -156,9 +158,9 @@ void SampleScene::Load()
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(276, -266, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"33");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_1.png", D3DXVECTOR3(-276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"44");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_2.png", D3DXVECTOR3(276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"55");
-	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BossGauge_1.png", D3DXVECTOR3(0, 290.4, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(800, 150, 1), L"66");
+	/*UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BossGauge_1.png", D3DXVECTOR3(0, 290.4, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(800, 150, 1), L"66");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BossGauge_0.png", D3DXVECTOR3(0, 291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(800, 150, 1), L"77");
-	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BossGauge_2.png", D3DXVECTOR3(30, 292, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(640, 12, 1), L"88");
+	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BossGauge_2.png", D3DXVECTOR3(30, 292, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(640, 12, 1), L"88");*/
 
 }
 
@@ -185,14 +187,27 @@ void SampleScene::RenderGUI()
 	{
 		Gui::Get()->ShowEditRenderOption();
 
-		Gui::Get()->BeginEditGUI();
-		char test[256];
+		//Gui::Get()->BeginEditGUI();
+		Gui::Get()->ShowGUI({
+			[&]() {Gui::Get()->InputInt("FontPosX", &fontPosX); },
+			[&]() {Gui::Get()->InputInt("FontPosY", &fontPosY); },
+			[&]() {Gui::Get()->InputInt("FontPosZ", &fontPosZ); },
+			[&]() {Gui::Get()->InputInt("FontScaleX", &fontScaleX); },
+			[&]() {Gui::Get()->InputInt("FontScaleY", &fontScaleY); }
+		});
+		/*Gui::Get()->InputInt("FontPosX", &fontPosX);
+		Gui::Get()->InputInt("FontPosY", &fontPosY);
+		Gui::Get()->InputInt("FontPosZ", &fontPosZ);
+		Gui::Get()->InputInt("FontScaleX", &fontScaleX);
+		Gui::Get()->InputInt("FontScaleY", &fontScaleY);*/
+
+		/*char test[256];
 		Gui::Get()->InputText("InputText", test, 256);
 		int testInt;
 		Gui::Get()->InputInt("InputInt", &testInt);
 		float testFloat;
-		Gui::Get()->InputFloat("InputFloat", &testFloat);
-		Gui::Get()->EndEditGUI();
+		Gui::Get()->InputFloat("InputFloat", &testFloat);*/
+		//Gui::Get()->EndEditGUI();
 	}
 	//Gui::Get()->InputText("InputText", )
 

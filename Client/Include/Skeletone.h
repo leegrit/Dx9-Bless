@@ -16,6 +16,8 @@ private :
 public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
+	virtual void Render() override;
+
 	virtual UINT GetTargetLayer() override;
 	virtual void OnCollision(Collider* other) override;
 	virtual int GetAttackCount() override;
@@ -45,6 +47,9 @@ private :
 	/* For NormalAttack */
 	Collider* m_pAttackCollider = nullptr;
 	D3DXVECTOR3 m_colliderOffset;
+
+	/* For Font */
+	class NameFont * m_pNameFont = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
