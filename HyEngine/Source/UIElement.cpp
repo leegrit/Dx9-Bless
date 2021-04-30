@@ -30,7 +30,12 @@ void UIElement::Initialize()
 void UIElement::Render()
 {
 	GameObject::Render();
-
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderUI);
+		if (bRender == false)
+			return;
+	}
 }
 
 void HyEngine::UIElement::UpdatedData(EDataType dataType)

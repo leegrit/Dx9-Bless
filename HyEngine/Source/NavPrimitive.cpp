@@ -16,6 +16,12 @@ HyEngine::NavPrimitive::NavPrimitive(Scene * scene, GameObject * parent, Cell * 
 	m_cellOption = cellOption;
 	m_group = group;
 	m_navPrimIndex = navPrimIndex;
+
+	m_neighbors.resize((int)ENeighbor::NEIGHBOR_END);
+	m_neighbors[(int)ENeighbor::NEIGHBOR_AB] = nullptr;
+	m_neighbors[(int)ENeighbor::NEIGHBOR_BC] = nullptr;
+	m_neighbors[(int)ENeighbor::NEIGHBOR_CA] = nullptr;
+
 }
 
 HyEngine::NavPrimitive::~NavPrimitive()
@@ -61,6 +67,14 @@ void HyEngine::NavPrimitive::Render()
 	GameObject::Render();
 
 #ifdef _DEBUG
+
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderNavMesh);
+		if (bRender == false)
+			return;
+	}
+
 	if (IS_EDITOR)
 	{
 
@@ -68,8 +82,8 @@ void HyEngine::NavPrimitive::Render()
 	else
 	{
 		/* EDIT_MODE에만 그린다. */
-		if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
-			return;
+// 		if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+// 			return;
 	}
 
 	/* vertex의 위치를 cell의 위치로 업데이트해준다. */
@@ -147,14 +161,16 @@ D3DXVECTOR3 HyEngine::NavPrimitive::GetPosition(EPoint point)
 
 Cell * HyEngine::NavPrimitive::GetCell(int cellIndex)
 {
-	for (auto& cell : m_cells)
+	assert(cellIndex <= 3);
+	return m_cells[cellIndex];
+	/*for (auto& cell : m_cells)
 	{
 		if (cell->GetCellIndex() == cellIndex)
 		{
 			return cell;
 		}
 	}
-	return nullptr;
+	return nullptr;*/
 }
 
 const std::vector<Cell*>& HyEngine::NavPrimitive::GetCells()
@@ -165,4 +181,64 @@ const std::vector<Cell*>& HyEngine::NavPrimitive::GetCells()
 int HyEngine::NavPrimitive::GetNavPrimIndex() const
 {
 	return m_navPrimIndex;
+}
+
+NavPrimitive * HyEngine::NavPrimitive::GetNeighbor(ENeighbor index)
+{
+	return m_neighbors[(int)index];
+}
+
+const  std::vector<NavPrimitive*>& HyEngine::NavPrimitive::GetNeighbors() const
+{
+	return m_neighbors;
+}
+
+void HyEngine::NavPrimitive::SetNeighbor(ENeighbor index, NavPrimitive * neighbor)
+{
+	m_neighbors[(int)index] = neighbor;
+}
+
+bool HyEngine::NavPrimitive::ComparePoint(const Cell * pPointA, const Cell * pPointB, NavPrimitive * pNavPrim)
+{
+	if(m_cells[(int)EPoint::POINT_A]->Compare(pPointA))
+	{
+		if (m_cells[(int)EPoint::POINT_B]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_AB] = pNavPrim;
+			return true;
+		}
+		if (m_cells[(int)EPoint::POINT_C]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_CA] = pNavPrim;
+			return true;
+		}
+	}
+
+	if(m_cells[(int)EPoint::POINT_B]->Compare(pPointA))
+	{
+		if (m_cells[(int)EPoint::POINT_A]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_AB] = pNavPrim;
+			return true;
+		}
+		if (m_cells[(int)EPoint::POINT_C]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_BC] = pNavPrim;
+			return true;
+		}
+	}
+	if (m_cells[(int)EPoint::POINT_C]->Compare(pPointA))
+	{
+		if (m_cells[(int)EPoint::POINT_B]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_BC] = pNavPrim;
+			return true;
+		}
+		if (m_cells[(int)EPoint::POINT_A]->Compare(pPointB))
+		{
+			m_neighbors[(int)ENeighbor::NEIGHBOR_CA] = pNavPrim;
+			return true;
+		}
+	}
+	return false;
 }

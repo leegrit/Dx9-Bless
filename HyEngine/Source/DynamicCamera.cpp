@@ -79,10 +79,10 @@ void DynamicCamera::Update()
 
 	SetProjectionMatrix
 	(
-		D3DX_PI * 0.5f, // 90 - degree
+		D3DXToRadian(45),
 		WinMaxWidth / WinMaxHeight,
 		1.0f,
-		1000.0f
+		700.0f
 	);
 	D3DXVECTOR3 target;
 	target = (GetTransform()->m_position + GetTransform()->Forward() * 10).operator D3DXVECTOR3();

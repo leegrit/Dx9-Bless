@@ -41,8 +41,8 @@ void HyEngine::SphereCollider::Render()
 	else
 	{
 		/* EDIT_MODE에만 그린다. */
-		if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
-			return;
+		//if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+		//	return;
 	}
 
 	if (m_pSphereMesh == nullptr) return;

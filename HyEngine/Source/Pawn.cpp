@@ -22,21 +22,24 @@ void HyEngine::Pawn::Update()
 {
 	DynamicMesh::Update();
 
-	assert(m_pNavMesh);
+	if (IS_CLIENT && m_pNavMesh)
+	{
 
-	// navMesh 위에 있다면 높이를 맞추고
-	// navMesh를 벗어났다면 이전 포지션으로 돌아온다.
-	float height = 0;
-	bool isOnMesh = false;
-	isOnMesh = m_pNavMesh->IsOnMesh(m_pTransform->m_position.operator D3DXVECTOR3(), &height);
-	if (isOnMesh)
-	{
-		m_pTransform->m_position.y() = height;
-		m_positionOld = m_pTransform->m_position.operator D3DXVECTOR3();
-	}
-	else
-	{
-		m_pTransform->m_position = m_positionOld;
+		// navMesh 위에 있다면 높이를 맞추고
+		// navMesh를 벗어났다면 이전 포지션으로 돌아온다.
+		float height = 0;
+		bool isOnMesh = false;
+		isOnMesh = m_pNavMesh->IsOnMesh(m_pTransform->m_position.operator D3DXVECTOR3(), &height);
+		if (isOnMesh)
+		{
+			m_pTransform->m_position.y() = height;
+			m_positionOld = m_pTransform->m_position.operator D3DXVECTOR3();
+		}
+		else
+		{
+			m_pTransform->m_position = m_positionOld;
+		}
+
 	}
 }
 
@@ -56,4 +59,9 @@ Pawn * HyEngine::Pawn::Create(Scene * scene, GameObject * parent, NavMesh * navM
 	Pawn* pawn = new Pawn(scene, parent, navMesh);
 	pawn->Initialize(dataPath);
 	return pawn;
+}
+
+int HyEngine::Pawn::GetNavPrimIndex() const
+{
+	return m_navPrimIndex;
 }

@@ -43,9 +43,9 @@
   },
   "TerrainData": {
     "VertexCountX": 4,
-    "VertexCountZ": 2,
-    "TextureCountX": 25.0,
-    "TextureCountZ": 10.0,
+    "VertexCountZ": 4,
+    "TextureCountX": 50.0,
+    "TextureCountZ": 50.0,
     "VertexInterval": 500.0,
     "DiffuseFilePath": "Assets\\Tile\\Tile_D_0.tga",
     "NormalFilePath": "Assets\\Tile\\Tile_N_0.tga"

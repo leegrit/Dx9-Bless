@@ -4,18 +4,26 @@
 Character::Character(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
 	: Pawn(scene, nullptr, pNavMesh)
 {
-	m_pCollider = SphereCollider::Create(EColliderType::Static, this, colRadius, GetTargetLayer(),
+	m_pCollider = SphereCollider::Create(EColliderType::Static, this, colRadius, Layer::Default,
 		std::bind(&Character::OnCollision, this, placeholders::_1));
 	m_pCollider->SetOffset(colPosOffset);
+}
+Character::Character(Scene * scene, NavMesh * pNavMesh)
+	: Pawn(scene, nullptr, pNavMesh)
+{
+	m_pCollider = nullptr;
 }
 
 Character::~Character()
 {
+	Object::Destroy(m_pCollider);
 }
 
 void Character::Initialize(std::wstring dataPath)
 {
 	Pawn::Initialize(dataPath);
+
+	
 
 }
 
@@ -73,10 +81,7 @@ void Character::SetDamagedState(bool isDamaged)
 	m_isDamaged = isDamaged;
 }
 
-UINT Character::GetTargetLayer()
-{
-	return Layer::Default;
-}
+
 
 void Character::SendDamage(GameObject * sender, float damage)
 {

@@ -60,6 +60,13 @@ bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 
 	this->engineConfig = engineConfig;
 	m_scenes = engineConfig.scenes;
+
+	m_renderOption = RenderOptions::RenderCollider | 
+					 RenderOptions::RenderLight |
+					 RenderOptions::RenderNavMesh |
+					 RenderOptions::RenderShadow | 
+					 RenderOptions::RenderUI;
+
 	SEND_LOG("Engine Initialize End");
 	return false;
 }
@@ -183,6 +190,34 @@ void Engine::RenderFrame()
 	Gui::Get()->Render();
 	RenderFont();
 	m_pRenderer->RenderEnd();
+}
+
+void HyEngine::Engine::ToggleRenderOption(DWORD renderOption)
+{
+	m_renderOption = m_renderOption ^ renderOption;
+}
+
+void HyEngine::Engine::SetRenderOption(DWORD renderOption, bool bActive)
+{
+	if (bActive)
+	{
+		m_renderOption = m_renderOption | renderOption;
+	}
+	else
+	{
+		DWORD temp = ~renderOption;
+		m_renderOption = m_renderOption & temp;
+	}
+}
+
+DWORD HyEngine::Engine::GetRenderOption() const
+{
+	return m_renderOption;
+}
+
+bool HyEngine::Engine::CheckRenderOption(DWORD renderOption)
+{
+	return m_renderOption & renderOption;
 }
 
 Scene * Engine::GetActiveScene()
@@ -343,6 +378,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"StaticMesh", PATH->ShadersPathW() + L"StaticMesh.fx");
 	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
 	InsertShader(L"LinearFilter", PATH->ShadersPathW() + L"LinearFilter.fx");
+	InsertShader(L"Terrain", PATH->ShadersPathW() + L"Terrain.fx");
 	return true;
 }
 

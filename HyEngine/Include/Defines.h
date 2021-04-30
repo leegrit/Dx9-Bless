@@ -27,5 +27,8 @@ if (p)\
 
 #define WinMaxWidth 1024
 #define WinMaxHeight 768
+//#define WinMaxWidth 1280
+//#define WinMaxHeight 720
+
 #define WinMinWidth 200
 #define WinMinHeight 200

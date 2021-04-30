@@ -52,6 +52,51 @@
     <ClCompile Include="..\Source\SkeletoneHit.cpp">
       <Filter>FSM\Skeletone</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\QuestNPC.cpp">
+      <Filter>GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NonePlayer.cpp">
+      <Filter>GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Enemy.cpp">
+      <Filter>GameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NamedEnemy.cpp">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBoss.cpp">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossAttack.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossDie.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossHit.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossIdle.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossMove.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkeletoneDied.cpp">
+      <Filter>FSM\Skeletone</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DummyBossDied.cpp">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EventManager.cpp">
+      <Filter>GameEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Event.cpp">
+      <Filter>GameEvent\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestEvent.cpp">
+      <Filter>GameEvent\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -86,6 +131,21 @@
     </Filter>
     <Filter Include="FSM\Skeletone">
       <UniqueIdentifier>{c3bd7a07-879f-43ee-933b-b4e6a6f3b536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\NPC">
+      <UniqueIdentifier>{f9a8339b-badd-46bb-b1ec-89b9cdf6bb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Enemy\Named">
+      <UniqueIdentifier>{941049f6-fdaa-4a67-b908-ed75f1235dec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\DummyBoss">
+      <UniqueIdentifier>{134cc563-430b-490e-8cb7-00c09940625c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEvent">
+      <UniqueIdentifier>{c791d595-2081-436f-9306-137320342087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEvent\Events">
+      <UniqueIdentifier>{7f1aaeb1-a812-440f-9ca0-9bf0a0b3a363}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +201,51 @@
     </ClInclude>
     <ClInclude Include="..\Include\SkeletoneHit.h">
       <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestNPC.h">
+      <Filter>GameObject\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NonePlayer.h">
+      <Filter>GameObject\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Enemy.h">
+      <Filter>GameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NamedEnemy.h">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBoss.h">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossAttack.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossDie.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossHit.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossIdle.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossMove.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkeletoneDied.h">
+      <Filter>FSM\Skeletone</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DummyBossDied.h">
+      <Filter>FSM\DummyBoss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EventManager.h">
+      <Filter>GameEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Event.h">
+      <Filter>GameEvent\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestEvent.h">
+      <Filter>GameEvent\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

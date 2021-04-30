@@ -90,9 +90,7 @@ PixelInputType SoftShadowMappingVS(VertexInputType input)
 	output.texcoord = input.texcoord;
 	
 	return output;
-}
-
-float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
+}float4 SoftShadowMappingPS22(PixelInputType input) : COLOR0
 {
 	float4 depthMap = tex2D(DepthSampler, input.texcoord);
 	float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
@@ -130,31 +128,6 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 	float4 lightPos;
 	float shadowDepth;
 
-		//lightPos = mul(worldPos, LightViewMatrix[0]);
-		//lightPos = mul(lightPos, LightProjMatrix[0]);
-
-		///* Light 기준으로 Texture 좌표를 구한다. */
-		//projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
-		//projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
-		//projectTexcoord.z = lightPos.z / lightPos.w / 2.0f + 0.5f;
-
-		//if ((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y)
-		//	&& (saturate(projectTexcoord.z) == projectTexcoord.z))
-		//{
-		//	shadowDepth = tex2D(ShadowDepthSampler0, projectTexcoord.xy).a;
-		//	float lightDepth = lightPos.z / lightPos.w;
-		//	lightDepth = lightDepth - bias;
-		//	if (lightDepth < shadowDepth)
-		//	{
-		//		shadowFactor = 1;
-		//	}
-		//	else
-		//	{
-		//		shadowFactor = 0;
-		//	}
-		//}
-		//else
-		//	shadowFactor = 1;
 
 	for(int i = 0; i < 4; i++)
 	{
@@ -244,9 +217,77 @@ float4 SoftShadowMappingPS(PixelInputType input) : COLOR0
 
 
 	return float4(shadowFactor, shadowFactor, shadowFactor, shadowFactor);
-	};
+};
+
+float4 SoftShadowMappingPS(PixelInputType input, uniform int cascadeIndex, uniform sampler shadowDepthSampler) : COLOR0
+{
+	float4 depthMap = tex2D(DepthSampler, input.texcoord);
+	float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
+	float4 normalMap = tex2D(NormalSampler, input.texcoord);
+	float4 specularMap = tex2D(SpecularSampler, input.texcoord);
+	//float4 stashMap = tex2D(StashSampler, input.texcoord);
+
+	/* Calculate world position */
+	float4 worldPos;
+	worldPos.x = input.texcoord.x * 2.f - 1.f;
+	worldPos.y = input.texcoord.y * -2.f + 1.f;
+	worldPos.z = depthMap.a;
+	worldPos.w = 1;
+
+	worldPos = mul(worldPos, ProjMatrixInv);
+	worldPos = mul(worldPos, ViewMatrixInv);
+	worldPos = worldPos / worldPos.w;
+
+	/* Calculate Shadow */
+	// Shadow 연산을 통해 빛을 받는곳은 shadowFactor를 1로 
+	// 빛을 받지 않는 곳은 factor를 0으로 설정하여 이후에 계산되는 
+	// 광원 연산에 shadow factor를 곱해주어 그림자가 진 곳은 
+	// 빛을 받지 않게 설정한다.
+	// emissive, ambient는 덧셈 연산이기에 영향을 받지 않는다.
+	float shadowFactor = 1; // default 1
+	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
+	//float bias = 0.06f;
+	float bias = 0.006f;
+
+	/* Calculate  */
+	// vertex의 light 공간으로 변환된 값이 필요하다.
+	float3 projectTexcoord;
+
+	float4 lightPos;
+	float shadowDepth;
+
+	lightPos = mul(worldPos, LightViewMatrix[cascadeIndex]);
+	lightPos = mul(lightPos, LightProjMatrix[cascadeIndex]);
+
+	projectTexcoord.x = lightPos.x / lightPos.w / 2.0f + 0.5f;
+	projectTexcoord.y = -lightPos.y / lightPos.w / 2.0f + 0.5f;
+	projectTexcoord.z = lightPos.z / lightPos.w / 2.0f + 0.5f;
+
+	if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y) 
+		&& (saturate(projectTexcoord.z) == projectTexcoord.z))
+	{
+		shadowDepth = tex2D(shadowDepthSampler, projectTexcoord.xy).a;
+		float lightDepth = lightPos.z / lightPos.w;
+		lightDepth = lightDepth - bias;
+		shadowFactor = lightDepth < shadowDepth ?  1 : 0;
+	}
+	else
+		discard;
+
+	return float4(shadowFactor, shadowFactor, shadowFactor, shadowFactor);
+};
 
 
+technique SoftShadowMapping_Temp
+{
+	pass P0
+	{
+		ZEnable = false;
+		CULLMODE = CCW;
+		VertexShader = compile vs_3_0 SoftShadowMappingVS();
+		PixelShader = compile ps_3_0 SoftShadowMappingPS(0, ShadowDepthSampler0);
+	}
+};
 technique SoftShadowMapping
 {
 	pass P0
@@ -254,6 +295,20 @@ technique SoftShadowMapping
 		ZEnable = false;
 		CULLMODE = CCW;
 		VertexShader = compile vs_3_0 SoftShadowMappingVS();
-		PixelShader = compile ps_3_0 SoftShadowMappingPS();
+		PixelShader = compile ps_3_0 SoftShadowMappingPS(0, ShadowDepthSampler0);
+	}
+	pass P1
+	{
+		ZEnable = false;
+		CULLMODE = CCW;
+		VertexShader = compile vs_3_0 SoftShadowMappingVS();
+		PixelShader = compile ps_3_0 SoftShadowMappingPS(1, ShadowDepthSampler1);
+	}
+	pass P2
+	{
+		ZEnable = false;
+		CULLMODE = CCW;
+		VertexShader = compile vs_3_0 SoftShadowMappingVS();
+		PixelShader = compile ps_3_0 SoftShadowMappingPS(2, ShadowDepthSampler2);
 	}
 };

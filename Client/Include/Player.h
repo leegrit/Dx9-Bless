@@ -20,12 +20,13 @@ public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void OnCollision(Collider * other) override;
 
-
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
 	static Player* Create(Scene* pScene, NavMesh* pNavMesh, std::wstring dataPath);
+
+
 
 };
 

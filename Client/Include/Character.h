@@ -11,6 +11,7 @@ class Character abstract : public Pawn
 	//////////////////////////////////////////////////////////////////////////
 protected:
 	explicit Character(Scene* scene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffest, float colRadius);
+	explicit Character(Scene* scene, NavMesh* pNavMesh);
 	virtual ~Character();
 
 	//////////////////////////////////////////////////////////////////////////
@@ -33,6 +34,7 @@ public:
 	float GetCurHP() const;
 	float GetMaxMP() const;
 	float GetCurMP() const;
+	std::vector<GameObject*>& GetHitOthers();
 
 	//////////////////////////////////////////////////////////////////////////
 	// SETTER
@@ -41,14 +43,11 @@ public :
 	void SetParams(float moveSpd, float maxHP, float maxMP);
 	void SetDamagedState(bool isDamaged);
 
-
 	//////////////////////////////////////////////////////////////////////////
 	// PURE
 	//////////////////////////////////////////////////////////////////////////
 public :
-	virtual UINT GetTargetLayer();
 	virtual void OnCollision(Collider* other) PURE;
-
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
@@ -63,6 +62,9 @@ private :
 	Collider* m_pCollider;
 	bool m_isDamaged = false;
 	bool m_isDied = false;
+
+	
+
 
 	/* Status */
 	float m_moveSpeed;

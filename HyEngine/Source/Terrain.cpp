@@ -245,9 +245,9 @@ void HyEngine::Terrain::Render()
 	if (m_pShader == nullptr)
 	{
 		if (IS_EDITOR)
-			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			EDIT_ENGINE->TryGetShader(L"Terrain", &m_pShader);
 		else
-			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			ENGINE->TryGetShader(L"Terrain", &m_pShader);
 	}
 	assert(m_pShader);
 
@@ -261,9 +261,6 @@ void HyEngine::Terrain::Render()
 	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
 	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
-	/* Set world position */
-	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
-
 	/* Sel albedo */
 	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
 	m_pShader->SetTexture(albedoHandle, m_pTexture);
@@ -272,23 +269,7 @@ void HyEngine::Terrain::Render()
 	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
 	m_pShader->SetTexture(normalHandle, m_pNormal);
 
-	/* Set Emissive */
-	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
-	m_pShader->SetTexture(emissiveHandle, NULL);
-
-	/* Set Sepcular */
-	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
-	m_pShader->SetTexture(specularHandle, NULL);
-
-	/* Set SpecularMask */
-	D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
-	m_pShader->SetTexture(specularMaskHandle, NULL);
-
-	bool hasNormalMap = m_pNormal ? true : false;
-
-	m_pShader->SetBool("HasNormalMap", hasNormalMap);
-
-	m_pShader->SetTechnique("GBuffer");
+	m_pShader->SetTechnique("Terrain");
 	m_pShader->Begin(0, 0);
 	{
 		m_pShader->BeginPass(0);

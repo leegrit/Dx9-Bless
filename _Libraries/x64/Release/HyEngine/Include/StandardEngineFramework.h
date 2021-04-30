@@ -135,6 +135,7 @@
 
 /* Editor 환경인지 Client인지 확인용도 */
 // EditEngine이 Null이라면 Client
+#define IS_CLIENT Engine::Get()
 #define IS_EDITOR EditEngine::Get()
 
 #define ENGINE Engine::Get()

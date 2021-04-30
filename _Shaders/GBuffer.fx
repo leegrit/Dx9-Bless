@@ -163,6 +163,22 @@ void GBufferPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
+	/* BumpMap Sampling */
+	float4 bumpMap = tex2D(NormalSampler, texcoord);
+
+	/* convert -1 ~ 1*/
+	bumpMap = (bumpMap * 2.0f) - 1.0f;
+
+	float3 tangent = normalize(tangentWorldMat[0]);
+	float3 binormal = normalize(tangentWorldMat[1]);
+
+
+	/* Calculate bumpNormal */
+	float3 bumpNormal = (bumpMap.x * tangent) + (bumpMap.y * binormal) + (bumpMap.z * normal);
+	bumpNormal = normalize(bumpNormal);
+
+	outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
+
 }
 void GBufferWithNormalPS(
 	float4 depthPosition : TEXCOORD0,
@@ -195,7 +211,7 @@ void GBufferWithNormalPS(
 	outSpecular.a = specularMask.b;
 
 	/* Normal */
-	outNormal = float4(normal * 0.5f + 0.5f, 1);
+	//outNormal = float4(normal * 0.5f + 0.5f, 1);
 
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);

@@ -1158,6 +1158,9 @@
     <FxCompile Include="..\_Shaders\LinearFilter.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\Terrain.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">

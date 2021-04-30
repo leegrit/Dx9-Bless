@@ -51,6 +51,13 @@ void HyEngine::Collider::Update()
 void HyEngine::Collider::Render()
 {
 	DEVICE->SetTransform(D3DTS_WORLD, &m_pTransform->GetWorldMatrix());
+
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderCollider);
+		if (bRender == false)
+			return;
+	}
 }
 
 bool HyEngine::Collider::GetActive() const

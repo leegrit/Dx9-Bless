@@ -502,6 +502,7 @@
     <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\StaticMesh.fx" />
+    <FxCompile Include="..\_Shaders\Terrain.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />
     <FxCompile Include="..\_Shaders\UIPanel.fx" />
   </ItemGroup>

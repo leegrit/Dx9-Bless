@@ -135,40 +135,125 @@ void HyEngine::Gui::ShowTextInput(char * result, int size, float xPos, float yPo
 	ImGui::End();
 }
 
-void HyEngine::Gui::BeginUI()
+void HyEngine::Gui::BeginEditGUI()
 {
-	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE) return;
-	ImGui::SetNextWindowPos({ WinMaxWidth - 200, WinMaxHeight - 200 });
-	ImGui::SetNextWindowSize(ImVec2(300, 200));
-	ImGui::Begin
-	(
-		"TextInputWindow",
-		&m_bOpen,
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_MenuBar
-	);
+	m_guiCount = 0;
 }
 
-void HyEngine::Gui::EndUI()
+void HyEngine::Gui::EndEditGUI()
 {
-	ImGui::End();
+
 }
 
 void HyEngine::Gui::InputText(std::string label, _Out_ char * result, int size)
 {
-	ImGui::InputText(label.c_str(), result, size);
+	static bool bInputTextOpen = true;
+	ImVec2 offset = { m_offset.x * m_guiCount, m_offset.y * m_guiCount };
+	ImVec2 pos = { m_editGUIPos.x + offset.x, m_editGUIPos.y + offset.y };
+
+	m_guiCount++;
+	ImGui::SetNextWindowPos(pos);
+	ImGui::SetNextWindowSize(m_size);
+	ImGui::Begin
+	(
+		"InputText",
+		&bInputTextOpen,
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove
+	);
+	{
+		ImGui::InputText(label.c_str(), result, size);
+	}
+	ImGui::End();
 }
 
 void HyEngine::Gui::InputInt(std::string label,_Out_ int * result)
 {
-	ImGui::InputInt(label.c_str(), result);
+	static bool bInputIntOpen = true;
+	ImVec2 offset = { m_offset.x * m_guiCount, m_offset.y * m_guiCount };
+	ImVec2 pos = { m_editGUIPos.x + offset.x, m_editGUIPos.y + offset.y };
+
+	m_guiCount++;
+	ImGui::SetNextWindowPos(pos);
+	ImGui::SetNextWindowSize(m_size);
+	ImGui::Begin
+	(
+		"InputInt",
+		&bInputIntOpen,
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove
+	);
+	{
+		ImGui::InputInt(label.c_str(), result);
+	}
+	ImGui::End();
 }
 
 void HyEngine::Gui::InputFloat(std::string label, _Out_ float * result)
 {
-	ImGui::InputFloat(label.c_str(), result);
+	static bool bInputFloatOpen = true;
+	ImVec2 offset = { m_offset.x * m_guiCount, m_offset.y * m_guiCount };
+	ImVec2 pos = { m_editGUIPos.x + offset.x, m_editGUIPos.y + offset.y };
+
+	m_guiCount++;
+	ImGui::SetNextWindowPos(pos);
+	ImGui::SetNextWindowSize(m_size);
+	ImGui::Begin
+	(
+		"InputFloat",
+		&bInputFloatOpen,
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoMove
+	);
+	{
+		ImGui::InputFloat(label.c_str(), result);
+	}
+	ImGui::End();
+}
+
+void HyEngine::Gui::ShowEditRenderOption()
+{
+	static bool bShowEditRenderOption = true;
+
+	ImGui::SetNextWindowPos({100, 300});
+	ImGui::Begin
+	(
+		"RenderOption",
+		&bShowEditRenderOption//,
+		//ImGuiWindowFlags_NoBackground |
+		//ImGuiWindowFlags_NoTitleBar |
+		//ImGuiWindowFlags_NoResize |
+		//ImGuiWindowFlags_NoMove
+	);
+	{
+		bool bRenderCollider = ENGINE->CheckRenderOption(RenderOptions::RenderCollider);
+		ImGui::Checkbox("RenderCollider", &bRenderCollider);
+		ENGINE->SetRenderOption(RenderOptions::RenderCollider, bRenderCollider);
+
+		bool bRenderNavMesh = ENGINE->CheckRenderOption(RenderOptions::RenderNavMesh);
+		ImGui::Checkbox("RenderNavMesh", &bRenderNavMesh);
+		ENGINE->SetRenderOption(RenderOptions::RenderNavMesh, bRenderNavMesh);
+
+		bool bRenderLight = ENGINE->CheckRenderOption(RenderOptions::RenderLight);
+		ImGui::Checkbox("RenderLight", &bRenderLight);
+		ENGINE->SetRenderOption(RenderOptions::RenderLight, bRenderLight);
+
+		bool bRenderShadow = ENGINE->CheckRenderOption(RenderOptions::RenderShadow);
+		ImGui::Checkbox("RenderShadow", &bRenderShadow);
+		ENGINE->SetRenderOption(RenderOptions::RenderShadow, bRenderShadow);
+
+		bool bRenderUI = ENGINE->CheckRenderOption(RenderOptions::RenderUI);
+		ImGui::Checkbox("RenderUI", &bRenderUI);
+		ENGINE->SetRenderOption(RenderOptions::RenderUI, bRenderUI);
+
+	}
+	ImGui::End();
 }
 
 void HyEngine::Gui::ApplyStyle()

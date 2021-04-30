@@ -42,7 +42,7 @@ private :
 
 	/* For Rotation  */
 	D3DXVECTOR3 m_mouseCenter;
-	const float m_rotDegreeMax = 70;
+	const float m_rotDegreeMax = 40;
 	const float m_rotDegreeMin = 10;
 	float m_rotDegree = 45;
 	float m_rotSpdFactor = 0.5f;

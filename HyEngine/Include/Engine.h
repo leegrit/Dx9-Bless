@@ -39,6 +39,12 @@ namespace HyEngine
 		inline void Pause() { m_bIsPaused = true; }
 		inline void Unpause() { m_bIsPaused = false; }
 
+		/* Render Option */
+		void ToggleRenderOption(DWORD renderOption);
+		void SetRenderOption(DWORD renderOption, bool bActive);
+		DWORD GetRenderOption() const;
+		bool CheckRenderOption(DWORD renderOption);
+
 		// Input
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }
@@ -100,6 +106,9 @@ namespace HyEngine
 		// THREADED LOADING
 		bool m_bLoading;
 		EGameMode m_gameMode;
+
+	private :
+		DWORD m_renderOption;
 	private:
 
 		class Renderer * m_pRenderer;

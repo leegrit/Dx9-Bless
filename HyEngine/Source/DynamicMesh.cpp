@@ -324,6 +324,9 @@ const list<D3DXMESHCONTAINER_DERIVED*>& HyEngine::DynamicMesh::GetMeshContainerL
 
 void HyEngine::DynamicMesh::SetAnimationSet(const unsigned int & index)
 {
+	if (m_pAniCtrl == nullptr)
+		return;
+
 	m_pAniCtrl->SetAnimationSet(index);
 }
 

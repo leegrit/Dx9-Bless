@@ -68,7 +68,11 @@ namespace HyEngine
 		void SetCurrentIndex(const unsigned long cellIndex);
 		void SetGroup(const unsigned long& cellIndex, const unsigned int& group);
 
+		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHOD
+		//////////////////////////////////////////////////////////////////////////
 	public :
+		void LinkPrimitive();
 	
 		//////////////////////////////////////////////////////////////////////////
 		// INITIALIZER
@@ -96,6 +100,7 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		bool IsOnMesh(D3DXVECTOR3 position,  _Out_ float* yPos);
+		bool IsOnMesh(D3DXVECTOR3 position, int navIndex, _Out_ float* yPos, _Out_ int* pOutNavIndex);
 		bool PickOnMesh(D3DXVECTOR3 origin, D3DXVECTOR3 direction, _Out_ D3DXVECTOR3* pickedPos);
 
 

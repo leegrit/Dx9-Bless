@@ -19,11 +19,12 @@ Player::~Player()
 void Player::Initialize(std::wstring dataPath)
 {
 	Pawn::Initialize(dataPath);
-
+	SetParams(50, 1000, 1000);
 	
 	PlayerController* pController = PlayerController::Create(this);
 	AddComponent(pController);
 	AddComponent(PlayerNormalAttack::Create(this, pController));
+
 }
 
 Player * Player::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)

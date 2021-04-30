@@ -3,17 +3,26 @@
 
 struct ENGINE_DLL BehaviourType
 {
-	static const DWORD Update = 0x0001;
-	static const DWORD LateUpdate = 0x0002;
-	static const DWORD None = 0x0004;
+	static const DWORD Update = 1;
+	static const DWORD LateUpdate = 2;
+	static const DWORD None = 4;
 };
 
 struct RenderType
 {
-	static const DWORD RenderOpaque = 0x0001;
-	static const DWORD RenderAlpha = 0x0002;
-	static const DWORD RenderUI = 0x0004;
-	static const DWORD RenderDebug = 0x0008;
-	static const DWORD None = 0x0010;
-	static const DWORD Texture = 0x0020;
+	static const DWORD RenderOpaque = 1;
+	static const DWORD RenderAlpha = 2;
+	static const DWORD RenderUI = 4;
+	static const DWORD RenderDebug = 8;
+	static const DWORD None = 16;
+	static const DWORD Texture = 32;
 };
+
+namespace RenderOptions
+{
+	static const DWORD RenderCollider = 4;
+	static const DWORD RenderNavMesh = 8;
+	static const DWORD RenderUI = 16;
+	static const DWORD RenderShadow = 32;
+	static const DWORD RenderLight = 64;
+}

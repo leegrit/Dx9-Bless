@@ -22,16 +22,22 @@ namespace HyEngine
 			Cell* cellA, Cell* cellB, Cell* cellC,
 			const  ECellOption& cellOption, const unsigned int& group, unsigned int navPrimIndex);
 
+
 		D3DXVECTOR3 GetPosition(EPoint point);
 		Cell* GetCell(int cellIndex);
 		const std::vector<Cell*>& GetCells();
 		int GetNavPrimIndex()const;
+		NavPrimitive* GetNeighbor(ENeighbor index);
+		const std::vector<NavPrimitive*>& GetNeighbors() const;
+		void SetNeighbor(ENeighbor index, NavPrimitive* neighbor);
+		bool ComparePoint(const Cell* pPointA, const Cell* pPointB, NavPrimitive* pNavPrim);
 	private :
 		class ColorTriangle* m_pColorTriangle = nullptr;
 		D3DXCOLOR m_color;
 
 		std::vector<Cell*> m_cells;
-		//std::vector<NavPrimitive*> m_neighbor;
+		std::vector<NavPrimitive*> m_neighbors;
+		//NavPrimitive* m_pNeighbors[(int)ENeighbor::NEIGHBOR_END];
 		//std::vector<Line*> m_lines;
 
 		ECellOption m_cellOption;

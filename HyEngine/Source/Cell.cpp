@@ -27,3 +27,11 @@ void HyEngine::Cell::Render()
 {
 	assert(false);
 }
+
+bool HyEngine::Cell::Compare(const Cell * pCell)const
+{
+	if (m_pTransform->m_position == pCell->m_pTransform->m_position)
+		return true;
+	else
+		return false;
+}

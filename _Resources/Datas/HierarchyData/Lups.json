@@ -2,19 +2,19 @@
   "Type": 1,
   "Index": 1,
   "TagIndex": 0,
-  "LayerIndex": 0,
+  "LayerIndex": 2,
   "StaticIndex": 0,
   "GameObjectData": {
     "Index": 1,
     "Name": "Lups",
     "Tag": "Default",
-    "Layer": 0,
+    "Layer": 2,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": -9.842463,
+        "X": -295.89,
         "Y": 0.0,
-        "Z": 39.81562
+        "Z": 100.63
       },
       "Rotation": {
         "X": 0.0,
@@ -22,9 +22,9 @@
         "Z": 0.0
       },
       "Scale": {
-        "X": 1.0,
-        "Y": 1.0,
-        "Z": 1.0
+        "X": 0.5,
+        "Y": 0.5,
+        "Z": 0.5
       }
     }
   },

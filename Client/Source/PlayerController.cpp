@@ -1,13 +1,16 @@
 #include "stdafx.h"
 #include "PlayerController.h"
 #include "DynamicMesh.h"
-
+#include "Character.h"
 
 PlayerController::PlayerController(GameObject * pOwner)
 	:Component(BehaviourType::Update, pOwner, L"PlayerController")
 {
 	//m_speed = 0.5f;
-	m_speed = 50.f;
+	// PLAYER는 반드시 Character를 상속받은 상태여야함
+	Character* character = dynamic_cast<Character*>(pOwner);
+	assert(character);
+	m_speed = character->GetMoveSpeed();
 	m_playerState = EPlayerState::Idle;
 }
 

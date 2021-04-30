@@ -367,9 +367,9 @@ void Renderer::RenderEnd()
 	DEVICE->EndScene();
 	DEVICE->Present(nullptr, nullptr, g_hWnd, nullptr);
 
-	D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
-	D3DXSaveTextureToFile(L"Stash.bmp", D3DXIFF_BMP, m_pStashRTTexture, NULL);
-
+	//D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
+	//D3DXSaveTextureToFile(L"Stash.bmp", D3DXIFF_BMP, m_pStashRTTexture, NULL);
+	//D3DXSaveTextureToFile(L"ShadowMap.bmp", D3DXIFF_BMP, m_pSoftShadowOriginRTTexture, NULL);
 	/*for (int i = 0; i < 4; i++)
 	{
 		std::wstring test = L"Cascade" + to_wstring(i);
@@ -433,13 +433,17 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	if (list.size() == 0) return;
 	for (auto& alpha : list)
 	{
-		Mesh* mesh = dynamic_cast<Mesh*>(alpha);
-
 		alpha->Render();
 	}
 
 	/* Render Collider */
 #ifdef _DEBUG
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderCollider);
+		if (bRender == false)
+			return;
+	}
 	auto& colliders = scene->GetObjectContainer()->GetRenderableColliderAll();
 	for (auto& collider : colliders)
 	{
@@ -645,6 +649,13 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		/* 테스트용 */
 		if (light->Type() == ELightType::POINT)
 		{
+			if (IS_CLIENT)
+			{
+				bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderLight);
+				if (bRender == false)
+					continue;
+			}
+
 			if (ENGINE)
 				ENGINE->TryGetShader(L"PointLight", &pShader);
 			else
@@ -659,6 +670,13 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		}
 		else if (light->Type() == ELightType::SPOT)
 		{
+			if (IS_CLIENT)
+			{
+				bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderLight);
+				if (bRender == false)
+					continue;
+			}
+
 			if (ENGINE)
 				ENGINE->TryGetShader(L"SpotLight", &pShader);
 			else
@@ -776,7 +794,12 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 {
-
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderShadow);
+		if (bRender == false)
+			return;
+	}
 
 	/* shader load */
 	ID3DXEffect* pShader = nullptr;
@@ -814,7 +837,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f, 0.6f, 1.0f };//, 1.0f }; 
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f, 1.0f, 1.0f };//, 1.0f }; 
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f };// , 0.1f, 0.15f, 0.2f
 //};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =
@@ -944,6 +967,14 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 
 void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 {
+	DEVICE->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, 0xffffffff, 1.0f, 0);
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderShadow);
+		if (bRender == false)
+			return;
+	}
+
 	/* Find Directional Light */
 	Light* directionalLight = nullptr;
 	for(auto& light : scene->GetObjectContainer()->GetRenderableLightAll())
@@ -1005,18 +1036,33 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	/* Shadow Map Sort */
 	// 카메라 방향벡터와 광원의 방향을 내적해서
 	// 양수면 그대로, 음수면 순서 거꾸로
-	D3DXVECTOR3 camDir = selectedCam->m_pTransform->Forward();
+
+	D3DXMATRIX identity;
+	D3DXMatrixIdentity(&identity);
+	D3DXMATRIX viewInv = selectedCam->GetViewMatrix();
+	D3DXMatrixInverse(&viewInv, NULL, &viewInv);
+	identity = identity * viewInv;
+	D3DXVECTOR3 camDir;
+	memcpy(&camDir, &identity.m[2][0], sizeof(D3DXVECTOR3));
+	//D3DXVECTOR3 temp2 = D3DXVECTOR3(0, 0, 0);
+
 	camDir.y = 0;
 	D3DXVec3Normalize(&camDir, &camDir);
+	
+	//D3DXVec3Normalize(&camDir, &camDir);
 	D3DXVECTOR3 lightDir = directionalLight->Direction();
 	lightDir.y = 0;
+	//D3DXVec3TransformNormal(&lightDir, &lightDir, &viewInv);
+	////lightDir.y = 0;
 	D3DXVec3Normalize(&lightDir, &lightDir);
 	float temp = D3DXVec3Dot(&camDir, &lightDir);
+	//std::cout << "Test : " << temp << std::endl;
 	bool isReverse = false;
 	/*if (temp > 0)
 		isReverse = false;
 	else
 		isReverse = true;*/
+
 	D3DXMATRIX lightViewMat[NUM_CASCADEDES];
 	D3DXMATRIX lightProjMat[NUM_CASCADEDES];
 
@@ -1036,6 +1082,7 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 			lightProjMat[i] = m_lightProjMat[i];
 		}
 	}
+
 
 	pShader->SetMatrixArray("LightViewMatrix", lightViewMat, NUM_CASCADEDES);
 	pShader->SetMatrixArray("LightProjMatrix", lightProjMat, NUM_CASCADEDES);
@@ -1060,56 +1107,75 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	/* For CascadeShadowMapping */
 	if (NUM_CASCADEDES > 0)
 	{
-		D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
-		if(isReverse)
-			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 0]);
+		if (isReverse)
+		{
+			D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
+			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[NUM_CASCADEDES - 1]);
+		}
 		else
+		{
+			D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
 			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
+		}
 	}
 	if (NUM_CASCADEDES > 1)
 	{
-		D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
-		if(isReverse)
-			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 1]);
+		if (isReverse)
+		{
+			D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
+			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[NUM_CASCADEDES - 2]);
+		}
 		else
+		{
+			D3DXHANDLE shadowMapHandler1 = pShader->GetParameterByName(0, "ShadowDepthTex1");
 			pShader->SetTexture(shadowMapHandler1, m_pShadowRTTexture[1]);
+		}
 	}
 	if (NUM_CASCADEDES > 2)
 	{
-		D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
-		if(isReverse)
-			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 2]);
+		if (isReverse)
+		{
+			D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
+			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[NUM_CASCADEDES - 3]);
+		}
 		else
+		{
+			D3DXHANDLE shadowMapHandler2 = pShader->GetParameterByName(0, "ShadowDepthTex2");
 			pShader->SetTexture(shadowMapHandler2, m_pShadowRTTexture[2]);
+		}
 	}
-	if (NUM_CASCADEDES > 3)
+	/*if (NUM_CASCADEDES > 3)
 	{
-		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
+		D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, z"ShadowDepthTex3");
 		if(isReverse)
 			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[(NUM_CASCADEDES - 1) - 3]);
 		else
 			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
-	}
+	}*/
 	pShader->SetTechnique("SoftShadowMapping");
 	pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
-		DEVICE->DrawIndexedPrimitive
-		(
-			D3DPT_TRIANGLELIST,
-			0,
-			0,
-			4,
-			0,
-			2
-		);
-		pShader->EndPass();
+		for (int i = 0; i < NUM_CASCADEDES; i++)
+		{
+			pShader->BeginPass(i);
+			DEVICE->DrawIndexedPrimitive
+			(
+				D3DPT_TRIANGLELIST,
+				0,
+				0,
+				4,
+				0,
+				2
+			);
+			pShader->EndPass();
+		}
 	}
 	pShader->End();
 }
 
 void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 {
+
 	/* Set Stream */
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
 	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);

@@ -108,6 +108,56 @@ void HyEngine::NavMesh::SetGroup(const unsigned long & cellIndex, const unsigned
 	assert(false);
 }
 
+void HyEngine::NavMesh::LinkPrimitive()
+{
+	/* Primitive 모두 순회하여 비교, neighbor를 채워준다. */
+	for (UINT i = 0; i < m_navPrimitives.size(); i++)
+	{
+		for (UINT j = 0; j < m_navPrimitives.size(); j++)
+		{
+			if (i == j)
+				continue;
+
+			// 이웃하는 없는경우
+			// 두 점을 비교해서 그 두 점이 이웃하는 셀의 두 점과 일치하는 경우
+			if (m_navPrimitives[i]->GetNeighbor(ENeighbor::NEIGHBOR_AB) == nullptr &&
+				m_navPrimitives[j]->ComparePoint
+				(
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_A),
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_B),
+					m_navPrimitives[i]
+				) == true)
+			{
+				m_navPrimitives[i]->SetNeighbor(ENeighbor::NEIGHBOR_AB, m_navPrimitives[j]);
+				continue;
+			}
+
+			if(nullptr == m_navPrimitives[i]->GetNeighbor(ENeighbor::NEIGHBOR_BC) &&
+				true == m_navPrimitives[j]->ComparePoint(
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_B),
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_C),
+					m_navPrimitives[i]
+				))
+			{
+				m_navPrimitives[i]->SetNeighbor(ENeighbor::NEIGHBOR_BC, m_navPrimitives[j]);
+				continue;
+			}
+
+			if (nullptr == m_navPrimitives[i]->GetNeighbor(ENeighbor::NEIGHBOR_CA) &&
+				true == m_navPrimitives[j]->ComparePoint(
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_C),
+					m_navPrimitives[i]->GetCell((int)EPoint::POINT_A),
+					m_navPrimitives[i]
+				))
+			{
+				m_navPrimitives[i]->SetNeighbor(ENeighbor::NEIGHBOR_CA, m_navPrimitives[j]);
+				continue;
+			}
+		}
+	}
+
+}
+
 void HyEngine::NavMesh::Initialize(std::wstring dataPath)
 {
 	std::shared_ptr<HierarchyData> data = Deserializer::Deserialize(dataPath);
@@ -124,6 +174,8 @@ void HyEngine::NavMesh::Initialize(std::wstring dataPath)
 		AddCell(position, (ECellOption)data->cells[i]->option,
 			data->cells[i]->group);
 	}
+	/* For Client */
+	LinkPrimitive();
 }
 
 bool HyEngine::NavMesh::TryPickingCell(_Out_ VectorData* pickedPos,  const D3DXVECTOR3& pickingPos, const  ECellOption& option, const unsigned int& group )
@@ -293,6 +345,7 @@ void HyEngine::NavMesh::SetCellEditMode(ECellEditMode cellEditMode)
 
 bool HyEngine::NavMesh::IsOnMesh(D3DXVECTOR3 position, float * yPos)
 {
+
 	// 삼각형 순회
 	for (auto& prim : m_navPrimitives)
 	{
@@ -309,6 +362,80 @@ bool HyEngine::NavMesh::IsOnMesh(D3DXVECTOR3 position, float * yPos)
 				prim->GetPosition(EPoint::POINT_C));
 
 			return true;
+		}
+	}
+	return false;
+}
+
+bool HyEngine::NavMesh::IsOnMesh(D3DXVECTOR3 position, int navIndex, _Out_ float * yPos, _Out_ int * pOutNavIndex)
+{
+	if (navIndex == -1)
+	{
+		for (auto& prim : m_navPrimitives)
+		{
+			if (DxMath::PointInTriangle(position,
+				prim->GetPosition(EPoint::POINT_A),
+				prim->GetPosition(EPoint::POINT_B),
+				prim->GetPosition(EPoint::POINT_C)))
+			{
+				// 평면의 방정식을 활용한 높이 구하기
+
+				*yPos = DxMath::GetHeightFromPoints(position,
+					prim->GetPosition(EPoint::POINT_A),
+					prim->GetPosition(EPoint::POINT_B),
+					prim->GetPosition(EPoint::POINT_C));
+
+				*pOutNavIndex = prim->GetNavPrimIndex();
+
+				return true;
+			}
+		}
+	}
+	else
+	{
+		for (auto& prim : m_navPrimitives)
+		{
+			if (prim->GetNavPrimIndex() == navIndex)
+			{
+				if (DxMath::PointInTriangle(position,
+					prim->GetPosition(EPoint::POINT_A),
+					prim->GetPosition(EPoint::POINT_B),
+					prim->GetPosition(EPoint::POINT_C)))
+				{
+					// 평면의 방정식을 활용한 높이 구하기
+
+					*yPos = DxMath::GetHeightFromPoints(position,
+						prim->GetPosition(EPoint::POINT_A),
+						prim->GetPosition(EPoint::POINT_B),
+						prim->GetPosition(EPoint::POINT_C));
+
+					*pOutNavIndex = prim->GetNavPrimIndex();
+
+					return true;
+				}
+				else
+				{
+					for (auto& neighbor : prim->GetNeighbors())
+					{
+						if (DxMath::PointInTriangle(position,
+							neighbor->GetPosition(EPoint::POINT_A),
+							neighbor->GetPosition(EPoint::POINT_B),
+							neighbor->GetPosition(EPoint::POINT_C)))
+						{
+							// 평면의 방정식을 활용한 높이 구하기
+
+							*yPos = DxMath::GetHeightFromPoints(position,
+								neighbor->GetPosition(EPoint::POINT_A),
+								neighbor->GetPosition(EPoint::POINT_B),
+								neighbor->GetPosition(EPoint::POINT_C));
+
+							*pOutNavIndex = neighbor->GetNavPrimIndex();
+
+							return true;
+						}
+					}
+				}
+			}
 		}
 	}
 	return false;

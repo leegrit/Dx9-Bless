@@ -15,7 +15,7 @@ PlayerCamera::~PlayerCamera()
 void PlayerCamera::Initialize()
 {
 	Camera::Initialize();
-	SetProjectionMatrix(D3DXToRadian(45.f), WinMaxWidth / WinMaxHeight, 0.01, 15);
+	//SetProjectionMatrix(D3DXToRadian(60.f), WinMaxWidth / WinMaxHeight, 0.01, 15);
 	
 	m_mouseCenter = MOUSE->GetPosition();
 }
