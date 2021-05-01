@@ -19,7 +19,7 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 {
 	SEND_LOG("DirectDevice Initialize Start");
 
-	AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/NEXON_Gothic.ttf").c_str(), FR_PRIVATE, NULL);
+	AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/NanumBarunGothic.ttf").c_str(), FR_PRIVATE, NULL);
 	//AddFontResourceEx(L"../Resources/Fonts/koverwatch.ttf", FR_PRIVATE, NULL);
 
 	m_hWnd = hwnd;
@@ -83,11 +83,11 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 	ZeroMemory(&fontInfo, sizeof(D3DXFONT_DESC));
 
 	
-	fontInfo.Width = 15;
+	fontInfo.Width = 20;
 	fontInfo.Height = 20;
-	fontInfo.Weight = FW_LIGHT;
+	fontInfo.Weight = FW_NORMAL;
 	fontInfo.CharSet = HANGEUL_CHARSET;
-	lstrcpy(fontInfo.FaceName, L"koverwatch");
+	lstrcpy(fontInfo.FaceName, L"NanumBarunGothic");
 
 	hr = D3DXCreateFontIndirect(m_pDevice, &fontInfo, &m_pFont);
 

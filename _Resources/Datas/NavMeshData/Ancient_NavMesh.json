@@ -1,0 +1,189 @@
+{
+  "Type": 3,
+  "Index": 17,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 17,
+    "Name": "NavMesh",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 17,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 17,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 17,
+    "CellCount": 12
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  },
+  "Cell_0": {
+    "CellIndex": 0,
+    "PositionX": -107,
+    "PositionY": 4,
+    "PositionZ": -108,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_1": {
+    "CellIndex": 1,
+    "PositionX": -104,
+    "PositionY": 4,
+    "PositionZ": 106,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_2": {
+    "CellIndex": 2,
+    "PositionX": 109,
+    "PositionY": 5,
+    "PositionZ": -105,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_3": {
+    "CellIndex": 3,
+    "PositionX": -104,
+    "PositionY": 4,
+    "PositionZ": 106,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_4": {
+    "CellIndex": 4,
+    "PositionX": 59,
+    "PositionY": 4,
+    "PositionZ": 100,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_5": {
+    "CellIndex": 5,
+    "PositionX": 77,
+    "PositionY": 4,
+    "PositionZ": 57,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_6": {
+    "CellIndex": 6,
+    "PositionX": 77,
+    "PositionY": 4,
+    "PositionZ": 57,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_7": {
+    "CellIndex": 7,
+    "PositionX": 107,
+    "PositionY": 4,
+    "PositionZ": 61,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_8": {
+    "CellIndex": 8,
+    "PositionX": 109,
+    "PositionY": 5,
+    "PositionZ": -105,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_9": {
+    "CellIndex": 9,
+    "PositionX": -104,
+    "PositionY": 4,
+    "PositionZ": 106,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_10": {
+    "CellIndex": 10,
+    "PositionX": 77,
+    "PositionY": 4,
+    "PositionZ": 57,
+    "Option": 0,
+    "Group": 100
+  },
+  "Cell_11": {
+    "CellIndex": 11,
+    "PositionX": 109,
+    "PositionY": 5,
+    "PositionZ": -105,
+    "Option": 0,
+    "Group": 100
+  }
+}

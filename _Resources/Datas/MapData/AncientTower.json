@@ -1,0 +1,1306 @@
+{
+  "Group": 0,
+  "MapCount": 14,
+  "Hierarchy_0": {
+    "Type": 2,
+    "Index": 2,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 2,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 2,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 2,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_1": {
+    "Type": 2,
+    "Index": 3,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 3,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -77.04,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 3,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 3,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_2": {
+    "Type": 2,
+    "Index": 4,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 4,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": 76.64,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 4,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 4,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_3": {
+    "Type": 2,
+    "Index": 5,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 5,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": 76.96,
+          "Y": 0.0,
+          "Z": -76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 5,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 5,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_4": {
+    "Type": 2,
+    "Index": 6,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 6,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -0.64,
+          "Y": 0.0,
+          "Z": -76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 6,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 6,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_5": {
+    "Type": 2,
+    "Index": 7,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 7,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -77.44,
+          "Y": 0.0,
+          "Z": -76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 7,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 7,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_6": {
+    "Type": 2,
+    "Index": 8,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 8,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -77.44,
+          "Y": 0.0,
+          "Z": 76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 8,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 8,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_7": {
+    "Type": 2,
+    "Index": 9,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 9,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -1.44,
+          "Y": 0.0,
+          "Z": 76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 9,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 9,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_8": {
+    "Type": 2,
+    "Index": 10,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 10,
+      "Name": "TowerFloor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": 74.56,
+          "Y": 0.0,
+          "Z": 76.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 10,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\TowerFloor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 10,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_9": {
+    "Type": 2,
+    "Index": 11,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 11,
+      "Name": "WallBasic",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 31.2,
+          "Y": 45.6,
+          "Z": 96.32
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 11,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\WallBasic.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 11,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 11,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_10": {
+    "Type": 2,
+    "Index": 12,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 12,
+      "Name": "WallBasic",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -66.4,
+          "Y": 45.6,
+          "Z": 96.32
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 12,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\WallBasic.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 12,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 11,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_11": {
+    "Type": 2,
+    "Index": 13,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 13,
+      "Name": "WallBasic",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 129.52,
+          "Y": 45.6,
+          "Z": 96.32
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 13,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\WallBasic.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 13,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 11,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_12": {
+    "Type": 2,
+    "Index": 14,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 14,
+      "Name": "PlanetariumStatue1",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 96.8,
+          "Y": 0.0,
+          "Z": 99.44
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 45.12,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 14,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 14,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 14,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_13": {
+    "Type": 2,
+    "Index": 15,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 15,
+      "Name": "PlanetariumStatue2",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 96.8,
+          "Y": 0.0,
+          "Z": 100.8
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 41.6,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 15,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 15,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 15,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  }
+}

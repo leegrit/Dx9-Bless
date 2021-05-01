@@ -42,7 +42,7 @@ void Skeletone::Initialize(std::wstring dataPath)
 	m_state.Initialize("Idle");
 
 	m_pNameFont = new NameFont();
-	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.5f, 0.5f), D3DXVECTOR3(0, 12, 0), -30, D3DXCOLOR(1, 0, 0, 1));
+	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 15, 0), -40, D3DXCOLOR(1, 1, 0, 1));
 }
 
 void Skeletone::Update()
