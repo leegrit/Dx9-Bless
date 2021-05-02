@@ -1,64 +1,56 @@
 #pragma once
 #include "Scene.h"
 
-namespace HyEngine
-{
-	class Pawn;
-	class Equipment;
-}
-
 using namespace HyEngine;
-class SampleScene : public Scene
+
+
+class GameManager;
+class UIManager;
+class QuestManager;
+class NPCInteractManager;
+class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
 	// INHERITED
 	//////////////////////////////////////////////////////////////////////////
-public :
+public:
 	virtual void Update() override;
 	virtual void Load() override;
+	virtual void LateLoadScene() override;
 	virtual void Unload() override;
 	virtual void LoadAsync(std::function<void(int, int)> onProgress) override;
 	virtual void RenderGUI() override;
+	//////////////////////////////////////////////////////////////////////////
+	// PURE
+	//////////////////////////////////////////////////////////////////////////
+	virtual Camera* GetEditCam() PURE;
+	virtual Camera* GetGameCam() PURE;
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK
 	//////////////////////////////////////////////////////////////////////////
-public :
+public:
 	void OnModeChanged(void*);
 
-
-
 	//////////////////////////////////////////////////////////////////////////
-	// PUBLIC METHOD
+	// GETTER FOR MANAGER
 	//////////////////////////////////////////////////////////////////////////
-public :
-	GameObject* GetPlayer();
+public:
+	GameManager* GetGameManager();
+	UIManager* GetUIManager();
+	QuestManager* GetQuestManager();
+	NPCInteractManager* GetNPCInteractManager();
 
-
-private :
+private:
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;
 
-	// test
-	class Player* m_pPlayer;
+private : /* For Manager */
+	GameManager* m_pGameManager = nullptr;
+	UIManager * m_pUIManager = nullptr;
+	QuestManager* m_pQuestManager = nullptr;
+	NPCInteractManager* m_pNPCInteractManager = nullptr;
 
-	Equipment * m_pEquip;
-
-public:
-	/* 임시 무기 위치 찾기 위해 사용 */
-	static char temp[256];
-
-
-
-
-	//////////////////////////////////////////////////////////////////////////
-	// TEST
-	//////////////////////////////////////////////////////////////////////////
-private :
-	int fontPosX = 0;
-	int fontPosY = 0;
-	int fontPosZ = 0;
-	int fontScaleX = 0;
-	int fontScaleY = 0;
 };
 

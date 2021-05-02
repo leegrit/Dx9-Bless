@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Client_Enumerators.h"
 
 
 using namespace HyEngine;

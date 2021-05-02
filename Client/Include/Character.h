@@ -1,10 +1,16 @@
 #pragma once
 #include "Pawn.h"
+#include "IQuestTarget.h"
 
+
+namespace HyEngine
+{
+	class Billboard;
+}
 using namespace HyEngine;
 
 
-class Character abstract : public Pawn
+class Character abstract : public Pawn, public IQuestTarget
 {
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTOR & DESTRUCTOR
@@ -21,6 +27,11 @@ public:
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
 	virtual void Render() override;
+	/* For Quest */
+	virtual void ShowQuestMark(Quest * pQuest) override;
+	virtual void RemoveQuestMark(Quest * pQuest) override;
+	virtual void ShowQuestFinishMark(Quest * pQuest) override;
+	virtual void RemoveQuestFinishMark(Quest * pQuest) override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER
@@ -73,7 +84,13 @@ private :
 	float m_maxMP;
 	float m_curMP;
 
-	
-	
+private : /* For Quest */
+	class HyEngine::Billboard* m_pMainQuestMarker = nullptr;
+	class HyEngine::Billboard* m_pSubQuestMarker = nullptr;
+	class HyEngine::Billboard * m_pMainQuestFinishMarker = nullptr;
+	class HyEngine::Billboard* m_pSubQuestFinishMarker = nullptr;
+
+
+
 };
 

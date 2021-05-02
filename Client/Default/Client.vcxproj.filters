@@ -4,9 +4,6 @@
     <ClCompile Include="..\Source\main.cpp">
       <Filter>Entry</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\SampleScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\SampleCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
@@ -109,6 +106,48 @@
     <ClCompile Include="..\Source\TitleCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\HieraconScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestManager.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CombatQuest.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Quest.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\TestQuest.cpp">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GameScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BlessLoadingScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SampleNPC.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NPCInteractManager.cpp">
+      <Filter>Scripts\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GameManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\UIManager.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\IQuestTarget.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestDialogUI.cpp">
+      <Filter>Scripts\UI\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestGuideUI.cpp">
+      <Filter>Scripts\UI\Quest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -162,12 +201,27 @@
     <Filter Include="Font">
       <UniqueIdentifier>{5ff35c57-6752-4bc5-ae46-09bb8a8d9969}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\Quest">
+      <UniqueIdentifier>{9e41caf5-f3f3-4a2f-889a-8ff8b11f68d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Quest\Hieracon">
+      <UniqueIdentifier>{51eaa31c-2a8a-41d4-a90b-04420c937f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\NPC\Hieracon">
+      <UniqueIdentifier>{dfb7faf3-9a39-492c-b467-021e9f604fbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\NPC">
+      <UniqueIdentifier>{553c4507-d0d1-4c8a-893c-24e567246d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI">
+      <UniqueIdentifier>{67fc408a-392d-48fb-bf09-1ead08a4acd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI\Quest">
+      <UniqueIdentifier>{4fd22407-e2a2-42d8-9c49-750685ec9d8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\stdafx.h" />
-    <ClInclude Include="..\Include\SampleScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\SampleCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
@@ -179,9 +233,6 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerController.h">
       <Filter>Scripts\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Include\Enumerators.h">
-      <Filter>GlobalVars</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\Include\PlayerCamera.h">
@@ -273,6 +324,54 @@
     </ClInclude>
     <ClInclude Include="..\Include\TitleCamera.h">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HieraconScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Client_Enumerators.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestManager.h">
+      <Filter>Scripts\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CombatQuest.h">
+      <Filter>Scripts\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Quest.h">
+      <Filter>Scripts\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\TestQuest.h">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GameScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\BlessLoadingScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SampleNPC.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NPCInteractManager.h">
+      <Filter>Scripts\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GameManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Client_Events.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UIManager.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\IQuestTarget.h">
+      <Filter>Scripts\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestDialogUI.h">
+      <Filter>Scripts\UI\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestGuideUI.h">
+      <Filter>Scripts\UI\Quest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

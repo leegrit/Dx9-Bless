@@ -1,5 +1,11 @@
 #include "stdafx.h"
 #include "Character.h"
+#include "Quest.h"
+#include "Billboard.h"
+#include "PathManager.h"
+#include "Client_Events.h"
+
+
 
 Character::Character(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
 	: Pawn(scene, nullptr, pNavMesh)
@@ -23,13 +29,40 @@ void Character::Initialize(std::wstring dataPath)
 {
 	Pawn::Initialize(dataPath);
 
-	
+	m_pMainQuestMarker = HyEngine::Billboard::Create(GetScene(), this, L"MainQuestMarker");
+	m_pMainQuestMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/StatusGauge_4.png");
+	m_pMainQuestMarker->m_pTransform->SetScale(5, 5, 1);
+	m_pMainQuestMarker->SetActive(false);
 
+	m_pSubQuestMarker = HyEngine::Billboard::Create(GetScene(), this, L"SubQuestMarker");
+	m_pSubQuestMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/quest mark_question mark5_12.png");
+	m_pSubQuestMarker->m_pTransform->SetScale(5, 5, 1);
+	m_pSubQuestMarker->SetActive(false);
+
+	m_pMainQuestFinishMarker = HyEngine::Billboard::Create(GetScene(), this, L"MainQuestFinishMarker");
+	m_pMainQuestFinishMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/BLUINameTag_I1_36.png");
+	m_pMainQuestFinishMarker->m_pTransform->SetScale(10, 10, 1);
+	m_pMainQuestFinishMarker->SetActive(false);
+
+	m_pSubQuestFinishMarker = HyEngine::Billboard::Create(GetScene(), this, L"SubQuestFinishMarker");
+	m_pSubQuestFinishMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/BLUINameTag_I1_37.png");
+	m_pSubQuestFinishMarker->m_pTransform->SetScale(10, 10, 1);
+	m_pSubQuestFinishMarker->SetActive(false);
 }
 
 void Character::Update()
 {
 	Pawn::Update();
+
+	//юс╫ц
+	if(m_pMainQuestMarker)
+		m_pMainQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+	if(m_pSubQuestMarker)
+		m_pSubQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+	if (m_pMainQuestFinishMarker)
+		m_pMainQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+	if (m_pSubQuestFinishMarker)
+		m_pSubQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 }
 
 void Character::Render()
@@ -103,7 +136,60 @@ void Character::SendDamage(GameObject * sender, float damage)
 		m_curHP = resultHP;
 
 	if (m_curHP <= 0)
+	{
 		m_isDied = true;
+		EventDispatcher::TriggerEvent(BattleEvent::CharacterDie, static_cast<void*>(&GetName()));
+	}
 	else
+	{
 		m_isDamaged = true;
+	}
+}
+
+void Character::ShowQuestMark(Quest * pQuest)
+{
+	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	{
+		m_pMainQuestMarker->SetActive(true);
+	}
+	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
+	{
+		m_pSubQuestMarker->SetActive(true);
+	}
+}
+
+void Character::RemoveQuestMark(Quest * pQuest)
+{
+	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	{
+		m_pMainQuestMarker->SetActive(false);
+	}
+	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
+	{
+		m_pSubQuestMarker->SetActive(false);
+	}
+}
+
+void Character::ShowQuestFinishMark(Quest * pQuest)
+{
+	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	{
+		m_pMainQuestFinishMarker->SetActive(true);
+	}
+	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
+	{
+		m_pSubQuestFinishMarker->SetActive(false);
+	}
+}
+
+void Character::RemoveQuestFinishMark(Quest * pQuest)
+{
+	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	{
+		m_pMainQuestFinishMarker->SetActive(false);
+	}
+	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
+	{
+		m_pSubQuestFinishMarker->SetActive(false);
+	}
 }

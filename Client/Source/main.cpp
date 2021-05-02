@@ -1,7 +1,8 @@
 #include "stdafx.h"
-#include "SampleScene.h"
+#include "HieraconScene.h"
 #include "SampleLoadingScene.h"
 #include "TitleScene.h"
+#include "BlessLoadingScene.h"
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR pScmdl, int iCmdShow)
 {
@@ -16,9 +17,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR pScmdl, int iCmdSh
 	EngineConfig engineConfig;
 
 	engineConfig.scenes.push_back(new TitleScene());
-	engineConfig.scenes.push_back(new SampleScene());
+	engineConfig.scenes.push_back(new HieraconScene());
 	engineConfig.defaultSceneIndex = 0;
-	engineConfig.loadingScene = new SampleLoadingScene();
+	engineConfig.loadingScene = new BlessLoadingScene();
 	if (application->Init(hInst, iCmdShow, engineConfig))
 	{
 		application->Run();
