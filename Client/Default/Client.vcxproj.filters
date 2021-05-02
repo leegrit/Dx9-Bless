@@ -148,6 +148,12 @@
     <ClCompile Include="..\Source\QuestGuideUI.cpp">
       <Filter>Scripts\UI\Quest</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\QuestNoticeUI.cpp">
+      <Filter>Scripts\UI\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestTable.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -372,6 +378,12 @@
     </ClInclude>
     <ClInclude Include="..\Include\QuestGuideUI.h">
       <Filter>Scripts\UI\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestNoticeUI.h">
+      <Filter>Scripts\UI\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestTable.h">
+      <Filter>Scripts\Quest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

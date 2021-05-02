@@ -168,7 +168,7 @@
     <ClInclude Include="Include\AnimNameData.h" />
     <ClInclude Include="Include\Application.h" />
     <ClInclude Include="Include\AvoidanceBehaviour.h" />
-    <ClInclude Include="Include\BillboardObject.h" />
+    <ClInclude Include="Include\Billboard.h" />
     <ClInclude Include="Include\Box.h" />
     <ClInclude Include="Include\BrainTree.h" />
     <ClInclude Include="Include\BumpMesh.h" />
@@ -265,7 +265,6 @@
     <ClInclude Include="Include\MeshHierarchy.h" />
     <ClInclude Include="Include\MeshHierarchyLoader.h" />
     <ClInclude Include="Include\MeshLoader.h" />
-    <ClInclude Include="Include\MeshObject.h" />
     <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\Mouse.h" />
     <ClInclude Include="Include\NavMesh.h" />
@@ -313,9 +312,9 @@
     <ClInclude Include="Include\Terrain.h" />
     <ClInclude Include="Include\TerrainData.h" />
     <ClInclude Include="Include\TestMesh.h" />
+    <ClInclude Include="Include\Texture.h" />
     <ClInclude Include="Include\TextureEffect.h" />
     <ClInclude Include="Include\TextureLoader.h" />
-    <ClInclude Include="Include\TextureObject.h" />
     <ClInclude Include="Include\TextureQuad.h" />
     <ClInclude Include="Include\Timer.h" />
     <ClInclude Include="Include\Transform.h" />
@@ -340,7 +339,7 @@
     <ClCompile Include="Source\AnimNameData.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\AvoidanceBehaviour.cpp" />
-    <ClCompile Include="Source\BillboardObject.cpp" />
+    <ClCompile Include="Source\Billboard.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\BumpMesh.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
@@ -425,7 +424,6 @@
     <ClCompile Include="Source\MeshHierarchy.cpp" />
     <ClCompile Include="Source\MeshHierarchyLoader.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
-    <ClCompile Include="Source\MeshObject.cpp" />
     <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
     <ClCompile Include="Source\NavMesh.cpp" />
@@ -465,9 +463,9 @@
     <ClCompile Include="Source\Terrain.cpp" />
     <ClCompile Include="Source\TerrainData.cpp" />
     <ClCompile Include="Source\TestMesh.cpp" />
+    <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\TextureEffect.cpp" />
     <ClCompile Include="Source\TextureLoader.cpp" />
-    <ClCompile Include="Source\TextureObject.cpp" />
     <ClCompile Include="Source\TextureQuad.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Transform.cpp" />
@@ -503,6 +501,7 @@
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\StaticMesh.fx" />
     <FxCompile Include="..\_Shaders\Terrain.fx" />
+    <FxCompile Include="..\_Shaders\Texture.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />
     <FxCompile Include="..\_Shaders\UIPanel.fx" />
   </ItemGroup>

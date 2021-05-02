@@ -1,6 +1,7 @@
 matrix WorldMatrix;
 matrix ProjMatrix;
 
+float Alpha;
 
 texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
@@ -35,7 +36,7 @@ void UIPanelPS(
 {
 	float4 albedo = tex2D(AlbedoSampler, texcoord);
 
-	outColor = albedo;
+	outColor = albedo * Alpha;
 }
 
 

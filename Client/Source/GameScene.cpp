@@ -9,6 +9,7 @@
 #include "UIManager.h"
 #include "NPCInteractManager.h"
 #include "QuestManager.h"
+#include "QuestTable.h"
 
 void GameScene::Update()
 {
@@ -26,6 +27,9 @@ void GameScene::Load()
 	m_pUIManager = new UIManager(this);
 	m_pNPCInteractManager = new NPCInteractManager(this);
 	m_pQuestManager = new QuestManager(this);
+
+
+	
 }
 
 void GameScene::LateLoadScene()
@@ -34,6 +38,19 @@ void GameScene::LateLoadScene()
 	m_pUIManager->Initialize();
 	m_pNPCInteractManager->Initialize();
 	m_pQuestManager->Initialize();
+
+	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
+	if (data == nullptr)
+	{
+		QuestTable* table = new QuestTable();
+		table->Initialize();
+		ENGINE->AddScriptableData(L"QuestTable", table);
+	}
+	else
+	{
+		QuestTable* table = static_cast<QuestTable*>(data);
+		table->LinkQuests();
+	}
 }
 
 void GameScene::Unload()

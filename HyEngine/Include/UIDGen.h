@@ -3,7 +3,7 @@
 namespace HyEngine
 {
 
-	class UIDGen
+	class ENGINE_DLL UIDGen
 	{
 		DECLARE_SINGLETON(UIDGen)
 

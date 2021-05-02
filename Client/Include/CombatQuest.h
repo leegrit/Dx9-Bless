@@ -25,8 +25,8 @@ public:
 		EQuestImportance questImportance,
 		std::function<bool()> openCondition,
 		std::function<void()> onFinished,
-		GameObject* pSender,
-		GameObject* pRewardProvider,
+		std::wstring senderName,
+		std::wstring rewardProviderName,
 		int killCount,
 		std::wstring targetName
 	);
@@ -38,6 +38,7 @@ public:
 	virtual float GetCurProgress() override;
 	virtual bool IsFinish() override;
 	virtual std::vector<GameObject*> GetTargets() override;
+	virtual void LinkObject() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK

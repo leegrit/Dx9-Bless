@@ -308,6 +308,24 @@ bool HyEngine::ObjectContainer::TryGetGameObject(std::wstring name, _Out_ GameOb
 	return false;
 }
 
+bool HyEngine::ObjectContainer::TryGetGameObjects(std::wstring name, std::vector<GameObject*>* outObjs)
+{
+	outObjs->clear();
+
+	auto& container = GetGameObjectAll();
+
+	for (auto& obj : container)
+	{
+		if (obj->GetName().compare(name) == 0)
+		{
+			outObjs->push_back(obj);
+		}
+	}
+	if (outObjs->size() == 0)
+		return false;
+	return true;
+}
+
 bool HyEngine::ObjectContainer::TryGetOpaqueObject(std::wstring name, _Out_ GameObject ** outObj)
 {
 	*outObj = nullptr;
@@ -357,6 +375,41 @@ bool HyEngine::ObjectContainer::TryGetInvisibleObject(std::wstring name, _Out_ G
 		}
 	}
 	return false;
+}
+
+bool HyEngine::ObjectContainer::TryGetDynamicMeshObject(std::wstring name, GameObject ** outObj)
+{
+	*outObj = nullptr;
+
+	auto& container = GetDynamicMeshAll();
+
+	for (auto& obj : container)
+	{
+		if (obj->GetName().compare(name) == 0)
+		{
+			*outObj = obj;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool HyEngine::ObjectContainer::TryGetDynamicMeshObjects(std::wstring name, std::vector<GameObject*>* outObjs)
+{
+	outObjs->clear();
+
+	auto& container = GetDynamicMeshAll();
+
+	for (auto& obj : container)
+	{
+		if (obj->GetName().compare(name) == 0)
+		{
+			outObjs->push_back(obj);
+		}
+	}
+	if (outObjs->size() == 0)
+		return false;
+	return true;
 }
 
 Skybox * HyEngine::ObjectContainer::GetSkybox() const

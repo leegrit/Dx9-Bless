@@ -51,8 +51,8 @@ void QuestGuideUI::ShowGuideUI(std::wstring questName, std::wstring questContent
 	m_questName = questName;
 	m_questContent = questContent;
 
-	ENGINE->DrawTextW(m_questName.c_str(), D3DXVECTOR3(820, 300 + m_yOrigin , 0), D3DXVECTOR3(100, 100, 0), D3DXCOLOR(1, 1, 1, 1));
-	ENGINE->DrawTextW(m_questContent.c_str(), D3DXVECTOR3(820, 300 + m_yOrigin  + 20, 0), D3DXVECTOR3(100, 100, 0), D3DXCOLOR(1, 1, 1, 1));
+	ENGINE->DrawText(m_questName.c_str(), D3DXVECTOR3(820, 300 + m_yOrigin , 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+	ENGINE->DrawText(m_questContent.c_str(), D3DXVECTOR3(820, 300 + m_yOrigin  + 20, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 }
 

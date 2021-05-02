@@ -9,6 +9,6 @@ public:
 
 public:
 	void Initialize(GameObject* pSender);
-
+	void Initialize();
 };
 

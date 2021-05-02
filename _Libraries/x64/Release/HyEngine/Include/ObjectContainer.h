@@ -54,10 +54,12 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 	public: /* Getter for single object */
 		bool TryGetGameObject(std::wstring name, _Out_ GameObject** outObj);
+		bool TryGetGameObjects(std::wstring name, _Out_ std::vector<GameObject*>* outObjs);
 		bool TryGetOpaqueObject(std::wstring name, _Out_ GameObject** outObj);
 		bool TryGetAlphaObject(std::wstring name, _Out_ GameObject** outObj);
 		bool TryGetInvisibleObject(std::wstring name, _Out_ GameObject** outObj);
-
+		bool TryGetDynamicMeshObject(std::wstring name, _Out_ GameObject** outObj);
+		bool TryGetDynamicMeshObjects(std::wstring name, _Out_  std::vector<GameObject*>* outObjs);
 
 		Skybox* GetSkybox() const;
 		bool GetDirtyFlag();

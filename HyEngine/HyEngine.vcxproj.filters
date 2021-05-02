@@ -501,22 +501,13 @@
     <ClInclude Include="Include\Pawn.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="Include\BillboardObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="Include\GameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\MeshObject.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\Object.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\Terrain.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\TextureObject.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\ZBillboardObject.h">
@@ -646,6 +637,12 @@
     </ClInclude>
     <ClInclude Include="Include\StaticMeshGroup.h">
       <Filter>Object\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Billboard.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Texture.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -958,22 +955,13 @@
     <ClCompile Include="Source\Pawn.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BillboardObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\Terrain.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TextureObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="ZBillboardObject.cpp">
@@ -1102,6 +1090,12 @@
     <ClCompile Include="Source\StaticMeshGroup.cpp">
       <Filter>Object\Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Billboard.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Texture.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1159,6 +1153,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\Terrain.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Texture.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

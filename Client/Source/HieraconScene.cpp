@@ -127,7 +127,7 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// UI
 	//////////////////////////////////////////////////////////////////////////
-	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -276, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(120, 120, 1), L"1");
+	/*UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -276, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(120, 120, 1), L"1");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/PortraitCircle/PortraitCircle_0.png", D3DXVECTOR3(0, -291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(160, 160, 1), L"2");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png", D3DXVECTOR3(-368, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"3");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0.png", D3DXVECTOR3(-295.2, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"4");
@@ -141,7 +141,7 @@ void HieraconScene::Load()
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(276, -266, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"33");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_1.png", D3DXVECTOR3(-276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"44");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_2.png", D3DXVECTOR3(276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"55");
-	
+	*/
 }
 
 void HieraconScene::LateLoadScene()

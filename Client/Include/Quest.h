@@ -22,8 +22,8 @@ public :
 		EQuestImportance questImportance,
 		std::function<bool()> openCondition,
 		std::function<void()> onFinished,
-		GameObject* pSender,
-		GameObject* pRewardProvider
+		std::wstring senderName,
+		std::wstring rewardProvider
 	);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -67,6 +67,7 @@ public:
 	void CompletelyFinished();
 
 
+	virtual void LinkObject();
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
@@ -98,8 +99,10 @@ private :
 	// 보상을 적용하는 함수 
 	std::function<void()> m_onFinished;
 
+	std::wstring m_senderName;
 	GameObject* m_pSender = nullptr;
 	// 퀘스트가 완료되었을 때 보상을 전달하는 역할을 하는 오브젝트
+	std::wstring m_rewardProviderName;
 	GameObject* m_pRewardProvider = nullptr;
 
 	// 퀘스트 목표 (적, NPC)

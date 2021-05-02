@@ -173,7 +173,9 @@
     <ClCompile Include="..\Source\QuestEvent.cpp" />
     <ClCompile Include="..\Source\QuestGuideUI.cpp" />
     <ClCompile Include="..\Source\QuestManager.cpp" />
+    <ClCompile Include="..\Source\QuestNoticeUI.cpp" />
     <ClCompile Include="..\Source\QuestNPC.cpp" />
+    <ClCompile Include="..\Source\QuestTable.cpp" />
     <ClCompile Include="..\Source\SampleCamera.cpp" />
     <ClCompile Include="..\Source\SampleLoadingScene.cpp" />
     <ClCompile Include="..\Source\HieraconScene.cpp" />
@@ -225,7 +227,9 @@
     <ClInclude Include="..\Include\QuestEvent.h" />
     <ClInclude Include="..\Include\QuestGuideUI.h" />
     <ClInclude Include="..\Include\QuestManager.h" />
+    <ClInclude Include="..\Include\QuestNoticeUI.h" />
     <ClInclude Include="..\Include\QuestNPC.h" />
+    <ClInclude Include="..\Include\QuestTable.h" />
     <ClInclude Include="..\Include\SampleCamera.h" />
     <ClInclude Include="..\Include\SampleLoadingScene.h" />
     <ClInclude Include="..\Include\HieraconScene.h" />

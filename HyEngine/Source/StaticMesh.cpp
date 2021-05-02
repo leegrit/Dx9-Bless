@@ -71,14 +71,14 @@ void HyEngine::StaticMesh::Render()
 	static int maxNumMatrls = 0;
 	
 	/* Get Shader */
- 	if (m_pShader == nullptr)
- 	{
- 		if (IS_EDITOR)
- 			EDIT_ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
- 		else
- 			ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
- 	}
-	assert(m_pShader);
+	/*if (m_pShader == nullptr)
+	{
+		if (IS_EDITOR)
+			EDIT_ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
+		else
+			ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
+	}
+	assert(m_pShader);*/
 
 	/* Get Selected Cam */
 	Camera* pSelectedCamera = nullptr;
@@ -88,40 +88,48 @@ void HyEngine::StaticMesh::Render()
 	
 	//std::cout << "MaxNumMtrls : " << maxNumMatrls << std::endl;
 	/* Set world, view and projection */
-	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
-	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+	//m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	//m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+	//m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
 
-	/* Set world position */
-	m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
+	///* Set world position */
+	//m_pShader->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
-		
+		if (m_effects[i] == nullptr)
+			continue;
+
+		m_effects[i]->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+		m_effects[i]->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
+		m_effects[i]->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
+
+		/* Set world position */
+		m_effects[i]->SetValue("WorldPosition", &m_pTransform->m_position, sizeof(m_pTransform->m_position));
 	
-		/* Set albedo */
-		D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
- 		m_pShader->SetTexture(albedoHandle, m_textures[i]);
+		///* Set albedo */
+		//D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
+ 	//	m_pShader->SetTexture(albedoHandle, m_textures[i]);
  
- 		/* Set NormalMap */
- 		D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
- 		m_pShader->SetTexture(normalHandle, m_normals[i]);
+ 	//	/* Set NormalMap */
+ 	//	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
+ 	//	m_pShader->SetTexture(normalHandle, m_normals[i]);
  
- 		/* Set Emissive */
- 		D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
- 		m_pShader->SetTexture(emissiveHandle, m_emissives[i]);
+ 	//	/* Set Emissive */
+ 	//	D3DXHANDLE emissiveHandle = m_pShader->GetParameterByName(0, "EmissiveTex");
+ 	//	m_pShader->SetTexture(emissiveHandle, m_emissives[i]);
  
- 		/* Set Specular */
- 		D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
- 		m_pShader->SetTexture(specularHandle, m_speculars[i]);
+ 	//	/* Set Specular */
+ 	//	D3DXHANDLE specularHandle = m_pShader->GetParameterByName(0, "SpecularTex");
+ 	//	m_pShader->SetTexture(specularHandle, m_speculars[i]);
  
- 		/* Set SpecularMask */
- 		D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
- 		m_pShader->SetTexture(specularMaskHandle, NULL);
+ 	//	/* Set SpecularMask */
+ 	//	D3DXHANDLE specularMaskHandle = m_pShader->GetParameterByName(0, "SpecularMaskTex");
+ 	//	m_pShader->SetTexture(specularMaskHandle, NULL);
  
- 		/* Set DiffuseMask */
- 		D3DXHANDLE diffuseMaskHandle = m_pShader->GetParameterByName(0, "DiffuseMaskTex");
- 		m_pShader->SetTexture(diffuseMaskHandle, m_diffuseMasks[i]);
+ 	//	/* Set DiffuseMask */
+ 	//	D3DXHANDLE diffuseMaskHandle = m_pShader->GetParameterByName(0, "DiffuseMaskTex");
+ 	//	m_pShader->SetTexture(diffuseMaskHandle, m_diffuseMasks[i]);
 
 
 		/*bool hasNormalMap = false;
@@ -130,16 +138,16 @@ void HyEngine::StaticMesh::Render()
 		m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));*/
 
 		if (m_diffuseMasks[i] == nullptr)
-			m_pShader->SetTechnique("StaticMesh");
+			m_effects[i]->SetTechnique("StaticMesh");
 		else
-			m_pShader->SetTechnique("StaticMaskedMesh");
-		m_pShader->Begin(0, 0);
+			m_effects[i]->SetTechnique("StaticMaskedMesh");
+		m_effects[i]->Begin(0, 0);
 		{
-			m_pShader->BeginPass(0);
+			m_effects[i]->BeginPass(0);
 			m_pMesh->DrawSubset(i);
-			m_pShader->EndPass();
+			m_effects[i]->EndPass();
 		}
-		m_pShader->End();
+		m_effects[i]->End();
 	}
 }
 
@@ -243,6 +251,48 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 						CString::Replace(&diffuseMaskName, L"_D_", L"_DM_");
 						IDirect3DTexture9* diffuseMask = (IDirect3DTexture9*)TextureLoader::GetTexture(dirPath + diffuseMaskName);
 						m_diffuseMasks.push_back(diffuseMask);
+
+						/* Insert Shader */
+						bool isFirst = false;
+						ID3DXEffect * pEffect = nullptr;
+						if (IS_EDITOR)
+						{
+							isFirst = EDIT_ENGINE->InsertShader(fileName, PATH->ShadersPathW() + L"StaticMesh.fx");
+							EDIT_ENGINE->TryGetShader(fileName, &pEffect);
+						}
+						else
+						{
+							isFirst = ENGINE->InsertShader(fileName, PATH->ShadersPathW() + L"StaticMesh.fx");
+							ENGINE->TryGetShader(fileName, &pEffect);
+						}
+					
+						if (isFirst)
+						{
+							D3DXHANDLE albedoHandle = pEffect->GetParameterByName(0, "AlbedoTex");
+							pEffect->SetTexture(albedoHandle, tex);
+
+							/* Set NormalMap */
+							D3DXHANDLE normalHandle = pEffect->GetParameterByName(0, "NormalTex");
+							pEffect->SetTexture(normalHandle, normalMap);
+
+							/* Set Emissive */
+							D3DXHANDLE emissiveHandle = pEffect->GetParameterByName(0, "EmissiveTex");
+							pEffect->SetTexture(emissiveHandle, emissiveMap);
+
+							/* Set Specular */
+							D3DXHANDLE specularHandle = pEffect->GetParameterByName(0, "SpecularTex");
+							pEffect->SetTexture(specularHandle, specularMap);
+
+							/* Set SpecularMask */
+							D3DXHANDLE specularMaskHandle = pEffect->GetParameterByName(0, "SpecularMaskTex");
+							pEffect->SetTexture(specularMaskHandle, NULL);
+
+							/* Set DiffuseMask */
+							D3DXHANDLE diffuseMaskHandle = pEffect->GetParameterByName(0, "DiffuseMaskTex");
+							pEffect->SetTexture(diffuseMaskHandle, diffuseMask);
+						}
+
+						m_effects.push_back(pEffect);
 					}
 					else
 					{
@@ -253,6 +303,8 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 						m_emissives.push_back(NULL);
 						m_speculars.push_back(NULL);
 						m_diffuseMasks.push_back(NULL);
+
+						m_effects.push_back(nullptr);
 					}
 				}
 			}

@@ -392,6 +392,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"OcclusionQuery", PATH->ShadersPathW() + L"OcclusionQuery.fx");
 	InsertShader(L"LinearFilter", PATH->ShadersPathW() + L"LinearFilter.fx");
 	InsertShader(L"Terrain", PATH->ShadersPathW() + L"Terrain.fx");
+	InsertShader(L"Texture", PATH->ShadersPathW() + L"Texture.fx");
 	return true;
 }
 

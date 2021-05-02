@@ -170,7 +170,15 @@ void QuestManager::Update()
 
 void QuestManager::AddQuest(Quest * pQuest)
 {
+	if (pQuest->GetQuestState() == EQuestState::Clear)
+		return;
+
 	m_quests.push_back(pQuest);
+
+	if (pQuest->GetQuestState() == EQuestState::Accepted)
+	{
+		m_acceptedQuests.push_back(pQuest);
+	}
 }
 
 Quest* QuestManager::GetQuest(int index)

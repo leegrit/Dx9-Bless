@@ -90,6 +90,7 @@ namespace HyEngine
 
 		void SetTag(std::wstring tag);
 		virtual void SetActive(bool active) override;
+		virtual bool GetActive() const override;
 		inline void SetLayer(UINT layer) { m_layer = layer; }
 		inline UINT GetLayer() { return m_layer; }
 		inline int GetRenderQueue() { return m_renderQueue; }

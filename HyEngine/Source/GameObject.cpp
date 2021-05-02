@@ -128,10 +128,10 @@ std::wstring HyEngine::GameObject::GetTag() const
 	 {
 		 com->SetActive(active);
 	 }
-	 for (auto& child : m_pChilds)
-	 {
-		 child->SetActive(active);
-	 }
+	 /* for (auto& child : m_pChilds)
+	  {
+		  child->SetActive(active);
+	  }*/
 	if (m_bActiveSelf != active)
 	{
 		if (active == true)
@@ -141,6 +141,14 @@ std::wstring HyEngine::GameObject::GetTag() const
 	}
 	Object::SetActive(active);
 }
+
+ bool HyEngine::GameObject::GetActive() const
+ {
+	 if (m_pParent != nullptr && m_pParent->GetActive() == false)
+		 return false;
+
+	 return m_bActiveSelf;
+ }
 
 void HyEngine::GameObject::SetTag(std::wstring tag)
 {

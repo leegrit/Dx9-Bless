@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Quest.h"
-
+#include "ObjectContainer.h"
+#include "NonePlayer.h"
 Quest::Quest()
 {
 	m_index = UIDGen::Get()->GetUID();
@@ -16,9 +17,9 @@ void Quest::Initialize
 	std::wstring playerFinishDialog, 
 	EQuestImportance questImportance, 
 	std::function<bool()> openCondition, 
-	std::function<void()> onFinished, 
-	GameObject * pSender, 
-	GameObject * pRewardProvider
+	std::function<void()> onFinished,
+	std::wstring senderName,
+	std::wstring rewardProvider
 )
 {
 	m_questName = questName;
@@ -29,8 +30,8 @@ void Quest::Initialize
 	m_questImportance = questImportance;
 	m_openCondition = openCondition;
 	m_onFinished = onFinished;
-	m_pSender = pSender;
-	m_pRewardProvider = pRewardProvider;
+	m_senderName = senderName;
+	m_rewardProviderName = rewardProvider;
 	m_questState = EQuestState::NotOpen; // default
 }
 
@@ -105,4 +106,17 @@ bool Quest::IsOpen()
 void Quest::CompletelyFinished()
 {
 	m_onFinished();
+}
+
+void Quest::LinkObject()
+{
+	bool isExist = SCENE->GetObjectContainer()->TryGetDynamicMeshObject(m_senderName, &m_pSender);
+	if (isExist == false)
+		return;
+	isExist = SCENE->GetObjectContainer()->TryGetDynamicMeshObject(m_rewardProviderName, &m_pRewardProvider);
+	assert(isExist);
+
+	NonePlayer* npc = dynamic_cast<NonePlayer*>(m_pSender);
+	assert(npc);
+	npc->AddQuest(this);
 }

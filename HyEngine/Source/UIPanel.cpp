@@ -9,12 +9,13 @@
 HyEngine::UIPanel::UIPanel(Scene * scene, GameObject * parent, int editID)
 	: UIElement(scene, parent, editID)
 {
+	m_alpha = 1;
 }
 
 HyEngine::UIPanel::UIPanel(Scene * scene, std::wstring name)
 	: UIElement(scene, name)
 {
-
+	m_alpha = 1;
 }
 
 HyEngine::UIPanel::~UIPanel()
@@ -71,6 +72,8 @@ void HyEngine::UIPanel::Render()
 	m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
 	m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetOrthoMatrix(), sizeof(pSelectedCamera->GetOrthoMatrix()));
 
+	m_pShader->SetFloat("Alpha", m_alpha);
+
 	/* Set albedo */
 	D3DXHANDLE albedoHandle = m_pShader->GetParameterByName(0, "AlbedoTex");
 	m_pShader->SetTexture(albedoHandle, m_pTexture);
@@ -100,6 +103,11 @@ void HyEngine::UIPanel::UpdatedData(EDataType dataType)
 
 	m_pTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->ResourcesPathW() + textureFilePath);
 
+}
+
+void HyEngine::UIPanel::SetAlpha(float alpha)
+{
+	m_alpha = alpha;
 }
 
 UIPanel * HyEngine::UIPanel::Create(Scene * scene, GameObject * parent, int editID)

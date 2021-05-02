@@ -15,7 +15,8 @@ CombatQuest::~CombatQuest()
 	EventDispatcher::RemoveEventListener(BattleEvent::CharacterDie, "CombatQuest");
 }
 
-void CombatQuest::Initialize(std::wstring questName, std::wstring questContent, std::vector<std::wstring> acceptDialogs, std::vector<std::wstring> finishDialogs, std::wstring playerAcceptDialog, std::wstring playerFinishDialog, EQuestImportance questImportance, std::function<bool()> openCondition, std::function<void()> onFinished, GameObject * pSender, GameObject * pRewardProvider, int killCount, std::wstring targetName)
+void CombatQuest::Initialize(std::wstring questName, std::wstring questContent, std::vector<std::wstring> acceptDialogs, std::vector<std::wstring> finishDialogs, std::wstring playerAcceptDialog, std::wstring playerFinishDialog, EQuestImportance questImportance, std::function<bool()> openCondition, std::function<void()> onFinished,std::wstring senderName,
+	std::wstring rewardProviderName, int killCount, std::wstring targetName)
 {
 	Quest::Initialize
 	(
@@ -28,14 +29,14 @@ void CombatQuest::Initialize(std::wstring questName, std::wstring questContent, 
 		questImportance,
 		openCondition,
 		onFinished,
-		pSender,
-		pRewardProvider
+		senderName,
+		rewardProviderName
 	);
 	m_killCount = killCount;
 	m_killedCount = 0;
 	m_enemyName = targetName;
 
-	SCENE->GetObjectContainer()->TryGetDynamicMeshObjects(m_enemyName, &m_targets);
+	
 }
 
 float CombatQuest::GetCurProgress()
@@ -51,6 +52,12 @@ bool CombatQuest::IsFinish()
 std::vector<GameObject*> CombatQuest::GetTargets()
 {
 	return m_targets;
+}
+
+void CombatQuest::LinkObject()
+{
+	Quest::LinkObject();
+	SCENE->GetObjectContainer()->TryGetDynamicMeshObjects(m_enemyName, &m_targets);
 }
 
 void CombatQuest::OnKillEnemy(void * arg)

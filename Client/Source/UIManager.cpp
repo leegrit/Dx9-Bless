@@ -8,6 +8,7 @@
 #include "GameScene.h"
 #include "QuestManager.h"
 #include "QuestGuideUI.h"
+#include "QuestNoticeUI.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -85,6 +86,10 @@ void UIManager::Initialize()
 		m_subQuestGuideUIList.emplace_back(QuestGuideUI::Create(m_pScene, EQuestImportance::Sub, L"SubQuestGuide"));
 	}
 
+	/* For QuestNoticeUI */
+	m_pQuestNoticeUI = QuestNoticeUI::Create(m_pScene, L"QuestNoticeUI");
+
+
 	/* For Static UI */
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -276, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(120, 120, 1), L"1"));
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/PortraitCircle/PortraitCircle_0.png", D3DXVECTOR3(0, -291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(160, 160, 1), L"2"));
@@ -161,10 +166,14 @@ void UIManager::OnAcceptQuest(void * questIndex)
     Quest* quest = m_pScene->GetQuestManager()->GetQuest(index);
 
 	if (quest->GetQuestImportance() == EQuestImportance::Main)
+	{
 		m_pAcceptedMainQuest = quest;
+		m_pQuestNoticeUI->PushQuestNotice(quest->GetQuestName(), EQuestNoticeType::MainQuestAccept);
+	}
 	else if (quest->GetQuestImportance() == EQuestImportance::Sub)
 	{
 		m_acceptedSubQuests.push_back(quest);
+		m_pQuestNoticeUI->PushQuestNotice(quest->GetQuestName(), EQuestNoticeType::SubQuestAccept);
 	}
 }
 
@@ -174,6 +183,7 @@ void UIManager::OnCompletelyClearQuest(void * questIndex)
 
 	if (m_pAcceptedMainQuest->GetQuestIndex() == index)
 	{
+		m_pQuestNoticeUI->PushQuestNotice(m_pAcceptedMainQuest->GetQuestName(), EQuestNoticeType::MainQuestCompletelyClear);
 		m_pAcceptedMainQuest = nullptr;
 		m_pMainQuestGuideUI->HideGuideUI();
 		return;
@@ -184,6 +194,7 @@ void UIManager::OnCompletelyClearQuest(void * questIndex)
 		{
 			if (m_acceptedSubQuests[i]->GetQuestIndex() == index)
 			{
+				m_pQuestNoticeUI->PushQuestNotice(m_acceptedSubQuests[i]->GetQuestName(), EQuestNoticeType::SubQuestCompletelyClear);
 				m_acceptedSubQuests.erase(m_acceptedSubQuests.begin() + i);
 				
 				return;

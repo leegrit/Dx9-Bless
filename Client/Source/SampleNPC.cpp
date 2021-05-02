@@ -26,9 +26,9 @@ void SampleNPC::QuestInitialize()
 {
 	NonePlayer::QuestInitialize();
 
-	TestQuest * testQuest = new TestQuest();
+	/*TestQuest * testQuest = new TestQuest();
 	testQuest->Initialize(this);
-	AddQuest(testQuest);
+	AddQuest(testQuest);*/
 }
 
 void SampleNPC::Update()

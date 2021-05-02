@@ -71,5 +71,7 @@ private : /* For Quest */
 	const int m_guideMax = 5;
 	class QuestGuideUI* m_pMainQuestGuideUI = nullptr;
 	std::vector<class QuestGuideUI*> m_subQuestGuideUIList;
+
+	class QuestNoticeUI * m_pQuestNoticeUI = nullptr;
 };
 
