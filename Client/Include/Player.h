@@ -26,6 +26,7 @@ private :
 public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void OnCollision(Collider * other) override;
+	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical);
 	virtual void OnHPChanged();
 	virtual void OnMPChanged();
 

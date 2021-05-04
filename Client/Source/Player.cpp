@@ -48,6 +48,13 @@ void Player::OnCollision(Collider * other)
 {
 }
 
+void Player::OnDamaged(GameObject * pSender, float damage, bool isCritical)
+{
+	GameScene* scene = static_cast<GameScene*>(SCENE);
+	scene->GetUIManager()->PushDamageFont(damage, true, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
+}
+
 void Player::OnHPChanged()
 {
 	if (m_pHPBarUI == nullptr)

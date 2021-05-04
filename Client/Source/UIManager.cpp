@@ -12,7 +12,7 @@
 #include "FadeInOut.h"
 #include "ProgressBar.h"
 #include "LevelUpNoticeUI.h"
-
+#include "DamageFontScatter.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -76,6 +76,8 @@ void UIManager::Initialize()
 
 	m_pFadeInOut = FadeInOut::Create(m_pScene);
 	m_pFadeInOut->SetActive(false);
+
+	m_pDamageFontScatter = DamageFontScatter::Create(m_pScene, L"DamageFontScatter");
 
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
@@ -182,6 +184,11 @@ void UIManager::ShowWarpInteractPanel()
 void UIManager::HideWarpInteractPanel()
 {
 	m_pWarpPanel->SetActive(false);
+}
+
+void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
+{
+	m_pDamageFontScatter->PushDamageFunt(damage, isPlayer, isCritical, center);
 }
 
 void UIManager::ShowQuestDialogUI(Quest * pQuest, int dialogIndex, EQuestDialogType questDialogType)

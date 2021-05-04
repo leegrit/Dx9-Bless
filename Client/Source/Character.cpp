@@ -121,7 +121,7 @@ void Character::SetDamagedState(bool isDamaged)
 
 
 
-void Character::OnDamaged()
+void Character::OnDamaged(GameObject* pSender, float damage, bool isCritical)
 {
 }
 
@@ -137,7 +137,7 @@ void Character::OnMPChanged()
 {
 }
 
-void Character::SendDamage(GameObject * sender, float damage)
+void Character::SendDamage(GameObject * sender, float damage, bool isCritical )
 {
 	if (m_isDied == true)
 		return;
@@ -160,7 +160,7 @@ void Character::SendDamage(GameObject * sender, float damage)
 	else
 	{
 		m_isDamaged = true;
-		OnDamaged();
+		OnDamaged(sender, damage, isCritical);
 	}
 }
 

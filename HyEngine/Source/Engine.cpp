@@ -342,6 +342,34 @@ void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3
 
 }
 
+void HyEngine::Engine::DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color)
+{
+
+	D3DXVECTOR3 resultPos;
+	D3DXMATRIX resultMat;
+	D3DXMATRIX worldMat;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	D3DXMATRIX viewMat = SCENE->GetSelectedCamera()->GetViewMatrix();
+	D3DXMATRIX projMat = SCENE->GetSelectedCamera()->GetProjectionMatrix();
+
+	
+	//position.x -= m_size.x * 0.5f;
+	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, 1);
+	worldMat = scaleMat * posMat;
+	D3DVIEWPORT9 viewPort;
+	DEVICE->GetViewport(&viewPort);
+
+	D3DXMATRIX identity;
+	D3DXMatrixIdentity(&identity);
+	D3DXVec3Project(&resultPos, &D3DXVECTOR3(0, 0, 0), &viewPort, &projMat, &viewMat, &worldMat);
+
+
+	ENGINE->DrawText(text, resultPos, D3DXVECTOR3(1, 1, 1), color);
+}
+
 bool HyEngine::Engine::InsertShader(std::wstring key, std::wstring path)
 {
 	auto& iter =  m_shaderMap.find(key);

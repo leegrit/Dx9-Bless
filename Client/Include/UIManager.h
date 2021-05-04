@@ -37,6 +37,8 @@ public : /* For Interact */
 	void ShowWarpInteractPanel();
 	void HideWarpInteractPanel();
 
+	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
+
 
 public : /* For Quest */
 	void ShowQuestDialogUI(class Quest* pQuest, int dialogIndex, EQuestDialogType questDialogType);
@@ -62,6 +64,7 @@ private : /* Interacive UI */
 
 	FadeInOut* m_pFadeInOut = nullptr;
 
+	class DamageFontScatter * m_pDamageFontScatter = nullptr;
 
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;

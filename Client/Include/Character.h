@@ -64,7 +64,7 @@ public :
 	// CALLBACK
 	//////////////////////////////////////////////////////////////////////////
 protected :
-	virtual void OnDamaged();
+	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical);
 	virtual void OnDied();
 	virtual void OnHPChanged();
 	virtual void OnMPChanged();
@@ -74,7 +74,7 @@ protected :
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
-	void SendDamage(GameObject* sender, float damage);
+	void SendDamage(GameObject* sender, float damage, bool isCritical = false);
 	bool UseMP(float value);
 
 	//////////////////////////////////////////////////////////////////////////

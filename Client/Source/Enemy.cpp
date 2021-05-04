@@ -2,6 +2,8 @@
 #include "Enemy.h"
 #include "EnemyHPBar.h"
 #include "PathManager.h"
+#include "GameScene.h"
+#include "UIManager.h"
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
 	: Character(scene, pNavMesh, colPosOffset, colRadius)
 {
@@ -45,9 +47,13 @@ void Enemy::Render()
 	Character::Render();
 }
 
-void Enemy::OnDamaged()
+void Enemy::OnDamaged(GameObject* pSender, float damage, bool isCritical)
 {
 	m_pHpBarBillboard->SetAmount(GetCurHP() / GetMaxHP());
+
+	GameScene* scene = static_cast<GameScene*>(SCENE);
+	scene->GetUIManager()->PushDamageFont(damage, false, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
 }
 
 void Enemy::OnDied()

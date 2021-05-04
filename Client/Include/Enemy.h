@@ -18,7 +18,7 @@ public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
 	virtual void Render() override;
-	virtual void OnDamaged() override;
+	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical) override;
 	virtual void OnDied() override;
 
 	//////////////////////////////////////////////////////////////////////////
