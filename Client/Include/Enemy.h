@@ -18,6 +18,8 @@ public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
 	virtual void Render() override;
+	virtual void OnDamaged() override;
+	virtual void OnDied() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// PURE
@@ -38,10 +40,23 @@ public :
 	void SendDamageToOthers(float damage);
 	void ClearHitOthers();
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// PROTECTED
+	//////////////////////////////////////////////////////////////////////////
+protected :
+	void ShowHPBar();
+
+
 private :
 	/* For Action */
 	std::vector<Collider*> m_attackColliders;
 	int m_attackCount;
 	std::vector<GameObject*> m_hitOthers;
+
+	/* For HP */
+	bool m_bShowHP = false;
+	class EnemyHPBar * m_pHpBarBillboard = nullptr;
+
 };
 

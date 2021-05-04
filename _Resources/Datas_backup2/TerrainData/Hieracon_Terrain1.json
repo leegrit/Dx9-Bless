@@ -1,0 +1,93 @@
+{
+  "Type": 4,
+  "Index": 29,
+  "TagIndex": 0,
+  "LayerIndex": 0,
+  "StaticIndex": 1,
+  "GameObjectData": {
+    "Index": 29,
+    "Name": "Terrain1",
+    "Tag": "Default",
+    "Layer": 0,
+    "StaticType": 1,
+    "Transform": {
+      "Position": {
+        "X": -549.47,
+        "Y": 41.6,
+        "Z": 177.93
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 1.0,
+        "Y": 1.0,
+        "Z": 1.0
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 29,
+    "MeshFilePath": "",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 29,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 31,
+    "CellCount": 0
+  },
+  "TerrainData": {
+    "VertexCountX": 4,
+    "VertexCountZ": 4,
+    "TextureCountX": 50.0,
+    "TextureCountZ": 50.0,
+    "VertexInterval": 500.0,
+    "DiffuseFilePath": "Assets\\Tile\\Tile_D_1.tga",
+    "NormalFilePath": "Assets\\Tile\\Tile_N_1.tga"
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  }
+}

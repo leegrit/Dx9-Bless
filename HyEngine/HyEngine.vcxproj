@@ -172,6 +172,7 @@
     <ClInclude Include="Include\Box.h" />
     <ClInclude Include="Include\BrainTree.h" />
     <ClInclude Include="Include\BumpMesh.h" />
+    <ClInclude Include="Include\Button.h" />
     <ClInclude Include="Include\Camera.h" />
     <ClInclude Include="Include\Cell.h" />
     <ClInclude Include="Include\CellData.h" />
@@ -281,6 +282,7 @@
     <ClInclude Include="Include\Path.h" />
     <ClInclude Include="Include\PathManager.h" />
     <ClInclude Include="Include\Pawn.h" />
+    <ClInclude Include="Include\ProgressBar.h" />
     <ClInclude Include="Include\QuadTree.h" />
     <ClInclude Include="Include\Ray.h" />
     <ClInclude Include="Include\Raycaster.h" />
@@ -330,6 +332,7 @@
     <ClInclude Include="Include\ZBillboardObject.h" />
     <ClInclude Include="Include\ZTextureObject.h" />
     <ClInclude Include="Include\ZTextureQuad.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\SphereCollider.cpp" />
@@ -342,6 +345,7 @@
     <ClCompile Include="Source\Billboard.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\BumpMesh.cpp" />
+    <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Cell.cpp" />
     <ClCompile Include="Source\CellData.cpp" />
@@ -439,6 +443,7 @@
     <ClCompile Include="Source\Path.cpp" />
     <ClCompile Include="Source\PathManager.cpp" />
     <ClCompile Include="Source\Pawn.cpp" />
+    <ClCompile Include="Source\ProgressBar.cpp" />
     <ClCompile Include="Source\QuadTree.cpp" />
     <ClCompile Include="Source\Ray.cpp" />
     <ClCompile Include="Source\Raycaster.cpp" />
@@ -487,6 +492,7 @@
     <FxCompile Include="..\_Shaders\Ambient.fx" />
     <FxCompile Include="..\_Shaders\Blur.fx" />
     <FxCompile Include="..\_Shaders\Collider.fx" />
+    <FxCompile Include="..\_Shaders\DefaultShadowMap.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
@@ -494,6 +500,7 @@
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\OcclusionQuery.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
+    <FxCompile Include="..\_Shaders\ProgressBar.fx" />
     <FxCompile Include="..\_Shaders\ShadowMap.fx" />
     <FxCompile Include="..\_Shaders\SkinnedMesh.fx" />
     <FxCompile Include="..\_Shaders\Skybox.fx" />
@@ -507,6 +514,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HyEngine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

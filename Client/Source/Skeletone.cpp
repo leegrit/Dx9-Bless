@@ -23,7 +23,7 @@ Skeletone::~Skeletone()
 
 void Skeletone::Initialize(std::wstring dataPath)
 {
-	Character::Initialize(dataPath);
+	Enemy::Initialize(dataPath);
 	SetLayer(Layer::Enemy);
 
 	m_pAttackCollider = SphereCollider::Create(EColliderType::Dynamic, this, 10, Layer::Player,
@@ -43,11 +43,13 @@ void Skeletone::Initialize(std::wstring dataPath)
 
 	m_pNameFont = new NameFont();
 	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 15, 0), -40, D3DXCOLOR(1, 1, 0, 1));
+
+	ShowHPBar();
 }
 
 void Skeletone::Update()
 {
-	Character::Update();
+	Enemy::Update();
 
 	m_state.Update();
 }

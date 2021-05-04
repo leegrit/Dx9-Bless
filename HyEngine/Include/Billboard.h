@@ -20,9 +20,14 @@ namespace HyEngine
 		virtual void Render() override;
 		virtual void Update() override;
 
+
+	protected :
+		D3DXMATRIX GetBillboardMatrix();
+
+
 	private :
 		D3DXMATRIX CalcBillboardY();
-
+		
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

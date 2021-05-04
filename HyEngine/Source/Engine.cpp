@@ -168,7 +168,7 @@ void Engine::RenderFrame()
 {
 	if (m_pActiveScene == nullptr) return;
 	// юс╫ц
-	if (m_pActiveScene == m_pLoadingScene) return;
+	//if (m_pActiveScene == m_pLoadingScene) return;
 	
 	/* Occlusion Query */
 
@@ -393,6 +393,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"LinearFilter", PATH->ShadersPathW() + L"LinearFilter.fx");
 	InsertShader(L"Terrain", PATH->ShadersPathW() + L"Terrain.fx");
 	InsertShader(L"Texture", PATH->ShadersPathW() + L"Texture.fx");
+	InsertShader(L"ProgressBar", PATH->ShadersPathW() + L"ProgressBar.fx");
 	return true;
 }
 

@@ -65,6 +65,9 @@ void UIManager::Initialize()
 	m_pTalkPanel = UIPanel::Create(m_pScene,PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
 	m_pTalkPanel->SetActive(false);
 
+	m_pWarpPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
+	m_pWarpPanel->SetActive(false);
+
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
 
@@ -136,6 +139,16 @@ void UIManager::ShowTalkInteractPanel()
 void UIManager::HideTalkInteractPanel()
 {
 	m_pTalkPanel->SetActive(false);
+}
+
+void UIManager::ShowWarpInteractPanel()
+{
+	m_pWarpPanel->SetActive(true);
+}
+
+void UIManager::HideWarpInteractPanel()
+{
+	m_pWarpPanel->SetActive(false);
 }
 
 void UIManager::ShowQuestDialogUI(Quest * pQuest, int dialogIndex, EQuestDialogType questDialogType)

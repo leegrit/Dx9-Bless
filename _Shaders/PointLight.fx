@@ -201,9 +201,10 @@ float4 PointLightPS(
 	}
 	finalColor = saturate(finalColor + specular.rgb);
 
+	return float4(finalColor.rgb, 1);
 
 	// Return Final color
-	return float4(finalColor.rgb + stashMap.rgb, 1);
+	//return float4(finalColor.rgb + stashMap.rgb, 1);
 }
 
 
@@ -213,6 +214,9 @@ technique PointLight
 	pass P0
 	{
 		ZEnable = false;
+		AlphaBlendEnable = true;
+		SrcBlend = SRCCOLOR;
+		DestBlend = DestColor;
 		VertexShader = compile vs_3_0 PointLightVS();
 		PixelShader = compile ps_3_0 PointLightPS();
 	}

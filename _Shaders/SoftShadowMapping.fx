@@ -270,6 +270,8 @@ float4 SoftShadowMappingPS(PixelInputType input, uniform int cascadeIndex, unifo
 		float lightDepth = lightPos.z / lightPos.w;
 		lightDepth = lightDepth - bias;
 		shadowFactor = lightDepth < shadowDepth ?  1 : 0;
+		if (shadowFactor == 1)
+			discard;
 	}
 	else
 		discard;

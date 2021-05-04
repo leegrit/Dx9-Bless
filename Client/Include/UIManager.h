@@ -32,6 +32,8 @@ public : /* For Interact */
 	void ShowTalkInteractPanel();
 	void HideTalkInteractPanel();
 
+	void ShowWarpInteractPanel();
+	void HideWarpInteractPanel();
 
 
 public : /* For Quest */
@@ -54,6 +56,7 @@ private : /* Static UI */
 private : /* Interacive UI */
 	UIElement* m_pTalkPanel = nullptr;
 	UIElement* m_pPickUpPanel = nullptr;
+	UIElement* m_pWarpPanel = nullptr;
 
 
 private : /* For Quest */

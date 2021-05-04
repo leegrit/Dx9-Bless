@@ -38,6 +38,10 @@ void UIElement::Render()
 	}
 }
 
+void HyEngine::UIElement::Update()
+{
+}
+
 void HyEngine::UIElement::UpdatedData(EDataType dataType)
 {
 

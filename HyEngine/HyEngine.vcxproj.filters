@@ -644,6 +644,13 @@
     <ClInclude Include="Include\Texture.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Include\Button.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\ProgressBar.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1096,6 +1103,12 @@
     <ClCompile Include="Source\Texture.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Button.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProgressBar.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1158,10 +1171,19 @@
     <FxCompile Include="..\_Shaders\Texture.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\DefaultShadowMap.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\ProgressBar.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">
       <Filter>Export</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HyEngine.rc" />
   </ItemGroup>
 </Project>

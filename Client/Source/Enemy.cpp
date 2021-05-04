@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Enemy.h"
-
+#include "EnemyHPBar.h"
+#include "PathManager.h"
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
 	: Character(scene, pNavMesh, colPosOffset, colRadius)
 {
@@ -22,16 +23,36 @@ void Enemy::Initialize(std::wstring dataPath)
 	{
 		m_attackColliders.emplace_back(GetAttackCollider(i));
 	}
+
+	m_pHpBarBillboard = EnemyHPBar::Create(GetScene(), L"HPBar");
+	m_pHpBarBillboard->SetFillTex(PATH->AssetsPathW() + L"UI/StatusGauge_3.png");
+	m_pHpBarBillboard->SetBackTex(PATH->AssetsPathW() + L"UI/EnemyHPBack.png");
+	m_pHpBarBillboard->SetAmount(1);
+	m_pHpBarBillboard->m_pTransform->m_scale = D3DXVECTOR3(10, 1, 1);
+	m_pHpBarBillboard->SetActive(false);
+
 }
 
 void Enemy::Update()
 {
 	Character::Update();
+
+	m_pHpBarBillboard->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 20, 0));
 }
 
 void Enemy::Render()
 {
 	Character::Render();
+}
+
+void Enemy::OnDamaged()
+{
+	m_pHpBarBillboard->SetAmount(GetCurHP() / GetMaxHP());
+}
+
+void Enemy::OnDied()
+{
+	m_pHpBarBillboard->SetAmount(0);
 }
 
 void Enemy::AddHitOthers(GameObject * other)
@@ -57,4 +78,9 @@ void Enemy::SendDamageToOthers(float damage)
 void Enemy::ClearHitOthers()
 {
 	m_hitOthers.clear();
+}
+
+void Enemy::ShowHPBar()
+{
+	m_pHpBarBillboard->SetActive(true);
 }

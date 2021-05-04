@@ -167,3 +167,9 @@ enum class ESkinningType
 	SoftwareSkinning,
 	HardwareSkinning,
 };
+
+enum class EShadowType
+{
+	Default,
+	Cascade
+};

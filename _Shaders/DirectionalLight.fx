@@ -238,6 +238,9 @@ technique DirectionalLight
 	pass P0
 	{
 		ZEnable = false;
+		/*AlphaBlendEnable = true;
+		SrcBlend = SRCCOLOR;
+		DestBlend = DestColor;*/
 		VertexShader = compile vs_3_0 DirectionalLightVS();
 		PixelShader = compile ps_3_0 DirectionalLightPS();
 	}

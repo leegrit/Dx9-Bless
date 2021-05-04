@@ -21,7 +21,7 @@
 #include "QuestNPC.h"
 #include "DummyBoss.h"
 #include "SampleNPC.h"
-
+#include "WarpPoint.h"
 
 
 using namespace HyEngine;
@@ -41,7 +41,7 @@ void HieraconScene::Load()
 	ENGINE->SetRenderOption(RenderOptions::RenderCollider, false);
 	ENGINE->SetRenderOption(RenderOptions::RenderLight, false);
 	ENGINE->SetRenderOption(RenderOptions::RenderNavMesh, false);
-	ENGINE->SetRenderOption(RenderOptions::RenderShadow, false);
+	ENGINE->SetRenderOption(RenderOptions::RenderShadow, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderUI, false);
 
 
@@ -123,6 +123,13 @@ void HieraconScene::Load()
 	// NAMED
 	//////////////////////////////////////////////////////////////////////////
 	auto dummyBoss = DummyBoss::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/GhostSoldier.json");
+
+	//////////////////////////////////////////////////////////////////////////
+	// WARP POINT
+	//////////////////////////////////////////////////////////////////////////
+	auto warpPoint = WarpPoint::Create(this, 2, L"ToJungle");
+	warpPoint->m_pTransform->SetPosition(0, 0, -111);
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// UI

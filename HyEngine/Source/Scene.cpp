@@ -212,8 +212,17 @@ ObjectContainer * HyEngine::Scene::GetObjectContainer() const
 
 void HyEngine::Scene::ViewFrustumCull()
 {
-	m_pQuadTree->QuadTreeCull(m_pSelectedCamera);
-	
+	if (IS_CLIENT)
+	{
+		m_pQuadTree->QuadTreeCull(m_pSelectedCamera);
+	}
+	else if (IS_EDITOR)
+	{
+		m_pSelectedCamera->ViewFrustumCulling
+		(
+			m_pObjectContainer->GetDynamicMeshAll()
+		);
+	}
 	m_pSelectedCamera->ViewFrustumCulling
 	(
 		m_pObjectContainer->GetDynamicMeshAll()

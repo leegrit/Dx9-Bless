@@ -106,9 +106,6 @@
     <ClCompile Include="..\Source\TitleCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\HieraconScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\QuestManager.cpp">
       <Filter>Scripts\Quest</Filter>
     </ClCompile>
@@ -120,9 +117,6 @@
     </ClCompile>
     <ClCompile Include="..\Source\TestQuest.cpp">
       <Filter>Scripts\Quest\Hieracon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\GameScene.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\BlessLoadingScene.cpp">
       <Filter>Scenes</Filter>
@@ -154,6 +148,22 @@
     <ClCompile Include="..\Source\QuestTable.cpp">
       <Filter>Scripts\Quest</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\HieraconScene.cpp">
+      <Filter>Scenes\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GameScene.cpp">
+      <Filter>Scenes\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\AncientTowerScene.cpp">
+      <Filter>Scenes\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ArbaJungleScene.cpp">
+      <Filter>Scenes\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EnemyHPBar.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\WarpPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -224,6 +234,12 @@
     </Filter>
     <Filter Include="Scripts\UI\Quest">
       <UniqueIdentifier>{4fd22407-e2a2-42d8-9c49-750685ec9d8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\GameStage">
+      <UniqueIdentifier>{8f8c4839-3a81-40d6-836e-10ea78fca3e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{98b45bc3-ca54-4505-bdf1-bfce739fa565}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -331,9 +347,6 @@
     <ClInclude Include="..\Include\TitleCamera.h">
       <Filter>Camera</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\HieraconScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\Client_Enumerators.h">
       <Filter>GlobalVars</Filter>
     </ClInclude>
@@ -348,9 +361,6 @@
     </ClInclude>
     <ClInclude Include="..\Include\TestQuest.h">
       <Filter>Scripts\Quest\Hieracon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Include\GameScene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\BlessLoadingScene.h">
       <Filter>Scenes</Filter>
@@ -385,6 +395,22 @@
     <ClInclude Include="..\Include\QuestTable.h">
       <Filter>Scripts\Quest</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\HieraconScene.h">
+      <Filter>Scenes\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GameScene.h">
+      <Filter>Scenes\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\AncientTowerScene.h">
+      <Filter>Scenes\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ArbaJungleScene.h">
+      <Filter>Scenes\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyHPBar.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\WarpPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

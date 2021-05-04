@@ -121,6 +121,14 @@ void Character::SetDamagedState(bool isDamaged)
 
 
 
+void Character::OnDamaged()
+{
+}
+
+void Character::OnDied()
+{
+}
+
 void Character::SendDamage(GameObject * sender, float damage)
 {
 	if (m_isDied == true)
@@ -139,10 +147,12 @@ void Character::SendDamage(GameObject * sender, float damage)
 	{
 		m_isDied = true;
 		EventDispatcher::TriggerEvent(BattleEvent::CharacterDie, static_cast<void*>(&GetName()));
+		OnDied();
 	}
 	else
 	{
 		m_isDamaged = true;
+		OnDamaged();
 	}
 }
 

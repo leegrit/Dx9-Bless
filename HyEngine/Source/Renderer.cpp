@@ -745,8 +745,8 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		pShader->SetTexture(softShadowHandler, m_pSoftShadowRTTexture);
 		
 
-		D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
-		pShader->SetTexture(stashHandle, m_pStashRTTexture);
+		//D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
+		//pShader->SetTexture(stashHandle, m_pStashRTTexture);
 
 		pShader->SetValue("EyePosition", &selectedCam->GetPosition(), sizeof(selectedCam->GetPosition()));
 		pShader->SetValue("Direction", &light->Direction(), sizeof(light->Direction()));
@@ -788,7 +788,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 			pShader->EndPass();
 		}
 		pShader->End();
-		DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface,NULL, D3DTEXF_NONE/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
+		//DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface,NULL, D3DTEXF_NONE/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
 	}
 }
 
@@ -837,7 +837,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f, 1.0f, 1.0f };//, 1.0f }; 
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f, 1.0f};//, 1.0f }; 
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f };// , 0.1f, 0.15f, 0.2f
 //};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =

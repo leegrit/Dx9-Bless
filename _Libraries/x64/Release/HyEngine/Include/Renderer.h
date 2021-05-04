@@ -4,7 +4,7 @@
 
 /* For Cascade Shadow */
 // MAX = 4
-#define NUM_CASCADEDES 3
+#define NUM_CASCADEDES 2
 
 namespace HyEngine
 {

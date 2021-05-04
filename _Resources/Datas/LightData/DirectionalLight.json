@@ -83,7 +83,7 @@
       "A": 0.0
     },
     "SpecularIntensity": 0.0,
-    "SpecularPower": 3.0,
+    "SpecularPower": 10.0,
     "Range": 0.0,
     "Cone": 0.0,
     "Constant": 0.0,

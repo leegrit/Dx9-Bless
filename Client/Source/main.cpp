@@ -3,6 +3,9 @@
 #include "SampleLoadingScene.h"
 #include "TitleScene.h"
 #include "BlessLoadingScene.h"
+#include "AncientTowerScene.h"
+#include "ArbaJungleScene.h"
+
 
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR pScmdl, int iCmdShow)
 {
@@ -18,6 +21,8 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR pScmdl, int iCmdSh
 
 	engineConfig.scenes.push_back(new TitleScene());
 	engineConfig.scenes.push_back(new HieraconScene());
+	engineConfig.scenes.push_back(new ArbaJungleScene());
+	engineConfig.scenes.push_back(new AncientTowerScene());
 	engineConfig.defaultSceneIndex = 0;
 	engineConfig.loadingScene = new BlessLoadingScene();
 	if (application->Init(hInst, iCmdShow, engineConfig))

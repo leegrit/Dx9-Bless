@@ -54,7 +54,7 @@ private :
 
 	std::wstring m_questName;
 	float m_elapsed = 0;
-	const float m_delay = 2;
+	const float m_delay = 3;
 	const float m_fadeInTime = 0.3f;
 	const float m_fadeOutTime = 0.3f;
 	std::queue<QuestNoticeDesc> m_notices;

@@ -21,7 +21,7 @@ void BlessLoadingScene::Load()
 	auto cam = TitleCamera::Create(this, L"TitleCamera");
 	SelectCamera(L"TitleCamera");
 
-	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/Bless_Unleashed_Still.jpg", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(WinMaxWidth, WinMaxHeight, 1), L"1");
+	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/BLUIWarCitadelOwnership_I4E_0.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(WinMaxWidth, WinMaxHeight, 1), L"1");
 }
 
 void BlessLoadingScene::Unload()

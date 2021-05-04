@@ -27,7 +27,7 @@ void QuestNoticeUI::Update()
 		return;
 
 	QuestNoticeDesc notice = m_notices.front();
-
+	m_questName = notice.questName;
 	m_pBackground->SetActive(true);
 	m_pArrowLeft->SetActive(true);
 	m_pArrowRight->SetActive(true);
@@ -57,6 +57,7 @@ void QuestNoticeUI::Update()
 		m_pArrowRight->SetAlpha(alpha);
 		m_pMainClearIcon->SetAlpha(alpha);
 		m_pSubClearIcon->SetAlpha(alpha);
+		ENGINE->DrawText(m_questName.c_str(), D3DXVECTOR3(500, 500, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, alpha));
 	}
 	else if (m_elapsed >= m_delay - m_fadeOutTime)
 	{
@@ -68,6 +69,7 @@ void QuestNoticeUI::Update()
 		m_pArrowRight->SetAlpha(alpha);
 		m_pMainClearIcon->SetAlpha(alpha);
 		m_pSubClearIcon->SetAlpha(alpha);
+		ENGINE->DrawText(m_questName.c_str(), D3DXVECTOR3(500, 500, 0), D3DXVECTOR3(2,2,2), D3DXCOLOR(1, 1, 1, alpha));
 	}
 	else
 	{
@@ -77,7 +79,12 @@ void QuestNoticeUI::Update()
 		m_pArrowRight->SetAlpha(1);
 		m_pMainClearIcon->SetAlpha(1);
 		m_pSubClearIcon->SetAlpha(1);
+
+		ENGINE->DrawText(m_questName.c_str(), D3DXVECTOR3(500, 500, 0), D3DXVECTOR3(2,2,2), D3DXCOLOR(1, 1, 1, 1));
+
 	}
+
+
 }
 
 void QuestNoticeUI::Initialize()

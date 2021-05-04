@@ -23,6 +23,7 @@ namespace HyEngine
 	public :
 		virtual void Initialize();
 		virtual void Render() override;
+		virtual void Update() override;
 		virtual void UpdatedData(EDataType dataType) override;
 
 		//////////////////////////////////////////////////////////////////////////

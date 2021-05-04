@@ -1,0 +1,48 @@
+{
+  "Group": 6,
+  "MapCount": 1,
+  "Hierarchy_0": {
+    "Type": 2,
+    "Index": 0,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 0,
+      "Name": "MapObject",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 0,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Map_0.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 0,
+      "Group": 6
+    },
+    "NavMeshData": {
+      "Index": 0,
+      "CellCount": 0
+    }
+  }
+}

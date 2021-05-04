@@ -35,7 +35,7 @@ void QuestDialogUI::Render()
 	UIElement::Render();
 
 	/* For Font */
-	ENGINE->DrawTextW(m_dialogText.c_str(), D3DXVECTOR3(0, 500, 0),D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+	ENGINE->DrawTextW(m_dialogText.c_str(), D3DXVECTOR3(30, 600, 0),D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 
 	m_pEffect->SetMatrix("WorldMatrix", &m_pTransform->GetWorldMatrix());

@@ -52,7 +52,7 @@ HyEngine::StaticMesh::StaticMesh(Scene * scene, GameObject * parent, std::wstrin
 
 HyEngine::StaticMesh::~StaticMesh()
 {
-	SAFE_RELEASE(m_pMesh);
+	//SAFE_RELEASE(m_pMesh);
 }
 
 void HyEngine::StaticMesh::Initialize()
@@ -258,7 +258,7 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 						if (IS_EDITOR)
 						{
 							isFirst = EDIT_ENGINE->InsertShader(fileName, PATH->ShadersPathW() + L"StaticMesh.fx");
-							EDIT_ENGINE->TryGetShader(fileName, &pEffect);
+							ENGINE->TryGetShader(fileName, &pEffect);
 						}
 						else
 						{

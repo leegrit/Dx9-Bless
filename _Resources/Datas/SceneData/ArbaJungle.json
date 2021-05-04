@@ -1,0 +1,9288 @@
+{
+  "HierarchyCount": 73,
+  "Hierarchy_0": {
+    "Type": 5,
+    "Index": 0,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 0,
+      "Name": "DirectionalLight",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 0,
+      "MeshFilePath": "",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 0,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 0,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.1,
+        "Y": -0.8,
+        "Z": 1.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.5,
+        "G": 0.5,
+        "B": 0.5,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 1.0,
+        "G": 1.0,
+        "B": 1.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 10.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_1": {
+    "Type": 1,
+    "Index": 1,
+    "TagIndex": 0,
+    "LayerIndex": 2,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 1,
+      "Name": "Lups",
+      "Tag": "Default",
+      "Layer": 2,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 59.32163,
+          "Y": -3.05175781E-05,
+          "Z": 282.7859
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 1,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Lups\\Lups_00.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 1,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 1,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_2": {
+    "Type": 2,
+    "Index": 2,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 2,
+      "Name": "Tent05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 146.22,
+          "Y": -3.05175781E-05,
+          "Z": 59.65
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 2,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 2,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 2,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_3": {
+    "Type": 4,
+    "Index": 3,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 1,
+    "GameObjectData": {
+      "Index": 3,
+      "Name": "Terrain",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 1,
+      "Transform": {
+        "Position": {
+          "X": -855.52,
+          "Y": 0.0,
+          "Z": -268.8
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 3,
+      "MeshFilePath": "",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 3,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 3,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 4,
+      "VertexCountZ": 4,
+      "TextureCountX": 10.0,
+      "TextureCountZ": 10.0,
+      "VertexInterval": 600.0,
+      "DiffuseFilePath": "Assets\\Tile\\LV_ArbaJungle_Tile_Cliff01_D_PHJ.tga",
+      "NormalFilePath": "Assets\\Tile\\LV_ArbaJungle_Tile_Cliff01_N_PHJ.tga"
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_4": {
+    "Type": 2,
+    "Index": 4,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 4,
+      "Name": "Tent02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 144.0,
+          "Y": 0.0,
+          "Z": 57.6
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 4,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 4,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 4,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_5": {
+    "Type": 2,
+    "Index": 5,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 5,
+      "Name": "Tent03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 147.2,
+          "Y": 0.0,
+          "Z": 57.6
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 5,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 5,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 5,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_6": {
+    "Type": 2,
+    "Index": 6,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 6,
+      "Name": "Tent01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 144.01,
+          "Y": 2.4,
+          "Z": 55.88
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 6,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 6,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 6,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_7": {
+    "Type": 2,
+    "Index": 7,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 7,
+      "Name": "Tent06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 142.63,
+          "Y": 0.0,
+          "Z": 50.28
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 7,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 7,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 7,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_8": {
+    "Type": 2,
+    "Index": 8,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 8,
+      "Name": "Tent01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -187.2,
+          "Y": 0.0,
+          "Z": 44.8
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 8,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 8,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 8,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_9": {
+    "Type": 2,
+    "Index": 9,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 9,
+      "Name": "Tent07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -264.7,
+          "Y": 8.0,
+          "Z": 43.64
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 9,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 9,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 9,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_10": {
+    "Type": 2,
+    "Index": 10,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 10,
+      "Name": "Tent07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -113.5,
+          "Y": 8.0,
+          "Z": 43.6353149
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 180.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 10,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 10,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 9,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_11": {
+    "Type": 2,
+    "Index": 11,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 11,
+      "Name": "Tent07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -192.7,
+          "Y": 8.0,
+          "Z": 118.84
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 11,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 11,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 9,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_12": {
+    "Type": 2,
+    "Index": 12,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 12,
+      "Name": "Tent07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -192.7,
+          "Y": 8.0,
+          "Z": -33.16
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -90.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 12,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tent07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 12,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 9,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_13": {
+    "Type": 2,
+    "Index": 13,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 13,
+      "Name": "DinosaurSkeletone04",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -364.08,
+          "Y": 0.0,
+          "Z": 284.39
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -212.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 13,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone04.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 13,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 13,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_14": {
+    "Type": 2,
+    "Index": 14,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 14,
+      "Name": "DSDeco02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -63.26,
+          "Y": 0.0,
+          "Z": 201.52
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 14,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DSDeco02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 14,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 14,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_15": {
+    "Type": 2,
+    "Index": 15,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 15,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 3.38,
+          "Y": -1.52587891E-05,
+          "Z": 518.15
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 15,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 15,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 15,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_16": {
+    "Type": 2,
+    "Index": 16,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 16,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 19.15,
+          "Y": -3.05175781E-05,
+          "Z": 698.28
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 16,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 16,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 16,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_17": {
+    "Type": 2,
+    "Index": 17,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 17,
+      "Name": "LandingHouse01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -482.89,
+          "Y": -7.62939453E-06,
+          "Z": 920.32
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 17,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 17,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 17,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_18": {
+    "Type": 2,
+    "Index": 18,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 18,
+      "Name": "LandingHouse02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -482.27,
+          "Y": -1.52587891E-05,
+          "Z": 917.63
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 18,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 18,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 18,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_19": {
+    "Type": 2,
+    "Index": 19,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 19,
+      "Name": "LandingHouse03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -483.12,
+          "Y": 0.0,
+          "Z": 927.07
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 19,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 19,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 20,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_20": {
+    "Type": 2,
+    "Index": 20,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 20,
+      "Name": "JungleTree11",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -324.35,
+          "Y": 0.0,
+          "Z": 1041.19
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 20,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree11.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 20,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 21,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_21": {
+    "Type": 2,
+    "Index": 21,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 21,
+      "Name": "LandingHouse08",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 189.23,
+          "Y": 0.0,
+          "Z": 1198.21
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 21,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse08.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 21,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 22,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_22": {
+    "Type": 2,
+    "Index": 22,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 22,
+      "Name": "LandingHouse09",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 189.46,
+          "Y": -1.52587891E-05,
+          "Z": 1198.53
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 22,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse09.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 22,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 23,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_23": {
+    "Type": 2,
+    "Index": 23,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 23,
+      "Name": "LandingHouse10",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 194.66,
+          "Y": -1.52587891E-05,
+          "Z": 1202.43
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 23,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse10.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 23,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 24,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_24": {
+    "Type": 2,
+    "Index": 24,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 24,
+      "Name": "LandingHouse11",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 199.88,
+          "Y": -1.52587891E-05,
+          "Z": 1205.61
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 24,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse11.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 24,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 25,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_25": {
+    "Type": 2,
+    "Index": 25,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 25,
+      "Name": "JungleTree11",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -473.86,
+          "Y": -7.62939453E-06,
+          "Z": 410.65
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 25,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree11.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 25,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 27,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_26": {
+    "Type": 2,
+    "Index": 26,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 26,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -375.664032,
+          "Y": -7.62939453E-06,
+          "Z": 543.3712
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 108.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.2,
+          "Y": 0.2,
+          "Z": 0.2
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 26,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 26,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 26,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_27": {
+    "Type": 2,
+    "Index": 27,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 27,
+      "Name": "DSDeco03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -428.55,
+          "Y": 0.0,
+          "Z": 612.39
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 27,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DSDeco03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 27,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 27,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_28": {
+    "Type": 2,
+    "Index": 28,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 28,
+      "Name": "DinosaurSkeleton03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -119.0,
+          "Y": 0.0,
+          "Z": 607.94
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -121.6,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 28,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 28,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 28,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_29": {
+    "Type": 2,
+    "Index": 29,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 29,
+      "Name": "JungleTree09",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 350.673279,
+          "Y": -3.05175781E-05,
+          "Z": 244.618744
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -56.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.8,
+          "Y": 0.8,
+          "Z": 0.8
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 29,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 29,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 29,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_30": {
+    "Type": 2,
+    "Index": 30,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 30,
+      "Name": "DinosaurSkeleton01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 221.86,
+          "Y": -1.52587891E-05,
+          "Z": 577.37
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 52.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 30,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 30,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 30,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_31": {
+    "Type": 2,
+    "Index": 31,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 31,
+      "Name": "DinosaurSkeleton02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 157.32,
+          "Y": -1.52587891E-05,
+          "Z": 685.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -127.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 31,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 31,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 31,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_32": {
+    "Type": 2,
+    "Index": 32,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 32,
+      "Name": "Statue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 345.2,
+          "Y": -3.05175781E-05,
+          "Z": 463.47757
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 32,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 32,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 32,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_33": {
+    "Type": 2,
+    "Index": 33,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 33,
+      "Name": "Statue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -50.7058,
+          "Y": -1.52587891E-05,
+          "Z": 516.510559
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 33,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 33,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 32,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_34": {
+    "Type": 2,
+    "Index": 34,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 34,
+      "Name": "Statue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -251.105316,
+          "Y": -7.62939453E-06,
+          "Z": 380.391
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 34,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 34,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 34,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_35": {
+    "Type": 2,
+    "Index": 35,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 35,
+      "Name": "PlanetariumStatue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -292.4,
+          "Y": -1.52587891E-05,
+          "Z": 987.6
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 35,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 35,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 35,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_36": {
+    "Type": 2,
+    "Index": 36,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 36,
+      "Name": "PlanetariumStatue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -292.5,
+          "Y": -2.05,
+          "Z": 986.87
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 36,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 36,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 36,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_37": {
+    "Type": 2,
+    "Index": 37,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 37,
+      "Name": "PlanetariumStatue03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -293.31,
+          "Y": -3.05175781E-05,
+          "Z": 980.25
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 37,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 37,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 37,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_38": {
+    "Type": 2,
+    "Index": 38,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 38,
+      "Name": "BlackSun04",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 526.03,
+          "Y": 0.0,
+          "Z": 880.94
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 30.4,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 38,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\BlackSun04.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 38,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 38,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_39": {
+    "Type": 2,
+    "Index": 39,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 39,
+      "Name": "AncRuinWall01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -147.01,
+          "Y": -7.62939453E-06,
+          "Z": 1241.24
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 39,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 39,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 39,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_40": {
+    "Type": 2,
+    "Index": 40,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 40,
+      "Name": "AncRuinWall02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -144.06,
+          "Y": -1.52587891E-05,
+          "Z": 1240.03
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 40,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 40,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 40,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_41": {
+    "Type": 2,
+    "Index": 41,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 41,
+      "Name": "AncRuinWall03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -146.18,
+          "Y": 0.0,
+          "Z": 1241.23
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 41,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 41,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 41,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_42": {
+    "Type": 2,
+    "Index": 42,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 42,
+      "Name": "AncRuinDoor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -146.0,
+          "Y": -7.62939453E-06,
+          "Z": 1241.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 42,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinDoor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 42,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 42,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_43": {
+    "Type": 2,
+    "Index": 44,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 44,
+      "Name": "AncRuinPillar01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -146.0,
+          "Y": 0.0,
+          "Z": 1241.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 44,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinPillar01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 44,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 44,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_44": {
+    "Type": 2,
+    "Index": 45,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 45,
+      "Name": "AncRuinDoor",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -146.0,
+          "Y": 77.6,
+          "Z": 1241.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -45.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 45,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinDoor.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 45,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 42,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_45": {
+    "Type": 2,
+    "Index": 46,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 46,
+      "Name": "Statue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 42.57,
+          "Y": -7.62939453E-06,
+          "Z": 1196.73
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 46,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 46,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 46,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_46": {
+    "Type": 2,
+    "Index": 47,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 47,
+      "Name": "Statue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -98.23,
+          "Y": -7.62939453E-06,
+          "Z": 1049.53
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 47,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 47,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 46,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_47": {
+    "Type": 2,
+    "Index": 48,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 48,
+      "Name": "Statue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -69.17,
+          "Y": -7.62939453E-06,
+          "Z": 1084.92
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 48,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 48,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 48,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_48": {
+    "Type": 2,
+    "Index": 49,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 49,
+      "Name": "Statue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 2.92,
+          "Y": 3.10517883,
+          "Z": 1169.98
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 49,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 49,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 48,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_49": {
+    "Type": 2,
+    "Index": 50,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 50,
+      "Name": "LandingHouse15",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 449.66,
+          "Y": -7.62939453E-06,
+          "Z": 1003.5
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 50,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse15.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 50,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 50,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_50": {
+    "Type": 2,
+    "Index": 51,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 51,
+      "Name": "LandingHouse16",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 451.93,
+          "Y": -7.62939453E-06,
+          "Z": 1003.69006
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 51,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse16.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 51,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 51,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_51": {
+    "Type": 2,
+    "Index": 52,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 52,
+      "Name": "LandingHouse17",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 205.56,
+          "Y": 0.0,
+          "Z": 1171.3
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 27.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 52,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse17.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 52,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 52,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_52": {
+    "Type": 2,
+    "Index": 53,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 53,
+      "Name": "LandingHouse18",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 205.0,
+          "Y": 0.0,
+          "Z": 1171.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 27.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 53,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse18.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 53,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 53,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_53": {
+    "Type": 2,
+    "Index": 54,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 54,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 55.42,
+          "Y": -7.62939453E-06,
+          "Z": 1274.89
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 54,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 54,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 54,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_54": {
+    "Type": 2,
+    "Index": 55,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 55,
+      "Name": "Tropicalbush05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -266.55,
+          "Y": -7.62939453E-06,
+          "Z": 458.393433
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 55,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 55,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 55,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_55": {
+    "Type": 2,
+    "Index": 56,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 56,
+      "Name": "Tropicalbush05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -333.063873,
+          "Y": -3.81469727E-06,
+          "Z": 551.9444
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 56,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 56,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 55,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_56": {
+    "Type": 2,
+    "Index": 57,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 57,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 677.85,
+          "Y": -2.28881836E-05,
+          "Z": 756.82
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -103.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 57,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 57,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 57,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_57": {
+    "Type": 2,
+    "Index": 58,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 58,
+      "Name": "DinosaurSkeleton",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 601.2377,
+          "Y": -3.05175781E-05,
+          "Z": 848.733643
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -4.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 58,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone04.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 58,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 58,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_58": {
+    "Type": 2,
+    "Index": 59,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 59,
+      "Name": "JungleTree09",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -490.23,
+          "Y": -7.62939453E-06,
+          "Z": 706.27
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -225.6,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 59,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 59,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 59,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_59": {
+    "Type": 2,
+    "Index": 60,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 60,
+      "Name": "SlaveCage",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -418.4,
+          "Y": 3.81469727E-06,
+          "Z": 741.722046
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -180.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 60,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 60,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 60,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_60": {
+    "Type": 2,
+    "Index": 61,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 61,
+      "Name": "SlaveCage",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -397.13916,
+          "Y": -1.52587891E-05,
+          "Z": 678.486938
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -220.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 61,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 61,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 60,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_61": {
+    "Type": 2,
+    "Index": 62,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 62,
+      "Name": "SlaveCage",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -351.622772,
+          "Y": 0.0,
+          "Z": 933.0915
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -463.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 62,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 62,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 60,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_62": {
+    "Type": 2,
+    "Index": 63,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 63,
+      "Name": "SlaveCage",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 316.74353,
+          "Y": -3.81469727E-06,
+          "Z": 1023.82294
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -433.6,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 63,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 63,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 60,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_63": {
+    "Type": 2,
+    "Index": 64,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 64,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 396.248535,
+          "Y": -3.81469727E-06,
+          "Z": 457.121857
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 64,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 64,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 64,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_64": {
+    "Type": 2,
+    "Index": 65,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 65,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 418.979279,
+          "Y": 0.0,
+          "Z": 600.032654
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 65,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 65,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 64,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_65": {
+    "Type": 2,
+    "Index": 66,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 66,
+      "Name": "JungleTree09",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -443.91,
+          "Y": -7.62939453E-06,
+          "Z": -60.05098
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -98.4,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.8,
+          "Y": 0.8,
+          "Z": 0.8
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 66,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 66,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 66,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_66": {
+    "Type": 2,
+    "Index": 67,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 67,
+      "Name": "Tropicalbush05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -5.654831,
+          "Y": -7.62939453E-06,
+          "Z": 440.486145
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 67,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 67,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 67,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_67": {
+    "Type": 2,
+    "Index": 68,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 68,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 31.86855,
+          "Y": -7.62939453E-06,
+          "Z": 424.6397
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 68,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 68,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 64,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_68": {
+    "Type": 2,
+    "Index": 69,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 69,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 265.188232,
+          "Y": -7.62939453E-06,
+          "Z": 216.759674
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 69,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 69,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 64,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_69": {
+    "Type": 2,
+    "Index": 70,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 70,
+      "Name": "Tropicalbush05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 274.094421,
+          "Y": -10.4162369,
+          "Z": 247.367233
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 70,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 70,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 67,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_70": {
+    "Type": 2,
+    "Index": 71,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 71,
+      "Name": "Tropicalbush05",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -276.133728,
+          "Y": 0.0,
+          "Z": 184.660583
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 71,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 71,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 67,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_71": {
+    "Type": 2,
+    "Index": 72,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 72,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -307.1236,
+          "Y": -7.62939453E-06,
+          "Z": 182.704575
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 72,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 72,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 64,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_72": {
+    "Type": 3,
+    "Index": 73,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 73,
+      "Name": "NavMesh",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 73,
+      "MeshFilePath": "",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 73,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 73,
+      "CellCount": 312
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    },
+    "Cell_0": {
+      "CellIndex": 0,
+      "PositionX": 331,
+      "PositionY": 0,
+      "PositionZ": 307,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_1": {
+      "CellIndex": 1,
+      "PositionX": 200,
+      "PositionY": 0,
+      "PositionZ": 215,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_2": {
+      "CellIndex": 2,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_3": {
+      "CellIndex": 3,
+      "PositionX": 200,
+      "PositionY": 0,
+      "PositionZ": 215,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_4": {
+      "CellIndex": 4,
+      "PositionX": 81,
+      "PositionY": 0,
+      "PositionZ": 203,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_5": {
+      "CellIndex": 5,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_6": {
+      "CellIndex": 6,
+      "PositionX": 81,
+      "PositionY": 0,
+      "PositionZ": 203,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_7": {
+      "CellIndex": 7,
+      "PositionX": 66,
+      "PositionY": 0,
+      "PositionZ": 396,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_8": {
+      "CellIndex": 8,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_9": {
+      "CellIndex": 9,
+      "PositionX": 66,
+      "PositionY": 0,
+      "PositionZ": 396,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_10": {
+      "CellIndex": 10,
+      "PositionX": 153,
+      "PositionY": 0,
+      "PositionZ": 535,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_11": {
+      "CellIndex": 11,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_12": {
+      "CellIndex": 12,
+      "PositionX": 153,
+      "PositionY": 0,
+      "PositionZ": 535,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_13": {
+      "CellIndex": 13,
+      "PositionX": 206,
+      "PositionY": 0,
+      "PositionZ": 534,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_14": {
+      "CellIndex": 14,
+      "PositionX": 228,
+      "PositionY": 0,
+      "PositionZ": 461,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_15": {
+      "CellIndex": 15,
+      "PositionX": 206,
+      "PositionY": 0,
+      "PositionZ": 534,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_16": {
+      "CellIndex": 16,
+      "PositionX": 329,
+      "PositionY": 0,
+      "PositionZ": 466,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_17": {
+      "CellIndex": 17,
+      "PositionX": 298,
+      "PositionY": 0,
+      "PositionZ": 430,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_18": {
+      "CellIndex": 18,
+      "PositionX": 329,
+      "PositionY": 0,
+      "PositionZ": 466,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_19": {
+      "CellIndex": 19,
+      "PositionX": 338,
+      "PositionY": 0,
+      "PositionZ": 444,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_20": {
+      "CellIndex": 20,
+      "PositionX": 298,
+      "PositionY": 0,
+      "PositionZ": 430,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_21": {
+      "CellIndex": 21,
+      "PositionX": 338,
+      "PositionY": 0,
+      "PositionZ": 444,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_22": {
+      "CellIndex": 22,
+      "PositionX": 331,
+      "PositionY": 0,
+      "PositionZ": 307,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_23": {
+      "CellIndex": 23,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_24": {
+      "CellIndex": 24,
+      "PositionX": 298,
+      "PositionY": 0,
+      "PositionZ": 430,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_25": {
+      "CellIndex": 25,
+      "PositionX": 338,
+      "PositionY": 0,
+      "PositionZ": 444,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_26": {
+      "CellIndex": 26,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_27": {
+      "CellIndex": 27,
+      "PositionX": 228,
+      "PositionY": 0,
+      "PositionZ": 461,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_28": {
+      "CellIndex": 28,
+      "PositionX": 298,
+      "PositionY": 0,
+      "PositionZ": 430,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_29": {
+      "CellIndex": 29,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_30": {
+      "CellIndex": 30,
+      "PositionX": 206,
+      "PositionY": 0,
+      "PositionZ": 534,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_31": {
+      "CellIndex": 31,
+      "PositionX": 298,
+      "PositionY": 0,
+      "PositionZ": 430,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_32": {
+      "CellIndex": 32,
+      "PositionX": 228,
+      "PositionY": 0,
+      "PositionZ": 461,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_33": {
+      "CellIndex": 33,
+      "PositionX": 153,
+      "PositionY": 0,
+      "PositionZ": 535,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_34": {
+      "CellIndex": 34,
+      "PositionX": 228,
+      "PositionY": 0,
+      "PositionZ": 461,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_35": {
+      "CellIndex": 35,
+      "PositionX": 215,
+      "PositionY": 0,
+      "PositionZ": 350,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_36": {
+      "CellIndex": 36,
+      "PositionX": 206,
+      "PositionY": 0,
+      "PositionZ": 534,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_37": {
+      "CellIndex": 37,
+      "PositionX": 187,
+      "PositionY": 0,
+      "PositionZ": 583,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_38": {
+      "CellIndex": 38,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_39": {
+      "CellIndex": 39,
+      "PositionX": 399,
+      "PositionY": 0,
+      "PositionZ": 566,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_40": {
+      "CellIndex": 40,
+      "PositionX": 376,
+      "PositionY": 0,
+      "PositionZ": 483,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_41": {
+      "CellIndex": 41,
+      "PositionX": 337,
+      "PositionY": 0,
+      "PositionZ": 549,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_42": {
+      "CellIndex": 42,
+      "PositionX": 376,
+      "PositionY": 0,
+      "PositionZ": 483,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_43": {
+      "CellIndex": 43,
+      "PositionX": 329,
+      "PositionY": 0,
+      "PositionZ": 466,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_44": {
+      "CellIndex": 44,
+      "PositionX": 337,
+      "PositionY": 0,
+      "PositionZ": 549,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_45": {
+      "CellIndex": 45,
+      "PositionX": 568,
+      "PositionY": 0,
+      "PositionZ": 760,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_46": {
+      "CellIndex": 46,
+      "PositionX": 399,
+      "PositionY": 0,
+      "PositionZ": 566,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_47": {
+      "CellIndex": 47,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_48": {
+      "CellIndex": 48,
+      "PositionX": 472,
+      "PositionY": 0,
+      "PositionZ": 901,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_49": {
+      "CellIndex": 49,
+      "PositionX": 493,
+      "PositionY": 0,
+      "PositionZ": 820,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_50": {
+      "CellIndex": 50,
+      "PositionX": 404,
+      "PositionY": 0,
+      "PositionZ": 862,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_51": {
+      "CellIndex": 51,
+      "PositionX": 493,
+      "PositionY": 0,
+      "PositionZ": 820,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_52": {
+      "CellIndex": 52,
+      "PositionX": 568,
+      "PositionY": 0,
+      "PositionZ": 760,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_53": {
+      "CellIndex": 53,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_54": {
+      "CellIndex": 54,
+      "PositionX": 404,
+      "PositionY": 0,
+      "PositionZ": 862,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_55": {
+      "CellIndex": 55,
+      "PositionX": 493,
+      "PositionY": 0,
+      "PositionZ": 820,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_56": {
+      "CellIndex": 56,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_57": {
+      "CellIndex": 57,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_58": {
+      "CellIndex": 58,
+      "PositionX": 329,
+      "PositionY": 0,
+      "PositionZ": 466,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_59": {
+      "CellIndex": 59,
+      "PositionX": 206,
+      "PositionY": 0,
+      "PositionZ": 534,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_60": {
+      "CellIndex": 60,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_61": {
+      "CellIndex": 61,
+      "PositionX": 337,
+      "PositionY": 0,
+      "PositionZ": 549,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_62": {
+      "CellIndex": 62,
+      "PositionX": 329,
+      "PositionY": 0,
+      "PositionZ": 466,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_63": {
+      "CellIndex": 63,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_64": {
+      "CellIndex": 64,
+      "PositionX": 399,
+      "PositionY": 0,
+      "PositionZ": 566,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_65": {
+      "CellIndex": 65,
+      "PositionX": 337,
+      "PositionY": 0,
+      "PositionZ": 549,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_66": {
+      "CellIndex": 66,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_67": {
+      "CellIndex": 67,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_68": {
+      "CellIndex": 68,
+      "PositionX": 399,
+      "PositionY": 0,
+      "PositionZ": 566,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_69": {
+      "CellIndex": 69,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_70": {
+      "CellIndex": 70,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 632,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_71": {
+      "CellIndex": 71,
+      "PositionX": 238,
+      "PositionY": 0,
+      "PositionZ": 653,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_72": {
+      "CellIndex": 72,
+      "PositionX": 218,
+      "PositionY": 0,
+      "PositionZ": 598,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_73": {
+      "CellIndex": 73,
+      "PositionX": 238,
+      "PositionY": 0,
+      "PositionZ": 653,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_74": {
+      "CellIndex": 74,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_75": {
+      "CellIndex": 75,
+      "PositionX": 238,
+      "PositionY": 0,
+      "PositionZ": 653,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_76": {
+      "CellIndex": 76,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_77": {
+      "CellIndex": 77,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_78": {
+      "CellIndex": 78,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_79": {
+      "CellIndex": 79,
+      "PositionX": 404,
+      "PositionY": 0,
+      "PositionZ": 862,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_80": {
+      "CellIndex": 80,
+      "PositionX": 350,
+      "PositionY": 0,
+      "PositionZ": 795,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_81": {
+      "CellIndex": 81,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_82": {
+      "CellIndex": 82,
+      "PositionX": 152,
+      "PositionY": 0,
+      "PositionZ": 1098,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_83": {
+      "CellIndex": 83,
+      "PositionX": 193,
+      "PositionY": 0,
+      "PositionZ": 982,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_84": {
+      "CellIndex": 84,
+      "PositionX": 152,
+      "PositionY": 0,
+      "PositionZ": 1098,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_85": {
+      "CellIndex": 85,
+      "PositionX": 259,
+      "PositionY": 0,
+      "PositionZ": 1107,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_86": {
+      "CellIndex": 86,
+      "PositionX": 193,
+      "PositionY": 0,
+      "PositionZ": 982,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_87": {
+      "CellIndex": 87,
+      "PositionX": 259,
+      "PositionY": 0,
+      "PositionZ": 1107,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_88": {
+      "CellIndex": 88,
+      "PositionX": 337,
+      "PositionY": 0,
+      "PositionZ": 1071,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_89": {
+      "CellIndex": 89,
+      "PositionX": 299,
+      "PositionY": 0,
+      "PositionZ": 1035,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_90": {
+      "CellIndex": 90,
+      "PositionX": 259,
+      "PositionY": 0,
+      "PositionZ": 1107,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_91": {
+      "CellIndex": 91,
+      "PositionX": 299,
+      "PositionY": 0,
+      "PositionZ": 1035,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_92": {
+      "CellIndex": 92,
+      "PositionX": 193,
+      "PositionY": 0,
+      "PositionZ": 982,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_93": {
+      "CellIndex": 93,
+      "PositionX": 299,
+      "PositionY": 0,
+      "PositionZ": 1035,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_94": {
+      "CellIndex": 94,
+      "PositionX": 285,
+      "PositionY": 0,
+      "PositionZ": 961,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_95": {
+      "CellIndex": 95,
+      "PositionX": 246,
+      "PositionY": 0,
+      "PositionZ": 976,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_96": {
+      "CellIndex": 96,
+      "PositionX": 285,
+      "PositionY": 0,
+      "PositionZ": 961,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_97": {
+      "CellIndex": 97,
+      "PositionX": 404,
+      "PositionY": 0,
+      "PositionZ": 862,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_98": {
+      "CellIndex": 98,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_99": {
+      "CellIndex": 99,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_100": {
+      "CellIndex": 100,
+      "PositionX": 193,
+      "PositionY": 0,
+      "PositionZ": 982,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_101": {
+      "CellIndex": 101,
+      "PositionX": 246,
+      "PositionY": 0,
+      "PositionZ": 976,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_102": {
+      "CellIndex": 102,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_103": {
+      "CellIndex": 103,
+      "PositionX": 246,
+      "PositionY": 0,
+      "PositionZ": 976,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_104": {
+      "CellIndex": 104,
+      "PositionX": 285,
+      "PositionY": 0,
+      "PositionZ": 961,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_105": {
+      "CellIndex": 105,
+      "PositionX": 193,
+      "PositionY": 0,
+      "PositionZ": 982,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_106": {
+      "CellIndex": 106,
+      "PositionX": 299,
+      "PositionY": 0,
+      "PositionZ": 1035,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_107": {
+      "CellIndex": 107,
+      "PositionX": 246,
+      "PositionY": 0,
+      "PositionZ": 976,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_108": {
+      "CellIndex": 108,
+      "PositionX": 238,
+      "PositionY": 0,
+      "PositionZ": 653,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_109": {
+      "CellIndex": 109,
+      "PositionX": 125,
+      "PositionY": 0,
+      "PositionZ": 807,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_110": {
+      "CellIndex": 110,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_111": {
+      "CellIndex": 111,
+      "PositionX": 125,
+      "PositionY": 0,
+      "PositionZ": 807,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_112": {
+      "CellIndex": 112,
+      "PositionX": 5,
+      "PositionY": 0,
+      "PositionZ": 779,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_113": {
+      "CellIndex": 113,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_114": {
+      "CellIndex": 114,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_115": {
+      "CellIndex": 115,
+      "PositionX": -45,
+      "PositionY": 0,
+      "PositionZ": 1099,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_116": {
+      "CellIndex": 116,
+      "PositionX": -4,
+      "PositionY": 0,
+      "PositionZ": 1145,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_117": {
+      "CellIndex": 117,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_118": {
+      "CellIndex": 118,
+      "PositionX": -4,
+      "PositionY": 0,
+      "PositionZ": 1145,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_119": {
+      "CellIndex": 119,
+      "PositionX": 152,
+      "PositionY": 0,
+      "PositionZ": 1098,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_120": {
+      "CellIndex": 120,
+      "PositionX": -45,
+      "PositionY": 0,
+      "PositionZ": 1099,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_121": {
+      "CellIndex": 121,
+      "PositionX": -80,
+      "PositionY": 0,
+      "PositionZ": 1122,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_122": {
+      "CellIndex": 122,
+      "PositionX": -28,
+      "PositionY": 0,
+      "PositionZ": 1173,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_123": {
+      "CellIndex": 123,
+      "PositionX": -45,
+      "PositionY": 0,
+      "PositionZ": 1099,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_124": {
+      "CellIndex": 124,
+      "PositionX": -28,
+      "PositionY": 0,
+      "PositionZ": 1173,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_125": {
+      "CellIndex": 125,
+      "PositionX": -4,
+      "PositionY": 0,
+      "PositionZ": 1145,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_126": {
+      "CellIndex": 126,
+      "PositionX": 5,
+      "PositionY": 0,
+      "PositionZ": 779,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_127": {
+      "CellIndex": 127,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_128": {
+      "CellIndex": 128,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_129": {
+      "CellIndex": 129,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_130": {
+      "CellIndex": 130,
+      "PositionX": -158,
+      "PositionY": 0,
+      "PositionZ": 973,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_131": {
+      "CellIndex": 131,
+      "PositionX": -53,
+      "PositionY": 0,
+      "PositionZ": 1061,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_132": {
+      "CellIndex": 132,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_133": {
+      "CellIndex": 133,
+      "PositionX": -53,
+      "PositionY": 0,
+      "PositionZ": 1061,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_134": {
+      "CellIndex": 134,
+      "PositionX": -45,
+      "PositionY": 0,
+      "PositionZ": 1099,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_135": {
+      "CellIndex": 135,
+      "PositionX": 103,
+      "PositionY": 0,
+      "PositionZ": 934,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_136": {
+      "CellIndex": 136,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_137": {
+      "CellIndex": 137,
+      "PositionX": -53,
+      "PositionY": 0,
+      "PositionZ": 1061,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_138": {
+      "CellIndex": 138,
+      "PositionX": -259,
+      "PositionY": 0,
+      "PositionZ": 635,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_139": {
+      "CellIndex": 139,
+      "PositionX": -366,
+      "PositionY": 0,
+      "PositionZ": 674,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_140": {
+      "CellIndex": 140,
+      "PositionX": -401,
+      "PositionY": 0,
+      "PositionZ": 762,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_141": {
+      "CellIndex": 141,
+      "PositionX": -401,
+      "PositionY": 0,
+      "PositionZ": 762,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_142": {
+      "CellIndex": 142,
+      "PositionX": -413,
+      "PositionY": 0,
+      "PositionZ": 822,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_143": {
+      "CellIndex": 143,
+      "PositionX": -340,
+      "PositionY": 0,
+      "PositionZ": 834,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_144": {
+      "CellIndex": 144,
+      "PositionX": -413,
+      "PositionY": 0,
+      "PositionZ": 822,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_145": {
+      "CellIndex": 145,
+      "PositionX": -353,
+      "PositionY": 0,
+      "PositionZ": 907,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_146": {
+      "CellIndex": 146,
+      "PositionX": -302,
+      "PositionY": 0,
+      "PositionZ": 877,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_147": {
+      "CellIndex": 147,
+      "PositionX": -353,
+      "PositionY": 0,
+      "PositionZ": 907,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_148": {
+      "CellIndex": 148,
+      "PositionX": -250,
+      "PositionY": 0,
+      "PositionZ": 981,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_149": {
+      "CellIndex": 149,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_150": {
+      "CellIndex": 150,
+      "PositionX": -250,
+      "PositionY": 0,
+      "PositionZ": 981,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_151": {
+      "CellIndex": 151,
+      "PositionX": -158,
+      "PositionY": 0,
+      "PositionZ": 973,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_152": {
+      "CellIndex": 152,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_153": {
+      "CellIndex": 153,
+      "PositionX": 5,
+      "PositionY": 0,
+      "PositionZ": 779,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_154": {
+      "CellIndex": 154,
+      "PositionX": -34,
+      "PositionY": 0,
+      "PositionZ": 755,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_155": {
+      "CellIndex": 155,
+      "PositionX": -70,
+      "PositionY": 0,
+      "PositionZ": 798,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_156": {
+      "CellIndex": 156,
+      "PositionX": -34,
+      "PositionY": 0,
+      "PositionZ": 755,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_157": {
+      "CellIndex": 157,
+      "PositionX": -157,
+      "PositionY": 0,
+      "PositionZ": 733,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_158": {
+      "CellIndex": 158,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_159": {
+      "CellIndex": 159,
+      "PositionX": -157,
+      "PositionY": 0,
+      "PositionZ": 733,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_160": {
+      "CellIndex": 160,
+      "PositionX": -208,
+      "PositionY": 0,
+      "PositionZ": 714,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_161": {
+      "CellIndex": 161,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_162": {
+      "CellIndex": 162,
+      "PositionX": -208,
+      "PositionY": 0,
+      "PositionZ": 714,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_163": {
+      "CellIndex": 163,
+      "PositionX": -209,
+      "PositionY": 0,
+      "PositionZ": 647,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_164": {
+      "CellIndex": 164,
+      "PositionX": -245,
+      "PositionY": 0,
+      "PositionZ": 704,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_165": {
+      "CellIndex": 165,
+      "PositionX": -209,
+      "PositionY": 0,
+      "PositionZ": 647,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_166": {
+      "CellIndex": 166,
+      "PositionX": -134,
+      "PositionY": 0,
+      "PositionZ": 556,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_167": {
+      "CellIndex": 167,
+      "PositionX": -188,
+      "PositionY": 0,
+      "PositionZ": 571,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_168": {
+      "CellIndex": 168,
+      "PositionX": -134,
+      "PositionY": 0,
+      "PositionZ": 556,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_169": {
+      "CellIndex": 169,
+      "PositionX": -55,
+      "PositionY": 0,
+      "PositionZ": 481,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_170": {
+      "CellIndex": 170,
+      "PositionX": -100,
+      "PositionY": 0,
+      "PositionZ": 454,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_171": {
+      "CellIndex": 171,
+      "PositionX": -55,
+      "PositionY": 0,
+      "PositionZ": 481,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_172": {
+      "CellIndex": 172,
+      "PositionX": -22,
+      "PositionY": 0,
+      "PositionZ": 409,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_173": {
+      "CellIndex": 173,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_174": {
+      "CellIndex": 174,
+      "PositionX": -22,
+      "PositionY": 0,
+      "PositionZ": 409,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_175": {
+      "CellIndex": 175,
+      "PositionX": 66,
+      "PositionY": 0,
+      "PositionZ": 396,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_176": {
+      "CellIndex": 176,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_177": {
+      "CellIndex": 177,
+      "PositionX": -311,
+      "PositionY": 0,
+      "PositionZ": 536,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_178": {
+      "CellIndex": 178,
+      "PositionX": -259,
+      "PositionY": 0,
+      "PositionZ": 635,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_179": {
+      "CellIndex": 179,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_180": {
+      "CellIndex": 180,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_181": {
+      "CellIndex": 181,
+      "PositionX": -311,
+      "PositionY": 0,
+      "PositionZ": 536,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_182": {
+      "CellIndex": 182,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_183": {
+      "CellIndex": 183,
+      "PositionX": -247,
+      "PositionY": 0,
+      "PositionZ": 165,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_184": {
+      "CellIndex": 184,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_185": {
+      "CellIndex": 185,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_186": {
+      "CellIndex": 186,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_187": {
+      "CellIndex": 187,
+      "PositionX": 5,
+      "PositionY": 0,
+      "PositionZ": 779,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_188": {
+      "CellIndex": 188,
+      "PositionX": -70,
+      "PositionY": 0,
+      "PositionZ": 798,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_189": {
+      "CellIndex": 189,
+      "PositionX": -158,
+      "PositionY": 0,
+      "PositionZ": 973,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_190": {
+      "CellIndex": 190,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_191": {
+      "CellIndex": 191,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_192": {
+      "CellIndex": 192,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_193": {
+      "CellIndex": 193,
+      "PositionX": -71,
+      "PositionY": 0,
+      "PositionZ": 899,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_194": {
+      "CellIndex": 194,
+      "PositionX": -70,
+      "PositionY": 0,
+      "PositionZ": 798,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_195": {
+      "CellIndex": 195,
+      "PositionX": -70,
+      "PositionY": 0,
+      "PositionZ": 798,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_196": {
+      "CellIndex": 196,
+      "PositionX": -34,
+      "PositionY": 0,
+      "PositionZ": 755,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_197": {
+      "CellIndex": 197,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_198": {
+      "CellIndex": 198,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_199": {
+      "CellIndex": 199,
+      "PositionX": -70,
+      "PositionY": 0,
+      "PositionZ": 798,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_200": {
+      "CellIndex": 200,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_201": {
+      "CellIndex": 201,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_202": {
+      "CellIndex": 202,
+      "PositionX": -157,
+      "PositionY": 0,
+      "PositionZ": 733,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_203": {
+      "CellIndex": 203,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_204": {
+      "CellIndex": 204,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_205": {
+      "CellIndex": 205,
+      "PositionX": -158,
+      "PositionY": 0,
+      "PositionZ": 973,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_206": {
+      "CellIndex": 206,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_207": {
+      "CellIndex": 207,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_208": {
+      "CellIndex": 208,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_209": {
+      "CellIndex": 209,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_210": {
+      "CellIndex": 210,
+      "PositionX": -167,
+      "PositionY": 0,
+      "PositionZ": 864,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_211": {
+      "CellIndex": 211,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_212": {
+      "CellIndex": 212,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_213": {
+      "CellIndex": 213,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_214": {
+      "CellIndex": 214,
+      "PositionX": -143,
+      "PositionY": 0,
+      "PositionZ": 776,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_215": {
+      "CellIndex": 215,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_216": {
+      "CellIndex": 216,
+      "PositionX": -353,
+      "PositionY": 0,
+      "PositionZ": 907,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_217": {
+      "CellIndex": 217,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_218": {
+      "CellIndex": 218,
+      "PositionX": -302,
+      "PositionY": 0,
+      "PositionZ": 877,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_219": {
+      "CellIndex": 219,
+      "PositionX": -302,
+      "PositionY": 0,
+      "PositionZ": 877,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_220": {
+      "CellIndex": 220,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 924,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_221": {
+      "CellIndex": 221,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_222": {
+      "CellIndex": 222,
+      "PositionX": -413,
+      "PositionY": 0,
+      "PositionZ": 822,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_223": {
+      "CellIndex": 223,
+      "PositionX": -302,
+      "PositionY": 0,
+      "PositionZ": 877,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_224": {
+      "CellIndex": 224,
+      "PositionX": -340,
+      "PositionY": 0,
+      "PositionZ": 834,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_225": {
+      "CellIndex": 225,
+      "PositionX": -340,
+      "PositionY": 0,
+      "PositionZ": 834,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_226": {
+      "CellIndex": 226,
+      "PositionX": -302,
+      "PositionY": 0,
+      "PositionZ": 877,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_227": {
+      "CellIndex": 227,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_228": {
+      "CellIndex": 228,
+      "PositionX": -340,
+      "PositionY": 0,
+      "PositionZ": 834,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_229": {
+      "CellIndex": 229,
+      "PositionX": -268,
+      "PositionY": 0,
+      "PositionZ": 849,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_230": {
+      "CellIndex": 230,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_231": {
+      "CellIndex": 231,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_232": {
+      "CellIndex": 232,
+      "PositionX": -208,
+      "PositionY": 0,
+      "PositionZ": 714,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_233": {
+      "CellIndex": 233,
+      "PositionX": -245,
+      "PositionY": 0,
+      "PositionZ": 704,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_234": {
+      "CellIndex": 234,
+      "PositionX": -209,
+      "PositionY": 0,
+      "PositionZ": 647,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_235": {
+      "CellIndex": 235,
+      "PositionX": -259,
+      "PositionY": 0,
+      "PositionZ": 635,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_236": {
+      "CellIndex": 236,
+      "PositionX": -245,
+      "PositionY": 0,
+      "PositionZ": 704,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_237": {
+      "CellIndex": 237,
+      "PositionX": -188,
+      "PositionY": 0,
+      "PositionZ": 571,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_238": {
+      "CellIndex": 238,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_239": {
+      "CellIndex": 239,
+      "PositionX": -209,
+      "PositionY": 0,
+      "PositionZ": 647,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_240": {
+      "CellIndex": 240,
+      "PositionX": -209,
+      "PositionY": 0,
+      "PositionZ": 647,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_241": {
+      "CellIndex": 241,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_242": {
+      "CellIndex": 242,
+      "PositionX": -259,
+      "PositionY": 0,
+      "PositionZ": 635,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_243": {
+      "CellIndex": 243,
+      "PositionX": -259,
+      "PositionY": 0,
+      "PositionZ": 635,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_244": {
+      "CellIndex": 244,
+      "PositionX": -401,
+      "PositionY": 0,
+      "PositionZ": 762,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_245": {
+      "CellIndex": 245,
+      "PositionX": -245,
+      "PositionY": 0,
+      "PositionZ": 704,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_246": {
+      "CellIndex": 246,
+      "PositionX": -245,
+      "PositionY": 0,
+      "PositionZ": 704,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_247": {
+      "CellIndex": 247,
+      "PositionX": -401,
+      "PositionY": 0,
+      "PositionZ": 762,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_248": {
+      "CellIndex": 248,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_249": {
+      "CellIndex": 249,
+      "PositionX": -401,
+      "PositionY": 0,
+      "PositionZ": 762,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_250": {
+      "CellIndex": 250,
+      "PositionX": -340,
+      "PositionY": 0,
+      "PositionZ": 834,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_251": {
+      "CellIndex": 251,
+      "PositionX": -235,
+      "PositionY": 0,
+      "PositionZ": 769,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_252": {
+      "CellIndex": 252,
+      "PositionX": -134,
+      "PositionY": 0,
+      "PositionZ": 556,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_253": {
+      "CellIndex": 253,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_254": {
+      "CellIndex": 254,
+      "PositionX": -188,
+      "PositionY": 0,
+      "PositionZ": 571,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_255": {
+      "CellIndex": 255,
+      "PositionX": -188,
+      "PositionY": 0,
+      "PositionZ": 571,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_256": {
+      "CellIndex": 256,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_257": {
+      "CellIndex": 257,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_258": {
+      "CellIndex": 258,
+      "PositionX": -134,
+      "PositionY": 0,
+      "PositionZ": 556,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_259": {
+      "CellIndex": 259,
+      "PositionX": -100,
+      "PositionY": 0,
+      "PositionZ": 454,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_260": {
+      "CellIndex": 260,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_261": {
+      "CellIndex": 261,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_262": {
+      "CellIndex": 262,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_263": {
+      "CellIndex": 263,
+      "PositionX": -244,
+      "PositionY": 0,
+      "PositionZ": 515,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_264": {
+      "CellIndex": 264,
+      "PositionX": -55,
+      "PositionY": 0,
+      "PositionZ": 481,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_265": {
+      "CellIndex": 265,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_266": {
+      "CellIndex": 266,
+      "PositionX": -100,
+      "PositionY": 0,
+      "PositionZ": 454,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_267": {
+      "CellIndex": 267,
+      "PositionX": -100,
+      "PositionY": 0,
+      "PositionZ": 454,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_268": {
+      "CellIndex": 268,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_269": {
+      "CellIndex": 269,
+      "PositionX": -144,
+      "PositionY": 0,
+      "PositionZ": 376,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_270": {
+      "CellIndex": 270,
+      "PositionX": -100,
+      "PositionY": 0,
+      "PositionZ": 454,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_271": {
+      "CellIndex": 271,
+      "PositionX": -144,
+      "PositionY": 0,
+      "PositionZ": 376,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_272": {
+      "CellIndex": 272,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_273": {
+      "CellIndex": 273,
+      "PositionX": -144,
+      "PositionY": 0,
+      "PositionZ": 376,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_274": {
+      "CellIndex": 274,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_275": {
+      "CellIndex": 275,
+      "PositionX": -170,
+      "PositionY": 0,
+      "PositionZ": 459,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_276": {
+      "CellIndex": 276,
+      "PositionX": 81,
+      "PositionY": 0,
+      "PositionZ": 203,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_277": {
+      "CellIndex": 277,
+      "PositionX": 0,
+      "PositionY": 0,
+      "PositionZ": 116,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_278": {
+      "CellIndex": 278,
+      "PositionX": -9,
+      "PositionY": 0,
+      "PositionZ": 211,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_279": {
+      "CellIndex": 279,
+      "PositionX": 0,
+      "PositionY": 0,
+      "PositionZ": 116,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_280": {
+      "CellIndex": 280,
+      "PositionX": -129,
+      "PositionY": 0,
+      "PositionZ": 114,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_281": {
+      "CellIndex": 281,
+      "PositionX": -126,
+      "PositionY": 0,
+      "PositionZ": 181,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_282": {
+      "CellIndex": 282,
+      "PositionX": -126,
+      "PositionY": 0,
+      "PositionZ": 181,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_283": {
+      "CellIndex": 283,
+      "PositionX": -247,
+      "PositionY": 0,
+      "PositionZ": 165,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_284": {
+      "CellIndex": 284,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_285": {
+      "CellIndex": 285,
+      "PositionX": -9,
+      "PositionY": 0,
+      "PositionZ": 211,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_286": {
+      "CellIndex": 286,
+      "PositionX": 0,
+      "PositionY": 0,
+      "PositionZ": 116,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_287": {
+      "CellIndex": 287,
+      "PositionX": -126,
+      "PositionY": 0,
+      "PositionZ": 181,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_288": {
+      "CellIndex": 288,
+      "PositionX": -9,
+      "PositionY": 0,
+      "PositionZ": 211,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_289": {
+      "CellIndex": 289,
+      "PositionX": -126,
+      "PositionY": 0,
+      "PositionZ": 181,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_290": {
+      "CellIndex": 290,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_291": {
+      "CellIndex": 291,
+      "PositionX": 66,
+      "PositionY": 0,
+      "PositionZ": 396,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_292": {
+      "CellIndex": 292,
+      "PositionX": 81,
+      "PositionY": 0,
+      "PositionZ": 203,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_293": {
+      "CellIndex": 293,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_294": {
+      "CellIndex": 294,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_295": {
+      "CellIndex": 295,
+      "PositionX": 81,
+      "PositionY": 0,
+      "PositionZ": 203,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_296": {
+      "CellIndex": 296,
+      "PositionX": -9,
+      "PositionY": 0,
+      "PositionZ": 211,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_297": {
+      "CellIndex": 297,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_298": {
+      "CellIndex": 298,
+      "PositionX": -9,
+      "PositionY": 0,
+      "PositionZ": 211,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_299": {
+      "CellIndex": 299,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_300": {
+      "CellIndex": 300,
+      "PositionX": -22,
+      "PositionY": 0,
+      "PositionZ": 409,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_301": {
+      "CellIndex": 301,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_302": {
+      "CellIndex": 302,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_303": {
+      "CellIndex": 303,
+      "PositionX": -29,
+      "PositionY": 0,
+      "PositionZ": 340,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_304": {
+      "CellIndex": 304,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_305": {
+      "CellIndex": 305,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_306": {
+      "CellIndex": 306,
+      "PositionX": -77,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_307": {
+      "CellIndex": 307,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_308": {
+      "CellIndex": 308,
+      "PositionX": -144,
+      "PositionY": 0,
+      "PositionZ": 376,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_309": {
+      "CellIndex": 309,
+      "PositionX": -113,
+      "PositionY": 0,
+      "PositionZ": 251,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_310": {
+      "CellIndex": 310,
+      "PositionX": -221,
+      "PositionY": 0,
+      "PositionZ": 392,
+      "Option": 0,
+      "Group": 100
+    },
+    "Cell_311": {
+      "CellIndex": 311,
+      "PositionX": -144,
+      "PositionY": 0,
+      "PositionZ": 376,
+      "Option": 0,
+      "Group": 100
+    }
+  }
+}
