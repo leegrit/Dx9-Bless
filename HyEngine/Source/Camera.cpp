@@ -411,6 +411,9 @@ void HyEngine::Camera::ViewFrustumCulling(GameObject * obj)
 {
 	assert(obj != nullptr);	
 
+	if (obj->GetCullable() == false)
+		return;
+
 	bool result = false;
 
 	Mesh* mesh = nullptr;
@@ -569,6 +572,9 @@ void HyEngine::Camera::BeginFrustumCull(D3DXMATRIX viewMat, D3DXMATRIX projMat)
 bool HyEngine::Camera::FrustumCulling(GameObject * obj)
 {
 	assert(obj != nullptr);
+
+	if(obj->GetCullable() == false)
+		return true;
 
 	bool result = false;
 

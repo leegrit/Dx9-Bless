@@ -1177,6 +1177,9 @@
     <FxCompile Include="..\_Shaders\ProgressBar.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\FadeInOut.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">

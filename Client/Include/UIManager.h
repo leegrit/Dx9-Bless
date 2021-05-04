@@ -2,6 +2,7 @@
 #include "Client_Enumerators.h"
 
 class Quest;
+class FadeInOut;
 class UIManager
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -24,8 +25,9 @@ public :
 	void Initialize();
 	void Update();
 
-public :
-	void AddStaticUI(UIElement* pUIElement);
+public : /* For StaticUI */
+	UIElement* GetStaticUI(std::wstring name);
+	//void AddStaticUI(UIElement* pUIElement);
 
 
 public : /* For Interact */
@@ -58,6 +60,8 @@ private : /* Interacive UI */
 	UIElement* m_pPickUpPanel = nullptr;
 	UIElement* m_pWarpPanel = nullptr;
 
+	FadeInOut* m_pFadeInOut = nullptr;
+
 
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;
@@ -76,5 +80,8 @@ private : /* For Quest */
 	std::vector<class QuestGuideUI*> m_subQuestGuideUIList;
 
 	class QuestNoticeUI * m_pQuestNoticeUI = nullptr;
+
+	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
+
 };
 

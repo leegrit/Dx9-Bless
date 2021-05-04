@@ -33,6 +33,14 @@ public:
 public:
 	void OnModeChanged(void*);
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// GETTER FOR SCRIPTABLE DATA
+	//////////////////////////////////////////////////////////////////////////
+public :
+	class PlayerInfo* GetPlayerInfo();
+	class ExpTable * GetExpTable();
+
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER FOR MANAGER
 	//////////////////////////////////////////////////////////////////////////
@@ -45,6 +53,10 @@ public:
 private:
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;
+
+private : /* For ScriptableData */
+	class PlayerInfo * m_pPlayerInfo = nullptr;
+	class ExpTable * m_pExpTable = nullptr;
 
 private : /* For Manager */
 	GameManager* m_pGameManager = nullptr;

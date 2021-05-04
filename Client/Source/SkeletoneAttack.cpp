@@ -7,6 +7,7 @@ void SkeletoneAttack::Enter()
 	m_component->SetAnimationSet(20);
 	m_component->ClearHitOthers();
 	m_elapsed = 0.0f;
+	m_isAttacked = false;
 }
 
 void SkeletoneAttack::Update()

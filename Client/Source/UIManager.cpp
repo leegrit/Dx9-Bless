@@ -9,6 +9,10 @@
 #include "QuestManager.h"
 #include "QuestGuideUI.h"
 #include "QuestNoticeUI.h"
+#include "FadeInOut.h"
+#include "ProgressBar.h"
+#include "LevelUpNoticeUI.h"
+
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -37,6 +41,7 @@ UIManager::~UIManager()
 
 void UIManager::OnQuestDialogOpen(void *)
 {
+	m_pFadeInOut->FadeIn([]() {});
 	for (auto& ui : m_staticUIList)
 	{
 		ui->SetActive(false);
@@ -45,6 +50,7 @@ void UIManager::OnQuestDialogOpen(void *)
 
 void UIManager::OnQuestDialogEnd(void *)
 {
+	m_pFadeInOut->FadeIn([]() {}, 0.5f);
 	for (auto& ui : m_staticUIList)
 	{
 		ui->SetActive(true);
@@ -67,6 +73,9 @@ void UIManager::Initialize()
 
 	m_pWarpPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
 	m_pWarpPanel->SetActive(false);
+
+	m_pFadeInOut = FadeInOut::Create(m_pScene);
+	m_pFadeInOut->SetActive(false);
 
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
@@ -92,23 +101,37 @@ void UIManager::Initialize()
 	/* For QuestNoticeUI */
 	m_pQuestNoticeUI = QuestNoticeUI::Create(m_pScene, L"QuestNoticeUI");
 
+	m_pLevelUpNoticeUI = LevelUpNoticeUI::Create(m_pScene, L"LevelUpNoticeUI");
 
 	/* For Static UI */
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -276, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(120, 120, 1), L"1"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/PortraitCircle/PortraitCircle_0.png", D3DXVECTOR3(0, -291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(160, 160, 1), L"2"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png", D3DXVECTOR3(-368, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"3"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0.png", D3DXVECTOR3(-295.2, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"4"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_1.png", D3DXVECTOR3(-222, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"5"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_2.png", D3DXVECTOR3(-150.4, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"6"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3.png", D3DXVECTOR3(150.4, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"7"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_5.png", D3DXVECTOR3(222, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"8"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6.png", D3DXVECTOR3(295.2, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"9"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7.png", D3DXVECTOR3(368, -325, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(70, 70, 1), L"11"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(-276, -266, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"22"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(276, -266, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 20, 1), L"33"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_1.png", D3DXVECTOR3(-276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"44"));
-	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_2.png", D3DXVECTOR3(276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"55"));
-
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -312.8, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(80, 80, 1), L"1"));
+	//m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/PortraitCircle/PortraitCircle_0.png", D3DXVECTOR3(0, -291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(160, 160, 1), L"2"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png", D3DXVECTOR3(-258, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"3"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0.png", D3DXVECTOR3(-210, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"4"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_1.png", D3DXVECTOR3(-162, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"5"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_2.png", D3DXVECTOR3(-114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"6"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3.png", D3DXVECTOR3(114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_5.png", D3DXVECTOR3(162, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"8"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6.png", D3DXVECTOR3(210, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"9"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7.png", D3DXVECTOR3(258, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"11"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(-235, -308.4, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(350, 15, 1), L"PlayerHP_Back"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_0.png", D3DXVECTOR3(235, -308, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(350, 15, 1), L"PlayerMP_Back"));
+	m_staticUIList.emplace_back(ProgressBar::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_1.png", D3DXVECTOR3(-235.2, -308, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(286, 6.5, 1), L"PlayerHP_Fill"));
+	m_staticUIList.emplace_back(ProgressBar::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_2.png", D3DXVECTOR3(235.2, -308, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(286, 6.5, 1), L"PlayerMP_Fill"));
+	/* exp */
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_2.png", D3DXVECTOR3(-462, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"44"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(-361, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(-261, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(-161, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(-61, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(39, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(139, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(239, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(339, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(439, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(539, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
+	/* exp fill */
+	m_staticUIList.emplace_back(ProgressBar::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_5.png", D3DXVECTOR3(13.2, -372.6, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1000, 1.2, 1), L"PlayerExp_Fill"));
 }
 
 void UIManager::Update()
@@ -129,6 +152,16 @@ void UIManager::Update()
 		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset);
 	}
 
+}
+
+UIElement * UIManager::GetStaticUI(std::wstring name)
+{
+	for (auto& ui : m_staticUIList)
+	{
+		if (ui->CompareName(name))
+			return ui;
+	}
+	return nullptr;
 }
 
 void UIManager::ShowTalkInteractPanel()

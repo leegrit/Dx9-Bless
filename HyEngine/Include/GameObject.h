@@ -121,7 +121,8 @@ namespace HyEngine
 
 		inline void SetViewFrustumCulled(bool result) { m_bViewFrustumCulled = result; }
 		inline bool GetViewFrustumCulled() const { return m_bViewFrustumCulled; }
-
+		inline void SetCullable(bool bCullable) { m_bCullable = bCullable; }
+		inline bool GetCullable() { return m_bCullable; }
 
 		// --------------------------------------------------------------
 		// DATA
@@ -145,6 +146,7 @@ namespace HyEngine
 		// --------------------------------------
 
 		bool m_bViewFrustumCulled; // 기본값 false
+		bool m_bCullable = true; // 기본값 true
 		//TODO : Layer m_layer;
 		// TODO : Scene m_scene;
 		std::wstring m_tag;

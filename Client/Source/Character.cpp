@@ -129,6 +129,14 @@ void Character::OnDied()
 {
 }
 
+void Character::OnHPChanged()
+{
+}
+
+void Character::OnMPChanged()
+{
+}
+
 void Character::SendDamage(GameObject * sender, float damage)
 {
 	if (m_isDied == true)
@@ -142,7 +150,7 @@ void Character::SendDamage(GameObject * sender, float damage)
 	}
 	else
 		m_curHP = resultHP;
-
+	OnHPChanged();
 	if (m_curHP <= 0)
 	{
 		m_isDied = true;
@@ -153,6 +161,28 @@ void Character::SendDamage(GameObject * sender, float damage)
 	{
 		m_isDamaged = true;
 		OnDamaged();
+	}
+}
+
+bool Character::UseMP(float value)
+{
+	if (m_isDied == true)
+		return false;
+	if (m_curMP <= 0)
+		return false;
+
+	OnMPChanged();
+
+	float temp = m_curMP - value;
+	if (0 >= temp)
+	{
+		m_curMP = 0;
+		return true;
+	}
+	else
+	{
+		m_curMP -= temp;
+		return true;
 	}
 }
 

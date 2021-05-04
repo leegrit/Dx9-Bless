@@ -158,9 +158,12 @@
     <ClCompile Include="..\Source\EnemyHPBar.cpp" />
     <ClCompile Include="..\Source\Event.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\ExpTable.cpp" />
+    <ClCompile Include="..\Source\FadeInOut.cpp" />
     <ClCompile Include="..\Source\GameManager.cpp" />
     <ClCompile Include="..\Source\GameScene.cpp" />
     <ClCompile Include="..\Source\IQuestTarget.cpp" />
+    <ClCompile Include="..\Source\LevelUpNoticeUI.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\NamedEnemy.cpp" />
     <ClCompile Include="..\Source\NameFont.cpp" />
@@ -170,6 +173,7 @@
     <ClCompile Include="..\Source\PlayerAction.cpp" />
     <ClCompile Include="..\Source\PlayerCamera.cpp" />
     <ClCompile Include="..\Source\PlayerController.cpp" />
+    <ClCompile Include="..\Source\PlayerInfo.cpp" />
     <ClCompile Include="..\Source\PlayerNormalAttack.cpp" />
     <ClCompile Include="..\Source\Quest.cpp" />
     <ClCompile Include="..\Source\QuestDialogUI.cpp" />
@@ -195,6 +199,7 @@
     <ClCompile Include="..\Source\TitleScene.cpp" />
     <ClCompile Include="..\Source\UIManager.cpp" />
     <ClCompile Include="..\Source\WarpPoint.cpp" />
+    <ClCompile Include="..\Source\ZoomInCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Include\ActionComponent.h" />
@@ -203,6 +208,7 @@
     <ClInclude Include="..\Include\BlessLoadingScene.h" />
     <ClInclude Include="..\Include\Character.h" />
     <ClInclude Include="..\Include\Client_Events.h" />
+    <ClInclude Include="..\Include\Client_GlobalVars.h" />
     <ClInclude Include="..\Include\CombatQuest.h" />
     <ClInclude Include="..\Include\DamageFontScatter.h" />
     <ClInclude Include="..\Include\DummyBossDied.h" />
@@ -217,9 +223,12 @@
     <ClInclude Include="..\Include\EnemyHPBar.h" />
     <ClInclude Include="..\Include\Event.h" />
     <ClInclude Include="..\Include\EventManager.h" />
+    <ClInclude Include="..\Include\ExpTable.h" />
+    <ClInclude Include="..\Include\FadeInOut.h" />
     <ClInclude Include="..\Include\GameManager.h" />
     <ClInclude Include="..\Include\GameScene.h" />
     <ClInclude Include="..\Include\IQuestTarget.h" />
+    <ClInclude Include="..\Include\LevelUpNoticeUI.h" />
     <ClInclude Include="..\Include\NamedEnemy.h" />
     <ClInclude Include="..\Include\NameFont.h" />
     <ClInclude Include="..\Include\NonePlayer.h" />
@@ -228,6 +237,7 @@
     <ClInclude Include="..\Include\PlayerAction.h" />
     <ClInclude Include="..\Include\PlayerCamera.h" />
     <ClInclude Include="..\Include\PlayerController.h" />
+    <ClInclude Include="..\Include\PlayerInfo.h" />
     <ClInclude Include="..\Include\PlayerNormalAttack.h" />
     <ClInclude Include="..\Include\Quest.h" />
     <ClInclude Include="..\Include\QuestDialogUI.h" />
@@ -254,6 +264,7 @@
     <ClInclude Include="..\Include\TitleScene.h" />
     <ClInclude Include="..\Include\UIManager.h" />
     <ClInclude Include="..\Include\WarpPoint.h" />
+    <ClInclude Include="..\Include\ZoomInCamera.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TestQuest.h"
-
+#include "Client_Events.h"
 
 
 TestQuest::TestQuest()
@@ -75,7 +75,11 @@ void TestQuest::Initialize()
 		},
 		EQuestImportance::Main,
 		[]() {return true; }, // 첨부터 오픈
-		[]() {}, // 보상 없음 
+		[]() 
+	{
+		float exp = 200;
+		EventDispatcher::TriggerEvent(GameEvent::SendExp, (void*)&exp);
+	}, // 보상 없음 
 		L"Sire",
 		L"Sire",
 		3,

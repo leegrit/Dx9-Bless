@@ -7,6 +7,7 @@
 #include "SkeletoneIdle.h"
 #include "SkeletoneMove.h"
 #include "NameFont.h"
+#include "Client_Events.h"
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
 	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5)
@@ -75,6 +76,13 @@ void Skeletone::OnHitOthers(Collider * other)
 {
 	/* 여기서 데미지를 보낼 타겟을 저장한다. */
 	AddHitOthers(other->GetGameObject());
+}
+
+void Skeletone::OnDied()
+{
+	Enemy::OnDied();
+
+	EventDispatcher::TriggerEvent(GameEvent::SendExp, (float*)&m_exp);
 }
 
 Skeletone * Skeletone::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)

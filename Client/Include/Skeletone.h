@@ -17,7 +17,7 @@ public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void Update() override;
 	virtual void Render() override;
-
+	virtual void OnDied() override;
 	virtual UINT GetTargetLayer() override;
 	virtual void OnCollision(Collider* other) override;
 	virtual int GetAttackCount() override;
@@ -50,6 +50,8 @@ private :
 
 	/* For Font */
 	class NameFont * m_pNameFont = nullptr;
+
+	float m_exp = 30;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

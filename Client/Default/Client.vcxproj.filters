@@ -164,6 +164,21 @@
       <Filter>Scripts\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\WarpPoint.cpp" />
+    <ClCompile Include="..\Source\FadeInOut.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ZoomInCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ExpTable.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerInfo.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\LevelUpNoticeUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -238,8 +253,8 @@
     <Filter Include="Scenes\GameStage">
       <UniqueIdentifier>{8f8c4839-3a81-40d6-836e-10ea78fca3e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{98b45bc3-ca54-4505-bdf1-bfce739fa565}</UniqueIdentifier>
+    <Filter Include="Data">
+      <UniqueIdentifier>{5aa4d3da-ee67-4871-81f8-b5f0ce421f5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +426,24 @@
       <Filter>Scripts\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\WarpPoint.h" />
+    <ClInclude Include="..\Include\FadeInOut.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ZoomInCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ExpTable.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Client_GlobalVars.h">
+      <Filter>GlobalVars</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerInfo.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\LevelUpNoticeUI.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

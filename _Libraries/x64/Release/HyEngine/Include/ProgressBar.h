@@ -3,7 +3,7 @@
 
 namespace HyEngine
 {
-	class ProgressBar : public UIElement
+	class ENGINE_DLL ProgressBar : public UIElement
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR
@@ -36,14 +36,14 @@ namespace HyEngine
 		IDirect3DTexture9* m_pTexture = nullptr;
 
 	private : /* For ProgressBar */
-		float m_amount;
+		float m_amount = 1;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD
 		//////////////////////////////////////////////////////////////////////////
 	public :
-		static ProgressBar* Create(Scene * pScene, std::wstring name,
-			std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale);
+		static ProgressBar* Create(Scene * pScene, 
+			std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale, std::wstring name);
 
 
 	};

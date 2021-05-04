@@ -1,6 +1,11 @@
 #pragma once
 #include "Character.h"
 
+namespace HyEngine
+{
+	class ProgressBar;
+}
+
 using namespace HyEngine;
 
 class Player final : public Character
@@ -13,12 +18,24 @@ private :
 	virtual ~Player();
 
 
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// INHERITED
 	//////////////////////////////////////////////////////////////////////////
 public :
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void OnCollision(Collider * other) override;
+	virtual void OnHPChanged();
+	virtual void OnMPChanged();
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// CALLBACK
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void OnExpChanged(void*);
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
@@ -26,7 +43,9 @@ public :
 public :
 	static Player* Create(Scene* pScene, NavMesh* pNavMesh, std::wstring dataPath);
 
-
-
+public :
+	ProgressBar* m_pHPBarUI = nullptr;
+	ProgressBar* m_pMPBarUI = nullptr;
+	ProgressBar* m_pExpBarUI = nullptr;
 };
 

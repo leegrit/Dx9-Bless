@@ -9,6 +9,7 @@ HyEngine::ProgressBar::ProgressBar(Scene * pScene, std::wstring name, std::wstri
 	ENGINE->TryGetShader(L"ProgressBar", &m_pEffect);
 	assert(m_pEffect);
 
+	m_pTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(imageFilePath);
 	m_pTransform->SetPosition(position);
 	m_pTransform->m_rotationEuler = rotation;
 	m_pTransform->SetScale(scale);
@@ -29,6 +30,7 @@ void HyEngine::ProgressBar::Render()
 
 
 	m_pEffect->SetMatrix("WorldMatrix", &m_pTransform->GetWorldMatrix());
+	m_pEffect->SetMatrix("ViewMatrix", &CAMERA->GetIdentityViewMatrix());
 	m_pEffect->SetMatrix("ProjMatrix", &CAMERA->GetOrthoMatrix());
 
 	D3DXHANDLE diffuseHandler = m_pEffect->GetParameterByName(0, "AlbedoTex");
@@ -63,7 +65,7 @@ void HyEngine::ProgressBar::SetAmount(float amount)
 	m_amount = amount;
 }
 
-ProgressBar * HyEngine::ProgressBar::Create(Scene * pScene, std::wstring name, std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale)
+ProgressBar * HyEngine::ProgressBar::Create(Scene * pScene,  std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale, std::wstring name)
 {
 	ProgressBar * ui = new ProgressBar(pScene, name, imageFilePath, position, rotation, scale);
 	ui->Initialize();

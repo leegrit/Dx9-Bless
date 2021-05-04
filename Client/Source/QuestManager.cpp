@@ -102,6 +102,7 @@ void QuestManager::Update()
 					{
 						/* Completely Clear */
 						EventDispatcher::TriggerEvent(QuestEvent::QuestCompletelyClear, (void*)&index);
+						m_pOpenQuestDialog->CompletelyFinished();
 						for (int i = 0; i < m_acceptedQuests.size(); i++)
 						{
 							if (m_pOpenQuestDialog == m_acceptedQuests[i])
@@ -193,7 +194,8 @@ Quest* QuestManager::GetQuest(int index)
 
 void QuestManager::ShowQuestDialog(NonePlayer * pSender, Quest * pQuest)
 {
-	EventDispatcher::TriggerEvent(QuestEvent::QuestDialogOpen, nullptr);
+	int index = pQuest->GetQuestIndex();
+	EventDispatcher::TriggerEvent(QuestEvent::QuestDialogOpen, (void*)&index);
 	m_pOpenQuestDialog = pQuest;
 	m_bOpenQuestDialog = true;
 	m_dialogIndex = 0;

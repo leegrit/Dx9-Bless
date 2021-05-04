@@ -18,4 +18,5 @@ namespace BattleEvent
 namespace GameEvent
 {
 	static std::string LevelUp = "GameEvent.LevelUp";
+	static std::string SendExp = "GameEvent.SendExp";
 }

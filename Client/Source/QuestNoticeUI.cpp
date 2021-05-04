@@ -48,7 +48,7 @@ void QuestNoticeUI::Update()
 		m_elapsed = 0;
 		m_notices.pop();
 	}
-	else if(m_elapsed <= 0.2f)
+	else if(m_elapsed <= m_fadeInTime)
 	{
 		float alpha  = m_elapsed / m_fadeInTime;
 		

@@ -10,6 +10,8 @@
 #include "NPCInteractManager.h"
 #include "QuestManager.h"
 #include "QuestTable.h"
+#include "ExpTable.h"
+#include "PlayerInfo.h"
 
 void GameScene::Update()
 {
@@ -23,13 +25,27 @@ void GameScene::Update()
 void GameScene::Load()
 {
 	EventDispatcher::AddEventListener(EngineEvent::ModeChanged, "GameScene", std::bind(&GameScene::OnModeChanged, this, placeholders::_1));
-	m_pGameManager = new GameManager();
+	m_pGameManager = new GameManager(this);
 	m_pUIManager = new UIManager(this);
 	m_pNPCInteractManager = new NPCInteractManager(this);
 	m_pQuestManager = new QuestManager(this);
 
 
-	
+	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
+	if (pExpTable == nullptr)
+	{
+		pExpTable = new ExpTable();
+		ENGINE->AddScriptableData(L"ExpTable", pExpTable);
+	}
+	m_pExpTable = pExpTable;
+
+	PlayerInfo* pPlayerInfo = static_cast<PlayerInfo*>(ENGINE->GetScriptableData(L"PlayerInfo"));
+	if (pPlayerInfo == nullptr)
+	{
+		pPlayerInfo = new PlayerInfo();
+		ENGINE->AddScriptableData(L"PlayerInfo", pPlayerInfo);
+	}
+	m_pPlayerInfo = pPlayerInfo;
 }
 
 void GameScene::LateLoadScene()
@@ -114,6 +130,16 @@ void GameScene::OnModeChanged(void *)
 	{
 		SelectCamera(GetGameCam()->GetName());
 	}
+}
+
+PlayerInfo * GameScene::GetPlayerInfo()
+{
+	return m_pPlayerInfo;
+}
+
+ExpTable * GameScene::GetExpTable()
+{
+	return m_pExpTable;
 }
 
 GameManager * GameScene::GetGameManager()

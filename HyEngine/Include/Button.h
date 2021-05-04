@@ -4,7 +4,7 @@
 
 namespace HyEngine
 {
-	class Button : public UIElement
+	class ENGINE_DLL Button : public UIElement
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR
