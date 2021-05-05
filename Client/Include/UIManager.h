@@ -47,6 +47,10 @@ public : /* For Quest */
 	void OnAcceptQuest(void*);
 	void OnCompletelyClearQuest(void*);
 
+public : /* For Battle */
+	void OnFocusChanged(GameObject* pFocusedTarget);
+	void OnFocusAgain(GameObject* pFocusedTarget);
+	void OnFocusLost();
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
@@ -86,5 +90,10 @@ private : /* For Quest */
 
 	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
 
+
+private : /* For Battle */
+	class TargetingCircle* m_pTargetingCircle = nullptr;
+	class TargetingArrow* m_pTargetingArrow = nullptr;
+	class EnemyScreenHPBar* m_pEnemyScreenHPBar = nullptr;
 };
 

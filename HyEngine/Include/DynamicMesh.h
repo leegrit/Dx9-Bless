@@ -10,8 +10,8 @@ namespace HyEngine
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
 	protected :
-		explicit DynamicMesh(Scene* scene, GameObject* parent,std::wstring name);
-		explicit DynamicMesh(Scene* scene, GameObject * parent, int editID);
+		explicit DynamicMesh(Scene* scene, GameObject* parent,std::wstring name, ESkinningType skinningType = ESkinningType::SoftwareSkinning);
+		explicit DynamicMesh(Scene* scene, GameObject * parent, int editID, ESkinningType skinningType = ESkinningType::SoftwareSkinning);
 		virtual ~DynamicMesh();
 
 		//////////////////////////////////////////////////////////////////////////
@@ -97,15 +97,15 @@ namespace HyEngine
 		// FACTORY METHOD
 		//////////////////////////////////////////////////////////////////////////
 	public :
-		static DynamicMesh* Create(Scene* scene, GameObject* parent, std::wstring name, std::wstring dataPath)
+		static DynamicMesh* Create(Scene* scene, GameObject* parent, std::wstring name, std::wstring dataPath, ESkinningType skinningType = ESkinningType::SoftwareSkinning)
 		{
-			DynamicMesh* mesh = new DynamicMesh(scene, parent, name);
+			DynamicMesh* mesh = new DynamicMesh(scene, parent, name, skinningType);
 			mesh->Initialize(dataPath);
 			return mesh;
 		}
-		static DynamicMesh* Create(Scene* scene, GameObject* parent, int editID)
+		static DynamicMesh* Create(Scene* scene, GameObject* parent, int editID, ESkinningType skinningType = ESkinningType::SoftwareSkinning)
 		{
-			DynamicMesh * mesh = new DynamicMesh(scene, parent, editID);
+			DynamicMesh * mesh = new DynamicMesh(scene, parent, editID, skinningType);
 			mesh->Initialize();
 			return mesh;
 		}

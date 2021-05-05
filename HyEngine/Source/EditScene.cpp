@@ -58,7 +58,7 @@ void HyEngine::EditScene::AddMeshObject(int editIndex)
 
 void HyEngine::EditScene::AddPawn(int editIndex)
 {
-	DynamicMesh::Create(this, nullptr, editIndex);
+	DynamicMesh::Create(this, nullptr, editIndex, ESkinningType::SoftwareSkinning);
 }
 
 void HyEngine::EditScene::AddNavMesh(int editIndex)

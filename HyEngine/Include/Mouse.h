@@ -7,7 +7,7 @@ namespace HyEngine
 {
 	namespace IO
 	{
-		class Mouse
+		class ENGINE_DLL Mouse
 		{
 		public:
 			Mouse();
@@ -23,6 +23,7 @@ namespace HyEngine
 			LRESULT InputProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 			D3DXVECTOR3 GetPosition() { return position; }
+			void SetPosition(D3DXVECTOR3 pos);
 
 			bool Down(DWORD button)
 			{

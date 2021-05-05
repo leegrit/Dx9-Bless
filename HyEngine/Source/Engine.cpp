@@ -423,6 +423,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"Texture", PATH->ShadersPathW() + L"Texture.fx");
 	InsertShader(L"ProgressBar", PATH->ShadersPathW() + L"ProgressBar.fx");
 	InsertShader(L"FadeInOut", PATH->ShadersPathW() + L"FadeInOut.fx");
+	InsertShader(L"TargetingUI", PATH->ShadersPathW() + L"TargetingUI.fx");
 	return true;
 }
 

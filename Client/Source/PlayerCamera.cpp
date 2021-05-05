@@ -32,6 +32,7 @@ void PlayerCamera::Update()
 	SetProjectionMatrix(D3DXToRadian(60), WinMaxWidth / WinMaxHeight, 1, 700);
 
 	SetViewMatrix(m_pPlayer->m_pTransform->m_position.operator D3DXVECTOR3());
+	
 }
 
 void PlayerCamera::ParamChange()
@@ -47,7 +48,8 @@ void PlayerCamera::ParamChange()
 		m_rotDegree = m_rotDegreeMin;
 
 	m_mouseCenter = mousePos;
-
+	//m_mouseCenter = D3DXVECTOR3(WinMaxWidth * 0.5f, WinMaxHeight * 0.5f, 0);
+	//MOUSE->SetPosition(m_mouseCenter);
 
 	/* юс╫ц */
 	if (KEYBOARD->Press(VK_ADD))

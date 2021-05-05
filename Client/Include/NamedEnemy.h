@@ -7,7 +7,7 @@ class NamedEnemy :public Enemy
 	// CONSTRUCTOR & DESTRUCTOR
 	//////////////////////////////////////////////////////////////////////////
 protected :
-	explicit NamedEnemy(Scene* pScene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius);
+	explicit NamedEnemy(Scene* pScene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType);
 	virtual ~NamedEnemy();
 
 	//////////////////////////////////////////////////////////////////////////

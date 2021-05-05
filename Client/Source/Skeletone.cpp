@@ -10,11 +10,11 @@
 #include "Client_Events.h"
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
-	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5)
+	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5, ESkinningType::HardwareSkinning)
 {
 	SetLayer(Layer::Enemy);
 
-	SetSkinningType(ESkinningType::HardwareSkinning);
+	//SetSkinningType(ESkinningType::HardwareSkinning);
 }
 
 Skeletone::~Skeletone()
@@ -90,6 +90,16 @@ Skeletone * Skeletone::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring d
 	Skeletone * skeletone = new Skeletone(pScene, pNavMesh);
 	skeletone->Initialize(dataPath);
 	return skeletone;
+}
+
+float Skeletone::GetFocusColliderSize()
+{
+	return 20;
+}
+
+D3DXVECTOR3 Skeletone::GetFocusUIOffset()
+{
+	return D3DXVECTOR3(0, 10, 0);
 }
 
 int Skeletone::GetAttackCount()

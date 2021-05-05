@@ -7,7 +7,7 @@ namespace HyEngine
 
 	struct HierarchyedMesh
 	{
-		MeshHierarchy* pLoader;
+		ID3DXAllocateHierarchy* pLoader;
 		AnimationController * pAniCtrl;
 		D3DXFRAME * pRootFrame;
 	};
@@ -17,6 +17,7 @@ namespace HyEngine
 	{
 	public :
 		static bool TryGetMeshHierarchy(std::wstring filePath, _Out_ AnimationController** ppAniCtrl, _Out_ D3DXFRAME** ppRootFrame);
+		static bool TryGetMeshHierarchySW(std::wstring filePath, _Out_ AnimationController** ppAniCtrl, _Out_ D3DXFRAME** ppRootFrame);
 
 		static void Clear();
 

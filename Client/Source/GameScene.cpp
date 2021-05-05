@@ -12,6 +12,7 @@
 #include "QuestTable.h"
 #include "ExpTable.h"
 #include "PlayerInfo.h"
+#include "BattleManager.h"
 
 void GameScene::Update()
 {
@@ -19,6 +20,7 @@ void GameScene::Update()
 	m_pUIManager->Update();
 	m_pNPCInteractManager->Update();
 	m_pQuestManager->Update();
+	m_pBattleManager->Update();
 
 }
 
@@ -29,6 +31,7 @@ void GameScene::Load()
 	m_pUIManager = new UIManager(this);
 	m_pNPCInteractManager = new NPCInteractManager(this);
 	m_pQuestManager = new QuestManager(this);
+	m_pBattleManager = new BattleManager(this);
 
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
@@ -54,6 +57,7 @@ void GameScene::LateLoadScene()
 	m_pUIManager->Initialize();
 	m_pNPCInteractManager->Initialize();
 	m_pQuestManager->Initialize();
+	m_pBattleManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -160,5 +164,10 @@ QuestManager * GameScene::GetQuestManager()
 NPCInteractManager * GameScene::GetNPCInteractManager()
 {
 	return m_pNPCInteractManager;
+}
+
+BattleManager * GameScene::GetBattleManager()
+{
+	return m_pBattleManager;
 }
 

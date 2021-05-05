@@ -16,8 +16,8 @@ class Character abstract : public Pawn, public IQuestTarget
 	// CONSTRUCTOR & DESTRUCTOR
 	//////////////////////////////////////////////////////////////////////////
 protected:
-	explicit Character(Scene* scene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffest, float colRadius);
-	explicit Character(Scene* scene, NavMesh* pNavMesh);
+	explicit Character(Scene* scene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffest, float colRadius, ESkinningType skinningType = ESkinningType::SoftwareSkinning);
+	explicit Character(Scene* scene, NavMesh* pNavMesh, ESkinningType skinningType = ESkinningType::SoftwareSkinning);
 	virtual ~Character();
 
 	//////////////////////////////////////////////////////////////////////////

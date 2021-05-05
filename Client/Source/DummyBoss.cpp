@@ -8,7 +8,7 @@
 #include "DummyBossMove.h"
 
 DummyBoss::DummyBoss(Scene * pScene, NavMesh * pNavMesh)
-	: NamedEnemy(pScene, pNavMesh, D3DXVECTOR3(0, 15, 0), 10)
+	: NamedEnemy(pScene, pNavMesh, D3DXVECTOR3(0, 15, 0), 10, ESkinningType::HardwareSkinning)
 {
 	
 }
@@ -81,4 +81,14 @@ DummyBoss * DummyBoss::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring d
 	DummyBoss* boss = new DummyBoss(pScene, pNavMesh);
 	boss->Initialize(dataPath);
 	return boss;
+}
+
+float DummyBoss::GetFocusColliderSize()
+{
+	return 0.0f;
+}
+
+D3DXVECTOR3 DummyBoss::GetFocusUIOffset()
+{
+	return D3DXVECTOR3();
 }

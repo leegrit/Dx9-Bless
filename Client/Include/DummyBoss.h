@@ -41,5 +41,11 @@ private : /* For FSM */
 public :
 	static DummyBoss* Create(Scene* pScene, NavMesh* pNavMesh, std::wstring dataPath);
 
+
+	// Inherited via NamedEnemy
+	virtual float GetFocusColliderSize() override;
+
+	virtual D3DXVECTOR3 GetFocusUIOffset() override;
+
 };
 

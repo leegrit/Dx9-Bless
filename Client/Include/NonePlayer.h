@@ -13,7 +13,7 @@ class NonePlayer abstract : public Character
 	// CONSTRUCTOR & DESTRUCTOR 
 	//////////////////////////////////////////////////////////////////////////
 protected :
-	explicit NonePlayer(Scene* scene);
+	explicit NonePlayer(Scene* scene, ESkinningType skinningType);
 	virtual ~NonePlayer();
 
 	//////////////////////////////////////////////////////////////////////////

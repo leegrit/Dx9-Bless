@@ -1,8 +1,8 @@
 #include "StandardEngineFramework.h"
 #include "NamedEnemy.h"
 
-NamedEnemy::NamedEnemy(Scene * pScene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
-	: Enemy(pScene, pNavMesh, colPosOffset, colRadius)
+NamedEnemy::NamedEnemy(Scene * pScene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
+	: Enemy(pScene, pNavMesh, colPosOffset, colRadius, skinningType)
 {
 
 

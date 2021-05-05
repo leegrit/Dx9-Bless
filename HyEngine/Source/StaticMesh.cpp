@@ -258,7 +258,7 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 						if (IS_EDITOR)
 						{
 							isFirst = EDIT_ENGINE->InsertShader(fileName, PATH->ShadersPathW() + L"StaticMesh.fx");
-							ENGINE->TryGetShader(fileName, &pEffect);
+							EDIT_ENGINE->TryGetShader(fileName, &pEffect);
 						}
 						else
 						{

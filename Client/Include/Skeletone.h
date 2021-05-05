@@ -22,7 +22,8 @@ public :
 	virtual void OnCollision(Collider* other) override;
 	virtual int GetAttackCount() override;
 	virtual Collider * GetAttackCollider(int attackIndex) override;
-
+	virtual float GetFocusColliderSize() override;
+	virtual D3DXVECTOR3 GetFocusUIOffset() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK
@@ -58,6 +59,8 @@ private :
 	//////////////////////////////////////////////////////////////////////////
 public :
 	static Skeletone * Create(Scene * pScene, NavMesh* pNavMesh, std::wstring dataPath);
+
+
 
 
 

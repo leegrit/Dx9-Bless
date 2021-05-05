@@ -63,7 +63,6 @@ void Mouse::Update()
 	POINT point;
 	GetCursorPos(&point);
 	ScreenToClient(handle, &point);
-
 	wheelOldStatus.x = wheelStatus.x;
 	wheelOldStatus.y = wheelStatus.y;
 
@@ -72,6 +71,7 @@ void Mouse::Update()
 
 	wheelMoveValue = wheelStatus - wheelOldStatus;
 
+	
 
 
 	DWORD tButtonStatus = GetTickCount();
@@ -125,4 +125,23 @@ LRESULT Mouse::InputProc(UINT message, WPARAM wParam, LPARAM lParam)
 	}
 
 	return TRUE;
+}
+
+void HyEngine::IO::Mouse::SetPosition(D3DXVECTOR3 pos)
+{
+	// TODO ÇØ¾ßÇÔ
+	assert(false);
+	/*RECT rc;
+	GetWindowRect(handle, &rc);
+
+
+	POINT point;
+	point.x = pos.x + rc.left;
+	point.y = pos.y + rc.top;*/
+	POINT point;
+	GetCursorPos(&point);
+	ClientToScreen(handle, &point);
+	point.x = point.x + pos.x;
+	point.y = point.y + pos.y;
+	SetCursorPos(point.x, point.y);
 }

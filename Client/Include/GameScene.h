@@ -8,6 +8,7 @@ class GameManager;
 class UIManager;
 class QuestManager;
 class NPCInteractManager;
+class BattleManager;
 class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -49,6 +50,7 @@ public:
 	UIManager* GetUIManager();
 	QuestManager* GetQuestManager();
 	NPCInteractManager* GetNPCInteractManager();
+	BattleManager* GetBattleManager();
 
 private:
 	Camera * m_pEditCam = nullptr;
@@ -63,6 +65,7 @@ private : /* For Manager */
 	UIManager * m_pUIManager = nullptr;
 	QuestManager* m_pQuestManager = nullptr;
 	NPCInteractManager* m_pNPCInteractManager = nullptr;
+	BattleManager* m_pBattleManager = nullptr;
 
 };
 

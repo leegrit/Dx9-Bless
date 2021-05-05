@@ -265,6 +265,7 @@
     <ClInclude Include="Include\MeshEffect.h" />
     <ClInclude Include="Include\MeshHierarchy.h" />
     <ClInclude Include="Include\MeshHierarchyLoader.h" />
+    <ClInclude Include="Include\MeshHierarchySW.h" />
     <ClInclude Include="Include\MeshLoader.h" />
     <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\Mouse.h" />
@@ -427,6 +428,7 @@
     <ClCompile Include="Source\MeshEffect.cpp" />
     <ClCompile Include="Source\MeshHierarchy.cpp" />
     <ClCompile Include="Source\MeshHierarchyLoader.cpp" />
+    <ClCompile Include="Source\MeshHierarchySW.cpp" />
     <ClCompile Include="Source\MeshLoader.cpp" />
     <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
@@ -508,6 +510,7 @@
     <FxCompile Include="..\_Shaders\SoftShadowMapping.fx" />
     <FxCompile Include="..\_Shaders\SpotLight.fx" />
     <FxCompile Include="..\_Shaders\StaticMesh.fx" />
+    <FxCompile Include="..\_Shaders\TargetingUI.fx" />
     <FxCompile Include="..\_Shaders\Terrain.fx" />
     <FxCompile Include="..\_Shaders\Texture.fx" />
     <FxCompile Include="..\_Shaders\TextureEffect.fx" />

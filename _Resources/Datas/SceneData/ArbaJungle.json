@@ -1,5 +1,5 @@
 {
-  "HierarchyCount": 73,
+  "HierarchyCount": 102,
   "Hierarchy_0": {
     "Type": 5,
     "Index": 0,
@@ -107,9 +107,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 59.32163,
-          "Y": -3.05175781E-05,
-          "Z": 282.7859
+          "X": 65.4,
+          "Y": -7.62939453E-06,
+          "Z": 219.85
         },
         "Rotation": {
           "X": 0.0,
@@ -2432,9 +2432,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -375.664032,
+          "X": -375.66,
           "Y": -7.62939453E-06,
-          "Z": 543.3712
+          "Z": 543.37
         },
         "Rotation": {
           "X": 0.0,
@@ -2711,9 +2711,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 350.673279,
+          "X": 350.67,
           "Y": -3.05175781E-05,
-          "Z": 244.618744
+          "Z": 244.62
         },
         "Rotation": {
           "X": 0.0,
@@ -2992,7 +2992,7 @@
         "Position": {
           "X": 345.2,
           "Y": -3.05175781E-05,
-          "Z": 463.47757
+          "Z": 463.48
         },
         "Rotation": {
           "X": 0.0,
@@ -3083,9 +3083,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -50.7058,
+          "X": -50.71,
           "Y": -1.52587891E-05,
-          "Z": 516.510559
+          "Z": 516.51
         },
         "Rotation": {
           "X": 0.0,
@@ -3176,9 +3176,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -251.105316,
+          "X": -251.11,
           "Y": -7.62939453E-06,
-          "Z": 380.391
+          "Z": 380.39
         },
         "Rotation": {
           "X": 0.0,
@@ -3456,7 +3456,7 @@
       "Transform": {
         "Position": {
           "X": -293.31,
-          "Y": -3.05175781E-05,
+          "Y": 0.0,
           "Z": 980.25
         },
         "Rotation": {
@@ -4001,12 +4001,12 @@
   },
   "Hierarchy_43": {
     "Type": 2,
-    "Index": 44,
+    "Index": 43,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 44,
+      "Index": 43,
       "Name": "AncRuinPillar01",
       "Tag": "Default",
       "Layer": 0,
@@ -4030,12 +4030,12 @@
       }
     },
     "MeshData": {
-      "Index": 44,
+      "Index": 43,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinPillar01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 44,
+      "Index": 43,
       "Group": 0
     },
     "NavMeshData": {
@@ -4094,12 +4094,12 @@
   },
   "Hierarchy_44": {
     "Type": 2,
-    "Index": 45,
+    "Index": 44,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 45,
+      "Index": 44,
       "Name": "AncRuinDoor",
       "Tag": "Default",
       "Layer": 0,
@@ -4123,12 +4123,12 @@
       }
     },
     "MeshData": {
-      "Index": 45,
+      "Index": 44,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinDoor.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 45,
+      "Index": 44,
       "Group": 0
     },
     "NavMeshData": {
@@ -4187,12 +4187,12 @@
   },
   "Hierarchy_45": {
     "Type": 2,
-    "Index": 46,
+    "Index": 45,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 46,
+      "Index": 45,
       "Name": "Statue01",
       "Tag": "Default",
       "Layer": 0,
@@ -4200,7 +4200,7 @@
       "Transform": {
         "Position": {
           "X": 42.57,
-          "Y": -7.62939453E-06,
+          "Y": 0.0,
           "Z": 1196.73
         },
         "Rotation": {
@@ -4216,12 +4216,12 @@
       }
     },
     "MeshData": {
-      "Index": 46,
+      "Index": 45,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 46,
+      "Index": 45,
       "Group": 0
     },
     "NavMeshData": {
@@ -4280,12 +4280,12 @@
   },
   "Hierarchy_46": {
     "Type": 2,
-    "Index": 47,
+    "Index": 46,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 47,
+      "Index": 46,
       "Name": "Statue01",
       "Tag": "Default",
       "Layer": 0,
@@ -4309,12 +4309,12 @@
       }
     },
     "MeshData": {
-      "Index": 47,
+      "Index": 46,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 47,
+      "Index": 46,
       "Group": 0
     },
     "NavMeshData": {
@@ -4373,12 +4373,12 @@
   },
   "Hierarchy_47": {
     "Type": 2,
-    "Index": 48,
+    "Index": 47,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 48,
+      "Index": 47,
       "Name": "Statue02",
       "Tag": "Default",
       "Layer": 0,
@@ -4402,12 +4402,12 @@
       }
     },
     "MeshData": {
-      "Index": 48,
+      "Index": 47,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 48,
+      "Index": 47,
       "Group": 0
     },
     "NavMeshData": {
@@ -4466,12 +4466,12 @@
   },
   "Hierarchy_48": {
     "Type": 2,
-    "Index": 49,
+    "Index": 48,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 49,
+      "Index": 48,
       "Name": "Statue02",
       "Tag": "Default",
       "Layer": 0,
@@ -4479,7 +4479,7 @@
       "Transform": {
         "Position": {
           "X": 2.92,
-          "Y": 3.10517883,
+          "Y": 3.11,
           "Z": 1169.98
         },
         "Rotation": {
@@ -4495,12 +4495,12 @@
       }
     },
     "MeshData": {
-      "Index": 49,
+      "Index": 48,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 49,
+      "Index": 48,
       "Group": 0
     },
     "NavMeshData": {
@@ -4559,12 +4559,12 @@
   },
   "Hierarchy_49": {
     "Type": 2,
-    "Index": 50,
+    "Index": 49,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 50,
+      "Index": 49,
       "Name": "LandingHouse15",
       "Tag": "Default",
       "Layer": 0,
@@ -4572,7 +4572,7 @@
       "Transform": {
         "Position": {
           "X": 449.66,
-          "Y": -7.62939453E-06,
+          "Y": 0.0,
           "Z": 1003.5
         },
         "Rotation": {
@@ -4588,12 +4588,12 @@
       }
     },
     "MeshData": {
-      "Index": 50,
+      "Index": 49,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse15.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 50,
+      "Index": 49,
       "Group": 0
     },
     "NavMeshData": {
@@ -4652,12 +4652,12 @@
   },
   "Hierarchy_50": {
     "Type": 2,
-    "Index": 51,
+    "Index": 50,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 51,
+      "Index": 50,
       "Name": "LandingHouse16",
       "Tag": "Default",
       "Layer": 0,
@@ -4666,7 +4666,7 @@
         "Position": {
           "X": 451.93,
           "Y": -7.62939453E-06,
-          "Z": 1003.69006
+          "Z": 1003.69
         },
         "Rotation": {
           "X": 0.0,
@@ -4681,12 +4681,12 @@
       }
     },
     "MeshData": {
-      "Index": 51,
+      "Index": 50,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse16.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 51,
+      "Index": 50,
       "Group": 0
     },
     "NavMeshData": {
@@ -4745,12 +4745,12 @@
   },
   "Hierarchy_51": {
     "Type": 2,
-    "Index": 52,
+    "Index": 51,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 52,
+      "Index": 51,
       "Name": "LandingHouse17",
       "Tag": "Default",
       "Layer": 0,
@@ -4774,12 +4774,12 @@
       }
     },
     "MeshData": {
-      "Index": 52,
+      "Index": 51,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 52,
+      "Index": 51,
       "Group": 0
     },
     "NavMeshData": {
@@ -4838,12 +4838,12 @@
   },
   "Hierarchy_52": {
     "Type": 2,
-    "Index": 53,
+    "Index": 52,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 53,
+      "Index": 52,
       "Name": "LandingHouse18",
       "Tag": "Default",
       "Layer": 0,
@@ -4867,12 +4867,12 @@
       }
     },
     "MeshData": {
-      "Index": 53,
+      "Index": 52,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse18.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 53,
+      "Index": 52,
       "Group": 0
     },
     "NavMeshData": {
@@ -4931,12 +4931,12 @@
   },
   "Hierarchy_53": {
     "Type": 2,
-    "Index": 54,
+    "Index": 53,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 54,
+      "Index": 53,
       "Name": "JungleTree06",
       "Tag": "Default",
       "Layer": 0,
@@ -4960,12 +4960,12 @@
       }
     },
     "MeshData": {
-      "Index": 54,
+      "Index": 53,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 54,
+      "Index": 53,
       "Group": 0
     },
     "NavMeshData": {
@@ -5024,12 +5024,12 @@
   },
   "Hierarchy_54": {
     "Type": 2,
-    "Index": 55,
+    "Index": 54,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 55,
+      "Index": 54,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -5038,7 +5038,7 @@
         "Position": {
           "X": -266.55,
           "Y": -7.62939453E-06,
-          "Z": 458.393433
+          "Z": 458.39
         },
         "Rotation": {
           "X": 0.0,
@@ -5053,12 +5053,12 @@
       }
     },
     "MeshData": {
-      "Index": 55,
+      "Index": 54,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 55,
+      "Index": 54,
       "Group": 0
     },
     "NavMeshData": {
@@ -5117,21 +5117,21 @@
   },
   "Hierarchy_55": {
     "Type": 2,
-    "Index": 56,
+    "Index": 55,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 56,
+      "Index": 55,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -333.063873,
+          "X": -333.06,
           "Y": -3.81469727E-06,
-          "Z": 551.9444
+          "Z": 551.94
         },
         "Rotation": {
           "X": 0.0,
@@ -5146,12 +5146,12 @@
       }
     },
     "MeshData": {
-      "Index": 56,
+      "Index": 55,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 56,
+      "Index": 55,
       "Group": 0
     },
     "NavMeshData": {
@@ -5210,12 +5210,12 @@
   },
   "Hierarchy_56": {
     "Type": 2,
-    "Index": 57,
+    "Index": 56,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 57,
+      "Index": 56,
       "Name": "JungleTree07",
       "Tag": "Default",
       "Layer": 0,
@@ -5239,12 +5239,12 @@
       }
     },
     "MeshData": {
-      "Index": 57,
+      "Index": 56,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 57,
+      "Index": 56,
       "Group": 0
     },
     "NavMeshData": {
@@ -5303,21 +5303,21 @@
   },
   "Hierarchy_57": {
     "Type": 2,
-    "Index": 58,
+    "Index": 57,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 58,
+      "Index": 57,
       "Name": "DinosaurSkeleton",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 601.2377,
+          "X": 601.24,
           "Y": -3.05175781E-05,
-          "Z": 848.733643
+          "Z": 848.73
         },
         "Rotation": {
           "X": 0.0,
@@ -5332,12 +5332,12 @@
       }
     },
     "MeshData": {
-      "Index": 58,
+      "Index": 57,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone04.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 58,
+      "Index": 57,
       "Group": 0
     },
     "NavMeshData": {
@@ -5396,12 +5396,12 @@
   },
   "Hierarchy_58": {
     "Type": 2,
-    "Index": 59,
+    "Index": 58,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 59,
+      "Index": 58,
       "Name": "JungleTree09",
       "Tag": "Default",
       "Layer": 0,
@@ -5425,12 +5425,12 @@
       }
     },
     "MeshData": {
-      "Index": 59,
+      "Index": 58,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 59,
+      "Index": 58,
       "Group": 0
     },
     "NavMeshData": {
@@ -5489,12 +5489,12 @@
   },
   "Hierarchy_59": {
     "Type": 2,
-    "Index": 60,
+    "Index": 59,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 60,
+      "Index": 59,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
@@ -5503,7 +5503,7 @@
         "Position": {
           "X": -418.4,
           "Y": 3.81469727E-06,
-          "Z": 741.722046
+          "Z": 741.72
         },
         "Rotation": {
           "X": 0.0,
@@ -5518,12 +5518,12 @@
       }
     },
     "MeshData": {
-      "Index": 60,
+      "Index": 59,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 60,
+      "Index": 59,
       "Group": 0
     },
     "NavMeshData": {
@@ -5582,21 +5582,21 @@
   },
   "Hierarchy_60": {
     "Type": 2,
-    "Index": 61,
+    "Index": 60,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 61,
+      "Index": 60,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -397.13916,
+          "X": -397.14,
           "Y": -1.52587891E-05,
-          "Z": 678.486938
+          "Z": 678.49
         },
         "Rotation": {
           "X": 0.0,
@@ -5611,12 +5611,12 @@
       }
     },
     "MeshData": {
-      "Index": 61,
+      "Index": 60,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 61,
+      "Index": 60,
       "Group": 0
     },
     "NavMeshData": {
@@ -5675,21 +5675,21 @@
   },
   "Hierarchy_61": {
     "Type": 2,
-    "Index": 62,
+    "Index": 61,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 62,
+      "Index": 61,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -351.622772,
+          "X": -351.62,
           "Y": 0.0,
-          "Z": 933.0915
+          "Z": 933.09
         },
         "Rotation": {
           "X": 0.0,
@@ -5704,12 +5704,12 @@
       }
     },
     "MeshData": {
-      "Index": 62,
+      "Index": 61,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 62,
+      "Index": 61,
       "Group": 0
     },
     "NavMeshData": {
@@ -5768,21 +5768,21 @@
   },
   "Hierarchy_62": {
     "Type": 2,
-    "Index": 63,
+    "Index": 62,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 63,
+      "Index": 62,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 316.74353,
+          "X": 316.74,
           "Y": -3.81469727E-06,
-          "Z": 1023.82294
+          "Z": 1023.82
         },
         "Rotation": {
           "X": 0.0,
@@ -5797,12 +5797,12 @@
       }
     },
     "MeshData": {
-      "Index": 63,
+      "Index": 62,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 63,
+      "Index": 62,
       "Group": 0
     },
     "NavMeshData": {
@@ -5861,21 +5861,21 @@
   },
   "Hierarchy_63": {
     "Type": 2,
-    "Index": 64,
+    "Index": 63,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 64,
+      "Index": 63,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 396.248535,
+          "X": 396.25,
           "Y": -3.81469727E-06,
-          "Z": 457.121857
+          "Z": 457.12
         },
         "Rotation": {
           "X": 0.0,
@@ -5890,12 +5890,12 @@
       }
     },
     "MeshData": {
-      "Index": 64,
+      "Index": 63,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 64,
+      "Index": 63,
       "Group": 0
     },
     "NavMeshData": {
@@ -5954,21 +5954,21 @@
   },
   "Hierarchy_64": {
     "Type": 2,
-    "Index": 65,
+    "Index": 64,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 65,
+      "Index": 64,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 418.979279,
+          "X": 418.98,
           "Y": 0.0,
-          "Z": 600.032654
+          "Z": 600.03
         },
         "Rotation": {
           "X": 0.0,
@@ -5983,12 +5983,12 @@
       }
     },
     "MeshData": {
-      "Index": 65,
+      "Index": 64,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 65,
+      "Index": 64,
       "Group": 0
     },
     "NavMeshData": {
@@ -6047,12 +6047,12 @@
   },
   "Hierarchy_65": {
     "Type": 2,
-    "Index": 66,
+    "Index": 65,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 66,
+      "Index": 65,
       "Name": "JungleTree09",
       "Tag": "Default",
       "Layer": 0,
@@ -6061,7 +6061,7 @@
         "Position": {
           "X": -443.91,
           "Y": -7.62939453E-06,
-          "Z": -60.05098
+          "Z": -60.05
         },
         "Rotation": {
           "X": 0.0,
@@ -6076,12 +6076,12 @@
       }
     },
     "MeshData": {
-      "Index": 66,
+      "Index": 65,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 66,
+      "Index": 65,
       "Group": 0
     },
     "NavMeshData": {
@@ -6140,21 +6140,21 @@
   },
   "Hierarchy_66": {
     "Type": 2,
-    "Index": 67,
+    "Index": 66,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 67,
+      "Index": 66,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -5.654831,
+          "X": -5.65,
           "Y": -7.62939453E-06,
-          "Z": 440.486145
+          "Z": 440.49
         },
         "Rotation": {
           "X": 0.0,
@@ -6169,12 +6169,12 @@
       }
     },
     "MeshData": {
-      "Index": 67,
+      "Index": 66,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 67,
+      "Index": 66,
       "Group": 0
     },
     "NavMeshData": {
@@ -6233,21 +6233,21 @@
   },
   "Hierarchy_67": {
     "Type": 2,
-    "Index": 68,
+    "Index": 67,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 68,
+      "Index": 67,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 31.86855,
+          "X": 31.87,
           "Y": -7.62939453E-06,
-          "Z": 424.6397
+          "Z": 424.64
         },
         "Rotation": {
           "X": 0.0,
@@ -6262,12 +6262,12 @@
       }
     },
     "MeshData": {
-      "Index": 68,
+      "Index": 67,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 68,
+      "Index": 67,
       "Group": 0
     },
     "NavMeshData": {
@@ -6326,21 +6326,21 @@
   },
   "Hierarchy_68": {
     "Type": 2,
-    "Index": 69,
+    "Index": 68,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 69,
+      "Index": 68,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 265.188232,
+          "X": 265.19,
           "Y": -7.62939453E-06,
-          "Z": 216.759674
+          "Z": 216.76
         },
         "Rotation": {
           "X": 0.0,
@@ -6355,12 +6355,12 @@
       }
     },
     "MeshData": {
-      "Index": 69,
+      "Index": 68,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 69,
+      "Index": 68,
       "Group": 0
     },
     "NavMeshData": {
@@ -6419,21 +6419,21 @@
   },
   "Hierarchy_69": {
     "Type": 2,
-    "Index": 70,
+    "Index": 69,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 70,
+      "Index": 69,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 274.094421,
-          "Y": -10.4162369,
-          "Z": 247.367233
+          "X": 274.09,
+          "Y": -10.42,
+          "Z": 247.37
         },
         "Rotation": {
           "X": 0.0,
@@ -6448,12 +6448,12 @@
       }
     },
     "MeshData": {
-      "Index": 70,
+      "Index": 69,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 70,
+      "Index": 69,
       "Group": 0
     },
     "NavMeshData": {
@@ -6512,21 +6512,21 @@
   },
   "Hierarchy_70": {
     "Type": 2,
-    "Index": 71,
+    "Index": 70,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 71,
+      "Index": 70,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -276.133728,
+          "X": -276.13,
           "Y": 0.0,
-          "Z": 184.660583
+          "Z": 184.66
         },
         "Rotation": {
           "X": 0.0,
@@ -6541,12 +6541,12 @@
       }
     },
     "MeshData": {
-      "Index": 71,
+      "Index": 70,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 71,
+      "Index": 70,
       "Group": 0
     },
     "NavMeshData": {
@@ -6605,21 +6605,21 @@
   },
   "Hierarchy_71": {
     "Type": 2,
-    "Index": 72,
+    "Index": 71,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 72,
+      "Index": 71,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -307.1236,
+          "X": -307.12,
           "Y": -7.62939453E-06,
-          "Z": 182.704575
+          "Z": 182.7
         },
         "Rotation": {
           "X": 0.0,
@@ -6634,12 +6634,12 @@
       }
     },
     "MeshData": {
-      "Index": 72,
+      "Index": 71,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 72,
+      "Index": 71,
       "Group": 0
     },
     "NavMeshData": {
@@ -6698,12 +6698,12 @@
   },
   "Hierarchy_72": {
     "Type": 3,
-    "Index": 73,
+    "Index": 72,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 73,
+      "Index": 72,
       "Name": "NavMesh",
       "Tag": "Default",
       "Layer": 0,
@@ -6727,12 +6727,12 @@
       }
     },
     "MeshData": {
-      "Index": 73,
+      "Index": 72,
       "MeshFilePath": "",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 73,
+      "Index": 72,
       "Group": 0
     },
     "NavMeshData": {
@@ -9283,6 +9283,2703 @@
       "PositionZ": 376,
       "Option": 0,
       "Group": 100
+    }
+  },
+  "Hierarchy_73": {
+    "Type": 2,
+    "Index": 73,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 73,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 538.11,
+          "Y": -3.81469727E-06,
+          "Z": 368.09
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 73,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 73,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 73,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_74": {
+    "Type": 1,
+    "Index": 74,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 74,
+      "Name": "HGoblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 367.16,
+          "Y": -1.52587891E-05,
+          "Z": 858.24
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -212.8,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 74,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\HGoblin\\HGoblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 74,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 74,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_75": {
+    "Type": 1,
+    "Index": 75,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 75,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 291.75,
+          "Y": -7.62939453E-06,
+          "Z": 926.06
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 75,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 75,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_76": {
+    "Type": 1,
+    "Index": 76,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 76,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 215.93,
+          "Y": -1.52587891E-05,
+          "Z": 939.61
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 76,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 76,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_77": {
+    "Type": 1,
+    "Index": 77,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 77,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 218.87,
+          "Y": 0.0,
+          "Z": 1023.39
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 77,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 77,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_78": {
+    "Type": 1,
+    "Index": 78,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 78,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 127.64,
+          "Y": 0.0,
+          "Z": 980.21
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 78,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 78,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_79": {
+    "Type": 1,
+    "Index": 79,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 79,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 124.96,
+          "Y": -7.62939453E-06,
+          "Z": 1069.84
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 79,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 79,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_80": {
+    "Type": 1,
+    "Index": 80,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 80,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 4.86,
+          "Y": -1.52587891E-05,
+          "Z": 1091.63
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 80,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 80,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_81": {
+    "Type": 1,
+    "Index": 81,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 81,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -68.44,
+          "Y": 0.0,
+          "Z": 1015.07
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 81,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 81,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_82": {
+    "Type": 1,
+    "Index": 82,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 82,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 20.42,
+          "Y": -1.52587891E-05,
+          "Z": 947.39
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 82,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 82,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_83": {
+    "Type": 1,
+    "Index": 83,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 83,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -147.01,
+          "Y": -3.05175781E-05,
+          "Z": 939.94
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 83,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 83,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_84": {
+    "Type": 1,
+    "Index": 84,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 84,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -82.19,
+          "Y": -3.05175781E-05,
+          "Z": 963.6
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 84,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 84,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_85": {
+    "Type": 1,
+    "Index": 85,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 85,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -383.95,
+          "Y": 0.0,
+          "Z": 804.18
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 85,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 85,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_86": {
+    "Type": 1,
+    "Index": 86,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 86,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -314.01,
+          "Y": -1.52587891E-05,
+          "Z": 738.54
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 86,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 86,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_87": {
+    "Type": 1,
+    "Index": 87,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 87,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -263.67,
+          "Y": 0.0,
+          "Z": 790.4
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 87,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 87,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_88": {
+    "Type": 1,
+    "Index": 88,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 88,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -257.88,
+          "Y": 0.0,
+          "Z": 937.83
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 88,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 88,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_89": {
+    "Type": 1,
+    "Index": 89,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 89,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -226.74,
+          "Y": -1.52587891E-05,
+          "Z": 676.05
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 89,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 89,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_90": {
+    "Type": 1,
+    "Index": 90,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 90,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 401.92,
+          "Y": 0.0,
+          "Z": 727.22
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 90,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 90,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_91": {
+    "Type": 1,
+    "Index": 91,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 91,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 257.24,
+          "Y": -1.52587891E-05,
+          "Z": 697.47
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 91,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 91,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_92": {
+    "Type": 1,
+    "Index": 92,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 92,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -271.61,
+          "Y": -3.81469727E-06,
+          "Z": 544.55
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 92,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 92,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_93": {
+    "Type": 1,
+    "Index": 93,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 93,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -129.37,
+          "Y": -7.62939453E-06,
+          "Z": 824.04
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 93,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 93,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_94": {
+    "Type": 1,
+    "Index": 94,
+    "TagIndex": 0,
+    "LayerIndex": 3,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 94,
+      "Name": "Goblin",
+      "Tag": "Default",
+      "Layer": 3,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -151.35,
+          "Y": 0.0,
+          "Z": 556.59
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -231.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 94,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 94,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 75,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_95": {
+    "Type": 1,
+    "Index": 95,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 95,
+      "Name": "Leoni",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 103.86,
+          "Y": -7.62939453E-06,
+          "Z": 222.55
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -131.2,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 95,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Leoni\\Leoni.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 95,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 95,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_96": {
+    "Type": 1,
+    "Index": 96,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 96,
+      "Name": "Guido",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -218.26,
+          "Y": -7.62939453E-06,
+          "Z": 355.87
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 6.4,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 96,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Guido\\Guido.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 96,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 96,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_97": {
+    "Type": 1,
+    "Index": 97,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 97,
+      "Name": "GameObject",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -152.1,
+          "Y": -7.62939453E-06,
+          "Z": 255.07
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 97,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Herodion\\Herodion.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 97,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 97,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_98": {
+    "Type": 1,
+    "Index": 98,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 98,
+      "Name": "Soldier_Dead",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 188.6355,
+          "Y": -1.52587891E-05,
+          "Z": 743.1822
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 98,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Soldier\\Soldier_00.x",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 98,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 98,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_99": {
+    "Type": 1,
+    "Index": 99,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 99,
+      "Name": "Soldier_Dead",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 32.1026077,
+          "Y": -3.81469727E-06,
+          "Z": 805.747253
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 99,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Soldier\\Soldier_00.x",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 99,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 98,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_100": {
+    "Type": 1,
+    "Index": 100,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 100,
+      "Name": "Soldier_Dead",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -340.989777,
+          "Y": 3.81469727E-06,
+          "Z": 675.6778
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 100,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Soldier\\Soldier_00.x",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 100,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 98,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_101": {
+    "Type": 1,
+    "Index": 101,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 101,
+      "Name": "Soldier_Dead",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -184.196823,
+          "Y": 0.0,
+          "Z": 599.9919
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 101,
+      "MeshFilePath": "Assets\\Mesh\\Unit\\Soldier\\Soldier_00.x",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 101,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 98,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
     }
   }
 }

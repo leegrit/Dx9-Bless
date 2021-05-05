@@ -13,6 +13,8 @@ namespace QuestEvent
 namespace BattleEvent
 {
 	static std::string CharacterDie = "BattleEvent.CharacterDie";
+	static std::string CharacterDamaged = "BattleEvent.CharacterDamaged";
+
 }
 
 namespace GameEvent

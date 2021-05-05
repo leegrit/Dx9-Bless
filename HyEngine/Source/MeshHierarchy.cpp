@@ -178,10 +178,11 @@ STDMETHODIMP HyEngine::MeshHierarchy::CreateMeshContainer(LPCSTR name, CONST D3D
 			lstrcpy(fullPath, m_path.c_str());
 			lstrcat(fullPath, fileName);
 
-			if (FAILED(D3DXCreateTextureFromFile(DEVICE, fullPath, &pMeshContainer->ppTexture[i])))
+			pMeshContainer->ppTexture[i] = (IDirect3DTexture9*)TextureLoader::GetTexture(fullPath);
+			/*if (FAILED(D3DXCreateTextureFromFile(DEVICE, fullPath, &pMeshContainer->ppTexture[i])))
 			{
 				return E_FAIL;
-			}
+			}*/
 			/* For Others map */
 			std::wstring name = fileName;
 			std::wstring dirPath = fullPath;

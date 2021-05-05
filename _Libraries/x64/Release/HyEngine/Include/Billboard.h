@@ -9,7 +9,7 @@ namespace HyEngine
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
 	protected :
-		Billboard(Scene* pScene, GameObject* pParent, std::wstring name);
+		Billboard(Scene* pScene, GameObject* pParent, std::wstring name, EBillboardType billboardType);
 		virtual ~Billboard();
 
 		//////////////////////////////////////////////////////////////////////////
@@ -27,13 +27,19 @@ namespace HyEngine
 
 	private :
 		D3DXMATRIX CalcBillboardY();
-		
+		D3DXMATRIX CalcBillboardAll();
+
+		//////////////////////////////////////////////////////////////////////////
+		// VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		EBillboardType m_billboardType = EBillboardType::Y;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD
 		//////////////////////////////////////////////////////////////////////////
 	public :
-		static Billboard* Create(Scene* pScene, GameObject* pParent, std::wstring name);
+		static Billboard* Create(Scene* pScene, GameObject* pParent, std::wstring name, EBillboardType billboardType);
 	};
 }
 

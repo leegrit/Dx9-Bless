@@ -10,24 +10,24 @@
 #include "HierarchyData.h"
 #include "MeshHierarchyLoader.h"
 
-HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent,std::wstring name)
+HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent,std::wstring name, ESkinningType skinningType)
 	: Mesh(ERenderType::RenderOpaque, scene, parent, name),
 	m_pLoader(nullptr),
 	m_pAniCtrl(nullptr)
 {
-	m_skinningType = ESkinningType::HardwareSkinning;
+	m_skinningType = skinningType;
 	EventDispatcher::AddEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderBegin, this, placeholders::_1));
 	EventDispatcher::AddEventListener(RenderEvent::RenderEnd, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderEnd, this, placeholders::_1));
 
 }
 
-HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent, int editID)
+HyEngine::DynamicMesh::DynamicMesh(Scene * scene, GameObject * parent, int editID, ESkinningType skinningType)
 	: Mesh(ERenderType::RenderOpaque, scene, parent, L"DynamicMesh"),
 	m_pLoader(nullptr),
 	m_pAniCtrl(nullptr)
 {
 	SetEditID(editID);
-	m_skinningType = ESkinningType::HardwareSkinning;
+	m_skinningType = skinningType;
 	EventDispatcher::AddEventListener(RenderEvent::RenderBegin, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderBegin, this, placeholders::_1));
 	EventDispatcher::AddEventListener(RenderEvent::RenderEnd, to_string(GetInstanceID()), std::bind(&DynamicMesh::OnRenderEnd, this, placeholders::_1));
 
@@ -104,6 +104,12 @@ void HyEngine::DynamicMesh::Render()
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
+			// 임시
+			if (CString::Contain(pMeshContainer->pTextureNames[i], L"Eyelash"))
+			{
+				continue;
+			}
+			
 			m_pShader->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
 			m_pShader->SetValue("ViewMatrix", &pSelectedCamera->GetViewMatrix(), sizeof(pSelectedCamera->GetViewMatrix()));
 			m_pShader->SetValue("ProjMatrix", &pSelectedCamera->GetProjectionMatrix(), sizeof(pSelectedCamera->GetProjectionMatrix()));
@@ -153,7 +159,10 @@ void HyEngine::DynamicMesh::Render()
 			}
 			m_pShader->SetBool("HasNormalMap", hasNormalMap);
 
-			m_pShader->SetTechnique("SkinnedMesh");
+			if (m_skinningType == ESkinningType::HardwareSkinning)
+				m_pShader->SetTechnique("SkinnedMesh");
+			else if (m_skinningType == ESkinningType::SoftwareSkinning)
+				m_pShader->SetTechnique("SoftwareSkinnedMesh");
 			m_pShader->Begin(0, 0);
 			{
 				m_pShader->BeginPass(0);
@@ -172,7 +181,10 @@ void HyEngine::DynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
 	int containerIndex = 0;
-	pShader->SetBool("IsSkinnedMesh", true);
+	if (m_skinningType == ESkinningType::HardwareSkinning)
+	{
+		pShader->SetBool("IsSkinnedMesh", true);
+	}
 	for (; iter != iter_end; iter++)
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
@@ -181,17 +193,20 @@ void HyEngine::DynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 		// 실제 출력부분
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
+			if (m_skinningType == ESkinningType::HardwareSkinning)
+			{
+				int temp = 0;
+				if (i >= pMeshContainer->numAttributeGroups - 1)
+					temp = pMeshContainer->numAttributeGroups - 1;
+				else
+					temp = i;
+				pShader->SetMatrixArray("Palette",
+					m_palettes[containerIndex][temp], boneCount);
+				DWORD maxVtxInf;
+				pMeshContainer->pSkinInfo->GetMaxVertexInfluences(&maxVtxInf);
+				pShader->SetValue("MaxVtxInf", &maxVtxInf, sizeof(maxVtxInf));
 
-			int temp = 0;
-			if (i >= pMeshContainer->numAttributeGroups - 1)
-				temp = pMeshContainer->numAttributeGroups - 1;
-			else
-				temp = i;
-			pShader->SetMatrixArray("Palette",
-				m_palettes[containerIndex][temp], boneCount);
-			DWORD maxVtxInf;
-			pMeshContainer->pSkinInfo->GetMaxVertexInfluences(&maxVtxInf);
-			pShader->SetValue("MaxVtxInf", &maxVtxInf, sizeof(maxVtxInf));
+			}
 
 			pShader->CommitChanges();
 			pMeshContainer->MeshData.pMesh->DrawSubset(i);
@@ -268,8 +283,15 @@ void HyEngine::DynamicMesh::InitializeMeshes(std::wstring filePath, std::wstring
 	lstrcat(fullPath, fileName.c_str());
 
 	std::wstring temp = fullPath;
-
-	bool isSucceeded = MeshHierarchyLoader::TryGetMeshHierarchy(temp, &m_pAniCtrl, &m_pRootFrame);
+	bool isSucceeded = false;
+	if (m_skinningType == ESkinningType::HardwareSkinning)
+	{
+		 isSucceeded = MeshHierarchyLoader::TryGetMeshHierarchy(temp, &m_pAniCtrl, &m_pRootFrame);
+	}
+	else if (m_skinningType == ESkinningType::SoftwareSkinning)
+	{
+		isSucceeded = MeshHierarchyLoader::TryGetMeshHierarchySW(temp, &m_pAniCtrl, &m_pRootFrame);
+	}
 	assert(isSucceeded == true);
 
 	D3DXMATRIX matTemp;
@@ -362,51 +384,89 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 	D3DXMATRIX matTemp;
 
 	UpdateFrameMatrix((D3DXFRAME_DERIVED*)m_pRootFrame, D3DXMatrixIdentity(&matTemp));
-	int containerIndex = 0;
-	int maxBones = 0;
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
 
-	for (; iter != iter_end; iter++)
+	if (m_skinningType == ESkinningType::HardwareSkinning)
 	{
-		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
-
-
-		UINT boneCount = pMeshContainer->pSkinInfo->GetNumBones();
-
-
-		//for (ULONG i = 0; i < pMeshContainer->numBones; i++)
-		//	pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
-
-
-		LPD3DXBONECOMBINATION pBoneComb = nullptr;
-		pBoneComb =
-			reinterpret_cast<LPD3DXBONECOMBINATION>(pMeshContainer->pBoneCombinationBuf->GetBufferPointer());
-
-		for (int attr = 0; attr < pMeshContainer->numAttributeGroups; attr++)
+		int containerIndex = 0;
+		int maxBones = 0;
+		
+		for (; iter != iter_end; iter++)
 		{
+			D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
 
-			for (int paletteEntry = 0; paletteEntry < pMeshContainer->pSkinInfo->GetNumBones(); paletteEntry++)
+
+			UINT boneCount = pMeshContainer->pSkinInfo->GetNumBones();
+
+
+			//for (ULONG i = 0; i < pMeshContainer->numBones; i++)
+			//	pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
+
+
+			LPD3DXBONECOMBINATION pBoneComb = nullptr;
+			pBoneComb =
+				reinterpret_cast<LPD3DXBONECOMBINATION>(pMeshContainer->pBoneCombinationBuf->GetBufferPointer());
+
+			for (int attr = 0; attr < pMeshContainer->numAttributeGroups; attr++)
 			{
-				int matrixIndex = pBoneComb[attr].BoneId[paletteEntry];
 
-				if (matrixIndex != UINT_MAX)
+				for (int paletteEntry = 0; paletteEntry < pMeshContainer->pSkinInfo->GetNumBones(); paletteEntry++)
 				{
-					D3DXMatrixMultiply
-					(
-						&m_palettes[containerIndex][attr][paletteEntry],
-						&pMeshContainer->pFrameOffsetMatrix[matrixIndex],
-						pMeshContainer->ppFrameCombinedMatrix[matrixIndex]
-					);
+					int matrixIndex = pBoneComb[attr].BoneId[paletteEntry];
 
+					if (matrixIndex != UINT_MAX)
+					{
+						D3DXMatrixMultiply
+						(
+							&m_palettes[containerIndex][attr][paletteEntry],
+							&pMeshContainer->pFrameOffsetMatrix[matrixIndex],
+							pMeshContainer->ppFrameCombinedMatrix[matrixIndex]
+						);
+
+					}
 				}
 			}
+
+
+
+			containerIndex++;
 		}
-
-
-
-		containerIndex++;
 	}
+	else if (m_skinningType == ESkinningType::SoftwareSkinning)
+	{
+		for (; iter != iter_end; ++iter)
+		{
+			D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
+
+			for (ULONG i = 0; i < pMeshContainer->numBones; ++i)
+				pMeshContainer->pRenderingMatrix[i] = pMeshContainer->pFrameOffsetMatrix[i] * (*pMeshContainer->ppFrameCombinedMatrix[i]);
+
+			void* pSrcVtx = nullptr;
+			void* pDestVtx = nullptr;
+
+			pMeshContainer->pOriMesh->LockVertexBuffer(0, &pSrcVtx);
+			pMeshContainer->MeshData.pMesh->LockVertexBuffer(0, &pDestVtx);
+
+			// 소프트웨어 스키닝을 수행하는 함수(스키닝 뿐 아니라 애니메이션 변경 시, 뼈대들과 정점 정보들의 변경을 동시에 수행해주기도 한다)
+			pMeshContainer->pSkinInfo->UpdateSkinnedMesh(pMeshContainer->pRenderingMatrix,	// 뼈의 최종 변환 상태
+				NULL,			// 원상태로 돌려놓기 위한 상태 행렬의 주소값(본래는 뼈대마다 싹 다 역행렬을 구해줘서 넣어줘야하지만 안넣어줘도 전혀 상관 없음)
+				pSrcVtx,  // 변하지 않는 원본 메쉬의 정점 정보
+				pDestVtx);	// 변환된 정보를 담기 위한 정정 정보
+
+							// 실제 출력 파트
+
+			/*for (_ulong i = 0; i < pMeshContainer->NumMaterials; ++i)
+			{
+				m_pGraphicDev->SetTexture(0, pMeshContainer->ppTexture[i]);
+				pMeshContainer->MeshData.pMesh->DrawSubset(i);
+			}*/
+
+			pMeshContainer->pOriMesh->UnlockVertexBuffer();
+			pMeshContainer->MeshData.pMesh->UnlockVertexBuffer();
+		}
+	}
+	
 	int a = 0;
 }
 

@@ -1,8 +1,8 @@
 #include "StandardEngineFramework.h"
 #include "Pawn.h"
 #include "NavMesh.h"
-HyEngine::Pawn::Pawn(Scene * scene, GameObject * parent, NavMesh * navMesh)
-	: DynamicMesh(scene, parent, L"Pawn"),
+HyEngine::Pawn::Pawn(Scene * scene, GameObject * parent, NavMesh * navMesh, ESkinningType skinningType)
+	: DynamicMesh(scene, parent, L"Pawn", skinningType),
 	m_pNavMesh(navMesh)
 {
 	m_positionOld = D3DXVECTOR3(0, 0, 0);

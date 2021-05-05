@@ -4,8 +4,8 @@
 #include "PathManager.h"
 #include "GameScene.h"
 #include "UIManager.h"
-Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius)
-	: Character(scene, pNavMesh, colPosOffset, colRadius)
+Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
+	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
 {
 
 }
@@ -17,6 +17,9 @@ Enemy::~Enemy()
 void Enemy::Initialize(std::wstring dataPath)
 {
 	Character::Initialize(dataPath);
+	m_pFocusCollider = SphereCollider::Create(EColliderType::Multipurpose,
+		this, GetFocusColliderSize(), Layer::Default, nullptr);
+
 
 	/* Set Attack Data */
 	m_attackCount = GetAttackCount();

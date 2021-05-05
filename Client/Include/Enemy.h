@@ -8,7 +8,7 @@ class Enemy abstract : public Character
 	// CONSTRUCTOR & DESTRUCTOR
 	//////////////////////////////////////////////////////////////////////////
 protected :
-	explicit Enemy(Scene* scene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius);
+	explicit Enemy(Scene* scene, NavMesh* pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType);
 	virtual ~Enemy();
 
 	//////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,8 @@ public :
 	virtual void OnHitOthers(Collider* other) PURE;
 	virtual int GetAttackCount() PURE;
 	virtual Collider* GetAttackCollider(int attackIndex) PURE;
-
+	virtual float GetFocusColliderSize() PURE;
+	virtual D3DXVECTOR3 GetFocusUIOffset() PURE;
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
@@ -57,6 +58,10 @@ private :
 	/* For HP */
 	bool m_bShowHP = false;
 	class EnemyHPBar * m_pHpBarBillboard = nullptr;
+
+
+	/* For Focus */
+	Collider * m_pFocusCollider;
 
 };
 

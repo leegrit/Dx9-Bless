@@ -2,10 +2,10 @@
 #include "Billboard.h"
 #include "TextureQuad.h"
 
-HyEngine::Billboard::Billboard(Scene * pScene, GameObject * pParent, std::wstring name)
+HyEngine::Billboard::Billboard(Scene * pScene, GameObject * pParent, std::wstring name, EBillboardType billboardType)
 	:Texture(pScene, pParent, name)
 {
-
+	m_billboardType = billboardType;
 }
 
 HyEngine::Billboard::~Billboard()
@@ -19,7 +19,20 @@ void HyEngine::Billboard::Initialize()
 
 void HyEngine::Billboard::Render()
 {
-	D3DXMATRIX billMat = CalcBillboardY();
+	D3DXMATRIX billMat;
+
+	switch (m_billboardType)
+	{
+	case EBillboardType::All:
+		billMat = CalcBillboardAll();
+		break;
+	case EBillboardType::Y:
+		billMat = CalcBillboardY();
+		break;
+	default :
+		assert(false);
+		break;
+	}
 
 	/* Scale문제때문에 scale을 1로 world행렬을 만들고 */
 	/* billboard world 를 구성한 후에 scale을 다시 적용한다. */
@@ -72,7 +85,19 @@ void HyEngine::Billboard::Update()
 
 D3DXMATRIX HyEngine::Billboard::GetBillboardMatrix()
 {
-	D3DXMATRIX billMat = CalcBillboardY();
+	D3DXMATRIX billMat;
+	switch (m_billboardType)
+	{
+	case EBillboardType::Y:
+		billMat = CalcBillboardY();
+		break;
+	case EBillboardType::All:
+		billMat = CalcBillboardAll();
+		break;
+	default:
+		assert(false);
+		break;
+	}
 
 	/* Scale문제때문에 scale을 1로 world행렬을 만들고 */
 	/* billboard world 를 구성한 후에 scale을 다시 적용한다. */
@@ -111,9 +136,28 @@ D3DXMATRIX HyEngine::Billboard::CalcBillboardY()
 	return matBillY;
 }
 
-Billboard * HyEngine::Billboard::Create(Scene * pScene, GameObject * pParent, std::wstring name)
+D3DXMATRIX HyEngine::Billboard::CalcBillboardAll()
 {
-	Billboard * obj = new Billboard(pScene, pParent, name);
+	D3DXMATRIX matView = CAMERA->GetViewMatrix();
+	D3DXMATRIX matWorld = m_pTransform->GetWorldMatrix();
+
+	D3DXMATRIX matBill;
+	D3DXMatrixIdentity(&matBill);
+
+	memcpy(&matBill.m[0][0], &matView.m[0][0], sizeof(D3DXVECTOR3));
+	memcpy(&matBill.m[1][0], &matView.m[1][0], sizeof(D3DXVECTOR3));
+	memcpy(&matBill.m[2][0], &matView.m[2][0], sizeof(D3DXVECTOR3));
+
+
+	/* 역행렬 반환 */
+	D3DXMatrixInverse(&matBill, 0, &matBill);
+	
+	return matBill;
+}
+
+Billboard * HyEngine::Billboard::Create(Scene * pScene, GameObject * pParent, std::wstring name, EBillboardType billboardType)
+{
+	Billboard * obj = new Billboard(pScene, pParent, name, billboardType);
 	obj->Initialize();
 	return obj;
 }

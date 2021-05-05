@@ -106,9 +106,6 @@
     <ClCompile Include="..\Source\TitleCamera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\QuestManager.cpp">
-      <Filter>Scripts\Quest</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\CombatQuest.cpp">
       <Filter>Scripts\Quest</Filter>
     </ClCompile>
@@ -124,14 +121,8 @@
     <ClCompile Include="..\Source\SampleNPC.cpp">
       <Filter>GameObject\NPC\Hieracon</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\NPCInteractManager.cpp">
-      <Filter>Scripts\NPC</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\GameManager.cpp">
       <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\UIManager.cpp">
-      <Filter>Scripts\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\IQuestTarget.cpp">
       <Filter>Scripts\Quest</Filter>
@@ -160,9 +151,6 @@
     <ClCompile Include="..\Source\ArbaJungleScene.cpp">
       <Filter>Scenes\GameStage</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\EnemyHPBar.cpp">
-      <Filter>Scripts\UI</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\WarpPoint.cpp" />
     <ClCompile Include="..\Source\FadeInOut.cpp">
       <Filter>Scripts\UI</Filter>
@@ -179,6 +167,34 @@
     <ClCompile Include="..\Source\LevelUpNoticeUI.cpp">
       <Filter>Scripts\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Goblin.cpp">
+      <Filter>GameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EnemyHPBar.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\TargetingCircle.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\TargetingArrow.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BattleManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\UIManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NPCInteractManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NormalEnemyHPBar.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EnemyScreenHPBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -255,6 +271,9 @@
     </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{5aa4d3da-ee67-4871-81f8-b5f0ce421f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI\Battle">
+      <UniqueIdentifier>{530b8216-92b4-4aa0-8386-5fc8ed37ff63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -365,9 +384,6 @@
     <ClInclude Include="..\Include\Client_Enumerators.h">
       <Filter>GlobalVars</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\QuestManager.h">
-      <Filter>Scripts\Quest</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\CombatQuest.h">
       <Filter>Scripts\Quest</Filter>
     </ClInclude>
@@ -383,17 +399,11 @@
     <ClInclude Include="..\Include\SampleNPC.h">
       <Filter>GameObject\NPC\Hieracon</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\NPCInteractManager.h">
-      <Filter>Scripts\NPC</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\GameManager.h">
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\Client_Events.h">
       <Filter>GlobalVars</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Include\UIManager.h">
-      <Filter>Scripts\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\IQuestTarget.h">
       <Filter>Scripts\Quest</Filter>
@@ -422,9 +432,6 @@
     <ClInclude Include="..\Include\ArbaJungleScene.h">
       <Filter>Scenes\GameStage</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\EnemyHPBar.h">
-      <Filter>Scripts\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\WarpPoint.h" />
     <ClInclude Include="..\Include\FadeInOut.h">
       <Filter>Scripts\UI</Filter>
@@ -444,6 +451,34 @@
     <ClInclude Include="..\Include\LevelUpNoticeUI.h">
       <Filter>Scripts\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Include\Goblin.h">
+      <Filter>GameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyHPBar.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\TargetingCircle.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\TargetingArrow.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\BattleManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\UIManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NPCInteractManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NormalEnemyHPBar.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyScreenHPBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

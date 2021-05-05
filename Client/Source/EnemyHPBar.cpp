@@ -3,7 +3,7 @@
 #include "TextureQuad.h"
 
 EnemyHPBar::EnemyHPBar(Scene * pScene, std::wstring name)
-	: Billboard(pScene, nullptr, name)
+	: Billboard(pScene, nullptr, name, EBillboardType::Y)
 {
 
 }

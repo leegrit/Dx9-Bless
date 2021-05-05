@@ -651,6 +651,9 @@
     <ClInclude Include="Include\ProgressBar.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Include\MeshHierarchySW.h">
+      <Filter>DynamicMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1109,6 +1112,9 @@
     <ClCompile Include="Source\ProgressBar.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MeshHierarchySW.cpp">
+      <Filter>DynamicMesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1178,6 +1184,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\FadeInOut.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\TargetingUI.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

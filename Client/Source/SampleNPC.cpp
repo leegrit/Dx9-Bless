@@ -4,7 +4,7 @@
 #include "TestQuest.h"
 
 SampleNPC::SampleNPC(Scene * pScene)
-	: NonePlayer(pScene)
+	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
 {
 }
 

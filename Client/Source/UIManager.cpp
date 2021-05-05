@@ -13,6 +13,12 @@
 #include "ProgressBar.h"
 #include "LevelUpNoticeUI.h"
 #include "DamageFontScatter.h"
+#include "TargetingArrow.h"
+#include "TargetingCircle.h"
+#include "Enemy.h"
+#include "EnemyScreenHPBar.h"
+
+
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -104,6 +110,15 @@ void UIManager::Initialize()
 	m_pQuestNoticeUI = QuestNoticeUI::Create(m_pScene, L"QuestNoticeUI");
 
 	m_pLevelUpNoticeUI = LevelUpNoticeUI::Create(m_pScene, L"LevelUpNoticeUI");
+
+	/* For Battle UI */
+	m_pTargetingCircle = TargetingCircle::Create(m_pScene, L"TargetingCircle");
+	m_pTargetingCircle->m_pTransform->SetScale(3, 3, 1);
+	m_pTargetingArrow = TargetingArrow::Create(m_pScene, L"TargetingArrow");
+	m_pTargetingArrow->m_pTransform->SetScale(10, 10, 1);
+
+	m_pEnemyScreenHPBar = EnemyScreenHPBar::Create(m_pScene, L"EnemyScreenHPBar");
+	m_pEnemyScreenHPBar->Hide();
 
 	/* For Static UI */
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -312.8, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(80, 80, 1), L"1"));
@@ -254,4 +269,28 @@ void UIManager::OnCompletelyClearQuest(void * questIndex)
 			}
 		}
 	}
+}
+
+void UIManager::OnFocusChanged(GameObject * pFocusedTarget)
+{
+	Enemy* pEnemy = static_cast<Enemy*>(pFocusedTarget);
+	assert(pEnemy);
+	m_pTargetingArrow->Focus(pFocusedTarget, pEnemy->GetFocusUIOffset());
+	m_pTargetingCircle->Focus(pFocusedTarget, pEnemy->GetFocusUIOffset());
+
+	m_pEnemyScreenHPBar->Show(pFocusedTarget);
+}
+
+void UIManager::OnFocusAgain(GameObject* pFocusedTarget)
+{
+	m_pEnemyScreenHPBar->Show(pFocusedTarget);
+
+}
+
+void UIManager::OnFocusLost()
+{
+	m_pTargetingArrow->LostFocus();
+	m_pTargetingCircle->LostFocus();
+
+	m_pEnemyScreenHPBar->Hide();
 }

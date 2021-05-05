@@ -9,8 +9,8 @@
 #include "Client_Events.h"
 
 
-NonePlayer::NonePlayer(Scene * scene)
-	:Character(scene, nullptr)
+NonePlayer::NonePlayer(Scene * scene, ESkinningType skinningType )
+	:Character(scene, nullptr, skinningType)
 {
 	EventDispatcher::AddEventListener(QuestEvent::QuestDialogOpen, std::to_string( GetInstanceID()),
 		std::bind(&NonePlayer::OnDialogOpen, this, placeholders::_1));

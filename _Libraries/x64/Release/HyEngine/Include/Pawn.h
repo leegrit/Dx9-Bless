@@ -9,7 +9,7 @@ namespace HyEngine
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
 	protected :
-		explicit Pawn(Scene* scene, GameObject* parent, NavMesh* navMesh);
+		explicit Pawn(Scene* scene, GameObject* parent, NavMesh* navMesh, ESkinningType skinningType = ESkinningType::SoftwareSkinning);
 		virtual ~Pawn();
 
 		//////////////////////////////////////////////////////////////////////////

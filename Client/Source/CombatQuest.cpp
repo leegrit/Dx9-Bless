@@ -62,9 +62,8 @@ void CombatQuest::LinkObject()
 
 void CombatQuest::OnKillEnemy(void * arg)
 {
-	std::wstring& name = *(static_cast<std::wstring*>(arg));
-
-	if (m_enemyName.compare(name) == 0)
+	GameObject * obj = static_cast<GameObject*>(arg);
+	if (m_enemyName.compare(obj->GetName()) == 0)
 	{
 		m_killedCount++;
 	}
