@@ -22,6 +22,11 @@
 #include "DummyBoss.h"
 #include "SampleNPC.h"
 #include "WarpPoint.h"
+#include "Goblin.h"
+#include "Leoni.h"
+#include "Guido.h"
+#include "TalkableGoblin.h"
+#include "CollectObject.h"
 
 void ArbaJungleScene::Update()
 {
@@ -90,11 +95,50 @@ void ArbaJungleScene::Load()
 	auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
 	equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// ENEMY
+	//////////////////////////////////////////////////////////////////////////
+	auto enemy1 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01.json");
+	auto enemy2 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02.json");
+	auto enemy3 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03.json");
+	auto enemy4 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin04.json");
+	auto enemy5 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin05.json");
+	auto enemy6 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin06.json");
+	auto enemy7 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin07.json");
+	auto enemy8 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin08.json");
+	auto enemy9 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin09.json");
+	auto enemy10 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin10.json");
+	auto enemy11 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin11.json");
+	auto enemy12 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin12.json");
+	auto enemy13 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin13.json");
+	auto enemy14 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin14.json");
+	auto enemy15 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin15.json");
+	auto enemy16 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin16.json");
+	auto enemy17 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin17.json");
+	auto enemy18 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin18.json");
+	auto enemy19 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin19.json");
+	auto enemy20 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin20.json");
+
+	//////////////////////////////////////////////////////////////////////////
+	// NONE PLAYER
+	//////////////////////////////////////////////////////////////////////////
+	Leoni::Create(this, PATH->DatasPathW() + L"HierarchyData/Leoni.json");
+	Guido::Create(this, PATH->DatasPathW() + L"HierarchyData/Guido.json");
+	TalkableGoblin::Create(this, PATH->DatasPathW() + L"HierarchyData/GoblinNPC.json");
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// WARP POINT
 	//////////////////////////////////////////////////////////////////////////
 	auto warpPoint = WarpPoint::Create(this, 3, L"ToAncientTower");
 	warpPoint->m_pTransform->SetPosition(-41, 0, 1137);
+
+	//////////////////////////////////////////////////////////////////////////
+	// COLLECT OBJECT
+	//////////////////////////////////////////////////////////////////////////
+	CollectObject::Create(this, L"Statue01", PATH->DatasPathW() + L"HierarchyData/Statue01.json");
+	CollectObject::Create(this, L"Statue02", PATH->DatasPathW() + L"HierarchyData/Statue02.json");
 
 
 }

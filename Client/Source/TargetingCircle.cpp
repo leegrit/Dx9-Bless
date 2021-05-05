@@ -35,6 +35,8 @@ void TargetingCircle::Render()
 	D3DXHANDLE DiffuseHandler = m_pEffect->GetParameterByName(0, "DiffuseTex");
 	m_pEffect->SetTexture(DiffuseHandler, m_pDiffuse);
 
+	m_pEffect->SetFloat("Alpha", 1);
+
 	m_pEffect->SetTechnique("TargetingUI");
 	m_pEffect->Begin(0, 0);
 	{

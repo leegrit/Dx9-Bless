@@ -27,7 +27,7 @@ public:
 
 	void AddQuest(class Quest* pQuest);
 	class Quest* GetQuest(int index);
-
+	class Quest* GetQuest(std::wstring questName);
 
 	void ShowQuestDialog(class NonePlayer* pSender, class Quest * pQuest);
 

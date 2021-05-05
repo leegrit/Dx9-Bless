@@ -60,9 +60,5 @@ private :
 public :
 	static Skeletone * Create(Scene * pScene, NavMesh* pNavMesh, std::wstring dataPath);
 
-
-
-
-
 };
 

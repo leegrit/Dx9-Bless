@@ -194,7 +194,67 @@
     <ClCompile Include="..\Source\NormalEnemyHPBar.cpp">
       <Filter>Scripts\UI\Battle</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\EnemyScreenHPBar.cpp" />
+    <ClCompile Include="..\Source\GoblinAttack.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GoblinDie.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GoblinDied.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GoblinHit.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GoblinIdle.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GoblinMove.cpp">
+      <Filter>FSM\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EnemyScreenHPBar.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\TalkableGoblin.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Guido.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Leoni.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_AttackToGoblin.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_CollectRelics.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_SearchRelics.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_RetrieveBody.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_TalkableGoblin.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_CollectKey.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_FirstMission.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CollectQuest.cpp">
+      <Filter>Scripts\Quest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CollectObject.cpp">
+      <Filter>GameObject\Interactive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CollectProgressBar.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\InteractManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -274,6 +334,18 @@
     </Filter>
     <Filter Include="Scripts\UI\Battle">
       <UniqueIdentifier>{530b8216-92b4-4aa0-8386-5fc8ed37ff63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Goblin">
+      <UniqueIdentifier>{852c1e90-2fab-44b2-bf10-bf301a37c2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\NPC\ArbaJungle">
+      <UniqueIdentifier>{69195f9e-0c8f-42cc-81fd-5b8db1465dd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Quest\ArbaJungle">
+      <UniqueIdentifier>{7ed127d8-bd9f-412a-80e6-d44d51f1abef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Interactive">
+      <UniqueIdentifier>{179a1493-1444-4778-ac57-1d67e30ed9f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -478,7 +550,67 @@
     <ClInclude Include="..\Include\NormalEnemyHPBar.h">
       <Filter>Scripts\UI\Battle</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\EnemyScreenHPBar.h" />
+    <ClInclude Include="..\Include\GoblinMove.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GoblinAttack.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GoblinDie.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GoblinDied.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GoblinHit.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GoblinIdle.h">
+      <Filter>FSM\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyScreenHPBar.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\TalkableGoblin.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Guido.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Leoni.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_AttackToGoblin.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_CollectRelics.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_SearchRelics.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_RetrieveBody.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_TalkableGoblin.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_CollectKey.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_FirstMission.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CollectQuest.h">
+      <Filter>Scripts\Quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CollectObject.h">
+      <Filter>GameObject\Interactive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CollectProgressBar.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\InteractManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

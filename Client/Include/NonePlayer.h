@@ -23,8 +23,15 @@ public :
 	virtual void Initialize(std::wstring dataPath)override;
 	virtual void QuestInitialize();
 	virtual void Update() override;
+	virtual void Render() override;
 	virtual void OnCollision(Collider * other) override;
 
+	//////////////////////////////////////////////////////////////////////////
+	// PURE
+	//////////////////////////////////////////////////////////////////////////
+public :
+	virtual std::wstring GetCharacterName()PURE;
+	virtual std::wstring GetSubTitle() PURE;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK
@@ -52,5 +59,10 @@ private:
 	Camera* m_pZoomInCam = nullptr;
 	std::wstring m_originCamName;
 	bool m_bZoom = false;
+
+private : /* For Name */
+	class NameFont * m_pNameFont = nullptr;
+	class NameFont* m_pSubTitleFont = nullptr;
+
 };
 

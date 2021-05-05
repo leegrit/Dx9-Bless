@@ -1,5 +1,5 @@
 {
-  "HierarchyCount": 102,
+  "HierarchyCount": 99,
   "Hierarchy_0": {
     "Type": 5,
     "Index": 0,
@@ -107,9 +107,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 65.4,
+          "X": -235.271118,
           "Y": -7.62939453E-06,
-          "Z": 219.85
+          "Z": 458.490234
         },
         "Rotation": {
           "X": 0.0,
@@ -2978,285 +2978,6 @@
   },
   "Hierarchy_32": {
     "Type": 2,
-    "Index": 32,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 32,
-      "Name": "Statue01",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": 345.2,
-          "Y": -3.05175781E-05,
-          "Z": 463.48
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.3,
-          "Y": 0.3,
-          "Z": 0.3
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 32,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 32,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 32,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_33": {
-    "Type": 2,
-    "Index": 33,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 33,
-      "Name": "Statue01",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": -50.71,
-          "Y": -1.52587891E-05,
-          "Z": 516.51
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.3,
-          "Y": 0.3,
-          "Z": 0.3
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 33,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 33,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 32,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_34": {
-    "Type": 2,
-    "Index": 34,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 34,
-      "Name": "Statue02",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": -251.11,
-          "Y": -7.62939453E-06,
-          "Z": 380.39
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.5,
-          "Y": 0.5,
-          "Z": 0.5
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 34,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 34,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 34,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_35": {
-    "Type": 2,
     "Index": 35,
     "TagIndex": 0,
     "LayerIndex": 0,
@@ -3348,7 +3069,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_36": {
+  "Hierarchy_33": {
     "Type": 2,
     "Index": 36,
     "TagIndex": 0,
@@ -3441,7 +3162,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_37": {
+  "Hierarchy_34": {
     "Type": 2,
     "Index": 37,
     "TagIndex": 0,
@@ -3534,7 +3255,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_38": {
+  "Hierarchy_35": {
     "Type": 2,
     "Index": 38,
     "TagIndex": 0,
@@ -3627,7 +3348,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_39": {
+  "Hierarchy_36": {
     "Type": 2,
     "Index": 39,
     "TagIndex": 0,
@@ -3720,7 +3441,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_40": {
+  "Hierarchy_37": {
     "Type": 2,
     "Index": 40,
     "TagIndex": 0,
@@ -3813,7 +3534,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_41": {
+  "Hierarchy_38": {
     "Type": 2,
     "Index": 41,
     "TagIndex": 0,
@@ -3906,7 +3627,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_42": {
+  "Hierarchy_39": {
     "Type": 2,
     "Index": 42,
     "TagIndex": 0,
@@ -3999,7 +3720,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_43": {
+  "Hierarchy_40": {
     "Type": 2,
     "Index": 43,
     "TagIndex": 0,
@@ -4092,7 +3813,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_44": {
+  "Hierarchy_41": {
     "Type": 2,
     "Index": 44,
     "TagIndex": 0,
@@ -4185,379 +3906,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_45": {
-    "Type": 2,
-    "Index": 45,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 45,
-      "Name": "Statue01",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": 42.57,
-          "Y": 0.0,
-          "Z": 1196.73
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.3,
-          "Y": 0.3,
-          "Z": 0.3
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 45,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 45,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 46,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_46": {
-    "Type": 2,
-    "Index": 46,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 46,
-      "Name": "Statue01",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": -98.23,
-          "Y": -7.62939453E-06,
-          "Z": 1049.53
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.3,
-          "Y": 0.3,
-          "Z": 0.3
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 46,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 46,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 46,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_47": {
-    "Type": 2,
-    "Index": 47,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 47,
-      "Name": "Statue02",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": -69.17,
-          "Y": -7.62939453E-06,
-          "Z": 1084.92
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.5,
-          "Y": 0.5,
-          "Z": 0.5
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 47,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 47,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 48,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_48": {
-    "Type": 2,
-    "Index": 48,
-    "TagIndex": 0,
-    "LayerIndex": 0,
-    "StaticIndex": 0,
-    "GameObjectData": {
-      "Index": 48,
-      "Name": "Statue02",
-      "Tag": "Default",
-      "Layer": 0,
-      "StaticType": 0,
-      "Transform": {
-        "Position": {
-          "X": 2.92,
-          "Y": 3.11,
-          "Z": 1169.98
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 0.5,
-          "Y": 0.5,
-          "Z": 0.5
-        }
-      }
-    },
-    "MeshData": {
-      "Index": 48,
-      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
-      "DiffuseTexturePath": ""
-    },
-    "MapData": {
-      "Index": 48,
-      "Group": 0
-    },
-    "NavMeshData": {
-      "Index": 48,
-      "CellCount": 0
-    },
-    "TerrainData": {
-      "VertexCountX": 10,
-      "VertexCountZ": 10,
-      "TextureCountX": 20.0,
-      "TextureCountZ": 20.0,
-      "VertexInterval": 1.0,
-      "DiffuseFilePath": "",
-      "NormalFilePath": ""
-    },
-    "LightData": {
-      "LightType": 0,
-      "Direction": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Position": {
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0
-      },
-      "Ambient": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "AmbientIntensity": 0.0,
-      "Diffuse": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "DiffuseIntensity": 0.0,
-      "Specular": {
-        "R": 0.0,
-        "G": 0.0,
-        "B": 0.0,
-        "A": 0.0
-      },
-      "SpecularIntensity": 0.0,
-      "SpecularPower": 0.0,
-      "Range": 0.0,
-      "Cone": 0.0,
-      "Constant": 0.0,
-      "Linear": 0.0,
-      "Quadratic": 0.0
-    }
-  },
-  "Hierarchy_49": {
+  "Hierarchy_42": {
     "Type": 2,
     "Index": 49,
     "TagIndex": 0,
@@ -4650,7 +3999,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_50": {
+  "Hierarchy_43": {
     "Type": 2,
     "Index": 50,
     "TagIndex": 0,
@@ -4743,7 +4092,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_51": {
+  "Hierarchy_44": {
     "Type": 2,
     "Index": 51,
     "TagIndex": 0,
@@ -4836,7 +4185,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_52": {
+  "Hierarchy_45": {
     "Type": 2,
     "Index": 52,
     "TagIndex": 0,
@@ -4929,7 +4278,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_53": {
+  "Hierarchy_46": {
     "Type": 2,
     "Index": 53,
     "TagIndex": 0,
@@ -5022,7 +4371,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_54": {
+  "Hierarchy_47": {
     "Type": 2,
     "Index": 54,
     "TagIndex": 0,
@@ -5115,7 +4464,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_55": {
+  "Hierarchy_48": {
     "Type": 2,
     "Index": 55,
     "TagIndex": 0,
@@ -5208,7 +4557,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_56": {
+  "Hierarchy_49": {
     "Type": 2,
     "Index": 56,
     "TagIndex": 0,
@@ -5301,7 +4650,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_57": {
+  "Hierarchy_50": {
     "Type": 2,
     "Index": 57,
     "TagIndex": 0,
@@ -5394,7 +4743,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_58": {
+  "Hierarchy_51": {
     "Type": 2,
     "Index": 58,
     "TagIndex": 0,
@@ -5487,7 +4836,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_59": {
+  "Hierarchy_52": {
     "Type": 2,
     "Index": 59,
     "TagIndex": 0,
@@ -5580,7 +4929,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_60": {
+  "Hierarchy_53": {
     "Type": 2,
     "Index": 60,
     "TagIndex": 0,
@@ -5673,7 +5022,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_61": {
+  "Hierarchy_54": {
     "Type": 2,
     "Index": 61,
     "TagIndex": 0,
@@ -5766,7 +5115,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_62": {
+  "Hierarchy_55": {
     "Type": 2,
     "Index": 62,
     "TagIndex": 0,
@@ -5859,7 +5208,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_63": {
+  "Hierarchy_56": {
     "Type": 2,
     "Index": 63,
     "TagIndex": 0,
@@ -5952,7 +5301,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_64": {
+  "Hierarchy_57": {
     "Type": 2,
     "Index": 64,
     "TagIndex": 0,
@@ -6045,7 +5394,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_65": {
+  "Hierarchy_58": {
     "Type": 2,
     "Index": 65,
     "TagIndex": 0,
@@ -6138,7 +5487,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_66": {
+  "Hierarchy_59": {
     "Type": 2,
     "Index": 66,
     "TagIndex": 0,
@@ -6231,7 +5580,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_67": {
+  "Hierarchy_60": {
     "Type": 2,
     "Index": 67,
     "TagIndex": 0,
@@ -6324,7 +5673,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_68": {
+  "Hierarchy_61": {
     "Type": 2,
     "Index": 68,
     "TagIndex": 0,
@@ -6417,7 +5766,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_69": {
+  "Hierarchy_62": {
     "Type": 2,
     "Index": 69,
     "TagIndex": 0,
@@ -6510,7 +5859,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_70": {
+  "Hierarchy_63": {
     "Type": 2,
     "Index": 70,
     "TagIndex": 0,
@@ -6603,7 +5952,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_71": {
+  "Hierarchy_64": {
     "Type": 2,
     "Index": 71,
     "TagIndex": 0,
@@ -6696,7 +6045,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_72": {
+  "Hierarchy_65": {
     "Type": 3,
     "Index": 72,
     "TagIndex": 0,
@@ -9285,7 +8634,7 @@
       "Group": 100
     }
   },
-  "Hierarchy_73": {
+  "Hierarchy_66": {
     "Type": 2,
     "Index": 73,
     "TagIndex": 0,
@@ -9378,7 +8727,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_74": {
+  "Hierarchy_67": {
     "Type": 1,
     "Index": 74,
     "TagIndex": 0,
@@ -9471,7 +8820,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_75": {
+  "Hierarchy_68": {
     "Type": 1,
     "Index": 75,
     "TagIndex": 0,
@@ -9564,7 +8913,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_76": {
+  "Hierarchy_69": {
     "Type": 1,
     "Index": 76,
     "TagIndex": 0,
@@ -9657,7 +9006,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_77": {
+  "Hierarchy_70": {
     "Type": 1,
     "Index": 77,
     "TagIndex": 0,
@@ -9750,7 +9099,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_78": {
+  "Hierarchy_71": {
     "Type": 1,
     "Index": 78,
     "TagIndex": 0,
@@ -9843,7 +9192,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_79": {
+  "Hierarchy_72": {
     "Type": 1,
     "Index": 79,
     "TagIndex": 0,
@@ -9936,7 +9285,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_80": {
+  "Hierarchy_73": {
     "Type": 1,
     "Index": 80,
     "TagIndex": 0,
@@ -10029,7 +9378,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_81": {
+  "Hierarchy_74": {
     "Type": 1,
     "Index": 81,
     "TagIndex": 0,
@@ -10122,7 +9471,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_82": {
+  "Hierarchy_75": {
     "Type": 1,
     "Index": 82,
     "TagIndex": 0,
@@ -10215,7 +9564,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_83": {
+  "Hierarchy_76": {
     "Type": 1,
     "Index": 83,
     "TagIndex": 0,
@@ -10308,7 +9657,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_84": {
+  "Hierarchy_77": {
     "Type": 1,
     "Index": 84,
     "TagIndex": 0,
@@ -10401,7 +9750,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_85": {
+  "Hierarchy_78": {
     "Type": 1,
     "Index": 85,
     "TagIndex": 0,
@@ -10494,7 +9843,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_86": {
+  "Hierarchy_79": {
     "Type": 1,
     "Index": 86,
     "TagIndex": 0,
@@ -10587,7 +9936,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_87": {
+  "Hierarchy_80": {
     "Type": 1,
     "Index": 87,
     "TagIndex": 0,
@@ -10680,7 +10029,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_88": {
+  "Hierarchy_81": {
     "Type": 1,
     "Index": 88,
     "TagIndex": 0,
@@ -10773,7 +10122,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_89": {
+  "Hierarchy_82": {
     "Type": 1,
     "Index": 89,
     "TagIndex": 0,
@@ -10866,7 +10215,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_90": {
+  "Hierarchy_83": {
     "Type": 1,
     "Index": 90,
     "TagIndex": 0,
@@ -10959,7 +10308,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_91": {
+  "Hierarchy_84": {
     "Type": 1,
     "Index": 91,
     "TagIndex": 0,
@@ -11052,7 +10401,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_92": {
+  "Hierarchy_85": {
     "Type": 1,
     "Index": 92,
     "TagIndex": 0,
@@ -11145,7 +10494,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_93": {
+  "Hierarchy_86": {
     "Type": 1,
     "Index": 93,
     "TagIndex": 0,
@@ -11238,7 +10587,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_94": {
+  "Hierarchy_87": {
     "Type": 1,
     "Index": 94,
     "TagIndex": 0,
@@ -11331,7 +10680,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_95": {
+  "Hierarchy_88": {
     "Type": 1,
     "Index": 95,
     "TagIndex": 0,
@@ -11424,7 +10773,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_96": {
+  "Hierarchy_89": {
     "Type": 1,
     "Index": 96,
     "TagIndex": 0,
@@ -11517,7 +10866,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_97": {
+  "Hierarchy_90": {
     "Type": 1,
     "Index": 97,
     "TagIndex": 0,
@@ -11610,7 +10959,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_98": {
+  "Hierarchy_91": {
     "Type": 1,
     "Index": 98,
     "TagIndex": 0,
@@ -11624,9 +10973,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 188.6355,
+          "X": 188.64,
           "Y": -1.52587891E-05,
-          "Z": 743.1822
+          "Z": 743.18
         },
         "Rotation": {
           "X": 0.0,
@@ -11703,7 +11052,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_99": {
+  "Hierarchy_92": {
     "Type": 1,
     "Index": 99,
     "TagIndex": 0,
@@ -11717,9 +11066,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 32.1026077,
+          "X": 32.1,
           "Y": -3.81469727E-06,
-          "Z": 805.747253
+          "Z": 805.75
         },
         "Rotation": {
           "X": 0.0,
@@ -11796,7 +11145,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_100": {
+  "Hierarchy_93": {
     "Type": 1,
     "Index": 100,
     "TagIndex": 0,
@@ -11810,9 +11159,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -340.989777,
+          "X": -340.99,
           "Y": 3.81469727E-06,
-          "Z": 675.6778
+          "Z": 675.68
         },
         "Rotation": {
           "X": 0.0,
@@ -11889,7 +11238,7 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_101": {
+  "Hierarchy_94": {
     "Type": 1,
     "Index": 101,
     "TagIndex": 0,
@@ -11903,9 +11252,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -184.196823,
+          "X": -184.2,
           "Y": 0.0,
-          "Z": 599.9919
+          "Z": 599.99
         },
         "Rotation": {
           "X": 0.0,
@@ -11930,6 +11279,378 @@
     },
     "NavMeshData": {
       "Index": 98,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_95": {
+    "Type": 2,
+    "Index": 102,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 102,
+      "Name": "JungleTree09",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -490.23,
+          "Y": -7.62939453E-06,
+          "Z": 706.27
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -225.6,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.7,
+          "Y": 0.7,
+          "Z": 0.7
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 102,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 102,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 59,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_96": {
+    "Type": 2,
+    "Index": 103,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 103,
+      "Name": "PlanetariumStatue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -257.66,
+          "Y": 15.84,
+          "Z": 293.57
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -90.0,
+          "Z": -90.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 103,
+      "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 103,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 103,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_97": {
+    "Type": 2,
+    "Index": 106,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 106,
+      "Name": "Statue02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 131.638382,
+          "Y": -7.62939453E-06,
+          "Z": 541.0397
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 106,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 106,
+      "Group": 2
+    },
+    "NavMeshData": {
+      "Index": 106,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_98": {
+    "Type": 2,
+    "Index": 107,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 107,
+      "Name": "Statue01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -310.7,
+          "Y": -7.62939453E-06,
+          "Z": 536.8
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 107,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Statue01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 107,
+      "Group": 2
+    },
+    "NavMeshData": {
+      "Index": 107,
       "CellCount": 0
     },
     "TerrainData": {

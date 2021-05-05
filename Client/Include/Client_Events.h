@@ -8,6 +8,7 @@ namespace QuestEvent
 	static std::string QuestAccept = "QuestEvent.QuestAccept";
 	static std::string QuestFinish = "QuestEvent.QuestFinish";
 	static std::string QuestCompletelyClear = "QuestEvent.QuestCompletelyClear";
+	static std::string CollectQuestObject = "QuestEvent.CollectQuestObject";
 }
 
 namespace BattleEvent

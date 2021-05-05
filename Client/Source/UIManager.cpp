@@ -17,7 +17,7 @@
 #include "TargetingCircle.h"
 #include "Enemy.h"
 #include "EnemyScreenHPBar.h"
-
+#include "CollectProgressBar.h"
 
 
 
@@ -79,6 +79,12 @@ void UIManager::Initialize()
 
 	m_pWarpPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
 	m_pWarpPanel->SetActive(false);
+
+	m_pCollectPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
+	m_pCollectPanel->SetActive(false);
+
+	m_pCollectProgressBar = CollectProgressBar::Create(m_pScene, L"CollectProgressBar");
+	m_pCollectProgressBar->Hide();
 
 	m_pFadeInOut = FadeInOut::Create(m_pScene);
 	m_pFadeInOut->SetActive(false);
@@ -201,6 +207,26 @@ void UIManager::HideWarpInteractPanel()
 	m_pWarpPanel->SetActive(false);
 }
 
+void UIManager::ShowCollectInteractPanel()
+{
+	m_pCollectPanel->SetActive(true);
+}
+
+void UIManager::HideCollectInteractPanel()
+{
+	m_pCollectPanel->SetActive(false);
+}
+
+void UIManager::ShowCollectProgressBar(float amount)
+{
+	m_pCollectProgressBar->Show(amount);
+}
+
+void UIManager::HideCollectProgressBar()
+{
+	m_pCollectProgressBar->Hide();
+}
+
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
 {
 	m_pDamageFontScatter->PushDamageFunt(damage, isPlayer, isCritical, center);
@@ -226,6 +252,7 @@ void UIManager::ShowDialogChoiceButton(Quest * pQuest, EQuestDialogType questDia
 
 void UIManager::ProgressQuest(Quest * pQuest, float progressRate)
 {
+
 }
 
 void UIManager::OnAcceptQuest(void * questIndex)

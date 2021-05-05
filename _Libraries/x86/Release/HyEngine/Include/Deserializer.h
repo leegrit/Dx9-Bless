@@ -3,7 +3,7 @@ namespace HyEngine
 {
 	class HierarchyData;
 	class ChunkMapData;
-	class Deserializer
+	class ENGINE_DLL Deserializer
 	{
 	public :
 		static shared_ptr<HierarchyData> Deserialize(std::wstring jsonPath);

@@ -2,6 +2,7 @@ matrix WorldMatrix;
 matrix ViewMatrix;
 matrix ProjMatrix;
 
+float Alpha;
 
 texture DiffuseTex;
 sampler DiffuseSampler = sampler_state
@@ -44,7 +45,7 @@ VertexOutput TargetingUIVS(VertexInput input)
 float4 TargetingUIPS(PixelInput input) : COLOR0
 {
 	float4 color = tex2D(DiffuseSampler, input.texcoord);
-	return color;
+	return color * Alpha;
 }
 
 

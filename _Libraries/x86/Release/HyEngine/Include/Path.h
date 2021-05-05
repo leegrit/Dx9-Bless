@@ -3,7 +3,7 @@
 namespace HyEngine
 {
 		using namespace std;
-		class Path
+		class ENGINE_DLL Path
 		{
 		public:
 			// 인자로 받은 경로에 파일이 존재하는지 확인

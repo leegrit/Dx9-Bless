@@ -37,6 +37,12 @@ public : /* For Interact */
 	void ShowWarpInteractPanel();
 	void HideWarpInteractPanel();
 
+	void ShowCollectInteractPanel();
+	void HideCollectInteractPanel();
+
+	void ShowCollectProgressBar(float amount);
+	void HideCollectProgressBar();
+
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
 
 
@@ -65,8 +71,11 @@ private : /* Interacive UI */
 	UIElement* m_pTalkPanel = nullptr;
 	UIElement* m_pPickUpPanel = nullptr;
 	UIElement* m_pWarpPanel = nullptr;
+	UIElement* m_pCollectPanel = nullptr;
 
 	FadeInOut* m_pFadeInOut = nullptr;
+
+	class CollectProgressBar * m_pCollectProgressBar = nullptr;
 
 	class DamageFontScatter * m_pDamageFontScatter = nullptr;
 

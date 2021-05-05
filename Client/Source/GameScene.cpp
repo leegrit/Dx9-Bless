@@ -13,7 +13,7 @@
 #include "ExpTable.h"
 #include "PlayerInfo.h"
 #include "BattleManager.h"
-
+#include "InteractManager.h"
 void GameScene::Update()
 {
 	m_pGameManager->Update();
@@ -21,7 +21,7 @@ void GameScene::Update()
 	m_pNPCInteractManager->Update();
 	m_pQuestManager->Update();
 	m_pBattleManager->Update();
-
+	m_pInteractManager->Update();
 }
 
 void GameScene::Load()
@@ -32,6 +32,7 @@ void GameScene::Load()
 	m_pNPCInteractManager = new NPCInteractManager(this);
 	m_pQuestManager = new QuestManager(this);
 	m_pBattleManager = new BattleManager(this);
+	m_pInteractManager = new InteractManager(this);
 
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
@@ -58,6 +59,7 @@ void GameScene::LateLoadScene()
 	m_pNPCInteractManager->Initialize();
 	m_pQuestManager->Initialize();
 	m_pBattleManager->Initialize();
+	m_pInteractManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -77,6 +79,11 @@ void GameScene::Unload()
 {
 	EventDispatcher::RemoveEventListener(EngineEvent::ModeChanged, "GameScene");
 
+	SAFE_DELETE(m_pGameManager);
+	SAFE_DELETE(m_pUIManager);
+	SAFE_DELETE(m_pNPCInteractManager);
+	SAFE_DELETE(m_pQuestManager);
+	SAFE_DELETE(m_pBattleManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)

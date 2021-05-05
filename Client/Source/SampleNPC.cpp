@@ -36,3 +36,13 @@ void SampleNPC::Update()
 	NonePlayer::Update();
 }
 
+std::wstring SampleNPC::GetCharacterName()
+{
+	return L"Sample";
+}
+
+std::wstring SampleNPC::GetSubTitle()
+{
+	return L"<Sample>";
+}
+

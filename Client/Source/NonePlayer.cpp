@@ -7,7 +7,7 @@
 #include "QuestManager.h"
 #include "ZoomInCamera.h"
 #include "Client_Events.h"
-
+#include "NameFont.h"
 
 NonePlayer::NonePlayer(Scene * scene, ESkinningType skinningType )
 	:Character(scene, nullptr, skinningType)
@@ -30,6 +30,10 @@ void NonePlayer::Initialize(std::wstring dataPath)
 
 	m_pZoomInCam = ZoomInCamera::Create(GetScene(), this, L"NPC_ZoomIn_" + std::to_wstring(GetInstanceID()));
 
+	m_pNameFont = new NameFont();
+	m_pNameFont->Initialize(GetCharacterName(), this, D3DXVECTOR2(0.6f, 0.6f), D3DXVECTOR3(0, 17, 0), -35, D3DXCOLOR(0, 1, 0, 1));
+	m_pSubTitleFont = new NameFont();
+	m_pSubTitleFont->Initialize(GetSubTitle(), this, D3DXVECTOR2(0.6f, 0.6f), D3DXVECTOR3(0, 15, 0), -35, D3DXCOLOR(0, 1, 0, 1));
 }
 
 void NonePlayer::QuestInitialize()
@@ -41,6 +45,14 @@ void NonePlayer::Update()
 	Character::Update();
 
 
+}
+
+void NonePlayer::Render()
+{
+	Character::Render();
+
+	m_pNameFont->RenderFont();
+	m_pSubTitleFont->RenderFont();
 }
 
 void NonePlayer::OnCollision(Collider * other)

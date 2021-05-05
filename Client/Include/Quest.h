@@ -62,10 +62,12 @@ public :
 	//////////////////////////////////////////////////////////////////////////
 public:
 	bool IsOpen();
+	bool IsAccepted(); 
 	// 완료 대화까지 마치면 호출
 	// 여기서 보상도 적용해준다, 콜백함수 활용해서
 	void CompletelyFinished();
-
+	bool IsCompletelyFinished();
+	void Accept();
 
 	virtual void LinkObject();
 	//////////////////////////////////////////////////////////////////////////
@@ -82,6 +84,7 @@ private :
 	// 완료 대화들
 	std::vector<std::wstring> m_finishDialogs;
 
+	bool m_bCompletelyFinish = false;
 	int m_acceptDialogIndex = 0;
 	int m_finishDialogIndex = 0;
 
@@ -104,6 +107,8 @@ private :
 	// 퀘스트가 완료되었을 때 보상을 전달하는 역할을 하는 오브젝트
 	std::wstring m_rewardProviderName;
 	GameObject* m_pRewardProvider = nullptr;
+
+	bool m_bAccepted = false;
 
 	// 퀘스트 목표 (적, NPC)
 	//std::vector<GameObject* > m_targets;

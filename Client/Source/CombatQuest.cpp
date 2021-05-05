@@ -6,13 +6,13 @@
 CombatQuest::CombatQuest()
 	:Quest()
 {
-	EventDispatcher::AddEventListener(BattleEvent::CharacterDie, "CombatQuest",
+	EventDispatcher::AddEventListener(BattleEvent::CharacterDie, std::to_string(GetQuestIndex()),
 		std::bind(&CombatQuest::OnKillEnemy, this, placeholders::_1));
 }
 
 CombatQuest::~CombatQuest()
 {
-	EventDispatcher::RemoveEventListener(BattleEvent::CharacterDie, "CombatQuest");
+	EventDispatcher::RemoveEventListener(BattleEvent::CharacterDie, std::to_string(GetQuestIndex()));
 }
 
 void CombatQuest::Initialize(std::wstring questName, std::wstring questContent, std::vector<std::wstring> acceptDialogs, std::vector<std::wstring> finishDialogs, std::wstring playerAcceptDialog, std::wstring playerFinishDialog, EQuestImportance questImportance, std::function<bool()> openCondition, std::function<void()> onFinished,std::wstring senderName,

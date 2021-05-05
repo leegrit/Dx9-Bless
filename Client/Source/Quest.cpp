@@ -103,9 +103,25 @@ bool Quest::IsOpen()
 	return m_openCondition();
 }
 
+bool Quest::IsAccepted()
+{
+	return m_bAccepted;
+}
+
 void Quest::CompletelyFinished()
 {
+	m_bCompletelyFinish = true;
 	m_onFinished();
+}
+
+bool Quest::IsCompletelyFinished()
+{
+	return m_bCompletelyFinish;
+}
+
+void Quest::Accept()
+{
+	m_bAccepted = true;
 }
 
 void Quest::LinkObject()

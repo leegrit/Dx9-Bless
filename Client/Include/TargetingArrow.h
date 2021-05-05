@@ -47,9 +47,9 @@ private: /* For Focus */
 	D3DXVECTOR3 m_focusOffset;
 	bool m_bFocused = false;
 private :/* For Focus Change Event */
-	D3DXVECTOR3 m_originScale;
+	D3DXVECTOR3 m_originScale = D3DXVECTOR3(7, 7, 7);
 	// 포커스가 막 변경되었을 때 크기
-	D3DXVECTOR3 m_focusChangeScale;
+	D3DXVECTOR3 m_focusChangeScale = D3DXVECTOR3(10, 10, 10);
 	
 	float m_changeEventSpeed = 1;
 	float m_changeEventFactor = 0;
@@ -59,6 +59,7 @@ private : /* Focus Lost Event */
 	float m_elapsed = 0;
 	float m_lostTime = 0.2f;
 
+	float m_currentAlpha = 1;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

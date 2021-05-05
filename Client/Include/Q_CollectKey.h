@@ -1,0 +1,17 @@
+#pragma once
+#include "CollectQuest.h"
+
+class Q_CollectKey : public CollectQuest
+{
+	//////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTOR & DESTRUCTOR
+	//////////////////////////////////////////////////////////////////////////
+public:
+	Q_CollectKey();
+	virtual ~Q_CollectKey();
+
+public :
+	void Initialize();
+
+};
+

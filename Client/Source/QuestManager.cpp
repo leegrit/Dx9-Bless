@@ -87,7 +87,9 @@ void QuestManager::Update()
 					if (m_questDialogType == EQuestDialogType::AcceptDialog)
 					{
 						/* Accept */
+						m_pOpenQuestDialog->Accept();
 						EventDispatcher::TriggerEvent(QuestEvent::QuestAccept, (void*)&index);
+						
 						m_acceptedQuests.push_back(m_pOpenQuestDialog);
 						/* targets에 해당 퀘스트 표시 달아주기 */
 						for (auto& target : m_pOpenQuestDialog->GetTargets())
@@ -187,6 +189,16 @@ Quest* QuestManager::GetQuest(int index)
 	for (auto quest : m_quests)
 	{
 		if (quest->GetQuestIndex() == index)
+			return quest;
+	}
+	return nullptr;
+}
+
+Quest * QuestManager::GetQuest(std::wstring questName)
+{
+	for (auto quest : m_quests)
+	{
+		if (quest->GetQuestName().compare(questName) == 0)
 			return quest;
 	}
 	return nullptr;

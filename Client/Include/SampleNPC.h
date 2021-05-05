@@ -18,6 +18,8 @@ public:
 	virtual void Initialize(std::wstring dataPath) override;
 	virtual void QuestInitialize() override;
 	virtual void Update() override;
+	virtual std::wstring GetCharacterName() override;
+	virtual std::wstring GetSubTitle() override;
 
 
 
