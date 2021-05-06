@@ -23,7 +23,7 @@ void EquipmentUI::Initialize()
 		L"EquipmentUI_Background");
 
 	m_pCloseButton = Button::Create(GetScene(), L"EquipmentUI_CloseButton",
-		PATH->AssetsPathW() + L"UI/BLUISkillTree_I47_1.png",
+		PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png",
 		D3DXVECTOR3(-43, 224, 0),
 		D3DXVECTOR3(0, 0, 0),
 		D3DXVECTOR3(20, 20, 1));

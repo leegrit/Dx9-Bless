@@ -18,6 +18,7 @@ public:
 	virtual void Update() override;
 	virtual std::wstring GetCharacterName() override;
 	virtual std::wstring GetSubTitle() override;
+	virtual bool DoInteract() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

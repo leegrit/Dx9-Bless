@@ -52,6 +52,10 @@ public : /* For Interact */
 	void ToggleInventoryUI();
 	void ToggleEquipmentUI();
 
+	void ShowEquipShopUI();
+	void HideEquipShopUI();
+	void ShowGeneralStoreUI();
+	void HideGeneralStoreUI();
 
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
 
@@ -109,8 +113,13 @@ private : /* For Quest */
 
 	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
 
+private :
 	class InventoryUI* m_pInventoryUI = nullptr;
 	class EquipmentUI* m_pEquipmentUI = nullptr;
+
+private :/* For Shop Ui */
+	class EquipShopUI* m_pEquipShopUI = nullptr;
+	class GeneralStoreUI* m_pGeneralStoreUI = nullptr;
 
 private : /* For Battle */
 	class TargetingCircle* m_pTargetingCircle = nullptr;

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Liurens.h"
+#include "GameScene.h"
+#include "UIManager.h"
 
 Liurens::Liurens(Scene * pScene)
 	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
@@ -31,4 +33,11 @@ std::wstring Liurens::GetCharacterName()
 std::wstring Liurens::GetSubTitle()
 {
 	return L"무기점 상인";
+}
+
+bool Liurens::DoInteract()
+{
+	GameScene* pScene = static_cast<GameScene*>(GetScene());
+	pScene->GetUIManager()->ShowEquipShopUI();
+	return true;
 }

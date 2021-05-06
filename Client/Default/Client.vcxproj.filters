@@ -302,6 +302,15 @@
     <ClCompile Include="..\Source\Liurens.cpp">
       <Filter>GameObject\NPC\Hieracon</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\EquipShopUI.cpp">
+      <Filter>Scripts\UI\ShopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ShopUI.cpp">
+      <Filter>Scripts\UI\ShopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GeneralStoreUI.cpp">
+      <Filter>Scripts\UI\ShopUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -399,6 +408,9 @@
     </Filter>
     <Filter Include="Scripts\UI\Equipment">
       <UniqueIdentifier>{53c5f8aa-787c-4d7c-affe-b2ba27969bfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI\ShopUI">
+      <UniqueIdentifier>{dbd7cdc6-fdfb-4b89-a5ab-5f098aa61a61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -710,6 +722,15 @@
     </ClInclude>
     <ClInclude Include="..\Include\Elaine.h">
       <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EquipShopUI.h">
+      <Filter>Scripts\UI\ShopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ShopUI.h">
+      <Filter>Scripts\UI\ShopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GeneralStoreUI.h">
+      <Filter>Scripts\UI\ShopUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

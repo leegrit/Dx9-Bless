@@ -21,6 +21,9 @@
 #include "InventoryUI.h"
 #include "EquipmentUI.h"
 #include "Button.h"
+#include "GeneralStoreUI.h"
+#include "EquipShopUI.h"
+
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -106,11 +109,19 @@ void UIManager::Initialize()
 	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(151, -75, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
 	m_pDialogCancleIconUI->SetActive(false);
 
+
 	m_pInventoryUI = InventoryUI::Create(m_pScene, L"InventoryUI");
 	m_pInventoryUI->Hide();
 
 	m_pEquipmentUI = EquipmentUI::Create(m_pScene, L"EquipmentUI");
 	m_pEquipmentUI->Hide();
+
+	/* For Shop Ui */
+	m_pEquipShopUI = EquipShopUI::Create(m_pScene, L"EquipShopUI");
+	m_pEquipShopUI->Hide();
+
+	m_pGeneralStoreUI = GeneralStoreUI::Create(m_pScene, L"GeneralStoreUI");
+	m_pGeneralStoreUI->Hide();
 
 	/* For QuestGuideUI */
 	m_pMainQuestGuideUI = QuestGuideUI::Create(m_pScene, EQuestImportance::Main, L"MainQuestGuide");
@@ -274,6 +285,26 @@ void UIManager::ToggleEquipmentUI()
 	{
 		m_pEquipmentUI->Show();
 	}
+}
+
+void UIManager::ShowEquipShopUI()
+{
+	m_pEquipShopUI->Show();
+}
+
+void UIManager::HideEquipShopUI()
+{
+	m_pEquipShopUI->Hide();
+}
+
+void UIManager::ShowGeneralStoreUI()
+{
+	m_pGeneralStoreUI->Show();
+}
+
+void UIManager::HideGeneralStoreUI()
+{
+	m_pGeneralStoreUI->Hide();
 }
 
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
