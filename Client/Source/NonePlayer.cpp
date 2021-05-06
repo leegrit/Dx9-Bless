@@ -95,7 +95,7 @@ void NonePlayer::OnDialogEnd(void *questIndex)
 }
 
 
-void NonePlayer::DoInteract()
+bool NonePlayer::DoInteract()
 {
 
 	for (auto& quest : m_quests)
@@ -105,9 +105,10 @@ void NonePlayer::DoInteract()
 			GameScene* scene = dynamic_cast<GameScene*>(GetScene());
 			scene->GetQuestManager()->ShowQuestDialog(this, quest);
 
-			return;
+			return true;
 		}
 	}
+	return false;
 }
 
 void NonePlayer::AddQuest(Quest * pQuest)

@@ -69,9 +69,12 @@ void NPCInteractManager::Update()
 			// 상호작용이 가능한 상태
 			if (KEYBOARD->Down('F'))
 			{
-				m_bInteractable = false;
-				npc->DoInteract();
 				// 말걸기 ui 클릭 이벤트
+				if (npc->DoInteract())
+				{
+
+					m_bInteractable = false;
+				}
 				
 				return;
 			}

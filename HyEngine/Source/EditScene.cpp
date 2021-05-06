@@ -14,7 +14,7 @@
 #include "StaticMesh.h"
 #include "DynamicMesh.h"
 #include "UIPanel.h"
-
+#include "EditFont.h"
 using namespace HyEngine;
 
 void HyEngine::EditScene::Update()
@@ -90,6 +90,11 @@ void HyEngine::EditScene::AddTextureEffect(int editIndex)
 void HyEngine::EditScene::AddUIPanel(int editIndex)
 {
 	UIPanel::Create(this, nullptr, editIndex);
+}
+
+void HyEngine::EditScene::AddFont(int editIndex)
+{
+	EditFont::Create(this, editIndex);
 }
 
 

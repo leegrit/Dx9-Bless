@@ -76,6 +76,11 @@ namespace WPF_Tool
             CreateHierarchy(GameObjectType.UIPanel);
         }
 
+        private void BTN_CreateFont(object sender, RoutedEventArgs e)
+        {
+            CreateHierarchy(GameObjectType.Font);
+        }
+
         private void CreateHierarchy(GameObjectType gameObjectType)
         {
             ListBoxItem item = new ListBoxItem();
@@ -120,6 +125,10 @@ namespace WPF_Tool
                     item.Content = HierarchyContent.UIPanel;
                     item.Tag = HierarchyTag.UIPanel;
                     break;
+                case GameObjectType.Font:
+                    item.Content = HierarchyContent.Font;
+                    item.Tag = HierarchyTag.Font;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -153,6 +162,9 @@ namespace WPF_Tool
                     item.MouseUp += SelectedGameObject;
                     break;
                 case GameObjectType.UIPanel:
+                    item.MouseUp += SelectedGameObject;
+                    break;
+                case GameObjectType.Font:
                     item.MouseUp += SelectedGameObject;
                     break;
                 default:
@@ -214,6 +226,9 @@ namespace WPF_Tool
                 case GameObjectType.UIPanel:
                     Externs.CreateUIPanel(index);
                     break;
+                case GameObjectType.Font:
+                    Externs.CreateEditFont(index);
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -260,6 +275,9 @@ namespace WPF_Tool
                 case GameObjectType.UIPanel:
                     item.MouseUp += SelectedGameObject;
                     break;
+                case GameObjectType.Font:
+                    item.MouseUp += SelectedGameObject;
+                    break;
                 default:
                     Debug.Assert(false);
                     break;
@@ -299,6 +317,9 @@ namespace WPF_Tool
                     break;
                 case GameObjectType.UIPanel:
                     Externs.CreateUIPanel(index);
+                    break;
+                case GameObjectType.Font:
+                    Externs.CreateEditFont(index);
                     break;
                 default:
                     Debug.Assert(false);

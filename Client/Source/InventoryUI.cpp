@@ -3,7 +3,7 @@
 #include "Button.h"
 #include "ProgressBar.h"
 #include "PathManager.h"
-
+#include "ItemInfoUI.h"
 
 InventoryUI::InventoryUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
@@ -41,6 +41,7 @@ void InventoryUI::Initialize()
 			{
 				// 마우스 얹었을 때 이벤트
 				m_pItemSelectPanel->SetActive(true);
+				m_pItemInfoUI->Show(itemSlot->m_pTransform->m_position.operator D3DXVECTOR3());
 
 				m_pItemSelectPanel->m_pTransform->SetPosition(itemSlot->m_pTransform->m_position);
 			});
@@ -48,6 +49,7 @@ void InventoryUI::Initialize()
 			{
 				// 마우스가 해당 슬롯 밖으로 벗어났을 때
 				m_pItemSelectPanel->SetActive(false);
+				m_pItemInfoUI->Hide();
 			});
 			itemSlot->SetButtonEvent(EButtonEvent::ButtonUp, [=]() 
 			{
@@ -100,7 +102,8 @@ void InventoryUI::Initialize()
 		D3DXVECTOR3(20, 20, 1),
 		L"InventoryCoin");
 
-
+	m_pItemInfoUI = ItemInfoUI::Create(GetScene(), L"ItemInfoUI");
+	m_pItemInfoUI->Hide();
 }
 
 void InventoryUI::Update()

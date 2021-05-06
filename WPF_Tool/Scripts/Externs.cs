@@ -135,5 +135,7 @@ namespace WPF_Tool.Scripts
         [DllImport("HyEngine.dll")]
         public static extern void InsertUIData(ref UIData effectData);
 
+        [DllImport("HyEngine.dll")]
+        public static extern void CreateEditFont(int editID);
     }
 }

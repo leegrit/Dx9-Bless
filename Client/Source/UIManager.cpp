@@ -19,6 +19,8 @@
 #include "EnemyScreenHPBar.h"
 #include "CollectProgressBar.h"
 #include "InventoryUI.h"
+#include "EquipmentUI.h"
+#include "Button.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -94,18 +96,21 @@ void UIManager::Initialize()
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
 
-	m_pDialogChoiceUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -139, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1), L"DialogChoice");
+	m_pDialogChoiceUI = Button::Create(m_pScene, L"DialogChoice", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -139, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1));
 	m_pDialogChoiceUI->SetActive(false);
 	m_pDialogChoiceIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/StatusGauge_4.png", D3DXVECTOR3(148, -132, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(33, 44, 1), L"DialogChoiceIcon");
 	m_pDialogChoiceIconUI->SetActive(false);
 
-	m_pDialogCancleUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -73, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1), L"DialogCancle");
+	m_pDialogCancleUI = Button::Create(m_pScene, L"DialogCancle", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -73, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1));
 	m_pDialogCancleUI->SetActive(false);
 	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(151, -75, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
 	m_pDialogCancleIconUI->SetActive(false);
 
 	m_pInventoryUI = InventoryUI::Create(m_pScene, L"InventoryUI");
 	m_pInventoryUI->Hide();
+
+	m_pEquipmentUI = EquipmentUI::Create(m_pScene, L"EquipmentUI");
+	m_pEquipmentUI->Hide();
 
 	/* For QuestGuideUI */
 	m_pMainQuestGuideUI = QuestGuideUI::Create(m_pScene, EQuestImportance::Main, L"MainQuestGuide");
@@ -164,18 +169,18 @@ void UIManager::Update()
 	//////////////////////////////////////////////////////////////////////////
 	// FOR INVENTORY
 	//////////////////////////////////////////////////////////////////////////
-	if (KEYBOARD->Down('I'))
-	{
-		if (m_pInventoryUI->IsShow())
-		{
-			// 이미 열려있는데 I를 누르면 닫는다.
-			m_pInventoryUI->Hide();
-		}
-		else
-		{
-			m_pInventoryUI->Show();
-		}
-	}
+	//if (KEYBOARD->Down('I'))
+	//{
+	//	if (m_pInventoryUI->IsShow())
+	//	{
+	//		// 이미 열려있는데 I를 누르면 닫는다.
+	//		m_pInventoryUI->Hide();
+	//	}
+	//	else
+	//	{
+	//		m_pInventoryUI->Show();
+	//	}
+	//}
 
 	//////////////////////////////////////////////////////////////////////////
 	// FOR QUEST 
@@ -245,6 +250,32 @@ void UIManager::HideCollectProgressBar()
 	m_pCollectProgressBar->Hide();
 }
 
+void UIManager::ToggleInventoryUI()
+{
+	if (m_pInventoryUI->IsShow())
+	{
+		// 이미 열려있는데 I를 누르면 닫는다.
+		m_pInventoryUI->Hide();
+	}
+	else
+	{
+		m_pInventoryUI->Show();
+	}
+}
+
+void UIManager::ToggleEquipmentUI()
+{
+	if (m_pEquipmentUI->IsShow())
+	{
+		// 이미 열려있는데 I를 누르면 닫는다.
+		m_pEquipmentUI->Hide();
+	}
+	else
+	{
+		m_pEquipmentUI->Show();
+	}
+}
+
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
 {
 	m_pDamageFontScatter->PushDamageFunt(damage, isPlayer, isCritical, center);
@@ -262,10 +293,14 @@ void UIManager::ShowDialogChoiceButton(Quest * pQuest, EQuestDialogType questDia
 	m_pDialogChoiceIconUI->SetActive(true);
 	m_pDialogCancleUI->SetActive(true);
 	m_pDialogCancleIconUI->SetActive(true);
-	if (KEYBOARD->Down(VK_RETURN))
+	m_pDialogChoiceUI->SetButtonEvent(EButtonEvent::ButtonUp, [=]() 
 	{
 		onClick();
-	}
+	});
+	/*if (KEYBOARD->Down(VK_RETURN))
+	{
+		onClick();
+	}*/
 }
 
 void UIManager::ProgressQuest(Quest * pQuest, float progressRate)
@@ -294,7 +329,7 @@ void UIManager::OnCompletelyClearQuest(void * questIndex)
 {
 	int index = *(static_cast<int*>(questIndex));
 
-	if (m_pAcceptedMainQuest->GetQuestIndex() == index)
+	if (m_pAcceptedMainQuest != nullptr && m_pAcceptedMainQuest->GetQuestIndex() == index)
 	{
 		m_pQuestNoticeUI->PushQuestNotice(m_pAcceptedMainQuest->GetQuestName(), EQuestNoticeType::MainQuestCompletelyClear);
 		m_pAcceptedMainQuest = nullptr;

@@ -111,11 +111,13 @@ void EditEngine::Render()
 	*/
 	m_pRenderer->RenderBegin();
 	m_pEditScene->RenderScene(m_pRenderer);
+	RenderFont();
 	m_pRenderer->RenderEnd();
 }
 
 void EditEngine::Update()
 {
+	m_fontInfos.clear();
 	EDIT_TIMER->tick();
 	m_pEditScene->UpdateScene();
 	m_pEditScene->ViewFrustumCull();
@@ -201,6 +203,95 @@ bool HyEngine::EditEngine::TryGetShader(std::wstring key, _Out_ ID3DXEffect ** p
 
 	*ppShader = iter->second;
 	return true;
+}
+
+void HyEngine::EditEngine::RenderFont()
+{
+	DIRECT_SPRITE->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
+
+	/*DWORD old;
+	DEVICE->GetRenderState(D3DRS_ZENABLE, &old);
+	DEVICE->SetRenderState(D3DRS_ZENABLE, true);
+	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
+	DEVICE->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);*/
+	for (auto& fontInfo : m_fontInfos)
+	{
+		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);
+		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr, 0, fontInfo.textColor);
+	}
+	//DEVICE->SetRenderState(D3DRS_ZENABLE, old);
+
+	DIRECT_SPRITE->End();
+}
+
+void HyEngine::EditEngine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color)
+{
+	EditFontInfo info;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	wsprintf(info.textBuff, text);
+	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
+	info.matTrans = scaleMat * posMat;
+	info.textColor = color;
+
+	m_fontInfos.push_back(info);
+}
+
+void HyEngine::EditEngine::DrawText(const TCHAR * text, D3DXMATRIX mat, D3DCOLOR color)
+{
+	EditFontInfo info;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	wsprintf(info.textBuff, text);
+	info.matTrans = mat;
+	info.textColor = color;
+
+	m_fontInfos.push_back(info);
+}
+
+void HyEngine::EditEngine::DrawTextFormat(D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR * text, int args, ...)
+{
+	EditFontInfo info;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	wsprintf(info.textBuff, text, args);
+	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
+	info.matTrans = scaleMat * posMat;
+	info.textColor = color;
+
+	m_fontInfos.push_back(info);
+}
+
+void HyEngine::EditEngine::DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color)
+{
+	D3DXVECTOR3 resultPos;
+	D3DXMATRIX resultMat;
+	D3DXMATRIX worldMat;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	D3DXMATRIX viewMat = SCENE->GetSelectedCamera()->GetViewMatrix();
+	D3DXMATRIX projMat = SCENE->GetSelectedCamera()->GetProjectionMatrix();
+
+
+	//position.x -= m_size.x * 0.5f;
+	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, 1);
+	worldMat = scaleMat * posMat;
+	D3DVIEWPORT9 viewPort;
+	DEVICE->GetViewport(&viewPort);
+
+	D3DXMATRIX identity;
+	D3DXMatrixIdentity(&identity);
+	D3DXVec3Project(&resultPos, &D3DXVECTOR3(0, 0, 0), &viewPort, &projMat, &viewMat, &worldMat);
+
+
+	ENGINE->DrawText(text, resultPos, D3DXVECTOR3(1, 1, 1), color);
 }
 
 
@@ -623,6 +714,15 @@ void HyEngine::EditEngine::InsertUIData(UIData * data)
 	if (m_pSelectedObject == nullptr)
 		return;
 	m_pSelectedObject->InsertUIData(data);
+}
+
+void HyEngine::EditEngine::CreateEditFont(int editID)
+{
+	Scene* scene = GetScene();
+	assert(scene);
+	EditScene * editScene = dynamic_cast<EditScene*>(scene);
+	assert(editScene);
+	editScene->AddFont(editID);
 }
 
 

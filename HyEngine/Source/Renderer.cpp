@@ -18,7 +18,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A32B32G32R32F,
 		D3DPOOL_DEFAULT,
@@ -30,7 +30,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
@@ -43,7 +43,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
@@ -56,7 +56,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
@@ -71,7 +71,7 @@ void HyEngine::Renderer::Setup()
 			DEVICE,
 			WinMaxWidth,
 			WinMaxHeight,
-			D3DX_DEFAULT,
+			1,
 			D3DUSAGE_RENDERTARGET,
 			D3DFMT_A8,
 			D3DPOOL_DEFAULT,
@@ -86,7 +86,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
@@ -99,7 +99,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
@@ -112,7 +112,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8,
 		D3DPOOL_DEFAULT,
@@ -125,7 +125,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		D3DX_DEFAULT,
+		1,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8R8G8B8,
 		D3DPOOL_DEFAULT,
@@ -330,6 +330,7 @@ void HyEngine::Renderer::OcclusionEnd()
 	m_pOcclusionRender->EndScene(0);
 
 	//D3DXSaveSurfaceToFile(L"buffer.bmp", D3DXIFF_BMP, m_pOcclusionSurface, NULL, NULL);
+	
 }
 
 void HyEngine::Renderer::Render(Scene * scene)
@@ -367,6 +368,9 @@ void Renderer::RenderEnd()
 	DEVICE->EndScene();
 	DEVICE->Present(nullptr, nullptr, g_hWnd, nullptr);
 
+	/*D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
+	D3DXSaveSurfaceToFile(L"ResultMap.bmp", D3DXIFF_BMP, m_pOriginSurface, NULL, NULL);*/
+	//D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
 	//D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
 	//D3DXSaveTextureToFile(L"Stash.bmp", D3DXIFF_BMP, m_pStashRTTexture, NULL);
 	//D3DXSaveTextureToFile(L"ShadowMap.bmp", D3DXIFF_BMP, m_pSoftShadowOriginRTTexture, NULL);
@@ -431,6 +435,11 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	/* Render Alpha */
 	auto& list = scene->GetObjectContainer()->GetRenderableAlphaAll();
 	if (list.size() == 0) return;
+
+	std::sort(list.begin(), list.end(), [](GameObject* l, GameObject*r)->bool
+	{
+		return l->GetRenderQueue() > r->GetRenderQueue();
+	});
 	for (auto& alpha : list)
 	{
 		alpha->Render();
@@ -576,9 +585,9 @@ void HyEngine::Renderer::AmbientPass(Scene * scene)
 	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
-	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	D3DXMatrixIdentity(&worldMatrix);
-	//D3DXMatrixScaling(&worldMatrix, 1, 1, 1);
+	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 10);
+	//D3DXMatrixIdentity(&worldMatrix);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 	ID3DXEffect* pShader = nullptr;
@@ -638,8 +647,8 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		DEVICE->SetIndices(m_pResultScreen->_ib);
 
 		D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-		D3DXMatrixIdentity(&worldMatrix);
-		//D3DXMatrixScaling(&worldMatrix, 1, 1, 1);
+		//D3DXMatrixIdentity(&worldMatrix);
+		D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 		D3DXMatrixIdentity(&viewMatrix);
 
 
@@ -837,7 +846,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f, 1.0f};//, 1.0f }; 
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 1.0f};//, 1.0f }; 
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f };// , 0.1f, 0.15f, 0.2f
 //};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =
@@ -1000,8 +1009,8 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 
 	/* Set Matrices */
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 100);
-	D3DXMatrixIdentity(&worldMatrix);
-	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	//D3DXMatrixIdentity(&worldMatrix);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 
@@ -1198,8 +1207,8 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 	
 	/* Set Matrices */
 	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	D3DXMatrixIdentity(&worldMatrix);
-	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	//D3DXMatrixIdentity(&worldMatrix);
+	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
 	D3DXMatrixIdentity(&viewMatrix);
 
 	/* Set Matrix to shader */

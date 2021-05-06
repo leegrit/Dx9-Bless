@@ -42,3 +42,4 @@ CreateTextureEffect
 InsertEffectData
 CreateUIPanel
 InsertUIData
+CreateEditFont

@@ -22,6 +22,12 @@
 #include "DummyBoss.h"
 #include "SampleNPC.h"
 #include "WarpPoint.h"
+#include "Bran.h"
+#include "Hieracon_Cora.h"
+#include "Samson.h"
+#include "Elroy.h"
+#include "Elaine.h"
+#include "Liurens.h"
 
 
 using namespace HyEngine;
@@ -118,6 +124,12 @@ void HieraconScene::Load()
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////
 	m_nonePlayers.emplace_back( SampleNPC::Create(this, PATH->DatasPathW() + L"HierarchyData/Sire.json"));
+	Hieracon_Cora::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Cora.json");
+	Bran::Create(this, PATH->DatasPathW() + L"HierarchyData/Bran.json");
+	Samson::Create(this, PATH->DatasPathW() + L"HierarchyData/Samson.json");
+	Elroy::Create(this, PATH->DatasPathW() + L"HierarchyData/Elroy.json");
+	Liurens::Create(this, PATH->DatasPathW() + L"HierarchyData/Liurens.json");
+	Elaine::Create(this, PATH->DatasPathW() + L"HierarchyData/Elaine.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// NAMED

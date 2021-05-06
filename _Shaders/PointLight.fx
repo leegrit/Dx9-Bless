@@ -215,8 +215,8 @@ technique PointLight
 	{
 		ZEnable = false;
 		AlphaBlendEnable = true;
-		SrcBlend = SRCCOLOR;
-		DestBlend = DestColor;
+		SrcBlend = SrcALpha;
+		DestBlend = InvSrcAlpha;
 		VertexShader = compile vs_3_0 PointLightVS();
 		PixelShader = compile ps_3_0 PointLightPS();
 	}

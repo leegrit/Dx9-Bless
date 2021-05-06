@@ -16,7 +16,8 @@ namespace WPF_Tool.Data
         Light,
         MeshEffect,
         TextureEffect,
-        UIPanel
+        UIPanel,
+        Font,
     }
     public enum EDataType
     {

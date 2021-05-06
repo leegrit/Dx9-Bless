@@ -248,6 +248,7 @@ float4 SoftShadowMappingPS(PixelInputType input, uniform int cascadeIndex, unifo
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
 	//float bias = 0.06f;
 	float bias = 0.006f;
+	//float bias = 0.01f;
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.

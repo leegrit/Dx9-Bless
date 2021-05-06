@@ -266,6 +266,42 @@
     <ClCompile Include="..\Source\InventoryUI.cpp">
       <Filter>Scripts\UI\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\ItemInfoUI.cpp">
+      <Filter>Scripts\UI\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EquipmentUI.cpp">
+      <Filter>Scripts\UI\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Bran.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Elroy.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Samson.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Hieracon_Cora.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_BreadShuttle.cpp">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_NewSkill.cpp">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_FirstEquipment.cpp">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_PrepareForMission.cpp">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Elaine.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Liurens.cpp">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -360,6 +396,9 @@
     </Filter>
     <Filter Include="Scripts\UI\Inventory">
       <UniqueIdentifier>{89867713-348f-4643-bef6-b45a903be5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI\Equipment">
+      <UniqueIdentifier>{53c5f8aa-787c-4d7c-affe-b2ba27969bfb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -635,6 +674,42 @@
     </ClInclude>
     <ClInclude Include="..\Include\InventoryUI.h">
       <Filter>Scripts\UI\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ItemInfoUI.h">
+      <Filter>Scripts\UI\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EquipmentUI.h">
+      <Filter>Scripts\UI\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Bran.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Elroy.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Samson.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Hieracon_Cora.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_BreadShuttle.h">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_NewSkill.h">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_FirstEquipment.h">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_PrepareForMission.h">
+      <Filter>Scripts\Quest\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Liurens.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Elaine.h">
+      <Filter>GameObject\NPC\Hieracon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

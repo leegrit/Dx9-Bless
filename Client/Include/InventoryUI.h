@@ -44,6 +44,8 @@ private : /* For Render */
 	Button* m_pTokenExchangeButton = nullptr;
 	UIPanel *m_pCoin = nullptr;
 
+	class ItemInfoUI * m_pItemInfoUI = nullptr;
+
 private : /* For Item Slot */
 	const int m_maxSlotVertical = 4;
 	const int m_maxSlotHorizontal = 7;

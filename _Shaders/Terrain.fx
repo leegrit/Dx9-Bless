@@ -2,6 +2,8 @@ matrix WorldMatrix;
 matrix ViewMatrix;
 matrix ProjMatrix;
 
+bool HasNormalMap;
+
 texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
@@ -82,22 +84,27 @@ void TerrainPS(
 	/* Specular */
 	outSpecular = float4(0, 0, 0, 0);
 	
-	/* BumpMap Sampling */
-	float4 bumpMap = tex2D(NormalSampler, texcoord);
+	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
-	/* convert -1 ~ 1*/
-	bumpMap = (bumpMap * 2.0f) - 1.0f;
+	if (HasNormalMap == true)
+	{
 
-	float3 tangent = normalize(tangentWorldMat[0]);
-	float3 binormal = normalize(tangentWorldMat[1]);
+		/* BumpMap Sampling */
+		float4 bumpMap = tex2D(NormalSampler, texcoord);
+
+		/* convert -1 ~ 1*/
+		bumpMap = (bumpMap * 2.0f) - 1.0f;
+
+		float3 tangent = normalize(tangentWorldMat[0]);
+		float3 binormal = normalize(tangentWorldMat[1]);
 
 
-	/* Calculate bumpNormal */
-	float3 bumpNormal = (bumpMap.x * tangent) + (bumpMap.y * binormal) + (bumpMap.z * normal);
-	bumpNormal = normalize(bumpNormal);
+		/* Calculate bumpNormal */
+		float3 bumpNormal = (bumpMap.x * tangent) + (bumpMap.y * binormal) + (bumpMap.z * normal);
+		bumpNormal = normalize(bumpNormal);
 
-	outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
-
+		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
+	}
 }
 
 

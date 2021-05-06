@@ -227,8 +227,9 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	}
 	finalColor = saturate(finalColor + specular.rgb);
 
+	return float4(finalColor.rgb, 1);
 	// depth rgb is emissive color
-	return float4(finalColor.rgb + stashMap.rgb, 1) ;//+ float4(depthMap.rgb, 1);
+	//return float4(finalColor.rgb + stashMap.rgb, 1) ;//+ float4(depthMap.rgb, 1);
 
 }
 

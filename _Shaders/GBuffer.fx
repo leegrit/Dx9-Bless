@@ -17,6 +17,8 @@ samplerCUBE SkyboxSampler = sampler_state
 	Texture = (SkyboxTex);
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
+
+
 	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
 	MipFilter = None;
@@ -28,9 +30,10 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
+
 	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = LINEAR;
@@ -44,9 +47,11 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
+
+
 	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
@@ -60,9 +65,10 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
+
 	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
@@ -73,9 +79,10 @@ texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
 {
 	Texture = (EmissiveTex);
-	MinFilter = LINEAR;
+
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;
@@ -86,9 +93,9 @@ texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = LINEAR;
     MagFilter = LINEAR;
     MipFilter = None;

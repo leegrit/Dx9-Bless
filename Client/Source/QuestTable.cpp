@@ -6,6 +6,10 @@
 #include "Q_CollectRelics.h"
 #include "Q_FirstMission.h"
 #include "Q_TalkableGoblin.h"
+#include "Q_BreadShuttle.h"
+#include "Q_FirstEquipment.h"
+#include "Q_NewSkill.h"
+#include "Q_PrepareForMission.h"
 
 
 void QuestTable::Initialize()
@@ -15,7 +19,29 @@ void QuestTable::Initialize()
 	testQuest->Initialize();
 	m_quests.push_back(testQuest);
 
+	//////////////////////////////////////////////////////////////////////////
+	// FOR HIERACON 
+	//////////////////////////////////////////////////////////////////////////
+	Q_BreadShuttle * pBreadShuttle = new Q_BreadShuttle();
+	pBreadShuttle->Initialize();
+	m_quests.push_back(pBreadShuttle);
 
+	Q_FirstEquipment * pFirstEquipment = new Q_FirstEquipment();
+	pFirstEquipment->Initialize();
+	m_quests.push_back(pFirstEquipment);
+
+	Q_NewSkill * pNewSkill = new Q_NewSkill();
+	pNewSkill->Initialize();
+	m_quests.push_back(pNewSkill);
+
+	Q_PrepareForMission * pPrepareForMission = new Q_PrepareForMission();
+	pPrepareForMission->Initialize();
+	m_quests.push_back(pPrepareForMission);
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// FOR ArbaJungle
+	//////////////////////////////////////////////////////////////////////////
 	Q_AttackToGoblin * pAttackToGoblin = new Q_AttackToGoblin();
 	pAttackToGoblin->Initialize();
 	m_quests.push_back(pAttackToGoblin);

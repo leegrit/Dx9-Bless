@@ -383,10 +383,10 @@ void HyEngine::StaticMesh::UpdatedData(EDataType dataType)
 			CreateBoundingMesh(center, radius);
 
 
-			if (IS_EDITOR)
+			/*if (IS_EDITOR)
 				EDIT_ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
 			else
-				ENGINE->TryGetShader(L"StaticMesh", &m_pShader);
+				ENGINE->TryGetShader(L"StaticMesh", &m_pShader);*/
 
 			/* Initialize Shader */
 			//SAFE_RELEASE(m_pShader);

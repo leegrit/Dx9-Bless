@@ -269,6 +269,15 @@ void HyEngine::Terrain::Render()
 	D3DXHANDLE normalHandle = m_pShader->GetParameterByName(0, "NormalTex");
 	m_pShader->SetTexture(normalHandle, m_pNormal);
 
+	if (m_pNormal != nullptr)
+	{
+		m_pShader->SetBool("HasNormalMap", true);
+	}
+	else
+	{
+		m_pShader->SetBool("HasNormalMap", false);
+	}
+
 	m_pShader->SetTechnique("Terrain");
 	m_pShader->Begin(0, 0);
 	{

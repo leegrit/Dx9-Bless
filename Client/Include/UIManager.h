@@ -1,6 +1,12 @@
 #pragma once
 #include "Client_Enumerators.h"
 
+namespace HyEngine
+{
+	class ProgressBar;
+	class Button;
+}
+
 class Quest;
 class FadeInOut;
 class UIManager
@@ -42,6 +48,10 @@ public : /* For Interact */
 
 	void ShowCollectProgressBar(float amount);
 	void HideCollectProgressBar();
+	
+	void ToggleInventoryUI();
+	void ToggleEquipmentUI();
+
 
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
 
@@ -82,10 +92,10 @@ private : /* Interacive UI */
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;
 	// 나중에 버튼으로 수정할것
-	class UIPanel* m_pDialogChoiceUI = nullptr;
+	 Button* m_pDialogChoiceUI = nullptr;
 	class UIPanel* m_pDialogChoiceIconUI = nullptr;
 
-	class UIPanel * m_pDialogCancleUI = nullptr;
+	 Button * m_pDialogCancleUI = nullptr;
 	class UIPanel * m_pDialogCancleIconUI = nullptr;
 
 	class Quest* m_pAcceptedMainQuest = nullptr;
@@ -100,6 +110,7 @@ private : /* For Quest */
 	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
 
 	class InventoryUI* m_pInventoryUI = nullptr;
+	class EquipmentUI* m_pEquipmentUI = nullptr;
 
 private : /* For Battle */
 	class TargetingCircle* m_pTargetingCircle = nullptr;

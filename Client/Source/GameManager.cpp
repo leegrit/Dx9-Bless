@@ -4,6 +4,7 @@
 #include "Client_Events.h"
 #include "PlayerInfo.h"
 #include "ExpTable.h"
+#include "UIManager.h"
 
 GameManager::GameManager(GameScene * pScene)
 	: m_pScene(pScene)
@@ -43,4 +44,14 @@ void GameManager::Initialize()
 
 void GameManager::Update()
 {
+	if (KEYBOARD->Down('I'))
+	{
+		/* Open Inventory */
+		m_pScene->GetUIManager()->ToggleInventoryUI();
+	}
+	if (KEYBOARD->Down('E'))
+	{
+		/* Open Equipment */
+		m_pScene->GetUIManager()->ToggleEquipmentUI();
+	}
 }

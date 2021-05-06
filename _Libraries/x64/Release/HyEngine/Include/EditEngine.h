@@ -1,6 +1,12 @@
 #pragma once
 #include "GameObjectData.h"
 
+struct EditFontInfo
+{
+	TCHAR textBuff[256];
+	D3DXMATRIX matTrans;
+	D3DCOLOR textColor;
+};
 namespace HyEngine
 {
 	class EditEngine
@@ -25,6 +31,16 @@ namespace HyEngine
 	public:
 		bool InsertShader(std::wstring key, std::wstring path);
 		bool TryGetShader(std::wstring key, _Out_ ID3DXEffect** ppShader);
+
+
+	private : /* For Font */
+		void RenderFont();
+	public:
+		void DrawText(const TCHAR* text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color);
+		void DrawText(const TCHAR* text, D3DXMATRIX mat, D3DCOLOR color);
+		void DrawTextFormat(D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR* text, int args, ...);
+		void DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color);
+
 		//////////////////////////////////////////////////////////////////////////
 		// EXPORTS
 		//////////////////////////////////////////////////////////////////////////
@@ -94,6 +110,9 @@ namespace HyEngine
 		void CreateUIPanel(int editID);
 		void InsertUIData(class UIData * data);
 
+		/* For Font */
+		void CreateEditFont(int editID);
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
@@ -127,6 +146,8 @@ namespace HyEngine
 		bool m_bGameMode = false;
 		GameObject* m_pSelectedObject = nullptr;
 
+		/* For Font */
+		std::vector<EditFontInfo> m_fontInfos;
 
 		/* For Shader */
 		std::unordered_map<std::wstring, ID3DXEffect*> m_shaderMap;

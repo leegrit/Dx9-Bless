@@ -28,6 +28,7 @@ namespace WPF_Tool.Data
         public static string MeshEffect = "MeshEffect";
         public static string TextureEffect = "TextureEffect";
         public static string UIPanel = "UIPanel";
+        public static string Font = "Font";
     }
     public class HierarchyContent
     {
@@ -39,6 +40,7 @@ namespace WPF_Tool.Data
         public static string MeshEffect = "MeshEffect";
         public static string TextureEffect = "TextureEffect";
         public static string UIPanel = "UIPanel";
+        public static string Font = "Font";
     }
     public class Paths
     {

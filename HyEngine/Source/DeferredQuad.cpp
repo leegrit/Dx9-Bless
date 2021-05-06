@@ -28,16 +28,16 @@ DeferredQuad::DeferredQuad()
 	vertexSize = sizeof(TextureVertex);
 
 	_vb->Lock(0, 0, (void**)&vertices, 0);
-	vertices[0] = TextureVertex(-WinMaxWidth * 0.5f, -WinMaxHeight * 0.5f, 0, 0.0f, 1.0f);
+	/*vertices[0] = TextureVertex(-WinMaxWidth * 0.5f, -WinMaxHeight * 0.5f, 0, 0.0f, 1.0f);
 	vertices[1] = TextureVertex(-WinMaxWidth * 0.5f, WinMaxHeight * 0.5f, 0, 0.0f, 0.0f);
 	vertices[2] = TextureVertex(WinMaxWidth * 0.5f, WinMaxHeight * 0.5f, 0, 1.0f, 0.0f);
 
-	vertices[3] = TextureVertex(WinMaxWidth * 0.5f, -WinMaxHeight * 0.5f, 0, 1.0f, 1.0f);
-	/*vertices[0] = TextureVertex(-0.5f, -0.5f, 0,  0.0f, 1.0f);
-	vertices[1] = TextureVertex(-0.5f, 0.5f, 0,  0.0f, 0.0f);
-	vertices[2] = TextureVertex(0.5f, 0.5f, 0,1.0f, 0.0f);
+	vertices[3] = TextureVertex(WinMaxWidth * 0.5f, -WinMaxHeight * 0.5f, 0, 1.0f, 1.0f);*/
+	vertices[0] = TextureVertex(-0.5f, -0.5f, 0, 0.0f, 1.0f);
+	vertices[1] = TextureVertex(-0.5f, 0.5f, 0, 0.0f, 0.0f);
+	vertices[2] = TextureVertex(0.5f, 0.5f, 0, 1.0f, 0.0f);
 
-	vertices[3] = TextureVertex(0.5f, -0.5f, 0,1.0f, 1.0f);*/
+	vertices[3] = TextureVertex(0.5f, -0.5f, 0, 1.0f, 1.0f);
 	_vb->Unlock();
 
 	DEVICE->CreateIndexBuffer

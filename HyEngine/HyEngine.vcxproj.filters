@@ -654,6 +654,9 @@
     <ClInclude Include="Include\MeshHierarchySW.h">
       <Filter>DynamicMesh</Filter>
     </ClInclude>
+    <ClInclude Include="Include\EditFont.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1114,6 +1117,9 @@
     </ClCompile>
     <ClCompile Include="Source\MeshHierarchySW.cpp">
       <Filter>DynamicMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EditFont.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

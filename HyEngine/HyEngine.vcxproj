@@ -205,6 +205,7 @@
     <ClInclude Include="Include\EditData.h" />
     <ClInclude Include="Include\EditDynamicMesh.h" />
     <ClInclude Include="Include\EditEngine.h" />
+    <ClInclude Include="Include\EditFont.h" />
     <ClInclude Include="Include\EditMesh.h" />
     <ClInclude Include="Include\EditObject.h" />
     <ClInclude Include="Include\EditScene.h" />
@@ -377,6 +378,7 @@
     <ClCompile Include="Source\EditData.cpp" />
     <ClCompile Include="Source\EditDynamicMesh.cpp" />
     <ClCompile Include="Source\EditEngine.cpp" />
+    <ClCompile Include="Source\EditFont.cpp" />
     <ClCompile Include="Source\EditMesh.cpp" />
     <ClCompile Include="Source\EditObject.cpp" />
     <ClCompile Include="Source\EditScene.cpp" />

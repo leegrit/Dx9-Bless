@@ -829,6 +829,11 @@ namespace WPF_Tool
                     Externs.InsertGameData(ref data.gameObjectData);
                     Externs.InsertUIData(ref data.uiData);
                     break;
+                case GameObjectType.Font:
+                    TransformData.Visibility = Visibility.Visible;
+                    Externs.InsertGameData(ref data.gameObjectData);
+
+                    break;
                 default:
                     Debug.Assert(false);
                     break;

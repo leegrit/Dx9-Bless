@@ -19,7 +19,8 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 {
 	SEND_LOG("DirectDevice Initialize Start");
 
-	AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/NanumBarunGothic.ttf").c_str(), FR_PRIVATE, NULL);
+	//AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/NanumBarunGothic.ttf").c_str(), FR_PRIVATE, NULL);
+	AddFontResourceEx((PATH->AssetsPathW() + L"Fonts/InfinitySansR-Regular.ttf").c_str(), FR_PRIVATE, NULL);
 	//AddFontResourceEx(L"../Resources/Fonts/koverwatch.ttf", FR_PRIVATE, NULL);
 
 	m_hWnd = hwnd;
@@ -54,7 +55,7 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 	DWORD qulityLevel = 0;
 	m_pSDK->CheckDeviceMultiSampleType(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, D3DFMT_A8R8G8B8, true, D3DMULTISAMPLE_NONE, &qulityLevel);
 	d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
-	d3dpp.MultiSampleQuality = qulityLevel - 1;
+	d3dpp.MultiSampleQuality = 0;// qulityLevel - 1;
 
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = m_hWnd;
@@ -83,11 +84,11 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 	ZeroMemory(&fontInfo, sizeof(D3DXFONT_DESC));
 
 	
-	fontInfo.Width = 20;
+	fontInfo.Width = 0;
 	fontInfo.Height = 20;
 	fontInfo.Weight = FW_NORMAL;
 	fontInfo.CharSet = HANGEUL_CHARSET;
-	lstrcpy(fontInfo.FaceName, L"NanumBarunGothic");
+	lstrcpy(fontInfo.FaceName, L"Infinity Sans Regular");
 
 	hr = D3DXCreateFontIndirect(m_pDevice, &fontInfo, &m_pFont);
 
