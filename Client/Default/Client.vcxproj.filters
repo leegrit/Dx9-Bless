@@ -159,10 +159,10 @@
       <Filter>Camera</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\ExpTable.cpp">
-      <Filter>Data</Filter>
+      <Filter>ScriptableData</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\PlayerInfo.cpp">
-      <Filter>Data</Filter>
+      <Filter>ScriptableData</Filter>
     </ClCompile>
     <ClCompile Include="..\Source\LevelUpNoticeUI.cpp">
       <Filter>Scripts\UI</Filter>
@@ -254,7 +254,18 @@
     <ClCompile Include="..\Source\CollectProgressBar.cpp">
       <Filter>Scripts\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\InteractManager.cpp" />
+    <ClCompile Include="..\Source\InteractManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\InventoryData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ItemInfo.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\InventoryUI.cpp">
+      <Filter>Scripts\UI\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -329,9 +340,6 @@
     <Filter Include="Scenes\GameStage">
       <UniqueIdentifier>{8f8c4839-3a81-40d6-836e-10ea78fca3e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Data">
-      <UniqueIdentifier>{5aa4d3da-ee67-4871-81f8-b5f0ce421f5c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\UI\Battle">
       <UniqueIdentifier>{530b8216-92b4-4aa0-8386-5fc8ed37ff63}</UniqueIdentifier>
     </Filter>
@@ -346,6 +354,12 @@
     </Filter>
     <Filter Include="GameObject\Interactive">
       <UniqueIdentifier>{179a1493-1444-4778-ac57-1d67e30ed9f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptableData">
+      <UniqueIdentifier>{5aa4d3da-ee67-4871-81f8-b5f0ce421f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\UI\Inventory">
+      <UniqueIdentifier>{89867713-348f-4643-bef6-b45a903be5b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -512,13 +526,13 @@
       <Filter>Camera</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\ExpTable.h">
-      <Filter>Data</Filter>
+      <Filter>ScriptableData</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\Client_GlobalVars.h">
       <Filter>GlobalVars</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\PlayerInfo.h">
-      <Filter>Data</Filter>
+      <Filter>ScriptableData</Filter>
     </ClInclude>
     <ClInclude Include="..\Include\LevelUpNoticeUI.h">
       <Filter>Scripts\UI</Filter>
@@ -610,7 +624,18 @@
     <ClInclude Include="..\Include\CollectProgressBar.h">
       <Filter>Scripts\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\InteractManager.h" />
+    <ClInclude Include="..\Include\InteractManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\InventoryData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ItemInfo.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\InventoryUI.h">
+      <Filter>Scripts\UI\Inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

@@ -22,4 +22,14 @@ namespace GameEvent
 {
 	static std::string LevelUp = "GameEvent.LevelUp";
 	static std::string SendExp = "GameEvent.SendExp";
+	// 인벤토리에 아이템 추가
+	static std::string AddItemToInventory = "GameEvent.AddItemToInventory";
+	// 인벤토리에 아이템 제거
+	static std::string RemoveItemToInventory = "GameEvent.RemoveItemToInventory";
+	// 장비 착용
+	static std::string WearItem = "GameEvent.WearItem";
+	// 장비 해제
+	static std::string WearOffItem = "GameEvent.WearOffItem";
+	static std::string DrinkItem = "GameEvent.DrinkItem";
 }
+

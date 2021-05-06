@@ -147,6 +147,9 @@
     <ClCompile Include="..\Source\CollectProgressBar.cpp" />
     <ClCompile Include="..\Source\CollectQuest.cpp" />
     <ClCompile Include="..\Source\InteractManager.cpp" />
+    <ClCompile Include="..\Source\InventoryData.cpp" />
+    <ClCompile Include="..\Source\InventoryUI.cpp" />
+    <ClCompile Include="..\Source\ItemInfo.cpp" />
     <ClCompile Include="..\Source\Q_AttackToGoblin.cpp" />
     <ClCompile Include="..\Source\BattleManager.cpp" />
     <ClCompile Include="..\Source\BlessLoadingScene.cpp" />
@@ -235,6 +238,9 @@
     <ClInclude Include="..\Include\CollectProgressBar.h" />
     <ClInclude Include="..\Include\CollectQuest.h" />
     <ClInclude Include="..\Include\InteractManager.h" />
+    <ClInclude Include="..\Include\InventoryData.h" />
+    <ClInclude Include="..\Include\InventoryUI.h" />
+    <ClInclude Include="..\Include\ItemInfo.h" />
     <ClInclude Include="..\Include\Q_AttackToGoblin.h" />
     <ClInclude Include="..\Include\BattleManager.h" />
     <ClInclude Include="..\Include\BlessLoadingScene.h" />

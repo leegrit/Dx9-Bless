@@ -18,7 +18,7 @@
 #include "Enemy.h"
 #include "EnemyScreenHPBar.h"
 #include "CollectProgressBar.h"
-
+#include "InventoryUI.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -104,6 +104,8 @@ void UIManager::Initialize()
 	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(151, -75, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
 	m_pDialogCancleIconUI->SetActive(false);
 
+	m_pInventoryUI = InventoryUI::Create(m_pScene, L"InventoryUI");
+	m_pInventoryUI->Hide();
 
 	/* For QuestGuideUI */
 	m_pMainQuestGuideUI = QuestGuideUI::Create(m_pScene, EQuestImportance::Main, L"MainQuestGuide");
@@ -159,6 +161,22 @@ void UIManager::Initialize()
 
 void UIManager::Update()
 {
+	//////////////////////////////////////////////////////////////////////////
+	// FOR INVENTORY
+	//////////////////////////////////////////////////////////////////////////
+	if (KEYBOARD->Down('I'))
+	{
+		if (m_pInventoryUI->IsShow())
+		{
+			// 이미 열려있는데 I를 누르면 닫는다.
+			m_pInventoryUI->Hide();
+		}
+		else
+		{
+			m_pInventoryUI->Show();
+		}
+	}
+
 	//////////////////////////////////////////////////////////////////////////
 	// FOR QUEST 
 	//////////////////////////////////////////////////////////////////////////

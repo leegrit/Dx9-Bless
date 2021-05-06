@@ -1,0 +1,63 @@
+#pragma once
+#include "GameObject.h"
+
+namespace HyEngine
+{
+	class Button;
+}
+
+using namespace HyEngine;
+class InventoryUI : public GameObject
+{
+	//////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTOR & DESTRUCTOR
+	//////////////////////////////////////////////////////////////////////////
+protected :
+	explicit InventoryUI(Scene* pScene, std::wstring name);
+	virtual ~InventoryUI();
+
+	//////////////////////////////////////////////////////////////////////////
+	// INHERITED
+	//////////////////////////////////////////////////////////////////////////
+public :
+	virtual void Initialize();
+	virtual void Update() override;
+	virtual void Render() override;
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void Show();
+	void Hide();
+	bool IsShow();
+	//////////////////////////////////////////////////////////////////////////
+	// VARIABLES
+	//////////////////////////////////////////////////////////////////////////
+private : /* For Render */
+	UIPanel *m_pBackground = nullptr;
+	std::vector<Button*> m_itemSlots;
+	UIPanel* m_pItemSelectPanel = nullptr;
+	UIPanel* m_pUpLine = nullptr;
+	UIPanel* m_pUnderLine = nullptr;
+	Button* m_pTokenExchangeButton = nullptr;
+	UIPanel *m_pCoin = nullptr;
+
+private : /* For Item Slot */
+	const int m_maxSlotVertical = 4;
+	const int m_maxSlotHorizontal = 7;
+	const int m_maxSlotCount = 32;
+	const float m_slotOffset = 55;
+
+private :
+	bool m_bShow = false;
+
+	//////////////////////////////////////////////////////////////////////////
+	// FACTORY METHOD
+	//////////////////////////////////////////////////////////////////////////
+public :
+	static InventoryUI* Create(Scene * pScene, std::wstring name);
+
+};
+

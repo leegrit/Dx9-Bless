@@ -8,7 +8,8 @@ DamageFontScatter::DamageFontScatter(Scene * pScene, std::wstring name)
 }
 
 DamageFontScatter::~DamageFontScatter()
-{
+{	
+
 }
 
 void DamageFontScatter::Render()

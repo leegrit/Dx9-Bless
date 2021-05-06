@@ -99,6 +99,7 @@ private : /* For Quest */
 
 	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
 
+	class InventoryUI* m_pInventoryUI = nullptr;
 
 private : /* For Battle */
 	class TargetingCircle* m_pTargetingCircle = nullptr;

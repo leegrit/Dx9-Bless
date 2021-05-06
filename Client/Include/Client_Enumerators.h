@@ -36,3 +36,28 @@ enum class EQuestDialogType
 	AcceptDialog,
 	FinishDialog,
 };
+
+enum class EItemType
+{
+	None,
+	Upper,
+	Lower,
+	Boots,
+	Glove,
+	Helmet,
+	CollectItem,
+	Item, // ¼Ò¸ðÇ°
+};
+
+enum class EItemSaleType
+{
+	SalePossible,
+	SaleImpossible,
+};
+
+enum class EItemDestructionType
+{
+	Destrucalbe,
+	InDestrucalbe
+};
+

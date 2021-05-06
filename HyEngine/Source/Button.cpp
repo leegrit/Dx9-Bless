@@ -1,13 +1,14 @@
 #include "StandardEngineFramework.h"
 #include "Button.h"
 #include "TextureQuad.h"
-
+#include "TextureLoader.h"
 HyEngine::Button::Button(Scene * pScene, std::wstring name, std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale)
 	: UIElement(pScene, name)
 {
 	m_pTextureQuad = Geometry::CreateGeometry<TextureQuad>(nullptr);
 	ENGINE->TryGetShader(L"UIPanel", &m_pEffect);
 	assert(m_pEffect);
+	m_pTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(imageFilePath);
 
 	m_pTransform->SetPosition(position);
 	m_pTransform->m_rotationEuler = rotation;
@@ -73,6 +74,7 @@ void HyEngine::Button::Update()
 	{
 		if (m_isCollision)
 		{
+			m_isCollision = false;
 			if (m_buttonEvents[(int)EButtonEvent::ButtonCollisionExit])
 				m_buttonEvents[(int)EButtonEvent::ButtonCollisionExit]();
 		}
