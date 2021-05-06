@@ -18,6 +18,13 @@ namespace BattleEvent
 
 }
 
+namespace UIEvent
+{
+	static std::string ShopUIOpen = "UIEvent.ShopUIOpen";
+	static std::string ShopUIClose = "UIEvent.ShopUIClose";
+
+}
+
 namespace GameEvent
 {
 	static std::string LevelUp = "GameEvent.LevelUp";

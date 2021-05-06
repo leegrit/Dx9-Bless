@@ -1,0 +1,16 @@
+#pragma once
+#include "ScriptableData.h"
+
+using namespace HyEngine;
+class ShopItemsTable : public ScriptableData
+{
+	//////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTOR & DESTRUCTOR
+	//////////////////////////////////////////////////////////////////////////
+public :
+	ShopItemsTable();
+	~ShopItemsTable();
+
+
+};
+

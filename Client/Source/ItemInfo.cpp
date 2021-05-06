@@ -3,6 +3,7 @@
 
 ItemInfo::ItemInfo()
 {
+	imagePath = L"";
 	itemName = L"";
 	itemType = EItemType::None;
 	atk = 0;
@@ -12,4 +13,6 @@ ItemInfo::ItemInfo()
 	itemValue = 0;
 	itemDuration = 0;
 	itemDescription = L"";
+	availableForSale = true;
+	availableForDestruction = true;
 }

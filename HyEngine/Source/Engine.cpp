@@ -452,6 +452,7 @@ void HyEngine::Engine::RenderFont()
 	DEVICE->SetRenderState(D3DRS_ZENABLE, true);
 	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
 	DEVICE->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);*/
+
 	for (auto& fontInfo : m_fontInfos)
 	{
 		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);

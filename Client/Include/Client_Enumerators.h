@@ -45,8 +45,13 @@ enum class EItemType
 	Boots,
 	Glove,
 	Helmet,
+	Shoulder,
+	Belt,
 	CollectItem,
+	Weapon,
 	Item, // ¼Ò¸ðÇ°
+	QuestItem,
+	Spoils,
 };
 
 enum class EItemSaleType

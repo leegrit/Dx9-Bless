@@ -148,10 +148,13 @@
     <ClCompile Include="..\Source\CollectProgressBar.cpp" />
     <ClCompile Include="..\Source\CollectQuest.cpp" />
     <ClCompile Include="..\Source\Elaine.cpp" />
+    <ClCompile Include="..\Source\ElainShopItemsData.cpp" />
     <ClCompile Include="..\Source\Elroy.cpp" />
     <ClCompile Include="..\Source\EquipmentUI.cpp" />
     <ClCompile Include="..\Source\EquipShopUI.cpp" />
     <ClCompile Include="..\Source\GeneralStoreUI.cpp" />
+    <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
+    <ClCompile Include="..\Source\ShopItemsTable.cpp" />
     <ClCompile Include="..\Source\ShopUI.cpp" />
     <ClCompile Include="..\Source\Hieracon_Cora.cpp" />
     <ClCompile Include="..\Source\InteractManager.cpp" />
@@ -254,10 +257,13 @@
     <ClInclude Include="..\Include\CollectProgressBar.h" />
     <ClInclude Include="..\Include\CollectQuest.h" />
     <ClInclude Include="..\Include\Elaine.h" />
+    <ClInclude Include="..\Include\ElainShopItemsData.h" />
     <ClInclude Include="..\Include\Elroy.h" />
     <ClInclude Include="..\Include\EquipmentUI.h" />
     <ClInclude Include="..\Include\EquipShopUI.h" />
     <ClInclude Include="..\Include\GeneralStoreUI.h" />
+    <ClInclude Include="..\Include\LiurensShopItemsData.h" />
+    <ClInclude Include="..\Include\ShopItemsTable.h" />
     <ClInclude Include="..\Include\ShopUI.h" />
     <ClInclude Include="..\Include\Hieracon_Cora.h" />
     <ClInclude Include="..\Include\InteractManager.h" />

@@ -5,7 +5,7 @@ class ItemInfo
 public :
 	ItemInfo();
 
-
+	std::wstring imagePath;
 	std::wstring itemName;
 	EItemType itemType;
 	// 레벨제한
@@ -20,5 +20,8 @@ public :
 	int itemDuration;
 	// 소모품 효과에 대한 설명
 	std::wstring itemDescription; 
+
+	bool availableForSale;
+	bool availableForDestruction;
 };
 

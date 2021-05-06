@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "PathManager.h"
 #include "ItemInfoUI.h"
+#include "Client_Events.h"
 
 ShopUI::ShopUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
@@ -21,6 +22,7 @@ void ShopUI::Initialize()
 		D3DXVECTOR3(0, 0, 0),
 		D3DXVECTOR3(600, 500, 1),
 		L"ShopUI_Background");
+	m_pBackground->SetRenderQueue(3500);
 
 	m_pCloseButton = Button::Create(GetScene(), L"ShopUI_CloseButton",
 		PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png",
@@ -73,17 +75,21 @@ void ShopUI::Initialize()
 		m_itemSlots[i] = Button::Create(GetScene(),
 			L"ShopUI_ItemSlot_" + std::to_wstring(i),
 			PATH->AssetsPathW() + L"UI/BLUIOpener_I3_0.png",
-			D3DXVECTOR3(-98.4, 134 - i * m_slotOffset, 0),
+			D3DXVECTOR3(-391, 134 - i * m_slotOffset, 0),
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(50, 50, 1));
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionStay, [=]() 
 		{
+			if (i >= m_items.size())
+				return;
 			m_pItemSelectPanel->SetActive(true);
 			m_pItemSelectPanel->m_pTransform->SetPosition(m_itemSlots[i]->m_pTransform->m_position);
 			m_pItemInfoUI->Show(m_itemSlots[i]->m_pTransform->m_position.operator D3DXVECTOR3(), false);
 		});
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionExit, [=]() 
 		{
+			if (i >= m_items.size())
+				return;
 			m_pItemSelectPanel->SetActive(false);
 			m_pItemInfoUI->Hide();
 		});
@@ -94,10 +100,11 @@ void ShopUI::Initialize()
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(290, 60, 1),
 			L"ShopUI_ItemSlotBack");
+		m_itemSlotBacks[i]->SetRenderQueue(3400);
 
 		m_itemSlotPrices[i] = UIPanel::Create(GetScene(),
-			PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_20.png",
-			D3DXVECTOR3(135, 120 - i * m_slotOffset, 0),
+			PATH->AssetsPathW() + L"UI/BLUILooting_I4_3.png",
+			D3DXVECTOR3(-158, 120 - i * m_slotOffset, 0),
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(25, 25, 1),
 			L"ShopUI_ItemSlotPrice");
@@ -114,17 +121,21 @@ void ShopUI::Initialize()
 		m_itemSlots[i] = Button::Create(GetScene(),
 			L"ShopUI_ItemSlot_" + std::to_wstring(i),
 			PATH->AssetsPathW() + L"UI/BLUIOpener_I3_0.png",
-			D3DXVECTOR3(-391, 134 - (i - 4) * m_slotOffset, 0),
+			D3DXVECTOR3(-98.4, 134 - (i - 4) * m_slotOffset, 0),
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(50, 50, 1));
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionStay, [=]()
 		{
+			if (i >= m_items.size())
+				return;
 			m_pItemSelectPanel->SetActive(true);
 			m_pItemSelectPanel->m_pTransform->SetPosition(m_itemSlots[i]->m_pTransform->m_position);
 			m_pItemInfoUI->Show(m_itemSlots[i]->m_pTransform->m_position.operator D3DXVECTOR3(), false);
 		});
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionExit, [=]()
 		{
+			if (i >= m_items.size())
+				return;
 			m_pItemSelectPanel->SetActive(false);
 			m_pItemInfoUI->Hide();
 		});
@@ -135,10 +146,11 @@ void ShopUI::Initialize()
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(290, 60, 1),
 			L"ShopUI_ItemSlotBack");
+		m_itemSlotBacks[i]->SetRenderQueue(3400);
 
 		m_itemSlotPrices[i] = UIPanel::Create(GetScene(),
-			PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_20.png",
-			D3DXVECTOR3(-158, 120 - (i - 4) * m_slotOffset, 0),
+			PATH->AssetsPathW() + L"UI/BLUILooting_I4_3.png",
+			D3DXVECTOR3(135, 120 - (i - 4) * m_slotOffset, 0),
 			D3DXVECTOR3(0, 0, 0),
 			D3DXVECTOR3(25, 25, 1),
 			L"ShopUI_ItemSlotPrice");
@@ -154,6 +166,25 @@ void ShopUI::Initialize()
 
 	m_pItemInfoUI = ItemInfoUI::Create(GetScene(), L"ItemInfoUI");
 	m_pItemInfoUI->Hide();
+
+	m_items = GetItemInfos();
+	
+	for (int i = 0; i < m_items.size(); i++)
+	{
+		auto iconImage = UIPanel::Create(GetScene(),
+			m_items[i].imagePath,
+			D3DXVECTOR3(0, 0, 0),
+			D3DXVECTOR3(0, 0, 0),
+			D3DXVECTOR3(50, 50, 1),
+			L"ItemIcon"
+		);
+		iconImage->SetRenderQueue(3300);
+		iconImage->m_pTransform->SetPosition(m_itemSlots[i]->m_pTransform->m_position);
+		m_itemIcons.push_back(iconImage);
+	}
+	assert(m_items.size() == m_itemIcons.size());
+
+
 }
 
 void ShopUI::Update()
@@ -199,6 +230,10 @@ void ShopUI::Show()
 		m_itemSlotBacks[i]->SetActive(true);
 		m_itemSlotPrices[i]->SetActive(true);
 	}
+	for (int i = 0; i < m_itemIcons.size(); i++)
+	{
+		m_itemIcons[i]->SetActive(true);
+	}
 	m_pCenterLine->SetActive(true);
 	m_pUnderLine->SetActive(true);
 	m_pUnderPanel->SetActive(true);
@@ -206,6 +241,7 @@ void ShopUI::Show()
 	m_pItemSelectPanel->SetActive(false);
 
 	m_bShow = true;
+	EventDispatcher::TriggerEvent(UIEvent::ShopUIOpen);
 }
 
 void ShopUI::Hide()
@@ -218,6 +254,10 @@ void ShopUI::Hide()
 		m_itemSlotBacks[i]->SetActive(false);
 		m_itemSlotPrices[i]->SetActive(false);
 	}
+	for (int i = 0; i < m_itemIcons.size(); i++)
+	{
+		m_itemIcons[i]->SetActive(false);
+	}
 	m_pCenterLine->SetActive(false);
 	m_pUnderLine->SetActive(false);
 	m_pUnderPanel->SetActive(false);
@@ -225,6 +265,7 @@ void ShopUI::Hide()
 	m_pItemSelectPanel->SetActive(false);
 
 	m_bShow = false;
+	EventDispatcher::TriggerEvent(UIEvent::ShopUIClose);
 }
 
 bool ShopUI::IsShow()

@@ -136,9 +136,6 @@
     <ClCompile Include="..\Source\QuestNoticeUI.cpp">
       <Filter>Scripts\UI\Quest</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\QuestTable.cpp">
-      <Filter>Scripts\Quest</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\HieraconScene.cpp">
       <Filter>Scenes\GameStage</Filter>
     </ClCompile>
@@ -310,6 +307,18 @@
     </ClCompile>
     <ClCompile Include="..\Source\GeneralStoreUI.cpp">
       <Filter>Scripts\UI\ShopUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\LiurensShopItemsData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ElainShopItemsData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ShopItemsTable.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuestTable.cpp">
+      <Filter>ScriptableData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -554,9 +563,6 @@
     <ClInclude Include="..\Include\QuestNoticeUI.h">
       <Filter>Scripts\UI\Quest</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\QuestTable.h">
-      <Filter>Scripts\Quest</Filter>
-    </ClInclude>
     <ClInclude Include="..\Include\HieraconScene.h">
       <Filter>Scenes\GameStage</Filter>
     </ClInclude>
@@ -731,6 +737,18 @@
     </ClInclude>
     <ClInclude Include="..\Include\GeneralStoreUI.h">
       <Filter>Scripts\UI\ShopUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\LiurensShopItemsData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ElainShopItemsData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ShopItemsTable.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuestTable.h">
+      <Filter>ScriptableData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

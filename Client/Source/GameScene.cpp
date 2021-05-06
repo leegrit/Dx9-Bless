@@ -14,6 +14,8 @@
 #include "PlayerInfo.h"
 #include "BattleManager.h"
 #include "InteractManager.h"
+#include "ShopItemsTable.h"
+
 void GameScene::Update()
 {
 	m_pGameManager->Update();
@@ -50,6 +52,13 @@ void GameScene::Load()
 		ENGINE->AddScriptableData(L"PlayerInfo", pPlayerInfo);
 	}
 	m_pPlayerInfo = pPlayerInfo;
+
+	ShopItemsTable * pShopItemsTable = static_cast<ShopItemsTable*>(ENGINE->GetScriptableData(L"ShopItemsTable"));
+	if (pShopItemsTable == nullptr)
+	{
+		pShopItemsTable = new ShopItemsTable();
+		ENGINE->AddScriptableData(L"ShopItemsTable", pShopItemsTable);
+	}
 }
 
 void GameScene::LateLoadScene()
