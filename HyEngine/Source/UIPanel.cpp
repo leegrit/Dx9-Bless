@@ -110,6 +110,11 @@ void HyEngine::UIPanel::SetAlpha(float alpha)
 	m_alpha = alpha;
 }
 
+void HyEngine::UIPanel::SetTexture(std::wstring filePath)
+{
+	m_pTexture = (IDirect3DTexture9*)TextureLoader::GetTexture(filePath);
+}
+
 UIPanel * HyEngine::UIPanel::Create(Scene * scene, GameObject * parent, int editID)
 {
 	UIPanel * ui = new UIPanel(scene, parent, editID);

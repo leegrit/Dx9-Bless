@@ -47,6 +47,7 @@ technique UIPanel
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;
 		DestBlend = INVSRCALPHA;
+		//ZWriteEnable = false;
 		VertexShader = compile vs_3_0 UIPanelVS();
 		PixelShader = compile ps_3_0 UIPanelPS();
 	}

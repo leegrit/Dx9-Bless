@@ -154,6 +154,11 @@
     <ClCompile Include="..\Source\EquipShopUI.cpp" />
     <ClCompile Include="..\Source\GeneralStoreUI.cpp" />
     <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
+    <ClCompile Include="..\Source\NoticeManager.cpp" />
+    <ClCompile Include="..\Source\NotifyUI.cpp" />
+    <ClCompile Include="..\Source\PlayerEquipData.cpp" />
+    <ClCompile Include="..\Source\PlayerMoneyData.cpp" />
+    <ClCompile Include="..\Source\PlayerStatusData.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
     <ClCompile Include="..\Source\ShopUI.cpp" />
     <ClCompile Include="..\Source\Hieracon_Cora.cpp" />
@@ -263,6 +268,11 @@
     <ClInclude Include="..\Include\EquipShopUI.h" />
     <ClInclude Include="..\Include\GeneralStoreUI.h" />
     <ClInclude Include="..\Include\LiurensShopItemsData.h" />
+    <ClInclude Include="..\Include\NoticeManager.h" />
+    <ClInclude Include="..\Include\NotifyUI.h" />
+    <ClInclude Include="..\Include\PlayerEquipData.h" />
+    <ClInclude Include="..\Include\PlayerMoneyData.h" />
+    <ClInclude Include="..\Include\PlayerStatusData.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />
     <ClInclude Include="..\Include\ShopUI.h" />
     <ClInclude Include="..\Include\Hieracon_Cora.h" />

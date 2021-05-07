@@ -320,6 +320,21 @@
     <ClCompile Include="..\Source\QuestTable.cpp">
       <Filter>ScriptableData</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\PlayerMoneyData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerStatusData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerEquipData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NoticeManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\NotifyUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -749,6 +764,21 @@
     </ClInclude>
     <ClInclude Include="..\Include\QuestTable.h">
       <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerStatusData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerEquipData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerMoneyData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NoticeManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\NotifyUI.h">
+      <Filter>Scripts\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

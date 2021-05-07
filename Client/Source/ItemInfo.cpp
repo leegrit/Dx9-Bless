@@ -3,8 +3,10 @@
 
 ItemInfo::ItemInfo()
 {
+	uid = UIDGen::Get()->GetUID();
 	imagePath = L"";
 	itemName = L"";
+	typeText = L"";
 	itemType = EItemType::None;
 	atk = 0;
 	physicalDef = 0;

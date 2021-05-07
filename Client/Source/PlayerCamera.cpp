@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "PlayerCamera.h"
+#include "GameManager.h"
+#include "GameScene.h"
 
 PlayerCamera::PlayerCamera(Scene * scene, GameObject * player, wstring name) 
 	: Camera(scene, nullptr, name),
@@ -23,6 +25,10 @@ void PlayerCamera::Initialize()
 void PlayerCamera::Update()
 {
 	Camera::Update();
+
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	if (pScene->GetGameManager()->IsPlayerMovable() == false)
+		return;
 
 	ParamChange();
 	Movement();

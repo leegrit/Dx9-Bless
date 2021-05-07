@@ -23,6 +23,7 @@
 #include "Button.h"
 #include "GeneralStoreUI.h"
 #include "EquipShopUI.h"
+#include "NotifyUI.h"
 
 
 
@@ -38,6 +39,15 @@ UIManager::UIManager(GameScene* pScene)
 		std::bind(&UIManager::OnAcceptQuest, this, placeholders::_1));
 	EventDispatcher::AddEventListener(QuestEvent::QuestCompletelyClear, "UIManager",
 		std::bind(&UIManager::OnCompletelyClearQuest, this, placeholders::_1));
+
+	EventDispatcher::AddEventListener(GameEvent::AddItemToInventory, "UIManager",
+		std::bind(&UIManager::OnAddItem, this, placeholders::_1));
+	EventDispatcher::AddEventListener(GameEvent::BuyItem, "UIManager",
+		std::bind(&UIManager::OnBuyItem, this, placeholders::_1));
+	EventDispatcher::AddEventListener(GameEvent::InvalidCoolTime, "UIManager",
+		std::bind(&UIManager::OnInvalidCoolTime, this, placeholders::_1));
+	EventDispatcher::AddEventListener(GameEvent::InvalidTarget, "UIManager",
+		std::bind(&UIManager::OnInvalidTarget, this, placeholders::_1));
 }
 
 
@@ -48,6 +58,12 @@ UIManager::~UIManager()
 
 	EventDispatcher::RemoveEventListener(QuestEvent::QuestAccept, "UIManager");
 	EventDispatcher::RemoveEventListener(QuestEvent::QuestCompletelyClear, "UIManager");
+
+	EventDispatcher::RemoveEventListener(GameEvent::AddItemToInventory, "UIManager");
+	EventDispatcher::RemoveEventListener(GameEvent::BuyItem, "UIManager");
+	EventDispatcher::RemoveEventListener(GameEvent::InvalidCoolTime, "UIManager");
+	EventDispatcher::RemoveEventListener(GameEvent::InvalidTarget, "UIManager");
+
 }
 
 void UIManager::OnQuestDialogOpen(void *)
@@ -74,6 +90,27 @@ void UIManager::OnQuestDialogEnd(void *)
 	m_pDialogCancleUI->SetActive(false);
 	m_pDialogCancleIconUI->SetActive(false);
 
+}
+
+void UIManager::OnAddItem(void *)
+{
+	// 이건 제외
+	//m_pNotifyUI->PushNotify(ENotifyType::GetItemNotify);
+}
+
+void UIManager::OnBuyItem(void *)
+{
+	m_pNotifyUI->PushNotify(ENotifyType::BuyItemNotify);
+}
+
+void UIManager::OnInvalidTarget(void *)
+{
+	m_pNotifyUI->PushNotify(ENotifyType::InvalidTarget);
+}
+
+void UIManager::OnInvalidCoolTime(void *)
+{
+	m_pNotifyUI->PushNotify(ENotifyType::InvalidCoolTime);
 }
 
 void UIManager::Initialize()
@@ -143,6 +180,9 @@ void UIManager::Initialize()
 
 	m_pEnemyScreenHPBar = EnemyScreenHPBar::Create(m_pScene, L"EnemyScreenHPBar");
 	m_pEnemyScreenHPBar->Hide();
+
+	/* For Notify */
+	m_pNotifyUI = NotifyUI::Create(m_pScene, L"NotifyUI");
 
 	/* For Static UI */
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -312.8, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(80, 80, 1), L"1"));
@@ -274,6 +314,11 @@ void UIManager::ToggleInventoryUI()
 	}
 }
 
+InventoryUI * UIManager::GetInventoryUI() const
+{
+	return m_pInventoryUI;
+}
+
 void UIManager::ToggleEquipmentUI()
 {
 	if (m_pEquipmentUI->IsShow())
@@ -285,6 +330,11 @@ void UIManager::ToggleEquipmentUI()
 	{
 		m_pEquipmentUI->Show();
 	}
+}
+
+EquipmentUI * UIManager::GetEquipmentUI() const
+{
+	return m_pEquipmentUI;
 }
 
 void UIManager::ShowEquipShopUI()

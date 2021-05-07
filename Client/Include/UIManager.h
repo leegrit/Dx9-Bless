@@ -24,6 +24,11 @@ public : /* For Quest */
 	void OnQuestDialogOpen(void*);
 	void OnQuestDialogEnd(void*);
 
+public :
+	void OnAddItem(void*);
+	void OnBuyItem(void*);
+	void OnInvalidTarget(void*);
+	void OnInvalidCoolTime(void*);
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
@@ -50,7 +55,9 @@ public : /* For Interact */
 	void HideCollectProgressBar();
 	
 	void ToggleInventoryUI();
+	class InventoryUI* GetInventoryUI() const;
 	void ToggleEquipmentUI();
+	class EquipmentUI* GetEquipmentUI() const;
 
 	void ShowEquipShopUI();
 	void HideEquipShopUI();
@@ -125,5 +132,8 @@ private : /* For Battle */
 	class TargetingCircle* m_pTargetingCircle = nullptr;
 	class TargetingArrow* m_pTargetingArrow = nullptr;
 	class EnemyScreenHPBar* m_pEnemyScreenHPBar = nullptr;
+
+private : /* For Notify */
+	class NotifyUI * m_pNotifyUI = nullptr;
 };
 

@@ -298,7 +298,7 @@ ScriptableData * HyEngine::Engine::GetScriptableData(std::wstring key)
 	return data->second;
 }
 
-void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color)
+void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, DWORD format)
 {
 	FontInfo info;
 	D3DXMATRIX posMat;
@@ -309,7 +309,7 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVE
 	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
 	info.matTrans = scaleMat * posMat;
 	info.textColor = color;
-
+	info.format = format;
 	m_fontInfos.push_back(info);
 }
 
@@ -322,7 +322,7 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXMATRIX mat, D3DCOLOR col
 	wsprintf(info.textBuff, text);
 	info.matTrans = mat;
 	info.textColor = color;
-
+	info.format = DT_LEFT;
 	m_fontInfos.push_back(info);
 }
 
@@ -337,6 +337,7 @@ void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3
 	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
 	info.matTrans = scaleMat * posMat;
 	info.textColor = color;
+	info.format = DT_LEFT;
 
 	m_fontInfos.push_back(info);
 
@@ -456,7 +457,7 @@ void HyEngine::Engine::RenderFont()
 	for (auto& fontInfo : m_fontInfos)
 	{
 		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);
-		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr, 0, fontInfo.textColor);
+		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr, fontInfo.format, fontInfo.textColor);
 	}
 	//DEVICE->SetRenderState(D3DRS_ZENABLE, old);
 

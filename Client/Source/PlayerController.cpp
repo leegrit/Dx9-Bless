@@ -2,7 +2,8 @@
 #include "PlayerController.h"
 #include "DynamicMesh.h"
 #include "Character.h"
-
+#include "GameScene.h"
+#include "GameManager.h"
 PlayerController::PlayerController(GameObject * pOwner)
 	:Component(BehaviourType::Update, pOwner, L"PlayerController")
 {
@@ -27,6 +28,13 @@ void PlayerController::Update()
 {
 	if (ENGINE->GetGameMode() == EGameMode::EDIT_MODE)
 		return;
+
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	if (pScene->GetGameManager()->IsPlayerMovable() == false)
+	{
+		SetAnimationSet(39);
+		return;
+	}
 	UpdateMovement();
 	UpdateRotation();
 }

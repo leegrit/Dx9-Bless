@@ -42,6 +42,11 @@ public:
 public :
 	class PlayerInfo* GetPlayerInfo();
 	class ExpTable * GetExpTable();
+	class PlayerMoneyData * GetPlayerMoneyData();
+	class InventoryData* GetInventoryData();
+	class PlayerEquipData* GetPlayerEquipData();
+	class PlayerStatusData* GetPlayerStatusData();
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER FOR MANAGER
@@ -61,6 +66,10 @@ private:
 private : /* For ScriptableData */
 	class PlayerInfo * m_pPlayerInfo = nullptr;
 	class ExpTable * m_pExpTable = nullptr;
+	class PlayerMoneyData * m_pPlayerMoneyData = nullptr;
+	class InventoryData* m_pInventoryData = nullptr;
+	class PlayerEquipData* m_pPlayerEquipData = nullptr;
+	class PlayerStatusData* m_pPlayerStatusData = nullptr;
 
 private : /* For Manager */
 	GameManager* m_pGameManager = nullptr;

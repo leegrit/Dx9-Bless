@@ -6,18 +6,7 @@ namespace HyEngine
 	class Button;
 }
 
-enum class EEquipSlot
-{
-	Helmet,
-	Upper,
-	Belt,
-	Glove,
-	Weapon,
-	Shoulder,
-	Lower,
-	Boots,
-	MAX
-};
+
 
 using namespace HyEngine;
 class EquipmentUI  :public GameObject
@@ -38,6 +27,12 @@ public :
 	virtual void Render() override;
 
 	//////////////////////////////////////////////////////////////////////////
+	// CALLBACK
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void OnEquipmentChanged(void*);
+
+	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
@@ -51,6 +46,8 @@ public :
 private : /* For Render */
 	UIPanel* m_pBackground = nullptr;
 	std::vector<Button*> m_equipSlots;
+	std::vector<UIPanel*> m_equipIcons;
+	std::vector<UIPanel*> m_iconCovers;
 	Button* m_pCloseButton = nullptr;
 	UIPanel* m_pUnderLine = nullptr;
 	UIPanel* m_pUnderPanel = nullptr;

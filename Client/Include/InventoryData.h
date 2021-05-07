@@ -8,9 +8,12 @@ public :
 	InventoryData();
 
 	bool PushItem(ItemInfo itemInfo);
+	void RemoveItem(ItemInfo itemInfo);
 	bool ExitItem(int index);
 	bool TryGetItem(int index, _Out_ ItemInfo* pItemInfo);
-
+	ItemInfo GetItem(int index);
+	bool IsFull();
+	int GetCount();
 private:
 
 	std::vector<ItemInfo> m_items;

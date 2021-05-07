@@ -15,6 +15,10 @@
 #include "BattleManager.h"
 #include "InteractManager.h"
 #include "ShopItemsTable.h"
+#include "PlayerMoneyData.h"
+#include "PlayerStatusData.h"
+#include "PlayerEquipData.h"
+#include "InventoryData.h"
 
 void GameScene::Update()
 {
@@ -59,6 +63,35 @@ void GameScene::Load()
 		pShopItemsTable = new ShopItemsTable();
 		ENGINE->AddScriptableData(L"ShopItemsTable", pShopItemsTable);
 	}
+
+	m_pPlayerMoneyData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
+	if (m_pPlayerMoneyData == nullptr)
+	{
+		m_pPlayerMoneyData = new PlayerMoneyData();
+		ENGINE->AddScriptableData(L"PlayerMoneyData", m_pPlayerMoneyData);
+	}
+
+	m_pPlayerStatusData = static_cast<PlayerStatusData*>(ENGINE->GetScriptableData(L"PlayerStatusData"));
+	if (m_pPlayerStatusData == nullptr)
+	{
+		m_pPlayerStatusData = new PlayerStatusData();
+		ENGINE->AddScriptableData(L"PlayerStatusData", m_pPlayerStatusData);
+	}
+
+	m_pPlayerEquipData = static_cast<PlayerEquipData*>(ENGINE->GetScriptableData(L"PlayerEquipData"));
+	if (m_pPlayerEquipData == nullptr)
+	{
+		m_pPlayerEquipData = new PlayerEquipData();
+		ENGINE->AddScriptableData(L"PlayerEquipData", m_pPlayerEquipData);
+	}
+
+	m_pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+	if (m_pInventoryData == nullptr)
+	{
+		m_pInventoryData = new InventoryData();
+		ENGINE->AddScriptableData(L"InventoryData", m_pInventoryData);
+	}
+
 }
 
 void GameScene::LateLoadScene()
@@ -160,6 +193,26 @@ PlayerInfo * GameScene::GetPlayerInfo()
 ExpTable * GameScene::GetExpTable()
 {
 	return m_pExpTable;
+}
+
+PlayerMoneyData * GameScene::GetPlayerMoneyData()
+{
+	return m_pPlayerMoneyData;
+}
+
+InventoryData * GameScene::GetInventoryData()
+{
+	return m_pInventoryData;
+}
+
+PlayerEquipData * GameScene::GetPlayerEquipData()
+{
+	return m_pPlayerEquipData;
+}
+
+PlayerStatusData * GameScene::GetPlayerStatusData()
+{
+	return m_pPlayerStatusData;
 }
 
 GameManager * GameScene::GetGameManager()

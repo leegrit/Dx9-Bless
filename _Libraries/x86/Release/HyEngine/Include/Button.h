@@ -55,6 +55,9 @@ namespace HyEngine
 			std::function<void()>(),
 			std::function<void()>(),
 			std::function<void()>(),
+			std::function<void()>(),
+			std::function<void()>(),
+			std::function<void()>(),
 			std::function<void()>()
 		};
 		bool m_isCollision = false;

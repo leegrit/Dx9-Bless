@@ -14,7 +14,8 @@ public :
 public :
 	void OnQuestDialogOpen(void*);
 	void OnQuestDialogEnd(void*);
-
+	void OnShopUIOpen(void*);
+	void OnShopUIClose(void*);
 	
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD

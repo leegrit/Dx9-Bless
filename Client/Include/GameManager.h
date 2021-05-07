@@ -15,6 +15,12 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 public :
 	void OnSendExp(void*);
+	void OnInventoryUIOpen(void*);
+	void OnInventoryUIClose(void*);
+	void OnEquipmentUIOpen(void*);
+	void OnEquipmentUIClose(void*);
+	void OnShopUIOpen(void*);
+	void OnShopUIClose(void*);
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
@@ -22,6 +28,7 @@ public :
 public :
 	void Initialize();
 	void Update();
+	bool IsPlayerMovable();
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -29,5 +36,9 @@ public :
 	//////////////////////////////////////////////////////////////////////////
 private :
 	class GameScene* m_pScene = nullptr;
+
+	// 화면에 인벤토리, 장비창, 상점 등
+	// ui가 차지하고 있는 경우 true
+	bool m_bOccupyUI = false; 
 };
 

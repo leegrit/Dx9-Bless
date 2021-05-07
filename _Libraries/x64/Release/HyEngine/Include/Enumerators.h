@@ -61,8 +61,11 @@ enum class EColliderShape
 enum class EButtonEvent
 {
 	ButtonDown,
+	RightButtonDown,
 	ButtonUp,
+	RightButtonUp,
 	ButtonPress,
+	RightButtonPress,
 	ButtonCollisionEnter,
 	ButtonCollisionStay,
 	ButtonCollisionExit,

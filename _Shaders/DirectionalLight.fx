@@ -33,9 +33,9 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -51,9 +51,9 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -69,9 +69,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -84,9 +84,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;

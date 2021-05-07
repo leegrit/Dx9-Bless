@@ -5,9 +5,12 @@ class ItemInfo
 public :
 	ItemInfo();
 
+	int uid;
 	std::wstring imagePath;
 	std::wstring itemName;
 	EItemType itemType;
+	std::wstring typeText;
+	std::wstring effectText;
 	// 레벨제한
 	int wearableLevel;
 	int atk;

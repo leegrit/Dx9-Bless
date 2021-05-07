@@ -4,15 +4,25 @@
 #include "ProgressBar.h"
 #include "PathManager.h"
 #include "ItemInfoUI.h"
+#include "InventoryData.h"
+#include "Client_Events.h"
+#include "PlayerMoneyData.h"
+#include "GameScene.h"
+#include "PlayerEquipData.h"
 
 InventoryUI::InventoryUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
 {
-
+	EventDispatcher::AddEventListener(GameEvent::AddItemToInventory, std::to_string(GetInstanceID()).c_str(),
+		std::bind(&InventoryUI::OnAddItemToInventory, this, placeholders::_1));
+	EventDispatcher::AddEventListener(GameEvent::RemoveItemToInventory, std::to_string(GetInstanceID()).c_str(),
+		std::bind(&InventoryUI::OnRemoveItemToInventory, this, placeholders::_1));
 }
 
 InventoryUI::~InventoryUI()
 {
+	EventDispatcher::RemoveEventListener(GameEvent::AddItemToInventory, std::to_string(GetInstanceID()).c_str());
+	EventDispatcher::RemoveEventListener(GameEvent::RemoveItemToInventory, std::to_string(GetInstanceID()).c_str());
 }
 
 void InventoryUI::Initialize()
@@ -23,6 +33,8 @@ void InventoryUI::Initialize()
 		D3DXVECTOR3(0, 0, 0),
 		D3DXVECTOR3(460, 494, 1),
 		L"Inventory_Background");
+	m_pBackground->SetRenderQueue(3500);
+
 
 	m_itemSlots.reserve(m_maxSlotCount);
 	int slotIndex = 0;
@@ -37,23 +49,240 @@ void InventoryUI::Initialize()
 				D3DXVECTOR3(0, 0, 0),
 				D3DXVECTOR3(50, 50, 1)
 			);
+
+
+			auto itemIcon = UIPanel::Create(GetScene(),
+				L"",
+				D3DXVECTOR3(9 + i * m_slotOffset, 99 - j * m_slotOffset, 0),
+				D3DXVECTOR3(0, 0, 0),
+				D3DXVECTOR3(50, 50, 1),
+				L"Item_Icon");
+			itemIcon->SetRenderQueue(3300);
+			itemIcon->SetActive(false);
+
+			m_itemIcons.push_back(itemIcon);
+
+
 			itemSlot->SetButtonEvent(EButtonEvent::ButtonCollisionStay, [=]() 
 			{
 				// 마우스 얹었을 때 이벤트
+				if (slotIndex >= m_pInventoryData->GetCount())
+					return;
+
 				m_pItemSelectPanel->SetActive(true);
-				m_pItemInfoUI->Show(itemSlot->m_pTransform->m_position.operator D3DXVECTOR3());
+				m_pItemInfoUI->Show(itemSlot->m_pTransform->m_position.operator D3DXVECTOR3(), m_pInventoryData->GetItem(slotIndex));
 
 				m_pItemSelectPanel->m_pTransform->SetPosition(itemSlot->m_pTransform->m_position);
 			});
 			itemSlot->SetButtonEvent(EButtonEvent::ButtonCollisionExit, [=]() 
 			{
 				// 마우스가 해당 슬롯 밖으로 벗어났을 때
+				if (slotIndex >= m_pInventoryData->GetCount())
+					return;
+
 				m_pItemSelectPanel->SetActive(false);
 				m_pItemInfoUI->Hide();
 			});
-			itemSlot->SetButtonEvent(EButtonEvent::ButtonUp, [=]() 
+			itemSlot->SetButtonEvent(EButtonEvent::RightButtonUp, [=]() 
 			{
 				// 마우스 클릭할 때 이벤트
+
+				if (slotIndex >= m_pInventoryData->GetCount())
+					return;
+
+				ItemInfo itemInfo;
+				bool isSucceeded = m_pInventoryData->TryGetItem(slotIndex, &itemInfo);
+				assert(isSucceeded);
+
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				switch (itemInfo.itemType)
+				{
+				case EItemType::CollectItem :
+					break;
+				case EItemType::QuestItem : 
+					break; 
+				case EItemType::Item : 
+					break;
+				case EItemType::Belt : 
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Belt))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Belt, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Belt, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Belt, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Boots :
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Boots))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Boots, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Boots, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Boots, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Glove :
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Glove))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Glove, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Glove, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Glove, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Helmet :
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Helmet))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Helmet, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Helmet, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Helmet, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Lower :
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Lower))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Lower, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Lower, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Lower, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Shoulder :
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Shoulder))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Shoulder, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Shoulder, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Shoulder, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Upper:
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Upper))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Upper, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Upper, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Upper, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				case EItemType::Weapon:
+					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
+					if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Weapon))
+					{
+						if (pScene->GetPlayerEquipData()->CompareEquipment(EEquipSlot::Weapon, itemInfo))
+						{
+							break;
+						}
+						else
+						{
+							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Weapon, itemInfo);
+							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							m_pInventoryData->RemoveItem(itemInfo);
+						}
+					}
+					else
+					{
+						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Weapon, itemInfo);
+						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						m_pInventoryData->RemoveItem(itemInfo);
+					}
+					break;
+				default: 
+					break;
+
+				}
 
 			});
 			m_itemSlots.push_back(itemSlot);
@@ -104,16 +333,68 @@ void InventoryUI::Initialize()
 
 	m_pItemInfoUI = ItemInfoUI::Create(GetScene(), L"ItemInfoUI");
 	m_pItemInfoUI->Hide();
+
+
+	m_pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
 }
 
 void InventoryUI::Update()
 {
+	if (m_bShow)
+	{
+		PlayerMoneyData* pData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
 
+
+		ENGINE->DrawText(L"소지품", D3DXVECTOR3(556, 140, 0), D3DXVECTOR3(1.3, 1.3, 1.3), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(std::to_wstring(pData->money).c_str(), D3DXVECTOR3(812, 509, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(L"잡동사니 모두 팔기", D3DXVECTOR3(643, 597, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+
+	}
 }
 
 void InventoryUI::Render()
 {
 	assert(false);
+}
+
+void InventoryUI::OnAddItemToInventory(void* arg)
+{
+	if (m_bShow == true)
+	{
+		for (int i = 0; i < m_pInventoryData->GetCount(); i++)
+		{
+			ItemInfo itemInfo;
+			bool bOk = m_pInventoryData->TryGetItem(i, &itemInfo);
+			assert(bOk);
+
+			m_itemIcons[i]->SetTexture(itemInfo.imagePath);
+			m_itemIcons[i]->SetActive(true);
+		}
+		for (int j = m_pInventoryData->GetCount(); j < m_itemIcons.size(); j++)
+		{
+			m_itemIcons[j]->SetActive(false);
+		}
+	}
+}
+
+void InventoryUI::OnRemoveItemToInventory(void* arg)
+{
+	if (m_bShow == true)
+	{
+		for (int i = 0; i < m_pInventoryData->GetCount(); i++)
+		{
+			ItemInfo itemInfo;
+			bool bOk = m_pInventoryData->TryGetItem(i, &itemInfo);
+			assert(bOk);
+
+			m_itemIcons[i]->SetTexture(itemInfo.imagePath);
+			m_itemIcons[i]->SetActive(true);
+		}
+		for (int j = m_pInventoryData->GetCount(); j < m_itemIcons.size(); j++)
+		{
+			m_itemIcons[j]->SetActive(false);
+		}
+	}
 }
 
 void InventoryUI::Show()
@@ -123,6 +404,16 @@ void InventoryUI::Show()
 	{
 		itemSlot->SetActive(true);
 	}
+	for (int i = 0; i < m_pInventoryData->GetCount(); i++)
+	{
+		ItemInfo itemInfo;
+		bool bOk = m_pInventoryData->TryGetItem(i, &itemInfo);
+		assert(bOk);
+
+		m_itemIcons[i]->SetTexture(itemInfo.imagePath);
+		m_itemIcons[i]->SetActive(true);
+	}
+
 	// 이건 기본적으로 false
 	// 슬롯에 마우스를 올리면 활성화된다
 	m_pItemSelectPanel->SetActive(false);
@@ -132,6 +423,7 @@ void InventoryUI::Show()
 	m_pCoin->SetActive(true);
 
 	m_bShow = true;
+	EventDispatcher::TriggerEvent(UIEvent::InventoryUIOpen);
 }
 
 void InventoryUI::Hide()
@@ -141,13 +433,20 @@ void InventoryUI::Hide()
 	{
 		itemSlot->SetActive(false);
 	}
+	// Show할 땐 현재 존재하는 아이템만 출력하고
+	// hide할 때 모두 hid
+	for (int i = 0; i < m_itemIcons.size(); i++)
+	{
+		m_itemIcons[i]->SetActive(false);
+	}
 	m_pItemSelectPanel->SetActive(false);
 	m_pUpLine->SetActive(false);
 	m_pUnderLine->SetActive(false);
 	m_pTokenExchangeButton->SetActive(false);
 	m_pCoin->SetActive(false);
-
+	m_pItemInfoUI->Hide();
 	m_bShow = false;
+	EventDispatcher::TriggerEvent(UIEvent::InventoryUIClose);
 }
 
 bool InventoryUI::IsShow()

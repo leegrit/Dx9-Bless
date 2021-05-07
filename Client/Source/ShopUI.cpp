@@ -4,6 +4,10 @@
 #include "PathManager.h"
 #include "ItemInfoUI.h"
 #include "Client_Events.h"
+#include "PlayerMoneyData.h"
+#include "InventoryData.h"
+
+
 
 ShopUI::ShopUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
@@ -84,7 +88,7 @@ void ShopUI::Initialize()
 				return;
 			m_pItemSelectPanel->SetActive(true);
 			m_pItemSelectPanel->m_pTransform->SetPosition(m_itemSlots[i]->m_pTransform->m_position);
-			m_pItemInfoUI->Show(m_itemSlots[i]->m_pTransform->m_position.operator D3DXVECTOR3(), false);
+			m_pItemInfoUI->ShowForShop(D3DXVECTOR3(281, 39, 0), m_items[i]); //m_itemSlots[i]->m_pTransform->m_position.operator D3DXVECTOR3(), false);
 		});
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionExit, [=]() 
 		{
@@ -92,6 +96,34 @@ void ShopUI::Initialize()
 				return;
 			m_pItemSelectPanel->SetActive(false);
 			m_pItemInfoUI->Hide();
+		});
+		m_itemSlots[i]->SetButtonEvent(EButtonEvent::RightButtonUp, [=]() 
+		{
+			// 아이템 구매
+
+			if (i >= m_items.size()) return;
+			
+			PlayerMoneyData* pData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
+			
+			if (m_items[i].salePrice > pData->money)
+			{
+				EventDispatcher::TriggerEvent(GameEvent::NotEnoughMoney);
+				return;
+			}
+
+			InventoryData* pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+			if (pInventoryData->IsFull())
+			{
+				EventDispatcher::TriggerEvent(GameEvent::InventoryFull);
+				return;
+			}
+
+			//구매 성공
+			pData->money -= m_items[i].salePrice;
+			pInventoryData->PushItem(m_items[i]);
+			EventDispatcher::TriggerEvent(GameEvent::BuyItem, (void*)&m_items[i]);
+			EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&m_items[i]);
+
 		});
 
 		m_itemSlotBacks[i] = UIPanel::Create(GetScene(),
@@ -130,7 +162,7 @@ void ShopUI::Initialize()
 				return;
 			m_pItemSelectPanel->SetActive(true);
 			m_pItemSelectPanel->m_pTransform->SetPosition(m_itemSlots[i]->m_pTransform->m_position);
-			m_pItemInfoUI->Show(m_itemSlots[i]->m_pTransform->m_position.operator D3DXVECTOR3(), false);
+			m_pItemInfoUI->ShowForShop(D3DXVECTOR3(281, 39, 0), m_items[i]);
 		});
 		m_itemSlots[i]->SetButtonEvent(EButtonEvent::ButtonCollisionExit, [=]()
 		{
@@ -138,6 +170,34 @@ void ShopUI::Initialize()
 				return;
 			m_pItemSelectPanel->SetActive(false);
 			m_pItemInfoUI->Hide();
+		});
+		m_itemSlots[i]->SetButtonEvent(EButtonEvent::RightButtonUp, [=]()
+		{
+			// 아이템 구매
+
+			if (i >= m_items.size()) return;
+
+			PlayerMoneyData* pData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
+
+			if (m_items[i].salePrice > pData->money)
+			{
+				EventDispatcher::TriggerEvent(GameEvent::NotEnoughMoney);
+				return;
+			}
+
+			InventoryData* pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+			if (pInventoryData->IsFull())
+			{
+				EventDispatcher::TriggerEvent(GameEvent::InventoryFull);
+				return;
+			}
+
+			//구매 성공
+			pData->money -= m_items[i].salePrice;
+			pInventoryData->PushItem(m_items[i]);
+			EventDispatcher::TriggerEvent(GameEvent::BuyItem, (void*)&m_items[i]);
+			EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&m_items[i]);
+
 		});
 
 		m_itemSlotBacks[i] = UIPanel::Create(GetScene(),
@@ -194,23 +254,29 @@ void ShopUI::Update()
 		/* Title */
 		ENGINE->DrawText(GetShopTitle().c_str(), D3DXVECTOR3(179, 148, 0), D3DXVECTOR3(1.3, 1.3, 1.3), D3DXCOLOR(1, 1, 1, 1));
 
+		PlayerMoneyData * pData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
+
 		/* 소유한 금액 */
-		ENGINE->DrawText(L"100", D3DXVECTOR3(566, 589, 0), D3DXVECTOR3(1.2, 1.2, 1.2), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(std::to_wstring(pData->money).c_str(), D3DXVECTOR3(566, 589, 0), D3DXVECTOR3(1.2, 1.2, 1.2), D3DXCOLOR(1, 1, 1, 1));
 
 		/* Slot Left */
 		for (int i = 0; i < 4; i++)
 		{
-			ENGINE->DrawText(L"이름", D3DXVECTOR3(160, 228 + i * m_slotOffset, 0), D3DXVECTOR3(1,1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(L"타입", D3DXVECTOR3(160, 252 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(L"200", D3DXVECTOR3(307, 250 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			if (m_items.size() <= i)
+				break;
+			ENGINE->DrawText(m_items[i].itemName.c_str(), D3DXVECTOR3(160, 228 + i * m_slotOffset, 0), D3DXVECTOR3(1,1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(m_items[i].typeText.c_str() , D3DXVECTOR3(160, 252 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(std::to_wstring( m_items[i].salePrice).c_str(), D3DXVECTOR3(307, 250 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		}
 
 		/* Slot Right */
 		for (int i = 4; i < 8; i++)
 		{
-			ENGINE->DrawText(L"이름", D3DXVECTOR3(452, 228 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(L"타입", D3DXVECTOR3(452, 252 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(L"200", D3DXVECTOR3(607, 250 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			if (m_items.size() <= i)
+				break;
+			ENGINE->DrawText(m_items[i].itemName.c_str(), D3DXVECTOR3(452, 228 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(m_items[i].typeText.c_str(), D3DXVECTOR3(452, 252 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(std::to_wstring(m_items[i].salePrice).c_str(), D3DXVECTOR3(607, 250 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		}
 
 	}
@@ -263,7 +329,7 @@ void ShopUI::Hide()
 	m_pUnderPanel->SetActive(false);
 	m_pCoinIcon->SetActive(false);
 	m_pItemSelectPanel->SetActive(false);
-
+	m_pItemInfoUI->Hide();
 	m_bShow = false;
 	EventDispatcher::TriggerEvent(UIEvent::ShopUIClose);
 }

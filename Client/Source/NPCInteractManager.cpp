@@ -16,12 +16,21 @@ NPCInteractManager::NPCInteractManager(Scene * pScene)
 	EventDispatcher::AddEventListener(QuestEvent::QuestDialogEnd, "NPCInteractManager",
 		std::bind(&NPCInteractManager::OnQuestDialogEnd, this, placeholders::_1));
 
+	EventDispatcher::AddEventListener(UIEvent::ShopUIOpen, "NPCInteractManager",
+		std::bind(&NPCInteractManager::OnShopUIOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::ShopUIClose, "NPCInteractManager",
+		std::bind(&NPCInteractManager::OnShopUIClose, this, placeholders::_1));
+
+
 }
 
 NPCInteractManager::~NPCInteractManager()
 {
 	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogOpen, "NPCInteractManager");
 	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogEnd, "NPCInteractManager");
+
+	EventDispatcher::RemoveEventListener(UIEvent::ShopUIOpen, "NPCInteractManager");
+	EventDispatcher::RemoveEventListener(UIEvent::ShopUIClose, "NPCInteractManager");
 }
 
 void NPCInteractManager::OnQuestDialogOpen(void *)
@@ -33,6 +42,18 @@ void NPCInteractManager::OnQuestDialogOpen(void *)
 }
 
 void NPCInteractManager::OnQuestDialogEnd(void *)
+{
+	m_bInteractable = true;
+}
+
+void NPCInteractManager::OnShopUIOpen(void *)
+{
+	m_bInteractable = false;
+	GameScene* gameScene = static_cast<GameScene*>(m_pScene);
+	gameScene->GetUIManager()->HideTalkInteractPanel();
+}
+
+void NPCInteractManager::OnShopUIClose(void *)
 {
 	m_bInteractable = true;
 }

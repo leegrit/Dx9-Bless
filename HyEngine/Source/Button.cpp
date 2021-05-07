@@ -101,16 +101,33 @@ void HyEngine::Button::Update()
 			m_buttonEvents[(int)EButtonEvent::ButtonDown]();
 		OnButtonDown();
 	}
+	if (MOUSE->Down(1))
+	{
+		if (m_buttonEvents[(int)EButtonEvent::RightButtonDown])
+			m_buttonEvents[(int)EButtonEvent::RightButtonDown]();
+		OnButtonDown();
+	}
 	if (MOUSE->Up(0))
 	{
 		if (m_buttonEvents[(int)EButtonEvent::ButtonUp])
 			m_buttonEvents[(int)EButtonEvent::ButtonUp]();
 		OnButtonUp();
 	}
+	if (MOUSE->Up(1))
+	{
+		if (m_buttonEvents[(int)EButtonEvent::RightButtonUp])
+			m_buttonEvents[(int)EButtonEvent::RightButtonUp]();
+		OnButtonUp();
+	}
 	if (MOUSE->Press(0))
 	{
 		if (m_buttonEvents[(int)EButtonEvent::ButtonPress])
 			m_buttonEvents[(int)EButtonEvent::ButtonPress]();
+	}
+	if (MOUSE->Press(1))
+	{
+		if (m_buttonEvents[(int)EButtonEvent::RightButtonPress])
+			m_buttonEvents[(int)EButtonEvent::RightButtonPress]();
 	}
 
 
