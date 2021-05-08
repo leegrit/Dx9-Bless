@@ -1,0 +1,16 @@
+#pragma once
+#include "Component.h"
+
+namespace HyEngine
+{
+	class Animator abstract
+	{
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTOR & DESTRUCTOR
+		//////////////////////////////////////////////////////////////////////////
+	protected :
+		explicit Animator() {};
+		virtual ~Animator() {};
+	};
+
+}

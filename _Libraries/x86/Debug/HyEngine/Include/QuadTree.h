@@ -1,0 +1,50 @@
+#pragma once
+
+namespace HyEngine
+{
+	class QuadTree
+	{
+		/* Forward Left, Forward Right, Back Left, Back Right */
+		enum class ECornerType {CORNER_FL, CORNER_FR, CORNER_BL, CORNER_BR};
+
+		//////////////////////////////////////////////////////////////////////////
+		// CONSTRUCTOR & DESTRUCTOR
+		//////////////////////////////////////////////////////////////////////////
+	public:
+		QuadTree();
+		~QuadTree() = default;
+
+		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHOD
+		//////////////////////////////////////////////////////////////////////////
+	public:
+
+		void Build(std::vector<GameObject*> objs);
+
+		void QuadTreeCull(Camera* cam);
+
+		//////////////////////////////////////////////////////////////////////////
+		// PRIVATE METHOD
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		bool SubDivide();
+		void BuildRecursively(std::vector<GameObject*> objs);
+		QuadTree* AddChild(D3DXVECTOR3 cornerFL, D3DXVECTOR3 cornerFR, D3DXVECTOR3 cornerBL, D3DXVECTOR3 cornerBR);
+		void QuadTreeCullRecursively(Camera * cam);
+
+
+		//////////////////////////////////////////////////////////////////////////
+		// VARIABLES
+		//////////////////////////////////////////////////////////////////////////
+	private :
+		QuadTree* m_pChild[4];
+		D3DXVECTOR3 m_center;
+		D3DXVECTOR3 m_corner[4];
+		float m_radius;
+		static const float MinimumRadius; 
+
+		std::vector<GameObject*> m_objects;
+
+	};
+}
+
