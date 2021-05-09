@@ -56,7 +56,7 @@ void HyEngine::DynamicMesh::Update()
 	GameObject::Update();
 	if (m_pAniCtrl == nullptr)
 		return;
-	if (IS_EDITOR)
+	/*if (IS_EDITOR)
 	{
 		PlayAnimationSet(EDIT_TIMER->getDeltaTime());
 	}
@@ -64,7 +64,7 @@ void HyEngine::DynamicMesh::Update()
 	{
 		PlayAnimationSet(TIMER->getDeltaTime());
 
-	}
+	}*/
 }
 
 void HyEngine::DynamicMesh::Render()

@@ -22,7 +22,7 @@ void DamageFontScatter::Update()
 	for (int i = 0; i < m_damageFonts.size(); i++)
 	{
 
-		m_damageFonts[i].m_elapsed += TIMER->getDeltaTime();
+		m_damageFonts[i].m_elapsed += TIMER->getDeltaTime() * m_speed;
 		if (m_damageFonts[i].m_elapsed >= m_delay)
 		{
 			m_damageFonts.erase(m_damageFonts.begin() + i);

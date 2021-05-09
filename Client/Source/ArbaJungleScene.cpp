@@ -54,9 +54,9 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// PLAYER
 	//////////////////////////////////////////////////////////////////////////
-	auto player = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Lups.json");
+	auto player = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Player.json");
 	SetPlayer(player);
-	player->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
+	//player->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// CAMERA
@@ -92,8 +92,12 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
 	//////////////////////////////////////////////////////////////////////////
-	auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
+	/*auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
+	equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);*/
+	auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger21", L"Sword");
 	equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
+
+	auto equip2 = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
 
 
 	//////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "PlayerNormalAttack.h"
 #include "Character.h"
+#include "GameScene.h"
+#include "BattleManager.h"
 
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update , pPlayer, pPlayerController, L"PlayerNormalAttack")
@@ -71,8 +73,17 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		{
 			for (auto& obj : m_hitEnemies)
 			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
 				Character* enemy = dynamic_cast<Character*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
+
 			}
 			m_bSendDamage = true;
 		}
@@ -82,6 +93,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		{
 			for (auto& obj : m_hitEnemies)
 			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
 				Character* enemy = dynamic_cast<Character*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 			}
@@ -93,6 +112,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		{
 			for (auto& obj : m_hitEnemies)
 			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
 				Character* enemy = dynamic_cast<Character*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 			}
@@ -116,7 +143,7 @@ UINT PlayerNormalAttack::GetTargetLayer() const
 
 int PlayerNormalAttack::GetIdleAnimIndex() const
 {
-	return 113;
+	return 89;
 }
 
 void PlayerNormalAttack::UpdateAction()

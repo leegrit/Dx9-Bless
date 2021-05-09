@@ -24,6 +24,8 @@ public :
 	virtual Collider * GetAttackCollider(int attackIndex) override;
 	virtual float GetFocusColliderSize() override;
 	virtual D3DXVECTOR3 GetFocusUIOffset() override;
+	virtual std::wstring GetCharacterName() override;
+	virtual int GetLevel() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK

@@ -114,14 +114,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Belt, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Belt, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -136,14 +136,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Boots, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Boots, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -158,14 +158,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Glove, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Glove, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -180,14 +180,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Helmet, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Helmet, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -202,14 +202,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Lower, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Lower, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -224,14 +224,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Shoulder, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Shoulder, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -246,14 +246,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Upper, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Upper, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;
@@ -268,14 +268,14 @@ void InventoryUI::Initialize()
 						else
 						{
 							pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Weapon, itemInfo);
-							EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+							//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 							m_pInventoryData->RemoveItem(itemInfo);
 						}
 					}
 					else
 					{
 						pScene->GetPlayerEquipData()->ChangeEquipment(EEquipSlot::Weapon, itemInfo);
-						EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
+						//EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&itemInfo);
 						m_pInventoryData->RemoveItem(itemInfo);
 					}
 					break;

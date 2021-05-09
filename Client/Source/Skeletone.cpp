@@ -107,6 +107,16 @@ D3DXVECTOR3 Skeletone::GetFocusUIOffset()
 	return D3DXVECTOR3(0, 10, 0);
 }
 
+std::wstring Skeletone::GetCharacterName()
+{
+	return L"스켈레톤";
+}
+
+int Skeletone::GetLevel()
+{
+	return 10;
+}
+
 int Skeletone::GetAttackCount()
 {
 	/* Skeletone은 공격 종류가 1종류 */

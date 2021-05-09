@@ -7,6 +7,11 @@ public :
 	Q_BreadShuttle();
 	virtual ~Q_BreadShuttle();
 
+	//////////////////////////////////////////////////////////////////////////
+	// CALLBACK
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void OnBuyItem(void* item);
 
 	//////////////////////////////////////////////////////////////////////////
 	// INHERITED
@@ -16,8 +21,10 @@ public:
 	virtual bool IsFinish() override;
 	virtual std::vector<GameObject*> GetTargets() override;
 
-
 public:
 	void Initialize();
+
+private :
+	bool m_isBuy = false;
 };
 

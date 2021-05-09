@@ -8,6 +8,7 @@
 #include "GoblinHit.h"
 #include "GoblinIdle.h"
 #include "GoblinMove.h"
+#include "GameScene.h"
 
 
 Goblin::Goblin(Scene * pScene, NavMesh * pNavMesh)
@@ -52,7 +53,9 @@ void Goblin::Initialize(std::wstring dataPath)
 void Goblin::Update()
 {
 	Enemy::Update();
-
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
+	m_pNameFont->SetCenterOffset(-20);
 	m_state.Update();
 }
 

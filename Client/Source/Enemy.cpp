@@ -4,6 +4,7 @@
 #include "PathManager.h"
 #include "GameScene.h"
 #include "UIManager.h"
+#include "Billboard.h"
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
 	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
 {
@@ -35,6 +36,10 @@ void Enemy::Initialize(std::wstring dataPath)
 	m_pHpBarBillboard->SetAmount(1);
 	m_pHpBarBillboard->m_pTransform->m_scale = D3DXVECTOR3(10, 0.5f, 1);
 	m_pHpBarBillboard->SetActive(false);
+	//m_pHPHitBar = HyEngine::Billboard::Create(GetScene(), this, L"EnemyHPHit", EBillboardType::Y);
+	//m_pHPHitBar->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/BLUINameTag_I1_56.png");
+	//m_pHPHitBar->m_pTransform->SetScale(11, 2, 1);
+	//m_pHPHitBar->SetActive(true);
 
 }
 
@@ -45,6 +50,9 @@ void Enemy::Update()
 	{
 		GameScene* pScene = static_cast<GameScene*>(SCENE);
 		m_pHpBarBillboard->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 15, 0));
+		//m_pHPHitBar->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 15, 0));
+		
+		
 	}
 	
 }
@@ -67,6 +75,8 @@ void Enemy::OnDied()
 {
 	m_pHpBarBillboard->SetAmount(0);
 }
+
+
 
 void Enemy::AddHitOthers(GameObject * other)
 {

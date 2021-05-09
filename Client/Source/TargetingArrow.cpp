@@ -20,7 +20,7 @@ void TargetingArrow::Initialize()
 	ENGINE->TryGetShader(L"TargetingUI", &m_pEffect);
 	assert(m_pEffect);
 
-	SetDiffuseTexture(PATH->AssetsPathW() + L"UI/TargetUI/FX_Target_001_TEX_KKJ33.png");
+	SetDiffuseTexture(PATH->AssetsPathW() + L"UI/TargetUI/Targeting01.png");
 
 }
 
@@ -61,7 +61,7 @@ void TargetingArrow::Update()
 
 	if (m_bFocused == true)
 	{
-		m_elapsed += TIMER->getDeltaTime();
+		m_elapsed += TIMER->getDeltaTime() * m_changeEventSpeed;
 		float lerpFactor = std::min(m_elapsed, 1.0f);
 
 		//float xSize = m_pTransform->m_scale.x();

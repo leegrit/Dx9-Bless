@@ -24,6 +24,7 @@
 #include "GeneralStoreUI.h"
 #include "EquipShopUI.h"
 #include "NotifyUI.h"
+#include "SummonProgressBar.h"
 
 
 
@@ -127,6 +128,9 @@ void UIManager::Initialize()
 
 	m_pCollectProgressBar = CollectProgressBar::Create(m_pScene, L"CollectProgressBar");
 	m_pCollectProgressBar->Hide();
+
+	m_pSummonProgressBar = SummonProgressBar::Create(m_pScene, L"SummonProgressBar");
+	m_pSummonProgressBar->Hide();
 
 	m_pFadeInOut = FadeInOut::Create(m_pScene);
 	m_pFadeInOut->SetActive(false);
@@ -246,7 +250,7 @@ void UIManager::Update()
 	}
 	for (int i = 0; i < m_acceptedSubQuests.size() && i < m_guideMax; i++)
 	{
-		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset, m_pAcceptedMainQuest->GetCurProgress());
+		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset, m_acceptedSubQuests[i]->GetCurProgress());
 	}
 
 }
@@ -299,6 +303,16 @@ void UIManager::ShowCollectProgressBar(float amount)
 void UIManager::HideCollectProgressBar()
 {
 	m_pCollectProgressBar->Hide();
+}
+
+void UIManager::ShowSummonProgressBar(float amount)
+{
+	m_pSummonProgressBar->Show(amount);
+}
+
+void UIManager::HideSummonProgressBar()
+{
+	m_pSummonProgressBar->Hide();
 }
 
 void UIManager::ToggleInventoryUI()

@@ -498,11 +498,11 @@ void EquipmentUI::Update()
 
 
 		/* Áö´É */
-		ENGINE->DrawText(L"Áö´É", D3DXVECTOR3(304, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(L"¹°¸®¹æ¾î", D3DXVECTOR3(304, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->intel).c_str(), D3DXVECTOR3(435, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		
 		/* ¹ÎÃ¸ */
-		ENGINE->DrawText(L"¹ÎÃ¸", D3DXVECTOR3(304, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(L"¸¶¹ý¹æ¾î", D3DXVECTOR3(304, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->dex).c_str(), D3DXVECTOR3(435, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 

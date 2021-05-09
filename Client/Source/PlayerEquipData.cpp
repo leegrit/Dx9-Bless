@@ -54,7 +54,7 @@ void PlayerEquipData::ChangeEquipment(EEquipSlot slot, ItemInfo item)
 {
 	equipmentInfos[(int)slot] = item;
 
-	EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, nullptr);
+	EventDispatcher::TriggerEvent(GameEvent::EquipmentChange, (void*)&item);
 }
 
 void PlayerEquipData::RemoveEquipment(EEquipSlot slot)

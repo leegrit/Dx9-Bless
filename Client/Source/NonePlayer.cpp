@@ -60,6 +60,8 @@ void NonePlayer::OnCollision(Collider * other)
 	
 }
 
+
+
 void NonePlayer::OnDialogOpen(void * questIndex)
 {
 	int index = *static_cast<int*>(questIndex);

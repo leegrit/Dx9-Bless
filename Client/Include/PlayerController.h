@@ -3,6 +3,11 @@
 #include "Client_Enumerators.h"
 
 
+namespace HyEngine
+{
+	class DynamicMesh;
+}
+
 using namespace HyEngine;
 
 
@@ -35,7 +40,8 @@ public :
 	EPlayerState GetState() const;
 	void SetState(EPlayerState playerState);
 
-
+	void SetHorse(DynamicMesh* pDynamicMesh);
+	void SetUnWeaponMesh(DynamicMesh* pDynamicMesh);
 
 	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHOD
@@ -62,6 +68,19 @@ private :
 	/* For Movement */
 	float m_speed;
 	D3DXVECTOR3 m_mouseCenter;
+	float m_horseSpeed;
+
+	/* For Horse Ride */
+private :
+	DynamicMesh* m_pPegasus = nullptr;
+	bool m_bSummonPegasus = false;
+	bool m_bCanclePegasus = false;
+	float m_delay = 1.0f;
+	float m_summonElapsed = 0;
+
+	/* For More Animation */
+private :
+	DynamicMesh* m_pPlayerUW = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

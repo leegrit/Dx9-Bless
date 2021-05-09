@@ -4,7 +4,7 @@
 #include "RaycastHit.h"
 #include "GameScene.h"
 #include "UIManager.h"
-
+#include "Character.h"
 BattleManager::BattleManager(Scene * pScene)
 {
 	m_pScene = dynamic_cast<GameScene*>(pScene);
@@ -39,8 +39,14 @@ void BattleManager::Update()
 	GameObject* pFocused = nullptr;
 	for (auto& raycastHit : raycastHits)
 	{
-		float dist = D3DXVec3Length(&(PLAYER->m_pTransform->m_position, raycastHit->m_pTransform->m_position).operator D3DXVECTOR3());
-
+		Character* pCharacter = dynamic_cast<Character*>(raycastHit->m_pTransform->GetGameObject());
+		if (pCharacter == nullptr)
+			continue;
+		if (pCharacter->IsDied())
+			continue;
+		float dist = D3DXVec3Length(&(PLAYER->m_pTransform->m_position - raycastHit->m_pTransform->m_position).operator D3DXVECTOR3());
+		if (dist >= m_maxRadius)
+			continue;
 		if (dist < min)
 		{
 			min = dist;
@@ -87,4 +93,9 @@ void BattleManager::Update()
 	//}
 
 
+}
+
+GameObject * BattleManager::GetFocusedObject() const
+{
+	return m_pFocusedObj;
 }

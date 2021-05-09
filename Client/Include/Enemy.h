@@ -21,6 +21,7 @@ public :
 	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical) override;
 	virtual void OnDied() override;
 
+
 	//////////////////////////////////////////////////////////////////////////
 	// PURE
 	//////////////////////////////////////////////////////////////////////////
@@ -58,7 +59,7 @@ private :
 	/* For HP */
 	bool m_bShowHP = false;
 	class EnemyHPBar * m_pHpBarBillboard = nullptr;
-
+	class Billboard * m_pHPHitBar = nullptr;
 
 	/* For Focus */
 	Collider * m_pFocusCollider;

@@ -157,6 +157,7 @@
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
     <ClCompile Include="..\Source\PlayerEquipData.cpp" />
+    <ClCompile Include="..\Source\PlayerManager.cpp" />
     <ClCompile Include="..\Source\PlayerMoneyData.cpp" />
     <ClCompile Include="..\Source\PlayerStatusData.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
@@ -243,6 +244,8 @@
     <ClCompile Include="..\Source\SkeletoneHit.cpp" />
     <ClCompile Include="..\Source\SkeletoneIdle.cpp" />
     <ClCompile Include="..\Source\SkeletoneMove.cpp" />
+    <ClCompile Include="..\Source\SkillIconUI.cpp" />
+    <ClCompile Include="..\Source\SummonProgressBar.cpp" />
     <ClCompile Include="..\Source\TalkableGoblin.cpp" />
     <ClCompile Include="..\Source\TargetingArrow.cpp" />
     <ClCompile Include="..\Source\TargetingCircle.cpp" />
@@ -271,6 +274,7 @@
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />
     <ClInclude Include="..\Include\PlayerEquipData.h" />
+    <ClInclude Include="..\Include\PlayerManager.h" />
     <ClInclude Include="..\Include\PlayerMoneyData.h" />
     <ClInclude Include="..\Include\PlayerStatusData.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />
@@ -359,7 +363,9 @@
     <ClInclude Include="..\Include\SkeletoneHit.h" />
     <ClInclude Include="..\Include\SkeletoneIdle.h" />
     <ClInclude Include="..\Include\SkeletoneMove.h" />
+    <ClInclude Include="..\Include\SkillIconUI.h" />
     <ClInclude Include="..\Include\stdafx.h" />
+    <ClInclude Include="..\Include\SummonProgressBar.h" />
     <ClInclude Include="..\Include\TalkableGoblin.h" />
     <ClInclude Include="..\Include\TargetingArrow.h" />
     <ClInclude Include="..\Include\TargetingCircle.h" />

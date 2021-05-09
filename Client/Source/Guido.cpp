@@ -15,7 +15,7 @@ void Guido::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(0);
+	SetAnimationSet(3);
 }
 
 void Guido::Update()
@@ -45,4 +45,9 @@ std::wstring Guido::GetSubTitle()
 std::wstring Guido::GetOnlyCharacterName()
 {
 	return L"°í¾Æ¸£";
+}
+
+D3DXVECTOR3 Guido::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 5, 10);
 }

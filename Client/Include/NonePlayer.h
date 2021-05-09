@@ -33,6 +33,7 @@ public :
 	virtual std::wstring GetOnlyCharacterName()PURE;
 	virtual std::wstring GetCharacterName()PURE;
 	virtual std::wstring GetSubTitle() PURE;
+	virtual D3DXVECTOR3 GetZoomInOffset() PURE;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK

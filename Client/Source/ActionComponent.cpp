@@ -98,7 +98,9 @@ void ActionComponent::OnDisable()
 
 float ActionComponent::GetAttackDamage() const
 {
-	return m_damage;
+	float minDmg = m_damage * 0.8f;
+	float maxDmg = m_damage * 1.2f;
+	return DxHelper::GetRandomFloat(minDmg, maxDmg);
 }
 
 void ActionComponent::SetParams(float atkDelay, int seqCount,  float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset)

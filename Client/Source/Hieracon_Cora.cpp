@@ -36,3 +36,8 @@ std::wstring Hieracon_Cora::GetOnlyCharacterName()
 {
 	return L"·¹¿À´Ï";
 }
+
+D3DXVECTOR3 Hieracon_Cora::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 7, 10);
+}

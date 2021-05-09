@@ -34,6 +34,11 @@ void ZoomInCamera::Update()
 	SetViewMatrix(m_at);
 }
 
+void ZoomInCamera::SetOffset(D3DXVECTOR3 offset)
+{
+	m_offset = offset;
+}
+
 ZoomInCamera * ZoomInCamera::Create(Scene * pScene, GameObject * pTarget, std::wstring name)
 {
 	ZoomInCamera *obj = new ZoomInCamera(pScene, pTarget, name);

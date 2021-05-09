@@ -39,3 +39,8 @@ std::wstring Elroy::GetOnlyCharacterName()
 {
 	return L"티티아나";
 }
+
+D3DXVECTOR3 Elroy::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 6, 10);
+}

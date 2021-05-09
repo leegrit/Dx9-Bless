@@ -45,3 +45,8 @@ std::wstring Elaine::GetOnlyCharacterName()
 {
 	return L"∞°∞°≈‰";
 }
+
+D3DXVECTOR3 Elaine::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 6, 10);
+}

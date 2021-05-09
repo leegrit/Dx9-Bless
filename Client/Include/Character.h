@@ -59,6 +59,14 @@ public :
 	//////////////////////////////////////////////////////////////////////////
 public :
 	virtual void OnCollision(Collider* other) PURE;
+	virtual std::wstring GetCharacterName() 
+	{
+		return std::wstring();
+	};
+	virtual int GetLevel() 
+	{
+		return 1;
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK

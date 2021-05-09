@@ -44,3 +44,8 @@ TalkableGoblin * TalkableGoblin::Create(Scene * pScene, std::wstring dataPath)
 	npc->Initialize(dataPath);
 	return npc;
 }
+
+D3DXVECTOR3 TalkableGoblin::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 5, 10);
+}

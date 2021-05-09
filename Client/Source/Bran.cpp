@@ -45,3 +45,8 @@ std::wstring Bran::GetOnlyCharacterName()
 {
 	return L"ºê¶õ";
 }
+
+D3DXVECTOR3 Bran::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 7, 10);
+}

@@ -19,6 +19,7 @@ public :
 	virtual std::wstring GetCharacterName() override;
 	virtual std::wstring GetSubTitle() override;
 	virtual std::wstring GetOnlyCharacterName() override;
+	virtual D3DXVECTOR3 GetZoomInOffset() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

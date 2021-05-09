@@ -335,6 +335,15 @@
     <ClCompile Include="..\Source\NotifyUI.cpp">
       <Filter>Scripts\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\PlayerManager.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SummonProgressBar.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkillIconUI.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -779,6 +788,15 @@
     </ClInclude>
     <ClInclude Include="..\Include\NotifyUI.h">
       <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerManager.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SummonProgressBar.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkillIconUI.h">
+      <Filter>Scripts\UI\Battle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

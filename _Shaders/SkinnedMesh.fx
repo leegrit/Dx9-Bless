@@ -29,9 +29,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 /* Specular */
 // rgb = specularMap
@@ -40,9 +40,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
@@ -56,9 +56,9 @@ texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 
 
@@ -218,9 +218,11 @@ void SkinnedMeshPS(
 	/* Normal */
 	outNormal = float4(normal * 0.5f + 0.5f, 1);
 
+	if (HasNormalMap)
+	{
 		/* BumpMap Sampling */
 		float4 bumpMap = tex2D(NormalSampler, texcoord);
-		
+
 		/* convert -1 ~ 1*/
 		bumpMap = (bumpMap * 2.0f) - 1.0f;
 
@@ -233,8 +235,8 @@ void SkinnedMeshPS(
 		bumpNormal = normalize(bumpNormal);
 
 		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
-	
-	
+
+	}
 }
 
 

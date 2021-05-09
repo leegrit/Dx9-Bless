@@ -44,6 +44,7 @@ private:
 	float m_radius = 5;
 
 private : /* for fade effect  */
+	const float m_speed = 2;
 	const float m_delay = 1;
 	const float m_fadeInTime = 0.2f;
 	const float m_fadeOutTime = 0.2f;

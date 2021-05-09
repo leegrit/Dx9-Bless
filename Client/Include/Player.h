@@ -4,6 +4,8 @@
 namespace HyEngine
 {
 	class ProgressBar;
+	class MeshHierarchy;
+	class AnimationController;
 }
 
 using namespace HyEngine;
@@ -29,6 +31,8 @@ public :
 	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical);
 	virtual void OnHPChanged();
 	virtual void OnMPChanged();
+	virtual void Update() override;
+	virtual void Render() override;
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -37,6 +41,25 @@ public :
 public :
 	void OnExpChanged(void*);
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// VARIABLES
+	//////////////////////////////////////////////////////////////////////////
+private :
+	DynamicMesh* m_pPlayerUW = nullptr;
+	bool m_bPutInWeapon = false;
+	bool m_bPutOutWeapon = false;
+	bool m_isUnWeapon = false;
+
+	DynamicMesh* m_pPegasus = nullptr;
+	bool m_bMount = false;
+
+
+	class PlayerController* m_pPlayerController = nullptr;
+
+	float m_beginElapsed = 0;
+	float m_endElapsed = 0;
+	float m_delay = 0.5f;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

@@ -16,7 +16,7 @@ void Leoni::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(0);
+	SetAnimationSet(3);
 }
 
 void Leoni::Update()
@@ -37,4 +37,9 @@ std::wstring Leoni::GetSubTitle()
 std::wstring Leoni::GetOnlyCharacterName()
 {
 	return L"·¹¿À´Ï";
+}
+
+D3DXVECTOR3 Leoni::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 5, 10);
 }

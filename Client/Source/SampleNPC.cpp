@@ -51,3 +51,8 @@ std::wstring SampleNPC::GetOnlyCharacterName()
 	return L"Sample";
 }
 
+D3DXVECTOR3 SampleNPC::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0,5 , 10);
+}
+

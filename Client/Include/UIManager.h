@@ -53,6 +53,9 @@ public : /* For Interact */
 
 	void ShowCollectProgressBar(float amount);
 	void HideCollectProgressBar();
+
+	void ShowSummonProgressBar(float amount);
+	void HideSummonProgressBar();
 	
 	void ToggleInventoryUI();
 	class InventoryUI* GetInventoryUI() const;
@@ -99,6 +102,8 @@ private : /* Interacive UI */
 	class CollectProgressBar * m_pCollectProgressBar = nullptr;
 
 	class DamageFontScatter * m_pDamageFontScatter = nullptr;
+
+	class SummonProgressBar * m_pSummonProgressBar = nullptr;
 
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;

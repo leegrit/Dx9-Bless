@@ -36,3 +36,8 @@ std::wstring Samson::GetOnlyCharacterName()
 {
 	return L"ġŸŸ";
 }
+
+D3DXVECTOR3 Samson::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 5, 10);
+}

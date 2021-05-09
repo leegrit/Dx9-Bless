@@ -59,15 +59,42 @@ void EnemyScreenHPBar::Update()
 
 	float amount = m_pFocusedEnemy->GetCurHP() / m_pFocusedEnemy->GetMaxHP();
 	m_pFill->SetAmount(amount);
-	/*if (amount == m_lastAmount)
-	{
 
+	ENGINE->DrawTextW(std::to_wstring( m_pFocusedEnemy->GetLevel()).c_str(), D3DXVECTOR3(304.5, 75.5, 0), D3DXVECTOR3(1.2f, 1.2f, 1.2f), D3DXCOLOR(1, 1, 1, 1));
+
+	if (amount == 1)
+	{
+		ENGINE->DrawTextW(m_pFocusedEnemy->GetCharacterName().c_str(), D3DXVECTOR3(454, 53, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		m_pBloodMark->SetAlpha(0);
 	}
 	else
 	{
+		ENGINE->DrawTextW(m_pFocusedEnemy->GetCharacterName().c_str(), D3DXVECTOR3(454, 53, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(0.8, 0, 0, 1));
 
+	
+	
+		if (m_bFadeIn == true)
+		{
+			m_curAlpha += TIMER->getDeltaTime() * 3;
 
-	}*/
+			if (m_curAlpha >= 1)
+			{
+				m_curAlpha = 1;
+				m_bFadeIn = false;
+			}
+		}
+		else if (m_bFadeIn == false)
+		{
+			m_curAlpha -= TIMER->getDeltaTime() * 0.6f;
+			if (m_curAlpha <= 0)
+			{
+				m_curAlpha = 0;
+				m_bFadeIn = true;
+			}
+		}
+		m_pBloodMark->SetAlpha(m_curAlpha);
+	}
+
 	m_lastAmount = amount;
 }
 

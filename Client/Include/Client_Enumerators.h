@@ -10,6 +10,9 @@ enum class EPlayerState
 	Jump,
 	OtherAction, 
 	OtherEvent,
+	PutInWeapon,
+	MountOnHorse,
+
 };
 enum class EEquipSlot
 {
@@ -87,4 +90,9 @@ enum class ENotifyType
 	GetItemNotify,
 	// 아이템을 구매하였습니다.
 	BuyItemNotify,
+};
+
+enum class ESkill
+{
+
 };

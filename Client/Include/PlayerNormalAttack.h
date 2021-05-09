@@ -40,7 +40,7 @@ private :
 private :
 	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[3] = { 42, 43, 45 };
+	int m_animIndexes[3] = { 22, 23, 1 };
 
 	/* For Attack Logic */
 	bool m_bSendDamage = false;

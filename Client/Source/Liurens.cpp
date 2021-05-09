@@ -46,3 +46,8 @@ std::wstring Liurens::GetOnlyCharacterName()
 {
 	return L"¸®¿ì·»½º";
 }
+
+D3DXVECTOR3 Liurens::GetZoomInOffset()
+{
+	return D3DXVECTOR3(0, 5, 10);
+}

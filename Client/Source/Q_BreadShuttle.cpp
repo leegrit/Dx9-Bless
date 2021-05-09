@@ -1,24 +1,37 @@
 #include "stdafx.h"
 #include "Q_BreadShuttle.h"
 #include "Client_Events.h"
-
+#include "ItemInfo.h"
 Q_BreadShuttle::Q_BreadShuttle()
 	: Quest()
 {
+	EventDispatcher::AddEventListener(GameEvent::BuyItem, "BreadShuttle",
+		std::bind(&Q_BreadShuttle::OnBuyItem, this, placeholders::_1));
+
 }
 
 Q_BreadShuttle::~Q_BreadShuttle()
 {
+	EventDispatcher::RemoveEventListener(GameEvent::BuyItem, "BreadShuttle");
+}
+
+void Q_BreadShuttle::OnBuyItem(void * item)
+{
+	ItemInfo * pItem = static_cast<ItemInfo*>(item);
+	if (pItem->itemName.compare(L"체력 포션") == 0)
+	{
+		m_isBuy = true;
+	}
 }
 
 float Q_BreadShuttle::GetCurProgress()
 {
-	return 1;
+	return -1;
 }
 
 bool Q_BreadShuttle::IsFinish()
 {
-	return IsAccepted();
+	return m_isBuy;
 }
 
 std::vector<GameObject*> Q_BreadShuttle::GetTargets()

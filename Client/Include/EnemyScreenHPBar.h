@@ -44,6 +44,12 @@ private : /* For Render */
 private :
 	class Enemy* m_pFocusedEnemy = nullptr;
 	float m_lastAmount = 0;
+
+
+private : /* For Blood effect */
+	float m_curAlpha = 0;
+	bool m_bFadeIn = true;
+
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////
