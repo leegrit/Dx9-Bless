@@ -33,3 +33,8 @@ std::wstring Leoni::GetSubTitle()
 {
 	return L"<그림자 순찰대장>";
 }
+
+std::wstring Leoni::GetOnlyCharacterName()
+{
+	return L"레오니";
+}

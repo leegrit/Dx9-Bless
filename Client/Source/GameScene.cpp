@@ -147,7 +147,16 @@ void GameScene::RenderGUI()
 	{
 		Gui::Get()->ShowEditRenderOption();
 
-		//Gui::Get()->BeginEditGUI();
+		Gui::Get()->BeginEditGUI();
+
+		Gui::Get()->InputFloat("FloatA", &m_floatA);
+		Gui::Get()->InputFloat("FloatB", &m_floatB);
+		Gui::Get()->InputFloat("FloatC", &m_floatC);
+		Gui::Get()->InputFloat("FloatD", &m_floatD);
+		Gui::Get()->InputFloat("FloatE", &m_floatE);
+		Gui::Get()->InputFloat("FloatF", &m_floatF);
+		Gui::Get()->InputText("Text", m_text, 256);
+
 		
 		/*Gui::Get()->InputInt("FontPosX", &fontPosX);
 		Gui::Get()->InputInt("FontPosY", &fontPosY);
@@ -161,7 +170,7 @@ void GameScene::RenderGUI()
 		Gui::Get()->InputInt("InputInt", &testInt);
 		float testFloat;
 		Gui::Get()->InputFloat("InputFloat", &testFloat);*/
-		//Gui::Get()->EndEditGUI();
+		Gui::Get()->EndEditGUI();
 	}
 	//Gui::Get()->InputText("InputText", )
 
@@ -240,3 +249,37 @@ BattleManager * GameScene::GetBattleManager()
 	return m_pBattleManager;
 }
 
+float GameScene::GetFloatA()
+{
+	return m_floatA;
+}
+
+float GameScene::GetFloatB()
+{
+	return m_floatB;
+}
+
+float GameScene::GetFloatC()
+{
+	return m_floatC;
+}
+
+float GameScene::GetFloatD()
+{
+	return m_floatD;
+}
+
+float GameScene::GetFloatE()
+{
+	return m_floatE;
+}
+
+float GameScene::GetFloatF()
+{
+	return m_floatF;
+}
+
+char * GameScene::GetText()
+{
+	return m_text;
+}

@@ -8,6 +8,7 @@
 #include "SkeletoneMove.h"
 #include "NameFont.h"
 #include "Client_Events.h"
+#include "GameScene.h"
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
 	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5, ESkinningType::HardwareSkinning)
@@ -43,7 +44,8 @@ void Skeletone::Initialize(std::wstring dataPath)
 	m_state.Initialize("Idle");
 
 	m_pNameFont = new NameFont();
-	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 15, 0), -40, D3DXCOLOR(1, 1, 0, 1));
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 18, 0), -20, D3DXCOLOR(1, 1, 0, 1));
 
 	ShowHPBar();
 }
@@ -51,6 +53,9 @@ void Skeletone::Initialize(std::wstring dataPath)
 void Skeletone::Update()
 {
 	Enemy::Update();
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
+	m_pNameFont->SetCenterOffset(-20);
 
 	m_state.Update();
 }

@@ -29,7 +29,7 @@ public :
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
 public:
-	void ShowDialog(std::wstring message);
+	void ShowDialog(std::wstring name, std::wstring message);
 	void HideDialog();
 
 
@@ -40,6 +40,7 @@ private :
 	ID3DXEffect* m_pEffect = nullptr;
 	TextureQuad * m_pTextureQuad = nullptr;
 	IDirect3DTexture9 * m_pTexture = nullptr;
+	std::wstring m_nameText;
 	std::wstring m_dialogText;
 
 	//////////////////////////////////////////////////////////////////////////

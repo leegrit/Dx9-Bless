@@ -10,6 +10,9 @@ public :
 	void Initialize(std::wstring text, GameObject* pOwner, D3DXVECTOR2 size,  D3DXVECTOR3 offset, float centerOffset ,D3DXCOLOR color);
 	void RenderFont();
 
+	void SetOffset(D3DXVECTOR3 offset);
+	void SetCenterOffset(float centerOffset);
+
 private :
 	/* For Font */
 	std::wstring m_text;

@@ -105,7 +105,8 @@ void HyEngine::DynamicMesh::Render()
 		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
 		{
 			// юс╫ц
-			if (CString::Contain(pMeshContainer->pTextureNames[i], L"Eyelash"))
+			if (CString::Contain(pMeshContainer->pTextureNames[i], L"Eyelash") ||
+				CString::Contain(pMeshContainer->pTextureNames[i], L"EyeLash"))
 			{
 				continue;
 			}

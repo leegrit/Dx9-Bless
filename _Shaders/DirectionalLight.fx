@@ -33,9 +33,9 @@ texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
 {
 	Texture = (AlbedoTex);
-	/*MinFilter = LINEAR;
+	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;*/
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -51,9 +51,9 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	/*MinFilter = LINEAR;
+	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;*/
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -69,9 +69,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	/*MinFilter = LINEAR;
+	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;*/
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -84,9 +84,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	/*MinFilter = LINEAR;
+	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;*/
+	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -220,10 +220,10 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 		float specularIntensity = saturate(dot(reflection, viewDirection));
 
 		specular = pow(specularIntensity, SpecularPower);
-		if(specularMap.a > 0)
-			specular = specular * shadowFactor;
+		if (specularMap.a > 0)
+			specular = (specular + (specular * specularMap.rgb)) * shadowFactor;
 		else
-			specular = specular * shadowFactor * specularMap.rgb;
+			specular = float4(0, 0, 0, 0);//specular * shadowFactor * specularMap.rgb;
 	}
 	finalColor = saturate(finalColor + specular.rgb);
 

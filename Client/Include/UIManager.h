@@ -111,7 +111,7 @@ private : /* For Quest */
 
 	class Quest* m_pAcceptedMainQuest = nullptr;
 	std::vector<Quest*> m_acceptedSubQuests;
-	const float m_acceptedQuestUIOffset = 50;
+	const float m_acceptedQuestUIOffset = 98;
 	const int m_guideMax = 5;
 	class QuestGuideUI* m_pMainQuestGuideUI = nullptr;
 	std::vector<class QuestGuideUI*> m_subQuestGuideUIList;

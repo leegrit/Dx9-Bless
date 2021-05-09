@@ -2,7 +2,7 @@
 #include "Elroy.h"
 
 Elroy::Elroy(Scene * pScene)
-	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
+	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
 {
 
 }
@@ -15,7 +15,7 @@ void Elroy::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(50);
+	SetAnimationSet(3);
 }
 
 void Elroy::Update()
@@ -27,10 +27,15 @@ void Elroy::Update()
 
 std::wstring Elroy::GetCharacterName()
 {
-	return L"엘로이";
+	return L"        티티아나\n<기술 교관>";
 }
 
 std::wstring Elroy::GetSubTitle()
 {
 	return L"<기술 교관>";
+}
+
+std::wstring Elroy::GetOnlyCharacterName()
+{
+	return L"티티아나";
 }

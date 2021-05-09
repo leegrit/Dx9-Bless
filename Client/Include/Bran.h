@@ -18,12 +18,15 @@ public :
 	virtual void Update() override;
 	virtual std::wstring GetCharacterName() override;
 	virtual std::wstring GetSubTitle() override;
-
+	virtual std::wstring GetOnlyCharacterName() override;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
 	static Bran* Create(Scene* pScene, std::wstring dataPath);
+
+
+	// Inherited via NonePlayer
 
 };
 

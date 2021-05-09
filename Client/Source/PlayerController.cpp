@@ -69,19 +69,19 @@ void PlayerController::UpdateMovement()
 		/* Forward + Left */
 		if (KEYBOARD->Press('A'))
 		{
-			SetAnimationSet(11);
+			SetAnimationSet(101);
 			GetTransform()->Translate(-GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
 		}
 		/* Forward + Right */
 		else if (KEYBOARD->Press('D'))
 		{
-			SetAnimationSet(30);
+			SetAnimationSet(100);
 			GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
 		}
 		/* Only Forward */
 		else
 		{
-			SetAnimationSet(31);
+			SetAnimationSet(64);
 		}
 		GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * m_speed);
 	}
@@ -90,35 +90,35 @@ void PlayerController::UpdateMovement()
 		/* Back + Left */
 		if (KEYBOARD->Press('A'))
 		{
-			SetAnimationSet(33);
+			SetAnimationSet(106);
 			GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
 		}
 		/* Back + Right */
 		else if (KEYBOARD->Press('D'))
 		{
-			SetAnimationSet(32);
+			SetAnimationSet(105);
 			GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
 		}
 		/* Only Back */
 		else
 		{
-			SetAnimationSet(34);
+			SetAnimationSet(107);
 		}
 		GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* m_speed);
 	}
 	else if (KEYBOARD->Press('A'))
 	{
-		SetAnimationSet(29);
+		SetAnimationSet(93);
 		GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
 	}
 	else if (KEYBOARD->Press('D'))
 	{
-		SetAnimationSet(28);
+		SetAnimationSet(92);
 		GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
 	}
 	else
 	{
-		SetAnimationSet(39);
+		SetAnimationSet(113);
 	}
 }
 

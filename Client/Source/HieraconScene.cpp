@@ -59,9 +59,9 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// PLAYER
 	//////////////////////////////////////////////////////////////////////////
-	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Lups.json");
+	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Hieracon_Player.json");
 	SetPlayer(m_pPlayer);
-	m_pPlayer->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
+	//m_pPlayer->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// CAMERA
@@ -124,17 +124,17 @@ void HieraconScene::Load()
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////
 	m_nonePlayers.emplace_back( SampleNPC::Create(this, PATH->DatasPathW() + L"HierarchyData/Sire.json"));
-	Hieracon_Cora::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Cora.json");
-	Bran::Create(this, PATH->DatasPathW() + L"HierarchyData/Bran.json");
-	Samson::Create(this, PATH->DatasPathW() + L"HierarchyData/Samson.json");
-	Elroy::Create(this, PATH->DatasPathW() + L"HierarchyData/Elroy.json");
-	Liurens::Create(this, PATH->DatasPathW() + L"HierarchyData/Liurens.json");
-	Elaine::Create(this, PATH->DatasPathW() + L"HierarchyData/Elaine.json");
+	Hieracon_Cora::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Leoni.json");
+	Bran::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_BailanBollwerk.json");
+	Samson::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Chitata.json");
+	Elroy::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Deliah.json");
+	Liurens::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Mathias.json");
+	Elaine::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Gagato.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// NAMED
 	//////////////////////////////////////////////////////////////////////////
-	auto dummyBoss = DummyBoss::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/GhostSoldier.json");
+	//auto dummyBoss = DummyBoss::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/GhostSoldier.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// WARP POINT

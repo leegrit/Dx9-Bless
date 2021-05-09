@@ -54,7 +54,7 @@ void Q_NewSkill::Initialize()
 		float exp = 200;
 		EventDispatcher::TriggerEvent(GameEvent::SendExp, (void*)&exp);
 	}, // 보상 없음 
-		L"Elroy",
-		L"Elroy"
+		L"Hieracon_Deliah",
+		L"Hieracon_Deliah"
 		);
 }

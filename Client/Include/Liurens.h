@@ -19,6 +19,7 @@ public:
 	virtual std::wstring GetCharacterName() override;
 	virtual std::wstring GetSubTitle() override;
 	virtual bool DoInteract() override;
+	virtual std::wstring GetOnlyCharacterName() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

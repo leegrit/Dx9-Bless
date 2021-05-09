@@ -238,7 +238,7 @@ void UIManager::Update()
 	//////////////////////////////////////////////////////////////////////////
 	if (m_pAcceptedMainQuest)
 	{
-		m_pMainQuestGuideUI->ShowGuideUI(m_pAcceptedMainQuest->GetQuestName(), m_pAcceptedMainQuest->GetQuestContent(), 0);
+		m_pMainQuestGuideUI->ShowGuideUI(m_pAcceptedMainQuest->GetQuestName(), m_pAcceptedMainQuest->GetQuestContent(), 0, m_pAcceptedMainQuest->GetCurProgress());
 	}
 	for (auto& subGuide : m_subQuestGuideUIList)
 	{
@@ -246,7 +246,7 @@ void UIManager::Update()
 	}
 	for (int i = 0; i < m_acceptedSubQuests.size() && i < m_guideMax; i++)
 	{
-		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset);
+		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset, m_pAcceptedMainQuest->GetCurProgress());
 	}
 
 }
@@ -364,7 +364,7 @@ void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3D
 
 void UIManager::ShowQuestDialogUI(Quest * pQuest, int dialogIndex, EQuestDialogType questDialogType)
 {
-	m_pQuestDialogUI->ShowDialog(pQuest->GetDialog(dialogIndex, questDialogType));
+	m_pQuestDialogUI->ShowDialog(pQuest->GetSenderName(), pQuest->GetDialog(dialogIndex, questDialogType));
 }
 
 void UIManager::ShowDialogChoiceButton(Quest * pQuest, EQuestDialogType questDialogType, std::function<void()> onClick)

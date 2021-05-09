@@ -4,6 +4,7 @@
 #include "Billboard.h"
 #include "PathManager.h"
 #include "Client_Events.h"
+#include "GameScene.h"
 
 
 
@@ -31,12 +32,12 @@ void Character::Initialize(std::wstring dataPath)
 
 	m_pMainQuestMarker = HyEngine::Billboard::Create(GetScene(), this, L"MainQuestMarker", EBillboardType::Y);
 	m_pMainQuestMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/StatusGauge_4.png");
-	m_pMainQuestMarker->m_pTransform->SetScale(5, 5, 1);
+	m_pMainQuestMarker->m_pTransform->SetScale(3, 3, 1);
 	m_pMainQuestMarker->SetActive(false);
 
 	m_pSubQuestMarker = HyEngine::Billboard::Create(GetScene(), this, L"SubQuestMarker", EBillboardType::Y);
 	m_pSubQuestMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/quest mark_question mark5_12.png");
-	m_pSubQuestMarker->m_pTransform->SetScale(5, 5, 1);
+	m_pSubQuestMarker->m_pTransform->SetScale(3, 3, 1);
 	m_pSubQuestMarker->SetActive(false);
 
 	m_pMainQuestFinishMarker = HyEngine::Billboard::Create(GetScene(), this, L"MainQuestFinishMarker", EBillboardType::Y);
@@ -54,15 +55,17 @@ void Character::Update()
 {
 	Pawn::Update();
 
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+
 	//юс╫ц
 	if(m_pMainQuestMarker)
-		m_pMainQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+		m_pMainQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
 	if(m_pSubQuestMarker)
-		m_pSubQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+		m_pSubQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
 	if (m_pMainQuestFinishMarker)
-		m_pMainQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+		m_pMainQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
 	if (m_pSubQuestFinishMarker)
-		m_pSubQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+		m_pSubQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
 }
 
 void Character::Render()

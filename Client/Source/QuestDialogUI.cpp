@@ -35,6 +35,7 @@ void QuestDialogUI::Render()
 	UIElement::Render();
 
 	/* For Font */
+	ENGINE->DrawTextW(m_nameText.c_str(), D3DXVECTOR3(30, 550, 0), D3DXVECTOR3(1, 1, 1), D3DCOLOR_ARGB(255, 58, 112, 77));
 	ENGINE->DrawTextW(m_dialogText.c_str(), D3DXVECTOR3(30, 600, 0),D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 
@@ -60,9 +61,10 @@ void QuestDialogUI::Render()
 	m_pEffect->End();
 }
 
-void QuestDialogUI::ShowDialog(std::wstring message)
+void QuestDialogUI::ShowDialog(std::wstring name, ::wstring message)
 {
 	m_dialogText = message;
+	m_nameText = name;
 	SetActive(true);
 }
 

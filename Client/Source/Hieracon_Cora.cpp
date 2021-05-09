@@ -2,7 +2,7 @@
 #include "Hieracon_Cora.h"
 
 Hieracon_Cora::Hieracon_Cora(Scene * pScene)
-	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
+	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
 {
 }
 
@@ -14,7 +14,7 @@ void Hieracon_Cora::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(50);
+	SetAnimationSet(3);
 }
 
 void Hieracon_Cora::Update()
@@ -24,10 +24,15 @@ void Hieracon_Cora::Update()
 
 std::wstring Hieracon_Cora::GetCharacterName()
 {
-	return L"코라";
+	return L"        레오니\n<그림자 순찰대장>";
 }
 
 std::wstring Hieracon_Cora::GetSubTitle()
 {
-	return L"<그림자 순찰대장>";
+	return L"";
+}
+
+std::wstring Hieracon_Cora::GetOnlyCharacterName()
+{
+	return L"레오니";
 }

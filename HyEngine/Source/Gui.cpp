@@ -206,7 +206,7 @@ void HyEngine::Gui::InputFloat(std::string label, _Out_ float * result)
 	ImGui::SetNextWindowSize(m_size);
 	ImGui::Begin
 	(
-		"InputFloat",
+		label.c_str(),
 		&bInputFloatOpen,
 		ImGuiWindowFlags_NoBackground |
 		ImGuiWindowFlags_NoTitleBar |

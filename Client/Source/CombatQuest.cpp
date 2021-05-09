@@ -41,7 +41,7 @@ void CombatQuest::Initialize(std::wstring questName, std::wstring questContent, 
 
 float CombatQuest::GetCurProgress()
 {
-	return m_killedCount / m_killCount;
+	return (float)m_killedCount / m_killCount;
 }
 
 bool CombatQuest::IsFinish()

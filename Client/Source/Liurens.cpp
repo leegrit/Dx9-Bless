@@ -4,7 +4,7 @@
 #include "UIManager.h"
 
 Liurens::Liurens(Scene * pScene)
-	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
+	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
 {
 
 }
@@ -17,7 +17,7 @@ void Liurens::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(50);
+	SetAnimationSet(3);
 }
 
 void Liurens::Update()
@@ -27,12 +27,12 @@ void Liurens::Update()
 
 std::wstring Liurens::GetCharacterName()
 {
-	return L"리우렌스";
+	return L"        리우렌스\n<무기점 상인>";
 }
 
 std::wstring Liurens::GetSubTitle()
 {
-	return L"무기점 상인";
+	return L"";
 }
 
 bool Liurens::DoInteract()
@@ -40,4 +40,9 @@ bool Liurens::DoInteract()
 	GameScene* pScene = static_cast<GameScene*>(GetScene());
 	pScene->GetUIManager()->ShowEquipShopUI();
 	return true;
+}
+
+std::wstring Liurens::GetOnlyCharacterName()
+{
+	return L"리우렌스";
 }

@@ -41,3 +41,8 @@ std::wstring Guido::GetSubTitle()
 {
 	return L"<현자>";
 }
+
+std::wstring Guido::GetOnlyCharacterName()
+{
+	return L"고아르";
+}

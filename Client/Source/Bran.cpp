@@ -2,7 +2,7 @@
 #include "Bran.h"
 
 Bran::Bran(Scene * pScene)
-	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
+	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
 {
 
 }
@@ -15,7 +15,7 @@ void Bran::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(50);
+	SetAnimationSet(14);
 }
 
 void Bran::Update()
@@ -26,12 +26,12 @@ void Bran::Update()
 
 std::wstring Bran::GetCharacterName()
 {
-	return L"브란";
+	return L"        브란\n<그림자 순찰대원>";
 }
 
 std::wstring Bran::GetSubTitle()
 {
-	return L"<그림자 순찰대원>";
+	return L"";
 }
 
 Bran * Bran::Create(Scene * pScene, std::wstring dataPath)
@@ -39,4 +39,9 @@ Bran * Bran::Create(Scene * pScene, std::wstring dataPath)
 	Bran* obj = new Bran(pScene);
 	obj->Initialize(dataPath);
 	return obj;
+}
+
+std::wstring Bran::GetOnlyCharacterName()
+{
+	return L"브란";
 }

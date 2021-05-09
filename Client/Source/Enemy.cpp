@@ -33,7 +33,7 @@ void Enemy::Initialize(std::wstring dataPath)
 	m_pHpBarBillboard->SetFillTex(PATH->AssetsPathW() + L"UI/StatusGauge_3.png");
 	m_pHpBarBillboard->SetBackTex(PATH->AssetsPathW() + L"UI/EnemyHPBack.png");
 	m_pHpBarBillboard->SetAmount(1);
-	m_pHpBarBillboard->m_pTransform->m_scale = D3DXVECTOR3(10, 1, 1);
+	m_pHpBarBillboard->m_pTransform->m_scale = D3DXVECTOR3(10, 0.5f, 1);
 	m_pHpBarBillboard->SetActive(false);
 
 }
@@ -41,8 +41,12 @@ void Enemy::Initialize(std::wstring dataPath)
 void Enemy::Update()
 {
 	Character::Update();
-
-	m_pHpBarBillboard->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 20, 0));
+	if (GetCurHP() != GetMaxHP())
+	{
+		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		m_pHpBarBillboard->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 15, 0));
+	}
+	
 }
 
 void Enemy::Render()

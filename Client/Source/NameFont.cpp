@@ -21,6 +21,8 @@ void NameFont::RenderFont()
 	
 	D3DXMATRIX viewMat = SCENE->GetSelectedCamera()->GetViewMatrix();
 	D3DXMATRIX projMat = SCENE->GetSelectedCamera()->GetProjectionMatrix();
+	//D3DXMATRIX projMat;
+	//D3DXMatrixOrthoOffCenterLH(&projMat, 0, WinMaxWidth, 0,  WinMaxHeight, 0, 1000);
 
 	D3DXVECTOR3 position = m_pOwner->m_pTransform->CalcOffset(m_offset);
 	//position.x -= m_size.x * 0.5f;
@@ -40,4 +42,14 @@ void NameFont::RenderFont()
 
 
 	ENGINE->DrawText(m_text.c_str(),resultPos, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
+}
+
+void NameFont::SetOffset(D3DXVECTOR3 offset)
+{
+	m_offset = offset;
+}
+
+void NameFont::SetCenterOffset(float centerOffset)
+{
+	m_centerOffset = centerOffset;
 }

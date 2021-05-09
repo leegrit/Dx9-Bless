@@ -201,6 +201,18 @@ void SkinnedMeshPS(
 
 	/* Specular */
 	outSpecular = specular;
+	/*float3 temp = float3(1, 0, 0);
+	if (specularMask.rgb != temp)
+		outSpecular.a = specularMask.a;
+	else
+		outSpecular.a = 0;*/
+	//if (specularMask.a > 0)
+	//{
+	//	outSpecular.a = (1 - specularMask.r) + specularMask.b + specularMask.g;
+
+	//}
+	//else
+	//	outSpecular.a = 0;
 	outSpecular.a = specularMask.b + specularMask.g;
 	
 	/* Normal */

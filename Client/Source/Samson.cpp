@@ -2,7 +2,7 @@
 #include "Samson.h"
 
 Samson::Samson(Scene * pScene)
-	: NonePlayer(pScene, ESkinningType::HardwareSkinning)
+	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
 {
 }
 
@@ -14,7 +14,7 @@ void Samson::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(50);
+	SetAnimationSet(3);
 }
 
 void Samson::Update()
@@ -24,10 +24,15 @@ void Samson::Update()
 
 std::wstring Samson::GetCharacterName()
 {
-	return L"삼손";
+	return L"        치타타\n<그림자 순찰대원>";
 }
 
 std::wstring Samson::GetSubTitle()
 {
-	return L"<그림자 순찰대원>";
+	return L"";
+}
+
+std::wstring Samson::GetOnlyCharacterName()
+{
+	return L"치타타";
 }

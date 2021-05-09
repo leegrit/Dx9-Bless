@@ -33,6 +33,11 @@ std::wstring TalkableGoblin::GetSubTitle()
 	return L"<말하는 고블린>";
 }
 
+std::wstring TalkableGoblin::GetOnlyCharacterName()
+{
+	return L"말하는 고블린";
+}
+
 TalkableGoblin * TalkableGoblin::Create(Scene * pScene, std::wstring dataPath)
 {
 	TalkableGoblin* npc = new TalkableGoblin(pScene);

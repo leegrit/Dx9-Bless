@@ -348,12 +348,12 @@
                                     <TextBlock Height="5"/>
                                     <StackPanel  Orientation="Horizontal">
                                         <TextBlock Width="105"> Animation Count : </TextBlock>
-                                        <TextBlock x:Name="AnimationCount" Width="15" HorizontalAlignment="Center">0</TextBlock>
+                                        <TextBlock x:Name="AnimationCount" Width="100" HorizontalAlignment="Center">0</TextBlock>
                                     </StackPanel>
                                     <TextBlock Height="5"/>
                                     <StackPanel  Orientation="Horizontal">
                                         <TextBlock Width="105"> Animation Index :</TextBlock>
-                                        <TextBlock x:Name="AnimationIndex" Width="15" HorizontalAlignment="Center">0</TextBlock>
+                                        <TextBlock x:Name="AnimationIndex" Width="100" HorizontalAlignment="Center">0</TextBlock>
                                     </StackPanel>
                                     <TextBlock Height="5"/>
                                     <StackPanel Orientation="Horizontal">

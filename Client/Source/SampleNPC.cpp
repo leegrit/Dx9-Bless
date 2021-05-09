@@ -46,3 +46,8 @@ std::wstring SampleNPC::GetSubTitle()
 	return L"<Sample>";
 }
 
+std::wstring SampleNPC::GetOnlyCharacterName()
+{
+	return L"Sample";
+}
+

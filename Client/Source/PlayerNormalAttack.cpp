@@ -116,7 +116,7 @@ UINT PlayerNormalAttack::GetTargetLayer() const
 
 int PlayerNormalAttack::GetIdleAnimIndex() const
 {
-	return 39;
+	return 113;
 }
 
 void PlayerNormalAttack::UpdateAction()

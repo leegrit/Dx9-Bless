@@ -50,6 +50,7 @@ public:
 	std::wstring GetDialog(int index, EQuestDialogType dialogType);
 	std::wstring GetQuestName() const;
 	std::wstring GetQuestContent() const;
+	std::wstring GetSenderName();
 
 	//////////////////////////////////////////////////////////////////////////
 	// SETTER

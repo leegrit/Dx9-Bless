@@ -59,6 +59,25 @@ public:
 	BattleManager* GetBattleManager();
 	InteractManager* GetInteractManager();
 
+
+	/* TEMP */
+public :
+	float GetFloatA();
+	float GetFloatB();
+	float GetFloatC();
+	float GetFloatD();
+	float GetFloatE();
+	float GetFloatF();
+	char* GetText();
+
+	float m_floatA;
+	float m_floatB;
+	float m_floatC;
+	float m_floatD;
+	float m_floatE;
+	float m_floatF;
+	char m_text[256];
+
 private:
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;

@@ -52,7 +52,7 @@ void Q_FirstEquipment::Initialize()
 		float exp = 300;
 		EventDispatcher::TriggerEvent(GameEvent::SendExp, (void*)&exp);
 	}, // 보상 없음 
-		L"Bran",
-		L"Bran"
+		L"Hieracon_BailanBollwerk",
+		L"Hieracon_BailanBollwerk"
 		);
 }

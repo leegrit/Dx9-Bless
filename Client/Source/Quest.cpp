@@ -93,6 +93,13 @@ std::wstring Quest::GetQuestContent() const
 	return m_questContent;
 }
 
+std::wstring Quest::GetSenderName()
+{
+	NonePlayer* pNonePlayer = static_cast<NonePlayer*>(m_pSender);
+	assert(pNonePlayer);
+	return pNonePlayer->GetOnlyCharacterName();
+}
+
 void Quest::SetQuestState(EQuestState state)
 {
 	m_questState = state;

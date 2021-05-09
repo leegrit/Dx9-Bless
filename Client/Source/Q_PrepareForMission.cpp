@@ -52,7 +52,7 @@ void Q_PrepareForMission::Initialize()
 		float exp = 200;
 		EventDispatcher::TriggerEvent(GameEvent::SendExp, (void*)&exp);
 	}, // 보상 없음 
-		L"Hieracon_Cora",
-		L"Hieracon_Cora"
+		L"Hieracon_Leoni",
+		L"Hieracon_Leoni"
 		);
 }
