@@ -57,7 +57,7 @@ void BattleManager::Update()
 	if (pFocused == nullptr)
 	{
 		m_pScene->GetUIManager()->OnFocusLost();
-
+		m_pFocusedObj = pFocused;
 	}
 	else if (m_pFocusedObj != nullptr &&  m_pFocusedObj == pFocused)
 	{

@@ -23,6 +23,13 @@ namespace HyEngine
 		virtual void Render() override;
 		virtual void UpdatedData(EDataType dataType)override;
 
+
+		//////////////////////////////////////////////////////////////////////////
+		// GETTER 
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		float GetAlpha();
+
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
@@ -43,16 +50,26 @@ namespace HyEngine
 		D3DXVECTOR3 m_endScale;
 
 		/* Fade In Out */
+	private :
 		bool m_fadeIn;
 		bool m_fadeOut;
+		// fade in out 비율
+		// 만약 값이 0.2, 총 시간이 2초면 
+		// 0.4초동안 fade in out
+		float m_fadeInFactor = 0.2f;
+		float m_fadeOutFactor = 0.2f;
+		float m_curAlpha = 1;
+
 
 		/* LifeTime */
+	private :
 		float m_lifeTime;
 		float m_loopTime;
 		float m_curLifeTime;
 		float m_totalLifeTime;
 
 		/* Repeat */
+	private :
 		bool m_isRepeat;
 	};
 }

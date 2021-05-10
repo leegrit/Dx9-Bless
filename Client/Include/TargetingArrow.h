@@ -49,13 +49,13 @@ private: /* For Focus */
 private :/* For Focus Change Event */
 	D3DXVECTOR3 m_originScale = D3DXVECTOR3(8, 8, 8);
 	// 포커스가 막 변경되었을 때 크기
-	D3DXVECTOR3 m_focusChangeScale = D3DXVECTOR3(12, 12, 12);
+	D3DXVECTOR3 m_focusChangeScale = D3DXVECTOR3(16, 16, 16);
 	
 	float m_changeEventSpeed = 3;
 	float m_changeEventFactor = 0;
 
 private : /* Focus Lost Event */
-	float m_lostAlpha = 0.5f;
+	float m_lostAlpha = 0.0f;
 	float m_elapsed = 0;
 	float m_lostTime = 0.2f;
 

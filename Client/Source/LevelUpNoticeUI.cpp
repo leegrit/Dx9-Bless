@@ -45,7 +45,7 @@ void LevelUpNoticeUI::Update()
 		m_pBackground->SetAlpha(alpha);
 		m_pIcon->SetActive(alpha);
 
-		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(400, 300, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, alpha));
+		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(432, 217, 0), D3DXVECTOR3(2, 2, 2),D3DXCOLOR(m_color.r, m_color.g, m_color.b, alpha));
 
 	}
 	else if (m_elapsed >= m_delay - m_fadeOutTime)
@@ -54,14 +54,14 @@ void LevelUpNoticeUI::Update()
 
 		m_pBackground->SetAlpha(alpha);
 		m_pIcon->SetAlpha(alpha);
-		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(400, 300, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, alpha));
+		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(432, 217, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(m_color.r, m_color.g, m_color.b, alpha));
 
 	}
 	else
 	{
 		m_pBackground->SetAlpha(1);
 		m_pIcon->SetAlpha(1);
-		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(400, 300, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(m_renderFont.c_str(), D3DXVECTOR3(432, 217, 0), D3DXVECTOR3(2, 2, 2), D3DXCOLOR(m_color.r, m_color.g, m_color.b, 1));
 
 	}
 }
@@ -85,6 +85,11 @@ void LevelUpNoticeUI::Initialize()
 		D3DXVECTOR3(0, 144, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1028, 60, 1), L"LevelUpBackground");
 	m_pIcon = UIPanel::Create(GetScene(), PATH->AssetsPathW() + L"UI/BLUINoticeBoard_IB_1.png",
 		D3DXVECTOR3(-194.4, 137.6, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(190, 120, 1), L"LevelUpIcon");
+
+	float r = (float)191 / 255;
+	float g = 1;
+	float b = 0;
+	m_color = D3DXCOLOR(r, g, b, 1);
 }
 
 LevelUpNoticeUI * LevelUpNoticeUI::Create(Scene * pScene, std::wstring name)

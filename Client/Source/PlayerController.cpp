@@ -5,6 +5,9 @@
 #include "GameScene.h"
 #include "GameManager.h"
 #include "UIManager.h"
+#include "Player.h"
+#include "Client_Events.h"
+
 
 PlayerController::PlayerController(GameObject * pOwner)
 	:Component(BehaviourType::Update, pOwner, L"PlayerController")
@@ -14,12 +17,21 @@ PlayerController::PlayerController(GameObject * pOwner)
 	Character* character = dynamic_cast<Character*>(pOwner);
 	assert(character);
 	m_speed = character->GetMoveSpeed();
-	m_horseSpeed = m_speed * 2;
+	m_horseSpeed = m_speed;
 	m_playerState = EPlayerState::Idle;
+
+	EventDispatcher::AddEventListener(PlayerEvent::BeginCollect, "PlayerController",
+		std::bind(&PlayerController::OnBeginCollect, this, placeholders::_1));
+	EventDispatcher::AddEventListener(PlayerEvent::EndCollect, "PlayerController",
+		std::bind(&PlayerController::OnEndCollect, this, placeholders::_1));
+
 }
 
 PlayerController::~PlayerController()		
 {
+	EventDispatcher::RemoveEventListener(PlayerEvent::BeginCollect, "PlayerController");
+	EventDispatcher::RemoveEventListener(PlayerEvent::EndCollect, "PlayerController");
+
 }
 
 void PlayerController::Initialize()
@@ -75,9 +87,36 @@ void PlayerController::SetUnWeaponMesh(DynamicMesh * pDynamicMesh)
 	m_pPlayerUW = pDynamicMesh;
 }
 
+void PlayerController::OnBeginCollect(void * collectType)
+{
+	m_collectType = *static_cast<ECollectMotionType*>(collectType);
+	m_collectBeginElapsed = 0;
+	m_collectEndElapsed = 0;
+	m_bCollecting = true;
+
+	
+
+	m_pPlayerUW->SetAnimationSet(304); // idle
+	Player* pPlayer = static_cast<Player*>(GetGameObject());
+	pPlayer->SetAnimationSet(90); // idle
+
+	m_collectStep = ECollectStep::CollectBegin;
+}
+
+void PlayerController::OnEndCollect(void * collectType)
+{
+	m_collectStep = ECollectStep::CollectEnd;
+
+	Player* pPlayer = static_cast<Player*>(GetGameObject());
+	pPlayer->SetAnimationSet(90); // idle
+	m_pPlayerUW->SetAnimationSet(304); // idle
+}
+
 void PlayerController::UpdateMovement()
 {
 	if (m_playerState == EPlayerState::Attack) return;
+	if (GetState() == EPlayerState::Collecting)
+		return;
 
 	if (GetState() != EPlayerState::MountOnHorse)
 	{
@@ -219,6 +258,14 @@ void PlayerController::UpdateAction()
 {
 	if (m_playerState == EPlayerState::Attack) return;
 
+	RideAction();
+	CollectAction();
+}
+
+void PlayerController::RideAction()
+{
+	if (GetState() == EPlayerState::Collecting)
+		return;
 
 	if (GetState() == EPlayerState::MountOnHorse)
 	{
@@ -273,6 +320,38 @@ void PlayerController::UpdateAction()
 			m_pPegasus->m_pTransform->m_position = GetTransform()->m_position;
 			m_pPegasus->m_pTransform->m_rotationEuler = GetTransform()->m_rotationEuler;
 			m_pPegasus->m_pTransform->m_scale = GetTransform()->m_scale;
+		}
+	}
+}
+
+void PlayerController::CollectAction()
+{
+	if (m_bCollecting)
+	{
+		if (m_collectStep == ECollectStep::CollectBegin)
+		{
+			m_collectBeginElapsed += TIMER->getDeltaTime();
+			if (m_collectBeginElapsed >= m_collectDelay && m_collectStep == ECollectStep::CollectBegin)
+			{
+				m_collectStep = ECollectStep::Collecting;
+				m_pPlayerUW->SetActive(true);
+				SetState(EPlayerState::Collecting);
+				m_pPlayerUW->SetAnimationSet(264); // looting M
+				m_pPlayerUW->m_pTransform->m_position = GetTransform()->m_position;
+				m_pPlayerUW->m_pTransform->m_rotationEuler = GetTransform()->m_rotationEuler;
+				m_pPlayerUW->m_pTransform->m_scale = GetTransform()->m_scale;
+			}
+		}
+		if (m_collectStep == ECollectStep::CollectEnd)
+		{
+			m_collectEndElapsed += TIMER->getDeltaTime();
+			if (m_collectEndElapsed >= m_collectDelay && m_collectStep == ECollectStep::CollectEnd)
+			{
+				m_collectStep = ECollectStep::DONE;
+				m_pPlayerUW->SetActive(false);
+				SetState(EPlayerState::Idle);
+
+			}
 		}
 	}
 }

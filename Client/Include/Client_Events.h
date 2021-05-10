@@ -28,6 +28,12 @@ namespace UIEvent
 	static std::string EquipmentUIClose = "UIEvent.EquipmentUIClose";
 }
 
+namespace PlayerEvent
+{
+	static std::string BeginCollect = "PlayerEvent.BeginCollect";
+	static std::string EndCollect = "PlayerEvent.EndCollect";
+}
+
 namespace GameEvent
 {
 	static std::string LevelUp = "GameEvent.LevelUp";

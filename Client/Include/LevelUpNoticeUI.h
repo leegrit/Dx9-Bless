@@ -44,6 +44,7 @@ private :
 	const float m_delay = 3;
 	const float m_fadeInTime = 0.5f;
 	const float m_fadeOutTime = 0.5f;
+	D3DXCOLOR m_color;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

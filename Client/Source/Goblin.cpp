@@ -103,7 +103,17 @@ float Goblin::GetFocusColliderSize()
 
 D3DXVECTOR3 Goblin::GetFocusUIOffset()
 {
-	return D3DXVECTOR3(0, 10, 0);
+	return D3DXVECTOR3(0, 5, 0);
+}
+
+int Goblin::GetLevel()
+{
+	return 13;
+}
+
+std::wstring Goblin::GetCharacterName()
+{
+	return L"°íºí¸°";
 }
 
 int Goblin::GetAttackCount()

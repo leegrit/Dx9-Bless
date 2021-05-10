@@ -82,6 +82,10 @@ void TargetingArrow::Update()
 
 void TargetingArrow::Focus(GameObject * pTarget, D3DXVECTOR3 focusOffset)
 {
+	if (m_bFocused != true)
+	{
+		m_elapsed = 0;
+	}
 	OnFocused();
 	m_pTarget = pTarget;
 	m_focusOffset = focusOffset;
@@ -90,18 +94,22 @@ void TargetingArrow::Focus(GameObject * pTarget, D3DXVECTOR3 focusOffset)
 
 void TargetingArrow::LostFocus()
 {
+	if (m_bFocused != false)
+	{
+		m_elapsed = 0;
+	}
 	OnLostFocused();
 	m_bFocused = false;
 }
 
 void TargetingArrow::OnFocused()
 {
-	m_elapsed = 0;
+	
 }
 
 void TargetingArrow::OnLostFocused()
 {
-	m_elapsed = 0;
+	
 }
 
 TargetingArrow * TargetingArrow::Create(Scene * pScene, std::wstring name)

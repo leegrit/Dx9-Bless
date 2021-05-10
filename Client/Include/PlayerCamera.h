@@ -37,7 +37,7 @@ private :
 
 	/* For Movement */
 	//float m_distanceToTarget = 1;
-	float m_distanceToTarget = 60;
+	float m_distanceToTarget = 40;
 
 
 	/* For Rotation  */

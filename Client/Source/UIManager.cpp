@@ -84,6 +84,8 @@ void UIManager::OnQuestDialogEnd(void *)
 		ui->SetActive(true);
 	}
 
+	m_bDialogChoice = false;
+
 	m_pQuestDialogUI->HideDialog();
 	m_pDialogChoiceUI->SetActive(false);
 	m_pDialogChoiceIconUI->SetActive(false);
@@ -117,13 +119,13 @@ void UIManager::OnInvalidCoolTime(void *)
 void UIManager::Initialize()
 {
 
-	m_pTalkPanel = UIPanel::Create(m_pScene,PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
+	m_pTalkPanel = UIPanel::Create(m_pScene,PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_9.png", D3DXVECTOR3(277, -138, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(60, 60, 1), L"TalkPanel");
 	m_pTalkPanel->SetActive(false);
 
-	m_pWarpPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
+	m_pWarpPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_9.png", D3DXVECTOR3(277, -138, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(60, 60, 1), L"TalkPanel");
 	m_pWarpPanel->SetActive(false);
 
-	m_pCollectPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_1.png", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 100, 1), L"TalkPanel");
+	m_pCollectPanel = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUIEquip_I4F_9.png", D3DXVECTOR3(277, -138, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(60, 60, 1), L"TalkPanel");
 	m_pCollectPanel->SetActive(false);
 
 	m_pCollectProgressBar = CollectProgressBar::Create(m_pScene, L"CollectProgressBar");
@@ -140,14 +142,14 @@ void UIManager::Initialize()
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
 
-	m_pDialogChoiceUI = Button::Create(m_pScene, L"DialogChoice", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -139, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1));
+	m_pDialogChoiceUI = Button::Create(m_pScene, L"DialogChoice", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(342, -139, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(300, 40, 1));
 	m_pDialogChoiceUI->SetActive(false);
-	m_pDialogChoiceIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/StatusGauge_4.png", D3DXVECTOR3(148, -132, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(33, 44, 1), L"DialogChoiceIcon");
+	m_pDialogChoiceIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/StatusGauge_4.png", D3DXVECTOR3(243, -138, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 35, 1), L"DialogChoiceIcon");
 	m_pDialogChoiceIconUI->SetActive(false);
 
-	m_pDialogCancleUI = Button::Create(m_pScene, L"DialogCancle", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(287, -73, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(400, 50, 1));
+	m_pDialogCancleUI = Button::Create(m_pScene, L"DialogCancle", PATH->AssetsPathW() + L"UI/BLUITalk_I15_2.png", D3DXVECTOR3(342, -99, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(300, 40, 1));
 	m_pDialogCancleUI->SetActive(false);
-	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(151, -75, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
+	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(243, -101, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
 	m_pDialogCancleIconUI->SetActive(false);
 
 
@@ -251,6 +253,17 @@ void UIManager::Update()
 	for (int i = 0; i < m_acceptedSubQuests.size() && i < m_guideMax; i++)
 	{
 		m_subQuestGuideUIList[i]->ShowGuideUI(m_acceptedSubQuests[i]->GetQuestName(), m_acceptedSubQuests[i]->GetQuestContent(), (i + 1)* m_acceptedQuestUIOffset, m_acceptedSubQuests[i]->GetCurProgress());
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	// DIALOGE CHOICE FONT
+	//////////////////////////////////////////////////////////////////////////
+	if (m_bDialogChoice)
+	{
+		ENGINE->DrawText(L"알겠습니다.", D3DXVECTOR3(778, 512, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+
+		ENGINE->DrawText(L"싫습니다.", D3DXVECTOR3(778, 473, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+
 	}
 
 }
@@ -383,6 +396,7 @@ void UIManager::ShowQuestDialogUI(Quest * pQuest, int dialogIndex, EQuestDialogT
 
 void UIManager::ShowDialogChoiceButton(Quest * pQuest, EQuestDialogType questDialogType, std::function<void()> onClick)
 {
+	m_bDialogChoice = true;
 	// 나중에 버튼으로 수정
 	m_pDialogChoiceUI->SetActive(true);
 	m_pDialogChoiceIconUI->SetActive(true);
@@ -450,7 +464,9 @@ void UIManager::OnFocusChanged(GameObject * pFocusedTarget)
 {
 	Enemy* pEnemy = static_cast<Enemy*>(pFocusedTarget);
 	assert(pEnemy);
+	m_pTargetingArrow->LostFocus();
 	m_pTargetingArrow->Focus(pFocusedTarget, pEnemy->GetFocusUIOffset());
+	m_pTargetingCircle->LostFocus();
 	m_pTargetingCircle->Focus(pFocusedTarget, pEnemy->GetFocusUIOffset());
 
 	m_pEnemyScreenHPBar->Show(pFocusedTarget);

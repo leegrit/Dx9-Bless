@@ -75,7 +75,12 @@ void HyEngine::MeshEffect::Render()
 	D3DXHANDLE alphaHandle = pShader->GetParameterByName(0, "AlphaMaskTex");
 	pShader->SetTexture(alphaHandle, m_pAlphaMask);
 
-	pShader->SetTechnique("MeshEffect");
+	pShader->SetFloat("Alpha", GetAlpha());
+
+	if (m_pAlphaMask == nullptr)
+		pShader->SetTechnique("MeshEffect");
+	else
+		pShader->SetTechnique("MeshEffectWithAlphaMask");
 	pShader->Begin(0, 0);
 	{
 		pShader->BeginPass(0);

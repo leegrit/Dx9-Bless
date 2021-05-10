@@ -107,7 +107,37 @@ void HyEngine::Effect::Update()
 	m_pTransform->SetScale(scale);
 
 	// TODO : Fade In Out
+	if (m_fadeIn)
+	{
+		if (m_curLifeTime <= m_lifeTime * m_fadeInFactor)
+		{
+			m_curAlpha = m_curLifeTime / (m_lifeTime * m_fadeInFactor);
+		}
+		/*else
+		{
+			m_curAlpha = 1;
+		}*/
+	}
+	else
+	{
+		m_curAlpha = 1;
+	}
+	if (m_fadeOut)
+	{
+		if (m_curLifeTime >= m_lifeTime - (m_lifeTime * m_fadeOutFactor))
+		{
+			m_curAlpha = (m_lifeTime - m_curLifeTime) / (m_lifeTime * m_fadeOutFactor);
 
+		}
+		/*else
+		{
+
+		}*/
+	}
+	else if (m_fadeIn == false)
+	{
+		m_curAlpha = 1;
+	}
 
 }
 
@@ -145,4 +175,9 @@ void HyEngine::Effect::UpdatedData(EDataType dataType)
 		/* Repeat */
 		m_isRepeat = m_pEffectData->isRepeat;
 	}
+}
+
+float HyEngine::Effect::GetAlpha()
+{
+	return m_curAlpha;
 }

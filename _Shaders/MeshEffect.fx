@@ -34,6 +34,7 @@ sampler AlphaMaskSampler = sampler_state
     AddressV = wrap;*/
 };
 
+float Alpha;
 
 void MeshEffectVS(
 	float4 position : POSITION,
@@ -59,11 +60,22 @@ void MeshEffectPS(
 	float4 albedo = tex2D(AlbedoSampler, texcoord);
 	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord);
 
-	outColor = albedo * alphaMask;
+	//outColor = albedo * alphaMask;
 	// test
-	outColor = albedo;
+	outColor = albedo * Alpha;
 }
+void MeshEffectWithAlphaMaskPS(
+	float2 texcoord : TEXCOORD0,
+	out float4 outColor : COLOR0
+)
+{
+	float4 albedo = tex2D(AlbedoSampler, texcoord);
+	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord);
 
+	outColor = albedo * alphaMask * Alpha;
+	// test
+	//outColor = albedo * Alpha;
+}
 
 technique MeshEffect
 {
@@ -77,5 +89,19 @@ technique MeshEffect
 		DestBlend = INVSRCALPHA;
 		VertexShader = compile vs_3_0 MeshEffectVS();
 		PixelShader = compile ps_3_0 MeshEffectPS();
+	}
+};
+technique MeshEffectWithAlphaMask
+{
+	pass P0
+	{
+		ZEnable = true;
+		CULLMODE = CCW;
+		LightEnable[0] = FALSE;
+		AlphaBlendEnable = true;
+		SrcBlend = SRCALPHA;
+		DestBlend = INVSRCALPHA;
+		VertexShader = compile vs_3_0 MeshEffectVS();
+		PixelShader = compile ps_3_0 MeshEffectWithAlphaMaskPS();
 	}
 };

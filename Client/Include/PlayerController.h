@@ -13,6 +13,7 @@ using namespace HyEngine;
 
 class PlayerController final : public Component
 {
+	enum class ECollectStep { CollectBegin, Collecting, CollectEnd, DONE};
 	//////////////////////////////////////////////////////////////////////////
 	// CONSTRUCTOR & DESTRUCTOR
 	//////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,13 @@ public :
 	void SetUnWeaponMesh(DynamicMesh* pDynamicMesh);
 
 	//////////////////////////////////////////////////////////////////////////
+	// CALLBACK
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void OnBeginCollect(void* collectType);
+	void OnEndCollect(void* collectType);
+
+	//////////////////////////////////////////////////////////////////////////
 	// PRIVATE METHOD
 	//////////////////////////////////////////////////////////////////////////
 private :
@@ -51,6 +59,11 @@ private :
 	void UpdateMovement();
 	void UpdateRotation();
 	void UpdateAction();
+
+private : /* Action */
+	void RideAction();
+	void CollectAction();
+
 
 	/* For Animation */
 private :
@@ -77,6 +90,14 @@ private :
 	bool m_bCanclePegasus = false;
 	float m_delay = 1.0f;
 	float m_summonElapsed = 0;
+
+private : /* For Collect Action */
+	bool m_bCollecting = false;
+	float m_collectBeginElapsed = 0;
+	float m_collectEndElapsed = 0;
+	float m_collectDelay = 0.2f;
+	ECollectMotionType m_collectType;
+	ECollectStep m_collectStep;
 
 	/* For More Animation */
 private :

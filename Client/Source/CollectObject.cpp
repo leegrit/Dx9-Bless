@@ -279,6 +279,8 @@ void CollectObject::Collecting()
 			{
 				m_bCollecting = true;
 				OnCollectBegin();
+				ECollectMotionType motionType = ECollectMotionType::Low;
+				EventDispatcher::TriggerEvent(PlayerEvent::BeginCollect, (void*)&motionType);
 			}
 			
 			m_elapsed += TIMER->getDeltaTime();
@@ -292,6 +294,7 @@ void CollectObject::Collecting()
 				DoCollect();
 				OnCollected();
 				OnCollectEnd();
+				EventDispatcher::TriggerEvent(PlayerEvent::EndCollect, nullptr);
 				gameScene->GetUIManager()->HideCollectProgressBar();
 			}
 		}

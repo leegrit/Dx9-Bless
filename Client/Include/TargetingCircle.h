@@ -50,6 +50,16 @@ private : /* For Render */
 private : /* For Focus */
 	GameObject* m_pTarget = nullptr;
 	D3DXVECTOR3 m_focusOffset;
+	bool m_bFocused = false;
+
+private : /* Focus Lost Event */
+	float m_changeEventSpeed = 3;
+	float m_changeEventFactor = 0;
+	float m_lostAlpha = 0.0f;
+	float m_elapsed = 0;
+	float m_lostTime = 0.2f;
+	float m_currentAlpha = 1;
+
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

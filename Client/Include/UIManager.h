@@ -114,6 +114,8 @@ private : /* For Quest */
 	 Button * m_pDialogCancleUI = nullptr;
 	class UIPanel * m_pDialogCancleIconUI = nullptr;
 
+	bool m_bDialogChoice = false;
+
 	class Quest* m_pAcceptedMainQuest = nullptr;
 	std::vector<Quest*> m_acceptedSubQuests;
 	const float m_acceptedQuestUIOffset = 98;

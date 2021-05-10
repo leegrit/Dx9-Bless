@@ -12,7 +12,7 @@ enum class EPlayerState
 	OtherEvent,
 	PutInWeapon,
 	MountOnHorse,
-
+	Collecting,
 };
 enum class EEquipSlot
 {
@@ -95,4 +95,11 @@ enum class ENotifyType
 enum class ESkill
 {
 
+};
+
+enum class ECollectMotionType
+{
+	Low,
+	Middle,
+	Top,
 };

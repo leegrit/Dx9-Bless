@@ -32,7 +32,7 @@ std::wstring Elroy::GetCharacterName()
 
 std::wstring Elroy::GetSubTitle()
 {
-	return L"<기술 교관>";
+	return L"";
 }
 
 std::wstring Elroy::GetOnlyCharacterName()

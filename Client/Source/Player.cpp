@@ -202,6 +202,8 @@ void Player::Render()
 		return;*/
 	if (m_pPlayerController->GetState() == EPlayerState::MountOnHorse)
 		return;
+	if (m_pPlayerController->GetState() == EPlayerState::Collecting)
+		return;
 	Pawn::Render();
 }
 

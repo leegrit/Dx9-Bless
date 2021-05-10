@@ -37,7 +37,7 @@ void PlayerCamera::Update()
 	//SetProjectionMatrix(D3DXToRadian(45.f), WinMaxWidth / WinMaxHeight, 0.01, 15);
 	SetProjectionMatrix(D3DXToRadian(60), WinMaxWidth / WinMaxHeight, 1, 700);
 
-	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 5, 0)));
+	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 	
 }
 

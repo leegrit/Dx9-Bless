@@ -104,7 +104,7 @@ float Skeletone::GetFocusColliderSize()
 
 D3DXVECTOR3 Skeletone::GetFocusUIOffset()
 {
-	return D3DXVECTOR3(0, 10, 0);
+	return D3DXVECTOR3(0, 5, 0);
 }
 
 std::wstring Skeletone::GetCharacterName()
