@@ -139,6 +139,7 @@
 #define IS_EDITOR EditEngine::Get()
 
 #define ENGINE Engine::Get()
+#define RENDERER Engine::Get()->GetRenderer()
 #define KEYBOARD Engine::Get()->GetKeyboard()
 #define MOUSE Engine::Get()->GetMouse()
 #define TIMER Engine::Get()->GetTimer()

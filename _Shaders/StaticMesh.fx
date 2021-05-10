@@ -23,9 +23,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 /* Specular */
 // rgb = specularMap
@@ -34,9 +34,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 texture EmissiveTex;
 sampler EmissiveSampler = sampler_state
@@ -50,18 +50,18 @@ texture SpecularMaskTex;
 sampler SpecularMaskSampler = sampler_state
 {
 	Texture = (SpecularMaskTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 
 texture DiffuseMaskTex;
 sampler DiffuseMaskSampler = sampler_state
 {
 	Texture = (DiffuseMaskTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 
 

@@ -28,6 +28,7 @@
 #include "Elroy.h"
 #include "Elaine.h"
 #include "Liurens.h"
+#include "Renderer.h"
 
 
 using namespace HyEngine;
@@ -35,6 +36,31 @@ using namespace HyEngine;
 void HieraconScene::Update()
 {
 	GameScene::Update();
+
+	if (GetFloatA() == 0)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(0));
+	}
+	if (GetFloatA() == 1)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(1));
+	}
+	if (GetFloatA() == 2)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(2));
+	}
+	if (GetFloatA() == 3)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(3));
+	}
+	if (GetFloatA() == 4)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(4));
+	}
+	if (GetFloatA() == 5)
+	{
+		RENDERER->SetLutFilter(lutFilters.at(5));
+	}
 }
 
 void HieraconScene::Load()
@@ -164,6 +190,27 @@ void HieraconScene::Load()
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_1.png", D3DXVECTOR3(-276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"44");
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/StatusGauge_2.png", D3DXVECTOR3(276, -265, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(325, 10, 1), L"55");
 	*/
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// FOR FILTER
+	//////////////////////////////////////////////////////////////////////////
+	IDirect3DTexture9* pLutFilterTex = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_0");
+	RENDERER->SetLutFilter(pLutFilterTex);
+
+	lutFilters.push_back(pLutFilterTex);
+	auto pLutFilterTex1 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_1.tga");
+	lutFilters.push_back(pLutFilterTex1);
+	auto pLutFilterTex2 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_2.tga");
+	lutFilters.push_back(pLutFilterTex2);
+	auto pLutFilterTex3 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_3.tga");
+	lutFilters.push_back(pLutFilterTex3);
+	auto pLutFilterTex4 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_4.tga");
+	lutFilters.push_back(pLutFilterTex4);
+	auto pLutFilterTex5 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_5.tga");
+	lutFilters.push_back(pLutFilterTex5);
+	auto pLutFilterTex6 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_6.tga");
+	lutFilters.push_back(pLutFilterTex6);
 }
 
 void HieraconScene::LateLoadScene()

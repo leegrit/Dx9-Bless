@@ -28,6 +28,9 @@ private :
 	void ParamChange();
 	void Movement();
 
+private : /* New  */
+	void MouseFix();
+	//void MouseMove();
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES

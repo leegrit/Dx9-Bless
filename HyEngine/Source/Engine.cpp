@@ -425,6 +425,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"ProgressBar", PATH->ShadersPathW() + L"ProgressBar.fx");
 	InsertShader(L"FadeInOut", PATH->ShadersPathW() + L"FadeInOut.fx");
 	InsertShader(L"TargetingUI", PATH->ShadersPathW() + L"TargetingUI.fx");
+	InsertShader(L"LUTFilter", PATH->ShadersPathW() + L"LUTFilter.fx");
 	return true;
 }
 

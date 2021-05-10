@@ -51,8 +51,8 @@ void PlayerController::Update()
 		return;
 	}
 	UpdateAction();
-	UpdateMovement();
 	UpdateRotation();
+	UpdateMovement();
 }
 
 void PlayerController::LateUpdate()
@@ -96,11 +96,13 @@ void PlayerController::OnBeginCollect(void * collectType)
 
 	
 
-	m_pPlayerUW->SetAnimationSet(304); // idle
+	//m_pPlayerUW->SetAnimationSet(304); // idle
 	Player* pPlayer = static_cast<Player*>(GetGameObject());
-	pPlayer->SetAnimationSet(90); // idle
+	pPlayer->SetAnimationSet(62); // UnWewapon
 
 	m_collectStep = ECollectStep::CollectBegin;
+
+	m_bUnWeaponState = false;
 }
 
 void PlayerController::OnEndCollect(void * collectType)
@@ -108,14 +110,18 @@ void PlayerController::OnEndCollect(void * collectType)
 	m_collectStep = ECollectStep::CollectEnd;
 
 	Player* pPlayer = static_cast<Player*>(GetGameObject());
-	pPlayer->SetAnimationSet(90); // idle
+	//pPlayer->SetAnimationSet(57); // Weapon90
+	pPlayer->SetAnimationSet(90);
 	m_pPlayerUW->SetAnimationSet(304); // idle
+	m_bWeaponState = false;
 }
 
 void PlayerController::UpdateMovement()
 {
 	if (m_playerState == EPlayerState::Attack) return;
 	if (GetState() == EPlayerState::Collecting)
+		return;
+	if (m_collectStep != ECollectStep::DONE)
 		return;
 
 	if (GetState() != EPlayerState::MountOnHorse)
@@ -248,10 +254,16 @@ void PlayerController::UpdateRotation()
 {
 	D3DXVECTOR3 mousePos = MOUSE->GetPosition();
 
-	D3DXVECTOR3 offset = mousePos - m_mouseCenter;
+	D3DXVECTOR3 offset = mousePos - D3DXVECTOR3(WinMaxWidth * 0.5f, WinMaxHeight* 0.5f, 0);
 
+	/*if (offset.x > 0)
+	{
+		GetGameObject()->m_pTransform->m_rotationEuler.y() += 1;
+	}
+	else
+		GetGameObject()->m_pTransform->m_rotationEuler.y() -= 1;*/
 	GetGameObject()->m_pTransform->m_rotationEuler.y() += offset.x;
-	m_mouseCenter = mousePos;
+	//m_mouseCenter = mousePos;
 }
 
 void PlayerController::UpdateAction()
@@ -331,6 +343,13 @@ void PlayerController::CollectAction()
 		if (m_collectStep == ECollectStep::CollectBegin)
 		{
 			m_collectBeginElapsed += TIMER->getDeltaTime();
+			if (m_collectBeginElapsed < m_collectDelay && m_collectStep == ECollectStep::CollectBegin
+				&& IsAnimationEnd() && m_bUnWeaponState == false)
+			{
+				m_pPlayerUW->SetAnimationSet(304); // idle
+				SetAnimationSet(90); // idle
+				m_bUnWeaponState = true;
+			}
 			if (m_collectBeginElapsed >= m_collectDelay && m_collectStep == ECollectStep::CollectBegin)
 			{
 				m_collectStep = ECollectStep::Collecting;
@@ -345,11 +364,26 @@ void PlayerController::CollectAction()
 		if (m_collectStep == ECollectStep::CollectEnd)
 		{
 			m_collectEndElapsed += TIMER->getDeltaTime();
-			if (m_collectEndElapsed >= m_collectDelay && m_collectStep == ECollectStep::CollectEnd)
+			//if (m_collectEndElapsed < m_collectDelay && m_collectStep == ECollectStep::CollectEnd
+			//	&& IsAnimationEnd())
+			//{
+			//	m_pPlayerUW->SetAnimationSet(304); // idle
+			//	SetAnimationSet(90); // idle
+			//}
+			if (m_collectEndElapsed >= m_collectToWeaponDelay && m_bWeaponState == false)
 			{
-				m_collectStep = ECollectStep::DONE;
+				// weapon anim
 				m_pPlayerUW->SetActive(false);
 				SetState(EPlayerState::Idle);
+				SetAnimationSet(57);
+				m_bWeaponState = true;
+			}
+
+			if (m_bWeaponState == true && IsAnimationEnd() && m_collectStep == ECollectStep::CollectEnd)
+			{
+				m_collectStep = ECollectStep::DONE;
+				//m_pPlayerUW->SetActive(false);
+				//SetState(EPlayerState::Idle);
 
 			}
 		}

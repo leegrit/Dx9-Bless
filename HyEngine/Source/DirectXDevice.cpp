@@ -120,3 +120,8 @@ void DirectXDevice::RenderEnd()
 	m_pDevice->EndScene();
 	m_pDevice->Present(nullptr, nullptr, m_hWnd, nullptr);
 }
+
+HWND DirectXDevice::GetHWnd()
+{
+	return m_hWnd;
+}

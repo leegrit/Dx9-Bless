@@ -136,6 +136,7 @@ void HyEngine::Renderer::Setup()
 	m_pResultScreen = new DeferredQuad();
 
 	
+
 	m_bSetup = true;
 }
 
@@ -382,6 +383,11 @@ void Renderer::RenderEnd()
 	}*/
 }
 
+void HyEngine::Renderer::SetLutFilter(IDirect3DTexture9 * pLutFilterTexture)
+{
+	m_pLutFilterTexture = pLutFilterTexture;
+}
+
 void HyEngine::Renderer::PreparePipeline(Scene * scene)
 {
 	GetOriginMRT();
@@ -426,6 +432,7 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	/* Render For Backbuffer */
 	LightPass(scene);
 
+	LutFilterPass();
 	//LinearFilterPass();
 
 }
@@ -646,9 +653,12 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 		DEVICE->SetIndices(m_pResultScreen->_ib);
 
-		D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+		//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
 		//D3DXMatrixIdentity(&worldMatrix);
-		D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+		//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+		D3DXMatrixIdentity(&projMatrix);
+		D3DXMatrixIdentity(&worldMatrix);
+
 		D3DXMatrixIdentity(&viewMatrix);
 
 
@@ -846,7 +856,8 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 0.25f, 0.5f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.5f,  1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.05f, 0.1f, 0.2f, 1.0f };
-	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 1.0f};//, 1.0f }; 
+	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 1.0f};//, 1.0f }; origin
+	float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.4f, 1.0f };
 	//float cascadedEnds[NUM_CASCADEDES + 1] = { 0.0f, 0.2f };// , 0.1f, 0.15f, 0.2f
 //};//, 0.2f, 1.0f };
 	D3DXVECTOR3 frustumCorners[8] =
@@ -1008,9 +1019,13 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 	D3DXMATRIX projMatrixInv;
 
 	/* Set Matrices */
-	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 100);
-	//D3DXMatrixIdentity(&worldMatrix);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 100);
+	////D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&projMatrix);
+	D3DXMatrixIdentity(&worldMatrix);
+
+	D3DXMatrixIdentity(&viewMatrix);
 	D3DXMatrixIdentity(&viewMatrix);
 
 
@@ -1206,9 +1221,13 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 	D3DXMATRIX projMatrix;
 	
 	/* Set Matrices */
-	D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
-	//D3DXMatrixIdentity(&worldMatrix);
-	D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	////D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	//D3DXMatrixIdentity(&viewMatrix);
+	D3DXMatrixIdentity(&projMatrix);
+	D3DXMatrixIdentity(&worldMatrix);
+
 	D3DXMatrixIdentity(&viewMatrix);
 
 	/* Set Matrix to shader */
@@ -1292,6 +1311,66 @@ void HyEngine::Renderer::LinearFilterPass()
 	}
 	pShader->End();
 	//DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_NONE);
+}
+
+void HyEngine::Renderer::LutFilterPass()
+{
+	if (m_pLutFilterTexture == nullptr)
+		return;
+
+	D3DXMATRIX worldMatrix;
+	D3DXMATRIX viewMatrix;
+	D3DXMATRIX projMatrix;
+
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+
+	//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixIdentity(&projMatrix);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&viewMatrix);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"LUTFilter", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"LUTFilter", &pShader);
+	assert(pShader);
+
+	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
+	pShader->SetValue("ViewMatrix", &viewMatrix, sizeof(viewMatrix));
+	pShader->SetValue("ProjMatrix", &projMatrix, sizeof(projMatrix));
+
+	DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_LINEAR/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
+
+
+	/* Albedo */
+	D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "ScreenTex");
+	pShader->SetTexture(stashHandle, m_pStashRTTexture);
+
+	D3DXHANDLE lutFilterHandle = pShader->GetParameterByName(0, "LutTex");
+	pShader->SetTexture(lutFilterHandle, m_pLutFilterTexture);
+
+
+	pShader->SetTechnique("LutFilter");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+	}
+	pShader->End();
 }
 
 Renderer * HyEngine::Renderer::Create()

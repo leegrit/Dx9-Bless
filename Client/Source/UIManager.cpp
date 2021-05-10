@@ -190,7 +190,24 @@ void UIManager::Initialize()
 	/* For Notify */
 	m_pNotifyUI = NotifyUI::Create(m_pScene, L"NotifyUI");
 
-	/* For Static UI */
+	//////////////////////////////////////////////////////////////////////////
+	// STATIC UI
+	//////////////////////////////////////////////////////////////////////////
+	/* For Opener */
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_53.png", D3DXVECTOR3(-480, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_43.png", D3DXVECTOR3(-480 + 50, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_60.png", D3DXVECTOR3(-480 + 100, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_19.png", D3DXVECTOR3(-480 + 150, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_49.png", D3DXVECTOR3(-480 + 200, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_51.png", D3DXVECTOR3(-480 + 250, 352, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_48.png", D3DXVECTOR3(-480, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_57.png", D3DXVECTOR3(-480 + 50, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_39.png", D3DXVECTOR3(-480 + 100, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_52.png", D3DXVECTOR3(-480 + 150, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_32.png", D3DXVECTOR3(-480 + 200, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIOpener_I3_33.png", D3DXVECTOR3(-480 + 250, 352 - 50, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(35, 35, 1), L"1"));
+	/* For Player HP */
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/ClassMark_0.png", D3DXVECTOR3(0, -312.8, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(80, 80, 1), L"1"));
 	//m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/PortraitCircle/PortraitCircle_0.png", D3DXVECTOR3(0, -291, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(160, 160, 1), L"2"));
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png", D3DXVECTOR3(-258, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"3"));

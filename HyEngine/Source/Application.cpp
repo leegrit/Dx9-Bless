@@ -160,6 +160,12 @@ LRESULT Application::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM 
 		SetCursor(NULL);
 
 		break;*/
+	/*case WM_MOUSEMOVE :
+		POINT	ptMouse = { WinMaxWidth >> 1, WinMaxHeight >> 1 };
+
+		ClientToScreen(g_hWnd, &ptMouse);
+		SetCursorPos(ptMouse.x, ptMouse.y);
+		break;*/
 	}
 	return DefWindowProc(hwnd, umsg, wparam, lparam);
 }

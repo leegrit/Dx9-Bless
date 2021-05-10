@@ -502,6 +502,7 @@
     <FxCompile Include="..\_Shaders\FadeInOut.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />
     <FxCompile Include="..\_Shaders\LinearFilter.fx" />
+    <FxCompile Include="..\_Shaders\LUTFilter.fx" />
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\OcclusionQuery.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />

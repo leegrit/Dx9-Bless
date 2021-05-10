@@ -84,6 +84,8 @@ namespace HyEngine
 		float m_near = 1;
 		float m_far = 2000.f;
 		
+		D3DXVECTOR3 m_at;
+		D3DXVECTOR3 m_eye;
 
 		D3DXMATRIX m_matProj;
 		D3DXMATRIX m_matLongProj;

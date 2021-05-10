@@ -19,9 +19,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 };
 
 

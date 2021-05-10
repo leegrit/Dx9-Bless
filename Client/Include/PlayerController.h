@@ -95,9 +95,12 @@ private : /* For Collect Action */
 	bool m_bCollecting = false;
 	float m_collectBeginElapsed = 0;
 	float m_collectEndElapsed = 0;
-	float m_collectDelay = 0.2f;
+	float m_collectToWeaponDelay = 0.3f;
+	float m_collectDelay = 1.8f;
+	bool m_bWeaponState = false;
+	bool m_bUnWeaponState = false;
 	ECollectMotionType m_collectType;
-	ECollectStep m_collectStep;
+	ECollectStep m_collectStep = ECollectStep::DONE;
 
 	/* For More Animation */
 private :

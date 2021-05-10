@@ -47,7 +47,8 @@ public:
 	/* 임시 무기 위치 찾기 위해 사용 */
 	static char temp[256];
 
-
+	// temp
+	std::vector<IDirect3DTexture9* > lutFilters;
 
 
 	//////////////////////////////////////////////////////////////////////////

@@ -21,6 +21,8 @@ public :
 	void RenderBegin();
 	void RenderEnd();
 
+	HWND GetHWnd();
+
 	void DrawNumber(float drawNumber, float xPos, float yPos, D3DCOLOR textColor = D3DCOLOR_ARGB(255, 0, 255, 0))
 	{
 		TCHAR szBuff[128];

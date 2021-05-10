@@ -50,6 +50,7 @@ namespace HyEngine
 		inline IO::Mouse* GetMouse() const { return m_pMouse; }
 		inline IO::Keyboard* GetKeyboard() const { return m_pKeyboard; }
 		inline Timer* GetTimer() const { return m_pTimer; }
+		Renderer* GetRenderer() const { return m_pRenderer; }
 	public:
 		class Scene* GetActiveScene();
 		void SetGameMode(EGameMode mode);
@@ -132,3 +133,4 @@ namespace HyEngine
 	};
 
 }
+

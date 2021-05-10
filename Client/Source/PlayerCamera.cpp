@@ -30,6 +30,8 @@ void PlayerCamera::Update()
 	if (pScene->GetGameManager()->IsPlayerMovable() == false)
 		return;
 
+	if(ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+		MouseFix();
 	ParamChange();
 	Movement();
 
@@ -44,7 +46,7 @@ void PlayerCamera::Update()
 void PlayerCamera::ParamChange()
 {
 	D3DXVECTOR3 mousePos = MOUSE->GetPosition();
-	D3DXVECTOR3 offset = mousePos - m_mouseCenter;
+	D3DXVECTOR3 offset = mousePos - D3DXVECTOR3(WinMaxWidth* 0.5f, WinMaxHeight* 0.5f, 0);
 
 
 	m_rotDegree -= offset.y * m_rotSpdFactor;
@@ -103,6 +105,21 @@ void PlayerCamera::Movement()
 
 	m_pTransform->SetPosition(invForward + m_pPlayer->m_pTransform->m_position.operator D3DXVECTOR3());
 }
+
+void PlayerCamera::MouseFix()
+{
+	POINT ptMouse = { WinMaxWidth >> 1, WinMaxHeight >> 1 };
+
+	ClientToScreen(DirectXDevice::Get()->GetHWnd(), &ptMouse);
+	SetCursorPos(ptMouse.x, ptMouse.y);
+}
+//
+//void PlayerCamera::MouseMove()
+//{
+//	D3DXVECTOR3 mousePos = MOUSE->GetPosition();
+//	D3DXVECTOR3 howMove = D3DXVECTOR3(WinMaxWidth * 0.5f, WinMaxHeight* 0.)
+//
+//}
 
 PlayerCamera * PlayerCamera::Create(Scene * scene, GameObject * player, wstring name)
 {

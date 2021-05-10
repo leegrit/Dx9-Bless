@@ -62,6 +62,8 @@ void HyEngine::Camera::SetViewMatrix(const D3DXVECTOR3 & target)
 		&target,
 		&Vector3::Up
 	);
+	m_eye = m_pTransform->m_position.operator D3DXVECTOR3();
+	m_at = target;
 	//D3DXMATRIX mat;
 	//D3DXMatrixLookAtLH
 	//(
@@ -81,6 +83,8 @@ void HyEngine::Camera::SetViewMatrix(const D3DXVECTOR3 & eye, const D3DXVECTOR3 
 		&target,
 		&Vector3::Up
 	);
+	m_eye = eye;
+	m_at = target;
 }
 
 float HyEngine::Camera::GetNear() const
