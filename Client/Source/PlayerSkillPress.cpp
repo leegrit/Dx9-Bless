@@ -6,6 +6,7 @@
 #include "EffectManager.h"
 #include "PathManager.h"
 #include "Effect.h"
+#include "SoundManager.h"
 
 PlayerSkillPress::PlayerSkillPress(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerNormalAttack")
@@ -74,6 +75,11 @@ void PlayerSkillPress::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 0:
 		if (elapsed >= 0.3f)
 		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerSkillPress", L"Lups_5Space.mp3", desc);
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);

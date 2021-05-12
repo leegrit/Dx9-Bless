@@ -45,6 +45,7 @@ void TitleScene::Load()
 
 void TitleScene::Unload()
 {
+	SOUND->StopAll();
 }
 
 void TitleScene::LoadAsync(std::function<void(int, int)> onProgress)

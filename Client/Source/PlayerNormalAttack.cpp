@@ -6,6 +6,7 @@
 #include "EffectManager.h"
 #include "PathManager.h"
 #include "Effect.h"
+#include "SoundManager.h"
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update , pPlayer, pPlayerController, L"PlayerNormalAttack")
 {
@@ -140,6 +141,11 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 0:
 		if (elapsed >= 0.3f)
 		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerNormalAttack_First", L"Lups_SwordThrowing5.mp3", desc);
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -163,6 +169,11 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 1:
 		if (elapsed >= 0.3f)
 		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerNormalAttack_Second", L"Lups_SwordThrowing6.mp3", desc);
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -185,6 +196,11 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 2:
 		if (elapsed >= 0.3f)
 		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerNormalAttack_Third", L"Lups_SwordThrowing0.mp3", desc);
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);

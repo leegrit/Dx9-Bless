@@ -6,6 +6,7 @@
 #include "EffectManager.h"
 #include "PathManager.h"
 #include "Effect.h"
+#include "SoundManager.h"
 
 PlayerSkillShield::PlayerSkillShield(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillShield")
@@ -85,6 +86,11 @@ void PlayerSkillShield::OnActionTimeElapsed(int seqIndex, float elapsed)
 			//	std::cout << "Do First" << std::endl;
 			//	CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			//}
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerSkillShield",L"Lups_Guard.mp3",  desc);
 			m_bSendDamage = true;
 		}
 		break;
