@@ -8,7 +8,7 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR
 		//////////////////////////////////////////////////////////////////////////
-	private :
+	protected :
 		explicit MeshEffect(Scene* scene, int editID);
 		explicit MeshEffect(Scene* scene);
 		virtual ~MeshEffect();
@@ -36,7 +36,18 @@ namespace HyEngine
 	public: /* Resource */
 		void SetDiffuseTexture(std::wstring path);
 		void SetAlphaMaskTexture(std::wstring path);
+		void SetNormalMapTexture(std::wstring path);
 		void SetEffectMesh(std::wstring path);
+
+		//////////////////////////////////////////////////////////////////////////
+		// GETTER
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		ID3DXMesh* GetMesh() const;
+		IDirect3DTexture9* GetDiffuseTexture() const;
+		IDirect3DTexture9* GetNormalTexture() const;
+		IDirect3DTexture9* GetAlphaMaskTexture() const;
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
@@ -44,6 +55,7 @@ namespace HyEngine
 	private :
 		ID3DXMesh* m_pMesh = nullptr;
 		IDirect3DTexture9 * m_pDiffuseMap = nullptr;
+		IDirect3DTexture9 * m_pNormalMap = nullptr;
 		IDirect3DTexture9 * m_pAlphaMask = nullptr;
 
 	private : /* For mesh */

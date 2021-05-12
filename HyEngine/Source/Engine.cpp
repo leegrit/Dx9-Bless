@@ -431,6 +431,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"TargetingUI", PATH->ShadersPathW() + L"TargetingUI.fx");
 	InsertShader(L"LUTFilter", PATH->ShadersPathW() + L"LUTFilter.fx");
 	InsertShader(L"DeferredBlend", PATH->ShadersPathW() + L"DeferredBlend.fx");
+	InsertShader(L"ShieldEffect", PATH->ShadersPathW() + L"ShieldEffect.fx");
 	return true;
 }
 

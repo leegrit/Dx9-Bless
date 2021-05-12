@@ -1210,6 +1210,9 @@
     <FxCompile Include="..\_Shaders\DeferredBlend.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\ShieldEffect.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">

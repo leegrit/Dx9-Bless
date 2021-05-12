@@ -66,7 +66,19 @@ void HyEngine::TextureEffect::Render()
 	D3DXHANDLE alphaHandle = pShader->GetParameterByName(0, "AlphaMaskTex");
 	pShader->SetTexture(alphaHandle, m_pAlphaMask);
 
-	pShader->SetTechnique("TextureEffect");
+	pShader->SetValue("UVMoveFactor", &GetUVOffset(), sizeof(GetUVOffset()));
+
+	pShader->SetFloat("Alpha", GetAlpha());
+
+	if (m_pAlphaMask)
+	{
+	
+		pShader->SetTechnique("TextureEffectWithAlphaMask");
+	}
+	else
+	{
+		pShader->SetTechnique("TextureEffect");
+	}
 	pShader->Begin(0, 0);
 	{
 		pShader->BeginPass(0);

@@ -67,6 +67,7 @@ public:
 
 public :
 	Effect* AddEffect(std::wstring key, MeshEffectDesc desc);
+	Effect* AddEffect(std::wstring, Effect* pEffect);
 	Effect* GetEffect(std::wstring key);
 
 	void PlayEffect(std::wstring key);

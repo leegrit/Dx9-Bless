@@ -44,6 +44,7 @@ void Player::Initialize(std::wstring dataPath)
 	AddComponent(m_pPlayerController);
 	AddComponent(PlayerNormalAttack::Create(this, m_pPlayerController));
 	AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillPress::Create(this, m_pPlayerController));
 	AddComponent(PlayerSkillShield::Create(this, m_pPlayerController));
 	AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController));
 	AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));

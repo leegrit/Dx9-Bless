@@ -18,9 +18,9 @@ HyEngine::MeshEffect::MeshEffect(Scene * scene)
 
 HyEngine::MeshEffect::~MeshEffect()
 {
-	SAFE_RELEASE(m_pMesh);
+	/*SAFE_RELEASE(m_pMesh);
 	SAFE_RELEASE(m_pDiffuseMap);
-	SAFE_RELEASE(m_pAlphaMask);
+	SAFE_RELEASE(m_pAlphaMask);*/
 
 }
 
@@ -188,6 +188,14 @@ void HyEngine::MeshEffect::SetAlphaMaskTexture(std::wstring path)
 		m_pAlphaMask = tempAlphaMask;
 }
 
+void HyEngine::MeshEffect::SetNormalMapTexture(std::wstring path)
+{
+	/* Diffuse Load */
+	IDirect3DTexture9 * tempDiffuse = (IDirect3DTexture9 *)TextureLoader::GetTexture(path);
+	if (tempDiffuse != nullptr)
+		m_pNormalMap = tempDiffuse;
+}
+
 void HyEngine::MeshEffect::SetEffectMesh(std::wstring path)
 {
 	/* MeshLoad */
@@ -237,6 +245,26 @@ void HyEngine::MeshEffect::SetEffectMesh(std::wstring path)
 		//assert(SUCCEEDED(hr));
 
 	}
+}
+
+ID3DXMesh * HyEngine::MeshEffect::GetMesh() const
+{
+	return m_pMesh;
+}
+
+IDirect3DTexture9 * HyEngine::MeshEffect::GetDiffuseTexture() const
+{
+	return m_pDiffuseMap;
+}
+
+IDirect3DTexture9 * HyEngine::MeshEffect::GetNormalTexture() const
+{
+	return m_pNormalMap;
+}
+
+IDirect3DTexture9 * HyEngine::MeshEffect::GetAlphaMaskTexture() const
+{
+	return m_pAlphaMask;
 }
 
 MeshEffect * HyEngine::MeshEffect::Create(Scene * scene)

@@ -136,10 +136,11 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
 	//////////////////////////////////////////////////////////////////////////
-	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger21", L"Sword");
+	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger22" /*L"Bip01-R-Finger21"*/, L"Sword");
 	m_pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 
 	auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
+	//auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Finger31", L"SLD");
 	//equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 
 	//////////////////////////////////////////////////////////////////////////

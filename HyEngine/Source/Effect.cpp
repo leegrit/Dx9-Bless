@@ -9,6 +9,8 @@ HyEngine::Effect::Effect(Scene * scene, std::wstring name, int editID)
 	m_endPos(0, 0, 0),
 	m_startRot(0, 0, 0),
 	m_endRot(0, 0, 0),
+	m_startScale(0, 0, 0),
+	m_endScale(0, 0, 0),
 	m_fadeIn (false),
 	m_fadeOut(false),
 	m_lifeTime(0),
@@ -30,6 +32,8 @@ HyEngine::Effect::Effect(Scene * scene, std::wstring name)
 	m_endPos(0, 0, 0),
 	m_startRot(0, 0, 0),
 	m_endRot(0, 0, 0),
+	m_startScale(0, 0, 0),
+	m_endScale(0, 0, 0),
 	m_fadeIn(false),
 	m_fadeOut(false),
 	m_lifeTime(0),
@@ -68,7 +72,7 @@ void HyEngine::Effect::OnDisable()
 void HyEngine::Effect::Update()
 {
 	GameObject::Update();
-
+	 
 	if (IS_EDITOR)
 	{
 		m_curLifeTime += EDIT_TIMER->getDeltaTime();

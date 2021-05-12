@@ -5,7 +5,7 @@ namespace HyEngine
 {
 	class Effect;
 }
-
+class ShieldEffect;
 class PlayerController;
 class PlayerSkillShield final :public PlayerAction
 {
@@ -50,6 +50,10 @@ private:
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
 
+private : /* Shield Effect */
+	ShieldEffect* m_pCenterSLD = nullptr;
+	ShieldEffect* m_pLeftSLD = nullptr;
+	ShieldEffect* m_pRightSLD = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

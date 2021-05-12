@@ -168,6 +168,7 @@
     <ClCompile Include="..\Source\PlayerSkillTornado.cpp" />
     <ClCompile Include="..\Source\PlayerSkillUpper.cpp" />
     <ClCompile Include="..\Source\PlayerStatusData.cpp" />
+    <ClCompile Include="..\Source\ShieldEffect.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
     <ClCompile Include="..\Source\ShopUI.cpp" />
     <ClCompile Include="..\Source\Hieracon_Cora.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="..\Include\PlayerSkillTornado.h" />
     <ClInclude Include="..\Include\PlayerSkillUpper.h" />
     <ClInclude Include="..\Include\PlayerStatusData.h" />
+    <ClInclude Include="..\Include\ShieldEffect.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />
     <ClInclude Include="..\Include\ShopUI.h" />
     <ClInclude Include="..\Include\Hieracon_Cora.h" />

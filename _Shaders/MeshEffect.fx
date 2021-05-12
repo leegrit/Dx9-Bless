@@ -12,6 +12,8 @@ sampler AlbedoSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
 	AddressU = Border;
 	AddressV = Border;
 };
@@ -36,6 +38,8 @@ sampler AlphaMaskSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
 	AddressU = Border;
 	AddressV = Border;
 };

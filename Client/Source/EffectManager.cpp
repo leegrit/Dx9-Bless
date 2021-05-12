@@ -56,6 +56,13 @@ Effect* EffectManager::AddEffect(std::wstring key, MeshEffectDesc desc)
 	return pMeshEffect;
 }
 
+Effect * EffectManager::AddEffect(std::wstring key, Effect * pEffect)
+{
+	m_effects.insert(std::make_pair(key, pEffect));
+
+	return pEffect;
+}
+
 Effect * EffectManager::GetEffect(std::wstring key)
 {
 	return m_effects[key];
