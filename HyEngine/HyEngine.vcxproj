@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>Bin\Debug\x64</OutDir>
-    <IncludePath>..\_Libraries\Jsoncpp\Include\;..\_Libraries\DirectXSDK\Include;$(VC_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\_Libraries\DirectXSDK\Lib\x64\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <IncludePath>..\_Libraries\x64\Debug\fmod\Include\;..\_Libraries\Jsoncpp\Include\;..\_Libraries\DirectXSDK\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>..\_Libraries\x64\Debug\fmod\\Lib\;..\_Libraries\DirectXSDK\Lib\x64\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64)</ExcludePath>
     <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH)</ExecutablePath>
   </PropertyGroup>
@@ -301,6 +301,7 @@
     <ClInclude Include="Include\Shape.h" />
     <ClInclude Include="Include\Singleton.h" />
     <ClInclude Include="Include\Skybox.h" />
+    <ClInclude Include="Include\SoundManager.h" />
     <ClInclude Include="Include\SphereCollider.h" />
     <ClInclude Include="Include\StandardEngineFramework.h" />
     <ClInclude Include="Include\Log.h" />
@@ -465,6 +466,7 @@
     <ClCompile Include="Source\ShadedMeshObject.cpp" />
     <ClCompile Include="Source\Shape.cpp" />
     <ClCompile Include="Source\Skybox.cpp" />
+    <ClCompile Include="Source\SoundManager.cpp" />
     <ClCompile Include="Source\StateMachine.cpp" />
     <ClCompile Include="Source\StaticMesh.cpp" />
     <ClCompile Include="Source\StaticMeshGroup.cpp" />
@@ -497,6 +499,7 @@
     <FxCompile Include="..\_Shaders\Blur.fx" />
     <FxCompile Include="..\_Shaders\Collider.fx" />
     <FxCompile Include="..\_Shaders\DefaultShadowMap.fx" />
+    <FxCompile Include="..\_Shaders\DeferredBlend.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
     <FxCompile Include="..\_Shaders\FadeInOut.fx" />

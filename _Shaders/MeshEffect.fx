@@ -12,6 +12,8 @@ sampler AlbedoSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
+	AddressU = Border;
+	AddressV = Border;
 };
 texture NormalTex;
 sampler NormalSampler = sampler_state
@@ -22,6 +24,8 @@ sampler NormalSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
+	AddressU = Border;
+	AddressV = Border;
 };
 texture AlphaMaskTex;
 sampler AlphaMaskSampler = sampler_state
@@ -32,9 +36,12 @@ sampler AlphaMaskSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
+	AddressU = Border;
+	AddressV = Border;
 };
 
 float Alpha;
+float2 UVMoveFactor;
 
 void MeshEffectVS(
 	float4 position : POSITION,
@@ -69,10 +76,12 @@ void MeshEffectWithAlphaMaskPS(
 	out float4 outColor : COLOR0
 )
 {
-	float4 albedo = tex2D(AlbedoSampler, texcoord);
-	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord);
-
-	outColor = albedo * alphaMask * Alpha;
+	float2 texcoord2 = texcoord;
+	texcoord2 += UVMoveFactor;
+	float4 albedo = tex2D(AlbedoSampler, texcoord2);
+	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord2);
+	//float alphaMaskAlpha = saturate( alphaMask.r + alphaMask.g + alphaMask.b);
+	outColor = albedo * alphaMask.r * Alpha;
 	// test
 	//outColor = albedo * Alpha;
 }
@@ -82,7 +91,7 @@ technique MeshEffect
 	pass P0
 	{
 		ZEnable = true;
-		CULLMODE = CCW;
+		CULLMODE = NONE;
 		LightEnable[0] = FALSE;
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;
@@ -96,7 +105,7 @@ technique MeshEffectWithAlphaMask
 	pass P0
 	{
 		ZEnable = true;
-		CULLMODE = CCW;
+		CULLMODE = NONE;
 		LightEnable[0] = FALSE;
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;

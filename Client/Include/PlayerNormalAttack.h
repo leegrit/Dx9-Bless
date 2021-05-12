@@ -1,6 +1,10 @@
 #pragma once
 #include "PlayerAction.h"
 
+namespace HyEngine
+{
+	class Effect;
+}
 
 class PlayerController;
 class PlayerNormalAttack final : public PlayerAction
@@ -45,6 +49,11 @@ private :
 	/* For Attack Logic */
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
+
+private : /* Effect */
+	Effect * m_pSwordTrail = nullptr;
+	Effect* m_pSwordTrail_Second = nullptr;
+	Effect* m_pSwordTrail_Third = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

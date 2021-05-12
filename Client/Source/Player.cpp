@@ -9,6 +9,14 @@
 #include "ProgressBar.h"
 #include "Client_Events.h"
 #include "PathManager.h"
+#include "PlayerSkillBuff.h"
+#include "PlayerSkillPress.h"
+#include "PlayerSkillShield.h"
+#include "PlayerSkillSwing.h"
+#include "PlayerSkillSwingDown.h"
+#include "PlayerSkillTornado.h"
+#include "PlayerSkillUpper.h"
+
 
 Player::Player(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8, ESkinningType::HardwareSkinning)
@@ -35,6 +43,14 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerController = PlayerController::Create(this);
 	AddComponent(m_pPlayerController);
 	AddComponent(PlayerNormalAttack::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillShield::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillTornado::Create(this, m_pPlayerController));
+	AddComponent(PlayerSkillUpper::Create(this, m_pPlayerController));
+
+
 
 	m_pPlayerUW = DynamicMesh::Create(GetScene(), nullptr, L"Player", PATH->DatasPathW() + L"HierarchyData/PlayerUnWeapon.json", GetSkinningType());
 	m_pPlayerUW->SetActive(false);
@@ -44,6 +60,8 @@ void Player::Initialize(std::wstring dataPath)
 
 	m_pPlayerController->SetUnWeaponMesh(m_pPlayerUW);
 	m_pPlayerController->SetHorse(m_pPegasus);
+
+
 }
 
 Player * Player::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)

@@ -96,6 +96,7 @@ sampler SpecularSampler = sampler_state
     AddressV = wrap;*/
 };
 
+
 /* For Cascade ShadowMapping */
 texture ShadowDepthTex0;
 sampler ShadowDepthSampler0 = sampler_state
@@ -130,9 +131,6 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
-	MinFilter = LINEAR;
-	MagFilter = LINEAR;
-	MipFilter = LINEAR;
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 };
@@ -164,7 +162,7 @@ PixelInputType DirectionalLightVS(VertexInputType input)
 	return output;
 }
 
-float4 DirectionalLightPS(PixelInputType input) : COLOR0
+float4 DirectionalLightPS(float2 texcoord : TEXCOORD0) : COLOR0
 {
 	/*테스트*/
 	//-----------------------------------------------
@@ -172,22 +170,22 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 	//return softShadowMap;
 
 	//-----------------------------------------------
-	float4 depthMap = tex2D(DepthSampler, input.texcoord);
-	float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
-	float4 normalMap = tex2D(NormalSampler, input.texcoord);
-	float4 specularMap = tex2D(SpecularSampler, input.texcoord);
-	float4 stashMap = tex2D(StashSampler, input.texcoord);
+	float4 depthMap = tex2D(DepthSampler, texcoord);
+	//float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
+	float4 normalMap = tex2D(NormalSampler, texcoord);
+	float4 specularMap = tex2D(SpecularSampler, texcoord);
+	float4 stashMap = tex2D(StashSampler, texcoord);
 
 	/* Skybox */
 	//if (specularMap.a <= 0.0001)
 	//	return albedoMap;
 
-	float shadowFactor  = tex2D(SoftShadowSampler, input.texcoord).a;
+	float shadowFactor  = tex2D(SoftShadowSampler, texcoord).r;
 
 	/* Calculate world position */
 	float4 worldPos;
-	worldPos.x = input.texcoord.x * 2.f - 1.f;
-	worldPos.y = input.texcoord.y * -2.f + 1.f;
+	worldPos.x = texcoord.x * 2.f - 1.f;
+	worldPos.y = texcoord.y * -2.f + 1.f;
 	worldPos.z = depthMap.a;
 	worldPos.w = 1;
 
@@ -205,10 +203,17 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 
 	/* depthMap.rgb is emissive */
 	float3 emissive = depthMap.rgb;
-	float3 ambient = albedoMap.rgb * Ambient.rgb;
-	finalColor += lightIntensity * shadowFactor * albedoMap.rgb * Diffuse.rgb + ambient + emissive;
+	float3 ambient =  Ambient.rgb;
+	finalColor += lightIntensity * shadowFactor * Diffuse.rgb;// + ambient + emissive;
 
-	
+	// 림라이트 그냥 적용 잘 되는지 테스트용
+	// 잘 된다.
+	/* Rim Light Test */
+	/*
+	float rimWidth = 1;
+	float3 toCamPos = normalize(EyePosition - worldPos);
+	float rimLightColor = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(normal, toCamPos)));
+	*/
 
 	/* Calculate Specular */
 	float3 specular = float3(0, 0, 0); 
@@ -225,12 +230,14 @@ float4 DirectionalLightPS(PixelInputType input) : COLOR0
 		else
 			specular = float4(0, 0, 0, 0);//specular * shadowFactor * specularMap.rgb;
 	}
-	finalColor = saturate(finalColor + specular.rgb);
-
+	finalColor = saturate(finalColor);/// +specular.rgb);
+	finalColor.g = ambient.r;
+	finalColor.b = specular.r;
+	//finalColor.a = rimLightColor;
 	return float4(finalColor.rgb, 1);
 	// depth rgb is emissive color
 	//return float4(finalColor.rgb + stashMap.rgb, 1) ;//+ float4(depthMap.rgb, 1);
-
+	//return float4(finalColor.rgb, 1);
 }
 
 
@@ -239,9 +246,10 @@ technique DirectionalLight
 	pass P0
 	{
 		ZEnable = false;
-		/*AlphaBlendEnable = true;
-		SrcBlend = SRCCOLOR;
-		DestBlend = DestColor;*/
+		AlphaBlendEnable = true;
+		BlendOp = ADD;
+		SrcBlend = ONE;
+		DestBlend = ONE;
 		VertexShader = compile vs_3_0 DirectionalLightVS();
 		PixelShader = compile ps_3_0 DirectionalLightPS();
 	}

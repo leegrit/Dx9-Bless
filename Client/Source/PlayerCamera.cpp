@@ -24,13 +24,13 @@ void PlayerCamera::Initialize()
 
 void PlayerCamera::Update()
 {
-	Camera::Update();
+	
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	if (pScene->GetGameManager()->IsPlayerMovable() == false)
 		return;
 
-	if(ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
 		MouseFix();
 	ParamChange();
 	Movement();
@@ -39,15 +39,17 @@ void PlayerCamera::Update()
 	//SetProjectionMatrix(D3DXToRadian(45.f), WinMaxWidth / WinMaxHeight, 0.01, 15);
 	SetProjectionMatrix(D3DXToRadian(60), WinMaxWidth / WinMaxHeight, 1, 700);
 
-	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 	
+	Camera::Update();
+	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
 }
 
 void PlayerCamera::ParamChange()
 {
 	D3DXVECTOR3 mousePos = MOUSE->GetPosition();
+	//D3DXVECTOR3 offset = mousePos - m_mouseCenter;//D3DXVECTOR3(WinMaxWidth* 0.5f, WinMaxHeight* 0.5f, 0);
 	D3DXVECTOR3 offset = mousePos - D3DXVECTOR3(WinMaxWidth* 0.5f, WinMaxHeight* 0.5f, 0);
-
 
 	m_rotDegree -= offset.y * m_rotSpdFactor;
 	if (m_rotDegree >= m_rotDegreeMax)
@@ -109,7 +111,8 @@ void PlayerCamera::Movement()
 void PlayerCamera::MouseFix()
 {
 	POINT ptMouse = { WinMaxWidth >> 1, WinMaxHeight >> 1 };
-
+	RECT rt;
+	GetClientRect(DirectXDevice::Get()->GetHWnd(), &rt);
 	ClientToScreen(DirectXDevice::Get()->GetHWnd(), &ptMouse);
 	SetCursorPos(ptMouse.x, ptMouse.y);
 }

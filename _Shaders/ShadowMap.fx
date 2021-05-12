@@ -77,7 +77,7 @@ technique ShadowMap
 {
 	pass P0
 	{
-		CULLMODE = CCW;
+		CULLMODE = NONE;
 		VertexShader = compile vs_3_0 ShadowMapVS();
 		PixelShader = compile ps_3_0 ShadowMapPS();
 	}

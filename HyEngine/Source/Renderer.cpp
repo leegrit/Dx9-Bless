@@ -18,7 +18,7 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A32B32G32R32F,
 		D3DPOOL_DEFAULT,
@@ -30,9 +30,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
 		&m_pAlbedoRTTexture
 	);
@@ -43,9 +43,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
 		&m_pNormalRTTexture
 	);
@@ -56,9 +56,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
 		&m_pSpecularRTTexture
 	);
@@ -71,9 +71,9 @@ void HyEngine::Renderer::Setup()
 			DEVICE,
 			WinMaxWidth,
 			WinMaxHeight,
-			1,
+			0,
 			D3DUSAGE_RENDERTARGET,
-			D3DFMT_A8,
+			D3DFMT_R16F,
 			D3DPOOL_DEFAULT,
 			&m_pShadowRTTexture[i]
 		);
@@ -86,9 +86,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8,
+		D3DFMT_R16F,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowOriginRTTexture
 	);
@@ -99,9 +99,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8,
+		D3DFMT_R16F,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowBlurXRTTexture
 	);
@@ -112,9 +112,9 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8,
+		D3DFMT_R16F,
 		D3DPOOL_DEFAULT,
 		&m_pSoftShadowRTTexture
 	);
@@ -125,9 +125,22 @@ void HyEngine::Renderer::Setup()
 		DEVICE,
 		WinMaxWidth,
 		WinMaxHeight,
-		1,
+		0,
 		D3DUSAGE_RENDERTARGET,
-		D3DFMT_A8R8G8B8,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pLightRTTexture
+	);
+	m_pLightRTTexture->GetSurfaceLevel(0, &m_pLightRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
 		&m_pStashRTTexture
 	);
@@ -237,6 +250,11 @@ void HyEngine::Renderer::ClearBackBuffer()
 void HyEngine::Renderer::ClearStashSurface()
 {
 	DEVICE->ColorFill(m_pStashRTSurface, NULL, 0x00000000);
+}
+
+void HyEngine::Renderer::ClearLightSurface()
+{
+	DEVICE->ColorFill(m_pLightRTSurface, NULL, 0x00000000);
 }
 
 void HyEngine::Renderer::OcclusionCull(Scene* scene)
@@ -423,7 +441,9 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	SetSoftShadowMRT();
 	SoftShadowBlurPass(scene);
 
-	SetOriginMRT();
+	//SetOriginMRT();
+	SetLightMRT();
+	ClearLightSurface();
 	ClearStashSurface();
 	
 	/* Ambient Pass */
@@ -432,7 +452,11 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	/* Render For Backbuffer */
 	LightPass(scene);
 
-	LutFilterPass();
+	//LutFilterPass();
+
+	SetOriginMRT();
+	BlendPass();
+
 	//LinearFilterPass();
 
 }
@@ -521,6 +545,14 @@ void HyEngine::Renderer::SetSoftShadowBlurXMRT()
 void HyEngine::Renderer::SetSoftShadowMRT()
 {
 	DEVICE->SetRenderTarget(0, m_pSoftShadowRTSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetLightMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pLightRTSurface);
 	DEVICE->SetRenderTarget(1, NULL);
 	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
@@ -764,8 +796,8 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		pShader->SetTexture(softShadowHandler, m_pSoftShadowRTTexture);
 		
 
-		//D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
-		//pShader->SetTexture(stashHandle, m_pStashRTTexture);
+		D3DXHANDLE stashHandle = pShader->GetParameterByName(0, "StashTex");
+		pShader->SetTexture(stashHandle, m_pStashRTTexture);
 
 		pShader->SetValue("EyePosition", &selectedCam->GetPosition(), sizeof(selectedCam->GetPosition()));
 		pShader->SetValue("Direction", &light->Direction(), sizeof(light->Direction()));
@@ -807,7 +839,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 			pShader->EndPass();
 		}
 		pShader->End();
-		//DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface,NULL, D3DTEXF_NONE/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
+		//DEVICE->StretchRect(m_pLightRTSurface, NULL, m_pStashRTSurface,NULL, D3DTEXF_NONE/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
 	}
 }
 
@@ -930,7 +962,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 	// frustum 중심에서 light 반대방향으로 min.z만큼 이동
 	D3DXVECTOR3 normalizedDirection;
 	D3DXVec3Normalize(&normalizedDirection, &directionalLight->Direction());
-	D3DXVECTOR3 shadowCameraPos = frustumCenter - normalizedDirection * std::fabs(mins.z);
+	D3DXVECTOR3 shadowCameraPos = frustumCenter - normalizedDirection * std::fabs(700/*mins.z*/);
 
 	D3DXMATRIX lightViewMatrix;
 	D3DXMATRIX lightProjMatrix;
@@ -941,7 +973,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		&frustumCenter,
 		&Vector3::Up);
 
-	D3DXMatrixOrthoOffCenterLH(&lightProjMatrix, mins.x, maxes.x, mins.y, maxes.y, 0, maxRadius + maxRadius);
+	D3DXMatrixOrthoOffCenterLH(&lightProjMatrix, mins.x, maxes.x, mins.y, maxes.y, 0, 1500/*maxRadius + maxRadius*/);
 
 
 	m_lightViewMat[cascadeIndex] = lightViewMatrix;
@@ -1356,6 +1388,77 @@ void HyEngine::Renderer::LutFilterPass()
 
 
 	pShader->SetTechnique("LutFilter");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+	}
+	pShader->End();
+}
+
+void HyEngine::Renderer::BlendPass()
+{
+	
+
+	D3DXMATRIX worldMatrix;
+	D3DXMATRIX viewMatrix;
+	D3DXMATRIX projMatrix;
+
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+
+	//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
+	D3DXMatrixIdentity(&projMatrix);
+	D3DXMatrixIdentity(&worldMatrix);
+	//D3DXMatrixScaling(&worldMatrix, WinMaxWidth, WinMaxHeight, 1);
+	D3DXMatrixIdentity(&viewMatrix);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"DeferredBlend", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"DeferredBlend", &pShader);
+	assert(pShader);
+
+	pShader->SetValue("WorldMatrix", &worldMatrix, sizeof(worldMatrix));
+	pShader->SetValue("ViewMatrix", &viewMatrix, sizeof(viewMatrix));
+	pShader->SetValue("ProjMatrix", &projMatrix, sizeof(projMatrix));
+
+	DEVICE->StretchRect(m_pOriginSurface, NULL, m_pStashRTSurface, NULL, D3DTEXF_LINEAR/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
+
+
+	/* Albedo */
+	D3DXHANDLE albedoHandle = pShader->GetParameterByName(0, "AlbedoTex");
+	pShader->SetTexture(albedoHandle, m_pAlbedoRTTexture);
+
+	/* Light */
+	D3DXHANDLE lightHandle = pShader->GetParameterByName(0, "LightTex");
+	pShader->SetTexture(lightHandle, m_pLightRTTexture);
+
+	D3DXHANDLE lutFilterHandle = pShader->GetParameterByName(0, "LutTex");
+	pShader->SetTexture(lutFilterHandle, m_pLutFilterTexture);
+
+
+	if (m_pLutFilterTexture)
+	{
+		pShader->SetTechnique("DeferredBlendWithLUTFilter");
+	}
+	else
+	{
+		pShader->SetTechnique("DeferredBlend");
+	}
+	
 	pShader->Begin(0, 0);
 	{
 		pShader->BeginPass(0);

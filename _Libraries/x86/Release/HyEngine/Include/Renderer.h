@@ -31,6 +31,7 @@ namespace HyEngine
 		void Cleanup();
 		void ClearBackBuffer();
 		void ClearStashSurface();
+		void ClearLightSurface();
 		
 	public : /* For Occlusion Query */
 		void OcclusionCull(Scene* scene);
@@ -71,6 +72,7 @@ namespace HyEngine
 		void SetSoftShadowOriginMRT();
 		void SetSoftShadowBlurXMRT();
 		void SetSoftShadowMRT();
+		void SetLightMRT(); // ¿Ωøµ ∑ª¥ı≈∏±Í
 
 	private :
 		void GeometryPass(Scene* scene);
@@ -81,7 +83,7 @@ namespace HyEngine
 		void SoftShadowBlurPass(Scene* scene);
 		void LinearFilterPass();
 		void LutFilterPass();
-
+		void BlendPass(); // √÷¡æ «’ªÍ pass
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
@@ -131,6 +133,10 @@ namespace HyEngine
 		/* SoftShadow result map */
 		IDirect3DTexture9 * m_pSoftShadowRTTexture = nullptr;
 		IDirect3DSurface9 * m_pSoftShadowRTSurface = nullptr;
+
+	private: /* For Light Map */
+		IDirect3DTexture9* m_pLightRTTexture = nullptr;
+		IDirect3DSurface9* m_pLightRTSurface = nullptr;
 
 	private: /* For Stash */
 		IDirect3DTexture9 * m_pStashRTTexture = nullptr;

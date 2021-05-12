@@ -10,6 +10,7 @@ class QuestManager;
 class NPCInteractManager;
 class BattleManager;
 class InteractManager;
+class EffectManager;
 class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -46,7 +47,7 @@ public :
 	class InventoryData* GetInventoryData();
 	class PlayerEquipData* GetPlayerEquipData();
 	class PlayerStatusData* GetPlayerStatusData();
-
+	
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER FOR MANAGER
@@ -58,7 +59,7 @@ public:
 	NPCInteractManager* GetNPCInteractManager();
 	BattleManager* GetBattleManager();
 	InteractManager* GetInteractManager();
-
+	EffectManager* GetEffectManager();
 
 	/* TEMP */
 public :
@@ -97,6 +98,6 @@ private : /* For Manager */
 	NPCInteractManager* m_pNPCInteractManager = nullptr;
 	BattleManager* m_pBattleManager = nullptr;
 	InteractManager* m_pInteractManager = nullptr;
-
+	EffectManager* m_pEffectManager = nullptr;
 };
 

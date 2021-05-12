@@ -49,6 +49,14 @@
 #include "imgui_internal.h"
 #include "imgui_impl_dx9.h"
 #include "imgui_impl_win32.h"
+
+/* FMOD */
+#include <io.h>
+#include "fmod.h"
+#include <fmod.hpp>
+#include <fmod_errors.h>
+#pragma comment(lib, "fmodex_vc.lib")
+#pragma comment(lib, "fmodex64_vc.lib")
 //#pragma comment(lib, "ImGui.lib")
 
 // #include <Jsoncpp/Include/json.h>

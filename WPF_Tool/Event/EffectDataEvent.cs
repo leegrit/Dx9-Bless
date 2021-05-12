@@ -235,7 +235,24 @@ namespace WPF_Tool
 
             Externs.InsertEffectData(ref selectedHierarchy.effectData);
         }
+        private void UVSpeed_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Select해서 변경된 내용은 c++로 전달하지않는다.
+            if (isSelecting)
+                return;
+            if (!bWindowInit)
+                return;
+            ValueChangeEvent();
+            TextBox item = sender as TextBox;
+            float result;
+            bool isSucceeded = float.TryParse(item.Text, out result);
 
+            if (isSucceeded == false) return;
+
+            selectedHierarchy.effectData.uvMoveSpeed = result;
+
+            Externs.InsertEffectData(ref selectedHierarchy.effectData);
+        }
         private void EffectLifeTime_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Select해서 변경된 내용은 c++로 전달하지않는다.

@@ -47,6 +47,7 @@ void HyEngine::Scene::UnloadScene()
 
 void HyEngine::Scene::UpdateScene()
 {
+
 	if (IS_EDITOR)
 	{
 		/* 해당 로직은 EDITOR에서만 사용된다. */
@@ -93,7 +94,9 @@ void HyEngine::Scene::UpdateScene()
 	{
 		if (invisible->GetActive() == true &&
 			invisible->m_bWantsDestroy == false)
+		{
 			invisible->Update();
+		}
 	}
 
 	if (m_pSkybox != nullptr)
@@ -227,10 +230,10 @@ void HyEngine::Scene::ViewFrustumCull()
 	(
 		m_pObjectContainer->GetDynamicMeshAll()
 	);
-	m_pSelectedCamera->ViewFrustumCulling
+	/*m_pSelectedCamera->ViewFrustumCulling
 	(
 		m_pObjectContainer->GetAlphaObjectAll()
-	);
+	);*/
 	m_pSelectedCamera->ViewFrustumCulling
 	(
 		m_pObjectContainer->GetLightAll()

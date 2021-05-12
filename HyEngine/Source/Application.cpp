@@ -60,46 +60,51 @@ void Application::Run()
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		if (KEYBOARD->Up(VK_ESCAPE))
+		else
 		{
+
+			if (KEYBOARD->Up(VK_ESCAPE))
+			{
+				{
+					m_bAppWantsExit = true;
+				}
+			}
+
+			if (msg.message == WM_QUIT/* && !ENGINE->IsLoading()*/)
 			{
 				m_bAppWantsExit = true;
 			}
-		}
 
-		if (msg.message == WM_QUIT/* && !ENGINE->IsLoading()*/)
-		{
-			m_bAppWantsExit = true;
-		}
+			TIMER->tick();
+			//std::cout << TIMER->getDeltaTime() << std::endl;
+			if (!ENGINE->m_bIsPaused)
+			{
+				// compute fps
+				CalculateFrameStatistics();
 
-		TIMER->tick();
-		//std::cout << TIMER->getDeltaTime() << std::endl;
-		if (!ENGINE->m_bIsPaused)
-		{
-			// compute fps
-			CalculateFrameStatistics();
+				// accumulate the elapsed time since the last frame
+				accumulatedTime += TIMER->getUnscaleDeltaTime();
 
-			// accumulate the elapsed time since the last frame
-			accumulatedTime += TIMER->getUnscaleDeltaTime();
-			
-// 			if (accumulatedTime >= m_dt)
-// 			{
-				accumulatedTime -= m_dt;
-				ENGINE->SimulateFrame();
-				ENGINE->RenderFrame();
-			//}
-			//ENGINE->RenderFrame();
-// 			nLoops = 0;
-// 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
-// 			{
-// 				ENGINE->SimulateFrame();
-// 
-// 				accumulatedTime -= m_dt;
-// 				nLoops++;
-// 			}
+				if (accumulatedTime >= m_dt)
+				{
+					//accumulatedTime -= m_dt;
+					accumulatedTime = 0;
+					ENGINE->SimulateFrame();
+					ENGINE->RenderFrame();
+				}
+				//ENGINE->RenderFrame();
+	// 			nLoops = 0;
+	// 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
+	// 			{
+	// 				ENGINE->SimulateFrame();
+	// 
+	// 				accumulatedTime -= m_dt;
+	// 				nLoops++;
+	// 			}
 
-			// peek into the future and generate the output
-			//ENGINE->RenderFrame();
+				// peek into the future and generate the output
+				//ENGINE->RenderFrame();
+			}
 		}
 	}
 
@@ -235,16 +240,21 @@ void Application::InitWindow()
 		NULL
 	);
 #else
+	RECT		rc{ 0, 0, WinMaxWidth, WinMaxHeight };
+
+	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
+
 	m_hWnd = CreateWindowEx
 	(
 		WS_EX_APPWINDOW,
 		m_appName,
 		m_appName,
-		WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW,
+		/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | */WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		WinMaxWidth,
-		WinMaxHeight,
+		rc.right - rc.left,
+		rc.bottom - rc.top,
 		NULL,
 		(HMENU)NULL,
 		m_hInstance,
@@ -253,7 +263,7 @@ void Application::InitWindow()
 
 #endif
 
-	RECT rect = { 0, 0, (LONG)WinMaxWidth, (LONG)WinMaxHeight};
+	/*RECT rect = { 0, 0, (LONG)WinMaxWidth, (LONG)WinMaxHeight };
 
 	UINT centerX = (GetSystemMetrics(SM_CXSCREEN) - (UINT)WinMaxWidth) / 2;
 	UINT centerY = (GetSystemMetrics(SM_CYSCREEN) - (UINT)WinMaxHeight) / 2;
@@ -266,7 +276,7 @@ void Application::InitWindow()
 		centerX, centerY,
 		rect.right - rect.left, rect.bottom - rect.top,
 		true
-	);
+	);*/
 
 	ShowWindow(m_hWnd, SW_SHOWNORMAL);//윈도우창을 보이게해주는것
 	SetForegroundWindow(m_hWnd);//실행시켰을때 제일위로 올라오게하는것

@@ -80,8 +80,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\Bin\Debug\x64\</OutDir>
-    <IncludePath>..\..\_Libraries\DirectXSDK\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\..\_Libraries\DirectXSDK\Lib\x64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <IncludePath>..\..\_Libraries\x64\Debug\fmod\Include\;..\..\_Libraries\DirectXSDK\Include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>..\..\_Libraries\x64\Debug\fmod\Lib\;..\..\_Libraries\DirectXSDK\Lib\x64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,6 +147,7 @@
     <ClCompile Include="..\Source\CollectObject.cpp" />
     <ClCompile Include="..\Source\CollectProgressBar.cpp" />
     <ClCompile Include="..\Source\CollectQuest.cpp" />
+    <ClCompile Include="..\Source\EffectManager.cpp" />
     <ClCompile Include="..\Source\Elaine.cpp" />
     <ClCompile Include="..\Source\ElainShopItemsData.cpp" />
     <ClCompile Include="..\Source\Elroy.cpp" />
@@ -159,6 +160,13 @@
     <ClCompile Include="..\Source\PlayerEquipData.cpp" />
     <ClCompile Include="..\Source\PlayerManager.cpp" />
     <ClCompile Include="..\Source\PlayerMoneyData.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillBuff.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillPress.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillShield.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillSwing.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillSwingDown.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillTornado.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillUpper.cpp" />
     <ClCompile Include="..\Source\PlayerStatusData.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
     <ClCompile Include="..\Source\ShopUI.cpp" />
@@ -246,6 +254,7 @@
     <ClCompile Include="..\Source\SkeletoneMove.cpp" />
     <ClCompile Include="..\Source\SkillIconUI.cpp" />
     <ClCompile Include="..\Source\SummonProgressBar.cpp" />
+    <ClCompile Include="..\Source\SwordMeshEffect.cpp" />
     <ClCompile Include="..\Source\TalkableGoblin.cpp" />
     <ClCompile Include="..\Source\TargetingArrow.cpp" />
     <ClCompile Include="..\Source\TargetingCircle.cpp" />
@@ -264,6 +273,7 @@
     <ClInclude Include="..\Include\CollectObject.h" />
     <ClInclude Include="..\Include\CollectProgressBar.h" />
     <ClInclude Include="..\Include\CollectQuest.h" />
+    <ClInclude Include="..\Include\EffectManager.h" />
     <ClInclude Include="..\Include\Elaine.h" />
     <ClInclude Include="..\Include\ElainShopItemsData.h" />
     <ClInclude Include="..\Include\Elroy.h" />
@@ -276,6 +286,13 @@
     <ClInclude Include="..\Include\PlayerEquipData.h" />
     <ClInclude Include="..\Include\PlayerManager.h" />
     <ClInclude Include="..\Include\PlayerMoneyData.h" />
+    <ClInclude Include="..\Include\PlayerSkillBuff.h" />
+    <ClInclude Include="..\Include\PlayerSkillPress.h" />
+    <ClInclude Include="..\Include\PlayerSkillShield.h" />
+    <ClInclude Include="..\Include\PlayerSkillSwing.h" />
+    <ClInclude Include="..\Include\PlayerSkillSwingDown.h" />
+    <ClInclude Include="..\Include\PlayerSkillTornado.h" />
+    <ClInclude Include="..\Include\PlayerSkillUpper.h" />
     <ClInclude Include="..\Include\PlayerStatusData.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />
     <ClInclude Include="..\Include\ShopUI.h" />
@@ -366,6 +383,7 @@
     <ClInclude Include="..\Include\SkillIconUI.h" />
     <ClInclude Include="..\Include\stdafx.h" />
     <ClInclude Include="..\Include\SummonProgressBar.h" />
+    <ClInclude Include="..\Include\SwordMeshEffect.h" />
     <ClInclude Include="..\Include\TalkableGoblin.h" />
     <ClInclude Include="..\Include\TargetingArrow.h" />
     <ClInclude Include="..\Include\TargetingCircle.h" />

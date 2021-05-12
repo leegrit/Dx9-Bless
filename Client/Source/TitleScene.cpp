@@ -3,6 +3,8 @@
 #include "PathManager.h"
 #include "TitleCamera.h"
 #include "QuestTable.h"
+#include "SoundManager.h"
+
 void TitleScene::Update()
 {
 	if (KEYBOARD->Up(VK_SPACE))
@@ -32,6 +34,12 @@ void TitleScene::Load()
 	{
 
 	}
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_NORMAL;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	//SOUND->PlaySound("TitleBGM",L"Logo_BGM_00.mp3",  desc);
 
 }
 

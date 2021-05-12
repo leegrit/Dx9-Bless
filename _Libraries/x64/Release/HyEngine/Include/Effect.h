@@ -3,7 +3,7 @@
 
 namespace HyEngine
 {
-	class Effect : public GameObject
+	class ENGINE_DLL Effect : public GameObject
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR
@@ -23,12 +23,58 @@ namespace HyEngine
 		virtual void Render() override;
 		virtual void UpdatedData(EDataType dataType)override;
 
+		//////////////////////////////////////////////////////////////////////////
+		// SETTER
+		//////////////////////////////////////////////////////////////////////////
+	public : /* Original Transform */
+		void SetOriginPos(D3DXVECTOR3 pos);
+		void SetOriginRot(D3DXVECTOR3 rot);
+		void SetOriginScale(D3DXVECTOR3 scale);
+
+	public : /* Start Transform */
+		void SetStartPos(D3DXVECTOR3 pos);
+		void SetStartRot(D3DXVECTOR3 rot);
+		void SetStartScale(D3DXVECTOR3 scale);
+
+	public : /* End Transform */
+		void SetEndPos(D3DXVECTOR3 pos);
+		void SetEndRot(D3DXVECTOR3 rot);
+		void SetEndScale(D3DXVECTOR3 scale);
+
+	public : /* Fade In Out */
+		void SetFadeIn(bool fadeIn);
+		void SetFadeOut(bool fadeOut);
+		void SetFadeInFactor(float factor);
+		void SetFadeOutFactor(float factor);
+
+	public : /* Time */
+		void SetLifeTime(float time);
+		void SetLoopTime(float time);
+
+	public :/* Repeat */
+		void SetRepeat(bool isRepeat);
+
+	public : /* UV */
+		void SetUVAnimation(bool isAnimation);
+		void SetUVDirection(D3DXVECTOR2 uvDirection);
+		void SetUVSpeed(float speed);
+
+	
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER 
 		//////////////////////////////////////////////////////////////////////////
 	public :
 		float GetAlpha();
+		D3DXVECTOR2 GetUVOffset();
+
+		//////////////////////////////////////////////////////////////////////////
+		// PUBLIC METHOD
+		//////////////////////////////////////////////////////////////////////////
+	public :
+		void Reset(std::function<void()> onCompleted = nullptr);
+
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
@@ -60,6 +106,12 @@ namespace HyEngine
 		float m_fadeOutFactor = 0.2f;
 		float m_curAlpha = 1;
 
+		/* UV Animation */
+	private :
+		bool m_bUVAnim;
+		D3DXVECTOR2 m_uvDir;
+		D3DXVECTOR2 m_uvOffset;
+		float m_uvSpeed;
 
 		/* LifeTime */
 	private :
@@ -71,6 +123,9 @@ namespace HyEngine
 		/* Repeat */
 	private :
 		bool m_isRepeat;
+
+	private :
+		std::function<void()> m_onCompleted;
 	};
 }
 

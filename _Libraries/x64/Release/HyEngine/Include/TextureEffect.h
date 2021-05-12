@@ -3,7 +3,7 @@
 
 namespace HyEngine
 {
-	class TextureEffect : public Effect
+	class ENGINE_DLL TextureEffect : public Effect
 	{
 		//////////////////////////////////////////////////////////////////////////
 		// CONSTRUCTOR & DESTRUCTOR

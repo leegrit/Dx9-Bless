@@ -344,6 +344,33 @@
     <ClCompile Include="..\Source\SkillIconUI.cpp">
       <Filter>Scripts\UI\Battle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\SwordMeshEffect.cpp">
+      <Filter>Scripts\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EffectManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillShield.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillBuff.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillPress.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillSwing.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillSwingDown.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillTornado.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillUpper.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -444,6 +471,12 @@
     </Filter>
     <Filter Include="Scripts\UI\ShopUI">
       <UniqueIdentifier>{dbd7cdc6-fdfb-4b89-a5ab-5f098aa61a61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Effect">
+      <UniqueIdentifier>{6633159a-d619-48ae-b03e-c898b5c8e0a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Player\Skill">
+      <UniqueIdentifier>{0c905913-f556-4f4e-a4bc-671e8490a452}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -797,6 +830,33 @@
     </ClInclude>
     <ClInclude Include="..\Include\SkillIconUI.h">
       <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SwordMeshEffect.h">
+      <Filter>Scripts\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EffectManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillShield.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillUpper.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillBuff.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillPress.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillSwing.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillSwingDown.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillTornado.h">
+      <Filter>Scripts\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

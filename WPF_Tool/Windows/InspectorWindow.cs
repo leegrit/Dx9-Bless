@@ -775,8 +775,13 @@ namespace WPF_Tool
                         EffectUVDirectionY.Text = data.effectData.uvDirection.y.ToString();
                         EffectUVDirectionZ.Text = data.effectData.uvDirection.z.ToString();
 
+                        /* UV Speed */
+                        UVSpeed.Text = data.effectData.uvMoveSpeed.ToString();
+
                         /* LifeTime */
                         EffectLifeTime.Text = data.effectData.lifeTime.ToString();
+
+
 
                         /* LoopTime */
                         EffectLoopTime.Text = data.effectData.loopTime.ToString();

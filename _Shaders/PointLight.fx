@@ -39,9 +39,9 @@ texture DepthTex;
 sampler DepthSampler = sampler_state
 {
 	Texture = (DepthTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	//MinFilter = POINT;
 	//MagFilter = POINT;
 	/*MinFilter = LINEAR;
@@ -69,9 +69,9 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -84,9 +84,9 @@ texture SpecularTex;
 sampler SpecularSampler = sampler_state
 {
 	Texture = (SpecularTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 	/*MinFilter = LINEAR;
@@ -99,9 +99,9 @@ texture StashTex;
 sampler StashSampler = sampler_state
 {
 	Texture = (StashTex);
-	MinFilter = LINEAR;
+	/*MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	MipFilter = LINEAR;
+	MipFilter = LINEAR;*/
 	/*MinFilter = POINT;
 	MagFilter = POINT;*/
 };
@@ -128,12 +128,12 @@ float4 PointLightPS(
 	
 	//float4 baseColor = tex2D(CubeSampler, texcoord);
 	float4 depthMap  = tex2D(DepthSampler, texcoord);
-	float4 albedoMap = tex2D(AlbedoSampler, texcoord);
+	//float4 albedoMap = tex2D(AlbedoSampler, texcoord);
 	float4 normalMap = tex2D(NormalSampler, texcoord);
 	float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
 	 
-	//if (specularMap.a == 0.2) discard;
+
 
 	float4 worldPos;
 	worldPos.x = texcoord.x * 2.f - 1.f;
@@ -156,8 +156,10 @@ float4 PointLightPS(
 	float d = length(lightToPixelVec);
 
 	// if pixel is too far, return zero
-	if(d > Range)
-		discard;
+	/*if(d > Range)
+		discard;*/
+	if (d > Range)
+		return float4(0, 0, 0, 1);
 
 	// Turn lightToPixelVec into a unit length vector describing
 	// the pixels direction from the lights position
@@ -174,7 +176,7 @@ float4 PointLightPS(
 	if(howMuchLight > 0.0f)
 	{
 		// Add light to the finalColor of the pixel
-		finalColor += (howMuchLight * albedoMap * Diffuse).rgb;
+		finalColor += (howMuchLight *  Diffuse).rgb;
 
 		// Calculate Light's Falloff factor
 		finalColor /= Constant + (Linear * d) + (Quadratic * (d*d));
@@ -200,9 +202,10 @@ float4 PointLightPS(
 			specular = specular * specularMap.rgb;
 	}
 	finalColor = saturate(finalColor + specular.rgb);
-
+	finalColor.g = 0;
+	finalColor.b = 0;
+	//return float4(finalColor.rgb + stashMap.rgb, 1);
 	return float4(finalColor.rgb, 1);
-
 	// Return Final color
 	//return float4(finalColor.rgb + stashMap.rgb, 1);
 }
@@ -215,8 +218,9 @@ technique PointLight
 	{
 		ZEnable = false;
 		AlphaBlendEnable = true;
-		SrcBlend = SrcALpha;
-		DestBlend = InvSrcAlpha;
+		BlendOp = ADD;
+		SrcBlend = ONE;
+		DestBlend = ONE;
 		VertexShader = compile vs_3_0 PointLightVS();
 		PixelShader = compile ps_3_0 PointLightPS();
 	}

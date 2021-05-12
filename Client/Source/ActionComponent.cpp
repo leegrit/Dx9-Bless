@@ -42,8 +42,7 @@ void ActionComponent::Update()
 		assert(pMesh);
 		bool animEnd = false;
 
-		m_curSequence = m_nextSequence;
-		if (m_curSequence != 0)
+		if (m_nextSequence != 0)
 		{
 			animEnd = pMesh->IsAnimationSetEnd(0.5);
 		}
@@ -53,6 +52,8 @@ void ActionComponent::Update()
 		{
 			//m_pPlayerController->SetState(EPlayerState::Attack);
 			m_bAttackState = true;
+
+			m_curSequence = m_nextSequence;
 
 			/* 다음 공격 시작 */
 			OnSequenceStart(m_curSequence);
@@ -101,6 +102,11 @@ float ActionComponent::GetAttackDamage() const
 	float minDmg = m_damage * 0.8f;
 	float maxDmg = m_damage * 1.2f;
 	return DxHelper::GetRandomFloat(minDmg, maxDmg);
+}
+
+bool ActionComponent::IsAttackState() const
+{
+	return m_bAttackState;
 }
 
 void ActionComponent::SetParams(float atkDelay, int seqCount,  float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset)

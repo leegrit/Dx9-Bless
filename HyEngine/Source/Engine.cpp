@@ -10,6 +10,7 @@
 #include "PathManager.h"
 #include "Gui.h"
 #include "MeshHierarchyLoader.h"
+#include "SoundManager.h"
 
 using namespace HyEngine;
 
@@ -28,7 +29,7 @@ Engine::Engine()
 	DirectXDevice::Create();
 	UIDGen::Create();
 	PathManager::Create();
-
+	SoundManager::Create();
 	
 	//m_pRenderer = new Renderer();
 	m_pMouse = new IO::Mouse();
@@ -47,6 +48,7 @@ Engine::~Engine()
 	UIDGen::Destroy();
 	PathManager::Destroy();
 	MeshHierarchyLoader::Clear();
+	SoundManager::Destroy();
 }
 
 bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
@@ -55,6 +57,8 @@ bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 	DirectXDevice::Get()->Init(hWnd);
 	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
+
+	SoundManager::Get()->Initialize();
 
 	assert(engineConfig.scenes.size() != 0);
 
@@ -426,6 +430,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"FadeInOut", PATH->ShadersPathW() + L"FadeInOut.fx");
 	InsertShader(L"TargetingUI", PATH->ShadersPathW() + L"TargetingUI.fx");
 	InsertShader(L"LUTFilter", PATH->ShadersPathW() + L"LUTFilter.fx");
+	InsertShader(L"DeferredBlend", PATH->ShadersPathW() + L"DeferredBlend.fx");
 	return true;
 }
 

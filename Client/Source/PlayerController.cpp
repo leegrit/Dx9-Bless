@@ -7,6 +7,7 @@
 #include "UIManager.h"
 #include "Player.h"
 #include "Client_Events.h"
+#include "PlayerCamera.h"
 
 
 PlayerController::PlayerController(GameObject * pOwner)
@@ -50,9 +51,10 @@ void PlayerController::Update()
 		SetAnimationSet(89);
 		return;
 	}
-	UpdateAction();
+	
 	UpdateRotation();
 	UpdateMovement();
+	UpdateAction();
 }
 
 void PlayerController::LateUpdate()
@@ -254,8 +256,8 @@ void PlayerController::UpdateRotation()
 {
 	D3DXVECTOR3 mousePos = MOUSE->GetPosition();
 
+	//D3DXVECTOR3 offset = mousePos - m_mouseCenter;//D3DXVECTOR3(WinMaxWidth * 0.5f, WinMaxHeight* 0.5f, 0);
 	D3DXVECTOR3 offset = mousePos - D3DXVECTOR3(WinMaxWidth * 0.5f, WinMaxHeight* 0.5f, 0);
-
 	/*if (offset.x > 0)
 	{
 		GetGameObject()->m_pTransform->m_rotationEuler.y() += 1;
@@ -263,7 +265,11 @@ void PlayerController::UpdateRotation()
 	else
 		GetGameObject()->m_pTransform->m_rotationEuler.y() -= 1;*/
 	GetGameObject()->m_pTransform->m_rotationEuler.y() += offset.x;
-	//m_mouseCenter = mousePos;
+	m_mouseCenter = mousePos;
+
+	/*PlayerCamera* pCamera = dynamic_cast<PlayerCamera*>(CAMERA);
+	if (pCamera != nullptr)
+		pCamera->Update();*/
 }
 
 void PlayerController::UpdateAction()

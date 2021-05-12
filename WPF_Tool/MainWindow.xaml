@@ -629,6 +629,11 @@
                                     </StackPanel>
                                     <TextBlock Height ="15"/>
                                     <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="70" Text="UV Speed : "/>
+                                        <TextBox x:Name="UVSpeed" Width="30" TextAlignment="Center" TextChanged="UVSpeed_TextChanged">0</TextBox>
+                                    </StackPanel>
+                                    <TextBlock Height ="15"/>
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock Width="60" Text="LifeTime : "/>
                                         <TextBox x:Name="EffectLifeTime" Width="30" TextAlignment="Center" TextChanged="EffectLifeTime_TextChanged">0</TextBox>
                                         <TextBlock Width="23"/>

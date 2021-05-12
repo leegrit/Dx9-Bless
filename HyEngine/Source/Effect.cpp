@@ -20,6 +20,7 @@ HyEngine::Effect::Effect(Scene * scene, std::wstring name, int editID)
 	m_originPos = m_pTransform->m_position.operator D3DXVECTOR3();
 	m_originRot = m_pTransform->m_rotationEuler.operator D3DXVECTOR3();
 	m_originScale = m_pTransform->m_scale.operator D3DXVECTOR3();
+	m_uvOffset = D3DXVECTOR2(0, 0);
 	SetEditID(editID);
 }
 
@@ -41,6 +42,7 @@ HyEngine::Effect::Effect(Scene * scene, std::wstring name)
 	m_originRot = m_pTransform->m_rotationEuler.operator D3DXVECTOR3();
 	m_originScale = m_pTransform->m_scale.operator D3DXVECTOR3();
 
+	m_uvOffset = D3DXVECTOR2(0, 0);
 }
 
 HyEngine::Effect::~Effect()
@@ -88,7 +90,9 @@ void HyEngine::Effect::Update()
 	/* Reset */
 	if (m_curLifeTime >= m_lifeTime)
 	{
-		m_curLifeTime = 0;
+		if(m_onCompleted)
+			m_onCompleted();
+		Reset();
 	}
 
 
@@ -105,6 +109,27 @@ void HyEngine::Effect::Update()
 	/* Update Scale */
 	D3DXVECTOR3 scale = MathUtils::lerp<D3DXVECTOR3>(m_originScale + m_startScale, m_originScale + m_endScale, factor);
 	m_pTransform->SetScale(scale);
+
+
+	/* UV Anim */
+	if (m_bUVAnim)
+	{
+		D3DXVECTOR2 normalizedDir;
+		D3DXVec2Normalize(&normalizedDir, &m_uvDir);
+		D3DXVECTOR2 offset;
+		if (IS_EDITOR)
+		{
+			offset = normalizedDir * EDIT_TIMER->getDeltaTime() *m_uvSpeed;
+		}
+		else
+		{
+			offset = normalizedDir * TIMER->getDeltaTime() *m_uvSpeed;
+		}
+		m_uvOffset += offset;
+		m_uvOffset = D3DXVECTOR2(m_uvOffset.x - (int)m_uvOffset.x, m_uvOffset.y - (int)m_uvOffset.y);
+
+	}
+
 
 	// TODO : Fade In Out
 	if (m_fadeIn)
@@ -149,7 +174,12 @@ void HyEngine::Effect::Render()
 void HyEngine::Effect::UpdatedData(EDataType dataType)
 {
 	GameObject::UpdatedData(dataType);
-
+	if (dataType == EDataType::GameObjectData)
+	{
+		SetOriginPos(m_pTransform->m_position.operator D3DXVECTOR3());
+		SetOriginRot(m_pTransform->m_rotationEuler.operator D3DXVECTOR3());
+		SetOriginScale(m_pTransform->m_scale.operator D3DXVECTOR3());
+	}
 	if (dataType == EDataType::EffectData)
 	{
 		assert(m_pEffectData);
@@ -168,6 +198,10 @@ void HyEngine::Effect::UpdatedData(EDataType dataType)
 		m_fadeIn = m_pEffectData->fadeIn;
 		m_fadeOut = m_pEffectData->fadeOut;
 
+		m_bUVAnim = m_pEffectData->uvAnimation;
+		m_uvDir = D3DXVECTOR2(m_pEffectData->uvDirection.x, m_pEffectData->uvDirection.y);
+		m_uvSpeed = m_pEffectData->uvMoveSpeed;
+
 		/* Time */
 		m_lifeTime = m_pEffectData->lifeTime;
 		m_loopTime = m_pEffectData->loopTime;
@@ -177,7 +211,116 @@ void HyEngine::Effect::UpdatedData(EDataType dataType)
 	}
 }
 
+void HyEngine::Effect::SetOriginPos(D3DXVECTOR3 pos)
+{ 
+	m_originPos = pos;
+}
+
+void HyEngine::Effect::SetOriginRot(D3DXVECTOR3 rot)
+{
+	m_originRot = rot;
+}
+
+void HyEngine::Effect::SetOriginScale(D3DXVECTOR3 scale)
+{
+	m_originScale = scale;
+}
+
+void HyEngine::Effect::SetStartPos(D3DXVECTOR3 pos)
+{
+	m_startPos = pos;
+}
+
+void HyEngine::Effect::SetStartRot(D3DXVECTOR3 rot)
+{
+	m_startRot = rot;
+}
+
+void HyEngine::Effect::SetStartScale(D3DXVECTOR3 scale)
+{
+	m_startScale = scale;
+}
+
+void HyEngine::Effect::SetEndPos(D3DXVECTOR3 pos)
+{
+	m_endPos = pos;
+}
+
+void HyEngine::Effect::SetEndRot(D3DXVECTOR3 rot)
+{
+	m_endRot = rot;
+}
+
+void HyEngine::Effect::SetEndScale(D3DXVECTOR3 scale)
+{
+	m_endScale = scale;
+}
+
+void HyEngine::Effect::SetFadeIn(bool fadeIn)
+{
+	m_fadeIn = fadeIn;
+}
+
+void HyEngine::Effect::SetFadeOut(bool fadeOut)
+{
+	m_fadeOut = fadeOut;
+}
+
+void HyEngine::Effect::SetFadeInFactor(float factor)
+{
+	m_fadeInFactor = factor;
+}
+
+void HyEngine::Effect::SetFadeOutFactor(float factor)
+{
+	m_fadeOutFactor = factor;
+}
+
+void HyEngine::Effect::SetLifeTime(float time)
+{
+	m_lifeTime = time;
+}
+
+void HyEngine::Effect::SetLoopTime(float time)
+{
+	m_loopTime = time;
+}
+
+void HyEngine::Effect::SetRepeat(bool isRepeat)
+{
+	m_isRepeat = isRepeat;
+}
+
+void HyEngine::Effect::SetUVAnimation(bool isAnimation)
+{
+	m_bUVAnim = isAnimation;
+}
+
+void HyEngine::Effect::SetUVDirection(D3DXVECTOR2 uvDirection)
+{
+	m_uvDir = uvDirection;
+}
+
+void HyEngine::Effect::SetUVSpeed(float speed)
+{
+	m_uvSpeed = speed;
+}
+
+
+
 float HyEngine::Effect::GetAlpha()
 {
 	return m_curAlpha;
+}
+
+D3DXVECTOR2 HyEngine::Effect::GetUVOffset()
+{
+	return m_uvOffset;
+}
+
+void HyEngine::Effect::Reset(std::function<void()> onCompleted)
+{
+	m_curLifeTime = 0;
+	m_uvOffset = D3DXVECTOR2(0, 0);
+	m_onCompleted = onCompleted;
 }

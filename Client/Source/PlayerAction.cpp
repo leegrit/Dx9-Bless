@@ -81,6 +81,7 @@ bool PlayerAction::DoAction(int animIndex)
 	if (state == EPlayerState::OtherAction) return false;
 	if (state == EPlayerState::OtherEvent) return false;
 	if (m_coolTime > m_curCoolTime) return false;
+	if (state == EPlayerState::Attack && IsAttackState() == false) return false;
 
 	ActionComponent::DoAction(animIndex);
 	return true;

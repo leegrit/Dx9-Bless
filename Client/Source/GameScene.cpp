@@ -19,6 +19,8 @@
 #include "PlayerStatusData.h"
 #include "PlayerEquipData.h"
 #include "InventoryData.h"
+#include "EffectManager.h"
+
 
 void GameScene::Update()
 {
@@ -28,6 +30,7 @@ void GameScene::Update()
 	m_pQuestManager->Update();
 	m_pBattleManager->Update();
 	m_pInteractManager->Update();
+	m_pEffectManager->Update();
 }
 
 void GameScene::Load()
@@ -39,7 +42,7 @@ void GameScene::Load()
 	m_pQuestManager = new QuestManager(this);
 	m_pBattleManager = new BattleManager(this);
 	m_pInteractManager = new InteractManager(this);
-
+	m_pEffectManager = new EffectManager(this);
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
 	if (pExpTable == nullptr)
@@ -102,6 +105,7 @@ void GameScene::LateLoadScene()
 	m_pQuestManager->Initialize();
 	m_pBattleManager->Initialize();
 	m_pInteractManager->Initialize();
+	m_pEffectManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -126,6 +130,7 @@ void GameScene::Unload()
 	SAFE_DELETE(m_pNPCInteractManager);
 	SAFE_DELETE(m_pQuestManager);
 	SAFE_DELETE(m_pBattleManager);
+	SAFE_DELETE(m_pEffectManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -247,6 +252,11 @@ NPCInteractManager * GameScene::GetNPCInteractManager()
 BattleManager * GameScene::GetBattleManager()
 {
 	return m_pBattleManager;
+}
+
+EffectManager * GameScene::GetEffectManager()
+{
+	return m_pEffectManager;
 }
 
 float GameScene::GetFloatA()

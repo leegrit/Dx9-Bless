@@ -3,7 +3,7 @@
 #include "EffectData.h"
 #include "TextureLoader.h"
 #include "PathManager.h"
-
+#include "MeshLoader.h"
 
 HyEngine::MeshEffect::MeshEffect(Scene * scene, int editID)
 	: Effect(scene, L"MeshEffect", editID)
@@ -76,6 +76,14 @@ void HyEngine::MeshEffect::Render()
 	pShader->SetTexture(alphaHandle, m_pAlphaMask);
 
 	pShader->SetFloat("Alpha", GetAlpha());
+
+	/* UV Move Test */
+	//static D3DXVECTOR2 uvMove = D3DXVECTOR2(0, 0);
+	//uvMove += D3DXVECTOR2(0.002f, 0);
+	//// 1을 넘어가면 소수점만 남기고 뺀다.
+	//D3DXVECTOR2 uvMoveRes = D3DXVECTOR2(uvMove.x - (int)uvMove.x, uvMove.y - (int)uvMove.y);
+
+	pShader->SetValue("UVMoveFactor", &GetUVOffset(), sizeof(GetUVOffset()));
 
 	if (m_pAlphaMask == nullptr)
 		pShader->SetTechnique("MeshEffect");
@@ -162,6 +170,73 @@ void HyEngine::MeshEffect::UpdatedData(EDataType dataType)
 void HyEngine::MeshEffect::Initialize()
 {
 
+}
+
+void HyEngine::MeshEffect::SetDiffuseTexture(std::wstring path)
+{
+	/* Diffuse Load */
+	IDirect3DTexture9 * tempDiffuse = (IDirect3DTexture9 *)TextureLoader::GetTexture(path);
+	if (tempDiffuse != nullptr)
+		m_pDiffuseMap = tempDiffuse;
+}
+
+void HyEngine::MeshEffect::SetAlphaMaskTexture(std::wstring path)
+{
+	/* AlphaMask Load */
+	IDirect3DTexture9 * tempAlphaMask = (IDirect3DTexture9 *)TextureLoader::GetTexture( path);
+	if (tempAlphaMask != nullptr)
+		m_pAlphaMask = tempAlphaMask;
+}
+
+void HyEngine::MeshEffect::SetEffectMesh(std::wstring path)
+{
+	/* MeshLoad */
+	if (m_lastMeshPath != path)
+	{
+		m_lastMeshPath = path;
+
+		HRESULT hr = 0;
+
+		ID3DXBuffer* adjBuffer = nullptr;
+		ID3DXBuffer* mtrlBuffer = nullptr;
+		DWORD numMtrls = 0;
+
+		/* Load Mesh */
+		MeshLoader::TryGetMesh(path, &adjBuffer,
+			&mtrlBuffer,
+			&numMtrls,
+			&m_pMesh);
+
+		//hr = D3DXLoadMeshFromX
+		//(
+		//	( path).c_str(),
+		//	D3DXMESH_MANAGED,
+		//	DEVICE,
+		//	&adjBuffer,
+		//	&mtrlBuffer,
+		//	0,
+		//	&numMtrls,
+		//	&m_pMesh
+		//);
+		//assert(SUCCEEDED(hr));
+
+		///* Material skips here */
+		//mtrlBuffer->Release();
+
+		///* Optimize */
+		//hr = m_pMesh->OptimizeInplace
+		//(
+		//	D3DXMESHOPT_ATTRSORT |
+		//	D3DXMESHOPT_COMPACT |
+		//	D3DXMESHOPT_VERTEXCACHE,
+		//	(DWORD*)adjBuffer->GetBufferPointer(),
+		//	0, 0, 0
+		//);
+		//adjBuffer->Release();
+
+		//assert(SUCCEEDED(hr));
+
+	}
 }
 
 MeshEffect * HyEngine::MeshEffect::Create(Scene * scene)

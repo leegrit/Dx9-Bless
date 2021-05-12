@@ -119,7 +119,7 @@ PixelInputType SoftShadowMappingVS(VertexInputType input)
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
 	//float bias = 0.06f;
 	//float bias = 0.006f; origin
-	float bias = 0.06f;
+	float bias = 0.000000000000000000006f;
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
 	float3 projectTexcoord;
@@ -248,7 +248,8 @@ float4 SoftShadowMappingPS(PixelInputType input, uniform int cascadeIndex, unifo
 	// 부동 소수점 정밀도 문제를 해결할 Bias 값 설정
 	//float bias = 0.06f;
 	//float bias = 0.006f; origin
-	float bias = 0.01f;
+	float bias = 0.0023f;
+	//float bias = 0;
 
 	/* Calculate  */
 	// vertex의 light 공간으로 변환된 값이 필요하다.
@@ -267,7 +268,7 @@ float4 SoftShadowMappingPS(PixelInputType input, uniform int cascadeIndex, unifo
 	if((saturate(projectTexcoord.x) == projectTexcoord.x) && (saturate(projectTexcoord.y) == projectTexcoord.y) 
 		&& (saturate(projectTexcoord.z) == projectTexcoord.z))
 	{
-		shadowDepth = tex2D(shadowDepthSampler, projectTexcoord.xy).a;
+		shadowDepth = tex2D(shadowDepthSampler, projectTexcoord.xy).r;
 		float lightDepth = lightPos.z / lightPos.w;
 		lightDepth = lightDepth - bias;
 		shadowFactor = lightDepth < shadowDepth ?  1 : 0;
