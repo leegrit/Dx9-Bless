@@ -110,8 +110,8 @@ float4 DeferredBlendWithLUTFilterPS(PixelInput In) : COLOR0
 
 	color = color * shade;
 
-	color = float4(GetLutColor(color.rgb, LutSampler), 1.0f); 
-*/
+	color = float4(GetLutColor(color.rgb, LutSampler), 1.0f); */
+
 	return color;
 };
 

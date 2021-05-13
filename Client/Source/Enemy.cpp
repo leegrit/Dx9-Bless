@@ -7,6 +7,8 @@
 #include "Billboard.h"
 #include "Effect.h"
 #include "EffectManager.h"
+#include "Sprite.h"
+
 
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
 	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
@@ -48,24 +50,33 @@ void Enemy::Initialize(std::wstring dataPath)
 
 	MeshEffectDesc leftHitEffectDesc;
 	leftHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
-	leftHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	leftHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	leftHitEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
 	leftHitEffectDesc.fadeOut = true;
+	//leftHitEffectDesc.fadeIn = true;
+	leftHitEffectDesc.fadeOutFactor = 0.5f;
 	leftHitEffectDesc.lifeTime = 0.3f;
-	leftHitEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	leftHitEffectDesc.endScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f);
 	m_pLeftSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left", leftHitEffectDesc);
 
 
 
 	MeshEffectDesc rightHitEffectDesc;
 	rightHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
-	rightHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	rightHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	rightHitEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
 	rightHitEffectDesc.fadeOut = true;
+	//leftHitEffectDesc.fadeIn = true;
+	leftHitEffectDesc.fadeOutFactor = 0.5f;
 	rightHitEffectDesc.lifeTime = 0.3f;
-	rightHitEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	rightHitEffectDesc.endScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f);
 	m_pRightSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right", rightHitEffectDesc);
 
-
-
+	//Sprite * pSprite;
+	m_pHitEffect = Sprite::Create(GetScene(), L"HitEffect",
+		PATH->AssetsPathW() + L"Effect/Texture/Spark", ELoopType::Default, 4, 12);
+	m_pHitEffect->SetActive(false);
+	m_pHitEffect->m_pTransform->SetScale(10, 10, 10);
 }
 
 void Enemy::Update()
@@ -98,6 +109,8 @@ void Enemy::Update()
 	);
 	m_pRightSwordHitEffect->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
 
+	m_pHitEffect->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3( 0, 6, 0)));
+	
 }
 
 void Enemy::Render()
@@ -153,9 +166,11 @@ void Enemy::PlayHitAnimation(EEnemyHitType enemyHitType)
 	{
 	case EEnemyHitType::SwordLeft:
 		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left");
+		m_pHitEffect->PlayAnimation();
 		break;
 	case EEnemyHitType::SwordRight:
 		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right");
+		m_pHitEffect->PlayAnimation();
 		break;
 	}
 }

@@ -255,6 +255,8 @@
     <ClCompile Include="..\Source\SkeletoneIdle.cpp" />
     <ClCompile Include="..\Source\SkeletoneMove.cpp" />
     <ClCompile Include="..\Source\SkillIconUI.cpp" />
+    <ClCompile Include="..\Source\Sprite.cpp" />
+    <ClCompile Include="..\Source\SpriteLoader.cpp" />
     <ClCompile Include="..\Source\SummonProgressBar.cpp" />
     <ClCompile Include="..\Source\SwordMeshEffect.cpp" />
     <ClCompile Include="..\Source\TalkableGoblin.cpp" />
@@ -385,6 +387,8 @@
     <ClInclude Include="..\Include\SkeletoneIdle.h" />
     <ClInclude Include="..\Include\SkeletoneMove.h" />
     <ClInclude Include="..\Include\SkillIconUI.h" />
+    <ClInclude Include="..\Include\Sprite.h" />
+    <ClInclude Include="..\Include\SpriteLoader.h" />
     <ClInclude Include="..\Include\stdafx.h" />
     <ClInclude Include="..\Include\SummonProgressBar.h" />
     <ClInclude Include="..\Include\SwordMeshEffect.h" />

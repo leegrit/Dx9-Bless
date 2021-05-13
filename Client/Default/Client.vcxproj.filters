@@ -377,6 +377,12 @@
     <ClCompile Include="..\Source\PlayerSkillWindSwing.cpp">
       <Filter>Scripts\Player\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\SpriteLoader.cpp">
+      <Filter>Scripts\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Sprite.cpp">
+      <Filter>Scripts\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -483,6 +489,9 @@
     </Filter>
     <Filter Include="Scripts\Player\Skill">
       <UniqueIdentifier>{0c905913-f556-4f4e-a4bc-671e8490a452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Sprite">
+      <UniqueIdentifier>{969b878e-06e7-452d-8e0b-9cf02eea3349}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -869,6 +878,12 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerSkillWindSwing.h">
       <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SpriteLoader.h">
+      <Filter>Scripts\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sprite.h">
+      <Filter>Scripts\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
