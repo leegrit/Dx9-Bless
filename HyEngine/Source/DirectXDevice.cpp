@@ -68,7 +68,7 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
 
 	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;//D3DPRESENT_INTERVAL_DEFAULT;
+	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;//D3DPRESENT_INTERVAL_IMMEDIATE;//D3DPRESENT_INTERVAL_DEFAULT;
 
 
 	if (FAILED(m_pSDK->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL,m_hWnd, vp, &d3dpp, &m_pDevice)))

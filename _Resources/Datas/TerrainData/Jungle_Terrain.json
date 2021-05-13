@@ -44,8 +44,8 @@
   "TerrainData": {
     "VertexCountX": 4,
     "VertexCountZ": 4,
-    "TextureCountX": 10.0,
-    "TextureCountZ": 10.0,
+    "TextureCountX": 30.0,
+    "TextureCountZ": 30.0,
     "VertexInterval": 600.0,
     "DiffuseFilePath": "Assets\\Tile\\LV_ArbaJungle_Tile_Cliff01_D_PHJ.tga",
     "NormalFilePath": "Assets\\Tile\\LV_ArbaJungle_Tile_Cliff01_N_PHJ.tga"

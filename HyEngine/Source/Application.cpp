@@ -90,8 +90,9 @@ void Application::Run()
 					accumulatedTime -= m_dt;
 					//accumulatedTime = 0;
 					ENGINE->SimulateFrame();
-					ENGINE->RenderFrame();
+					
 				}
+				ENGINE->RenderFrame();
 				//ENGINE->RenderFrame();
 	// 			nLoops = 0;
 	// 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)

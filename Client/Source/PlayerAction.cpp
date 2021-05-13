@@ -65,6 +65,17 @@ void PlayerAction::OnActionEnd()
 }
 
 
+float PlayerAction::GetCoolTime()
+{
+	return m_coolTime;
+}
+
+float PlayerAction::GetCurCoolTime()
+{
+
+	return m_curCoolTime;
+}
+
 void PlayerAction::SetParams(float atkDelay, int seqCount, float coolTime, float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset)
 {
 	ActionComponent::SetParams(atkDelay, seqCount, atkRange, damage, bKnockBack, colOffset);
@@ -84,5 +95,6 @@ bool PlayerAction::DoAction(int animIndex)
 	if (state == EPlayerState::Attack && IsAttackState() == false) return false;
 
 	ActionComponent::DoAction(animIndex);
+	m_curCoolTime = 0;
 	return true;
 }
