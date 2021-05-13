@@ -1,5 +1,17 @@
 #pragma once
 #include "Character.h"
+
+namespace HyEngine
+{
+	class Effect;
+}
+
+enum class EEnemyHitType
+{
+	SwordLeft,
+	SwordRight
+};
+
 using namespace HyEngine;
 
 class Enemy abstract : public Character
@@ -42,6 +54,7 @@ public :
 	void SendDamageToOthers(float damage);
 	void ClearHitOthers();
 
+	void PlayHitAnimation(EEnemyHitType);
 
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED
@@ -63,6 +76,12 @@ private :
 
 	/* For Focus */
 	Collider * m_pFocusCollider;
+
+
+private : /* Hit Effect */
+	Effect * m_pLeftSwordHitEffect;
+	Effect * m_pRightSwordHitEffect;
+
 
 };
 

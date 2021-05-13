@@ -5,6 +5,9 @@
 #include "GameScene.h"
 #include "UIManager.h"
 #include "Billboard.h"
+#include "Effect.h"
+#include "EffectManager.h"
+
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
 	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
 {
@@ -41,6 +44,28 @@ void Enemy::Initialize(std::wstring dataPath)
 	//m_pHPHitBar->m_pTransform->SetScale(11, 2, 1);
 	//m_pHPHitBar->SetActive(true);
 
+	GameScene* pScene = static_cast<GameScene*>(GetScene());
+
+	MeshEffectDesc leftHitEffectDesc;
+	leftHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
+	leftHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	leftHitEffectDesc.fadeOut = true;
+	leftHitEffectDesc.lifeTime = 0.3f;
+	leftHitEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	m_pLeftSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left", leftHitEffectDesc);
+
+
+
+	MeshEffectDesc rightHitEffectDesc;
+	rightHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
+	rightHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	rightHitEffectDesc.fadeOut = true;
+	rightHitEffectDesc.lifeTime = 0.3f;
+	rightHitEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	m_pRightSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right", rightHitEffectDesc);
+
+
+
 }
 
 void Enemy::Update()
@@ -55,6 +80,24 @@ void Enemy::Update()
 		
 	}
 	
+	m_pLeftSwordHitEffect->SetOriginPos(
+		m_pTransform->CalcOffset(D3DXVECTOR3(0, 7, 0))
+	);
+	m_pLeftSwordHitEffect->SetOriginRot
+	(
+		PLAYER->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 90, 0)
+	);
+	m_pLeftSwordHitEffect->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+
+	m_pRightSwordHitEffect->SetOriginPos(
+		m_pTransform->CalcOffset(D3DXVECTOR3(0, 7, 0))
+	);
+	m_pRightSwordHitEffect->SetOriginRot
+	(
+		PLAYER->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, -90, 0)
+	);
+	m_pRightSwordHitEffect->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+
 }
 
 void Enemy::Render()
@@ -101,6 +144,20 @@ void Enemy::SendDamageToOthers(float damage)
 void Enemy::ClearHitOthers()
 {
 	m_hitOthers.clear();
+}
+
+void Enemy::PlayHitAnimation(EEnemyHitType enemyHitType)
+{
+	GameScene* pScene = static_cast<GameScene*>(GetScene());
+	switch (enemyHitType)
+	{
+	case EEnemyHitType::SwordLeft:
+		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left");
+		break;
+	case EEnemyHitType::SwordRight:
+		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right");
+		break;
+	}
 }
 
 void Enemy::ShowHPBar()

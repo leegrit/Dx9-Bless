@@ -140,6 +140,8 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				/*pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
 				std::cout << "Do First" << std::endl;*/
+				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			}
 			m_bSendDamage = true;

@@ -374,6 +374,9 @@
     <ClCompile Include="..\Source\ShieldEffect.cpp">
       <Filter>Scripts\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillWindSwing.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -863,6 +866,9 @@
     </ClInclude>
     <ClInclude Include="..\Include\ShieldEffect.h">
       <Filter>Scripts\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillWindSwing.h">
+      <Filter>Scripts\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

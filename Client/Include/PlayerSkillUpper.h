@@ -51,6 +51,10 @@ private:
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
 
+private : /* For Effect */
+	Effect* m_pEffect0;
+	Effect* m_pEffect1;
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

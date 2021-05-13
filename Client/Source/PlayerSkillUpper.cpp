@@ -12,6 +12,31 @@ PlayerSkillUpper::PlayerSkillUpper(GameObject * pPlayer, PlayerController * pPla
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillUpper")
 {
 	SetParams(0.2f, 1, 0, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+
+	GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+
+
+	MeshEffectDesc effectDesc0;
+	effectDesc0.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Vortex01_SM_KKJ.X";
+	effectDesc0.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	effectDesc0.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_toneido_01.tga";
+	effectDesc0.fadeOut = true;
+	effectDesc0.lifeTime = 0.5f;
+	effectDesc0.startScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f);
+	effectDesc0.endRot = D3DXVECTOR3(0, -360, 0);
+	effectDesc0.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	m_pEffect0 = pScene->GetEffectManager()->AddEffect(L"PlayerSkillUpper_Effect0", effectDesc0);
+
+	MeshEffectDesc effectDesc1;
+	effectDesc1.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_EnergyWave.X";
+	effectDesc1.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_EnergyWave_001_TEX_HKB.tga";
+	//effectDesc1.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_toneido_01.tga";
+	effectDesc1.fadeOut = true;
+	effectDesc1.lifeTime = 0.5f;
+	effectDesc1.endScale = D3DXVECTOR3(0.5f, 0.5f, 0.5f);
+	m_pEffect1 = pScene->GetEffectManager()->AddEffect(L"PlayerSkillUpper_Effect1", effectDesc1);
+
+
 }
 
 PlayerSkillUpper::~PlayerSkillUpper()
@@ -27,6 +52,26 @@ void PlayerSkillUpper::Update()
 {
 	PlayerAction::Update();
 	UpdateAction();
+
+
+	m_pEffect0->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 11, 7))
+	);
+	m_pEffect0->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pEffect0->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+
+	m_pEffect1->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 10))
+	);
+	m_pEffect1->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pEffect1->SetOriginScale(D3DXVECTOR3(0.1f, 0.1f, 0.1f));
+
 }
 
 void PlayerSkillUpper::LateUpdate()
@@ -95,6 +140,8 @@ void PlayerSkillUpper::OnActionTimeElapsed(int seqIndex, float elapsed)
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				//pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillUpper_Effect0");
+				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillUpper_Effect1");
 				std::cout << "Do First" << std::endl;
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			}

@@ -167,6 +167,7 @@
     <ClCompile Include="..\Source\PlayerSkillSwingDown.cpp" />
     <ClCompile Include="..\Source\PlayerSkillTornado.cpp" />
     <ClCompile Include="..\Source\PlayerSkillUpper.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillWindSwing.cpp" />
     <ClCompile Include="..\Source\PlayerStatusData.cpp" />
     <ClCompile Include="..\Source\ShieldEffect.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="..\Include\PlayerSkillSwingDown.h" />
     <ClInclude Include="..\Include\PlayerSkillTornado.h" />
     <ClInclude Include="..\Include\PlayerSkillUpper.h" />
+    <ClInclude Include="..\Include\PlayerSkillWindSwing.h" />
     <ClInclude Include="..\Include\PlayerStatusData.h" />
     <ClInclude Include="..\Include\ShieldEffect.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />

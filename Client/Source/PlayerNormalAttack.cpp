@@ -7,6 +7,8 @@
 #include "PathManager.h"
 #include "Effect.h"
 #include "SoundManager.h"
+#include "Enemy.h"
+
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update , pPlayer, pPlayerController, L"PlayerNormalAttack")
 {
@@ -29,6 +31,7 @@ void PlayerNormalAttack::Initialize()
 	meshEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
 	meshEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
 	meshEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	meshEffectDesc.lifeTime = 0.5f;
 
 	GameScene* pScene = static_cast<GameScene*>( GetGameObject()->GetScene());
 	m_pSwordTrail = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect", meshEffectDesc);
@@ -41,6 +44,7 @@ void PlayerNormalAttack::Initialize()
 	meshEffectDesc_Second.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
 	meshEffectDesc_Second.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
 	meshEffectDesc_Second.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	meshEffectDesc_Second.lifeTime = 0.5f;
 
 	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 	m_pSwordTrail_Second = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect_Second", meshEffectDesc_Second);
@@ -156,10 +160,11 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 					continue;
 				}
 
-				Character* enemy = dynamic_cast<Character*>(obj);
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
 				std::cout << "Do First" << std::endl;
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			}
@@ -184,9 +189,10 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 					continue;
 				}
 
-				Character* enemy = dynamic_cast<Character*>(obj);
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 				pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Second");
+				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				std::cout << "Do Second" << std::endl;
 			}
