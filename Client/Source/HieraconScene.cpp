@@ -153,7 +153,7 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////
-	//m_nonePlayers.emplace_back( SampleNPC::Create(this, PATH->DatasPathW() + L"HierarchyData/Sire.json"));
+	//m_nonePlayers.emplace_back(SampleNPC::Create(this, PATH->DatasPathW() + L"HierarchyData/Sire.json"));
 	Hieracon_Cora::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Leoni.json");
 	Bran::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_BailanBollwerk.json");
 	Samson::Create(this, PATH->DatasPathW() + L"HierarchyData/Hieracon_Chitata.json");

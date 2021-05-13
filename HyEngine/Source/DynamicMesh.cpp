@@ -370,6 +370,8 @@ void HyEngine::DynamicMesh::OnRenderBegin(void*)
 	/* 여기서 bone texture를 최신화해준다. */
 
 	if (m_pAniCtrl == nullptr) return;
+	if (GetActive() == false) return;
+	if (GetViewFrustumCulled() == true) return;
 
 	if (IS_EDITOR)
 		m_pAniCtrl->PlayAnimationSet(EDIT_TIMER->getDeltaTime());

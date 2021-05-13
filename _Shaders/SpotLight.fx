@@ -191,6 +191,10 @@ technique SpotLight
 	pass P0
 	{
 		ZEnable = false;
+		AlphaBlendEnable = true;
+		//BlendOp = ADD;
+		SrcBlend = ONE;
+		DestBlend = ONE;
 		VertexShader = compile vs_3_0 SpotLightVS();
 		PixelShader = compile ps_3_0 SpotLightPS();
 	}

@@ -135,8 +135,14 @@ namespace HyEngine
 		IDirect3DSurface9 * m_pSoftShadowRTSurface = nullptr;
 
 	private: /* For Light Map */
-		IDirect3DTexture9* m_pLightRTTexture = nullptr;
-		IDirect3DSurface9* m_pLightRTSurface = nullptr;
+		IDirect3DTexture9* m_pLightIntensityRTTexture = nullptr;
+		IDirect3DSurface9* m_pLightIntensityRTSurface = nullptr;
+
+		IDirect3DTexture9* m_pAmbientIntensityRTTexture = nullptr;
+		IDirect3DSurface9* m_pAmbientIntensityRTSurface = nullptr;
+
+		IDirect3DTexture9* m_pSpecularIntensityRTTexture = nullptr;
+		IDirect3DSurface9* m_pSpecularIntensityRTSurface = nullptr;
 
 	private: /* For Stash */
 		IDirect3DTexture9 * m_pStashRTTexture = nullptr;

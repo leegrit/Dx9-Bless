@@ -87,8 +87,8 @@ void Application::Run()
 
 				if (accumulatedTime >= m_dt)
 				{
-					//accumulatedTime -= m_dt;
-					accumulatedTime = 0;
+					accumulatedTime -= m_dt;
+					//accumulatedTime = 0;
 					ENGINE->SimulateFrame();
 					ENGINE->RenderFrame();
 				}

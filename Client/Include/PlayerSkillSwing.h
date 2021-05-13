@@ -44,12 +44,15 @@ private:
 private:
 	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[1] = { 26 };
+	int m_animIndexes[1] = { 27 };
 
 	/* For Attack Logic */
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
 
+private : /* For Effect */
+	Effect* m_pEffect0 = nullptr;
+	Effect* m_pEffect1 = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

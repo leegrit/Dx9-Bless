@@ -42,7 +42,7 @@ technique DiffuseShader
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;
 		DestBlend = INVSRCALPHA;
-		VertexShader = compile vs_3_0 DiffuseVS();
+		VertexShader = NULL;//compile vs_3_0 DiffuseVS();
 		PixelShader = compile ps_3_0 DiffusePS();
 	}
 };

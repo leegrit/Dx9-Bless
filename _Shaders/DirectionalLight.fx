@@ -125,6 +125,11 @@ sampler SoftShadowSampler = sampler_state
 	Texture = (SoftShadowTex);
 };
 
+texture LightTex;
+sampler LightSampler = sampler_state
+{
+	Texture = (LightTex);
+};
 
 
 texture StashTex;
@@ -162,14 +167,12 @@ PixelInputType DirectionalLightVS(VertexInputType input)
 	return output;
 }
 
-float4 DirectionalLightPS(float2 texcoord : TEXCOORD0) : COLOR0
+void DirectionalLightPS(float2 texcoord : TEXCOORD0,
+	out float4 outLightIntensity : COLOR0 ,
+	out float4 outAmbientIntensity : COLOR1,
+	out float4 outSpecularIntensity : COLOR2) 
 {
-	/*테스트*/
-	//-----------------------------------------------
-	//float4 softShadowMap = tex2D(SoftShadowSampler, input.texcoord);
-	//return softShadowMap;
 
-	//-----------------------------------------------
 	float4 depthMap = tex2D(DepthSampler, texcoord);
 	//float4 albedoMap = tex2D(AlbedoSampler, input.texcoord);
 	float4 normalMap = tex2D(NormalSampler, texcoord);
@@ -230,14 +233,12 @@ float4 DirectionalLightPS(float2 texcoord : TEXCOORD0) : COLOR0
 		else
 			specular = float4(0, 0, 0, 0);//specular * shadowFactor * specularMap.rgb;
 	}
-	finalColor = saturate(finalColor);/// +specular.rgb);
-	finalColor.g = ambient.r;
-	finalColor.b = specular.r;
-	//finalColor.a = rimLightColor;
-	return float4(finalColor.rgb, 1);
-	// depth rgb is emissive color
-	//return float4(finalColor.rgb + stashMap.rgb, 1) ;//+ float4(depthMap.rgb, 1);
-	//return float4(finalColor.rgb, 1);
+	finalColor = saturate(finalColor);
+
+	outLightIntensity = float4(finalColor.rgb, 1);
+	outAmbientIntensity = float4(ambient.rgb, 1);
+	outSpecularIntensity = float4(specular.rgb, 1);
+
 }
 
 
@@ -250,7 +251,7 @@ technique DirectionalLight
 		BlendOp = ADD;
 		SrcBlend = ONE;
 		DestBlend = ONE;
-		VertexShader = compile vs_3_0 DirectionalLightVS();
+		VertexShader = NULL;//compile vs_3_0 DirectionalLightVS();
 		PixelShader = compile ps_3_0 DirectionalLightPS();
 	}
 };

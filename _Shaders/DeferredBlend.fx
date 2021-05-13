@@ -3,14 +3,31 @@ matrix ViewMatrix;
 matrix ProjMatrix;
 
 
-texture LightTex;
-sampler LightSampler = sampler_state
+texture LightIntensityTex;
+sampler LightIntensitySampler = sampler_state
 {
-	Texture = (LightTex);
-	MinFilter = LINEAR;
-	MagFilter = LINEAR;
-	//MipFilter = LINEAR;
+	texture = (LightIntensityTex);
+	/*MinFilter = LINEAR;
+	MagFilter = LINEAR;*/
 };
+
+texture AmbientIntensityTex;
+sampler AmbientIntensitySampler = sampler_state
+{
+	texture = (AmbientIntensityTex);
+	/*MinFilter = LINEAR;
+	MagFilter = LINEAR;*/
+};
+
+
+texture SpecularIntensityTex;
+sampler SpecularIntensitySampler = sampler_state
+{
+	texture = (SpecularIntensityTex);
+	/*MinFilter = LINEAR;
+	MagFilter = LINEAR;*/
+};
+
 
 texture AlbedoTex;
 sampler AlbedoSampler = sampler_state
@@ -76,15 +93,12 @@ float4 DeferredBlendPS(PixelInput In) : COLOR0
 {
 	
 	float4 color = tex2D(AlbedoSampler, In.texcoord);
-	float4 shade = tex2D(LightSampler, In.texcoord);
+	float4 lightIntensity = tex2D(LightIntensitySampler, In.texcoord);
+	float4 ambientIntensity = tex2D(AmbientIntensitySampler, In.texcoord);
+	float4 specularIntensity = tex2D(SpecularIntensitySampler, In.texcoord);
 
-	//return color;
-	float4 ambient = shade.g * color;	
-	float4 specular = shade.b;
-	float4 rimLight = shade.a;
-	color = color * shade.r + ambient + specular;// +rimLight;
-
-	//return shade;
+	float4 ambient = color * ambientIntensity;
+	color = color * lightIntensity + ambient + specularIntensity;
 
 	return color;
 };
@@ -92,12 +106,12 @@ float4 DeferredBlendPS(PixelInput In) : COLOR0
 float4 DeferredBlendWithLUTFilterPS(PixelInput In) : COLOR0
 {
 	float4 color = tex2D(AlbedoSampler, In.texcoord);
-	float4 shade = tex2D(LightSampler, In.texcoord);
+	/*float4 shade = tex2D(LightSampler, In.texcoord);
 
 	color = color * shade;
 
 	color = float4(GetLutColor(color.rgb, LutSampler), 1.0f); 
-
+*/
 	return color;
 };
 
@@ -106,7 +120,8 @@ technique DeferredBlend
 	pass P0
 	{
 		ZEnable = false;
-		VertexShader = compile vs_3_0 DefaultVS();
+		
+		VertexShader = NULL;// compile vs_3_0 DefaultVS();
 		PixelShader = compile ps_3_0 DeferredBlendPS();
 	}
 };
@@ -116,6 +131,7 @@ technique DeferredBlendWithLUTFilter
 	pass P0
 	{
 		ZEnable = false;
+		
 		VertexShader = compile vs_3_0 DefaultVS();
 		PixelShader = compile ps_3_0 DeferredBlendPS();
 	}

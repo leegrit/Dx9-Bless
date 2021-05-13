@@ -67,6 +67,14 @@ namespace HyEngine
 		static const DWORD FVF;
 	};
 
+	class ENGINE_DLL VTXSCREEN
+	{
+	public:
+		D3DXVECTOR4 position;
+		D3DXVECTOR2 uv;
+		static const DWORD FVF;
+	};
+
 	class ENGINE_DLL ModelVertex
 	{
 	public:

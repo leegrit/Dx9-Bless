@@ -8,7 +8,7 @@
 #include "Light.h"
 #include "PathManager.h"
 #include "Skybox.h"
-
+#include "VertexTypes.h"
 
 void HyEngine::Renderer::Setup()
 {
@@ -129,9 +129,35 @@ void HyEngine::Renderer::Setup()
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
-		&m_pLightRTTexture
+		&m_pLightIntensityRTTexture
 	);
-	m_pLightRTTexture->GetSurfaceLevel(0, &m_pLightRTSurface);
+	m_pLightIntensityRTTexture->GetSurfaceLevel(0, &m_pLightIntensityRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pAmbientIntensityRTTexture
+	);
+	m_pAmbientIntensityRTTexture->GetSurfaceLevel(0, &m_pAmbientIntensityRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pSpecularIntensityRTTexture
+	);
+	m_pSpecularIntensityRTTexture->GetSurfaceLevel(0, &m_pSpecularIntensityRTSurface);
 
 	D3DXCreateTexture
 	(
@@ -228,6 +254,14 @@ void HyEngine::Renderer::Cleanup()
 	SAFE_RELEASE(m_pSoftShadowRTTexture);
 	SAFE_RELEASE(m_pSoftShadowRTSurface);
 
+	/* Light */
+	SAFE_RELEASE(m_pLightIntensityRTTexture);
+	SAFE_RELEASE(m_pLightIntensityRTSurface);
+	SAFE_RELEASE(m_pAmbientIntensityRTTexture);
+	SAFE_RELEASE(m_pAmbientIntensityRTSurface);
+	SAFE_RELEASE(m_pSpecularIntensityRTTexture);
+	SAFE_RELEASE(m_pSpecularIntensityRTSurface);
+
 	/* Stash */
 	SAFE_RELEASE(m_pStashRTTexture);
 	SAFE_RELEASE(m_pStashRTSurface);
@@ -254,7 +288,7 @@ void HyEngine::Renderer::ClearStashSurface()
 
 void HyEngine::Renderer::ClearLightSurface()
 {
-	DEVICE->ColorFill(m_pLightRTSurface, NULL, 0x00000000);
+	DEVICE->Clear(0, 0, D3DCLEAR_TARGET, 0x00000000, 1.0f, 0);
 }
 
 void HyEngine::Renderer::OcclusionCull(Scene* scene)
@@ -387,6 +421,7 @@ void Renderer::RenderEnd()
 	DEVICE->EndScene();
 	DEVICE->Present(nullptr, nullptr, g_hWnd, nullptr);
 
+	//D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
 	/*D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
 	D3DXSaveSurfaceToFile(L"ResultMap.bmp", D3DXIFF_BMP, m_pOriginSurface, NULL, NULL);*/
 	//D3DXSaveTextureToFile(L"AlbedoMap.bmp", D3DXIFF_BMP, m_pAlbedoRTTexture, NULL);
@@ -552,9 +587,9 @@ void HyEngine::Renderer::SetSoftShadowMRT()
 
 void HyEngine::Renderer::SetLightMRT()
 {
-	DEVICE->SetRenderTarget(0, m_pLightRTSurface);
-	DEVICE->SetRenderTarget(1, NULL);
-	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(0, m_pLightIntensityRTSurface);
+	DEVICE->SetRenderTarget(1, m_pAmbientIntensityRTSurface);
+	DEVICE->SetRenderTarget(2, m_pSpecularIntensityRTSurface);
 	DEVICE->SetRenderTarget(3, NULL);
 }
 
@@ -682,7 +717,8 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		D3DXMATRIX projMatrixInv;
 
 		DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-		DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+		DEVICE->SetFVF(VTXSCREEN::FVF);
+		//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 		DEVICE->SetIndices(m_pResultScreen->_ib);
 
 		//D3DXMatrixOrthoLH(&projMatrix, WinMaxWidth, WinMaxHeight, 0, 1000);
@@ -826,17 +862,17 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 		pShader->Begin(0, 0);
 		{
-			pShader->BeginPass(0);
-			DEVICE->DrawIndexedPrimitive
-			(
-				D3DPT_TRIANGLELIST,
-				0,
-				0,
-				4,
-				0,
-				2
-			);
-			pShader->EndPass();
+				pShader->BeginPass(0);
+				DEVICE->DrawIndexedPrimitive
+				(
+					D3DPT_TRIANGLELIST,
+					0,
+					0,
+					4,
+					0,
+					2
+				);
+				pShader->EndPass();
 		}
 		pShader->End();
 		//DEVICE->StretchRect(m_pLightRTSurface, NULL, m_pStashRTSurface,NULL, D3DTEXF_NONE/* NULL,D3DTEXF_POINT*//*  D3DTEXF_NONE*/);
@@ -1063,7 +1099,8 @@ void HyEngine::Renderer::SoftShadowPass(Scene * scene)
 
 	/* Set Stream */
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 	/* Shader Load */
@@ -1234,7 +1271,8 @@ void HyEngine::Renderer::SoftShadowBlurPass(Scene * scene)
 
 	/* Set Stream */
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 	/* Shader Load */
@@ -1300,7 +1338,8 @@ void HyEngine::Renderer::LinearFilterPass()
 	D3DXMATRIX projMatrix;
 
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 
@@ -1355,7 +1394,8 @@ void HyEngine::Renderer::LutFilterPass()
 	D3DXMATRIX projMatrix;
 
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 
@@ -1414,7 +1454,8 @@ void HyEngine::Renderer::BlendPass()
 	D3DXMATRIX projMatrix;
 
 	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
-	DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
 	DEVICE->SetIndices(m_pResultScreen->_ib);
 
 
@@ -1443,8 +1484,16 @@ void HyEngine::Renderer::BlendPass()
 	pShader->SetTexture(albedoHandle, m_pAlbedoRTTexture);
 
 	/* Light */
-	D3DXHANDLE lightHandle = pShader->GetParameterByName(0, "LightTex");
-	pShader->SetTexture(lightHandle, m_pLightRTTexture);
+	D3DXHANDLE lightIntensityHandle = pShader->GetParameterByName(0, "LightIntensityTex");
+	pShader->SetTexture(lightIntensityHandle, m_pLightIntensityRTTexture);
+
+	D3DXHANDLE ambientIntensityHandle = pShader->GetParameterByName(0, "AmbientIntensityTex");
+	pShader->SetTexture(ambientIntensityHandle, m_pAmbientIntensityRTTexture);
+
+	D3DXHANDLE specularIntensityHandle = pShader->GetParameterByName(0, "SpecularIntensityTex");
+	pShader->SetTexture(specularIntensityHandle, m_pSpecularIntensityRTTexture);
+
+
 
 	D3DXHANDLE lutFilterHandle = pShader->GetParameterByName(0, "LutTex");
 	pShader->SetTexture(lutFilterHandle, m_pLutFilterTexture);

@@ -21,12 +21,56 @@ PlayerSkillSwing::~PlayerSkillSwing()
 void PlayerSkillSwing::Initialize()
 {
 	PlayerAction::Initialize();
+
+	GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+
+	MeshEffectDesc effectDesc0; 
+	effectDesc0.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Helix_005.X";
+	effectDesc0.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	effectDesc0.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_toneido_01.tga";
+	effectDesc0.fadeOut = true;
+	effectDesc0.lifeTime = 0.5f;
+	effectDesc0.endRot = D3DXVECTOR3(0, -360, 0);
+	effectDesc0.endScale = D3DXVECTOR3(0.3f, 0.3f, 0.3f);
+	m_pEffect0 = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_Effect0", effectDesc0);
+
+	MeshEffectDesc effectDesc1;
+	effectDesc1.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Helix_008_SM_KKJA.X";
+	effectDesc1.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Tornado.tga";
+	effectDesc1.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_toneido_01.tga";
+	effectDesc1.fadeOut = true;
+	effectDesc1.lifeTime = 0.5f;
+	effectDesc1.endRot = D3DXVECTOR3(0, -360, 0);
+	effectDesc1.endScale = D3DXVECTOR3(0.3f, 0.3f, 0.3f);
+	m_pEffect1 = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_Effect1", effectDesc1);
+
+
+
 }
 
 void PlayerSkillSwing::Update()
 {
 	PlayerAction::Update();
 	UpdateAction();
+
+	m_pEffect0->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 10))
+	);
+	m_pEffect0->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pEffect0->SetOriginScale(D3DXVECTOR3(0.1f, 0.1f, 0.1f));
+
+	m_pEffect1->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 10))
+	);
+	m_pEffect1->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pEffect1->SetOriginScale(D3DXVECTOR3(0.1f, 0.1f, 0.1f));
+
 }
 
 void PlayerSkillSwing::LateUpdate()

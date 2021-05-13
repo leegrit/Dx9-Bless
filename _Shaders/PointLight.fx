@@ -106,6 +106,12 @@ sampler StashSampler = sampler_state
 	MagFilter = POINT;*/
 };
 
+texture LightTex;
+sampler LightSampler = sampler_state
+{
+	Texture = (LightTex);
+};
+
 
 void PointLightVS(
 	float4 position : POSITION,
@@ -121,9 +127,12 @@ void PointLightVS(
 	outTexcoord = texcoord;
 }
 
-float4 PointLightPS(
-	float2 texcoord : TEXCOORD0
-	) : COLOR0
+void PointLightPS(
+	float2 texcoord : TEXCOORD0,
+	out float4 outLightIntensity : COLOR0,
+	out float4 outAmbientIntensity : COLOR1,
+	out float4 outSpecularIntensity : COLOR2
+	)
 {
 	
 	//float4 baseColor = tex2D(CubeSampler, texcoord);
@@ -158,8 +167,9 @@ float4 PointLightPS(
 	// if pixel is too far, return zero
 	/*if(d > Range)
 		discard;*/
+	float distFactor = 1;
 	if (d > Range)
-		return float4(0, 0, 0, 1);
+		distFactor = 0;
 
 	// Turn lightToPixelVec into a unit length vector describing
 	// the pixels direction from the lights position
@@ -201,13 +211,12 @@ float4 PointLightPS(
 		else
 			specular = specular * specularMap.rgb;
 	}
-	finalColor = saturate(finalColor + specular.rgb);
-	finalColor.g = 0;
-	finalColor.b = 0;
-	//return float4(finalColor.rgb + stashMap.rgb, 1);
-	return float4(finalColor.rgb, 1);
-	// Return Final color
-	//return float4(finalColor.rgb + stashMap.rgb, 1);
+	finalColor = saturate(finalColor) * distFactor;
+	outLightIntensity = float4(finalColor.rgb, 1);
+	outAmbientIntensity = float4(0, 0, 0, 1);
+	outSpecularIntensity = float4(specular.rgb, 1);
+
+
 }
 
 
@@ -218,10 +227,11 @@ technique PointLight
 	{
 		ZEnable = false;
 		AlphaBlendEnable = true;
-		BlendOp = ADD;
+		//BlendOp = ADD;
 		SrcBlend = ONE;
 		DestBlend = ONE;
 		VertexShader = compile vs_3_0 PointLightVS();
 		PixelShader = compile ps_3_0 PointLightPS();
 	}
+	
 }
