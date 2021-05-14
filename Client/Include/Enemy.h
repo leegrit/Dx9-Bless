@@ -82,6 +82,9 @@ private : /* Hit Effect */
 	Effect * m_pLeftSwordHitEffect;
 	Effect * m_pRightSwordHitEffect;
 	class Sprite* m_pHitEffect;
+	Effect* m_pLeftBloodEffect;
+	Effect* m_pRightBloodEffect;
+
 
 };
 

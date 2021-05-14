@@ -7,16 +7,18 @@ texture LightIntensityTex;
 sampler LightIntensitySampler = sampler_state
 {
 	texture = (LightIntensityTex);
-	/*MinFilter = LINEAR;
-	MagFilter = LINEAR;*/
 };
 
 texture AmbientIntensityTex;
 sampler AmbientIntensitySampler = sampler_state
 {
 	texture = (AmbientIntensityTex);
-	/*MinFilter = LINEAR;
-	MagFilter = LINEAR;*/
+};
+
+texture RimLightTex;
+sampler RimLightSampler = sampler_state
+{
+	texture = RimLightTex;
 };
 
 
@@ -96,9 +98,10 @@ float4 DeferredBlendPS(PixelInput In) : COLOR0
 	float4 lightIntensity = tex2D(LightIntensitySampler, In.texcoord);
 	float4 ambientIntensity = tex2D(AmbientIntensitySampler, In.texcoord);
 	float4 specularIntensity = tex2D(SpecularIntensitySampler, In.texcoord);
+	float4 rimLight = tex2D(RimLightSampler, In.texcoord);
 
 	float4 ambient = color * ambientIntensity;
-	color = color * lightIntensity + ambient + specularIntensity;
+	color = color * lightIntensity + ambient + specularIntensity + rimLight;
 
 	return color;
 };

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ShieldEffect.h"
+#include "PathManager.h"
 
 ShieldEffect::ShieldEffect(Scene * pScene)
 	: MeshEffect(pScene)
@@ -26,7 +27,9 @@ void ShieldEffect::Render()
 	float rimWidth = 0.2f;
 
 	D3DXVECTOR3 worldPos = m_pTransform->m_position;
+	//D3DXVECTOR3 cameraPos = C		AMERA->m_pTransform->m_position;
 	D3DXVECTOR3 cameraPos = CAMERA->m_pTransform->m_position;
+
 	m_pEffect->SetValue("WorldPosition", &worldPos, sizeof(worldPos));
 	m_pEffect->SetValue("EyePosition", &cameraPos, sizeof(cameraPos));
 	m_pEffect->SetFloat("RimWidth", rimWidth);
@@ -45,7 +48,7 @@ void ShieldEffect::Initialize()
 {
 
 	ENGINE->TryGetShader(L"ShieldEffect", &m_pEffect);
-
+	SetNormalMapTexture(PATH->AssetsPathW() + L"Effect/SingleTexture/FX_SLD_Normal_001_TEX_CJH.tga");
 	assert(m_pEffect);
 }
 

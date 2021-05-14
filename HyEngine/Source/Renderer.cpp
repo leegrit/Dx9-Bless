@@ -9,6 +9,7 @@
 #include "PathManager.h"
 #include "Skybox.h"
 #include "VertexTypes.h"
+#include "DebugMRTQuad.h"
 
 void HyEngine::Renderer::Setup()
 {
@@ -168,13 +169,146 @@ void HyEngine::Renderer::Setup()
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
+		&m_pScreenTexture
+	);
+	m_pScreenTexture->GetSurfaceLevel(0, &m_pScreenSurface);
+
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pVtxNormalRTTexture
+	);
+	m_pVtxNormalRTTexture->GetSurfaceLevel(0, &m_pVtxNormalRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pEffectMaskRTTexture
+	);
+	m_pEffectMaskRTTexture->GetSurfaceLevel(0, &m_pEffectMaskRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pEffectParamRTTexture
+	);
+	m_pEffectParamRTTexture->GetSurfaceLevel(0, &m_pEffectParamRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pRimLightRTTexture
+	);
+	m_pRimLightRTTexture->GetSurfaceLevel(0, &m_pRimLightRTSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pBrightnessTexture
+	);
+	m_pBrightnessTexture->GetSurfaceLevel(0, &m_pBrightnessSurface);
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pBloomRTTexture
+	);
+	m_pBloomRTTexture->GetSurfaceLevel(0, &m_pBloomRTSurface);
+
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
+		&m_pPostRenderRTTexture
+	);
+	m_pPostRenderRTTexture->GetSurfaceLevel(0, &m_pPostRenderRTSurface);
+
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
 		&m_pStashRTTexture
 	);
 	m_pStashRTTexture->GetSurfaceLevel(0, &m_pStashRTSurface);
 
 	m_pResultScreen = new DeferredQuad();
 
-	
+	/* GBuffer Group */
+	m_pDepthRTQuad = new DebugMRTQuad(0, 0, 150, 150);
+	m_pAlbedoRTQuad = new DebugMRTQuad(0, 150, 150, 150);
+	m_pNormalRTQuad = new DebugMRTQuad(0, 300, 150, 150);
+	m_pSpecularRTQuad = new DebugMRTQuad(0, 450, 150, 150);
+
+	/* Shadow Group */
+	m_pCascadeShadowQuad0 = new DebugMRTQuad(150, 0, 150, 150);
+	m_pCascadeShadowQuad1 = new DebugMRTQuad(150, 150, 150, 150);
+	m_pShadowOriginQuad = new DebugMRTQuad(150, 300, 150, 150);
+	m_pShadowBlurQuad = new DebugMRTQuad(150, 450, 150, 150);
+
+	/* Light Group */
+	m_pLightIntensityQuad = new DebugMRTQuad(300, 0, 150, 150);
+	m_pAmbientIntensityQuad = new DebugMRTQuad(300, 150, 150, 150);
+	m_pSpecularIntensityQuad = new DebugMRTQuad(300, 300, 150, 150);
+
+	/* Post Render Buffer Group */
+	m_pVtxNormalQuad = new DebugMRTQuad(450, 0, 150, 150);
+	m_pEffectMaskQuad = new DebugMRTQuad(450, 150, 150, 150);
+	m_pEffectParamQuad = new DebugMRTQuad(450, 300, 150, 150);
+
+	/* Post Render Group */
+	m_pRimLightQuad = new DebugMRTQuad(600, 0, 150, 150);
+	m_pBrightnessQuad = new DebugMRTQuad(600, 150, 150, 150);
+	m_pBloomQuad = new DebugMRTQuad(600, 300, 150, 150);
+
 
 	m_bSetup = true;
 }
@@ -286,9 +420,14 @@ void HyEngine::Renderer::ClearStashSurface()
 	DEVICE->ColorFill(m_pStashRTSurface, NULL, 0x00000000);
 }
 
-void HyEngine::Renderer::ClearLightSurface()
+void HyEngine::Renderer::ClearSurface()
 {
 	DEVICE->Clear(0, 0, D3DCLEAR_TARGET, 0x00000000, 1.0f, 0);
+}
+
+void HyEngine::Renderer::ClearDepth()
+{
+	DEVICE->Clear(0, 0, D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, 0);
 }
 
 void HyEngine::Renderer::OcclusionCull(Scene* scene)
@@ -394,9 +533,16 @@ void HyEngine::Renderer::Render(Scene * scene)
 	/* For opaque objects with light */
 	DeferredPipeline(scene);
 
+
 	/* For alpha object without light */
 	ForwardPipeline(scene);
 
+	
+	/* For PostRendering */
+	PostRenderPipeline(scene);
+
+	if(m_isDebugRender)
+		DebugPipeline();
 }
 
 void Renderer::RenderBegin()
@@ -434,6 +580,16 @@ void Renderer::RenderEnd()
 
 		D3DXSaveTextureToFile((test + L".bmp").c_str(), D3DXIFF_BMP, m_pShadowRTTexture[i], NULL);
 	}*/
+}
+
+void HyEngine::Renderer::ShowDebugMRT()
+{
+	m_isDebugRender = true;
+}
+
+void HyEngine::Renderer::HideDebugMRT()
+{
+	m_isDebugRender = false;
 }
 
 void HyEngine::Renderer::SetLutFilter(IDirect3DTexture9 * pLutFilterTexture)
@@ -478,26 +634,18 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 
 	//SetOriginMRT();
 	SetLightMRT();
-	ClearLightSurface();
-	ClearStashSurface();
-	
-	/* Ambient Pass */
-	//AmbientPass(scene);
-
+	ClearSurface();
 	/* Render For Backbuffer */
 	LightPass(scene);
 
-	//LutFilterPass();
-
+	/* Final Blend */
 	SetOriginMRT();
 	BlendPass();
-
-	//LinearFilterPass();
-
 }
 
 void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 {
+	SetOriginMRT();
 	/* Render Alpha */
 	auto& list = scene->GetObjectContainer()->GetRenderableAlphaAll();
 	if (list.size() == 0) return;
@@ -525,6 +673,132 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 		collider->Render();
 	}
 #endif
+}
+
+void HyEngine::Renderer::PostRenderPipeline(Scene * scene)
+{
+	if (IS_CLIENT)
+	{
+		bool bRender = ENGINE->CheckRenderOption(RenderOptions::RenderPostEffect);
+		if (bRender == false)
+			return;
+	}
+	ClearStashSurface();
+	DEVICE->StretchRect(m_pOriginSurface, NULL, m_pScreenSurface, NULL, D3DTEXF_NONE);
+
+
+
+	/* Post Render Buffer */
+	SetPRBufferMRT();
+	ClearSurface();
+	PRBufferPass(scene);
+
+	/* Rim Light */
+	SetRimLightMRT();
+	ClearSurface();
+	RimLightPass();
+
+	/* Brightness */
+	SetBrightnessMRT();
+	ClearSurface();
+	BrightnessPass();
+
+	/* BloomPass */
+	SetBloomMRT();
+	ClearSurface();
+	BloomPass();
+
+	/* Post Render */
+	SetPostRenderMRT();
+	PostRenderPass();
+
+	
+}
+
+void HyEngine::Renderer::DebugPipeline()
+{
+	m_debugQuads.clear();
+	m_debugTextures.clear();
+
+	m_debugQuads.push_back(m_pDepthRTQuad);
+	m_debugQuads.push_back(m_pAlbedoRTQuad);
+	m_debugQuads.push_back(m_pNormalRTQuad);
+	m_debugQuads.push_back(m_pSpecularRTQuad);
+
+	m_debugQuads.push_back(m_pCascadeShadowQuad0);
+	m_debugQuads.push_back(m_pCascadeShadowQuad1);
+	m_debugQuads.push_back(m_pShadowOriginQuad);
+	m_debugQuads.push_back(m_pShadowBlurQuad);
+
+	m_debugQuads.push_back(m_pLightIntensityQuad);
+	m_debugQuads.push_back(m_pAmbientIntensityQuad);
+	m_debugQuads.push_back(m_pSpecularRTQuad);
+
+	m_debugQuads.push_back(m_pVtxNormalQuad);
+	m_debugQuads.push_back(m_pEffectMaskQuad);
+	m_debugQuads.push_back(m_pEffectParamQuad);
+
+	m_debugQuads.push_back(m_pRimLightQuad);
+	m_debugQuads.push_back(m_pBrightnessQuad);
+	m_debugQuads.push_back(m_pBloomQuad);
+
+	m_debugTextures.push_back(m_pDepthRTTexture);
+	m_debugTextures.push_back(m_pAlbedoRTTexture);
+	m_debugTextures.push_back(m_pNormalRTTexture);
+	m_debugTextures.push_back(m_pSpecularRTTexture);
+
+	m_debugTextures.push_back(m_pShadowRTTexture[0]);
+	m_debugTextures.push_back(m_pShadowRTTexture[1]);
+	m_debugTextures.push_back(m_pSoftShadowOriginRTTexture);
+	m_debugTextures.push_back(m_pSoftShadowRTTexture);
+
+	m_debugTextures.push_back(m_pLightIntensityRTTexture);
+	m_debugTextures.push_back(m_pAmbientIntensityRTTexture);
+	m_debugTextures.push_back(m_pSpecularRTTexture);
+
+	m_debugTextures.push_back(m_pVtxNormalRTTexture);
+	m_debugTextures.push_back(m_pEffectMaskRTTexture);
+	m_debugTextures.push_back(m_pEffectParamRTTexture);
+
+	m_debugTextures.push_back(m_pRimLightRTTexture);
+	m_debugTextures.push_back(m_pBrightnessTexture);
+	m_debugTextures.push_back(m_pBloomRTTexture);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"DebugMRT", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"DebugMRT", &pShader);
+	assert(pShader);
+
+	assert(m_debugQuads.size() == m_debugTextures.size());
+	for (UINT i = 0; i < m_debugQuads.size(); i++)
+	{
+		DEVICE->SetStreamSource(0, m_debugQuads[i]->_vb, 0, m_debugQuads[i]->vertexSize);
+		DEVICE->SetFVF(VTXSCREEN::FVF);
+		//DEVICE->SetVertexDeclaration(m_pResultScreen->m_pDeclare);
+		DEVICE->SetIndices(m_debugQuads[i]->_ib);
+
+		D3DXHANDLE renderTargetHandle = pShader->GetParameterByName(0, "RenderTargetTex");
+		pShader->SetTexture(renderTargetHandle, m_debugTextures[i]);
+
+		pShader->SetTechnique("DebugMRT");
+		pShader->Begin(0, 0);
+		{
+			pShader->BeginPass(0);
+			DEVICE->DrawIndexedPrimitive
+			(
+				D3DPT_TRIANGLELIST,
+				0,
+				0,
+				4,
+				0,
+				2
+			);
+			pShader->EndPass();
+		}
+		pShader->End();
+	}
 }
 
 
@@ -590,6 +864,46 @@ void HyEngine::Renderer::SetLightMRT()
 	DEVICE->SetRenderTarget(0, m_pLightIntensityRTSurface);
 	DEVICE->SetRenderTarget(1, m_pAmbientIntensityRTSurface);
 	DEVICE->SetRenderTarget(2, m_pSpecularIntensityRTSurface);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetPRBufferMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pVtxNormalRTSurface);
+	DEVICE->SetRenderTarget(1, m_pEffectMaskRTSurface);
+	DEVICE->SetRenderTarget(2, m_pEffectParamRTSurface);
+	DEVICE->SetRenderTarget(3, m_pBloomRTSurface);
+}
+
+void HyEngine::Renderer::SetPostRenderMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pOriginSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetRimLightMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pRimLightRTSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetBrightnessMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pBrightnessSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
+void HyEngine::Renderer::SetBloomMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pBloomRTSurface);
+	DEVICE->SetRenderTarget(1, NULL);
+	DEVICE->SetRenderTarget(2, NULL);
 	DEVICE->SetRenderTarget(3, NULL);
 }
 
@@ -1445,6 +1759,247 @@ void HyEngine::Renderer::LutFilterPass()
 	pShader->End();
 }
 
+void HyEngine::Renderer::PRBufferPass(Scene * pScene)
+{
+	ID3DXEffect* pEffect = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"PRBuffer", &pEffect);
+	else
+		EDIT_ENGINE->TryGetShader(L"PRBuffer", &pEffect);
+	assert(pEffect);
+
+	auto& opaquelist = m_renderableOpaque;
+	for (auto& opaque : opaquelist)
+	{
+		if (opaque->IsPostRender() == false)
+			continue;
+
+		/* For Rim Light */
+		bool isRimLight = opaque->IsPostRender(PostRenderOption::RimLight) ? true : false;
+		if (isRimLight == true)
+			pEffect->SetInt("RimLightFactor", 1);
+		else
+			pEffect->SetInt("RimLightFactor", 0);
+		pEffect->SetBool("IsRimLight", isRimLight);
+		pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
+
+		///* For Bloom */
+		//bool isBloom = opaque->IsPostRender(PostRenderOption::Bloom) ? true : false;
+		//if (isBloom == true)
+		//	pEffect->SetInt("BloomFactor", 1);
+		//else
+		//	pEffect->SetInt("BloomFactor", 0);
+
+
+		//Mesh* mesh = dynamic_cast<Mesh*>(opaque);
+		opaque->PostRender(pEffect);
+	}
+
+	auto& alphaList = pScene->GetObjectContainer()->GetRenderableAlphaAll();
+	for (auto& alpha : alphaList)
+	{
+		if (alpha->IsPostRender() == false)
+			continue;
+
+		/* For Rim Light */
+		bool isRimLight = alpha->IsPostRender(PostRenderOption::RimLight) ? true : false;
+		if (isRimLight == true)
+			pEffect->SetInt("RimLightFactor", 1);
+		else
+			pEffect->SetInt("RimLightFactor", 0);
+		pEffect->SetBool("IsRimLight", isRimLight);
+		pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
+
+
+		///* For Bloom */
+		//bool isBloom = alpha->IsPostRender(PostRenderOption::Bloom) ? true : false;
+		//if (isBloom == true)
+		//	pEffect->SetInt("BloomFactor", 1);
+		//else
+		//	pEffect->SetInt("BloomFactor", 0);
+
+
+		alpha->PostRender(pEffect);
+	}
+}
+
+void HyEngine::Renderer::RimLightPass()
+{
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"RimLight", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"RimLight", &pShader);
+	assert(pShader);
+
+	D3DXMATRIX viewMatrixInv;
+	D3DXMATRIX projMatrixInv;
+
+	D3DXMatrixInverse(&viewMatrixInv, NULL, &CAMERA->GetViewMatrix());
+	D3DXMatrixInverse(&projMatrixInv, NULL, &CAMERA->GetProjectionMatrix());
+
+	pShader->SetValue("ViewMatrixInv", &viewMatrixInv, sizeof(viewMatrixInv));
+	pShader->SetValue("ProjMatrixInv", &projMatrixInv, sizeof(projMatrixInv));
+
+	pShader->SetValue("EyePosition", &CAMERA->m_pTransform->m_position, sizeof(CAMERA->m_pTransform->m_position));
+	
+	/* DepthTex */
+	D3DXHANDLE depthHandle = pShader->GetParameterByName(0, "DepthTex");
+	pShader->SetTexture(depthHandle, m_pDepthRTTexture);
+
+	/* VtxNormalTex */
+	D3DXHANDLE vtxNormalHandle = pShader->GetParameterByName(0, "VtxNormalTex");
+	pShader->SetTexture(vtxNormalHandle, m_pVtxNormalRTTexture);
+
+	/* EffectMaskTex */
+	D3DXHANDLE effectMaskHandle = pShader->GetParameterByName(0, "EffectMaskTex");
+	pShader->SetTexture(effectMaskHandle, m_pEffectMaskRTTexture);
+
+	/* EffectParamTex */
+	D3DXHANDLE effectParamHandle = pShader->GetParameterByName(0, "EffectParamTex");
+	pShader->SetTexture(effectParamHandle, m_pEffectParamRTTexture);
+
+	/* LightIntensityTex */
+	D3DXHANDLE lightIntensityHandle = pShader->GetParameterByName(0, "LightIntensityTex");
+	pShader->SetTexture(lightIntensityHandle, m_pLightIntensityRTTexture);
+
+	pShader->SetTechnique("RimLight");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+
+	}
+	pShader->End();
+}
+
+void HyEngine::Renderer::BrightnessPass()
+{
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"Brightness", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"Brightness", &pShader);
+	assert(pShader);
+
+	/* DepthTex */
+	D3DXHANDLE screenHandle = pShader->GetParameterByName(0, "ScreenTex");
+	pShader->SetTexture(screenHandle, m_pScreenTexture);
+
+	pShader->SetTechnique("Brightness");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+
+	}
+	pShader->End();
+}
+
+void HyEngine::Renderer::BloomPass()
+{
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"Bloom", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"Bloom", &pShader);
+	assert(pShader);
+
+	/* DepthTex */
+	D3DXHANDLE sourceHandle = pShader->GetParameterByName(0, "SourceTex");
+	pShader->SetTexture(sourceHandle, m_pBrightnessTexture);
+
+	pShader->SetTechnique("Bloom");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+
+	}
+	pShader->End();
+}
+
+void HyEngine::Renderer::PostRenderPass()
+{
+	DEVICE->SetStreamSource(0, m_pResultScreen->_vb, 0, m_pResultScreen->vertexSize);
+	DEVICE->SetFVF(VTXSCREEN::FVF);
+	DEVICE->SetIndices(m_pResultScreen->_ib);
+
+	ID3DXEffect* pShader = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"PostRender", &pShader);
+	else
+		EDIT_ENGINE->TryGetShader(L"PostRender", &pShader);
+	assert(pShader);
+
+	/* RimLight */
+	D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
+	pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
+	
+	/* Bloom */
+	D3DXHANDLE bloomHandle = pShader->GetParameterByName(0, "BloomTex");
+	pShader->SetTexture(bloomHandle, m_pBloomRTTexture);
+
+	
+
+	pShader->SetTechnique("PostRender");
+	pShader->Begin(0, 0);
+	{
+		pShader->BeginPass(0);
+		DEVICE->DrawIndexedPrimitive
+		(
+			D3DPT_TRIANGLELIST,
+			0,
+			0,
+			4,
+			0,
+			2
+		);
+		pShader->EndPass();
+
+	}
+	pShader->End();
+}
+
 void HyEngine::Renderer::BlendPass()
 {
 	
@@ -1493,6 +2048,9 @@ void HyEngine::Renderer::BlendPass()
 	D3DXHANDLE specularIntensityHandle = pShader->GetParameterByName(0, "SpecularIntensityTex");
 	pShader->SetTexture(specularIntensityHandle, m_pSpecularIntensityRTTexture);
 
+	/* Post Render */
+	//D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
+	//pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
 
 
 	D3DXHANDLE lutFilterHandle = pShader->GetParameterByName(0, "LutTex");

@@ -31,7 +31,8 @@ namespace HyEngine
 		void Cleanup();
 		void ClearBackBuffer();
 		void ClearStashSurface();
-		void ClearLightSurface();
+		void ClearSurface();
+		void ClearDepth();
 		
 	public : /* For Occlusion Query */
 		void OcclusionCull(Scene* scene);
@@ -42,6 +43,9 @@ namespace HyEngine
 		void Render(Scene* scene);
 		void RenderBegin();
 		void RenderEnd();
+
+		void ShowDebugMRT();
+		void HideDebugMRT();
 
 	public : /* For Filter */
 		void SetLutFilter(IDirect3DTexture9* pLutFilterTexture);
@@ -56,7 +60,10 @@ namespace HyEngine
 		void DeferredPipeline(Scene* scene);
 		/* For Alpha */
 		void ForwardPipeline(Scene* scene);
+		/* For PostRender */
+		void PostRenderPipeline(Scene* scene);
 
+		void DebugPipeline();
 
 
 		//////////////////////////////////////////////////////////////////////////
@@ -73,6 +80,11 @@ namespace HyEngine
 		void SetSoftShadowBlurXMRT();
 		void SetSoftShadowMRT();
 		void SetLightMRT(); // 음영 렌더타깃
+		void SetPRBufferMRT(); // 후처리 준비
+		void SetPostRenderMRT(); // 후처리 렌더타겟
+		void SetRimLightMRT();
+		void SetBrightnessMRT();
+		void SetBloomMRT();
 
 	private :
 		void GeometryPass(Scene* scene);
@@ -83,6 +95,11 @@ namespace HyEngine
 		void SoftShadowBlurPass(Scene* scene);
 		void LinearFilterPass();
 		void LutFilterPass();
+		void PRBufferPass(Scene * pScene);
+		void RimLightPass();
+		void BrightnessPass();
+		void BloomPass();
+		void PostRenderPass();
 		void BlendPass(); // 최종 합산 pass
 
 		//////////////////////////////////////////////////////////////////////////
@@ -148,12 +165,69 @@ namespace HyEngine
 		IDirect3DTexture9 * m_pStashRTTexture = nullptr;
 		IDirect3DSurface9 * m_pStashRTSurface = nullptr;
 
+	private : /* For Post Render Buffer */
+		IDirect3DTexture9 * m_pVtxNormalRTTexture = nullptr;
+		IDirect3DSurface9 * m_pVtxNormalRTSurface = nullptr;
+
+		IDirect3DTexture9 * m_pEffectMaskRTTexture = nullptr;
+		IDirect3DSurface9 * m_pEffectMaskRTSurface = nullptr;
+
+		IDirect3DTexture9 * m_pEffectParamRTTexture = nullptr;
+		IDirect3DSurface9 * m_pEffectParamRTSurface = nullptr;
+
+	private : /* For Post Render */
+		IDirect3DTexture9 * m_pRimLightRTTexture = nullptr;
+		IDirect3DSurface9 * m_pRimLightRTSurface = nullptr;
+
+		IDirect3DTexture9 * m_pBrightnessTexture = nullptr;
+		IDirect3DSurface9 * m_pBrightnessSurface = nullptr;
+
+		IDirect3DTexture9 * m_pBloomRTTexture = nullptr;
+		IDirect3DSurface9 * m_pBloomRTSurface = nullptr;
+
+	private : /* For Post Render */
+		IDirect3DTexture9* m_pPostRenderRTTexture = nullptr;
+		IDirect3DSurface9* m_pPostRenderRTSurface = nullptr;
+
+	private : 
+		IDirect3DTexture9* m_pScreenTexture = nullptr;
+		IDirect3DSurface9* m_pScreenSurface = nullptr;
+
 	private: /* For Original Surface */
 		IDirect3DSurface9 * m_pOriginSurface = nullptr;
 
 	private :
 		class DeferredQuad * m_pResultScreen = nullptr;
 
+	private : /* For Debug MRT Quad */
+		class DebugMRTQuad * m_pDepthRTQuad = nullptr;
+		class DebugMRTQuad * m_pAlbedoRTQuad = nullptr;
+		class DebugMRTQuad * m_pNormalRTQuad = nullptr;
+		class DebugMRTQuad * m_pSpecularRTQuad = nullptr;
+
+		class DebugMRTQuad * m_pCascadeShadowQuad0 = nullptr;
+		class DebugMRTQuad * m_pCascadeShadowQuad1 = nullptr;
+		class DebugMRTQuad * m_pShadowOriginQuad = nullptr;
+		class DebugMRTQuad * m_pShadowBlurQuad = nullptr;
+
+		class DebugMRTQuad * m_pLightIntensityQuad = nullptr;
+		class DebugMRTQuad * m_pAmbientIntensityQuad = nullptr;
+		class DebugMRTQuad * m_pSpecularIntensityQuad = nullptr;
+
+		class DebugMRTQuad * m_pVtxNormalQuad = nullptr;
+		class DebugMRTQuad * m_pEffectMaskQuad = nullptr;
+		class DebugMRTQuad * m_pEffectParamQuad = nullptr;
+
+		class DebugMRTQuad * m_pRimLightQuad = nullptr;
+		class DebugMRTQuad * m_pBrightnessQuad = nullptr;
+		class DebugMRTQuad * m_pBloomQuad = nullptr;
+
+		class DebugMRTQuad * m_pPostRenderQuad = nullptr;
+
+		std::vector<DebugMRTQuad*> m_debugQuads;
+		std::vector<IDirect3DTexture9*> m_debugTextures;
+
+		bool m_isDebugRender = false;
 		//////////////////////////////////////////////////////////////////////////
 		// RENDERER VARIABLES 
 		//////////////////////////////////////////////////////////////////////////

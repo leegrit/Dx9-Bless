@@ -18,6 +18,7 @@ namespace HyEngine
 
 	public:
 		virtual void Render();
+		virtual void PostRender(ID3DXEffect* pEffect) {}
 		// 단순하게 정점 그리는 내용만 호출하는 함수
 		virtual void DrawPrimitive(ID3DXEffect* pShader) {}
 		virtual void Update();
@@ -115,6 +116,16 @@ namespace HyEngine
 
 		GameObject* GetParent() const;
 		Scene* GetScene() const;
+
+		bool IsPostRender();
+		bool IsPostRender(DWORD postRenderType);
+		DWORD GetPostRenderOption();
+		void SetPostRenderOption(DWORD postRenderOption);
+
+		float GetRimWidth();
+		void SetRimWidth(float rimWidth);
+
+
 		// ----------------------------------------------------------
 		// STATIC METHODS
 		// ---------------------------------------------------------------
@@ -163,12 +174,16 @@ namespace HyEngine
 
 		std::vector<std::function<void()>> m_removeFunctions;
 
-
+		DWORD m_postRenderOption = PostRenderOption::None;
 		EStaticType m_staticType;
 		// only editor
 		int m_editID;
 
 		int m_renderQueue = 3000;
+
+	private :/* For PostRender */
+		float m_rimWidth = 0;
+
 	protected: /* Hierarchy Data */
 		class GameObjectData* m_pGameObjectData = nullptr;
 		class MeshData* m_pMeshData = nullptr;

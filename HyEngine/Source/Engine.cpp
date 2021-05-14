@@ -432,6 +432,12 @@ bool Engine::LoadShaders()
 	InsertShader(L"LUTFilter", PATH->ShadersPathW() + L"LUTFilter.fx");
 	InsertShader(L"DeferredBlend", PATH->ShadersPathW() + L"DeferredBlend.fx");
 	InsertShader(L"ShieldEffect", PATH->ShadersPathW() + L"ShieldEffect.fx");
+	InsertShader(L"PRBuffer", PATH->ShadersPathW() + L"PRBuffer.fx");
+	InsertShader(L"RimLight", PATH->ShadersPathW() + L"RimLight.fx");
+	InsertShader(L"Brightness", PATH->ShadersPathW() + L"Brightness.fx");
+	InsertShader(L"Bloom", PATH->ShadersPathW() + L"Bloom.fx");
+	InsertShader(L"PostRender", PATH->ShadersPathW() + L"PostRender.fx");
+	InsertShader(L"DebugMRT", PATH->ShadersPathW() + L"DebugMRT.fx");
 	return true;
 }
 

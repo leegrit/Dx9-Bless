@@ -72,11 +72,34 @@ void Enemy::Initialize(std::wstring dataPath)
 	rightHitEffectDesc.endScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f);
 	m_pRightSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right", rightHitEffectDesc);
 
+	MeshEffectDesc leftBloodEffectDesc;
+	leftBloodEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
+	leftBloodEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/Blood1.tga";
+	leftBloodEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	leftBloodEffectDesc.fadeOut = true;
+	leftBloodEffectDesc.fadeOutFactor = 0.5f;
+	leftBloodEffectDesc.lifeTime = 0.3f;
+	leftBloodEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	m_pLeftBloodEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyBloodEffect_Left", leftBloodEffectDesc);
+
+
+	MeshEffectDesc rightBloodEffectDesc;
+	rightBloodEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
+	rightBloodEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/Blood1.tga";
+	rightBloodEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	rightBloodEffectDesc.fadeOut = true;
+	rightBloodEffectDesc.fadeOutFactor = 0.5f;
+	rightBloodEffectDesc.lifeTime = 0.3f;
+	rightBloodEffectDesc.endScale = D3DXVECTOR3(0.1f, 0.1f, 0.1f);
+	m_pRightBloodEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyBloodEffect_Right", rightBloodEffectDesc);
+
+
+
 	//Sprite * pSprite;
 	m_pHitEffect = Sprite::Create(GetScene(), L"HitEffect",
 		PATH->AssetsPathW() + L"Effect/Texture/Spark", ELoopType::Default, 4, 12);
 	m_pHitEffect->SetActive(false);
-	m_pHitEffect->m_pTransform->SetScale(10, 10, 10);
+	m_pHitEffect->m_pTransform->SetScale(15, 15, 15);
 }
 
 void Enemy::Update()
@@ -111,6 +134,25 @@ void Enemy::Update()
 
 	m_pHitEffect->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3( 0, 6, 0)));
 	
+
+	m_pLeftBloodEffect->SetOriginPos(
+		m_pTransform->CalcOffset(D3DXVECTOR3(0, 7, 0))
+	);
+	m_pLeftBloodEffect->SetOriginRot
+	(
+		PLAYER->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(-45, -90, 0)
+	);
+	m_pLeftBloodEffect->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+
+	m_pRightBloodEffect->SetOriginPos(
+		m_pTransform->CalcOffset(D3DXVECTOR3(0, 7, 0))
+	);
+	m_pRightBloodEffect->SetOriginRot
+	(
+		PLAYER->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(-45, 90, 0)
+	);
+	m_pRightBloodEffect->SetOriginScale(D3DXVECTOR3(0.01f, 0.01f, 0.01f));
+
 }
 
 void Enemy::Render()
@@ -166,10 +208,12 @@ void Enemy::PlayHitAnimation(EEnemyHitType enemyHitType)
 	{
 	case EEnemyHitType::SwordLeft:
 		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left");
+		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyBloodEffect_Left");
 		m_pHitEffect->PlayAnimation();
 		break;
 	case EEnemyHitType::SwordRight:
 		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Right");
+		pScene->GetEffectManager()->PlayEffect(std::to_wstring(GetInstanceID()) + L"EnemyBloodEffect_Right");
 		m_pHitEffect->PlayAnimation();
 		break;
 	}

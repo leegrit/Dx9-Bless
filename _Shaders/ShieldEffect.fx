@@ -14,8 +14,6 @@ sampler AlbedoSampler = sampler_state
     AddressV = wrap;*/
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	AddressU = Border;
-	AddressV = Border;
 };
 texture NormalTex;
 sampler NormalSampler = sampler_state
@@ -26,8 +24,6 @@ sampler NormalSampler = sampler_state
     MipFilter = None;
     AddressU = wrap;
     AddressV = wrap;*/
-	AddressU = Border;
-	AddressV = Border;
 };
 texture AlphaMaskTex;
 sampler AlphaMaskSampler = sampler_state
@@ -40,8 +36,6 @@ sampler AlphaMaskSampler = sampler_state
     AddressV = wrap;*/
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
-	AddressU = Border;
-	AddressV = Border;
 };
 
 float Alpha;
@@ -60,13 +54,15 @@ void ShieldEffectVS(
 	out float4 outPosition : POSITION,
 	out float3 outNormal : NORMAL,
 	out float2 outTexcoord : TEXCOORD0,
-	out float3x3 outTangentWorldMat : TEXCOORD1
+	out float3 outWorldPos : TEXCOORD1,
+	out float3x3 outTangentWorldMat : TEXCOORD2
 )
 {
     /* Position */ 
     outPosition = mul(position, WorldMatrix);
 	outPosition = mul(outPosition, ViewMatrix);
 	outPosition = mul(outPosition, ProjMatrix);
+	//float3 pos = outPosition;
 
 	outTexcoord = texcoord;
 
@@ -77,12 +73,15 @@ void ShieldEffectVS(
 	outTangentWorldMat[0] = mul(float4(tangent, 0.0f), WorldMatrix).xyz;
 	outTangentWorldMat[1] = mul(float4(binormal, 0.0f), WorldMatrix).xyz;
 	outTangentWorldMat[2] = mul(float4(normal, 0.0f), WorldMatrix).xyz;
+
+	outWorldPos = outPosition;
 }
 
 void ShieldEffectPS(
 	float2 texcoord : TEXCOORD0,
 	float3 normal : NORMAL,
-	float3x3 tangentWorldMat : TEXCOORD1,
+	float3 worldPos : TEXCOORD1,
+	float3x3 tangentWorldMat : TEXCOORD2,
 	out float4 outColor : COLOR0
 )
 {
@@ -106,10 +105,17 @@ void ShieldEffectPS(
 	//float4 normalResult = float4(bumpNormal * 0.5f + 0.5f, 1);
 
 
-	float3 toCamPos = normalize(EyePosition - WorldPosition);
-	float rimLightColor = smoothstep(1.0f - RimWidth, 1.0f, 1 - max(0, dot(bumpNormal, toCamPos)));
+	//float3 toCamPos = normalize(EyePosition - WorldPosition);
+	float3 toCamPos = float3(0, 0, -1);
+	toCamPos = mul(toCamPos, (float3x3)WorldMatrix);
+	toCamPos = normalize(toCamPos);
+	float rimLightColor = smoothstep(1 - RimWidth, 1.0f, 1 - max(0, dot(bumpNormal, toCamPos)));
+	//float rimLightColor = clamp(1 - max(0, dot(bumpNormal, toCamPos)), 1 - RimWidth, 1.0f);
 
-	outColor = rimLightColor * Alpha;
+	//if (rimLightColor <= (1 - RimWidth + 0.001f))
+	//	rimLightColor = 0;
+	//outColor = bumpMap;
+	outColor = rimLightColor;
 }
 
 technique ShieldEffect
@@ -117,7 +123,7 @@ technique ShieldEffect
 	pass P0
 	{
 		ZEnable = true;
-		CULLMODE = NONE;
+		CULLMODE = CCW;
 		LightEnable[0] = FALSE;
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;

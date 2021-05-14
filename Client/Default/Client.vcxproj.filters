@@ -383,6 +383,9 @@
     <ClCompile Include="..\Source\Sprite.cpp">
       <Filter>Scripts\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Helper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -492,6 +495,9 @@
     </Filter>
     <Filter Include="Scripts\Sprite">
       <UniqueIdentifier>{969b878e-06e7-452d-8e0b-9cf02eea3349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{fef8988b-5aad-4c41-be70-cdea88310eb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -884,6 +890,9 @@
     </ClInclude>
     <ClInclude Include="..\Include\Sprite.h">
       <Filter>Scripts\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Helper.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

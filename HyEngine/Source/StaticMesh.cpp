@@ -151,6 +151,27 @@ void HyEngine::StaticMesh::Render()
 	}
 }
 
+void HyEngine::StaticMesh::PostRender(ID3DXEffect * pEffect)
+{
+	if (IsPostRender() == false) return;
+
+	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+	pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+
+	for (int i = 0; i < m_mtrls.size(); i++)
+	{
+		pEffect->SetTechnique("Mesh");
+		pEffect->Begin(0, 0);
+		{
+			pEffect->BeginPass(0);
+			m_pMesh->DrawSubset(i);
+			pEffect->EndPass();
+		}
+		pEffect->End();
+	}
+}
+
 void HyEngine::StaticMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 	GameObject::DrawPrimitive(pShader);

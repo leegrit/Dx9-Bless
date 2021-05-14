@@ -61,6 +61,15 @@ void HieraconScene::Update()
 	{
 		RENDERER->SetLutFilter(lutFilters.at(5));
 	}
+
+	if (KEYBOARD->Press(VK_F2))
+	{
+		RENDERER->ShowDebugMRT();
+	}
+	else
+	{
+		RENDERER->HideDebugMRT();
+	}
 }
 
 void HieraconScene::Load()
@@ -75,7 +84,7 @@ void HieraconScene::Load()
 	ENGINE->SetRenderOption(RenderOptions::RenderNavMesh, false);
 	ENGINE->SetRenderOption(RenderOptions::RenderShadow, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderUI, false);
-
+	ENGINE->SetRenderOption(RenderOptions::RenderPostEffect, true);
 
 	//////////////////////////////////////////////////////////////////////////
 	// NAVMESH

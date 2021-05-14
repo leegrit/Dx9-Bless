@@ -177,6 +177,61 @@ void HyEngine::DynamicMesh::Render()
 	}
 }
 
+void HyEngine::DynamicMesh::PostRender(ID3DXEffect * pEffect)
+{
+	if (IsPostRender() == false) return;
+	auto iter = m_MeshContainerList.begin();
+	auto iter_end = m_MeshContainerList.end();
+	int containerIndex = 0;
+	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+	pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+
+	for (; iter != iter_end; iter++)
+	{
+		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);
+
+		int boneCount = pMeshContainer->pSkinInfo->GetNumBones();
+		// 실제 출력부분
+		for (ULONG i = 0; i < pMeshContainer->NumMaterials; i++)
+		{
+			if (m_skinningType == ESkinningType::HardwareSkinning)
+			{
+				int temp = 0;
+				if (i >= pMeshContainer->numAttributeGroups - 1)
+					temp = pMeshContainer->numAttributeGroups - 1;
+				else
+					temp = i;
+				pEffect->SetMatrixArray("Palette",
+					m_palettes[containerIndex][temp], boneCount);
+				DWORD maxVtxInf;
+				pMeshContainer->pSkinInfo->GetMaxVertexInfluences(&maxVtxInf);
+				pEffect->SetValue("MaxVtxInf", &maxVtxInf, sizeof(maxVtxInf));
+
+			}
+
+			//pEffect->CommitChanges();
+			if (m_skinningType == ESkinningType::HardwareSkinning)
+			{
+				pEffect->SetTechnique("SkinnedMesh");
+			}
+			else
+			{
+				pEffect->SetTechnique("Mesh");
+			}
+			pEffect->Begin(0, 0);
+			{
+				pEffect->BeginPass(0);
+				pMeshContainer->MeshData.pMesh->DrawSubset(i);
+				pEffect->EndPass();
+			}
+			pEffect->End();
+			
+		}
+		containerIndex++;
+	}
+}
+
 void HyEngine::DynamicMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 	auto iter = m_MeshContainerList.begin();

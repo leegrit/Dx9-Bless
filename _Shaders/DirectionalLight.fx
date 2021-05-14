@@ -217,6 +217,9 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	float3 toCamPos = normalize(EyePosition - worldPos);
 	float rimLightColor = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(normal, toCamPos)));
 	*/
+	//float rimWidth = 0.8f;
+	//float3 toCamPos = normalize(EyePosition - worldPos);
+	//float rimLightColor = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(normal, toCamPos)));
 
 	/* Calculate Specular */
 	float3 specular = float3(0, 0, 0); 
@@ -235,6 +238,7 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	}
 	finalColor = saturate(finalColor);
 
+	//float3 rimFinal = finalColor.rgb * rimLightColor * 1.0f;
 	outLightIntensity = float4(finalColor.rgb, 1);
 	outAmbientIntensity = float4(ambient.rgb, 1);
 	outSpecularIntensity = float4(specular.rgb, 1);

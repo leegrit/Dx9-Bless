@@ -192,6 +192,7 @@
     <ClInclude Include="Include\DataLoader.h" />
     <ClInclude Include="Include\DataStructures.h" />
     <ClInclude Include="Include\DebugGround.h" />
+    <ClInclude Include="Include\DebugMRTQuad.h" />
     <ClInclude Include="Include\DeferredQuad.h" />
     <ClInclude Include="Include\Defines.h" />
     <ClInclude Include="Include\Deserializer.h" />
@@ -366,6 +367,7 @@
     <ClCompile Include="Source\D3DXMeshObject.cpp" />
     <ClCompile Include="Source\DataLoader.cpp" />
     <ClCompile Include="Source\DebugGround.cpp" />
+    <ClCompile Include="Source\DebugMRTQuad.cpp" />
     <ClCompile Include="Source\DeferredQuad.cpp" />
     <ClCompile Include="Source\Deserializer.cpp" />
     <ClCompile Include="Source\DiffuseQuad.cpp" />
@@ -496,8 +498,11 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\Ambient.fx" />
+    <FxCompile Include="..\_Shaders\Bloom.fx" />
     <FxCompile Include="..\_Shaders\Blur.fx" />
+    <FxCompile Include="..\_Shaders\Brightness.fx" />
     <FxCompile Include="..\_Shaders\Collider.fx" />
+    <FxCompile Include="..\_Shaders\DebugMRT.fx" />
     <FxCompile Include="..\_Shaders\DefaultShadowMap.fx" />
     <FxCompile Include="..\_Shaders\DeferredBlend.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
@@ -509,7 +514,10 @@
     <FxCompile Include="..\_Shaders\MeshEffect.fx" />
     <FxCompile Include="..\_Shaders\OcclusionQuery.fx" />
     <FxCompile Include="..\_Shaders\PointLight.fx" />
+    <FxCompile Include="..\_Shaders\PostRender.fx" />
+    <FxCompile Include="..\_Shaders\PRBuffer.fx" />
     <FxCompile Include="..\_Shaders\ProgressBar.fx" />
+    <FxCompile Include="..\_Shaders\RimLight.fx" />
     <FxCompile Include="..\_Shaders\ShadowMap.fx" />
     <FxCompile Include="..\_Shaders\ShieldEffect.fx" />
     <FxCompile Include="..\_Shaders\SkinnedMesh.fx" />

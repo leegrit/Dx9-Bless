@@ -35,6 +35,7 @@ void PlayerNormalAttack::Initialize()
 
 	GameScene* pScene = static_cast<GameScene*>( GetGameObject()->GetScene());
 	m_pSwordTrail = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect", meshEffectDesc);
+	m_pSwordTrail->SetPostRenderOption(PostRenderOption::Bloom);
 
 	/* Add Effect NormalAttack */
 	MeshEffectDesc meshEffectDesc_Second;
@@ -145,14 +146,17 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 0:
 		if (elapsed >= 0.3f)
 		{
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_First", L"Lups_SwordThrowing5.mp3", desc);
+			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+
 			for (auto& obj : m_hitEnemies)
 			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
 				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
 					return;
 				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
@@ -163,7 +167,6 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
-				pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
 				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
 				std::cout << "Do First" << std::endl;
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
@@ -174,14 +177,15 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 1:
 		if (elapsed >= 0.3f)
 		{
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_Second", L"Lups_SwordThrowing6.mp3", desc);
+			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Second");
 			for (auto& obj : m_hitEnemies)
 			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
 				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
 					return;
 				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
@@ -191,7 +195,6 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
-				pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Second");
 				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				std::cout << "Do Second" << std::endl;
@@ -202,14 +205,15 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 	case 2:
 		if (elapsed >= 0.3f)
 		{
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_Third", L"Lups_SwordThrowing0.mp3", desc);
+			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Third");
 			for (auto& obj : m_hitEnemies)
 			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
 				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
 					return;
 				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
@@ -219,7 +223,6 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				Character* enemy = dynamic_cast<Character*>(obj);
 				enemy->SendDamage(GetGameObject(), GetAttackDamage());
-				pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Third");
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				std::cout << "Do Third" << std::endl;
 			}

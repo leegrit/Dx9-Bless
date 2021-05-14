@@ -25,4 +25,13 @@ namespace RenderOptions
 	static const DWORD RenderUI = 16;
 	static const DWORD RenderShadow = 32;
 	static const DWORD RenderLight = 64;
+	static const DWORD RenderPostEffect = 128;
+}
+
+namespace PostRenderOption
+{
+	static const DWORD None = 1;
+	static const DWORD RimLight = 2;
+	static const DWORD Bloom = 4;
+
 }

@@ -16,11 +16,6 @@ sampler AlbedoSampler = sampler_state
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
 	MipFilter = LINEAR;
-	/*MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = LINEAR;
-    AddressU = wrap;
-    AddressV = wrap;*/
 };
 /* NormalMap */
 // rgb = worldNormal
@@ -29,9 +24,6 @@ texture NormalTex;
 sampler NormalSampler = sampler_state
 {
 	Texture = (NormalTex);
-	/*MinFilter = LINEAR;
-	MagFilter = LINEAR;
-	MipFilter = LINEAR;*/
 };
 /* Specular */
 // rgb = specularMap

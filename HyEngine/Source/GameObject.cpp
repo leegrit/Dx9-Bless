@@ -174,6 +174,30 @@ Scene * HyEngine::GameObject::GetScene() const
 {
 	return m_pScene;
 }
+bool HyEngine::GameObject::IsPostRender()
+{
+	return !(m_postRenderOption & PostRenderOption::None);
+}
+bool HyEngine::GameObject::IsPostRender(DWORD postRenderType)
+{
+	return (m_postRenderOption & postRenderType);
+}
+DWORD HyEngine::GameObject::GetPostRenderOption()
+{
+	return m_postRenderOption;
+}
+void HyEngine::GameObject::SetPostRenderOption(DWORD postRenderOption)
+{
+	m_postRenderOption = postRenderOption;
+}
+float HyEngine::GameObject::GetRimWidth()
+{
+	return m_rimWidth;
+}
+void HyEngine::GameObject::SetRimWidth(float rimWidth)
+{
+	m_rimWidth = rimWidth;
+}
 void GameObject::InsertGameData(GameObjectData * data)
 {
 	GameObjectData* gameObjectData = data;

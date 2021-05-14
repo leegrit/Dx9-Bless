@@ -21,7 +21,9 @@ void HyEngine::GroupMapObject::Initialize(std::wstring dataPath)
 	
 	for (int i = 0; i < data->mapCount; i++)
 	{
-		StaticMesh::Create(GetScene(), this, L"MapObject_" + i, data->hierarchies[i]);
+		auto obj = StaticMesh::Create(GetScene(), this, L"MapObject_" + i, data->hierarchies[i]);
+		//obj->SetPostRenderOption(PostRenderOption::RimLight);
+		//obj->SetRimWidth(0.4f);
 	}
 }
 

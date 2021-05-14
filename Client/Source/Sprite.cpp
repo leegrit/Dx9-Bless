@@ -3,6 +3,8 @@
 #include "SpriteLoader.h"
 #include "Geometry.h"
 #include "TextureQuad.h"
+#include "Helper.h"
+
 
 using namespace HyEngine;
 
@@ -37,7 +39,14 @@ void Sprite::Render()
 {
 	GameObject::Render();
 
-	m_pEffect->SetMatrix("WorldMatrix", &m_pTransform->GetWorldMatrix());
+	D3DXMATRIX worldMat = Helper::GetWorldToBillboard
+	(
+		m_pTransform->m_position.operator D3DXVECTOR3(),
+		m_pTransform->m_rotationEuler.operator D3DXVECTOR3(),
+		m_pTransform->m_scale.operator D3DXVECTOR3(),
+		CAMERA->GetViewMatrix()
+	);
+	m_pEffect->SetMatrix("WorldMatrix", &worldMat);
 	m_pEffect->SetMatrix("ViewMatrix", &CAMERA->GetViewMatrix());
 	m_pEffect->SetMatrix("ProjMatrix", &CAMERA->GetProjectionMatrix());
 

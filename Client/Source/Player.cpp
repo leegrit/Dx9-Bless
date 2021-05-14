@@ -38,6 +38,8 @@ Player::~Player()
 void Player::Initialize(std::wstring dataPath)
 {
 	Pawn::Initialize(dataPath);
+	SetPostRenderOption(PostRenderOption::RimLight);
+	SetRimWidth(0.3f);
 	SetParams(50, 1000, 1000);
 	
 	m_pPlayerController = PlayerController::Create(this);

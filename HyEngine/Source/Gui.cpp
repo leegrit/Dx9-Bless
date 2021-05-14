@@ -281,6 +281,10 @@ void HyEngine::Gui::ShowEditRenderOption()
 		ImGui::Checkbox("RenderUI", &bRenderUI);
 		ENGINE->SetRenderOption(RenderOptions::RenderUI, bRenderUI);
 
+		bool bRenderPostEffect = ENGINE->CheckRenderOption(RenderOptions::RenderPostEffect);
+		ImGui::Checkbox("RenderPostEffect", &bRenderPostEffect);
+		ENGINE->SetRenderOption(RenderOptions::RenderPostEffect, bRenderPostEffect);
+
 	}
 	ImGui::End();
 }

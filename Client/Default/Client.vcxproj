@@ -154,6 +154,7 @@
     <ClCompile Include="..\Source\EquipmentUI.cpp" />
     <ClCompile Include="..\Source\EquipShopUI.cpp" />
     <ClCompile Include="..\Source\GeneralStoreUI.cpp" />
+    <ClCompile Include="..\Source\Helper.cpp" />
     <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
@@ -284,6 +285,7 @@
     <ClInclude Include="..\Include\EquipmentUI.h" />
     <ClInclude Include="..\Include\EquipShopUI.h" />
     <ClInclude Include="..\Include\GeneralStoreUI.h" />
+    <ClInclude Include="..\Include\Helper.h" />
     <ClInclude Include="..\Include\LiurensShopItemsData.h" />
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />

@@ -663,6 +663,9 @@
     <ClInclude Include="Include\SoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Include\DebugMRTQuad.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1130,6 +1133,9 @@
     <ClCompile Include="Source\SoundManager.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DebugMRTQuad.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\_Shaders\DirectionalLight.fx">
@@ -1211,6 +1217,24 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\ShieldEffect.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\PRBuffer.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\PostRender.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\DebugMRT.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Bloom.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\RimLight.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\Brightness.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
