@@ -84,6 +84,7 @@ technique RimLight
 	pass P0
 	{
 		ZWriteEnable = false;
+		AlphaBlendEnable = false;
 		VertexShader = NULL;//compile vs_3_0 MeshVS();
 		PixelShader = compile ps_3_0 RimLightPS();
 	}

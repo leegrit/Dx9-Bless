@@ -133,13 +133,13 @@ PixelOutput PostRenderPS(PixelInputType input)
 	output.EffectParam.r = RimLightWidth;
 	
 	/* For Bloom */
-	float4 albedo = tex2D(AlbedoSampler, input.texcoord);
-	float brightness = dot(albedo.rgb, float3(1, 1, 1)/*float3(0.2126f, 0.7152f, 0.0722f)*/);
+	//float4 albedo = tex2D(AlbedoSampler, input.texcoord);
+	//float brightness = dot(albedo.rgb, float3(1, 1, 1)/*float3(0.2126f, 0.7152f, 0.0722f)*/);
 	// Bloom 적용할 객체에 한하여
 	// brigtness가 0.99이상이면 effect mask에 넣어두고
 	// PostRender에서 해당 mask 위치에 맞는 albedo를 블러처리 후 블렌드한다.
-	if (brightness > 0.99)
-		output.BloomTexture = albedo;// *BloomFactor;
+	//if (brightness > 0.99)
+		//output.BloomTexture = albedo;// *BloomFactor;
 
 
 
@@ -151,6 +151,7 @@ technique SkinnedMesh
 {
 	pass P0
 	{
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 SkinnedMeshVS();
 		PixelShader = compile ps_3_0 PostRenderPS();
 	}
@@ -160,6 +161,7 @@ technique Mesh
 {
 	pass P0
 	{
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 MeshVS();
 		PixelShader = compile ps_3_0 PostRenderPS();
 	}

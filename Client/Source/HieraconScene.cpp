@@ -36,8 +36,8 @@ using namespace HyEngine;
 void HieraconScene::Update()
 {
 	GameScene::Update();
-
-	if (GetFloatA() == 0)
+	std::cout << ENGINE->GetFPS() << std::endl;
+	/*if (GetFloatA() == 0)
 	{
 		RENDERER->SetLutFilter(lutFilters.at(0));
 	}
@@ -60,7 +60,7 @@ void HieraconScene::Update()
 	if (GetFloatA() == 5)
 	{
 		RENDERER->SetLutFilter(lutFilters.at(5));
-	}
+	}*/
 
 	if (KEYBOARD->Press(VK_F2))
 	{
@@ -141,6 +141,14 @@ void HieraconScene::Load()
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight6.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight7.json");
 
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight0.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight1.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight2.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight3.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight4.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight5.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight6.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight7.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
@@ -205,21 +213,21 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// FOR FILTER
 	//////////////////////////////////////////////////////////////////////////
-	IDirect3DTexture9* pLutFilterTex = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_0");
-	RENDERER->SetLutFilter(pLutFilterTex);
+	IDirect3DTexture9* pLutFilterTex = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_Betty_NEW.tga");
+	//RENDERER->SetLutFilter(pLutFilterTex);
 
 	lutFilters.push_back(pLutFilterTex);
-	auto pLutFilterTex1 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_1.tga");
+	auto pLutFilterTex1 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_Damon_NEW.tga");
 	lutFilters.push_back(pLutFilterTex1);
-	auto pLutFilterTex2 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_2.tga");
+	auto pLutFilterTex2 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_David1st_NEW.tga");
 	lutFilters.push_back(pLutFilterTex2);
-	auto pLutFilterTex3 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_3.tga");
+	auto pLutFilterTex3 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_David2nd_NEW.tga");
 	lutFilters.push_back(pLutFilterTex3);
-	auto pLutFilterTex4 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_4.tga");
+	auto pLutFilterTex4 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_David2ndBoss_NEW.tga");
 	lutFilters.push_back(pLutFilterTex4);
-	auto pLutFilterTex5 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_5.tga");
+	auto pLutFilterTex5 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_David2ndPhase3_NEW.tga");
 	lutFilters.push_back(pLutFilterTex5);
-	auto pLutFilterTex6 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_6.tga");
+	auto pLutFilterTex6 = (IDirect3DTexture9*)TextureLoader::GetTexture(PATH->AssetsPathW() + L"LUT/TX_FX_PPC_LUT_Default.tga");
 	lutFilters.push_back(pLutFilterTex6);
 }
 

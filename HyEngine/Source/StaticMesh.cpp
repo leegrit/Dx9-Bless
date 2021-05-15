@@ -156,9 +156,16 @@ void HyEngine::StaticMesh::PostRender(ID3DXEffect * pEffect)
 	if (IsPostRender() == false) return;
 
 	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
-	pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
-
+	if (IS_CLIENT)
+	{
+		pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+	}
+	else if (IS_EDITOR)
+	{
+		pEffect->SetValue("ViewMatrix", &EDIT_CAMERA->GetViewMatrix(), sizeof(EDIT_CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix(), sizeof(EDIT_CAMERA->GetProjectionMatrix()));
+	}
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
 		pEffect->SetTechnique("Mesh");

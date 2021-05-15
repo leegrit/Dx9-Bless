@@ -49,6 +49,7 @@ technique Bloom
 	pass P0
 	{
 		ZEnable = false;
+		AlphaBlendEnable = false;
 		VertexShader = NULL;
 		PixelShader = compile ps_3_0 BloomPS();
 	}

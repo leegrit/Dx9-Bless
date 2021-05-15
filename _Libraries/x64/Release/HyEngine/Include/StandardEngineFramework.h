@@ -160,6 +160,7 @@
 #define EDIT_MOUSE EditEngine::Get()->GetMouse()
 #define EDIT_SCENE EditEngine::Get()->GetScene()
 #define EDIT_TIMER EditEngine::Get()->GetTimer()
+#define EDIT_CAMERA EditEngine::Get()->GetScene()->GetSelectedCamera()
 
 // UI 
 #include "UIElement.h"

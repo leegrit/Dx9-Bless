@@ -184,9 +184,16 @@ void HyEngine::DynamicMesh::PostRender(ID3DXEffect * pEffect)
 	auto iter_end = m_MeshContainerList.end();
 	int containerIndex = 0;
 	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
-	pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
-	pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
-
+	if (IS_CLIENT)
+	{
+		pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+	}
+	else if (IS_EDITOR)
+	{
+		pEffect->SetValue("ViewMatrix", &EDIT_CAMERA->GetViewMatrix(), sizeof(EDIT_CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix(), sizeof(EDIT_CAMERA->GetProjectionMatrix()));
+	}
 	for (; iter != iter_end; iter++)
 	{
 		D3DXMESHCONTAINER_DERIVED* pMeshContainer = (*iter);

@@ -527,18 +527,20 @@ void HyEngine::Renderer::OcclusionEnd()
 
 void HyEngine::Renderer::Render(Scene * scene)
 {
-	/* For shadowMap */
+	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+
+	///* For shadowMap */
 	PreparePipeline(scene);
 
-	/* For opaque objects with light */
+	///* For opaque objects with light */
 	DeferredPipeline(scene);
 
 
-	/* For alpha object without light */
+	///* For alpha object without light */
 	ForwardPipeline(scene);
 
-	
-	/* For PostRendering */
+	//
+	///* For PostRendering */
 	PostRenderPipeline(scene);
 
 	if(m_isDebugRender)
@@ -940,14 +942,16 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 
 	}*/
 	auto& list = m_renderableOpaque;
-
+	//auto& list = scene->GetObjectContainer()->GetStaticMeshAll();
 #ifdef _DEBUG
 	//std::cout << "Renderable Count : " << list.size() << std::endl;
 #endif
 	if (list.size() == 0) return;
 	for (auto& opaque : list)
 	{
-		Mesh* mesh = dynamic_cast<Mesh*>(opaque);
+		//if (opaque->GetActive() == false) continue;
+		//if (opaque->GetViewFrustumCulled() == true) continue;
+		//Mesh* mesh = dynamic_cast<Mesh*>(opaque);
 		/*if (mesh != nullptr && mesh->IsOcclusionCulled() == true)
 		{
 			continue;
@@ -1839,14 +1843,29 @@ void HyEngine::Renderer::RimLightPass()
 	D3DXMATRIX viewMatrixInv;
 	D3DXMATRIX projMatrixInv;
 
-	D3DXMatrixInverse(&viewMatrixInv, NULL, &CAMERA->GetViewMatrix());
-	D3DXMatrixInverse(&projMatrixInv, NULL, &CAMERA->GetProjectionMatrix());
+	if (IS_CLIENT)
+	{
+		D3DXMatrixInverse(&viewMatrixInv, NULL, &CAMERA->GetViewMatrix());
+		D3DXMatrixInverse(&projMatrixInv, NULL, &CAMERA->GetProjectionMatrix());
+	}
+	else if (IS_EDITOR)
+	{
+		D3DXMatrixInverse(&viewMatrixInv, NULL, &EDIT_CAMERA->GetViewMatrix());
+		D3DXMatrixInverse(&projMatrixInv, NULL, &EDIT_CAMERA->GetProjectionMatrix());
+	}
 
 	pShader->SetValue("ViewMatrixInv", &viewMatrixInv, sizeof(viewMatrixInv));
 	pShader->SetValue("ProjMatrixInv", &projMatrixInv, sizeof(projMatrixInv));
 
-	pShader->SetValue("EyePosition", &CAMERA->m_pTransform->m_position, sizeof(CAMERA->m_pTransform->m_position));
-	
+	if (IS_CLIENT)
+	{
+		pShader->SetValue("EyePosition", &CAMERA->m_pTransform->m_position, sizeof(CAMERA->m_pTransform->m_position));
+	}
+	if(IS_EDITOR)
+	{
+		pShader->SetValue("EyePosition", &EDIT_CAMERA->m_pTransform->m_position, sizeof(EDIT_CAMERA->m_pTransform->m_position));
+	}
+
 	/* DepthTex */
 	D3DXHANDLE depthHandle = pShader->GetParameterByName(0, "DepthTex");
 	pShader->SetTexture(depthHandle, m_pDepthRTTexture);

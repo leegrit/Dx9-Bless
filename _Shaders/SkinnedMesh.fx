@@ -236,6 +236,7 @@ technique SkinnedMesh
 {
 	pass P0
 	{
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 SkinnedMeshVS();
 		PixelShader = compile ps_3_0 SkinnedMeshPS();
 	}
@@ -244,6 +245,7 @@ technique SoftwareSkinnedMesh
 {
 	pass P0
 	{
+		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 SoftwareSkinnedMeshVS();
 		PixelShader = compile ps_3_0 SkinnedMeshPS();
 	}
