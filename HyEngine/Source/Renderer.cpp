@@ -10,6 +10,7 @@
 #include "Skybox.h"
 #include "VertexTypes.h"
 #include "DebugMRTQuad.h"
+#include "DynamicMesh.h"
 
 void HyEngine::Renderer::Setup()
 {
@@ -288,26 +289,28 @@ void HyEngine::Renderer::Setup()
 	m_pNormalRTQuad = new DebugMRTQuad(0, 300, 150, 150);
 	m_pSpecularRTQuad = new DebugMRTQuad(0, 450, 150, 150);
 
+	/* Effect Buffer Group */
+	m_pVtxNormalQuad = new DebugMRTQuad(150, 0, 150, 150);
+	m_pEffectMaskQuad = new DebugMRTQuad(150, 150, 150, 150);
+	m_pEffectParamQuad = new DebugMRTQuad(150, 300, 150, 150);
+
+
 	/* Shadow Group */
-	m_pCascadeShadowQuad0 = new DebugMRTQuad(150, 0, 150, 150);
-	m_pCascadeShadowQuad1 = new DebugMRTQuad(150, 150, 150, 150);
-	m_pShadowOriginQuad = new DebugMRTQuad(150, 300, 150, 150);
-	m_pShadowBlurQuad = new DebugMRTQuad(150, 450, 150, 150);
+	m_pCascadeShadowQuad0 = new DebugMRTQuad(300, 0, 150, 150);
+	m_pCascadeShadowQuad1 = new DebugMRTQuad(300, 150, 150, 150);
+	m_pShadowOriginQuad = new DebugMRTQuad(300, 300, 150, 150);
+	m_pShadowBlurQuad = new DebugMRTQuad(300, 450, 150, 150);
 
 	/* Light Group */
-	m_pLightIntensityQuad = new DebugMRTQuad(300, 0, 150, 150);
-	m_pAmbientIntensityQuad = new DebugMRTQuad(300, 150, 150, 150);
-	m_pSpecularIntensityQuad = new DebugMRTQuad(300, 300, 150, 150);
-
-	/* Post Render Buffer Group */
-	m_pVtxNormalQuad = new DebugMRTQuad(450, 0, 150, 150);
-	m_pEffectMaskQuad = new DebugMRTQuad(450, 150, 150, 150);
-	m_pEffectParamQuad = new DebugMRTQuad(450, 300, 150, 150);
+	m_pLightIntensityQuad = new DebugMRTQuad(450, 0, 150, 150);
+	m_pAmbientIntensityQuad = new DebugMRTQuad(450, 150, 150, 150);
+	m_pSpecularIntensityQuad = new DebugMRTQuad(450, 300, 150, 150);
+	m_pRimLightQuad = new DebugMRTQuad(450, 450, 150, 150);
 
 	/* Post Render Group */
-	m_pRimLightQuad = new DebugMRTQuad(600, 0, 150, 150);
-	m_pBrightnessQuad = new DebugMRTQuad(600, 150, 150, 150);
-	m_pBloomQuad = new DebugMRTQuad(600, 300, 150, 150);
+	//m_pRimLightQuad = new DebugMRTQuad(600, 0, 150, 150);
+	m_pBrightnessQuad = new DebugMRTQuad(600, 0, 150, 150);
+	m_pBloomQuad = new DebugMRTQuad(600, 150, 150, 150);
 
 
 	m_bSetup = true;
@@ -626,6 +629,10 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	/* Render For GBuffer */
 	GeometryPass(scene);
 
+	SetEffectBufferMRT();
+	ClearSurface();
+	EffectPass(scene);
+
 	/* Create Soft ShadowMap */
 	// SoftShadow Origin
 	SetSoftShadowOriginMRT();
@@ -691,14 +698,14 @@ void HyEngine::Renderer::PostRenderPipeline(Scene * scene)
 
 
 	/* Post Render Buffer */
-	SetPRBufferMRT();
+	/*SetPRBufferMRT();
 	ClearSurface();
-	PRBufferPass(scene);
+	PRBufferPass(scene);*/
 
 	/* Rim Light */
-	SetRimLightMRT();
+	/*SetRimLightMRT();
 	ClearSurface();
-	RimLightPass();
+	RimLightPass();*/
 
 	/* Brightness */
 	SetBrightnessMRT();
@@ -727,6 +734,10 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugQuads.push_back(m_pNormalRTQuad);
 	m_debugQuads.push_back(m_pSpecularRTQuad);
 
+	m_debugQuads.push_back(m_pVtxNormalQuad);
+	m_debugQuads.push_back(m_pEffectMaskQuad);
+	m_debugQuads.push_back(m_pEffectParamQuad);
+
 	m_debugQuads.push_back(m_pCascadeShadowQuad0);
 	m_debugQuads.push_back(m_pCascadeShadowQuad1);
 	m_debugQuads.push_back(m_pShadowOriginQuad);
@@ -735,12 +746,8 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugQuads.push_back(m_pLightIntensityQuad);
 	m_debugQuads.push_back(m_pAmbientIntensityQuad);
 	m_debugQuads.push_back(m_pSpecularIntensityQuad);
-
-	m_debugQuads.push_back(m_pVtxNormalQuad);
-	m_debugQuads.push_back(m_pEffectMaskQuad);
-	m_debugQuads.push_back(m_pEffectParamQuad);
-
 	m_debugQuads.push_back(m_pRimLightQuad);
+
 	m_debugQuads.push_back(m_pBrightnessQuad);
 	m_debugQuads.push_back(m_pBloomQuad);
 
@@ -748,6 +755,10 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugTextures.push_back(m_pAlbedoRTTexture);
 	m_debugTextures.push_back(m_pNormalRTTexture);
 	m_debugTextures.push_back(m_pSpecularRTTexture);
+
+	m_debugTextures.push_back(m_pVtxNormalRTTexture);
+	m_debugTextures.push_back(m_pEffectMaskRTTexture);
+	m_debugTextures.push_back(m_pEffectParamRTTexture);
 
 	m_debugTextures.push_back(m_pShadowRTTexture[0]);
 	m_debugTextures.push_back(m_pShadowRTTexture[1]);
@@ -757,12 +768,8 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugTextures.push_back(m_pLightIntensityRTTexture);
 	m_debugTextures.push_back(m_pAmbientIntensityRTTexture);
 	m_debugTextures.push_back(m_pSpecularIntensityRTTexture);
-
-	m_debugTextures.push_back(m_pVtxNormalRTTexture);
-	m_debugTextures.push_back(m_pEffectMaskRTTexture);
-	m_debugTextures.push_back(m_pEffectParamRTTexture);
-
 	m_debugTextures.push_back(m_pRimLightRTTexture);
+
 	m_debugTextures.push_back(m_pBrightnessTexture);
 	m_debugTextures.push_back(m_pBloomRTTexture);
 
@@ -816,6 +823,14 @@ void HyEngine::Renderer::SetGBufferMRT()
 	DEVICE->SetRenderTarget(3, m_pSpecularRTSurface);
 }
 
+void HyEngine::Renderer::SetEffectBufferMRT()
+{
+	DEVICE->SetRenderTarget(0, m_pVtxNormalRTSurface);
+	DEVICE->SetRenderTarget(1, m_pEffectMaskRTSurface);
+	DEVICE->SetRenderTarget(2, m_pEffectParamRTSurface);
+	DEVICE->SetRenderTarget(3, NULL);
+}
+
 void HyEngine::Renderer::SetOriginMRT()
 {
 	DEVICE->SetRenderTarget(0, m_pOriginSurface);
@@ -866,7 +881,7 @@ void HyEngine::Renderer::SetLightMRT()
 	DEVICE->SetRenderTarget(0, m_pLightIntensityRTSurface);
 	DEVICE->SetRenderTarget(1, m_pAmbientIntensityRTSurface);
 	DEVICE->SetRenderTarget(2, m_pSpecularIntensityRTSurface);
-	DEVICE->SetRenderTarget(3, NULL);
+	DEVICE->SetRenderTarget(3, m_pRimLightRTSurface);
 }
 
 void HyEngine::Renderer::SetPRBufferMRT()
@@ -959,6 +974,100 @@ void HyEngine::Renderer::GeometryPass(Scene * scene)
 		opaque->Render();
 	}
 
+}
+
+void HyEngine::Renderer::EffectPass(Scene * scene)
+{
+	ID3DXEffect* pEffect = nullptr;
+	if (ENGINE)
+		ENGINE->TryGetShader(L"EffectBuffer", &pEffect);
+	else
+		EDIT_ENGINE->TryGetShader(L"EffectBuffer", &pEffect);
+	assert(pEffect);
+
+	auto& opaquelist = m_renderableOpaque;
+	for (auto& opaque : opaquelist)
+	{
+		if (opaque->IsRenderEffect() == false)
+			continue;
+
+		/* For Rim Light */
+		bool isRimLight = opaque->IsRenderEffect(RenderEffectOption::RimLight) ? true : false;
+		if (isRimLight == true)
+			pEffect->SetInt("RimLightFactor", 1);
+		else
+			pEffect->SetInt("RimLightFactor", 0);
+		//pEffect->SetBool("IsRimLight", isRimLight);
+		pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
+
+		pEffect->SetMatrix("WorldMatrix", &opaque->GetWorldMatrix());
+		if (IS_CLIENT)
+		{
+			pEffect->SetMatrix("ViewMatrix", &CAMERA->GetViewMatrix());
+			pEffect->SetMatrix("ProjMatrix", &CAMERA->GetProjectionMatrix());
+		}
+		else if (IS_EDITOR)
+		{
+			pEffect->SetMatrix("ViewMatrix", &EDIT_CAMERA->GetViewMatrix());
+			pEffect->SetMatrix("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix());
+		}
+		DynamicMesh * pDynamicMesh = dynamic_cast<DynamicMesh*>(opaque);
+		if (pDynamicMesh && pDynamicMesh->GetSkinningType() == ESkinningType::HardwareSkinning)
+		{
+			pEffect->SetTechnique("EffectBuffer_Skinned");
+		}
+		else
+			pEffect->SetTechnique("EffectBuffer");
+		pEffect->Begin(0, 0);
+		{
+			pEffect->BeginPass(0);
+
+
+			opaque->DrawPrimitive(pEffect);
+			pEffect->EndPass();
+		}
+		pEffect->End();
+	}
+
+	auto& alphaList = scene->GetObjectContainer()->GetRenderableAlphaAll();
+	for (auto& alpha : alphaList)
+	{
+		if (alpha->IsRenderEffect() == false)
+			continue;
+
+		/* For Rim Light */
+		bool isRimLight = alpha->IsRenderEffect(RenderEffectOption::RimLight) ? true : false;
+		if (isRimLight == true)
+			pEffect->SetInt("RimLightFactor", 1);
+		else
+			pEffect->SetInt("RimLightFactor", 0);
+		pEffect->SetBool("IsRimLight", isRimLight);
+		pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
+
+
+		pEffect->SetMatrix("WorldMatrix", &alpha->GetWorldMatrix());
+		if (IS_CLIENT)
+		{
+			pEffect->SetMatrix("ViewMatrix", &CAMERA->GetViewMatrix());
+			pEffect->SetMatrix("ProjMatrix", &CAMERA->GetProjectionMatrix());
+		}
+		else if (IS_EDITOR)
+		{
+			pEffect->SetMatrix("ViewMatrix", &EDIT_CAMERA->GetViewMatrix());
+			pEffect->SetMatrix("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix());
+		}
+		pEffect->SetTechnique("EffectBuffer");
+		pEffect->Begin(0, 0);
+		{
+			pEffect->BeginPass(0);
+
+
+			alpha->DrawPrimitive(pEffect);
+			pEffect->EndPass();
+		}
+		pEffect->End();
+
+	}
 }
 
 void HyEngine::Renderer::AmbientPass(Scene * scene)
@@ -1123,8 +1232,20 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		D3DXHANDLE specularHandle = pShader->GetParameterByName(0, "SpecularTex");
 		pShader->SetTexture(specularHandle, m_pSpecularRTTexture);
 
+		if (light->Type() == ELightType::DIRECTIONAL)
+		{
+			D3DXHANDLE vtxNormalHandle = pShader->GetParameterByName(0, "VtxNormalTex");
+			pShader->SetTexture(vtxNormalHandle, m_pVtxNormalRTTexture);
+
+			D3DXHANDLE effectMaskHandle = pShader->GetParameterByName(0, "EffectMaskTex");
+			pShader->SetTexture(effectMaskHandle, m_pEffectMaskRTTexture);
+
+			D3DXHANDLE effectParamHandle = pShader->GetParameterByName(0, "EffectParamTex");
+			pShader->SetTexture(effectParamHandle, m_pEffectParamRTTexture);
+		}
+
 		/* For CascadeShadowMapping */
-		if (NUM_CASCADEDES > 0)
+		/*if (NUM_CASCADEDES > 0)
 		{
 			D3DXHANDLE shadowMapHandler0 = pShader->GetParameterByName(0, "ShadowDepthTex0");
 			pShader->SetTexture(shadowMapHandler0, m_pShadowRTTexture[0]);
@@ -1143,7 +1264,7 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 		{
 			D3DXHANDLE shadowMapHandler3 = pShader->GetParameterByName(0, "ShadowDepthTex3");
 			pShader->SetTexture(shadowMapHandler3, m_pShadowRTTexture[3]);
-		}
+		}*/
 
 
 		D3DXHANDLE softShadowHandler = pShader->GetParameterByName(0, "SoftShadowTex");
@@ -1765,66 +1886,66 @@ void HyEngine::Renderer::LutFilterPass()
 
 void HyEngine::Renderer::PRBufferPass(Scene * pScene)
 {
-	ID3DXEffect* pEffect = nullptr;
-	if (ENGINE)
-		ENGINE->TryGetShader(L"PRBuffer", &pEffect);
-	else
-		EDIT_ENGINE->TryGetShader(L"PRBuffer", &pEffect);
-	assert(pEffect);
+	//ID3DXEffect* pEffect = nullptr;
+	//if (ENGINE)
+	//	ENGINE->TryGetShader(L"PRBuffer", &pEffect);
+	//else
+	//	EDIT_ENGINE->TryGetShader(L"PRBuffer", &pEffect);
+	//assert(pEffect);
 
-	auto& opaquelist = m_renderableOpaque;
-	for (auto& opaque : opaquelist)
-	{
-		if (opaque->IsPostRender() == false)
-			continue;
+	//auto& opaquelist = m_renderableOpaque;
+	//for (auto& opaque : opaquelist)
+	//{
+	//	if (opaque->IsPostRender() == false)
+	//		continue;
 
-		/* For Rim Light */
-		bool isRimLight = opaque->IsPostRender(PostRenderOption::RimLight) ? true : false;
-		if (isRimLight == true)
-			pEffect->SetInt("RimLightFactor", 1);
-		else
-			pEffect->SetInt("RimLightFactor", 0);
-		pEffect->SetBool("IsRimLight", isRimLight);
-		pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
+	//	/* For Rim Light */
+	//	bool isRimLight = opaque->IsPostRender(RenderEffectOption::RimLight) ? true : false;
+	//	if (isRimLight == true)
+	//		pEffect->SetInt("RimLightFactor", 1);
+	//	else
+	//		pEffect->SetInt("RimLightFactor", 0);
+	//	pEffect->SetBool("IsRimLight", isRimLight);
+	//	pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
 
-		///* For Bloom */
-		//bool isBloom = opaque->IsPostRender(PostRenderOption::Bloom) ? true : false;
-		//if (isBloom == true)
-		//	pEffect->SetInt("BloomFactor", 1);
-		//else
-		//	pEffect->SetInt("BloomFactor", 0);
-
-
-		//Mesh* mesh = dynamic_cast<Mesh*>(opaque);
-		opaque->PostRender(pEffect);
-	}
-
-	auto& alphaList = pScene->GetObjectContainer()->GetRenderableAlphaAll();
-	for (auto& alpha : alphaList)
-	{
-		if (alpha->IsPostRender() == false)
-			continue;
-
-		/* For Rim Light */
-		bool isRimLight = alpha->IsPostRender(PostRenderOption::RimLight) ? true : false;
-		if (isRimLight == true)
-			pEffect->SetInt("RimLightFactor", 1);
-		else
-			pEffect->SetInt("RimLightFactor", 0);
-		pEffect->SetBool("IsRimLight", isRimLight);
-		pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
+	//	///* For Bloom */
+	//	//bool isBloom = opaque->IsPostRender(RenderEffectOption::Bloom) ? true : false;
+	//	//if (isBloom == true)
+	//	//	pEffect->SetInt("BloomFactor", 1);
+	//	//else
+	//	//	pEffect->SetInt("BloomFactor", 0);
 
 
-		///* For Bloom */
-		//bool isBloom = alpha->IsPostRender(PostRenderOption::Bloom) ? true : false;
-		//if (isBloom == true)
-		//	pEffect->SetInt("BloomFactor", 1);
-		//else
-		//	pEffect->SetInt("BloomFactor", 0);
+	//	//Mesh* mesh = dynamic_cast<Mesh*>(opaque);
+	//	opaque->PostRender(pEffect);
+	//}
+
+	//auto& alphaList = pScene->GetObjectContainer()->GetRenderableAlphaAll();
+	//for (auto& alpha : alphaList)
+	//{
+	//	if (alpha->IsPostRender() == false)
+	//		continue;
+
+	//	/* For Rim Light */
+	//	bool isRimLight = alpha->IsPostRender(RenderEffectOption::RimLight) ? true : false;
+	//	if (isRimLight == true)
+	//		pEffect->SetInt("RimLightFactor", 1);
+	//	else
+	//		pEffect->SetInt("RimLightFactor", 0);
+	//	pEffect->SetBool("IsRimLight", isRimLight);
+	//	pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
 
 
-		alpha->PostRender(pEffect);
-	}
+	//	///* For Bloom */
+	//	//bool isBloom = alpha->IsPostRender(RenderEffectOption::Bloom) ? true : false;
+	//	//if (isBloom == true)
+	//	//	pEffect->SetInt("BloomFactor", 1);
+	//	//else
+	//	//	pEffect->SetInt("BloomFactor", 0);
+
+
+	//	alpha->PostRender(pEffect);
+	//}
 }
 
 void HyEngine::Renderer::RimLightPass()
@@ -1991,8 +2112,8 @@ void HyEngine::Renderer::PostRenderPass()
 	assert(pShader);
 
 	/* RimLight */
-	D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
-	pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
+	//D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
+	//pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
 	
 	/* Bloom */
 	D3DXHANDLE bloomHandle = pShader->GetParameterByName(0, "BloomTex");
@@ -2068,8 +2189,8 @@ void HyEngine::Renderer::BlendPass()
 	pShader->SetTexture(specularIntensityHandle, m_pSpecularIntensityRTTexture);
 
 	/* Post Render */
-	//D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
-	//pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
+	D3DXHANDLE rimLightHandle = pShader->GetParameterByName(0, "RimLightTex");
+	pShader->SetTexture(rimLightHandle, m_pRimLightRTTexture);
 
 
 	D3DXHANDLE lutFilterHandle = pShader->GetParameterByName(0, "LutTex");

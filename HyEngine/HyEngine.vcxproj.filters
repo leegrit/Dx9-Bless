@@ -1243,6 +1243,9 @@
     <FxCompile Include="..\_Shaders\SkillProgressUI.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="..\_Shaders\EffectBuffer.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="HyEngine.def">

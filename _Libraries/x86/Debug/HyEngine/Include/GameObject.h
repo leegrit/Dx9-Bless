@@ -117,15 +117,17 @@ namespace HyEngine
 		GameObject* GetParent() const;
 		Scene* GetScene() const;
 
-		bool IsPostRender();
-		bool IsPostRender(DWORD postRenderType);
-		DWORD GetPostRenderOption();
-		void SetPostRenderOption(DWORD postRenderOption);
+		bool IsRenderEffect();
+		bool IsRenderEffect(DWORD renderEffectOption);
+		DWORD GetRenderEffectOption();
+		void SetRenderEffectOption(DWORD RenderEffectOption);
 
 		float GetRimWidth();
 		void SetRimWidth(float rimWidth);
 
 
+	public :
+		virtual D3DXMATRIX GetWorldMatrix();
 		// ----------------------------------------------------------
 		// STATIC METHODS
 		// ---------------------------------------------------------------
@@ -174,7 +176,7 @@ namespace HyEngine
 
 		std::vector<std::function<void()>> m_removeFunctions;
 
-		DWORD m_postRenderOption = PostRenderOption::None;
+		DWORD m_RenderEffectOption = RenderEffectOption::None;
 		EStaticType m_staticType;
 		// only editor
 		int m_editID;

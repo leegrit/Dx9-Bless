@@ -249,7 +249,7 @@ void HyEngine::Equipment::Render()
 
 void HyEngine::Equipment::PostRender(ID3DXEffect * pEffect)
 {
-	if (IsPostRender() == false) return;
+	if (IsRenderEffect() == false) return;
 
 	/* Set world, view and projection */
 	if (m_pParentBoneMatrix != nullptr)

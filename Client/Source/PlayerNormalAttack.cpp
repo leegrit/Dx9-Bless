@@ -35,7 +35,7 @@ void PlayerNormalAttack::Initialize()
 
 	GameScene* pScene = static_cast<GameScene*>( GetGameObject()->GetScene());
 	m_pSwordTrail = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect", meshEffectDesc);
-	m_pSwordTrail->SetPostRenderOption(PostRenderOption::Bloom);
+	//m_pSwordTrail->SetRenderEffectOption(PostRenderOption::Bloom);
 
 	/* Add Effect NormalAttack */
 	MeshEffectDesc meshEffectDesc_Second;

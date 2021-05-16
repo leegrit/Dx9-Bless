@@ -46,8 +46,8 @@ Player::~Player()
 void Player::Initialize(std::wstring dataPath)
 {
 	Pawn::Initialize(dataPath);
-	SetPostRenderOption(PostRenderOption::RimLight);
-	SetRimWidth(0.3f);
+	//SetRenderEffectOption(RenderEffectOption::RimLight);
+	//SetRimWidth(0.3f);
 	SetParams(50, 1000, 1000);
 	
 	m_pPlayerController = PlayerController::Create(this);
@@ -65,7 +65,7 @@ void Player::Initialize(std::wstring dataPath)
 
 	m_pAfterImage = PlayerAfterImage::Create(GetScene(), nullptr, PATH->DatasPathW() + L"HierarchyData/Hieracon_Player.json", ESkinningType::HardwareSkinning);
 	m_pAfterImage->SetActive(false);
-	m_pAfterImage->SetPostRenderOption(PostRenderOption::RimLight);
+	m_pAfterImage->SetRenderEffectOption(RenderEffectOption::RimLight);
 	m_pAfterImage->SetRimWidth(0.7f);
 
 	m_pPlayerUW = DynamicMesh::Create(GetScene(), nullptr, L"Player", PATH->DatasPathW() + L"HierarchyData/PlayerUnWeapon.json", GetSkinningType());

@@ -18,8 +18,9 @@ sampler AmbientIntensitySampler = sampler_state
 texture RimLightTex;
 sampler RimLightSampler = sampler_state
 {
-	texture = RimLightTex;
+	texture = (RimLightTex);
 };
+
 
 
 texture SpecularIntensityTex;

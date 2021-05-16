@@ -20,7 +20,7 @@ void EffectManager::Initialize()
 	{
 		PlayerAfterImage* pAfterImage = PlayerAfterImage::Create(m_pScene, nullptr, PATH->DatasPathW() + L"HierarchyData/Hieracon_Player.json", ESkinningType::HardwareSkinning);
 		pAfterImage->SetActive(false);
-		pAfterImage->SetPostRenderOption(PostRenderOption::RimLight);
+		pAfterImage->SetRenderEffectOption(RenderEffectOption::RimLight);
 		pAfterImage->SetRimWidth(1.0f);
 		m_playerAfterImages.push_back(pAfterImage);
 	}

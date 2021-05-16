@@ -179,7 +179,7 @@ void HyEngine::DynamicMesh::Render()
 
 void HyEngine::DynamicMesh::PostRender(ID3DXEffect * pEffect)
 {
-	if (IsPostRender() == false) return;
+	if (IsRenderEffect() == false) return;
 	auto iter = m_MeshContainerList.begin();
 	auto iter_end = m_MeshContainerList.end();
 	int containerIndex = 0;

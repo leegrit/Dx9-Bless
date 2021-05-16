@@ -28,7 +28,7 @@ namespace RenderOptions
 	static const DWORD RenderPostEffect = 128;
 }
 
-namespace PostRenderOption
+namespace RenderEffectOption
 {
 	static const DWORD None = 1;
 	static const DWORD RimLight = 2;

@@ -476,6 +476,7 @@ bool Engine::LoadShaders()
 	InsertShader(L"DebugMRT", PATH->ShadersPathW() + L"DebugMRT.fx");
 	InsertShader(L"FontTexture", PATH->ShadersPathW() + L"FontTexture.fx");
 	InsertShader(L"SkillProgressUI", PATH->ShadersPathW() + L"SkillProgressUI.fx");
+	InsertShader(L"EffectBuffer", PATH->ShadersPathW() + L"EffectBuffer.fx");
 	return true;
 }
 

@@ -72,6 +72,7 @@ namespace HyEngine
 	private:
 		/* For Multi Render Target */
 		void SetGBufferMRT();
+		void SetEffectBufferMRT();
 		void SetOriginMRT();
 		void SetShadowMapMRT(int cascadeIndex);
 		void GetOriginMRT();
@@ -88,6 +89,7 @@ namespace HyEngine
 
 	private :
 		void GeometryPass(Scene* scene);
+		void EffectPass(Scene* scene);
 		void AmbientPass(Scene* scene);
 		void LightPass(Scene* scene);
 		void ShadowPass(Scene * scene, int casecadeIndex);
@@ -150,6 +152,9 @@ namespace HyEngine
 		/* SoftShadow result map */
 		IDirect3DTexture9 * m_pSoftShadowRTTexture = nullptr;
 		IDirect3DSurface9 * m_pSoftShadowRTSurface = nullptr;
+
+	private : /* For Effect Map */
+		//IDirect3DTexture9 * m_p
 
 	private: /* For Light Map */
 		IDirect3DTexture9* m_pLightIntensityRTTexture = nullptr;

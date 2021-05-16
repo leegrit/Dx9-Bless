@@ -96,27 +96,22 @@ sampler SpecularSampler = sampler_state
     AddressV = wrap;*/
 };
 
+texture VtxNormalTex;
+sampler VtxNormalSampler = sampler_state
+{
+	Texture = (VtxNormalTex);
+};
 
-/* For Cascade ShadowMapping */
-texture ShadowDepthTex0;
-sampler ShadowDepthSampler0 = sampler_state
+texture EffectMaskTex;
+sampler EffectMaskSampler = sampler_state
 {
-	Texture = (ShadowDepthTex0);
+	Texture = (EffectMaskTex);
 };
-texture ShadowDepthTex1;
-sampler ShadowDepthSampler1 = sampler_state
+
+texture EffectParamTex;
+sampler EffectParamSampler = sampler_state
 {
-	Texture = (ShadowDepthTex1);
-};
-texture ShadowDepthTex2;
-sampler ShadowDepthSampler2 = sampler_state
-{
-	Texture = (ShadowDepthTex2);
-};
-texture ShadowDepthTex3;
-sampler ShadowDepthSampler3 = sampler_state
-{
-	Texture = (ShadowDepthTex3);
+	Texture = (EffectParamTex);
 };
 
 texture SoftShadowTex;
@@ -170,7 +165,8 @@ PixelInputType DirectionalLightVS(VertexInputType input)
 void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	out float4 outLightIntensity : COLOR0 ,
 	out float4 outAmbientIntensity : COLOR1,
-	out float4 outSpecularIntensity : COLOR2) 
+	out float4 outSpecularIntensity : COLOR2,
+	out float4 outRimLight : COLOR3) 
 {
 
 	float4 depthMap = tex2D(DepthSampler, texcoord);
@@ -178,6 +174,9 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	float4 normalMap = tex2D(NormalSampler, texcoord);
 	float4 specularMap = tex2D(SpecularSampler, texcoord);
 	float4 stashMap = tex2D(StashSampler, texcoord);
+	float4 vtxNormalMap = tex2D(VtxNormalSampler, texcoord);
+	float4 effectMaskMap = tex2D(EffectMaskSampler, texcoord);
+	float4 effectParamMap = tex2D(EffectParamSampler, texcoord);
 
 	/* Skybox */
 	//if (specularMap.a <= 0.0001)
@@ -209,6 +208,15 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	float3 ambient =  Ambient.rgb;
 	finalColor += lightIntensity * shadowFactor * Diffuse.rgb;// + ambient + emissive;
 
+	float3 vtxNormal = vtxNormalMap * 2 - 1;
+	vtxNormal = normalize(vtxNormal);
+
+
+	float rimWidth = effectParamMap.r;
+	float3 toCamPos = normalize(EyePosition - worldPos.rgb);
+	float rimLightIntensity = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(vtxNormal, toCamPos)));
+	float3 rimFinal = /*lightIntensity.rgb **/ rimLightIntensity * effectMaskMap.r;
+	
 	// 림라이트 그냥 적용 잘 되는지 테스트용
 	// 잘 된다.
 	/* Rim Light Test */
@@ -242,6 +250,7 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	outLightIntensity = float4(finalColor.rgb, 1);
 	outAmbientIntensity = float4(ambient.rgb, 1);
 	outSpecularIntensity = float4(specular.rgb, 1);
+	outRimLight = float4(rimFinal, 1);
 
 }
 

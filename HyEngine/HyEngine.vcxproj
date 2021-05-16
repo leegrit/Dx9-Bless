@@ -507,6 +507,7 @@
     <FxCompile Include="..\_Shaders\DeferredBlend.fx" />
     <FxCompile Include="..\_Shaders\DiffuseShader.fx" />
     <FxCompile Include="..\_Shaders\DirectionalLight.fx" />
+    <FxCompile Include="..\_Shaders\EffectBuffer.fx" />
     <FxCompile Include="..\_Shaders\FadeInOut.fx" />
     <FxCompile Include="..\_Shaders\FontTexture.fx" />
     <FxCompile Include="..\_Shaders\GBuffer.fx" />

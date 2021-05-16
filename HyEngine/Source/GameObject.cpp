@@ -174,21 +174,21 @@ Scene * HyEngine::GameObject::GetScene() const
 {
 	return m_pScene;
 }
-bool HyEngine::GameObject::IsPostRender()
+bool HyEngine::GameObject::IsRenderEffect()
 {
-	return !(m_postRenderOption & PostRenderOption::None);
+	return !(m_RenderEffectOption & RenderEffectOption::None);
 }
-bool HyEngine::GameObject::IsPostRender(DWORD postRenderType)
+bool HyEngine::GameObject::IsRenderEffect(DWORD renderEffectOption)
 {
-	return (m_postRenderOption & postRenderType);
+	return (m_RenderEffectOption & renderEffectOption);
 }
-DWORD HyEngine::GameObject::GetPostRenderOption()
+DWORD HyEngine::GameObject::GetRenderEffectOption()
 {
-	return m_postRenderOption;
+	return m_RenderEffectOption;
 }
-void HyEngine::GameObject::SetPostRenderOption(DWORD postRenderOption)
+void HyEngine::GameObject::SetRenderEffectOption(DWORD RenderEffectOption)
 {
-	m_postRenderOption = postRenderOption;
+	m_RenderEffectOption = RenderEffectOption;
 }
 float HyEngine::GameObject::GetRimWidth()
 {
@@ -197,6 +197,10 @@ float HyEngine::GameObject::GetRimWidth()
 void HyEngine::GameObject::SetRimWidth(float rimWidth)
 {
 	m_rimWidth = rimWidth;
+}
+D3DXMATRIX HyEngine::GameObject::GetWorldMatrix()
+{
+	return m_pTransform->GetWorldMatrix();
 }
 void GameObject::InsertGameData(GameObjectData * data)
 {

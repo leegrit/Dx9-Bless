@@ -153,7 +153,7 @@ void HyEngine::StaticMesh::Render()
 
 void HyEngine::StaticMesh::PostRender(ID3DXEffect * pEffect)
 {
-	if (IsPostRender() == false) return;
+	if (IsRenderEffect() == false) return;
 
 	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
 	if (IS_CLIENT)

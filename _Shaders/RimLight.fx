@@ -71,7 +71,7 @@ PixelOutput RimLightPS(float2 texcoord : TEXCOORD0)
 	float rimWidth = effectParamMap.r;
 	float3 toCamPos = normalize(EyePosition - worldPos.rgb);
 	float rimLightIntensity = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(normal, toCamPos)));
-	float3 rimFinal = lightIntensity.rgb * rimLightIntensity * effectMaskMap.r;
+	float3 rimFinal = /*lightIntensity.rgb **/ rimLightIntensity * effectMaskMap.r;
 	output.color = float4(rimFinal, 1);
 
 	return output;

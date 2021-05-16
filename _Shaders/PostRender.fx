@@ -22,10 +22,10 @@ PixelOutput PostRenderPS(float2 texcoord : TEXCOORD0)
 {
 	PixelOutput output = (PixelOutput)0;
 
-	float4 rimLightMap =tex2D(RimLightSampler, texcoord);
+	//float4 rimLightMap =tex2D(RimLightSampler, texcoord);
 	float4 bloomMap = tex2D(BloomSampler, texcoord);
 	
-	output.color = rimLightMap + bloomMap;
+	output.color = bloomMap;
 	
 	return output;
 };

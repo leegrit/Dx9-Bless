@@ -22,7 +22,7 @@ void HyEngine::MapObject::Initialize(shared_ptr<HierarchyData> data)
 	InsertGameData(data->gameObjectData);
 	InsertMeshData(data->meshData);
 
-	SetPostRenderOption(PostRenderOption::RimLight);
+	SetRenderEffectOption(RenderEffectOption::RimLight);
 	SetRimWidth(0.6f);
 }
 

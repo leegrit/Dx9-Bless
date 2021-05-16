@@ -92,7 +92,7 @@ void PlayerSkillTornado::OnActionTimeElapsed(int seqIndex, float elapsed)
 			//////////////////////////////////////////////////////////////////////////
 			Player* pPlayer = static_cast<Player*>(PLAYER);
 			auto weapon = pPlayer->GetWeapon();
-			weapon->SetPostRenderOption(PostRenderOption::RimLight);
+			weapon->SetRenderEffectOption(RenderEffectOption::RimLight);
 			weapon->SetRimWidth(1.0f);
 			//////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////
