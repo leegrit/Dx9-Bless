@@ -29,6 +29,10 @@ namespace HyEngine
 		void PlayAnimationSet(const float& deltaTime);
 		const UINT GetCurAnimationIndex();
 
+	public :
+		void SetAnimationSpeed(float speedFactor);
+		float GetAnimationSpeed();
+
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
@@ -53,6 +57,8 @@ namespace HyEngine
 		// 애니메이션이 끝나는 시점(Position)
 		DOUBLE m_period;
 
+
+		float m_speedFactor = 1;
 	};
 }
 

@@ -41,6 +41,8 @@ namespace HyEngine
 	public :
 		void SetSkinningType(ESkinningType type);
 		ESkinningType GetSkinningType() const;
+		void SetAnimationSpeed(float speedFactor);
+		float GetAnimationSpeed();
 
 		//////////////////////////////////////////////////////////////////////////
 		// PUBLIC METHODS

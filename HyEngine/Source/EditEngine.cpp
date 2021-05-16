@@ -183,6 +183,9 @@ void HyEngine::EditEngine::LoadShaders()
 	InsertShader(L"Bloom", PATH->ShadersPathW() + L"Bloom.fx");
 	InsertShader(L"PostRender", PATH->ShadersPathW() + L"PostRender.fx");
 	InsertShader(L"DebugMRT", PATH->ShadersPathW() + L"DebugMRT.fx");
+	InsertShader(L"FontTexture", PATH->ShadersPathW() + L"FontTexture.fx");
+	InsertShader(L"SkillProgressUI", PATH->ShadersPathW() + L"SkillProgressUI.fx");
+	InsertShader(L"EffectBuffer", PATH->ShadersPathW() + L"EffectBuffer.fx");
 }
 
 bool HyEngine::EditEngine::InsertShader(std::wstring key, std::wstring path)

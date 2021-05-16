@@ -114,6 +114,12 @@ sampler EffectParamSampler = sampler_state
 	Texture = (EffectParamTex);
 };
 
+texture RimLightColorTex;
+sampler RimLightColorSampler = sampler_state
+{
+	Texture = (RimLightColorTex);
+};
+
 texture SoftShadowTex;
 sampler SoftShadowSampler = sampler_state
 {
@@ -177,6 +183,7 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	float4 vtxNormalMap = tex2D(VtxNormalSampler, texcoord);
 	float4 effectMaskMap = tex2D(EffectMaskSampler, texcoord);
 	float4 effectParamMap = tex2D(EffectParamSampler, texcoord);
+	float4 rimLightColorMap = tex2D(RimLightColorSampler, texcoord);
 
 	/* Skybox */
 	//if (specularMap.a <= 0.0001)
@@ -215,7 +222,7 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	float rimWidth = effectParamMap.r;
 	float3 toCamPos = normalize(EyePosition - worldPos.rgb);
 	float rimLightIntensity = smoothstep(1.0f - rimWidth, 1.0f, 1 - max(0, dot(vtxNormal, toCamPos)));
-	float3 rimFinal = /*lightIntensity.rgb **/ rimLightIntensity * effectMaskMap.r;
+	float3 rimFinal = /*lightIntensity.rgb **/rimLightColorMap.rgb * rimLightIntensity * effectMaskMap.r;
 	
 	// 림라이트 그냥 적용 잘 되는지 테스트용
 	// 잘 된다.

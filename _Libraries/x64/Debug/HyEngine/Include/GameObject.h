@@ -125,6 +125,8 @@ namespace HyEngine
 		float GetRimWidth();
 		void SetRimWidth(float rimWidth);
 
+		D3DXCOLOR GetRimColor();
+		void SetRimColor(D3DXCOLOR color);
 
 	public :
 		virtual D3DXMATRIX GetWorldMatrix();
@@ -185,6 +187,7 @@ namespace HyEngine
 
 	private :/* For PostRender */
 		float m_rimWidth = 0;
+		D3DXCOLOR m_rimColor = D3DXCOLOR(1, 1, 1, 1);
 
 	protected: /* Hierarchy Data */
 		class GameObjectData* m_pGameObjectData = nullptr;

@@ -7,6 +7,7 @@
 #include "PathManager.h"
 #include "Effect.h"
 #include "SoundManager.h"
+#include "Player.h"
 
 PlayerSkillSwing::PlayerSkillSwing(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillSwing")
@@ -107,7 +108,20 @@ void PlayerSkillSwing::OnSequenceStart(int seqIndex)
 	m_seqIndex = seqIndex + 1;
 	m_hitEnemies.clear();
 	m_bSendDamage = false;
-	
+	m_bPlayAfterImage = false;
+
+	Player * pPlayer = static_cast<Player*>(PLAYER);
+	UINT animSet = pPlayer->GetCurAnimationIndex();
+
+
+	AfterEffectDesc desc;
+	desc.animIndex = animSet;
+	desc.color = D3DXCOLOR(1, 0, 0, 1);
+	desc.lifeTime = 0.5f;
+
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	m_afterImageIndex = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+
 }
 
 void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
@@ -118,6 +132,13 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 	switch (seqIndex)
 	{
 	case 0:
+		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		{
+			m_bPlayAfterImage = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
+		}
 		if (elapsed >= 0.3f)
 		{
 			SoundDesc desc;
@@ -145,6 +166,42 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			}
 			m_bSendDamage = true;
+		}
+		break;
+	case 1:
+		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		{
+			m_bPlayAfterImage = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
+		}
+		break;
+	case 2:
+		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		{
+			m_bPlayAfterImage = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
+		}
+		break;
+	case 3:
+		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		{
+			m_bPlayAfterImage = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
+		}
+		break;
+	case 4 :
+		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		{
+			m_bPlayAfterImage = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
 		}
 		break;
 	}

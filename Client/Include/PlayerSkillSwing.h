@@ -53,6 +53,9 @@ private:
 private : /* For Effect */
 	Effect* m_pEffect0 = nullptr;
 	Effect* m_pEffect1 = nullptr;
+	
+	bool m_bPlayAfterImage = false;
+	int m_afterImageIndex = 0;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

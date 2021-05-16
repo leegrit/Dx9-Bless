@@ -45,17 +45,19 @@ struct PixelOutput
 	float4 vtxNormal : COLOR0;
 	float4 EffectMask : COLOR1;
 	float4 EffectParam : COLOR2;
-	float4 BloomTexture : COLOR3;
+	float4 RimLightColor : COLOR3;
 };
 
 int RimLightFactor;
 //bool IsRimLight;
 
 float RimLightWidth;
+float4 RimLightColor;
 
 int BloomFactor;
 
 bool IsSkinnedMesh;
+
 
 PixelInputType SkinnedMeshVS(SkinnedVtxIn input)
 {
@@ -137,7 +139,7 @@ PixelOutput EffectBufferPS(PixelInputType input)
 	output.vtxNormal = float4( input.normal.rgb, 0);
 	output.EffectMask.r = RimLightFactor;
 	output.EffectParam.r = RimLightWidth;
-	
+	output.RimLightColor = RimLightColor;
 	/* For Bloom */
 	//float4 albedo = tex2D(AlbedoSampler, input.texcoord);
 	//float brightness = dot(albedo.rgb, float3(1, 1, 1)/*float3(0.2126f, 0.7152f, 0.0722f)*/);

@@ -223,6 +223,20 @@ void HyEngine::Renderer::Setup()
 		D3DUSAGE_RENDERTARGET,
 		D3DFMT_A8B8G8R8,
 		D3DPOOL_DEFAULT,
+		&m_pRimLightColorRTTexture
+	);
+	m_pRimLightColorRTTexture->GetSurfaceLevel(0, &m_pRimLightColorRTSurface);
+
+
+	D3DXCreateTexture
+	(
+		DEVICE,
+		WinMaxWidth,
+		WinMaxHeight,
+		0,
+		D3DUSAGE_RENDERTARGET,
+		D3DFMT_A8B8G8R8,
+		D3DPOOL_DEFAULT,
 		&m_pRimLightRTTexture
 	);
 	m_pRimLightRTTexture->GetSurfaceLevel(0, &m_pRimLightRTSurface);
@@ -293,7 +307,7 @@ void HyEngine::Renderer::Setup()
 	m_pVtxNormalQuad = new DebugMRTQuad(150, 0, 150, 150);
 	m_pEffectMaskQuad = new DebugMRTQuad(150, 150, 150, 150);
 	m_pEffectParamQuad = new DebugMRTQuad(150, 300, 150, 150);
-
+	m_pRimLightColorQuad = new  DebugMRTQuad(150, 450, 150, 150);
 
 	/* Shadow Group */
 	m_pCascadeShadowQuad0 = new DebugMRTQuad(300, 0, 150, 150);
@@ -737,6 +751,7 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugQuads.push_back(m_pVtxNormalQuad);
 	m_debugQuads.push_back(m_pEffectMaskQuad);
 	m_debugQuads.push_back(m_pEffectParamQuad);
+	m_debugQuads.push_back(m_pRimLightColorQuad);
 
 	m_debugQuads.push_back(m_pCascadeShadowQuad0);
 	m_debugQuads.push_back(m_pCascadeShadowQuad1);
@@ -759,6 +774,7 @@ void HyEngine::Renderer::DebugPipeline()
 	m_debugTextures.push_back(m_pVtxNormalRTTexture);
 	m_debugTextures.push_back(m_pEffectMaskRTTexture);
 	m_debugTextures.push_back(m_pEffectParamRTTexture);
+	m_debugTextures.push_back(m_pRimLightColorRTTexture);
 
 	m_debugTextures.push_back(m_pShadowRTTexture[0]);
 	m_debugTextures.push_back(m_pShadowRTTexture[1]);
@@ -828,7 +844,7 @@ void HyEngine::Renderer::SetEffectBufferMRT()
 	DEVICE->SetRenderTarget(0, m_pVtxNormalRTSurface);
 	DEVICE->SetRenderTarget(1, m_pEffectMaskRTSurface);
 	DEVICE->SetRenderTarget(2, m_pEffectParamRTSurface);
-	DEVICE->SetRenderTarget(3, NULL);
+	DEVICE->SetRenderTarget(3, m_pRimLightColorRTSurface);
 }
 
 void HyEngine::Renderer::SetOriginMRT()
@@ -1000,6 +1016,8 @@ void HyEngine::Renderer::EffectPass(Scene * scene)
 		//pEffect->SetBool("IsRimLight", isRimLight);
 		pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
 
+		pEffect->SetValue("RimLightColor", &opaque->GetRimColor(), sizeof(opaque->GetRimColor()));
+
 		pEffect->SetMatrix("WorldMatrix", &opaque->GetWorldMatrix());
 		if (IS_CLIENT)
 		{
@@ -1044,6 +1062,7 @@ void HyEngine::Renderer::EffectPass(Scene * scene)
 		pEffect->SetBool("IsRimLight", isRimLight);
 		pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
 
+		pEffect->SetValue("RimLightColor", &alpha->GetRimColor(), sizeof(alpha->GetRimColor()));
 
 		pEffect->SetMatrix("WorldMatrix", &alpha->GetWorldMatrix());
 		if (IS_CLIENT)
@@ -1242,6 +1261,9 @@ void HyEngine::Renderer::LightPass(Scene * scene)
 
 			D3DXHANDLE effectParamHandle = pShader->GetParameterByName(0, "EffectParamTex");
 			pShader->SetTexture(effectParamHandle, m_pEffectParamRTTexture);
+		
+			D3DXHANDLE rimLightColorHandle = pShader->GetParameterByName(0, "RimLightColorTex");
+			pShader->SetTexture(rimLightColorHandle, m_pRimLightColorRTTexture);
 		}
 
 		/* For CascadeShadowMapping */

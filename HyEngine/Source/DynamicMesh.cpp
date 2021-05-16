@@ -376,6 +376,16 @@ ESkinningType HyEngine::DynamicMesh::GetSkinningType() const
 	return m_skinningType;
 }
 
+void HyEngine::DynamicMesh::SetAnimationSpeed(float speedFactor)
+{
+	m_pAniCtrl->SetAnimationSpeed(speedFactor);
+}
+
+float HyEngine::DynamicMesh::GetAnimationSpeed()
+{
+	return m_pAniCtrl->GetAnimationSpeed();
+}
+
 const D3DXFRAME_DERIVED * HyEngine::DynamicMesh::GetFrameByName(const char * frameName)
 {
 	// 해당 뼈의 이름을 통해 뼈의 정보 구조체를 반환한다.

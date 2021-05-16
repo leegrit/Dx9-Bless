@@ -7,7 +7,7 @@ namespace HyEngine
 
 namespace AfterEffectOption
 {
-	static DWORD ScaleUp = 1;
+	static DWORD ScaleEffect = 1;
 	static DWORD FadeOut = 2;
 
 }
@@ -26,6 +26,20 @@ private :
 	class PlayerAfterImage* pPlayerAfterImage = nullptr;
 	bool isPlay = false;
 };
+struct WeaponAfterEffectDesc
+{
+	friend class EffectManager;
+public:
+	float lifeTime;
+	D3DXCOLOR color;
+	D3DXMATRIX worldMat;
+private:
+	float elapsed = 0;
+	int index = -1;
+	class WeaponAfterImage* pWeaponAfterImage = nullptr;
+	bool isPlay = false;
+};
+
 
 struct MeshEffectDesc
 {
@@ -66,6 +80,7 @@ struct MeshEffectDesc
 };
 
 class PlayerAfterImage;
+class WeaponAfterImage;
 class EffectManager
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -103,6 +118,13 @@ public :
 	void PlayAffterEffect(int index);
 
 	//////////////////////////////////////////////////////////////////////////
+	// FOR WEAPON AFTER EFFECT
+	//////////////////////////////////////////////////////////////////////////
+public :
+	void PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc);
+
+
+	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
 private :
@@ -113,6 +135,10 @@ private : /* PlayerAffterImage */
 	std::vector<PlayerAfterImage*> m_playerAfterImages;
 	std::vector<AfterEffectDesc> m_afterEffectDescs;
 
+private : /* WeaponAfterImage */
+	// max = 10°³
+	std::vector<WeaponAfterImage*> m_weaponAfterImages;
+	std::vector<WeaponAfterEffectDesc> m_weaponAfterEffectDescs;
 
 private :
 	std::unordered_map<std::wstring, Effect*> m_effects;

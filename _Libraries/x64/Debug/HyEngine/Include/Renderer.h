@@ -180,6 +180,9 @@ namespace HyEngine
 		IDirect3DTexture9 * m_pEffectParamRTTexture = nullptr;
 		IDirect3DSurface9 * m_pEffectParamRTSurface = nullptr;
 
+		IDirect3DTexture9 * m_pRimLightColorRTTexture = nullptr;
+		IDirect3DSurface9 * m_pRimLightColorRTSurface = nullptr;
+
 	private : /* For Post Render */
 		IDirect3DTexture9 * m_pRimLightRTTexture = nullptr;
 		IDirect3DSurface9 * m_pRimLightRTSurface = nullptr;
@@ -218,12 +221,13 @@ namespace HyEngine
 		class DebugMRTQuad * m_pLightIntensityQuad = nullptr;
 		class DebugMRTQuad * m_pAmbientIntensityQuad = nullptr;
 		class DebugMRTQuad * m_pSpecularIntensityQuad = nullptr;
+		class DebugMRTQuad * m_pRimLightQuad = nullptr;
 
 		class DebugMRTQuad * m_pVtxNormalQuad = nullptr;
 		class DebugMRTQuad * m_pEffectMaskQuad = nullptr;
 		class DebugMRTQuad * m_pEffectParamQuad = nullptr;
+		class DebugMRTQuad * m_pRimLightColorQuad = nullptr;
 
-		class DebugMRTQuad * m_pRimLightQuad = nullptr;
 		class DebugMRTQuad * m_pBrightnessQuad = nullptr;
 		class DebugMRTQuad * m_pBloomQuad = nullptr;
 

@@ -398,6 +398,12 @@
     <ClCompile Include="..\Source\PlayerAfterImage.cpp">
       <Filter>Scripts\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\WeaponAfterImage.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillStab.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -917,6 +923,12 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerAfterImage.h">
       <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\WeaponAfterImage.h">
+      <Filter>Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillStab.h">
+      <Filter>Scripts\Player\Skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

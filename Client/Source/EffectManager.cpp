@@ -4,6 +4,7 @@
 #include "GameScene.h"
 #include "PlayerAfterImage.h"
 #include "PathManager.h"
+#include "WeaponAfterImage.h"
 
 EffectManager::EffectManager(GameScene * pScene)
 {
@@ -23,6 +24,22 @@ void EffectManager::Initialize()
 		pAfterImage->SetRenderEffectOption(RenderEffectOption::RimLight);
 		pAfterImage->SetRimWidth(1.0f);
 		m_playerAfterImages.push_back(pAfterImage);
+	}
+
+	/* For Weapon After Image */
+	for (int i = 0; i < 10; i++)
+	{
+		WeaponAfterImage * pWeaponAfterImage = WeaponAfterImage::Create
+		(
+			m_pScene, PLAYER,
+			PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x",
+			L"Bip01-R-Finger22"
+		);
+		pWeaponAfterImage->SetActive(false);
+		pWeaponAfterImage->SetRenderEffectOption(RenderEffectOption::RimLight);
+		pWeaponAfterImage->SetRimWidth(1.0f);
+		m_weaponAfterImages.push_back(pWeaponAfterImage);
+
 	}
 }
 
@@ -56,6 +73,19 @@ void EffectManager::Update()
 			}
 			m_afterEffectDescs[i].pPlayerAfterImage->SetActive(true);
 		}
+	}
+
+	for (int i = 0; i < m_weaponAfterEffectDescs.size(); i++)
+	{
+		m_weaponAfterEffectDescs[i].elapsed += TIMER->getDeltaTime();
+		if (m_weaponAfterEffectDescs[i].elapsed >= m_weaponAfterEffectDescs[i].lifeTime)
+		{
+			m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetActive(false);
+			m_weaponAfterEffectDescs.erase(m_weaponAfterEffectDescs.begin() + i);
+			i--;
+			continue;
+		}
+		m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetActive(true);
 	}
 }
 
@@ -122,6 +152,8 @@ void EffectManager::PlayEffect(std::wstring key)
 
 int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 {
+	AfterEffectDesc oldestDesc;
+	int oldestElapsed = 0;
 	for (int i = 0; i < m_playerAfterImages.size(); i++)
 	{
 		if (m_playerAfterImages[i]->GetActive() == false)
@@ -129,15 +161,45 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 			desc.index = i;
 			desc.pPlayerAfterImage = m_playerAfterImages[i];
 			m_playerAfterImages[i]->SetAnimationSet(desc.animIndex);
+			m_playerAfterImages[i]->SetRimWidth(1.0f);
+			m_playerAfterImages[i]->SetRimColor(desc.color);
 			m_afterEffectDescs.push_back(desc);
 			if(pIndex)
 				*pIndex = i;
 			return i;
 		}
+		else
+		{
+			for (int j = 0; j < m_afterEffectDescs.size(); j++)
+			{
+				if (oldestElapsed <= m_afterEffectDescs[j].elapsed)
+				{
+					oldestElapsed = m_afterEffectDescs[j].elapsed;
+					oldestDesc = m_afterEffectDescs[j];
+					break;
+				}
+			}
+		}
 	}
-	if(pIndex)
-		*pIndex = -1;
-	return -1;
+	for (int i = 0; i < m_afterEffectDescs.size(); i++)
+	{
+		if (oldestDesc.index == m_afterEffectDescs[i].index)
+		{
+			desc.index = oldestDesc.index;
+			desc.pPlayerAfterImage = oldestDesc.pPlayerAfterImage;
+			oldestDesc.pPlayerAfterImage->SetAnimationSet(desc.animIndex);
+			oldestDesc.pPlayerAfterImage->SetRimWidth(1.0f);
+			oldestDesc.pPlayerAfterImage->SetRimColor(desc.color);
+
+			m_afterEffectDescs.erase(m_afterEffectDescs.begin() + i);
+			i--;
+			break;
+		}
+	}
+	m_afterEffectDescs.push_back(desc);
+	if (pIndex)
+		*pIndex = desc.index;
+	return desc.index;
 }
 
 void EffectManager::PlayAffterEffect(int index)
@@ -150,4 +212,54 @@ void EffectManager::PlayAffterEffect(int index)
 			return;
 		}
 	}
+}
+
+void EffectManager::PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc)
+{
+	WeaponAfterEffectDesc oldestAfterImageDesc;
+	float oldestElapsed = 0;
+	for (int i = 0; i < m_weaponAfterImages.size(); i++)
+	{
+		if (m_weaponAfterImages[i]->GetActive() == false)
+		{
+			desc.pWeaponAfterImage = m_weaponAfterImages[i];
+			desc.index = i;
+			desc.pWeaponAfterImage->SetWorldMatrix(desc.worldMat);
+			desc.pWeaponAfterImage->SetRimWidth(1.0f);
+			desc.pWeaponAfterImage->SetRimColor(desc.color);
+			m_weaponAfterEffectDescs.push_back(desc);
+			return;
+		}
+		else
+		{
+			for (int j = 0; j < m_weaponAfterEffectDescs.size(); j++)
+			{
+					if (oldestElapsed <= m_weaponAfterEffectDescs[i].elapsed)
+					{
+						oldestElapsed = m_weaponAfterEffectDescs[i].elapsed;
+						oldestAfterImageDesc = m_weaponAfterEffectDescs[i];
+						break;
+					}
+				
+			}
+		}
+	}
+
+	for (int i = 0; i < m_weaponAfterEffectDescs.size(); i++)
+	{
+		if (m_weaponAfterEffectDescs[i].index == oldestAfterImageDesc.index)
+		{
+			desc.pWeaponAfterImage = m_weaponAfterEffectDescs[i].pWeaponAfterImage;
+			desc.index = m_weaponAfterEffectDescs[i].index;
+			desc.pWeaponAfterImage->SetWorldMatrix(desc.worldMat);
+			desc.pWeaponAfterImage->SetRimWidth(1.0f);
+			desc.pWeaponAfterImage->SetRimColor(desc.color);
+
+			m_weaponAfterEffectDescs.erase(m_weaponAfterEffectDescs.begin() + i);
+			i--;
+		}
+	}
+	m_weaponAfterEffectDescs.push_back(desc);
+
+
 }

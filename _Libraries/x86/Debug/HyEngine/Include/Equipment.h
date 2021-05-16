@@ -24,6 +24,7 @@ namespace HyEngine
 		virtual void DrawPrimitive(ID3DXEffect* pShader) override;
 		virtual void UpdatedData(EDataType dataType) override;
 		virtual bool ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _Out_ float * radius);
+		virtual D3DXMATRIX GetWorldMatrix() override;
 
 
 
@@ -43,7 +44,7 @@ namespace HyEngine
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
-	private:
+	protected:
 		GameObject* m_pOwner = nullptr;
 		ID3DXMesh* m_pMesh = nullptr;
 		std::vector<D3DXMATERIAL> m_mtrls;

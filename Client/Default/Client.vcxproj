@@ -167,6 +167,7 @@
     <ClCompile Include="..\Source\PlayerSkillBuff.cpp" />
     <ClCompile Include="..\Source\PlayerSkillPress.cpp" />
     <ClCompile Include="..\Source\PlayerSkillShield.cpp" />
+    <ClCompile Include="..\Source\PlayerSkillStab.cpp" />
     <ClCompile Include="..\Source\PlayerSkillSwing.cpp" />
     <ClCompile Include="..\Source\PlayerSkillSwingDown.cpp" />
     <ClCompile Include="..\Source\PlayerSkillTornado.cpp" />
@@ -272,6 +273,7 @@
     <ClCompile Include="..\Source\TitleScene.cpp" />
     <ClCompile Include="..\Source\UIManager.cpp" />
     <ClCompile Include="..\Source\WarpPoint.cpp" />
+    <ClCompile Include="..\Source\WeaponAfterImage.cpp" />
     <ClCompile Include="..\Source\ZoomInCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +304,7 @@
     <ClInclude Include="..\Include\PlayerSkillBuff.h" />
     <ClInclude Include="..\Include\PlayerSkillPress.h" />
     <ClInclude Include="..\Include\PlayerSkillShield.h" />
+    <ClInclude Include="..\Include\PlayerSkillStab.h" />
     <ClInclude Include="..\Include\PlayerSkillSwing.h" />
     <ClInclude Include="..\Include\PlayerSkillSwingDown.h" />
     <ClInclude Include="..\Include\PlayerSkillTornado.h" />
@@ -410,6 +413,7 @@
     <ClInclude Include="..\Include\TitleScene.h" />
     <ClInclude Include="..\Include\UIManager.h" />
     <ClInclude Include="..\Include\WarpPoint.h" />
+    <ClInclude Include="..\Include\WeaponAfterImage.h" />
     <ClInclude Include="..\Include\ZoomInCamera.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

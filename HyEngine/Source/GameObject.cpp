@@ -198,6 +198,14 @@ void HyEngine::GameObject::SetRimWidth(float rimWidth)
 {
 	m_rimWidth = rimWidth;
 }
+D3DXCOLOR HyEngine::GameObject::GetRimColor()
+{
+	return m_rimColor;
+}
+void HyEngine::GameObject::SetRimColor(D3DXCOLOR color)
+{
+	m_rimColor = color;
+}
 D3DXMATRIX HyEngine::GameObject::GetWorldMatrix()
 {
 	return m_pTransform->GetWorldMatrix();

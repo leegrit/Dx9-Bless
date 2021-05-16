@@ -337,6 +337,18 @@ bool HyEngine::Equipment::ComputeBoundingSphere(D3DXVECTOR3 * center, float * ra
 	return true;
 }
 
+D3DXMATRIX HyEngine::Equipment::GetWorldMatrix()
+{
+	if (m_pParentBoneMatrix != nullptr)
+	{
+		D3DXMATRIX resultWorld = m_pTransform->GetWorldMatrix() * (*m_pParentBoneMatrix * m_pParentWorldMatrix);
+		return resultWorld;
+	}
+	else
+		return m_pTransform->GetWorldMatrix();
+
+}
+
 void HyEngine::Equipment::OnRenderBegin(void *)
 {
 	DynamicMesh* mesh = dynamic_cast<DynamicMesh*>(m_pOwner);

@@ -138,12 +138,22 @@ void HyEngine::AnimationController::PlayAnimationSet(const float & deltaTime)
 	// 애니메이션을 재생하는 함수
 	// 두 번째 인자 : 애니메이션 동작에 맞춰 이펙트 또는 사운드 객체의 주소
 	HRESULT hr;
-	hr=  m_pAniCtrl->AdvanceTime(deltaTime, NULL);
+	hr=  m_pAniCtrl->AdvanceTime(deltaTime * m_speedFactor, NULL);
 	assert(SUCCEEDED(hr));
-	m_accTime += deltaTime;
+	m_accTime += (deltaTime * m_speedFactor);
 }
 
 const UINT HyEngine::AnimationController::GetCurAnimationIndex()
 {
 	return m_oldAniIndex;
+}
+
+void HyEngine::AnimationController::SetAnimationSpeed(float speedFactor)
+{
+	m_speedFactor = speedFactor;
+}
+
+float HyEngine::AnimationController::GetAnimationSpeed()
+{
+	return m_speedFactor;
 }

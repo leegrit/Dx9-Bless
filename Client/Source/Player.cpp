@@ -17,6 +17,7 @@
 #include "PlayerSkillTornado.h"
 #include "PlayerSkillUpper.h"
 #include "PlayerAfterImage.h"
+#include "EffectManager.h"
 
 Player::Player(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8, ESkinningType::HardwareSkinning)
@@ -125,6 +126,17 @@ void Player::Update()
 	m_pAfterImage->m_pTransform->SetPosition(m_pTransform->m_position);
 	m_pAfterImage->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
 	m_pAfterImage->m_pTransform->SetScale(m_pTransform->m_scale);
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// WEAPON EFFECT TEST
+	//////////////////////////////////////////////////////////////////////////
+	//WeaponAfterEffectDesc desc;
+	//desc.lifeTime = 0.5f;
+	//desc.worldMat = m_pWeapon->GetWorldMatrix();
+	//GameScene* pScene = static_cast<GameScene*>(GetScene());
+	//pScene->GetEffectManager()->PlayerWeaponAffterEffect(desc);
+
 }
 
 void Player::Render()
