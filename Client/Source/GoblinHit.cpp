@@ -16,11 +16,11 @@ void GoblinHit::Enter()
 	/* 내적 결과가 양수일 경우 정면에서 공격당한 것 */
 	if (dot > 0)
 	{
-		m_component->SetAnimationSet(18);
+		m_component->SetAnimationSet(14);
 	}
 	else
 	{
-		m_component->SetAnimationSet(19);
+		m_component->SetAnimationSet(15);
 	}
 }
 
@@ -28,7 +28,7 @@ void GoblinHit::Update()
 {
 	if (m_component->IsDamaged())
 	{
-		m_component->SetAnimationSet(8);
+		m_component->SetAnimationSet(5);
 		m_component->GetState()->Set("Hit");
 	}
 	if (m_component->IsDied())

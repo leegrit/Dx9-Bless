@@ -23,6 +23,7 @@ namespace HyEngine
 		bool IsAnimationAfterTrack(double afterTime);
 		const UINT& GetAnimationNum();
 		double GetCurAnimationPosition();
+		void SetCurAnimationPosition(double position);
 
 	public :
 		void SetAnimationSet(const UINT& index);

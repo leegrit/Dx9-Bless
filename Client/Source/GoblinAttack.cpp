@@ -4,7 +4,7 @@
 
 void GoblinAttack::Enter()
 {
-	m_component->SetAnimationSet(24);
+	m_component->SetAnimationSet(19); // attack
 	m_component->ClearHitOthers();
 	m_elapsed = 0.0f;
 	m_isAttacked = false;

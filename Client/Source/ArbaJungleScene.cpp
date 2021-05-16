@@ -54,15 +54,16 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// PLAYER
 	//////////////////////////////////////////////////////////////////////////
-	auto player = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Player.json");
-	SetPlayer(player);
+	m_pPlayer = Player::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Player.json");
+	SetPlayer(m_pPlayer);
+
 	//player->m_pTransform->SetScale(0.5f, 0.5f, 0.5f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// CAMERA
 	//////////////////////////////////////////////////////////////////////////
 	m_pEditCam = DynamicCamera::Create(this, nullptr, L"SampleCamera");
-	m_pGameCam = PlayerCamera::Create(this, player, L"PlayerCamera");
+	m_pGameCam = PlayerCamera::Create(this, m_pPlayer, L"PlayerCamera");
 	SelectCamera(m_pGameCam->GetName());
 
 
@@ -94,36 +95,42 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	/*auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW/OSW_00.x", L"Bip01-R-Finger21", L"Sword");
 	equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);*/
-	auto equip = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger21", L"Sword");
-	equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
-
-	auto equip2 = Equipment::Create(this, player, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
-
+	Equipment* pEquip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger22" /*L"Bip01-R-Finger21"*/, L"Sword");
+	pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
+	m_pPlayer->SetWeapon(pEquip);
+	pEquip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
+	m_pPlayer->SetShield(pEquip);
 
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
 	//////////////////////////////////////////////////////////////////////////
-	auto enemy1 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01.json");
-	auto enemy2 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02.json");
-	auto enemy3 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03.json");
-	auto enemy4 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin04.json");
-	auto enemy5 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin05.json");
-	auto enemy6 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin06.json");
-	auto enemy7 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin07.json");
-	auto enemy8 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin08.json");
-	auto enemy9 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin09.json");
-	auto enemy10 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin10.json");
-	auto enemy11 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin11.json");
-	auto enemy12 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin12.json");
-	auto enemy13 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin13.json");
-	auto enemy14 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin14.json");
-	auto enemy15 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin15.json");
-	auto enemy16 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin16.json");
-	auto enemy17 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin17.json");
-	auto enemy18 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin18.json");
-	auto enemy19 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin19.json");
-	auto enemy20 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin20.json");
-
+	auto enemy1 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_1.json");
+	auto enemy2 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_2.json");
+	auto enemy3 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_3.json");
+	auto enemy4 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_4.json");
+	auto enemy5 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_5.json");
+	auto enemy6 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_6.json");
+	auto enemy7 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_7.json");
+	auto enemy8 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_8.json");
+	auto enemy9 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_9.json");
+	auto enemy10 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_10.json");
+	auto enemy11 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_11.json");
+	auto enemy12 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_12.json");
+	auto enemy13 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin01_13.json");
+	auto enemy14 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_1.json");
+	auto enemy15 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_2.json");
+	auto enemy16 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_3.json");
+	auto enemy17 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_4.json");
+	auto enemy18 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_5.json");
+	auto enemy19 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_6.json");
+	auto enemy20 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_7.json");
+	auto enemy21 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin02_8.json");
+	auto enemy22 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_1.json");
+	auto enemy23 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_2.json");
+	auto enemy24 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_3.json");
+	auto enemy25 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_4.json");
+	auto enemy26 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_5.json");
+	auto enemy27 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_6.json");
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////

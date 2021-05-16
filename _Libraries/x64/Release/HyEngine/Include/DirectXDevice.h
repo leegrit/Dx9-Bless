@@ -15,7 +15,7 @@ public :
 	// -------------------------------------------------
 	inline const LPDIRECT3DDEVICE9 GetDevice() const { return m_pDevice; }
 
-	HRESULT Init(HWND hwnd);
+	HRESULT Init(HWND hwnd, bool bFullScreen);
 	void Shutdown();
 
 	void RenderBegin();

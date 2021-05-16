@@ -99,7 +99,7 @@ void Enemy::Initialize(std::wstring dataPath)
 	m_pHitEffect = Sprite::Create(GetScene(), L"HitEffect",
 		PATH->AssetsPathW() + L"Effect/Texture/Spark", ELoopType::Default, 4, 12);
 	m_pHitEffect->SetActive(false);
-	m_pHitEffect->m_pTransform->SetScale(15, 15, 15);
+	m_pHitEffect->m_pTransform->SetScale(20, 20, 20);
 }
 
 void Enemy::Update()

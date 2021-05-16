@@ -14,6 +14,17 @@ struct FontInfo
 	DWORD format;
 	D3DCOLOR textColor;
 };
+
+struct FontDesc
+{
+	const TCHAR * text;
+	D3DXVECTOR3 position = D3DXVECTOR3(0, 0, 0);
+	D3DXVECTOR3 scale = D3DXVECTOR3(1, 1, 1);
+	RECT rect;
+	DWORD format = DT_LEFT;
+	D3DXCOLOR textColor = D3DXCOLOR (1, 1, 1, 1);
+
+};
 namespace HyEngine
 {
 	class ENGINE_DLL Engine
@@ -70,6 +81,7 @@ namespace HyEngine
 		void DrawText(const TCHAR* text, D3DXMATRIX mat, D3DCOLOR color);
 		void DrawTextFormat(D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR* text, int args, ... );
 		void DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color);
+		void DrawTextInWorld(FontDesc desc);
 		/* For Shader */
 	public :
 		bool InsertShader(std::wstring key, std::wstring path);

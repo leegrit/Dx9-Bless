@@ -157,6 +157,8 @@ void Character::SendDamage(GameObject * sender, float damage, bool isCritical )
 	if (m_curHP <= 0)
 	{
 		m_isDied = true;
+		EventDispatcher::TriggerEvent(BattleEvent::CharacterDamaged, static_cast<void*>(this));
+		OnDamaged(sender, damage, isCritical);
 		EventDispatcher::TriggerEvent(BattleEvent::CharacterDie, static_cast<void*>(this));
 		OnDied();
 	}

@@ -50,12 +50,22 @@ private :
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
 
+private:
+	// 데미지 비율
+	float m_damageScale[3] = { 1.0f, 1.0f, 1.0f };
+	class PlayerStatusData * m_pPlayerStatusData = nullptr;
+	class PlayerBuffInfo * m_pPlayerBuffInfo = nullptr;
+
+	
+
+
 private : /* Effect */
 	Effect * m_pSwordTrail = nullptr;
 	Effect* m_pSwordTrail_Second = nullptr;
 	Effect* m_pSwordTrail_Third = nullptr;
 
-
+	bool m_bPlayerAfterImage = false;
+	
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

@@ -543,6 +543,11 @@ void HyEngine::DynamicMesh::ForcedUpdateAnimation()
 	}
 }
 
+void HyEngine::DynamicMesh::SetAnimationPosition(double position)
+{
+	m_pAniCtrl->SetCurAnimationPosition(position);
+}
+
 void HyEngine::DynamicMesh::OnRenderBegin(void*)
 {
 	/* 여기서 bone texture를 최신화해준다. */

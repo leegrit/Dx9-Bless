@@ -82,7 +82,7 @@ bool EditEngine::Initialize()
 {
 	HRESULT hr = EnsureHWND();
 	assert(SUCCEEDED(hr));
-	DirectXDevice::Get()->Init(m_hWnd);
+	DirectXDevice::Get()->Init(m_hWnd, false);
 	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
 	return true;

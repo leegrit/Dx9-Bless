@@ -9,6 +9,8 @@
 #include "SoundManager.h"
 #include "Player.h"
 #include "Equipment.h"
+#include "PlayerBuffInfo.h"
+
 
 PlayerSkillBuff::PlayerSkillBuff(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerNormalAttack")
@@ -23,6 +25,8 @@ PlayerSkillBuff::~PlayerSkillBuff()
 void PlayerSkillBuff::Initialize()
 {
 	PlayerAction::Initialize();
+
+	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
 }
 
 void PlayerSkillBuff::Update()
@@ -30,14 +34,13 @@ void PlayerSkillBuff::Update()
 	PlayerAction::Update();
 	UpdateAction();
 
-	if (m_bBuff)
+	if (m_pPlayerBuffInfo->bBuff)
 	{
 		m_buffElapsed += TIMER->getDeltaTime();
 		if (m_buffElapsed >= m_buffDuration)
 		{
 			m_buffElapsed = 0;
-			m_bBuff = false;
-
+			m_pPlayerBuffInfo->bBuff = false;
 
 		}
 		Player* pPlayer = static_cast<Player*>(PLAYER);
@@ -47,16 +50,7 @@ void PlayerSkillBuff::Update()
 		pWeapon->SetRimWidth(1.0f);
 		pWeapon->SetRimColor(D3DXCOLOR(1, 1, 0, 1));
 
-		/*WeaponAfterEffectDesc desc;
-		desc.lifeTime = 0.4f;
-		desc.worldMat = pWeapon->GetWorldMatrix();
-		desc.pOrigin = pWeapon;
-		desc.afterEffectOption = AfterEffectOption::FadeOut;
-		desc.color = D3DXCOLOR(1, 1, 0, 1);
-		desc.fadeOutSpd = 2.0f;
-		GameScene* pScene = static_cast<GameScene*>(SCENE);
-		pScene->GetEffectManager()->PlayerWeaponAffterEffect(desc);
-*/
+		
 		
 	}
 	else
@@ -142,7 +136,7 @@ void PlayerSkillBuff::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 		if (elapsed >= 0.5f)
 		{
-			m_bBuff = true;
+			m_pPlayerBuffInfo->bBuff = true;
 			m_buffElapsed = 0;
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;

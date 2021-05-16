@@ -17,7 +17,7 @@ EffectManager::~EffectManager()
 
 void EffectManager::Initialize()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		PlayerAfterImage* pAfterImage = PlayerAfterImage::Create(m_pScene, nullptr, PATH->DatasPathW() + L"HierarchyData/Hieracon_Player.json", ESkinningType::HardwareSkinning);
 		pAfterImage->SetActive(false);
@@ -48,6 +48,16 @@ void EffectManager::Update()
 	for (int i = 0; i < m_afterEffectDescs.size(); i++)
 	{
 		assert(m_afterEffectDescs[i].pPlayerAfterImage);
+		if (m_afterEffectDescs[i].afterEffectOption & AfterEffectOption::AnimationDelay)
+		{
+			m_afterEffectDescs[i].curAnimElapsed += TIMER->getDeltaTime();
+			if (m_afterEffectDescs[i].curAnimElapsed >= m_afterEffectDescs[i].animDelay
+				&& m_afterEffectDescs[i].bAnimStarted == false)
+			{
+				m_afterEffectDescs[i].pPlayerAfterImage->SetAnimationSet(m_afterEffectDescs[i].animIndex);
+				m_afterEffectDescs[i].bAnimStarted = true;
+			}
+		}
 		if (m_afterEffectDescs[i].isPlay == false)
 		{
 			m_afterEffectDescs[i].pPlayerAfterImage->m_pTransform->SetPosition(PLAYER->m_pTransform->m_position);
@@ -63,7 +73,10 @@ void EffectManager::Update()
 		if (m_afterEffectDescs[i].isPlay)
 		{
 			m_afterEffectDescs[i].elapsed += TIMER->getDeltaTime();
-
+			if (m_afterEffectDescs[i].afterEffectOption & AfterEffectOption::RunAnimation)
+			{
+				m_afterEffectDescs[i].pPlayerAfterImage->ForcedUpdateAnimation();
+			}
 			if (m_afterEffectDescs[i].afterEffectOption & AfterEffectOption::ScaleEffect)
 			{
 				float scale = m_afterEffectDescs[i].originScale;
@@ -220,11 +233,28 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 	{
 		if (m_playerAfterImages[i]->GetActive() == false)
 		{
+			bool bUse = false;
+			for (int j = 0; j < m_afterEffectDescs.size(); j++)
+			{
+				if (m_afterEffectDescs[j].pPlayerAfterImage->GetInstanceID() ==
+					m_playerAfterImages[i]->GetInstanceID())
+				{
+					bUse = true;
+					break;
+				}
+			}
+			if (bUse == true)
+				continue;
 			desc.index = i;
 			desc.pPlayerAfterImage = m_playerAfterImages[i];
-			m_playerAfterImages[i]->SetAnimationSet(desc.animIndex);
-			m_playerAfterImages[i]->SetRimWidth(1.0f);
-			m_playerAfterImages[i]->SetRimColor(desc.color);
+			desc.pPlayerAfterImage->SetAnimationSet(desc.animIndex);
+			desc.pPlayerAfterImage->SetAnimationPosition(desc.animPosition);
+			desc.pPlayerAfterImage->SetRimWidth(1.0f);
+			desc.pPlayerAfterImage->SetRimColor(desc.color);
+			desc.pPlayerAfterImage->m_pTransform->SetPosition(PLAYER->m_pTransform->m_position);
+			desc.pPlayerAfterImage->m_pTransform->m_rotationEuler = PLAYER->m_pTransform->m_rotationEuler;
+			desc.pPlayerAfterImage->m_pTransform->SetScale(PLAYER->m_pTransform->m_scale);
+			desc.pPlayerAfterImage->ForcedUpdateAnimation();
 			desc.originScale = m_playerAfterImages[i]->m_pTransform->m_scale.x();
 			m_afterEffectDescs.push_back(desc);
 			if(pIndex)
@@ -233,15 +263,16 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 		}
 		else
 		{
-			for (int j = 0; j < m_afterEffectDescs.size(); j++)
-			{
-				if (oldestElapsed <= m_afterEffectDescs[j].elapsed)
-				{
-					oldestElapsed = m_afterEffectDescs[j].elapsed;
-					oldestDesc = m_afterEffectDescs[j];
-					break;
-				}
-			}
+			
+		}
+	}
+	for (int j = 0; j < m_afterEffectDescs.size(); j++)
+	{
+		if (oldestElapsed <= m_afterEffectDescs[j].elapsed)
+		{
+			oldestElapsed = m_afterEffectDescs[j].elapsed;
+			oldestDesc = m_afterEffectDescs[j];
+			break;
 		}
 	}
 	for (int i = 0; i < m_afterEffectDescs.size(); i++)
@@ -251,8 +282,13 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 			desc.index = oldestDesc.index;
 			desc.pPlayerAfterImage = oldestDesc.pPlayerAfterImage;
 			desc.pPlayerAfterImage->SetAnimationSet(desc.animIndex);
+			desc.pPlayerAfterImage->SetAnimationPosition(desc.animPosition);
 			desc.pPlayerAfterImage->SetRimWidth(1.0f);
 			desc.pPlayerAfterImage->SetRimColor(desc.color);
+			desc.pPlayerAfterImage->m_pTransform->SetPosition(PLAYER->m_pTransform->m_position);
+			desc.pPlayerAfterImage->m_pTransform->m_rotationEuler = PLAYER->m_pTransform->m_rotationEuler;
+			desc.pPlayerAfterImage->m_pTransform->SetScale(PLAYER->m_pTransform->m_scale);
+			desc.pPlayerAfterImage->ForcedUpdateAnimation();
 			desc.originScale = desc.pPlayerAfterImage->m_pTransform->m_scale.x();
 
 			m_afterEffectDescs[i].pPlayerAfterImage->m_pTransform->m_scale = D3DXVECTOR3(m_afterEffectDescs[i].originScale, m_afterEffectDescs[i].originScale, m_afterEffectDescs[i].originScale);

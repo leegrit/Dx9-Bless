@@ -11,6 +11,8 @@ namespace AfterEffectOption
 	static DWORD None = 1;
 	static DWORD ScaleEffect = 2;
 	static DWORD FadeOut = 4;
+	static DWORD RunAnimation = 8;
+	static DWORD AnimationDelay = 16;
 
 }
 
@@ -26,10 +28,14 @@ public:
 	float endScale = 1;
 	float scaleSpd = 1;
 	float fadeOutSpd = 1.0f;
+	float animDelay = 0.0f;
+	float animPosition = 0.0f;
 private :
 	float elapsed = 0;
 	int index = -1;
 	float originScale;
+	float curAnimElapsed = 0.0f;
+	bool bAnimStarted = false;
 	float alpha = 1;
 	class PlayerAfterImage* pPlayerAfterImage = nullptr;
 	bool isPlay = false;

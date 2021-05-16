@@ -4,7 +4,7 @@
 
 void GoblinIdle::Enter()
 {
-	m_component->SetAnimationSet(8);
+	m_component->SetAnimationSet(5);
 
 }
 

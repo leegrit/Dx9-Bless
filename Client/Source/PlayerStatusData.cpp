@@ -8,4 +8,5 @@ PlayerStatusData::PlayerStatusData()
 	life = 130;
 	intel = 31;
 	dex = 38;
+	critical = 0.3f;
 }

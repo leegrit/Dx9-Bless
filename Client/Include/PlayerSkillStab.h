@@ -56,6 +56,16 @@ private: /* For Effect */
 	bool m_bPlayAfterImage = false;
 	int m_afterImageIndex = 0;
 
+private : /* FirstAction Effect */
+	Effect * m_pFirstActionTrail = nullptr;
+
+private : /* SecondAction Effect */
+	Effect * m_pSecondActionTrail = nullptr;
+
+private : /* ThirdAction Effect */
+	Effect* m_pThridActionTrail = nullptr;
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

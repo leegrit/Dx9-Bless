@@ -5,7 +5,7 @@
 
 void GoblinDied::Enter()
 {
-	m_component->SetAnimationSet(21);
+	m_component->SetAnimationSet(17);
 }
 
 void GoblinDied::Update()

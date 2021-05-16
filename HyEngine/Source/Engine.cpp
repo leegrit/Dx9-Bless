@@ -54,7 +54,7 @@ Engine::~Engine()
 bool Engine::Initialize(HWND hWnd, EngineConfig engineConfig)
 {
 	SEND_LOG("Engine Initialize Start");
-	DirectXDevice::Get()->Init(hWnd);
+	DirectXDevice::Get()->Init(hWnd, engineConfig.bFullScreen);
 	m_pRenderer = Renderer::Create();
 	m_pTimer->start();
 
@@ -372,6 +372,10 @@ void HyEngine::Engine::DrawTextFormat(D3DXVECTOR3 position,D3DXVECTOR3 scale, D3
 
 void HyEngine::Engine::DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color)
 {
+	D3DXVECTOR3 camPos = CAMERA->m_pTransform->m_position;
+	float dist = D3DXVec3Length(&(camPos - position));
+	if (dist >= 250)
+		return;
 
 	D3DXVECTOR3 resultPos;
 	D3DXMATRIX resultMat;
@@ -409,6 +413,49 @@ void HyEngine::Engine::DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position,
 	info.rect = rect;
 	m_fontInfos.push_back(info);
 	//ENGINE->DrawText(text, resultPos, D3DXVECTOR3(1, 1, 1), color);
+}
+
+void HyEngine::Engine::DrawTextInWorld(FontDesc desc)
+{
+	D3DXVECTOR3 camPos = CAMERA->m_pTransform->m_position;
+	float dist = D3DXVec3Length(&(camPos - desc.position));
+	if (dist >= 250)
+		return;
+
+	D3DXVECTOR3 resultPos;
+	D3DXMATRIX resultMat;
+	D3DXMATRIX worldMat;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	D3DXMATRIX viewMat = SCENE->GetSelectedCamera()->GetViewMatrix();
+	D3DXMATRIX projMat = SCENE->GetSelectedCamera()->GetProjectionMatrix();
+
+
+	//position.x -= m_size.x * 0.5f;
+	D3DXMatrixTranslation(&posMat, desc.position.x, desc.position.y, desc.position.z);
+	D3DXMatrixScaling(&scaleMat, desc.scale.x, desc.scale.y, 1);
+	worldMat = scaleMat * posMat;
+	D3DVIEWPORT9 viewPort;
+	DEVICE->GetViewport(&viewPort);
+
+	D3DXMATRIX identity;
+	D3DXMatrixIdentity(&identity);
+	D3DXVec3Project(&resultPos, &D3DXVECTOR3(0, 0, 0), &viewPort, &projMat, &viewMat, &worldMat);
+
+
+	FontInfo info;
+
+	wsprintf(info.textBuff, desc.text);
+	D3DXMatrixTranslation(&posMat, resultPos.x, resultPos.y, resultPos.z);
+	D3DXMatrixScaling(&scaleMat, desc.scale.x, desc.scale.y, desc.scale.z);
+	info.matTrans = scaleMat * posMat;
+	info.textColor = desc.textColor;
+	//info.format = format;
+	info.format = desc.format;
+	RECT rect= desc.rect;
+	info.rect = rect;
+	m_fontInfos.push_back(info);
 }
 
 bool HyEngine::Engine::InsertShader(std::wstring key, std::wstring path)
@@ -498,23 +545,33 @@ void Engine::RenderDebug()
 
 void HyEngine::Engine::RenderFont()
 {
+
+	DWORD old;
+	DEVICE->GetRenderState(D3DRS_ZENABLE, &old);
+	DWORD alphaBlendOld;
+	DEVICE->GetRenderState(D3DRS_ALPHABLENDENABLE, &alphaBlendOld);
+	
 	DIRECT_SPRITE->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_SORT_TEXTURE);
 
-	/*DWORD old;
-	DEVICE->GetRenderState(D3DRS_ZENABLE, &old);
-	DEVICE->SetRenderState(D3DRS_ZENABLE, true);
-	DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
-	DEVICE->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);*/
-
+	DEVICE->SetRenderState(D3DRS_ZENABLE, FALSE);
+	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+	//DEVICE->SetRenderState(D3DRS_ZWRITEENABLE, true);
+	//DEVICE->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESS);
+	 
 	for (auto& fontInfo : m_fontInfos)
 	{
 		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);
 		/*RECT rect;
 		SetRect(&rect, -500, -40, 500, 0);
 */
+		//DEVICE->SetRenderState(D3DRS_ZENABLE, FALSE);
 		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), &fontInfo.rect, fontInfo.format/*DT_CENTER | DT_BOTTOM*/, fontInfo.textColor);
 	}
-	//DEVICE->SetRenderState(D3DRS_ZENABLE, old);
-
 	DIRECT_SPRITE->End();
+
+	DEVICE->SetRenderState(D3DRS_ZENABLE, old);
+	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, alphaBlendOld);
+
 }

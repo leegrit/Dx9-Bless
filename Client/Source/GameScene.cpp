@@ -20,6 +20,7 @@
 #include "PlayerEquipData.h"
 #include "InventoryData.h"
 #include "EffectManager.h"
+#include "PlayerBuffInfo.h"
 
 
 void GameScene::Update()
@@ -95,6 +96,13 @@ void GameScene::Load()
 		ENGINE->AddScriptableData(L"InventoryData", m_pInventoryData);
 	}
 
+	PlayerBuffInfo * pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
+	if (pPlayerBuffInfo == nullptr)
+	{
+		pPlayerBuffInfo = new PlayerBuffInfo();
+		ENGINE->AddScriptableData(L"PlayerBuffInfo", pPlayerBuffInfo);
+	}
+	pPlayerBuffInfo->bBuff = false;
 }
 
 void GameScene::LateLoadScene()

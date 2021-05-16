@@ -33,7 +33,7 @@ bool Application::Init(HINSTANCE hInstance, int nCmdShow, EngineConfig engineCon
 
 	
 	// WINDOW
-	InitWindow();
+	InitWindow(engineConfig);
 	ShowWindow(m_hWnd, nCmdShow);
 
 	// ENGINE
@@ -201,7 +201,7 @@ void Application::UpdateWindowDimensions(int w, int h)
 	m_windowWidth = w;
 }
 
-void Application::InitWindow()
+void Application::InitWindow(EngineConfig config)
 {
 	g_pAppHandle = this;
 	
@@ -224,45 +224,87 @@ void Application::InitWindow()
 	WORD wHr = RegisterClassEx(&wndClass);
 	assert(wHr != 0);
 
-#ifdef FULL_SCREEN
-	m_hWnd = CreateWindowEx
-	(
-		WS_EX_APPWINDOW,
-		m_appName,
-		m_appName,
-		WS_EX_TOPMOST | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW,
-		0,//CW_USEDEFAULT,
-		0, //CW_USEDEFAULT,
-		WinMaxWidth,//CW_USEDEFAULT,
-		WinMaxHeight,//CW_USEDEFAULT,
-		NULL,
-		(HMENU)NULL,
-		m_hInstance,
-		NULL
-	);
-#else
-	RECT		rc{ 0, 0, WinMaxWidth, WinMaxHeight };
+	if (config.bFullScreen)
+	{
+		m_hWnd = CreateWindowEx
+		(
+			WS_EX_APPWINDOW,
+			m_appName,
+			m_appName,
+			WS_EX_TOPMOST | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW,
+			0,//CW_USEDEFAULT,
+			0, //CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			NULL,
+			(HMENU)NULL,
+			m_hInstance,
+			NULL
+		);
+	}
+	else
+	{
+		RECT		rc{ 0, 0, WinMaxWidth, WinMaxHeight };
 
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+		AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
 
-	m_hWnd = CreateWindowEx
-	(
-		WS_EX_APPWINDOW,
-		m_appName,
-		m_appName,
-		/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | */WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
-		rc.right - rc.left,
-		rc.bottom - rc.top,
-		NULL,
-		(HMENU)NULL,
-		m_hInstance,
-		NULL
-	);
-
-#endif
+		m_hWnd = CreateWindowEx
+		(
+			WS_EX_APPWINDOW,
+			m_appName,
+			m_appName,
+			/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | */WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT,
+			CW_USEDEFAULT,
+			rc.right - rc.left,
+			rc.bottom - rc.top,
+			NULL,
+			(HMENU)NULL,
+			m_hInstance,
+			NULL
+		);
+	}
+//
+//#ifdef FULL_SCREEN
+//	m_hWnd = CreateWindowEx
+//	(
+//		WS_EX_APPWINDOW,
+//		m_appName,
+//		m_appName,
+//		WS_EX_TOPMOST | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW,
+//		0,//CW_USEDEFAULT,
+//		0, //CW_USEDEFAULT,
+//		WinMaxWidth,//CW_USEDEFAULT,
+//		WinMaxHeight,//CW_USEDEFAULT,
+//		NULL,
+//		(HMENU)NULL,
+//		m_hInstance,
+//		NULL
+//	);
+//#else
+//	RECT		rc{ 0, 0, WinMaxWidth, WinMaxHeight };
+//
+//	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+//
+//
+//	m_hWnd = CreateWindowEx
+//	(
+//		WS_EX_APPWINDOW,
+//		m_appName,
+//		m_appName,
+//		/*WS_CLIPSIBLINGS | WS_CLIPCHILDREN | */WS_OVERLAPPEDWINDOW,
+//		CW_USEDEFAULT,
+//		CW_USEDEFAULT,
+//		rc.right - rc.left,
+//		rc.bottom - rc.top,
+//		NULL,
+//		(HMENU)NULL,
+//		m_hInstance,
+//		NULL
+//	);
+//
+//#endif
 
 	/*RECT rect = { 0, 0, (LONG)WinMaxWidth, (LONG)WinMaxHeight };
 

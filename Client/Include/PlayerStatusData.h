@@ -10,5 +10,6 @@ public :
 	int life;
 	int intel;
 	int dex;
+	float critical;
 };
 

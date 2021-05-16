@@ -18,6 +18,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, PSTR pScmdl, int iCmdSh
 	Application* application = new Application(L"Bless");
 
 	EngineConfig engineConfig;
+	engineConfig.bFullScreen = false;
 
 	engineConfig.scenes.push_back(new TitleScene());
 	engineConfig.scenes.push_back(new HieraconScene());

@@ -54,7 +54,8 @@ private : /* For Effect */
 
 
 private :
-	bool m_bBuff = false;
+	class PlayerBuffInfo* m_pPlayerBuffInfo = nullptr;
+	//bool m_bBuff = false;
 	float m_buffElapsed = 0.0f;
 	float m_buffDuration = 8.0f;
 	//////////////////////////////////////////////////////////////////////////

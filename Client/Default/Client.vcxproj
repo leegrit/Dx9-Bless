@@ -161,6 +161,7 @@
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
     <ClCompile Include="..\Source\PlayerAfterImage.cpp" />
+    <ClCompile Include="..\Source\PlayerBuffInfo.cpp" />
     <ClCompile Include="..\Source\PlayerEquipData.cpp" />
     <ClCompile Include="..\Source\PlayerManager.cpp" />
     <ClCompile Include="..\Source\PlayerMoneyData.cpp" />
@@ -298,6 +299,7 @@
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />
     <ClInclude Include="..\Include\PlayerAfterImage.h" />
+    <ClInclude Include="..\Include\PlayerBuffInfo.h" />
     <ClInclude Include="..\Include\PlayerEquipData.h" />
     <ClInclude Include="..\Include\PlayerManager.h" />
     <ClInclude Include="..\Include\PlayerMoneyData.h" />

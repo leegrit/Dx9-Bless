@@ -98,10 +98,15 @@ void ActionComponent::OnDisable()
 }
 
 
-float ActionComponent::GetAttackDamage() const
+float ActionComponent::GetAttackDamage(bool isCritical) const
 {
 	float minDmg = m_damage * 0.8f;
 	float maxDmg = m_damage * 1.2f;
+	if (isCritical)
+	{
+		minDmg *= 2;
+		maxDmg *= 2.5f;
+	}
 	return DxHelper::GetRandomFloat(minDmg, maxDmg);
 }
 

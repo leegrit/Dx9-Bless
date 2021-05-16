@@ -25,7 +25,7 @@ public:
 	LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 	void UpdateWindowDimensions(int w, int h);
 private :
-	void InitWindow();
+	void InitWindow(EngineConfig config);
 	void ShutdownWindows();
 
 	void CalculateFrameStatistics();

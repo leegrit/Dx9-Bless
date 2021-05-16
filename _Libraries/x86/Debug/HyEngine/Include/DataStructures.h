@@ -2,7 +2,10 @@
 #include "StandardEngineFramework.h"
 #include "Camera.h"
 using namespace HyEngine;
-
+namespace HyEngine
+{
+	class Scene;
+}
 struct RendererState
 {
 	int numVertices;
@@ -25,6 +28,7 @@ struct ENGINE_DLL EngineConfig
 {
 	bool bShowBoundingBoxes;
 	bool bShowDebuger;
+	bool bFullScreen;
 	bool bShowProfiler;
 
 	// 수정필요함

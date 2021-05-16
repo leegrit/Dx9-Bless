@@ -8,6 +8,11 @@
 #include "Effect.h"
 #include "SoundManager.h"
 #include "Enemy.h"
+#include "Player.h"
+#include "Equipment.h"
+#include "PlayerBuffInfo.h"
+#include "PlayerStatusData.h"
+
 
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update , pPlayer, pPlayerController, L"PlayerNormalAttack")
@@ -22,6 +27,10 @@ PlayerNormalAttack::~PlayerNormalAttack()
 void PlayerNormalAttack::Initialize()
 {
 	PlayerAction::Initialize();
+
+	m_pPlayerStatusData = static_cast<PlayerStatusData*>(ENGINE->GetScriptableData(L"PlayerStatusData"));
+	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
+
 
 	/* Add Effect NormalAttack */
 	MeshEffectDesc meshEffectDesc;
@@ -132,7 +141,10 @@ void PlayerNormalAttack::OnSequenceStart(int seqIndex)
 	m_seqIndex = seqIndex + 1;
 	m_hitEnemies.clear();
 	m_bSendDamage = false;
+	m_bPlayerAfterImage = false;
 
+	Player * pPlayer = static_cast<Player*>(PLAYER);
+	pPlayer->SetAnimationSpeed(1.0f);
 	std::cout << "Seq Index : " << m_seqIndex << std::endl;
 }
 
@@ -140,11 +152,28 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 {
 	PlayerAction::OnActionTimeElapsed(seqIndex, elapsed);
 	std::cout << "½ÇÁ¦ ÀÎµ¦½º : " << seqIndex << std::endl;
-	if (m_bSendDamage == true) return;
+	//if (m_bSendDamage == true) return;
 	switch (seqIndex)
 	{
 	case 0:
-		if (elapsed >= 0.3f)
+		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
+		{
+
+
+			Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc weaponDesc;
+			weaponDesc.lifeTime = 0.4f;
+			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+			weaponDesc.pOrigin = pWeapon;
+			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+			weaponDesc.fadeOutSpd = 2.0f;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+		}
+		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 
@@ -165,17 +194,78 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 				}
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-				enemy->SendDamage(GetGameObject(), GetAttackDamage());
+
+				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.7f;
+				float maxDamage = damage * 1.3f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
 				std::cout << "Do First" << std::endl;
-				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
 			}
 			m_bSendDamage = true;
 		}
 		break;
 	case 1:
-		if (elapsed >= 0.3f)
+		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
+		{
+
+
+			Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc weaponDesc;
+			weaponDesc.lifeTime = 0.4f;
+			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+			weaponDesc.pOrigin = pWeapon;
+			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+			weaponDesc.fadeOutSpd = 2.0f;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+		}
+		if (elapsed >= 0.01f && m_bPlayerAfterImage == false && m_pPlayerBuffInfo->bBuff)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			UINT animSet = pPlayer->GetCurAnimationIndex();
+			pPlayer->SetAnimationSpeed(1.5f);
+			AfterEffectDesc desc;
+			desc.animIndex = animSet;
+			desc.animPosition = pPlayer->GetCurAnimationPosition();
+			desc.color = D3DXCOLOR(1, 0, 0, 1);
+			desc.lifeTime = 0.5f;
+			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+			desc.startScale = 1.2f;
+			desc.endScale = 1.0f;
+			desc.scaleSpd = 2.0f;
+
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(index);
+
+			m_bPlayerAfterImage = true;
+		}
+		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
@@ -194,17 +284,80 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 				}
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-				enemy->SendDamage(GetGameObject(), GetAttackDamage());
+
+				float damage = m_damageScale[1] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.7f;
+				float maxDamage = damage * 1.3f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
-				CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				std::cout << "Do Second" << std::endl;
+				std::cout << "Do First" << std::endl;
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
 			}
 			m_bSendDamage = true;
 		}
 		break;
 	case 2:
-		if (elapsed >= 0.3f)
+		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
 		{
+
+
+			Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc weaponDesc;
+			weaponDesc.lifeTime = 0.4f;
+			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+			weaponDesc.pOrigin = pWeapon;
+			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+			weaponDesc.fadeOutSpd = 2.0f;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+		}
+		if (elapsed >= 0.01f && m_bPlayerAfterImage == false && m_pPlayerBuffInfo->bBuff)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			pPlayer->SetAnimationSpeed(1.5f);
+			UINT animSet = pPlayer->GetCurAnimationIndex();
+
+			AfterEffectDesc desc;
+			desc.animIndex = animSet;
+			desc.animPosition = pPlayer->GetCurAnimationPosition();
+			desc.color = D3DXCOLOR(1, 0, 0, 1);
+			desc.lifeTime = 0.5f;
+			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+			desc.startScale = 1.2f;
+			desc.endScale = 1.0f;
+			desc.scaleSpd = 2.0f;
+
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(index);
+			m_bPlayerAfterImage = true;
+		}
+		if (elapsed >= 0.3f && m_bSendDamage == false)
+		{
+			
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
@@ -221,10 +374,34 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 					continue;
 				}
 
-				Character* enemy = dynamic_cast<Character*>(obj);
-				enemy->SendDamage(GetGameObject(), GetAttackDamage());
-				CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				std::cout << "Do Third" << std::endl;
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[2] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.7f;
+				float maxDamage = damage * 1.3f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				std::cout << "Do First" << std::endl;
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
 			}
 			m_bSendDamage = true;
 		}

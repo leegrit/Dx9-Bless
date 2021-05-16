@@ -404,6 +404,9 @@
     <ClCompile Include="..\Source\PlayerSkillStab.cpp">
       <Filter>Scripts\Player\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\PlayerBuffInfo.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -929,6 +932,9 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerSkillStab.h">
       <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerBuffInfo.h">
+      <Filter>ScriptableData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

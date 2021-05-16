@@ -74,8 +74,12 @@ double HyEngine::AnimationController::GetCurAnimationPosition()
 
 	// 현재 재생되는 트랙 정보를 가져오는 함수.
 	m_pAniCtrl->GetTrackDesc(m_currentTrack, &trackInfo);
-
 	return trackInfo.Position;
+}
+
+void HyEngine::AnimationController::SetCurAnimationPosition(double position)
+{
+	m_pAniCtrl->SetTrackPosition(m_currentTrack, position);
 }
 
 void HyEngine::AnimationController::SetAnimationSet(const UINT & index)

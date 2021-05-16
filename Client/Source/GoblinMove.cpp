@@ -4,7 +4,7 @@
 
 void GoblinMove::Enter()
 {
-	m_component->SetAnimationSet(2);
+	m_component->SetAnimationSet(0);
 
 }
 

@@ -4,7 +4,7 @@
 
 void GoblinDie::Enter()
 {
-	m_component->SetAnimationSet(20);
+	m_component->SetAnimationSet(16); // die
 }
 
 void GoblinDie::Update()

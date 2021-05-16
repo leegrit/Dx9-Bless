@@ -27,6 +27,6 @@ private:
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;
 
-	GameObject* m_pPlayer = nullptr;
+	class Player* m_pPlayer = nullptr;
 };
 

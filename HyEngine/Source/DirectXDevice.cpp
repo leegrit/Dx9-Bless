@@ -15,7 +15,7 @@ DirectXDevice::~DirectXDevice()
 
 }
 
-HRESULT DirectXDevice::Init(HWND hwnd)
+HRESULT DirectXDevice::Init(HWND hwnd, bool bFullScreen)
 {
 	SEND_LOG("DirectDevice Initialize Start");
 
@@ -59,11 +59,20 @@ HRESULT DirectXDevice::Init(HWND hwnd)
 
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.hDeviceWindow = m_hWnd;
-#ifdef FULL_SCREEN
-	d3dpp.Windowed = false; 
-#else
-	d3dpp.Windowed = true;
-#endif 
+
+	if (bFullScreen)
+	{
+		d3dpp.Windowed = false;
+	}
+	else
+	{
+		d3dpp.Windowed = true;
+	}
+//#ifdef FULL_SCREEN
+//	d3dpp.Windowed = false; 
+//#else
+//	d3dpp.Windowed = true;
+//#endif 
 	d3dpp.EnableAutoDepthStencil = true;
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
 

@@ -8,11 +8,15 @@
 #include "Effect.h"
 #include "SoundManager.h"
 #include "Player.h"
+#include "UpdateDispatcher.h"
+#include "Equipment.h"
+#include "PlayerStatusData.h"
+#include "PlayerBuffInfo.h"
 
 PlayerSkillSwing::PlayerSkillSwing(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillSwing")
 {
-	SetParams(0.2f, 5, 3.0f, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+	SetParams(0.2f, 3, 3.0f, 10, 10, false, D3DXVECTOR3(0, 10, 20));
 }
 
 PlayerSkillSwing::~PlayerSkillSwing()
@@ -23,7 +27,39 @@ void PlayerSkillSwing::Initialize()
 {
 	PlayerAction::Initialize();
 
+	m_pPlayerStatusData = static_cast<PlayerStatusData*>(ENGINE->GetScriptableData(L"PlayerStatusData"));
+	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
+
+	assert(m_pPlayerStatusData);
+
 	GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+
+	MeshEffectDesc firstActionTrailDesc;
+	firstActionTrailDesc.isUVAnim = true;
+	firstActionTrailDesc.uvDirection = D3DXVECTOR2(1, 0);
+	firstActionTrailDesc.uvSpeed = 0.7f;
+	firstActionTrailDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
+	firstActionTrailDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	firstActionTrailDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	firstActionTrailDesc.lifeTime = 0.5f;
+
+	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+	m_pFirstActionTrail = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_FirstActionTrail", firstActionTrailDesc);
+
+	MeshEffectDesc secondActionTrailDesc;
+	secondActionTrailDesc.isUVAnim = true;
+	secondActionTrailDesc.uvDirection = D3DXVECTOR2(1, 0);
+	secondActionTrailDesc.uvSpeed = 0.7f;
+	secondActionTrailDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
+	secondActionTrailDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	secondActionTrailDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	secondActionTrailDesc.lifeTime = 0.5f;
+
+	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+	m_pSecondActionTrail = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_SecondActionTrail", secondActionTrailDesc);
+
+
+
 
 	MeshEffectDesc effectDesc0; 
 	effectDesc0.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Helix_005.X";
@@ -45,6 +81,17 @@ void PlayerSkillSwing::Initialize()
 	effectDesc1.endScale = D3DXVECTOR3(0.3f, 0.3f, 0.3f);
 	m_pEffect1 = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_Effect1", effectDesc1);
 
+	MeshEffectDesc FourthActionTrailDesc;
+	FourthActionTrailDesc.isUVAnim = true;
+	FourthActionTrailDesc.uvDirection = D3DXVECTOR2(1, 0);
+	FourthActionTrailDesc.uvSpeed = 0.7f;
+	FourthActionTrailDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
+	FourthActionTrailDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	FourthActionTrailDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	FourthActionTrailDesc.lifeTime = 0.5f;
+
+	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+	m_pFourthActionTrail = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_FourthActionTrail", FourthActionTrailDesc);
 
 
 }
@@ -53,6 +100,25 @@ void PlayerSkillSwing::Update()
 {
 	PlayerAction::Update();
 	UpdateAction();
+
+	m_pFirstActionTrail->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 8, 3))
+	);
+	m_pFirstActionTrail->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 240, 0)
+	);
+	m_pFirstActionTrail->SetOriginScale(D3DXVECTOR3(2, 2, 2));
+
+	m_pSecondActionTrail->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(-3, 5, -2))
+	);
+	m_pSecondActionTrail->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 150, 193)
+	);
+	m_pSecondActionTrail->SetOriginScale(D3DXVECTOR3(2, 2, 2));
+
 
 	m_pEffect0->SetOriginPos(
 		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 10))
@@ -112,6 +178,7 @@ void PlayerSkillSwing::OnSequenceStart(int seqIndex)
 
 	Player * pPlayer = static_cast<Player*>(PLAYER);
 	UINT animSet = pPlayer->GetCurAnimationIndex();
+	pPlayer->SetAnimationSpeed(1.0f);
 
 
 	AfterEffectDesc desc;
@@ -119,14 +186,15 @@ void PlayerSkillSwing::OnSequenceStart(int seqIndex)
 	desc.color = D3DXCOLOR(1, 0, 0, 1);
 	desc.lifeTime = 0.5f;
 	desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
-	desc.startScale = 1.1f;
+	desc.startScale = 1.2f;
 	desc.endScale = 1.0f;
 	desc.scaleSpd = 2.0f;
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	m_afterImageIndex = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
 	//GameScene* pScene = static_cast<GameScene*>(SCENE);
-	//pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+	pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+
 
 }
 
@@ -138,11 +206,46 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 	switch (seqIndex)
 	{
 	case 0:
+		if (elapsed >= 0.01f)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			UINT animSet = pPlayer->GetCurAnimationIndex();
+
+			//AfterEffectDesc desc;
+			//desc.animIndex = animSet;
+			//desc.animPosition = pPlayer->GetCurAnimationPosition();
+			//desc.color = D3DXCOLOR(1, 0, 0, 1);
+			//desc.lifeTime = 0.5f;
+			//desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+			//desc.startScale = 1.2f;
+			//desc.endScale = 1.0f;
+			//desc.scaleSpd = 2.0f;
+
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			//auto index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+			////GameScene* pScene = static_cast<GameScene*>(SCENE);
+			//pScene->GetEffectManager()->PlayAffterEffect(index);
+
+
+			//Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc weaponDesc;
+			weaponDesc.lifeTime = 0.4f;
+			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+			weaponDesc.pOrigin = pWeapon;
+			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+			weaponDesc.fadeOutSpd = 2.0f;
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+
+		}
 		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+			//pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
 
 		}
 		if (elapsed >= 0.3f)
@@ -152,6 +255,10 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_FirstActionTrail");
+
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -163,12 +270,27 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 				}
 
 				Character* enemy = dynamic_cast<Character*>(obj);
-				enemy->SendDamage(GetGameObject(), GetAttackDamage());
+
+				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 				/*pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
 				std::cout << "Do First" << std::endl;*/
-				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-				pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
 				CAMERA->Shake(0.1f, 0.1f, 1.0f);
 			}
 			m_bSendDamage = true;
@@ -179,8 +301,69 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+			//pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+			
+			Player* pPlayer = static_cast<Player*>(PLAYER);
 
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc desc;
+			desc.lifeTime = 0.4f;
+			desc.worldMat = pWeapon->GetWorldMatrix();
+			desc.pOrigin = pWeapon;
+			desc.afterEffectOption = AfterEffectOption::FadeOut;
+			desc.color = D3DXCOLOR(1, 1, 0, 1);
+			desc.fadeOutSpd = 2.0f;
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(desc);
+
+		}
+		if (elapsed >= 0.3f)
+		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_SecondActionTrail");
+
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
+				Character* enemy = dynamic_cast<Character*>(obj);
+
+				float damage = m_damageScale[1] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//enemy->SendDamage(GetGameObject(), GetAttackDamage());
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				/*pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+				std::cout << "Do First" << std::endl;*/
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+			}
+			m_bSendDamage = true;
 		}
 		break;
 	case 2:
@@ -190,6 +373,67 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
 
+
+			Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+			WeaponAfterEffectDesc weaponDesc;
+			weaponDesc.lifeTime = 0.4f;
+			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+			weaponDesc.pOrigin = pWeapon;
+			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+			weaponDesc.fadeOutSpd = 2.0f;
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+
+		}
+		if (elapsed >= 0.3f)
+		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
+
+				Character* enemy = dynamic_cast<Character*>(obj);
+				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//enemy->SendDamage(GetGameObject(), GetAttackDamage());
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				/*pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+				std::cout << "Do First" << std::endl;*/
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+			}
+			m_bSendDamage = true;
 		}
 		break;
 	case 3:
@@ -197,9 +441,55 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
+			//pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
 
 		}
+		if (elapsed >= 0.3f)
+		{
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_FourthActionTrail");
+
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
+				Character* enemy = dynamic_cast<Character*>(obj);
+				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//enemy->SendDamage(GetGameObject(), GetAttackDamage());
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				/*pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
+				std::cout << "Do First" << std::endl;*/
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+				//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+			}
+			m_bSendDamage = true;
+		}
+		
 		break;
 	case 4 :
 		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
@@ -218,6 +508,8 @@ void PlayerSkillSwing::OnActionEnd()
 	PlayerAction::OnActionEnd();
 	m_seqIndex = 0;
 	m_hitEnemies.clear();
+	Player * pPlayer = static_cast<Player*>(PLAYER);
+	pPlayer->SetAnimationSpeed(1.0f);
 }
 
 UINT PlayerSkillSwing::GetTargetLayer() const

@@ -35,7 +35,7 @@ void Skeletone::Initialize(std::wstring dataPath)
 		std::bind(&Skeletone::OnHitOthers, this, placeholders::_1));
 	m_pAttackCollider->SetOffset(m_colliderOffset);
 
-	SetParams(10, 100, 100);
+	SetParams(10, 1000, 100);
 
 	m_state.Add<SkeletoneAttack>(this, "Attack");
 	m_state.Add<SkeletoneDie>(this, "Die");
