@@ -63,9 +63,38 @@ void EffectManager::Update()
 		if (m_afterEffectDescs[i].isPlay)
 		{
 			m_afterEffectDescs[i].elapsed += TIMER->getDeltaTime();
+
+			if (m_afterEffectDescs[i].afterEffectOption & AfterEffectOption::ScaleEffect)
+			{
+				float scale = m_afterEffectDescs[i].originScale;
+				float startScale = scale * m_afterEffectDescs[i].startScale;
+				float endScale = scale * m_afterEffectDescs[i].endScale;
+				float  t = (m_afterEffectDescs[i].elapsed * m_afterEffectDescs[i].scaleSpd) / m_afterEffectDescs[i].lifeTime;
+				if (t >= 1.0f) t = 1.0;
+				scale = MathUtils::lerp<float>(startScale, endScale, t);
+				m_afterEffectDescs[i].pPlayerAfterImage->m_pTransform->m_scale = D3DXVECTOR3
+				(
+					scale, scale, scale
+				);
+			}
+			if (m_afterEffectDescs[i].afterEffectOption & AfterEffectOption::FadeOut)
+			{
+				m_afterEffectDescs[i].alpha -= TIMER->getDeltaTime() * m_afterEffectDescs[i].fadeOutSpd;
+				m_afterEffectDescs[i].pPlayerAfterImage->SetRimWidth(m_afterEffectDescs[i].alpha);
+
+			}
+
 			if (m_afterEffectDescs[i].elapsed >= m_afterEffectDescs[i].lifeTime)
 			{
 				m_afterEffectDescs[i].pPlayerAfterImage->SetActive(false);
+				
+				m_afterEffectDescs[i].pPlayerAfterImage->m_pTransform->m_scale
+					= D3DXVECTOR3
+					(
+						m_afterEffectDescs[i].originScale,
+						m_afterEffectDescs[i].originScale,
+						m_afterEffectDescs[i].originScale
+					);
 				m_afterEffectDescs.erase(m_afterEffectDescs.begin() + i);
 				i--;
 
@@ -78,9 +107,42 @@ void EffectManager::Update()
 	for (int i = 0; i < m_weaponAfterEffectDescs.size(); i++)
 	{
 		m_weaponAfterEffectDescs[i].elapsed += TIMER->getDeltaTime();
+		
+		if (m_weaponAfterEffectDescs[i].afterEffectOption & AfterEffectOption::ScaleEffect)
+		{
+			float scale = m_weaponAfterEffectDescs[i].originScale;
+			float startScale = scale * m_weaponAfterEffectDescs[i].startScale;
+			float endScale = scale * m_weaponAfterEffectDescs[i].endScale;
+			float  t = (m_weaponAfterEffectDescs[i].elapsed * m_weaponAfterEffectDescs[i].scaleSpd) / m_weaponAfterEffectDescs[i].lifeTime;
+			if (t >= 1.0f) t = 1.0;
+			scale = MathUtils::lerp<float>(startScale, endScale, t);
+			std::cout << "scale : " << scale << std::endl;
+			/*m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetScale
+			(
+				D3DXVECTOR3(scale, scale, scale)
+			);*/
+			m_weaponAfterEffectDescs[i].pWeaponAfterImage->m_pTransform->m_scale = D3DXVECTOR3
+			(
+				scale, scale, scale
+			);
+		}
+		if (m_weaponAfterEffectDescs[i].afterEffectOption & AfterEffectOption::FadeOut)
+		{
+			m_weaponAfterEffectDescs[i].alpha -= TIMER->getDeltaTime() * m_weaponAfterEffectDescs[i].fadeOutSpd;
+			m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetRimWidth(m_weaponAfterEffectDescs[i].alpha);
+
+		}
 		if (m_weaponAfterEffectDescs[i].elapsed >= m_weaponAfterEffectDescs[i].lifeTime)
 		{
+
 			m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetActive(false);
+			m_weaponAfterEffectDescs[i].pWeaponAfterImage->m_pTransform->m_scale
+				= D3DXVECTOR3
+				(
+					m_weaponAfterEffectDescs[i].originScale,
+					m_weaponAfterEffectDescs[i].originScale,
+					m_weaponAfterEffectDescs[i].originScale
+				);
 			m_weaponAfterEffectDescs.erase(m_weaponAfterEffectDescs.begin() + i);
 			i--;
 			continue;
@@ -163,6 +225,7 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 			m_playerAfterImages[i]->SetAnimationSet(desc.animIndex);
 			m_playerAfterImages[i]->SetRimWidth(1.0f);
 			m_playerAfterImages[i]->SetRimColor(desc.color);
+			desc.originScale = m_playerAfterImages[i]->m_pTransform->m_scale.x();
 			m_afterEffectDescs.push_back(desc);
 			if(pIndex)
 				*pIndex = i;
@@ -187,10 +250,12 @@ int EffectManager::AddAfterEffect(AfterEffectDesc desc, int * pIndex)
 		{
 			desc.index = oldestDesc.index;
 			desc.pPlayerAfterImage = oldestDesc.pPlayerAfterImage;
-			oldestDesc.pPlayerAfterImage->SetAnimationSet(desc.animIndex);
-			oldestDesc.pPlayerAfterImage->SetRimWidth(1.0f);
-			oldestDesc.pPlayerAfterImage->SetRimColor(desc.color);
+			desc.pPlayerAfterImage->SetAnimationSet(desc.animIndex);
+			desc.pPlayerAfterImage->SetRimWidth(1.0f);
+			desc.pPlayerAfterImage->SetRimColor(desc.color);
+			desc.originScale = desc.pPlayerAfterImage->m_pTransform->m_scale.x();
 
+			m_afterEffectDescs[i].pPlayerAfterImage->m_pTransform->m_scale = D3DXVECTOR3(m_afterEffectDescs[i].originScale, m_afterEffectDescs[i].originScale, m_afterEffectDescs[i].originScale);
 			m_afterEffectDescs.erase(m_afterEffectDescs.begin() + i);
 			i--;
 			break;
@@ -224,9 +289,11 @@ void EffectManager::PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc)
 		{
 			desc.pWeaponAfterImage = m_weaponAfterImages[i];
 			desc.index = i;
-			desc.pWeaponAfterImage->SetWorldMatrix(desc.worldMat);
+			desc.pWeaponAfterImage->Reset(desc.pOrigin);
 			desc.pWeaponAfterImage->SetRimWidth(1.0f);
 			desc.pWeaponAfterImage->SetRimColor(desc.color);
+			desc.originScale = desc.pWeaponAfterImage->m_pTransform->m_scale.x();
+			
 			m_weaponAfterEffectDescs.push_back(desc);
 			return;
 		}
@@ -251,10 +318,15 @@ void EffectManager::PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc)
 		{
 			desc.pWeaponAfterImage = m_weaponAfterEffectDescs[i].pWeaponAfterImage;
 			desc.index = m_weaponAfterEffectDescs[i].index;
-			desc.pWeaponAfterImage->SetWorldMatrix(desc.worldMat);
+			desc.pWeaponAfterImage->Reset(desc.pOrigin);
 			desc.pWeaponAfterImage->SetRimWidth(1.0f);
 			desc.pWeaponAfterImage->SetRimColor(desc.color);
-
+			desc.originScale = desc.pWeaponAfterImage->m_pTransform->m_scale.x();
+			
+			m_weaponAfterEffectDescs[i].pWeaponAfterImage->m_pTransform->m_scale = D3DXVECTOR3
+			(
+				desc.originScale, desc.originScale, desc.originScale
+			);
 			m_weaponAfterEffectDescs.erase(m_weaponAfterEffectDescs.begin() + i);
 			i--;
 		}

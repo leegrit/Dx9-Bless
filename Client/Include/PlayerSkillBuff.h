@@ -49,7 +49,14 @@ private:
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
 
+private : /* For Effect */
+	bool m_bPlayAfterImage = nullptr;
 
+
+private :
+	bool m_bBuff = false;
+	float m_buffElapsed = 0.0f;
+	float m_buffDuration = 8.0f;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

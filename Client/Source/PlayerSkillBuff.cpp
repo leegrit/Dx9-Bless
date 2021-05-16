@@ -7,12 +7,13 @@
 #include "PathManager.h"
 #include "Effect.h"
 #include "SoundManager.h"
-
+#include "Player.h"
+#include "Equipment.h"
 
 PlayerSkillBuff::PlayerSkillBuff(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerNormalAttack")
 {
-	SetParams(0.2f, 1, 10, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+	SetParams(0.2f, 1, 0, 10, 10, false, D3DXVECTOR3(0, 10, 20));
 }
 
 PlayerSkillBuff::~PlayerSkillBuff()
@@ -28,6 +29,55 @@ void PlayerSkillBuff::Update()
 {
 	PlayerAction::Update();
 	UpdateAction();
+
+	if (m_bBuff)
+	{
+		m_buffElapsed += TIMER->getDeltaTime();
+		if (m_buffElapsed >= m_buffDuration)
+		{
+			m_buffElapsed = 0;
+			m_bBuff = false;
+
+
+		}
+		Player* pPlayer = static_cast<Player*>(PLAYER);
+
+		Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+		pWeapon->SetRenderEffectOption(RenderEffectOption::RimLight);
+		pWeapon->SetRimWidth(1.0f);
+		pWeapon->SetRimColor(D3DXCOLOR(1, 1, 0, 1));
+
+		/*WeaponAfterEffectDesc desc;
+		desc.lifeTime = 0.4f;
+		desc.worldMat = pWeapon->GetWorldMatrix();
+		desc.pOrigin = pWeapon;
+		desc.afterEffectOption = AfterEffectOption::FadeOut;
+		desc.color = D3DXCOLOR(1, 1, 0, 1);
+		desc.fadeOutSpd = 2.0f;
+		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		pScene->GetEffectManager()->PlayerWeaponAffterEffect(desc);
+*/
+		
+	}
+	else
+	{
+		Player* pPlayer = static_cast<Player*>(PLAYER);
+
+		Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+		float rimWidth = pWeapon->GetRimWidth();
+		if (rimWidth <= 0.0f)
+		{
+			pWeapon->SetRenderEffectOption(RenderEffectOption::None);
+		}
+		else
+		{
+			rimWidth -= TIMER->getDeltaTime();
+			rimWidth = rimWidth <= 0.0f ? 0.0 : rimWidth;
+			pWeapon->SetRimWidth(rimWidth);
+		}
+		
+		
+	}
 }
 
 void PlayerSkillBuff::LateUpdate()
@@ -56,6 +106,7 @@ void PlayerSkillBuff::OnSequenceStart(int seqIndex)
 	m_seqIndex = seqIndex + 1;
 	m_hitEnemies.clear();
 	m_bSendDamage = false;
+	m_bPlayAfterImage = false;
 }
 
 void PlayerSkillBuff::OnActionTimeElapsed(int seqIndex, float elapsed)
@@ -66,8 +117,33 @@ void PlayerSkillBuff::OnActionTimeElapsed(int seqIndex, float elapsed)
 	switch (seqIndex)
 	{
 	case 0:
-		if (elapsed >= 0.3f)
+		if (elapsed >= 0.5f && m_bPlayAfterImage == false)
 		{
+			m_bPlayAfterImage = true;
+
+			Player* pPlayer = static_cast<Player*>(PLAYER);
+
+			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+
+			WeaponAfterEffectDesc desc;
+			desc.lifeTime = 0.4f;
+			desc.worldMat = pWeapon->GetWorldMatrix();
+			desc.pOrigin = pWeapon;
+			desc.afterEffectOption = AfterEffectOption::ScaleEffect | AfterEffectOption::FadeOut;
+			desc.startScale = 2.0f;
+			desc.endScale = 1.0f; 
+			desc.scaleSpd = 1.5f;
+			desc.color = D3DXCOLOR(1, 1, 0, 1);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayerWeaponAffterEffect(desc);
+
+			pPlayer->SetAnimationSpeed(0.6f);
+		}
+
+		if (elapsed >= 0.5f)
+		{
+			m_bBuff = true;
+			m_buffElapsed = 0;
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
@@ -101,6 +177,8 @@ void PlayerSkillBuff::OnActionEnd()
 	PlayerAction::OnActionEnd();
 	m_seqIndex = 0;
 	m_hitEnemies.clear();
+	Player* pPlayer = static_cast<Player*>(PLAYER);
+	pPlayer->SetAnimationSpeed(1.0f);
 }
 
 UINT PlayerSkillBuff::GetTargetLayer() const

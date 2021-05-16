@@ -118,9 +118,15 @@ void PlayerSkillSwing::OnSequenceStart(int seqIndex)
 	desc.animIndex = animSet;
 	desc.color = D3DXCOLOR(1, 0, 0, 1);
 	desc.lifeTime = 0.5f;
+	desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+	desc.startScale = 1.1f;
+	desc.endScale = 1.0f;
+	desc.scaleSpd = 2.0f;
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	m_afterImageIndex = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+	//GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//pScene->GetEffectManager()->PlayAffterEffect(m_afterImageIndex);
 
 }
 
@@ -132,7 +138,7 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 	switch (seqIndex)
 	{
 	case 0:
-		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -169,7 +175,7 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		break;
 	case 1:
-		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -178,7 +184,7 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		break;
 	case 2:
-		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -187,7 +193,7 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		break;
 	case 3:
-		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -196,7 +202,7 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		break;
 	case 4 :
-		if (elapsed >= 0.1f && m_bPlayAfterImage == false)
+		if (elapsed >= 0.01f && m_bPlayAfterImage == false)
 		{
 			m_bPlayAfterImage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);

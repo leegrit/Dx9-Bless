@@ -3,12 +3,14 @@
 namespace HyEngine
 {
 	class Effect;
+	class Equipment;
 }
 
 namespace AfterEffectOption
 {
-	static DWORD ScaleEffect = 1;
-	static DWORD FadeOut = 2;
+	static DWORD None = 1;
+	static DWORD ScaleEffect = 2;
+	static DWORD FadeOut = 4;
 
 }
 
@@ -19,10 +21,16 @@ public:
 	int animIndex;
 	float lifeTime;
 	D3DXCOLOR color;
-
+	DWORD afterEffectOption = AfterEffectOption::None;
+	float startScale = 1;
+	float endScale = 1;
+	float scaleSpd = 1;
+	float fadeOutSpd = 1.0f;
 private :
 	float elapsed = 0;
 	int index = -1;
+	float originScale;
+	float alpha = 1;
 	class PlayerAfterImage* pPlayerAfterImage = nullptr;
 	bool isPlay = false;
 };
@@ -33,9 +41,17 @@ public:
 	float lifeTime;
 	D3DXCOLOR color;
 	D3DXMATRIX worldMat;
+	Equipment * pOrigin;
+	DWORD afterEffectOption = AfterEffectOption::None;
+	float startScale = 1;
+	float endScale = 1;
+	float scaleSpd = 1;
+	float fadeOutSpd = 1.0f;
 private:
 	float elapsed = 0;
 	int index = -1;
+	float originScale;
+	float alpha = 1;
 	class WeaponAfterImage* pWeaponAfterImage = nullptr;
 	bool isPlay = false;
 };

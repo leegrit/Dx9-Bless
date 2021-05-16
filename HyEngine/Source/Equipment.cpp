@@ -358,6 +358,16 @@ void HyEngine::Equipment::OnRenderBegin(void *)
 	m_pParentWorldMatrix = mesh->m_pTransform->GetWorldMatrix();
 }
 
+D3DXMATRIX HyEngine::Equipment::GetParentWorldMatrix()
+{
+	return m_pParentWorldMatrix;
+}
+
+D3DXMATRIX HyEngine::Equipment::GetParentBoneMatrix()
+{
+	return *m_pParentBoneMatrix;
+}
+
 
 
 Equipment * HyEngine::Equipment::Create(Scene * scene, GameObject* owner, std::wstring xFilePath, std::wstring boneName, std::wstring name)
