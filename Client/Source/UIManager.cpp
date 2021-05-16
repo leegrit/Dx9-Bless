@@ -205,11 +205,12 @@ void UIManager::Initialize()
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3_lock.png", D3DXVECTOR3(-349, -341, 0), 0, L"Skill_Shiled"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6.png",
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6_lock.png", D3DXVECTOR3(-258, -341, 0), 1, L"Skill_Swing"));
-	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_1.png",
-		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_1_lock.png",D3DXVECTOR3(-210, -341, 0), 2,  L"Skill_Upper"));
+	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png",
+		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4_lock.png",D3DXVECTOR3(-210, -341, 0), 2,  L"Skill_Stab"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7.png",
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7_lock.png", D3DXVECTOR3(-162, -341, 0), 3, L"Skill_Tornado"));
-	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"6"));
+	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0.png",
+		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0_lock.png", D3DXVECTOR3(-114, -341, 0), 4, L"Skill_Buff"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(162, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"8"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(210, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"9"));

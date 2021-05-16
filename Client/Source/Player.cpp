@@ -16,6 +16,7 @@
 #include "PlayerSkillSwingDown.h"
 #include "PlayerSkillTornado.h"
 #include "PlayerSkillUpper.h"
+#include "PlayerSkillStab.h"
 #include "PlayerAfterImage.h"
 #include "EffectManager.h"
 
@@ -59,8 +60,9 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillShield::Create(this, m_pPlayerController)));
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController)));
 	//AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));
-	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillUpper::Create(this, m_pPlayerController)));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillStab::Create(this, m_pPlayerController)));
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillTornado::Create(this, m_pPlayerController)));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController)));
 
 
 
