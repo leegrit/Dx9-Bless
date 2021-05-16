@@ -26,7 +26,7 @@ void Elaine::Update()
 
 std::wstring Elaine::GetCharacterName()
 {
-	return L"        가가토\n<잡화 상인>";
+	return L"가가토\n<잡화 상인>";
 }
 
 std::wstring Elaine::GetSubTitle()

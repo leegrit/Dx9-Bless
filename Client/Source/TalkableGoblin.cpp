@@ -25,12 +25,12 @@ void TalkableGoblin::Update()
 
 std::wstring TalkableGoblin::GetCharacterName()
 {
-	return L"고블린";
+	return L"고블린\n<말하는 고블린>";
 }
 
 std::wstring TalkableGoblin::GetSubTitle()
 {
-	return L"<말하는 고블린>";
+	return L"";
 }
 
 std::wstring TalkableGoblin::GetOnlyCharacterName()

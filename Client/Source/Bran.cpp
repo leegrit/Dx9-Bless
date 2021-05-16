@@ -26,7 +26,7 @@ void Bran::Update()
 
 std::wstring Bran::GetCharacterName()
 {
-	return L"        브란\n<그림자 순찰대원>";
+	return L"브란\n<그림자 순찰대원>";
 }
 
 std::wstring Bran::GetSubTitle()

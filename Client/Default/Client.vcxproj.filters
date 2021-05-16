@@ -386,6 +386,18 @@
     <ClCompile Include="..\Source\Helper.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\EnemyName.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\FontTexture.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SkillProgressUI.cpp">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerAfterImage.cpp">
+      <Filter>Scripts\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -412,23 +424,14 @@
     <Filter Include="GlobalVars">
       <UniqueIdentifier>{5e2094c6-28f1-4257-a916-c109f37d4949}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FSM">
-      <UniqueIdentifier>{2aabe641-c9c0-4f0b-85c9-e3c654d0a8d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Enemy">
       <UniqueIdentifier>{fe8dce37-a3ad-4aa7-8b30-fc256e1209c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FSM\Skeletone">
-      <UniqueIdentifier>{c3bd7a07-879f-43ee-933b-b4e6a6f3b536}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\NPC">
       <UniqueIdentifier>{f9a8339b-badd-46bb-b1ec-89b9cdf6bb2d}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameObject\Enemy\Named">
       <UniqueIdentifier>{941049f6-fdaa-4a67-b908-ed75f1235dec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FSM\DummyBoss">
-      <UniqueIdentifier>{134cc563-430b-490e-8cb7-00c09940625c}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEvent">
       <UniqueIdentifier>{c791d595-2081-436f-9306-137320342087}</UniqueIdentifier>
@@ -463,9 +466,6 @@
     <Filter Include="Scripts\UI\Battle">
       <UniqueIdentifier>{530b8216-92b4-4aa0-8386-5fc8ed37ff63}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FSM\Goblin">
-      <UniqueIdentifier>{852c1e90-2fab-44b2-bf10-bf301a37c2b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\NPC\ArbaJungle">
       <UniqueIdentifier>{69195f9e-0c8f-42cc-81fd-5b8db1465dd1}</UniqueIdentifier>
     </Filter>
@@ -498,6 +498,18 @@
     </Filter>
     <Filter Include="Utility">
       <UniqueIdentifier>{fef8988b-5aad-4c41-be70-cdea88310eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM">
+      <UniqueIdentifier>{2aabe641-c9c0-4f0b-85c9-e3c654d0a8d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Skeletone">
+      <UniqueIdentifier>{c3bd7a07-879f-43ee-933b-b4e6a6f3b536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\DummyBoss">
+      <UniqueIdentifier>{134cc563-430b-490e-8cb7-00c09940625c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Goblin">
+      <UniqueIdentifier>{852c1e90-2fab-44b2-bf10-bf301a37c2b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -893,6 +905,18 @@
     </ClInclude>
     <ClInclude Include="..\Include\Helper.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyName.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\FontTexture.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SkillProgressUI.h">
+      <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerAfterImage.h">
+      <Filter>Scripts\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

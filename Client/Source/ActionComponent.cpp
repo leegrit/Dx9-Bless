@@ -55,12 +55,13 @@ void ActionComponent::Update()
 
 			m_curSequence = m_nextSequence;
 
+			pMesh->SetAnimationSet(m_nextAnimIndex);
+
 			/* 다음 공격 시작 */
 			OnSequenceStart(m_curSequence);
 			m_attackElapsed = 0;
 
-			pMesh->SetAnimationSet(m_nextAnimIndex);
-
+			
 			m_pAttackCollider->SetActive(true);
 
 			m_bNextAttack = false;

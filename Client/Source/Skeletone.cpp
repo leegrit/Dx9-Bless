@@ -9,6 +9,9 @@
 #include "NameFont.h"
 #include "Client_Events.h"
 #include "GameScene.h"
+#include "EnemyName.h"
+#include "PathManager.h"
+
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
 	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5, ESkinningType::HardwareSkinning)
@@ -47,6 +50,9 @@ void Skeletone::Initialize(std::wstring dataPath)
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	m_pNameFont->Initialize(L"½ºÄÌ·¹Åæ", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 18, 0), -20, D3DXCOLOR(1, 1, 0, 1));
 
+	m_pEnemyName = EnemyName::Create(GetScene(), L"SkeletonName",
+		PATH->AssetsPathW() + L"FontTexture/GoblinName.png", this, D3DXVECTOR3(0, 16.5f, 0));
+
 	ShowHPBar();
 }
 
@@ -54,17 +60,22 @@ void Skeletone::Update()
 {
 	Enemy::Update();
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
-	m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
+	m_pNameFont->SetOffset(D3DXVECTOR3(0, 15, 0));
 	m_pNameFont->SetCenterOffset(-20);
 
 	m_state.Update();
+
+	float sizeX = pScene->GetFloatA();
+	float sizeY = pScene->GetFloatB();
+
+	m_pEnemyName->m_pTransform->SetScale(3.5, 1.5, 1);
 }
 
 void Skeletone::Render()
 {
 	Enemy::Render();
 
-	m_pNameFont->RenderFont();
+	//m_pNameFont->RenderFont();
 }
 
 UINT Skeletone::GetTargetLayer() 

@@ -34,12 +34,12 @@ Guido * Guido::Create(Scene * pScene, std::wstring dataPath)
 
 std::wstring Guido::GetCharacterName()
 {
-	return L"고아르";
+	return L"고아르\n<현자>";
 }
 
 std::wstring Guido::GetSubTitle()
 {
-	return L"<현자>";
+	return L"";
 }
 
 std::wstring Guido::GetOnlyCharacterName()

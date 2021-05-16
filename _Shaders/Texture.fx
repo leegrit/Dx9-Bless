@@ -52,6 +52,7 @@ VertexOutput TextureVS(VertexInput input)
 float4 TexturePS(PixelInput input) : COLOR0
 {
 	float4 color = tex2D(DiffuseSampler, input.texcoord);
+	clip(color.a);
 	return color;
 }
 

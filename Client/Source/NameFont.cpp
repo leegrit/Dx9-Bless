@@ -25,8 +25,10 @@ void NameFont::RenderFont()
 	//D3DXMatrixOrthoOffCenterLH(&projMat, 0, WinMaxWidth, 0,  WinMaxHeight, 0, 1000);
 
 	D3DXVECTOR3 position = m_pOwner->m_pTransform->CalcOffset(m_offset);
+	
+	
 	//position.x -= m_size.x * 0.5f;
-	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	/*D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
 	D3DXMatrixScaling(&scaleMat, m_size.x, m_size.y, 1);
 	worldMat = scaleMat * posMat;
 	D3DVIEWPORT9 viewPort;
@@ -35,13 +37,14 @@ void NameFont::RenderFont()
 	D3DXMATRIX identity;
 	D3DXMatrixIdentity(&identity);
 	D3DXVec3Project(&resultPos, &D3DXVECTOR3(0, 0, 0), &viewPort, &projMat, &viewMat, &worldMat);
+*/
+
+	//resultPos.x += m_centerOffset;
+
+	ENGINE->DrawTextInWorld(m_text.c_str(), position, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
 
 
-	resultPos.x += m_centerOffset;
-
-
-
-	ENGINE->DrawText(m_text.c_str(),resultPos, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
+	//ENGINE->DrawText(m_text.c_str(),resultPos, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
 }
 
 void NameFont::SetOffset(D3DXVECTOR3 offset)

@@ -16,7 +16,7 @@
 #include "PlayerSkillSwingDown.h"
 #include "PlayerSkillTornado.h"
 #include "PlayerSkillUpper.h"
-
+#include "PlayerAfterImage.h"
 
 Player::Player(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8, ESkinningType::HardwareSkinning)
@@ -28,11 +28,19 @@ Player::Player(Scene * pScene, NavMesh * pNavMesh)
 
 	EventDispatcher::AddEventListener(GameEvent::SendExp, std::to_string(GetInstanceID()),
 		std::bind(&Player::OnExpChanged, this, placeholders::_1));
+	EventDispatcher::AddEventListener(QuestEvent::QuestDialogOpen, std::to_string(GetInstanceID()),
+		std::bind(&Player::OnDialogOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(QuestEvent::QuestDialogEnd, std::to_string(GetInstanceID()),
+		std::bind(&Player::OnDialogEnd, this, placeholders::_1));
+
 }
 
 Player::~Player()
 {
 	EventDispatcher::RemoveEventListener(GameEvent::SendExp, std::to_string(GetInstanceID()));
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogOpen, std::to_string(GetInstanceID()));
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogEnd, std::to_string(GetInstanceID()));
+
 }
 
 void Player::Initialize(std::wstring dataPath)
@@ -45,15 +53,20 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerController = PlayerController::Create(this);
 	AddComponent(m_pPlayerController);
 	AddComponent(PlayerNormalAttack::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillPress::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillShield::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillTornado::Create(this, m_pPlayerController));
-	AddComponent(PlayerSkillUpper::Create(this, m_pPlayerController));
+	//AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController));
+	//AddComponent(PlayerSkillPress::Create(this, m_pPlayerController));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillShield::Create(this, m_pPlayerController)));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController)));
+	//AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillUpper::Create(this, m_pPlayerController)));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillTornado::Create(this, m_pPlayerController)));
 
 
+
+	m_pAfterImage = PlayerAfterImage::Create(GetScene(), nullptr, PATH->DatasPathW() + L"HierarchyData/Hieracon_Player.json", ESkinningType::HardwareSkinning);
+	m_pAfterImage->SetActive(false);
+	m_pAfterImage->SetPostRenderOption(PostRenderOption::RimLight);
+	m_pAfterImage->SetRimWidth(0.7f);
 
 	m_pPlayerUW = DynamicMesh::Create(GetScene(), nullptr, L"Player", PATH->DatasPathW() + L"HierarchyData/PlayerUnWeapon.json", GetSkinningType());
 	m_pPlayerUW->SetActive(false);
@@ -108,111 +121,10 @@ void Player::OnMPChanged()
 void Player::Update()
 {
 	Pawn::Update();
-	/*if (MOUSE->Down(1))
-	{
-		SetAnimationSet(0);
-	}*/
 
-	/*if (KEYBOARD->Up(VK_F1))
-	{
-		if (m_bMount == false)
-		{
-			m_pPlayerUW->SetAnimationSet(249);
-			m_pPegasus->SetAnimationSet(19);
-			m_pPlayerUW->SetActive(true);
-			m_pPegasus->SetActive(true);
-			m_pPlayerUW->m_pTransform->m_position = m_pTransform->CalcOffset(D3DXVECTOR3(0, 5, 0));
-			m_pPlayerUW->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
-			m_pPlayerUW->m_pTransform->m_scale = m_pTransform->m_scale;
-			m_pPegasus->m_pTransform->m_position = m_pTransform->m_position;
-			m_pPegasus->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
-			m_pPegasus->m_pTransform->m_scale = m_pTransform->m_scale;
-
-		}
-	}*/
-
-	/*if (KEYBOARD->Press('F'))
-	{
-		if (m_beginElapsed == 0)
-		{
-			m_pPlayerController->SetState(EPlayerState::PutInWeapon);
-			m_pPlayerUW->SetAnimationSet(304);
-			SetAnimationSet(112);
-		}
-		m_beginElapsed += TIMER->getDeltaTime();
-		if (m_beginElapsed >= m_delay && m_isUnWeapon == false)
-		{
-			m_isUnWeapon = true;
-			m_pPlayerUW->SetActive(true);
-			m_pPlayerUW->SetAnimationSet(298);
-			m_pPlayerUW->m_pTransform->m_position = m_pTransform->m_position;
-			m_pPlayerUW->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
-			m_pPlayerUW->m_pTransform->m_scale = m_pTransform->m_scale;
-		}
-	}
-	if (KEYBOARD->Up('F'))
-	{
-
-	}*/
-
-	//if (KEYBOARD->Up('R'))
-	//{
-	//	if (m_isUnWeapon == false)
-	//	{
-	//		m_bPutInWeapon = true;
-	//		SetAnimationSet(81); // PutInWepaon Animation
-	//		m_pPlayerUW->SetAnimationSet(304);
-	//		m_pPlayerController->SetState(EPlayerState::PutInWeapon);
-	//	}
-	//	else if (m_isUnWeapon)
-	//	{
-	//		m_bPutOutWeapon = true;
-	//		m_isUnWeapon = false;
-	//		m_pPlayerUW->SetAnimationSet(304);
-	//		//SetAnimationSet(81);
-	//		m_pPlayerUW->SetActive(false);
-	//		SetAnimationSet(76);
-	//		m_pPlayerController->SetState(EPlayerState::PutInWeapon);
-	//	}
-	//}
-	//if (m_bPutInWeapon)
-	//{
-	//	bool bEnd = IsAnimationSetEnd();
-	//	if (bEnd == true)
-	//	{
-	//		m_pPlayerController->SetState(EPlayerState::Idle);
-	//		SetAnimationSet(112); // idle
-	//		m_pPlayerUW->SetAnimationSet(304); // idle
-
-	//		m_bPutInWeapon = false;
-	//		/* Form Change */
-	//		m_pPlayerUW->m_pTransform->m_position = m_pTransform->m_position;
-	//		m_pPlayerUW->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
-	//		m_pPlayerUW->m_pTransform->m_scale = m_pTransform->m_scale;
-
-	//		m_pPlayerUW->SetActive(true);
-	//		m_isUnWeapon = true;
-	//	}
-	//	
-	//}
-	//if (m_bPutOutWeapon)
-	//{
-	//	bool bEnd = IsAnimationSetEnd();
-	//	if (bEnd == true)
-	//	{
-	//		m_pPlayerController->SetState(EPlayerState::Idle);
-	//		SetAnimationSet(112); // idle
-	//		m_pPlayerUW->SetActive(false);
-	//		m_bPutOutWeapon = false;
-	//		m_isUnWeapon = false;
-	//	}
-	//}
-	//if (m_isUnWeapon)
-	//{
-	//	m_pPlayerUW->m_pTransform->m_position = m_pTransform->m_position;
-	//	m_pPlayerUW->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
-	//	m_pPlayerUW->m_pTransform->m_scale = m_pTransform->m_scale;
-	//}
+	m_pAfterImage->m_pTransform->SetPosition(m_pTransform->m_position);
+	m_pAfterImage->m_pTransform->m_rotationEuler = m_pTransform->m_rotationEuler;
+	m_pAfterImage->m_pTransform->SetScale(m_pTransform->m_scale);
 }
 
 void Player::Render()
@@ -248,4 +160,46 @@ void Player::OnExpChanged( void*)
 		amount = pScene->GetPlayerInfo()->exp - temp / pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 1] - temp;
 	}
 	m_pExpBarUI->SetAmount(amount);
+}
+
+void Player::OnDialogOpen(void *)
+{
+	SetActive(false);
+}
+
+void Player::OnDialogEnd(void *)
+{
+	SetActive(true);
+}
+
+PlayerAction * Player::GetPlayerSkill(int skillIndex)
+{
+	return m_pPlayerSkills.at(skillIndex);
+}
+
+void Player::SetWeapon(GameObject * weapon)
+{
+	m_pWeapon = weapon;
+}
+
+void Player::SetShield(GameObject * shield)
+{
+	m_pShield = shield;
+}
+
+
+
+GameObject * Player::GetWeapon()
+{
+	return m_pWeapon;
+}
+
+GameObject * Player::GetShield()
+{
+	return m_pShield;
+}
+
+PlayerAfterImage * Player::GetAfterImage() const
+{
+	return m_pAfterImage;
 }

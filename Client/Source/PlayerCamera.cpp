@@ -2,16 +2,23 @@
 #include "PlayerCamera.h"
 #include "GameManager.h"
 #include "GameScene.h"
+#include "Client_Events.h"
 
 PlayerCamera::PlayerCamera(Scene * scene, GameObject * player, wstring name) 
 	: Camera(scene, nullptr, name),
 	m_pPlayer(player)
 {
-	
+	EventDispatcher::AddEventListener(QuestEvent::QuestDialogOpen, "PlayerCamera",
+		std::bind(&PlayerCamera::OnDialogOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(QuestEvent::QuestDialogEnd, "PlayerCamera",
+		std::bind(&PlayerCamera::OnDialogEnd, this, placeholders::_1));
 }
 
 PlayerCamera::~PlayerCamera()
 {
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogOpen, "PlayerCamera");
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestDialogEnd, "PlayerCamera");
+
 }
 
 void PlayerCamera::Initialize()
@@ -24,13 +31,15 @@ void PlayerCamera::Initialize()
 
 void PlayerCamera::Update()
 {
-	
+	if (CAMERA->GetInstanceID() != GetInstanceID())
+		return;
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	if (pScene->GetGameManager()->IsPlayerMovable() == false)
 		return;
 
-	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE)
+	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE &&
+		m_bMouseFix)
 		MouseFix();
 	ParamChange();
 	Movement();
@@ -43,6 +52,16 @@ void PlayerCamera::Update()
 	Camera::Update();
 	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 
+}
+
+void PlayerCamera::OnDialogOpen(void *)
+{
+	m_bMouseFix = false;
+}
+
+void PlayerCamera::OnDialogEnd(void *)
+{
+	m_bMouseFix = true;
 }
 
 void PlayerCamera::ParamChange()

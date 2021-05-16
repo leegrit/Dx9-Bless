@@ -26,12 +26,12 @@ void Leoni::Update()
 
 std::wstring Leoni::GetCharacterName()
 {
-	return L"코라";
+	return L"레오니\n<그림자 순찰대장>";
 }
 
 std::wstring Leoni::GetSubTitle()
 {
-	return L"<그림자 순찰대장>";
+	return L"";
 }
 
 std::wstring Leoni::GetOnlyCharacterName()

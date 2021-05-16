@@ -10,6 +10,7 @@ struct FontInfo
 {
 	TCHAR textBuff[256];
 	D3DXMATRIX matTrans;
+	RECT rect;
 	DWORD format;
 	D3DCOLOR textColor;
 };
@@ -65,6 +66,7 @@ namespace HyEngine
 		class ScriptableData* GetScriptableData(std::wstring key);
 
 		void DrawText(const TCHAR* text, D3DXVECTOR3 position , D3DXVECTOR3 scale, D3DCOLOR color, DWORD format= DT_LEFT);
+		void DrawText(const TCHAR* text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, RECT rect, DWORD format);
 		void DrawText(const TCHAR* text, D3DXMATRIX mat, D3DCOLOR color);
 		void DrawTextFormat(D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, const TCHAR* text, int args, ... );
 		void DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DXCOLOR color);

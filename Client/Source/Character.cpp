@@ -59,13 +59,13 @@ void Character::Update()
 
 	//юс╫ц
 	if(m_pMainQuestMarker)
-		m_pMainQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
+		m_pMainQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0/*7*/, 19, 0)));
 	if(m_pSubQuestMarker)
-		m_pSubQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
+		m_pSubQuestMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 19, 0)));
 	if (m_pMainQuestFinishMarker)
-		m_pMainQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
+		m_pMainQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 19, 0)));
 	if (m_pSubQuestFinishMarker)
-		m_pSubQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(7, 17, 0)));
+		m_pSubQuestFinishMarker->m_pTransform->SetPosition(m_pTransform->CalcOffset(D3DXVECTOR3(0, 19, 0)));
 }
 
 void Character::Render()

@@ -83,11 +83,11 @@
       "A": 0.0
     },
     "SpecularIntensity": 0.0,
-    "SpecularPower": 0.0,
-    "Range": 100.0,
+    "SpecularPower": 10.0,
+    "Range": 50.0,
     "Cone": 0.0,
     "Constant": 0.5,
     "Linear": 0.0,
-    "Quadratic": 0.005
+    "Quadratic": 0.007
   }
 }

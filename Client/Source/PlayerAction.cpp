@@ -62,6 +62,7 @@ void PlayerAction::OnActionTimeElapsed(int seqIndex, float elapsed)
 void PlayerAction::OnActionEnd()
 {
 	m_pPlayerController->SetState(EPlayerState::Idle);
+	m_curCoolTime = 0;
 }
 
 
@@ -95,6 +96,6 @@ bool PlayerAction::DoAction(int animIndex)
 	if (state == EPlayerState::Attack && IsAttackState() == false) return false;
 
 	ActionComponent::DoAction(animIndex);
-	m_curCoolTime = 0;
+	
 	return true;
 }

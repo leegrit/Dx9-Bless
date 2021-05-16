@@ -27,7 +27,7 @@ void Elroy::Update()
 
 std::wstring Elroy::GetCharacterName()
 {
-	return L"        티티아나\n<기술 교관>";
+	return L"티티아나\n<기술 교관>";
 }
 
 std::wstring Elroy::GetSubTitle()

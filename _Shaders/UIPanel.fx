@@ -44,10 +44,11 @@ technique UIPanel
 {
 	pass P0
 	{
+		
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;
 		DestBlend = INVSRCALPHA;
-		//ZWriteEnable = false;
+		ZWriteEnable = false;
 		VertexShader = compile vs_3_0 UIPanelVS();
 		PixelShader = compile ps_3_0 UIPanelPS();
 	}

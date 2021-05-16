@@ -1,20 +1,20 @@
 {
   "Type": 1,
-  "Index": 127,
+  "Index": 1,
   "TagIndex": 0,
-  "LayerIndex": 0,
+  "LayerIndex": 2,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 127,
+    "Index": 1,
     "Name": "Lups",
     "Tag": "Default",
-    "Layer": 0,
+    "Layer": 2,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": 1704.636,
+        "X": -295.89,
         "Y": 0.0,
-        "Z": 875.3481
+        "Z": 100.63
       },
       "Rotation": {
         "X": 0.0,
@@ -22,19 +22,19 @@
         "Z": 0.0
       },
       "Scale": {
-        "X": 1.0,
-        "Y": 1.0,
-        "Z": 1.0
+        "X": 0.5,
+        "Y": 0.5,
+        "Z": 0.5
       }
     }
   },
   "MeshData": {
-    "Index": 127,
+    "Index": 1,
     "MeshFilePath": "Assets\\Mesh\\Unit\\Lups\\Lups_00.X",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 127,
+    "Index": 1,
     "Group": 0
   },
   "NavMeshData": {

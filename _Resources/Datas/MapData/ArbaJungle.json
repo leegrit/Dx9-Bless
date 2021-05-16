@@ -1,6 +1,6 @@
 {
   "Group": 0,
-  "MapCount": 65,
+  "MapCount": 104,
   "Hierarchy_0": {
     "Type": 2,
     "Index": 2,
@@ -2700,12 +2700,12 @@
   },
   "Hierarchy_29": {
     "Type": 2,
-    "Index": 35,
+    "Index": 32,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 35,
+      "Index": 32,
       "Name": "PlanetariumStatue01",
       "Tag": "Default",
       "Layer": 0,
@@ -2729,12 +2729,12 @@
       }
     },
     "MeshData": {
-      "Index": 35,
+      "Index": 32,
       "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 35,
+      "Index": 32,
       "Group": 0
     },
     "NavMeshData": {
@@ -2793,12 +2793,12 @@
   },
   "Hierarchy_30": {
     "Type": 2,
-    "Index": 36,
+    "Index": 33,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 36,
+      "Index": 33,
       "Name": "PlanetariumStatue02",
       "Tag": "Default",
       "Layer": 0,
@@ -2822,12 +2822,12 @@
       }
     },
     "MeshData": {
-      "Index": 36,
+      "Index": 33,
       "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue02.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 36,
+      "Index": 33,
       "Group": 0
     },
     "NavMeshData": {
@@ -2886,12 +2886,12 @@
   },
   "Hierarchy_31": {
     "Type": 2,
-    "Index": 37,
+    "Index": 34,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 37,
+      "Index": 34,
       "Name": "PlanetariumStatue03",
       "Tag": "Default",
       "Layer": 0,
@@ -2915,12 +2915,12 @@
       }
     },
     "MeshData": {
-      "Index": 37,
+      "Index": 34,
       "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue03.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 37,
+      "Index": 34,
       "Group": 0
     },
     "NavMeshData": {
@@ -2979,12 +2979,12 @@
   },
   "Hierarchy_32": {
     "Type": 2,
-    "Index": 38,
+    "Index": 35,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 38,
+      "Index": 35,
       "Name": "BlackSun04",
       "Tag": "Default",
       "Layer": 0,
@@ -3008,12 +3008,12 @@
       }
     },
     "MeshData": {
-      "Index": 38,
+      "Index": 35,
       "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\BlackSun04.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 38,
+      "Index": 35,
       "Group": 0
     },
     "NavMeshData": {
@@ -3072,12 +3072,12 @@
   },
   "Hierarchy_33": {
     "Type": 2,
-    "Index": 39,
+    "Index": 36,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 39,
+      "Index": 36,
       "Name": "AncRuinWall01",
       "Tag": "Default",
       "Layer": 0,
@@ -3101,12 +3101,12 @@
       }
     },
     "MeshData": {
-      "Index": 39,
+      "Index": 36,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 39,
+      "Index": 36,
       "Group": 0
     },
     "NavMeshData": {
@@ -3165,12 +3165,12 @@
   },
   "Hierarchy_34": {
     "Type": 2,
-    "Index": 40,
+    "Index": 37,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 40,
+      "Index": 37,
       "Name": "AncRuinWall02",
       "Tag": "Default",
       "Layer": 0,
@@ -3194,12 +3194,12 @@
       }
     },
     "MeshData": {
-      "Index": 40,
+      "Index": 37,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall02.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 40,
+      "Index": 37,
       "Group": 0
     },
     "NavMeshData": {
@@ -3258,12 +3258,12 @@
   },
   "Hierarchy_35": {
     "Type": 2,
-    "Index": 41,
+    "Index": 38,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 41,
+      "Index": 38,
       "Name": "AncRuinWall03",
       "Tag": "Default",
       "Layer": 0,
@@ -3287,12 +3287,12 @@
       }
     },
     "MeshData": {
-      "Index": 41,
+      "Index": 38,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinWall03.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 41,
+      "Index": 38,
       "Group": 0
     },
     "NavMeshData": {
@@ -3351,12 +3351,12 @@
   },
   "Hierarchy_36": {
     "Type": 2,
-    "Index": 42,
+    "Index": 39,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 42,
+      "Index": 39,
       "Name": "AncRuinDoor",
       "Tag": "Default",
       "Layer": 0,
@@ -3380,12 +3380,12 @@
       }
     },
     "MeshData": {
-      "Index": 42,
+      "Index": 39,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinDoor.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 42,
+      "Index": 39,
       "Group": 0
     },
     "NavMeshData": {
@@ -3444,12 +3444,12 @@
   },
   "Hierarchy_37": {
     "Type": 2,
-    "Index": 43,
+    "Index": 40,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 43,
+      "Index": 40,
       "Name": "AncRuinPillar01",
       "Tag": "Default",
       "Layer": 0,
@@ -3473,12 +3473,12 @@
       }
     },
     "MeshData": {
-      "Index": 43,
+      "Index": 40,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinPillar01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 43,
+      "Index": 40,
       "Group": 0
     },
     "NavMeshData": {
@@ -3537,12 +3537,12 @@
   },
   "Hierarchy_38": {
     "Type": 2,
-    "Index": 44,
+    "Index": 41,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 44,
+      "Index": 41,
       "Name": "AncRuinDoor",
       "Tag": "Default",
       "Layer": 0,
@@ -3566,12 +3566,12 @@
       }
     },
     "MeshData": {
-      "Index": 44,
+      "Index": 41,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\AncRuinDoor.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 44,
+      "Index": 41,
       "Group": 0
     },
     "NavMeshData": {
@@ -3630,12 +3630,12 @@
   },
   "Hierarchy_39": {
     "Type": 2,
-    "Index": 49,
+    "Index": 42,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 49,
+      "Index": 42,
       "Name": "LandingHouse15",
       "Tag": "Default",
       "Layer": 0,
@@ -3659,12 +3659,12 @@
       }
     },
     "MeshData": {
-      "Index": 49,
+      "Index": 42,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse15.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 49,
+      "Index": 42,
       "Group": 0
     },
     "NavMeshData": {
@@ -3723,12 +3723,12 @@
   },
   "Hierarchy_40": {
     "Type": 2,
-    "Index": 50,
+    "Index": 43,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 50,
+      "Index": 43,
       "Name": "LandingHouse16",
       "Tag": "Default",
       "Layer": 0,
@@ -3752,12 +3752,12 @@
       }
     },
     "MeshData": {
-      "Index": 50,
+      "Index": 43,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse16.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 50,
+      "Index": 43,
       "Group": 0
     },
     "NavMeshData": {
@@ -3816,12 +3816,12 @@
   },
   "Hierarchy_41": {
     "Type": 2,
-    "Index": 51,
+    "Index": 44,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 51,
+      "Index": 44,
       "Name": "LandingHouse17",
       "Tag": "Default",
       "Layer": 0,
@@ -3845,12 +3845,12 @@
       }
     },
     "MeshData": {
-      "Index": 51,
+      "Index": 44,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse17.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 51,
+      "Index": 44,
       "Group": 0
     },
     "NavMeshData": {
@@ -3909,12 +3909,12 @@
   },
   "Hierarchy_42": {
     "Type": 2,
-    "Index": 52,
+    "Index": 45,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 52,
+      "Index": 45,
       "Name": "LandingHouse18",
       "Tag": "Default",
       "Layer": 0,
@@ -3938,12 +3938,12 @@
       }
     },
     "MeshData": {
-      "Index": 52,
+      "Index": 45,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse18.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 52,
+      "Index": 45,
       "Group": 0
     },
     "NavMeshData": {
@@ -4002,12 +4002,12 @@
   },
   "Hierarchy_43": {
     "Type": 2,
-    "Index": 53,
+    "Index": 46,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 53,
+      "Index": 46,
       "Name": "JungleTree06",
       "Tag": "Default",
       "Layer": 0,
@@ -4031,12 +4031,12 @@
       }
     },
     "MeshData": {
-      "Index": 53,
+      "Index": 46,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 53,
+      "Index": 46,
       "Group": 0
     },
     "NavMeshData": {
@@ -4095,12 +4095,12 @@
   },
   "Hierarchy_44": {
     "Type": 2,
-    "Index": 54,
+    "Index": 47,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 54,
+      "Index": 47,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -4124,12 +4124,12 @@
       }
     },
     "MeshData": {
-      "Index": 54,
+      "Index": 47,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 54,
+      "Index": 47,
       "Group": 0
     },
     "NavMeshData": {
@@ -4188,12 +4188,12 @@
   },
   "Hierarchy_45": {
     "Type": 2,
-    "Index": 55,
+    "Index": 48,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 55,
+      "Index": 48,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -4217,12 +4217,12 @@
       }
     },
     "MeshData": {
-      "Index": 55,
+      "Index": 48,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 55,
+      "Index": 48,
       "Group": 0
     },
     "NavMeshData": {
@@ -4281,12 +4281,12 @@
   },
   "Hierarchy_46": {
     "Type": 2,
-    "Index": 56,
+    "Index": 49,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 56,
+      "Index": 49,
       "Name": "JungleTree07",
       "Tag": "Default",
       "Layer": 0,
@@ -4310,12 +4310,12 @@
       }
     },
     "MeshData": {
-      "Index": 56,
+      "Index": 49,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 56,
+      "Index": 49,
       "Group": 0
     },
     "NavMeshData": {
@@ -4374,12 +4374,12 @@
   },
   "Hierarchy_47": {
     "Type": 2,
-    "Index": 57,
+    "Index": 50,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 57,
+      "Index": 50,
       "Name": "DinosaurSkeleton",
       "Tag": "Default",
       "Layer": 0,
@@ -4403,12 +4403,12 @@
       }
     },
     "MeshData": {
-      "Index": 57,
+      "Index": 50,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone04.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 57,
+      "Index": 50,
       "Group": 0
     },
     "NavMeshData": {
@@ -4467,12 +4467,12 @@
   },
   "Hierarchy_48": {
     "Type": 2,
-    "Index": 58,
+    "Index": 51,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 58,
+      "Index": 51,
       "Name": "JungleTree09",
       "Tag": "Default",
       "Layer": 0,
@@ -4496,12 +4496,12 @@
       }
     },
     "MeshData": {
-      "Index": 58,
+      "Index": 51,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 58,
+      "Index": 51,
       "Group": 0
     },
     "NavMeshData": {
@@ -4560,12 +4560,12 @@
   },
   "Hierarchy_49": {
     "Type": 2,
-    "Index": 59,
+    "Index": 52,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 59,
+      "Index": 52,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
@@ -4589,12 +4589,12 @@
       }
     },
     "MeshData": {
-      "Index": 59,
+      "Index": 52,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 59,
+      "Index": 52,
       "Group": 0
     },
     "NavMeshData": {
@@ -4653,12 +4653,12 @@
   },
   "Hierarchy_50": {
     "Type": 2,
-    "Index": 60,
+    "Index": 53,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 60,
+      "Index": 53,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
@@ -4682,12 +4682,12 @@
       }
     },
     "MeshData": {
-      "Index": 60,
+      "Index": 53,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 60,
+      "Index": 53,
       "Group": 0
     },
     "NavMeshData": {
@@ -4746,12 +4746,12 @@
   },
   "Hierarchy_51": {
     "Type": 2,
-    "Index": 61,
+    "Index": 54,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 61,
+      "Index": 54,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
@@ -4775,12 +4775,12 @@
       }
     },
     "MeshData": {
-      "Index": 61,
+      "Index": 54,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 61,
+      "Index": 54,
       "Group": 0
     },
     "NavMeshData": {
@@ -4839,12 +4839,12 @@
   },
   "Hierarchy_52": {
     "Type": 2,
-    "Index": 62,
+    "Index": 55,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 62,
+      "Index": 55,
       "Name": "SlaveCage",
       "Tag": "Default",
       "Layer": 0,
@@ -4868,12 +4868,12 @@
       }
     },
     "MeshData": {
-      "Index": 62,
+      "Index": 55,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\SlaveCage.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 62,
+      "Index": 55,
       "Group": 0
     },
     "NavMeshData": {
@@ -4932,12 +4932,12 @@
   },
   "Hierarchy_53": {
     "Type": 2,
-    "Index": 63,
+    "Index": 56,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 63,
+      "Index": 56,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
@@ -4961,12 +4961,12 @@
       }
     },
     "MeshData": {
-      "Index": 63,
+      "Index": 56,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 63,
+      "Index": 56,
       "Group": 0
     },
     "NavMeshData": {
@@ -5025,12 +5025,12 @@
   },
   "Hierarchy_54": {
     "Type": 2,
-    "Index": 64,
+    "Index": 57,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 64,
+      "Index": 57,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
@@ -5054,12 +5054,12 @@
       }
     },
     "MeshData": {
-      "Index": 64,
+      "Index": 57,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 64,
+      "Index": 57,
       "Group": 0
     },
     "NavMeshData": {
@@ -5118,12 +5118,12 @@
   },
   "Hierarchy_55": {
     "Type": 2,
-    "Index": 65,
+    "Index": 58,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 65,
+      "Index": 58,
       "Name": "JungleTree09",
       "Tag": "Default",
       "Layer": 0,
@@ -5147,12 +5147,12 @@
       }
     },
     "MeshData": {
-      "Index": 65,
+      "Index": 58,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 65,
+      "Index": 58,
       "Group": 0
     },
     "NavMeshData": {
@@ -5211,12 +5211,12 @@
   },
   "Hierarchy_56": {
     "Type": 2,
-    "Index": 66,
+    "Index": 59,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 66,
+      "Index": 59,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -5240,12 +5240,12 @@
       }
     },
     "MeshData": {
-      "Index": 66,
+      "Index": 59,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 66,
+      "Index": 59,
       "Group": 0
     },
     "NavMeshData": {
@@ -5304,12 +5304,12 @@
   },
   "Hierarchy_57": {
     "Type": 2,
-    "Index": 67,
+    "Index": 60,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 67,
+      "Index": 60,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
@@ -5333,12 +5333,12 @@
       }
     },
     "MeshData": {
-      "Index": 67,
+      "Index": 60,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 67,
+      "Index": 60,
       "Group": 0
     },
     "NavMeshData": {
@@ -5397,12 +5397,12 @@
   },
   "Hierarchy_58": {
     "Type": 2,
-    "Index": 68,
+    "Index": 61,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 68,
+      "Index": 61,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
@@ -5426,12 +5426,12 @@
       }
     },
     "MeshData": {
-      "Index": 68,
+      "Index": 61,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 68,
+      "Index": 61,
       "Group": 0
     },
     "NavMeshData": {
@@ -5490,12 +5490,12 @@
   },
   "Hierarchy_59": {
     "Type": 2,
-    "Index": 69,
+    "Index": 62,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 69,
+      "Index": 62,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -5519,12 +5519,12 @@
       }
     },
     "MeshData": {
-      "Index": 69,
+      "Index": 62,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 69,
+      "Index": 62,
       "Group": 0
     },
     "NavMeshData": {
@@ -5583,12 +5583,12 @@
   },
   "Hierarchy_60": {
     "Type": 2,
-    "Index": 70,
+    "Index": 63,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 70,
+      "Index": 63,
       "Name": "Tropicalbush05",
       "Tag": "Default",
       "Layer": 0,
@@ -5612,12 +5612,12 @@
       }
     },
     "MeshData": {
-      "Index": 70,
+      "Index": 63,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 70,
+      "Index": 63,
       "Group": 0
     },
     "NavMeshData": {
@@ -5676,12 +5676,12 @@
   },
   "Hierarchy_61": {
     "Type": 2,
-    "Index": 71,
+    "Index": 64,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 71,
+      "Index": 64,
       "Name": "Tropicalbush05b",
       "Tag": "Default",
       "Layer": 0,
@@ -5705,12 +5705,12 @@
       }
     },
     "MeshData": {
-      "Index": 71,
+      "Index": 64,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 71,
+      "Index": 64,
       "Group": 0
     },
     "NavMeshData": {
@@ -5769,12 +5769,12 @@
   },
   "Hierarchy_62": {
     "Type": 2,
-    "Index": 73,
+    "Index": 66,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 73,
+      "Index": 66,
       "Name": "JungleTree06",
       "Tag": "Default",
       "Layer": 0,
@@ -5798,12 +5798,12 @@
       }
     },
     "MeshData": {
-      "Index": 73,
+      "Index": 66,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 73,
+      "Index": 66,
       "Group": 0
     },
     "NavMeshData": {
@@ -5862,12 +5862,12 @@
   },
   "Hierarchy_63": {
     "Type": 2,
-    "Index": 102,
+    "Index": 95,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 102,
+      "Index": 95,
       "Name": "JungleTree09",
       "Tag": "Default",
       "Layer": 0,
@@ -5891,12 +5891,12 @@
       }
     },
     "MeshData": {
-      "Index": 102,
+      "Index": 95,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree09.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 102,
+      "Index": 95,
       "Group": 0
     },
     "NavMeshData": {
@@ -5955,12 +5955,12 @@
   },
   "Hierarchy_64": {
     "Type": 2,
-    "Index": 103,
+    "Index": 96,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 103,
+      "Index": 96,
       "Name": "PlanetariumStatue02",
       "Tag": "Default",
       "Layer": 0,
@@ -5984,8 +5984,473 @@
       }
     },
     "MeshData": {
-      "Index": 103,
+      "Index": 96,
       "MeshFilePath": "Assets\\Mesh\\Map\\AncientTower\\PlanetariumStatue02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 96,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 103,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_65": {
+    "Type": 2,
+    "Index": 99,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 99,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -133.92
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 99,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 99,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 99,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_66": {
+    "Type": 2,
+    "Index": 100,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 100,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 295.41,
+          "Y": -1.52587891E-05,
+          "Z": 68.18
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 100,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 100,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 100,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_67": {
+    "Type": 2,
+    "Index": 101,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 101,
+      "Name": "JungleTree11",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -252.84,
+          "Y": -1.52587891E-05,
+          "Z": -150.76
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 180.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 101,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree11.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 101,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 101,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_68": {
+    "Type": 2,
+    "Index": 102,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 102,
+      "Name": "BoneFire3",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 433.69,
+          "Y": -7.62939453E-06,
+          "Z": 775.99
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 102,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\BoneFire3.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 102,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 102,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_69": {
+    "Type": 2,
+    "Index": 103,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 103,
+      "Name": "BoneFire3",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 435.29,
+          "Y": -7.62939453E-06,
+          "Z": 739.19
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 103,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\BoneFire3.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
@@ -5993,7 +6458,3169 @@
       "Group": 0
     },
     "NavMeshData": {
-      "Index": 103,
+      "Index": 102,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_70": {
+    "Type": 2,
+    "Index": 104,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 104,
+      "Name": "Sundires02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 480.77,
+          "Y": -1.52587891E-05,
+          "Z": 761.33
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 104,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 104,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 104,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_71": {
+    "Type": 2,
+    "Index": 105,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 105,
+      "Name": "BoneFire3",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 435.29,
+          "Y": -7.62939453E-06,
+          "Z": 699.19
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 105,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\BoneFire3.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 105,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 102,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_72": {
+    "Type": 2,
+    "Index": 106,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 106,
+      "Name": "Sundires02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 480.77,
+          "Y": -1.52587891E-05,
+          "Z": 719.73
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 106,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 106,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 104,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_73": {
+    "Type": 2,
+    "Index": 107,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 107,
+      "Name": "LandingHouse12",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 66.27,
+          "Y": 0.0,
+          "Z": 780.84
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 107,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse12.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 107,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 107,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_74": {
+    "Type": 2,
+    "Index": 108,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 108,
+      "Name": "LandingHouse12",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -94.98,
+          "Y": -3.81469727E-06,
+          "Z": 756.96
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.5,
+          "Y": 0.5,
+          "Z": 0.5
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 108,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\LandingHouse12.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 108,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 107,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_75": {
+    "Type": 2,
+    "Index": 109,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 109,
+      "Name": "Sundires02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -43.76,
+          "Y": -1.90734863E-06,
+          "Z": 772.81
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 109,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 109,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 109,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_76": {
+    "Type": 2,
+    "Index": 110,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 110,
+      "Name": "Sundires02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 9.23,
+          "Y": -3.81469727E-06,
+          "Z": 805.29
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 110,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 110,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 109,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_77": {
+    "Type": 2,
+    "Index": 111,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 111,
+      "Name": "Sundires02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 100.5,
+          "Y": -7.62939453E-06,
+          "Z": 821.56
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 111,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 111,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 109,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_78": {
+    "Type": 2,
+    "Index": 112,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 112,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -36.53,
+          "Y": -3.81469727E-06,
+          "Z": 840.53
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 112,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 112,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_79": {
+    "Type": 2,
+    "Index": 113,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 113,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 243.98,
+          "Y": -7.62939453E-06,
+          "Z": 1277.23755
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 113,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 113,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_80": {
+    "Type": 2,
+    "Index": 114,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 114,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 402.99,
+          "Y": -7.62939453E-06,
+          "Z": 1258.87
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 114,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 114,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 114,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_81": {
+    "Type": 2,
+    "Index": 115,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 115,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 572.97,
+          "Y": -1.52587891E-05,
+          "Z": 1063.14
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 115,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 115,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_82": {
+    "Type": 2,
+    "Index": 116,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 116,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -455.38,
+          "Y": -1.52587891E-05,
+          "Z": 1052.15
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 116,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 116,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_83": {
+    "Type": 2,
+    "Index": 117,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 117,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -569.04,
+          "Y": -7.62939453E-06,
+          "Z": 799.25
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 117,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 117,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 114,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_84": {
+    "Type": 2,
+    "Index": 118,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 118,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -568.69,
+          "Y": -7.62939453E-06,
+          "Z": 575.91
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 118,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 118,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_85": {
+    "Type": 2,
+    "Index": 119,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 119,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -545.09,
+          "Y": -7.62939453E-06,
+          "Z": 116.4
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 119,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 119,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_86": {
+    "Type": 2,
+    "Index": 120,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 120,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -385.124,
+          "Y": -7.62939453E-06,
+          "Z": -213.158676
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 120,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 120,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_87": {
+    "Type": 2,
+    "Index": 121,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 121,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 297.27,
+          "Y": -10.4177475,
+          "Z": -107.55
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 121,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 121,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_88": {
+    "Type": 2,
+    "Index": 122,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 122,
+      "Name": "JungleTree07",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 413.02,
+          "Y": -1.52587891E-05,
+          "Z": 185.93
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 122,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree07.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 122,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 113,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_89": {
+    "Type": 2,
+    "Index": 123,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 123,
+      "Name": "DinosaurSkeleton03",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 470.27002,
+          "Y": -3.81469727E-06,
+          "Z": 116.206284
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 123,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone03.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 123,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 123,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_90": {
+    "Type": 2,
+    "Index": 124,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 124,
+      "Name": "DinosaurSkeleton02",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 573.557251,
+          "Y": 0.0,
+          "Z": 514.095642
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 124,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\DinosaurSkeletone02.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 124,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 124,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_91": {
+    "Type": 2,
+    "Index": 125,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 125,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -400.0608,
+          "Y": -1.90734863E-06,
+          "Z": 794.7263
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 125,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 125,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_92": {
+    "Type": 2,
+    "Index": 126,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 126,
+      "Name": "JungleTree06",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -17.9863739,
+          "Y": -1.14440918E-05,
+          "Z": 605.659363
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": -334.4,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 126,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 126,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 114,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_93": {
+    "Type": 2,
+    "Index": 127,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 127,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -436.260681,
+          "Y": -3.81469727E-06,
+          "Z": 707.0058
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 127,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 127,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_94": {
+    "Type": 2,
+    "Index": 128,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 128,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -31.2505341,
+          "Y": -3.81469727E-06,
+          "Z": 105.98822
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 128,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 128,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_95": {
+    "Type": 2,
+    "Index": 129,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 129,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -264.3913,
+          "Y": -7.62939453E-06,
+          "Z": 331.574646
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 129,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 129,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_96": {
+    "Type": 2,
+    "Index": 130,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 130,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -44.189537,
+          "Y": -7.62939453E-06,
+          "Z": 536.862854
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 130,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 130,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_97": {
+    "Type": 2,
+    "Index": 131,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 131,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 176.916,
+          "Y": 3.81469727E-06,
+          "Z": 619.461853
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 131,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 131,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_98": {
+    "Type": 2,
+    "Index": 132,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 132,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 563.723145,
+          "Y": -7.62939453E-06,
+          "Z": 806.7729
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 132,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 132,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_99": {
+    "Type": 2,
+    "Index": 133,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 133,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 351.041321,
+          "Y": -7.62939453E-06,
+          "Z": 1021.39008
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 133,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 133,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_100": {
+    "Type": 2,
+    "Index": 134,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 134,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 237.3028,
+          "Y": -3.81469727E-06,
+          "Z": 1094.31091
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 134,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 134,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_101": {
+    "Type": 2,
+    "Index": 135,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 135,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 44.7422562,
+          "Y": -7.62939453E-06,
+          "Z": 1205.65222
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 135,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 135,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_102": {
+    "Type": 2,
+    "Index": 136,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 136,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -165.107315,
+          "Y": -3.81469727E-06,
+          "Z": 1055.78418
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 136,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 136,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_103": {
+    "Type": 2,
+    "Index": 137,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 137,
+      "Name": "Tropicalbush05b",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -270.555634,
+          "Y": -7.62939453E-06,
+          "Z": 1011.05487
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 137,
+      "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\Tropicalbush05b.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 137,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 127,
       "CellCount": 0
     },
     "TerrainData": {

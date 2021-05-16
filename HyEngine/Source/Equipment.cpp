@@ -247,6 +247,42 @@ void HyEngine::Equipment::Render()
 	}
 }
 
+void HyEngine::Equipment::PostRender(ID3DXEffect * pEffect)
+{
+	if (IsPostRender() == false) return;
+
+	/* Set world, view and projection */
+	if (m_pParentBoneMatrix != nullptr)
+	{
+		D3DXMATRIX resultWorld = m_pTransform->GetWorldMatrix() * (*m_pParentBoneMatrix * m_pParentWorldMatrix);
+		pEffect->SetValue("WorldMatrix", &resultWorld, sizeof(resultWorld));
+	}
+	else
+		pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	
+	if (IS_CLIENT)
+	{
+		pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+	}
+	else if (IS_EDITOR)
+	{
+		pEffect->SetValue("ViewMatrix", &EDIT_CAMERA->GetViewMatrix(), sizeof(EDIT_CAMERA->GetViewMatrix()));
+		pEffect->SetValue("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix(), sizeof(EDIT_CAMERA->GetProjectionMatrix()));
+	}
+	for (int i = 0; i < m_mtrls.size(); i++)
+	{
+		pEffect->SetTechnique("Mesh");
+		pEffect->Begin(0, 0);
+		{
+			pEffect->BeginPass(0);
+			m_pMesh->DrawSubset(i);
+			pEffect->EndPass();
+		}
+		pEffect->End();
+	}
+}
+
 void HyEngine::Equipment::DrawPrimitive(ID3DXEffect* pShader)
 {
 	GameObject::DrawPrimitive(pShader);

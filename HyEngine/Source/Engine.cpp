@@ -313,7 +313,27 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVE
 	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
 	info.matTrans = scaleMat * posMat;
 	info.textColor = color;
+	//info.format = format;
+	info.format = DT_LEFT | DT_TOP;
+	RECT rect;
+	SetRect(&rect, 0, 0, 1024, 768);
+	info.rect = rect;
+	m_fontInfos.push_back(info);
+}
+
+void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVECTOR3 scale, D3DCOLOR color, RECT rect, DWORD format)
+{
+	FontInfo info;
+	D3DXMATRIX posMat;
+	D3DXMATRIX scaleMat;
+
+	wsprintf(info.textBuff, text);
+	D3DXMatrixTranslation(&posMat, position.x, position.y, position.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
+	info.matTrans = scaleMat * posMat;
+	info.textColor = color;
 	info.format = format;
+	info.rect = rect;
 	m_fontInfos.push_back(info);
 }
 
@@ -326,7 +346,10 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXMATRIX mat, D3DCOLOR col
 	wsprintf(info.textBuff, text);
 	info.matTrans = mat;
 	info.textColor = color;
-	info.format = DT_LEFT;
+	info.format = DT_LEFT | DT_TOP;
+	RECT rect;
+	SetRect(&rect, 0, 0, 1024, 768);
+	info.rect = rect;
 	m_fontInfos.push_back(info);
 }
 
@@ -372,7 +395,20 @@ void HyEngine::Engine::DrawTextInWorld(const TCHAR * text, D3DXVECTOR3 position,
 	D3DXVec3Project(&resultPos, &D3DXVECTOR3(0, 0, 0), &viewPort, &projMat, &viewMat, &worldMat);
 
 
-	ENGINE->DrawText(text, resultPos, D3DXVECTOR3(1, 1, 1), color);
+	FontInfo info;
+
+	wsprintf(info.textBuff, text);
+	D3DXMatrixTranslation(&posMat, resultPos.x, resultPos.y, resultPos.z);
+	D3DXMatrixScaling(&scaleMat, scale.x, scale.y, scale.z);
+	info.matTrans = scaleMat * posMat;
+	info.textColor = color;
+	//info.format = format;
+	info.format = DT_BOTTOM | DT_CENTER;
+	RECT rect;
+	SetRect(&rect, -612, -40, 612, 0);
+	info.rect = rect;
+	m_fontInfos.push_back(info);
+	//ENGINE->DrawText(text, resultPos, D3DXVECTOR3(1, 1, 1), color);
 }
 
 bool HyEngine::Engine::InsertShader(std::wstring key, std::wstring path)
@@ -438,6 +474,8 @@ bool Engine::LoadShaders()
 	InsertShader(L"Bloom", PATH->ShadersPathW() + L"Bloom.fx");
 	InsertShader(L"PostRender", PATH->ShadersPathW() + L"PostRender.fx");
 	InsertShader(L"DebugMRT", PATH->ShadersPathW() + L"DebugMRT.fx");
+	InsertShader(L"FontTexture", PATH->ShadersPathW() + L"FontTexture.fx");
+	InsertShader(L"SkillProgressUI", PATH->ShadersPathW() + L"SkillProgressUI.fx");
 	return true;
 }
 
@@ -470,7 +508,10 @@ void HyEngine::Engine::RenderFont()
 	for (auto& fontInfo : m_fontInfos)
 	{
 		DIRECT_SPRITE->SetTransform(&fontInfo.matTrans);
-		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr, fontInfo.format, fontInfo.textColor);
+		/*RECT rect;
+		SetRect(&rect, -500, -40, 500, 0);
+*/
+		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), &fontInfo.rect, fontInfo.format/*DT_CENTER | DT_BOTTOM*/, fontInfo.textColor);
 	}
 	//DEVICE->SetRenderState(D3DRS_ZENABLE, old);
 

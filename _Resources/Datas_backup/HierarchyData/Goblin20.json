@@ -1,0 +1,93 @@
+{
+  "Type": 1,
+  "Index": 94,
+  "TagIndex": 0,
+  "LayerIndex": 3,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 94,
+    "Name": "Goblin",
+    "Tag": "Default",
+    "Layer": 3,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": -151.346,
+        "Y": 0.0,
+        "Z": 556.5907
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": -231.2,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 0.5,
+        "Y": 0.5,
+        "Z": 0.5
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 94,
+    "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin\\Goblin.X",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 94,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 75,
+    "CellCount": 0
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  }
+}

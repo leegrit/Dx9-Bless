@@ -40,7 +40,21 @@ public :
 	//////////////////////////////////////////////////////////////////////////
 public :
 	void OnExpChanged(void*);
+	void OnDialogOpen(void*);
+	void OnDialogEnd(void*);
 
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+public : /* For Skill */
+	class PlayerAction* GetPlayerSkill(int skillIndex);
+	void SetWeapon(GameObject* weapon);
+	void SetShield(GameObject * shield);
+	class GameObject* GetWeapon();
+	class GameObject* GetShield();
+
+public : /* For After Effect */
+	class PlayerAfterImage * GetAfterImage() const;
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
@@ -51,6 +65,8 @@ private :
 	bool m_bPutOutWeapon = false;
 	bool m_isUnWeapon = false;
 
+	class PlayerAfterImage * m_pAfterImage = nullptr;
+
 	DynamicMesh* m_pPegasus = nullptr;
 	bool m_bMount = false;
 
@@ -60,6 +76,13 @@ private :
 	float m_beginElapsed = 0;
 	float m_endElapsed = 0;
 	float m_delay = 0.5f;
+
+private : /* For Equipment */
+	GameObject* m_pWeapon;
+	GameObject* m_pShield;
+
+private : /* For Skill */
+	std::vector<class PlayerAction* > m_pPlayerSkills;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

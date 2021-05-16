@@ -91,9 +91,6 @@
     <Filter Include="Editor\Object">
       <UniqueIdentifier>{7978c0ed-dd89-46d8-82ed-32199ab1947b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\NavMesh">
-      <UniqueIdentifier>{6d644e16-47d2-41c4-a245-79727f0d34f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GlobalVars">
       <UniqueIdentifier>{9c209f0e-6750-4ed2-8791-f4266d5555aa}</UniqueIdentifier>
     </Filter>
@@ -144,6 +141,9 @@
     </Filter>
     <Filter Include="UI\Old">
       <UniqueIdentifier>{e1a2d1c8-a21c-4954-9392-03a72681183a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NavMesh">
+      <UniqueIdentifier>{6d644e16-47d2-41c4-a245-79727f0d34f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -385,19 +385,19 @@
       <Filter>Editor\Object</Filter>
     </ClInclude>
     <ClInclude Include="Include\NavMesh.h">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\Cell.h">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\Line.h">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\ColorTriangle.h">
       <Filter>Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Include\NavPrimitive.h">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClInclude>
     <ClInclude Include="Include\Animator.h">
       <Filter>Component</Filter>
@@ -879,19 +879,19 @@
       <Filter>Editor\Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\NavMesh.cpp">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\Cell.cpp">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\Line.cpp">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\ColorTriangle.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
     <ClCompile Include="Source\NavPrimitive.cpp">
-      <Filter>Object\NavMesh</Filter>
+      <Filter>NavMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\Animator.cpp">
       <Filter>Component</Filter>
@@ -1235,6 +1235,12 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\_Shaders\Brightness.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\FontTexture.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\_Shaders\SkillProgressUI.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

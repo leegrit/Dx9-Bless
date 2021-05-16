@@ -20,6 +20,7 @@ namespace HyEngine
 		virtual void Initialize(std::wstring xFilePath, std::wstring boneName);
 		virtual void Update() override;
 		virtual void Render() override;
+		virtual void PostRender(ID3DXEffect * pEffect) override;
 		virtual void DrawPrimitive(ID3DXEffect* pShader) override;
 		virtual void UpdatedData(EDataType dataType) override;
 		virtual bool ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _Out_ float * radius);

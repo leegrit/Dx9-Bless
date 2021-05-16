@@ -24,7 +24,7 @@ void Samson::Update()
 
 std::wstring Samson::GetCharacterName()
 {
-	return L"        치타타\n<그림자 순찰대원>";
+	return L"치타타\n<그림자 순찰대원>";
 }
 
 std::wstring Samson::GetSubTitle()

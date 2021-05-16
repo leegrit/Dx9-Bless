@@ -11,7 +11,7 @@
 PlayerSkillUpper::PlayerSkillUpper(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillUpper")
 {
-	SetParams(0.2f, 1, 0, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+	SetParams(0.2f, 1, 3, 10, 10, false, D3DXVECTOR3(0, 10, 20));
 
 	GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 

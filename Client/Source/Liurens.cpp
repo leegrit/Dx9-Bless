@@ -27,7 +27,7 @@ void Liurens::Update()
 
 std::wstring Liurens::GetCharacterName()
 {
-	return L"        리우렌스\n<무기점 상인>";
+	return L"리우렌스\n<무기점 상인>";
 }
 
 std::wstring Liurens::GetSubTitle()

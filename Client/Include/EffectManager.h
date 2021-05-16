@@ -5,6 +5,28 @@ namespace HyEngine
 	class Effect;
 }
 
+namespace AfterEffectOption
+{
+	static DWORD ScaleUp = 1;
+	static DWORD FadeOut = 2;
+
+}
+
+struct AfterEffectDesc
+{
+	friend class EffectManager;
+public:
+	int animIndex;
+	float lifeTime;
+	D3DXCOLOR color;
+
+private :
+	float elapsed = 0;
+	int index = -1;
+	class PlayerAfterImage* pPlayerAfterImage = nullptr;
+	bool isPlay = false;
+};
+
 struct MeshEffectDesc
 {
 	/* start offset */
@@ -43,6 +65,7 @@ struct MeshEffectDesc
 	std::wstring alphaMaskPath;
 };
 
+class PlayerAfterImage;
 class EffectManager
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -73,10 +96,23 @@ public :
 	void PlayEffect(std::wstring key);
 
 	//////////////////////////////////////////////////////////////////////////
+	// FOR AFTER EFFECT
+	//////////////////////////////////////////////////////////////////////////
+public : 
+	int AddAfterEffect(AfterEffectDesc desc, _Out_ int* pIndex); // return index
+	void PlayAffterEffect(int index);
+
+	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
 private :
 	class GameScene* m_pScene = nullptr;
+
+private : /* PlayerAffterImage */
+	// max = 3°³
+	std::vector<PlayerAfterImage*> m_playerAfterImages;
+	std::vector<AfterEffectDesc> m_afterEffectDescs;
+
 
 private :
 	std::unordered_map<std::wstring, Effect*> m_effects;

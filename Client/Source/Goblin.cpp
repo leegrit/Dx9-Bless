@@ -45,7 +45,7 @@ void Goblin::Initialize(std::wstring dataPath)
 	m_state.Initialize("Idle");
 
 	m_pNameFont = new NameFont();
-	m_pNameFont->Initialize(L"고블린", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 15, 0), -40, D3DXCOLOR(1, 1, 0, 1));
+	m_pNameFont->Initialize(L"고블린", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 16, 0), -40, D3DXCOLOR(1, 1, 0, 1));
 
 	ShowHPBar();
 }
@@ -54,8 +54,8 @@ void Goblin::Update()
 {
 	Enemy::Update();
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
-	m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
-	m_pNameFont->SetCenterOffset(-20);
+	//m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
+	//m_pNameFont->SetCenterOffset(-20);
 	m_state.Update();
 }
 

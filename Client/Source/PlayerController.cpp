@@ -44,6 +44,8 @@ void PlayerController::Update()
 {
 	if (ENGINE->GetGameMode() == EGameMode::EDIT_MODE)
 		return;
+	if (GetGameObject()->GetActive() == false)
+		return;
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	if (pScene->GetGameManager()->IsPlayerMovable() == false)

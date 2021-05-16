@@ -12,7 +12,7 @@
 PlayerSkillShield::PlayerSkillShield(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillShield")
 {
-	SetParams(0.2f, 1, 0, 10, 0, false, D3DXVECTOR3(0, 10, 20));
+	SetParams(0.2f, 1, 3, 10, 0, false, D3DXVECTOR3(0, 10, 20));
 }
 
 PlayerSkillShield::~PlayerSkillShield()

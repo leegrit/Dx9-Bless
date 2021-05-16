@@ -109,7 +109,7 @@ PixelInputType SkinnedMeshVS(SkinnedVtxIn input)
 
 PixelInputType MeshVS(VertexInputType input)
 {
-	PixelInputType output;
+	PixelInputType output = (PixelInputType)0;
 
 	output.position = mul(input.position, WorldMatrix);
 	output.position = mul(output.position, ViewMatrix);
@@ -151,7 +151,10 @@ technique SkinnedMesh
 {
 	pass P0
 	{
-		AlphaBlendEnable = false;
+		AlphaBlendEnable = true;
+		BlendOp = ADD;
+		SrcBlend = ONE;
+		DestBlend = ONE;
 		VertexShader = compile vs_3_0 SkinnedMeshVS();
 		PixelShader = compile ps_3_0 PostRenderPS();
 	}
@@ -161,7 +164,10 @@ technique Mesh
 {
 	pass P0
 	{
-		AlphaBlendEnable = false;
+		AlphaBlendEnable = true;
+		BlendOp = ADD;
+		SrcBlend = ONE;
+		DestBlend = ONE;
 		VertexShader = compile vs_3_0 MeshVS();
 		PixelShader = compile ps_3_0 PostRenderPS();
 	}

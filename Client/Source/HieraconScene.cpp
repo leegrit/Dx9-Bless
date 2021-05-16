@@ -80,7 +80,7 @@ void HieraconScene::Load()
 	// RENDER OPTION
 	//////////////////////////////////////////////////////////////////////////
 	ENGINE->SetRenderOption(RenderOptions::RenderCollider, false);
-	ENGINE->SetRenderOption(RenderOptions::RenderLight, false);
+	ENGINE->SetRenderOption(RenderOptions::RenderLight, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderNavMesh, false);
 	ENGINE->SetRenderOption(RenderOptions::RenderShadow, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderUI, false);
@@ -141,7 +141,7 @@ void HieraconScene::Load()
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight6.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight7.json");
 
-	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight0.json");
+	/*LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight0.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight1.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight2.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight3.json");
@@ -149,14 +149,15 @@ void HieraconScene::Load()
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight5.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight6.json");
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Hieracon_PointLight7.json");
-
+*/
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
 	//////////////////////////////////////////////////////////////////////////
 	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger22" /*L"Bip01-R-Finger21"*/, L"Sword");
 	m_pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
-
+	m_pPlayer->SetWeapon(m_pEquip);
 	auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
+	m_pPlayer->SetShield(equip);
 	//auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Finger31", L"SLD");
 	//equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 

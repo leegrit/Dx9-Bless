@@ -54,13 +54,16 @@ namespace HyEngine
 		const list<D3DXMESHCONTAINER_DERIVED*>& GetMeshContainerList();
 		void SetAnimationSet(const unsigned int& index);
 		void PlayAnimationSet(const float& timeDelta);
+		UINT GetCurAnimationIndex();
+		// 강제로 애니메이션 재생
+		void ForcedUpdateAnimation();
 
 		//////////////////////////////////////////////////////////////////////////
 		// CALLBACK
 		//////////////////////////////////////////////////////////////////////////
 	public:
-		void OnRenderBegin(void*);
-		void OnRenderEnd(void*);
+		virtual void OnRenderBegin(void*);
+		virtual void OnRenderEnd(void*);
 
 		//////////////////////////////////////////////////////////////////////////
 		// FOR EDITOR

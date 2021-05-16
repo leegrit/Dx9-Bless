@@ -53,9 +53,9 @@
   "LightData": {
     "LightType": 0,
     "Direction": {
-      "X": 0.1,
-      "Y": -0.8,
-      "Z": 0.1
+      "X": 0.2,
+      "Y": -0.6,
+      "Z": 0.2
     },
     "Position": {
       "X": 0.0,
@@ -63,10 +63,10 @@
       "Z": 0.0
     },
     "Ambient": {
-      "R": 0.0,
-      "G": 0.0,
-      "B": 0.0,
-      "A": 0.0
+      "R": 0.4,
+      "G": 0.4,
+      "B": 0.4,
+      "A": 0.4
     },
     "AmbientIntensity": 0.0,
     "Diffuse": {
@@ -83,7 +83,7 @@
       "A": 0.0
     },
     "SpecularIntensity": 0.0,
-    "SpecularPower": 3.0,
+    "SpecularPower": 10.0,
     "Range": 0.0,
     "Cone": 0.0,
     "Constant": 0.0,

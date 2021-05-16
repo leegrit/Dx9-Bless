@@ -90,6 +90,7 @@ private :
 
 private : /* Static UI */
 	std::vector<UIElement*> m_staticUIList;
+	std::vector<GameObject*> m_skillList;
 
 private : /* Interacive UI */
 	UIElement* m_pTalkPanel = nullptr;

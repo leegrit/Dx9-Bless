@@ -27,7 +27,7 @@ namespace HyEngine
 	public :
 		void SetAnimationSet(const UINT& index);
 		void PlayAnimationSet(const float& deltaTime);
-
+		const UINT GetCurAnimationIndex();
 
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES

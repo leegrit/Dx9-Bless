@@ -169,7 +169,7 @@ void PointLightPS(
 		discard;*/
 	float distFactor = 1;
 	if (d > Range)
-		distFactor = 0;
+		discard;
 
 	// Turn lightToPixelVec into a unit length vector describing
 	// the pixels direction from the lights position
@@ -206,12 +206,12 @@ void PointLightPS(
 		float specularIntensity = saturate(dot(reflection, viewDirection));
 
 		specular = pow(specularIntensity, SpecularPower);
-		if(specularMap.a > 0)
-			specular = specular;
+		if (specularMap.a > 0)
+			specular = (specular  /** specularMap.rgb*/);
 		else
-			specular = specular * specularMap.rgb;
+			specular = float4(0, 0, 0, 0);//specular * shadowFactor * specularMap.rgb;
 	}
-	finalColor = saturate(finalColor) * distFactor;
+	finalColor = saturate(finalColor);// *distFactor;
 	outLightIntensity = float4(finalColor.rgb, 1);
 	outAmbientIntensity = float4(0, 0, 0, 1);
 	outSpecularIntensity = float4(specular.rgb, 1);

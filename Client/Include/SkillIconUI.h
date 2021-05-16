@@ -13,7 +13,8 @@ class SkillIconUI : public GameObject
 	// CONSTRUCTOR & DESTURCTOR
 	//////////////////////////////////////////////////////////////////////////
 protected :
-	explicit SkillIconUI(Scene* pScene, std::wstring IconFilePath, std::wstring grayIconFilePath, std::wstring name);
+	explicit SkillIconUI(Scene* pScene, std::wstring IconFilePath, std::wstring grayIconFilePath,
+		D3DXVECTOR3 position ,int skillIndex, std::wstring name);
 	virtual ~SkillIconUI();
 
 	//////////////////////////////////////////////////////////////////////////
@@ -23,25 +24,37 @@ public :
 	virtual void Initialize();
 	virtual void Update() override;
 	virtual void Render() override;
+	virtual void OnEnable() override;
+	virtual void OnDisable() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
-	void Unlock();
+
 
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
 private : /* For Render */
+	UIPanel* m_pFullEffectUI = nullptr; // ÄðÅ¸ÀÓ ´Ù Ã¡À»¶§ ºû³ª´Â ¾ÆÀÌÄÜ
+	class SkillProgressUI* m_pFillIcon = nullptr;
 	UIPanel* m_pFillBack = nullptr; // gray
-	ProgressBar* m_pFill = nullptr; // icon
-	UIPanel* m_pLock = nullptr; // ÀÚ¹°¼è
-	UIPanel* m_pUnLock = nullptr;
 
+	
+private : 
+	class PlayerAction* m_pSkill;
+	float m_amount = 0;
+	int m_skillIndex = 0;
+	
 
-
+	//////////////////////////////////////////////////////////////////////////
+	// FACTORY METHOD
+	//////////////////////////////////////////////////////////////////////////
+public :
+	static SkillIconUI * Create(Scene* pScene, std::wstring IconFilePath, std::wstring grayIconFilePath,
+		D3DXVECTOR3 position, int skillIndex, std::wstring name);
 
 };
 

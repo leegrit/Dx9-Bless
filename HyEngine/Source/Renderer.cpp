@@ -734,7 +734,7 @@ void HyEngine::Renderer::DebugPipeline()
 
 	m_debugQuads.push_back(m_pLightIntensityQuad);
 	m_debugQuads.push_back(m_pAmbientIntensityQuad);
-	m_debugQuads.push_back(m_pSpecularRTQuad);
+	m_debugQuads.push_back(m_pSpecularIntensityQuad);
 
 	m_debugQuads.push_back(m_pVtxNormalQuad);
 	m_debugQuads.push_back(m_pEffectMaskQuad);
@@ -756,7 +756,7 @@ void HyEngine::Renderer::DebugPipeline()
 
 	m_debugTextures.push_back(m_pLightIntensityRTTexture);
 	m_debugTextures.push_back(m_pAmbientIntensityRTTexture);
-	m_debugTextures.push_back(m_pSpecularRTTexture);
+	m_debugTextures.push_back(m_pSpecularIntensityRTTexture);
 
 	m_debugTextures.push_back(m_pVtxNormalRTTexture);
 	m_debugTextures.push_back(m_pEffectMaskRTTexture);

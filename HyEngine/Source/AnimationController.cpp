@@ -142,3 +142,8 @@ void HyEngine::AnimationController::PlayAnimationSet(const float & deltaTime)
 	assert(SUCCEEDED(hr));
 	m_accTime += deltaTime;
 }
+
+const UINT HyEngine::AnimationController::GetCurAnimationIndex()
+{
+	return m_oldAniIndex;
+}
