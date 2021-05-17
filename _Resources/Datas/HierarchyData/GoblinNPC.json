@@ -1,24 +1,24 @@
 {
   "Type": 1,
-  "Index": 102,
+  "Index": 135,
   "TagIndex": 0,
   "LayerIndex": 0,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 102,
+    "Index": 135,
     "Name": "GoblinNPC",
     "Tag": "Default",
     "Layer": 0,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": -125.222427,
-        "Y": -1.52587891E-05,
-        "Z": 730.5264
+        "X": 35.3884621,
+        "Y": 0.0,
+        "Z": 832.459
       },
       "Rotation": {
         "X": 0.0,
-        "Y": -50.0,
+        "Y": -14.48,
         "Z": 0.0
       },
       "Scale": {
@@ -29,12 +29,12 @@
     }
   },
   "MeshData": {
-    "Index": 102,
+    "Index": 135,
     "MeshFilePath": "Assets\\Mesh\\Unit\\Goblin02\\Goblin02.X",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 102,
+    "Index": 135,
     "Group": 0
   },
   "NavMeshData": {

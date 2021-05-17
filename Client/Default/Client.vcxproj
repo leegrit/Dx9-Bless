@@ -157,6 +157,13 @@
     <ClCompile Include="..\Source\FontTexture.cpp" />
     <ClCompile Include="..\Source\GeneralStoreUI.cpp" />
     <ClCompile Include="..\Source\Helper.cpp" />
+    <ClCompile Include="..\Source\HGoblin.cpp" />
+    <ClCompile Include="..\Source\HGoblinAttack.cpp" />
+    <ClCompile Include="..\Source\HGoblinDie.cpp" />
+    <ClCompile Include="..\Source\HGoblinDied.cpp" />
+    <ClCompile Include="..\Source\HGoblinHit.cpp" />
+    <ClCompile Include="..\Source\HGoblinIdle.cpp" />
+    <ClCompile Include="..\Source\HGoblinMove.cpp" />
     <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
@@ -295,6 +302,13 @@
     <ClInclude Include="..\Include\FontTexture.h" />
     <ClInclude Include="..\Include\GeneralStoreUI.h" />
     <ClInclude Include="..\Include\Helper.h" />
+    <ClInclude Include="..\Include\HGoblin.h" />
+    <ClInclude Include="..\Include\HGoblinAttack.h" />
+    <ClInclude Include="..\Include\HGoblinDie.h" />
+    <ClInclude Include="..\Include\HGoblinDied.h" />
+    <ClInclude Include="..\Include\HGoblinHit.h" />
+    <ClInclude Include="..\Include\HGoblinIdle.h" />
+    <ClInclude Include="..\Include\HGoblinMove.h" />
     <ClInclude Include="..\Include\LiurensShopItemsData.h" />
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />

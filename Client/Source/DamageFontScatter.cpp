@@ -23,6 +23,60 @@ void DamageFontScatter::Update()
 	{
 
 		m_damageFonts[i].m_elapsed += TIMER->getDeltaTime();// *m_speed;
+		if (m_damageFonts[i].isCritical)
+		{
+			// critical animation
+
+			if (m_damageFonts[i].dir == D3DXVECTOR3(0, 0, 0))
+			{
+				D3DXVECTOR3 min = D3DXVECTOR3(-1, -1, -1);
+				D3DXVECTOR3 max = D3DXVECTOR3(1, 1, 1);
+				DxHelper::GetRandomVector(&m_damageFonts[i].dir, &min, &max);
+
+			}
+			if (m_damageFonts[i].m_elapsed <= (m_delay * 0.1f))
+			{
+				float size = MathUtils::lerp(4.0f, 0.5f, (m_damageFonts[i].m_elapsed - (m_delay * 0.1f)) / ((m_delay * 0.2f) - (m_delay * 0.1f)));
+
+				m_damageFonts[i].size = size;
+			}
+			else if (m_damageFonts[i].m_elapsed > (m_delay * 0.1f) &&
+				m_damageFonts[i].m_elapsed <= (m_delay * 0.3f))
+			{
+				float size = MathUtils::lerp(0.5f, 2.0f, (m_damageFonts[i].m_elapsed - (m_delay * 0.1f)) / ((m_delay * 0.3f) - (m_delay * 0.1f)));
+				m_damageFonts[i].size = size;
+			}
+			else if (m_damageFonts[i].m_elapsed > (m_delay * 0.3f))
+			{
+				m_damageFonts[i].position += m_damageFonts[i].dir * m_damageFonts[i].speed * TIMER->getDeltaTime();
+			}
+		}
+		else if (m_damageFonts[i].isCritical == false)
+		{
+			if (m_damageFonts[i].dir == D3DXVECTOR3(0, 0, 0))
+			{
+				D3DXVECTOR3 min = D3DXVECTOR3(-1, -1, -1);
+				D3DXVECTOR3 max = D3DXVECTOR3(1, 1, 1);
+				DxHelper::GetRandomVector(&m_damageFonts[i].dir, &min, &max);
+
+			}
+			if (m_damageFonts[i].m_elapsed <= (m_delay * 0.1f))
+			{
+				float size = MathUtils::lerp(2.0f, 1.0f, (m_damageFonts[i].m_elapsed - (m_delay * 0.1f)) / ((m_delay * 0.2f) - (m_delay * 0.1f)));
+
+				m_damageFonts[i].size = size;
+			}
+			else if (m_damageFonts[i].m_elapsed > (m_delay * 0.1f) &&
+				m_damageFonts[i].m_elapsed <= (m_delay * 0.3f))
+			{
+				float size = MathUtils::lerp(1.0f, 1.5f, (m_damageFonts[i].m_elapsed - (m_delay * 0.1f)) / ((m_delay * 0.3f) - (m_delay * 0.1f)));
+				m_damageFonts[i].size = size;
+			}
+			else if (m_damageFonts[i].m_elapsed > (m_delay * 0.3f))
+			{
+				m_damageFonts[i].position += m_damageFonts[i].dir * m_damageFonts[i].speed * TIMER->getDeltaTime();
+			}
+		}
 		if (m_damageFonts[i].m_elapsed >= m_delay)
 		{
 			m_damageFonts.erase(m_damageFonts.begin() + i);
@@ -35,7 +89,7 @@ void DamageFontScatter::Update()
 			if (m_damageFonts[i].isPlayer)
 			{
 
-				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 0, 0,alpha));
+				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 0, 0,alpha));
 			}
 			else
 			{
@@ -50,13 +104,13 @@ void DamageFontScatter::Update()
 					fontDesc.format = DT_CENTER | DT_VCENTER;
 					fontDesc.textColor = D3DXCOLOR(1, 0, 0, alpha);
 					//ENGINE->DrawTextInWorld(fontDesc);
-					fontDesc.scale = D3DXVECTOR3(2, 2, 2);
+					fontDesc.scale = D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size);
 					fontDesc.textColor = D3DXCOLOR(1, 0.3f, 0, alpha);
 					ENGINE->DrawTextInWorld(fontDesc);
 				}
 				else
 				{
-					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, alpha));
+					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 1, 1, alpha));
 				}
 				
 			}
@@ -68,7 +122,7 @@ void DamageFontScatter::Update()
 			if (m_damageFonts[i].isPlayer)
 			{
 
-				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 0, 0, alpha));
+				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 0, 0, alpha));
 			}
 			else
 			{
@@ -84,14 +138,14 @@ void DamageFontScatter::Update()
 					fontDesc.format = DT_CENTER | DT_VCENTER;
 					fontDesc.textColor = D3DXCOLOR(1, 0, 0, alpha);
 					//ENGINE->DrawTextInWorld(fontDesc);
-					fontDesc.scale = D3DXVECTOR3(2, 2, 2);
+					fontDesc.scale = D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size);
 					fontDesc.textColor = D3DXCOLOR(1, 0.3f, 0, alpha);
 					ENGINE->DrawTextInWorld(fontDesc);
 
 				}
 				else
 				{
-					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, alpha));
+					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 1, 1, alpha));
 				}
 			}
 		}
@@ -100,7 +154,7 @@ void DamageFontScatter::Update()
 			if (m_damageFonts[i].isPlayer)
 			{
 
-				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 0, 0, 1));
+				ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 0, 0, 1));
 			}
 			else
 			{
@@ -115,14 +169,14 @@ void DamageFontScatter::Update()
 					fontDesc.format = DT_CENTER | DT_VCENTER;
 					fontDesc.textColor = D3DXCOLOR(1, 0, 0, 1);
 					//ENGINE->DrawTextInWorld(fontDesc);
-					fontDesc.scale = D3DXVECTOR3(2, 2, 2);
+					fontDesc.scale = D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size);
 					fontDesc.textColor = D3DXCOLOR(1, 0.3f, 0, 1);
 					ENGINE->DrawTextInWorld(fontDesc);
 
 				}
 				else
 				{
-					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(2, 2, 2), D3DXCOLOR(1, 1, 1, 1));
+					ENGINE->DrawTextInWorld(m_damageFonts[i].font.c_str(), m_damageFonts[i].position, D3DXVECTOR3(m_damageFonts[i].size, m_damageFonts[i].size, m_damageFonts[i].size), D3DXCOLOR(1, 1, 1, 1));
 				}
 			}
 		}

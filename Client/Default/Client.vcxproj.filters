@@ -407,6 +407,27 @@
     <ClCompile Include="..\Source\PlayerBuffInfo.cpp">
       <Filter>ScriptableData</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\HGoblin.cpp">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinDie.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinDied.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinHit.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinIdle.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinMove.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinAttack.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -519,6 +540,9 @@
     </Filter>
     <Filter Include="FSM\Goblin">
       <UniqueIdentifier>{852c1e90-2fab-44b2-bf10-bf301a37c2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\HGoblin">
+      <UniqueIdentifier>{eac12f1b-b66c-4b2f-b4ca-a384b9050a3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -935,6 +959,27 @@
     </ClInclude>
     <ClInclude Include="..\Include\PlayerBuffInfo.h">
       <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblin.h">
+      <Filter>GameObject\Enemy\Named</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinMove.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinAttack.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinDie.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinDied.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinHit.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinIdle.h">
+      <Filter>FSM\HGoblin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

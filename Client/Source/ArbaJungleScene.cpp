@@ -27,6 +27,7 @@
 #include "Guido.h"
 #include "TalkableGoblin.h"
 #include "CollectObject.h"
+#include "HGoblin.h"
 
 void ArbaJungleScene::Update()
 {
@@ -131,6 +132,13 @@ void ArbaJungleScene::Load()
 	auto enemy25 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_4.json");
 	auto enemy26 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_5.json");
 	auto enemy27 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_6.json");
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	// NAMED
+	//////////////////////////////////////////////////////////////////////////
+	auto named = HGoblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/HGoblin.json");
+
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////

@@ -15,16 +15,21 @@ NamedEnemy::~NamedEnemy()
 
 void NamedEnemy::Initialize(std::wstring dataPath)
 {
-	Character::Initialize(dataPath);
+	Enemy::Initialize(dataPath);
 
 
 }
 
 void NamedEnemy::Update()
 {
-	Character::Update();
+	Enemy::Update();
 
+	//SetRenderEffectOption(RenderEffectOption::None);
+}
 
+void NamedEnemy::Render()
+{
+	Enemy::Render();
 }
 
 UINT NamedEnemy::GetTargetLayer()
@@ -44,4 +49,13 @@ int NamedEnemy::GetAttackCount()
 Collider * NamedEnemy::GetAttackCollider(int attackIndex)
 {
 	return nullptr;
+}
+
+void NamedEnemy::OnDamaged(GameObject * pSender, float damage, bool isCritical)
+{
+	Enemy::OnDamaged(pSender, damage, isCritical);
+
+	SetRenderEffectOption(RenderEffectOption::RimLight);
+	SetRimWidth(1.0f);
+	SetRimColor(D3DXCOLOR(1, 0, 0, 1));
 }

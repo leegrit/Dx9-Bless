@@ -1,44 +1,44 @@
 {
   "Type": 1,
-  "Index": 74,
-  "TagIndex": 0,
+  "Index": 134,
+  "TagIndex": 3,
   "LayerIndex": 3,
   "StaticIndex": 0,
   "GameObjectData": {
-    "Index": 74,
+    "Index": 134,
     "Name": "HGoblin",
-    "Tag": "Default",
+    "Tag": "Enemy",
     "Layer": 3,
     "StaticType": 0,
     "Transform": {
       "Position": {
-        "X": 367.16,
-        "Y": -1.52587891E-05,
-        "Z": 858.24
+        "X": 336.893738,
+        "Y": 0.0,
+        "Z": 895.824951
       },
       "Rotation": {
         "X": 0.0,
-        "Y": -212.8,
+        "Y": -137.2,
         "Z": 0.0
       },
       "Scale": {
-        "X": 0.3,
-        "Y": 0.3,
-        "Z": 0.3
+        "X": 0.4,
+        "Y": 0.4,
+        "Z": 0.4
       }
     }
   },
   "MeshData": {
-    "Index": 74,
-    "MeshFilePath": "Assets\\Mesh\\Unit\\HGoblin\\HGoblin.X",
+    "Index": 134,
+    "MeshFilePath": "Assets\\Mesh\\Unit\\HGoblin01\\HGoblin01.X",
     "DiffuseTexturePath": ""
   },
   "MapData": {
-    "Index": 74,
+    "Index": 134,
     "Group": 0
   },
   "NavMeshData": {
-    "Index": 74,
+    "Index": 134,
     "CellCount": 0
   },
   "TerrainData": {

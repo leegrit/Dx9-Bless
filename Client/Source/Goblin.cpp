@@ -33,7 +33,7 @@ void Goblin::Initialize(std::wstring dataPath)
 		std::bind(&Goblin::OnHitOthers, this, placeholders::_1));
 	m_pAttackCollider->SetOffset(m_colliderOffset);
 
-	SetParams(10, 100, 100);
+	SetParams(10, 3000, 100);
 
 	m_state.Add<GoblinAttack>(this, "Attack");
 	m_state.Add<GoblinDie>(this, "Die");

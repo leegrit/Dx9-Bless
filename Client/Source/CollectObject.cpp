@@ -279,12 +279,13 @@ void CollectObject::Collecting()
 			{
 				m_bCollecting = true;
 				OnCollectBegin();
+
 				ECollectMotionType motionType = ECollectMotionType::Low;
 				EventDispatcher::TriggerEvent(PlayerEvent::BeginCollect, (void*)&motionType);
 			}
 			
 			m_elapsed += TIMER->getDeltaTime();
-
+			
 			gameScene->GetUIManager()->ShowCollectProgressBar(m_elapsed / m_collectDelay);
 
 			if (m_elapsed >= m_collectDelay)
@@ -334,10 +335,14 @@ void CollectObject::OnCollected()
 
 void CollectObject::OnCollectBegin()
 {
+	SetRenderEffectOption(RenderEffectOption::RimLight);
+	SetRimWidth(0.7f);
+	SetRimColor(D3DXCOLOR(0, 1, 0, 1));
 }
 
 void CollectObject::OnCollectEnd()
 {
+	SetRenderEffectOption(RenderEffectOption::None);
 }
 
 CollectObject * CollectObject::Create(Scene * pScene, std::wstring name, std::wstring dataPath)

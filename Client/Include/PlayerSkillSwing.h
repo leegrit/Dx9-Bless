@@ -44,7 +44,7 @@ private:
 private:
 	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[3] = { 22,26,27 };//,23, 24};
+	int m_animIndexes[3] = { 22,26,  24 };//,23, 24};
 	// 데미지 배율
 	float m_damageScale[3] = { 1.5f, 1.5f, 3.0f };
 	class PlayerStatusData * m_pPlayerStatusData = nullptr;
@@ -52,11 +52,16 @@ private:
 	/* For Attack Logic */
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
+	bool m_bFinalSendDamage[4] = { false, false, false, false};
 
 private : /* For Effect */
 	
 	bool m_bPlayAfterImage = false;
+	bool m_bFinalAfterImage[4] = { false, false, false, false };
 	int m_afterImageIndex = 0;
+	/* For Final Attack */
+	float m_afterImageDuration = 0.0f;
+	float m_afterImageDelay = 0.1f;
 
 private : /* FirstAction Effect */
 	Effect * m_pFirstActionTrail = nullptr;

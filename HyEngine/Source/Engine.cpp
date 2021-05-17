@@ -130,7 +130,7 @@ void Engine::SimulateFrame()
 	m_fontInfos.clear();
 
 	//m_pCamera->Update();
-
+	SoundManager::Get()->Update();
 	m_pKeyboard->Update();
 	m_pMouse->Update();
 	/*__try

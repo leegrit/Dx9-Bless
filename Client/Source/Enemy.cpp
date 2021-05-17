@@ -8,7 +8,7 @@
 #include "Effect.h"
 #include "EffectManager.h"
 #include "Sprite.h"
-
+#include "SoundManager.h"
 
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
 	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
@@ -167,6 +167,12 @@ void Enemy::OnDamaged(GameObject* pSender, float damage, bool isCritical)
 	GameScene* scene = static_cast<GameScene*>(SCENE);
 	scene->GetUIManager()->PushDamageFont(damage, false, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 
+	/* юс╫ц */
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("EnemyHit", L"Attacked_1.mp3", desc);
 }
 
 void Enemy::OnDied()

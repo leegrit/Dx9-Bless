@@ -27,7 +27,7 @@ void PlayerSkillShield::Initialize()
 
 
 	m_pCenterSLD = ShieldEffect::Create(GetGameObject()->GetScene());
-	m_pCenterSLD->SetLifeTime(1);
+	m_pCenterSLD->SetLifeTime(2);
 	m_pCenterSLD->SetEffectMesh(PATH->AssetsPathW() + L"Effect/EffectMesh/FX_SLD_001_SM_CJH.X");
 	m_pCenterSLD->SetNormalMapTexture(PATH->AssetsPathW() + L"Effect/SingleTexture/FX_SLD_Normal_001_TEX_CJH.X");
 	m_pCenterSLD->SetActive(false);
@@ -35,7 +35,7 @@ void PlayerSkillShield::Initialize()
 	pScene->GetEffectManager()->AddEffect(L"PlayerSkillShield_CenterSLDEffect", m_pCenterSLD);
 
 	m_pRightSLD = ShieldEffect::Create(GetGameObject()->GetScene());
-	m_pRightSLD->SetLifeTime(1);
+	m_pRightSLD->SetLifeTime(2);
 	m_pRightSLD->SetEffectMesh(PATH->AssetsPathW() + L"Effect/EffectMesh/FX_SLD_001_SM_CJH.X");
 	m_pRightSLD->SetNormalMapTexture(PATH->AssetsPathW() + L"Effect/SingleTexture/FX_SLD_Normal_001_TEX_CJH.X");
 	m_pRightSLD->SetActive(false);
@@ -43,7 +43,7 @@ void PlayerSkillShield::Initialize()
 	pScene->GetEffectManager()->AddEffect(L"PlayerSkillShield_RightSLDEffect", m_pRightSLD);
 
 	m_pLeftSLD = ShieldEffect::Create(GetGameObject()->GetScene());
-	m_pLeftSLD->SetLifeTime(1);
+	m_pLeftSLD->SetLifeTime(2);
 	m_pLeftSLD->SetEffectMesh(PATH->AssetsPathW() + L"Effect/EffectMesh/FX_SLD_001_SM_CJH.X");
 	m_pLeftSLD->SetNormalMapTexture(PATH->AssetsPathW() + L"Effect/SingleTexture/FX_SLD_Normal_001_TEX_CJH.X");
 	m_pLeftSLD->SetActive(false);
