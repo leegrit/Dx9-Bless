@@ -38,6 +38,16 @@ bool QuickSlotData::ExitItem(int slotIndex)
 	return true;
 }
 
+bool QuickSlotData::ExistItem(ItemInfo itemInfo)
+{
+	for (int i = 0; i < m_items.size(); i++)
+	{
+		if (m_items[i].itemName.compare(itemInfo.itemName) == 0)
+			return true;
+	}
+	return false;
+}
+
 bool QuickSlotData::TryGetItem(int slotIndex, ItemInfo * pItemInfo)
 {
 	if (ExitItem(slotIndex))
@@ -62,4 +72,16 @@ bool QuickSlotData::IsFull()
 int QuickSlotData::GetCount()
 {
 	return m_items.size();
+}
+
+
+
+void QuickSlotData::IncreaseCoolTime(int slotIndex)
+{
+	m_items[slotIndex].curCoolTime += TIMER->getDeltaTime();
+}
+
+void QuickSlotData::ResetCoolTime(int slotIndex)
+{
+	m_items[slotIndex].curCoolTime = 0;
 }

@@ -1,5 +1,17 @@
 #pragma once
 #include "Client_Enumerators.h"
+
+enum class EItemBuffType
+{
+	HPHeal,
+	MPHeal,
+	PowerUp,
+	SpeedUp,
+	DefenceUp,
+	CoolTimeReset,
+};
+
+
 class ItemInfo
 {
 public :
@@ -9,6 +21,7 @@ public :
 	std::wstring imagePath;
 	std::wstring itemName;
 	EItemType itemType;
+	EItemBuffType buffType;
 	std::wstring typeText;
 	std::wstring effectText;
 	// 레벨제한
@@ -23,6 +36,9 @@ public :
 	int itemDuration;
 	// 소모품 효과에 대한 설명
 	std::wstring itemDescription; 
+
+	float coolTime;
+	float curCoolTime;
 
 	bool availableForSale;
 	bool availableForDestruction;

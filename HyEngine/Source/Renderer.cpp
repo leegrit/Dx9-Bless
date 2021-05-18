@@ -546,18 +546,17 @@ void HyEngine::Renderer::Render(Scene * scene)
 {
 	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
 
-	///* For shadowMap */
+	//* For shadowMap */
 	PreparePipeline(scene);
 
-	///* For opaque objects with light */
+	//* For opaque objects with light */
 	DeferredPipeline(scene);
 
 
-	///* For alpha object without light */
+	//* For alpha object without light */
 	ForwardPipeline(scene);
 
-	//
-	///* For PostRendering */
+	//* For PostRendering */
 	PostRenderPipeline(scene);
 
 	if(m_isDebugRender)
@@ -1499,6 +1498,7 @@ void HyEngine::Renderer::ShadowPass(Scene * scene, int cascadeIndex)
 		pShader->SetValue("LightViewMatrix", &m_lightViewMat[cascadeIndex], sizeof(m_lightViewMat[cascadeIndex]));
 		pShader->SetValue("LightProjMatrix", &m_lightProjMat[cascadeIndex], sizeof(m_lightProjMat[cascadeIndex]));
 		pShader->SetBool("IsSkinnedMesh", false);
+		pShader->SetBool("IsMasked", false);
 		pShader->SetTechnique("ShadowMap");
 		pShader->Begin(0, 0);
 		{

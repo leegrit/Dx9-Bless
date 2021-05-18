@@ -297,7 +297,7 @@ void PlayerController::RideAction()
 		m_pPegasus->m_pTransform->m_scale = GetTransform()->m_scale;
 	}
 
-	if (KEYBOARD->Up(VK_F1))
+	if (KEYBOARD->Up('R'))
 	{
 		if (GetState() == EPlayerState::MountOnHorse)
 		{

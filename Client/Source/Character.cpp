@@ -108,6 +108,34 @@ float Character::GetCurMP() const
 	return m_curMP;
 }
 
+void Character::IncreaseHP(float hp)
+{
+	float temp = m_curHP + hp;
+	if (temp >= m_maxHP)
+	{
+		m_curHP = m_maxHP;
+	}
+	else
+	{
+		m_curHP += temp;
+	}
+	OnHPChanged();
+}
+
+void Character::IncreaseMP(float mp)
+{
+	float temp = m_curMP + mp;
+	if (temp >= m_maxMP)
+	{
+		m_curMP = m_maxMP;
+	}
+	else
+	{
+		m_curMP += temp;
+	}
+	OnMPChanged();
+}
+
 void Character::SetParams(float moveSpd, float maxHP, float maxMP)
 {
 	m_moveSpeed = moveSpd;

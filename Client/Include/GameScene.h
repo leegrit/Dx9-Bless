@@ -18,6 +18,8 @@ class BattleManager;
 class InteractManager;
 class EffectManager;
 class CinematicManager;
+class ItemManager;
+class BuffManager;
 class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -75,6 +77,8 @@ public:
 	InteractManager* GetInteractManager();
 	EffectManager* GetEffectManager();
 	CinematicManager * GetCinematicManager();
+	ItemManager* GetItemManager();
+	BuffManager* GetBuffManager();
 
 	/* TEMP */
 public :
@@ -118,5 +122,7 @@ private : /* For Manager */
 	InteractManager* m_pInteractManager = nullptr;
 	EffectManager* m_pEffectManager = nullptr;
 	CinematicManager * m_pCinematicManager = nullptr;
+	ItemManager * m_pItemManager = nullptr;
+	BuffManager * m_pBuffManager = nullptr;
 };
 

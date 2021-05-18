@@ -24,6 +24,9 @@
 #include "CinematicManager.h"
 #include "PlayerSkillInfo.h"
 #include "QuickSlotData.h"
+#include "ItemManager.h"
+#include "Renderer.h"
+#include "BuffManager.h"
 
 void GameScene::Update()
 {
@@ -35,6 +38,17 @@ void GameScene::Update()
 	m_pInteractManager->Update();
 	m_pEffectManager->Update();
 	m_pCinematicManager->Update();
+	m_pItemManager->Update();
+	m_pBuffManager->Update();
+
+	if (KEYBOARD->Press(VK_F10))
+	{
+		RENDERER->ShowDebugMRT();
+	}
+	else
+	{
+		RENDERER->HideDebugMRT();
+	}
 }
 
 void GameScene::Load()
@@ -48,6 +62,8 @@ void GameScene::Load()
 	m_pInteractManager = new InteractManager(this);
 	m_pEffectManager = new EffectManager(this);
 	m_pCinematicManager = new CinematicManager(this);
+	m_pItemManager = new ItemManager(this);
+	m_pBuffManager = new BuffManager(this);
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
 	if (pExpTable == nullptr)
@@ -133,6 +149,8 @@ void GameScene::LateLoadScene()
 	m_pInteractManager->Initialize();
 	m_pEffectManager->Initialize();
 	m_pCinematicManager->Initialize();
+	m_pItemManager->Initialize();
+	m_pBuffManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -179,6 +197,8 @@ void GameScene::Unload()
 	SAFE_DELETE(m_pBattleManager);
 	SAFE_DELETE(m_pEffectManager);
 	SAFE_DELETE(m_pCinematicManager);
+	SAFE_DELETE(m_pItemManager);
+	SAFE_DELETE(m_pBuffManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -320,6 +340,11 @@ EffectManager * GameScene::GetEffectManager()
 CinematicManager * GameScene::GetCinematicManager()
 {
 	return m_pCinematicManager;
+}
+
+ItemManager * GameScene::GetItemManager()
+{
+	return nullptr;
 }
 
 float GameScene::GetFloatA()

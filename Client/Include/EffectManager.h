@@ -62,6 +62,17 @@ private:
 	bool isPlay = false;
 };
 
+struct CustomEffectDesc
+{
+	friend class EffectManager;
+public:
+	std::wstring key = L"";
+	float lifeTime = 0;
+	std::function<void(CustomEffectDesc* pDesc)> onBegin;
+	std::function<void(CustomEffectDesc* pDesc)> onUpdate;
+	std::function<void(CustomEffectDesc* pDesc)> onEnd;
+	float elapsed = 0;
+};
 
 struct MeshEffectDesc
 {
@@ -145,6 +156,12 @@ public :
 public :
 	void PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc);
 
+	//////////////////////////////////////////////////////////////////////////
+	// FOR CUSTOM EFFECT
+	//////////////////////////////////////////////////////////////////////////
+public:
+	void AddCustomEffect(CustomEffectDesc* pDesc);
+	bool RemoveCustomEffect(std::wstring key);
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
@@ -161,6 +178,9 @@ private : /* WeaponAfterImage */
 	// max = 10°³
 	std::vector<WeaponAfterImage*> m_weaponAfterImages;
 	std::vector<WeaponAfterEffectDesc> m_weaponAfterEffectDescs;
+
+private : /* Custom Effect */
+	std::vector<CustomEffectDesc*> m_customEffectDescs;
 
 private :
 	std::unordered_map<std::wstring, Effect*> m_effects;

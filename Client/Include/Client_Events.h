@@ -70,6 +70,9 @@ namespace GameEvent
 	static std::string SetQuickSlot = "GameEvent.SetQuickSlot";
 	static std::string RemoveQuickSlot = "GameEvent.RemoveQuickSlot";
 
+	/* Buff */
+	static std::string BeginLastingBuff = "GameEvent.BeginLastingBuff";
+	static std::string EndLastingBuff = "GameEvent.EndLastingBuff";
 
 	/* Cinematic */
 	static std::string BeginCinematic = "GameEvent.BeginCinematic";

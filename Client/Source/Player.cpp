@@ -113,7 +113,7 @@ void Player::OnHPChanged()
 
 void Player::OnMPChanged()
 {
-	if (m_pHPBarUI == nullptr)
+	if (m_pMPBarUI == nullptr)
 	{
 		GameScene * scene = static_cast<GameScene*>(SCENE);
 		m_pMPBarUI = static_cast<ProgressBar*>( scene->GetUIManager()->GetStaticUI(L"PlayerMP_Fill"));

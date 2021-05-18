@@ -98,6 +98,7 @@ private : /* Static UI */
 	std::vector<GameObject*> m_itemList;
 
 	class ItemQuickSlotUI* m_pQuickSlotUI;
+	class BuffSlotUI * m_pBuffSlotUI;
 private : /* Interacive UI */
 	UIElement* m_pTalkPanel = nullptr;
 	UIElement* m_pPickUpPanel = nullptr;

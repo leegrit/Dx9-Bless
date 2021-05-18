@@ -27,6 +27,8 @@
 #include "SummonProgressBar.h"
 #include "SkillIconUI.h"
 #include "ItemQuickSlotUI.h"
+#include "BuffSlotUI.h"
+
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -91,6 +93,8 @@ void UIManager::OnQuestDialogOpen(void *)
 	{
 		skillIcon->SetActive(false);
 	}
+	m_pQuickSlotUI->Hide();
+	m_pBuffSlotUI->Hide();
 }
 
 void UIManager::OnQuestDialogEnd(void *)
@@ -104,7 +108,8 @@ void UIManager::OnQuestDialogEnd(void *)
 	{
 		skillIcon->SetActive(true);
 	}
-
+	m_pQuickSlotUI->Show();
+	m_pBuffSlotUI->Show();
 	m_bDialogChoice = false;
 
 	m_pQuestDialogUI->HideDialog();
@@ -153,6 +158,8 @@ void UIManager::OnBeginCinematic(void *)
 	{
 		itemIcon->SetActive(false);
 	}
+	m_pQuickSlotUI->Hide();
+	m_pBuffSlotUI->Hide();
 }
 
 void UIManager::OnEndCinematic(void *)
@@ -170,6 +177,8 @@ void UIManager::OnEndCinematic(void *)
 	{
 		itemIcon->SetActive(true);
 	}
+	m_pQuickSlotUI->Show();
+	m_pBuffSlotUI->Show();
 }
 
 void UIManager::Initialize()
@@ -281,6 +290,9 @@ void UIManager::Initialize()
 
 	m_pQuickSlotUI = ItemQuickSlotUI::Create(m_pScene);
 	m_pQuickSlotUI->Show();
+
+	m_pBuffSlotUI = BuffSlotUI::Create(m_pScene);
+	m_pBuffSlotUI->Show();
 
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC UI

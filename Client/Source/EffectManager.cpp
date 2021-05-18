@@ -162,6 +162,28 @@ void EffectManager::Update()
 		}
 		m_weaponAfterEffectDescs[i].pWeaponAfterImage->SetActive(true);
 	}
+
+	for (int i = 0; i < m_customEffectDescs.size(); i++)
+	{
+		if (m_customEffectDescs[i]->elapsed == 0)
+		{
+			if(m_customEffectDescs[i]->onBegin)
+				m_customEffectDescs[i]->onBegin(m_customEffectDescs[i]);
+		}
+		m_customEffectDescs[i]->elapsed += TIMER->getDeltaTime();
+		if (m_customEffectDescs[i]->lifeTime <= m_customEffectDescs[i]->elapsed)
+		{
+			if (m_customEffectDescs[i]->onEnd)
+				m_customEffectDescs[i]->onEnd(m_customEffectDescs[i]);
+			SAFE_DELETE(m_customEffectDescs[i]);
+			m_customEffectDescs.erase(m_customEffectDescs.begin() + i);
+			i--;
+		}
+		else
+		{
+			m_customEffectDescs[i]->onUpdate(m_customEffectDescs[i]);
+		}
+	}
 }
 
 Effect* EffectManager::AddEffect(std::wstring key, MeshEffectDesc desc)
@@ -370,4 +392,33 @@ void EffectManager::PlayerWeaponAffterEffect(WeaponAfterEffectDesc desc)
 	m_weaponAfterEffectDescs.push_back(desc);
 
 
+}
+
+void EffectManager::AddCustomEffect(CustomEffectDesc * pDesc)
+{
+	for (int i = 0; i < m_customEffectDescs.size(); i++)
+	{
+		if (m_customEffectDescs[i]->key.compare(pDesc->key) == 0)
+		{
+			SAFE_DELETE(m_customEffectDescs[i]);
+			m_customEffectDescs[i] = pDesc;
+			return;
+		}
+	}
+	m_customEffectDescs.push_back(pDesc);
+}
+
+bool EffectManager::RemoveCustomEffect(std::wstring key)
+{
+	for (int i = 0; i < m_customEffectDescs.size(); i++)
+	{
+		if (m_customEffectDescs[i]->key.compare(key) == 0)
+		{
+			SAFE_DELETE(m_customEffectDescs[i]);
+			m_customEffectDescs.erase(m_customEffectDescs.begin() + i);
+			i--;
+			return true;
+		}
+	}
+	return false;
 }

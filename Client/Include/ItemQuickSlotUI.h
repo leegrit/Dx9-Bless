@@ -6,6 +6,7 @@ namespace HyEngine
 	class Button;
 }
 
+class SkillProgressUI;
 using namespace HyEngine;
 class ItemQuickSlotUI : public GameObject
 {
@@ -46,6 +47,7 @@ public:
 private: /* For Render */
 	std::vector<Button*> m_slotButtons;
 	std::vector<UIPanel* > m_itemIcons;
+	std::vector<SkillProgressUI*> m_progressUI;
 
 private:
 	const int m_maxSlotHorizontal = 7;

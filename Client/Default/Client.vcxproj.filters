@@ -476,6 +476,15 @@
     <ClCompile Include="..\Source\BuffManager.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\QuickSlotIconUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BuffSlotData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BuffSlotUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -1085,6 +1094,15 @@
     <ClInclude Include="..\Include\WarpPoint.h" />
     <ClInclude Include="..\Include\BuffManager.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuickSlotIconUI.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\BuffSlotData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\BuffSlotUI.h">
+      <Filter>Scripts\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

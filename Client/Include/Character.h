@@ -46,6 +46,8 @@ public:
 	float GetMaxMP() const;
 	float GetCurMP() const;
 	std::vector<GameObject*>& GetHitOthers();
+	void IncreaseHP(float hp);
+	void IncreaseMP(float mp);
 
 	//////////////////////////////////////////////////////////////////////////
 	// SETTER

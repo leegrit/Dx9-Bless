@@ -145,6 +145,8 @@
     <ClCompile Include="..\Source\ArbaJungleScene.cpp" />
     <ClCompile Include="..\Source\Bran.cpp" />
     <ClCompile Include="..\Source\BuffManager.cpp" />
+    <ClCompile Include="..\Source\BuffSlotData.cpp" />
+    <ClCompile Include="..\Source\BuffSlotUI.cpp" />
     <ClCompile Include="..\Source\CinematicGenerator.cpp" />
     <ClCompile Include="..\Source\CinematicManager.cpp" />
     <ClCompile Include="..\Source\CinematicTrack.cpp" />
@@ -191,6 +193,7 @@
     <ClCompile Include="..\Source\PlayerSkillWindSwing.cpp" />
     <ClCompile Include="..\Source\PlayerStatusData.cpp" />
     <ClCompile Include="..\Source\QuickSlotData.cpp" />
+    <ClCompile Include="..\Source\QuickSlotIconUI.cpp" />
     <ClCompile Include="..\Source\ShieldEffect.cpp" />
     <ClCompile Include="..\Source\ShopItemsTable.cpp" />
     <ClCompile Include="..\Source\ShopUI.cpp" />
@@ -306,6 +309,8 @@
     <ClInclude Include="..\Include\ArbaJungleScene.h" />
     <ClInclude Include="..\Include\Bran.h" />
     <ClInclude Include="..\Include\BuffManager.h" />
+    <ClInclude Include="..\Include\BuffSlotData.h" />
+    <ClInclude Include="..\Include\BuffSlotUI.h" />
     <ClInclude Include="..\Include\CinematicGenerator.h" />
     <ClInclude Include="..\Include\CinematicManager.h" />
     <ClInclude Include="..\Include\CinematicTrack.h" />
@@ -352,6 +357,7 @@
     <ClInclude Include="..\Include\PlayerSkillWindSwing.h" />
     <ClInclude Include="..\Include\PlayerStatusData.h" />
     <ClInclude Include="..\Include\QuickSlotData.h" />
+    <ClInclude Include="..\Include\QuickSlotIconUI.h" />
     <ClInclude Include="..\Include\ShieldEffect.h" />
     <ClInclude Include="..\Include\ShopItemsTable.h" />
     <ClInclude Include="..\Include\ShopUI.h" />

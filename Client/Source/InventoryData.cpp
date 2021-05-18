@@ -50,7 +50,7 @@ void InventoryData::RemoveItem(ItemInfo itemInfo)
 			m_items[i].itemType == EItemType::Item)
 		{
 			bool isRemove = false;
-			for (int j = 0; m_items[i].GetOverlapCount(); j++)
+			for (int j = 0; j < m_items[i].GetOverlapCount(); j++)
 			{
 				if (m_items[i].m_overlapItems[j].uid == itemInfo.uid)
 				{

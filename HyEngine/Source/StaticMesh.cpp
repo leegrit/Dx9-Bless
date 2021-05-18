@@ -183,9 +183,17 @@ void HyEngine::StaticMesh::DrawPrimitive(ID3DXEffect* pShader)
 {
 	GameObject::DrawPrimitive(pShader);
 	pShader->SetBool("IsSkinnedMesh", false);
-	pShader->CommitChanges();
+	
+
 	for (int i = 0; i < m_mtrls.size(); i++)
 	{
+		if (m_diffuseMasks[i] != nullptr)
+		{
+			pShader->SetBool("IsMasked", true);
+			D3DXHANDLE diffuseMaskHandle = pShader->GetParameterByName(0, "DiffuseMaskTex");
+			pShader->SetTexture(diffuseMaskHandle, m_diffuseMasks[i]);
+		}
+		pShader->CommitChanges();
 		m_pMesh->DrawSubset(i);
 	}
 }

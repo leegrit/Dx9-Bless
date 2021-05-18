@@ -9,12 +9,26 @@ bool IsSkinnedMesh;
 float4x3 Palette[57];
 int MaxVtxInf;
 
+
+bool IsMasked;
+
+texture DiffuseMaskTex;
+sampler DiffuseMaskSampler = sampler_state
+{
+	Texture = (DiffuseMaskTex);
+	/*MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;*/
+};
+
 void ShadowMapVS(
 	float4 position : POSITION,
 	float4 weights : BLENDWEIGHT0,
+	float2 texcoord : TEXCOORD0,
 	int4 boneIndices : BLENDINDICES0,
 	out float4 outPosition : POSITION,
-	out float4 outDepthPos : TEXCOORD0
+	out float4 outDepthPos : TEXCOORD0,
+	out float2 outTexcoord : TEXCOORD1
 )
 {
 	if (IsSkinnedMesh)
@@ -59,15 +73,25 @@ void ShadowMapVS(
     /* Depth */ 
 	outDepthPos = outPosition;
 
+	outTexcoord = texcoord;
 }
 
 /* For CascadeShadow */
 
 void ShadowMapPS(
 	float4 depthPos : TEXCOORD0,
+	float2 texcoord : TEXCOORD1,
 	out float4 outLightDepth : COLOR0
 )
 {
+	float4 diffuseMask = tex2D(DiffuseMaskSampler, texcoord);
+
+	if (IsMasked)
+	{
+		if (diffuseMask.g == 0)
+			discard;
+		//clip(diffuseMask.g);
+	}
 	float lightDepth = (float)depthPos.z / depthPos.w;
 	outLightDepth = float4(lightDepth, lightDepth, lightDepth, lightDepth);
 }

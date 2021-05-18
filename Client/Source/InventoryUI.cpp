@@ -105,7 +105,8 @@ void InventoryUI::Initialize()
 				case EItemType::Item : 
 					//EventDispatcher::TriggerEvent(GameEvent::UseItem, (void*)&itemInfo);
 					//m_pInventoryData->RemoveItem(itemInfo);
-					m_pQuickSlotData->PushItem(itemInfo);
+					if(m_pQuickSlotData->ExistItem(itemInfo) == false)
+						m_pQuickSlotData->PushItem(itemInfo);
 					break;
 				case EItemType::Belt : 
 					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
@@ -363,7 +364,7 @@ void InventoryUI::Update()
 					itemInfo.itemType == EItemType::Spoils)
 				{
 					int count = m_pInventoryData->GetOverlapCount(slotIndex);
-					ENGINE->DrawText(std::to_wstring(count).c_str(), D3DXVECTOR3( 512 + 9 + j * m_slotOffset, 384 + 99 - i * m_slotOffset, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1));
+					ENGINE->DrawText(std::to_wstring(count).c_str(), D3DXVECTOR3(20+ 512 + 9 + j * m_slotOffset,10+ 384 - (99 - i * m_slotOffset), 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1));
 
 				}
 

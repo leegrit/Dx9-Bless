@@ -15,6 +15,8 @@ ItemInfo::ItemInfo()
 	itemValue = 0;
 	itemDuration = 0;
 	itemDescription = L"";
+	coolTime = 0;
+	curCoolTime = 0;
 	availableForSale = true;
 	availableForDestruction = true;
 }
