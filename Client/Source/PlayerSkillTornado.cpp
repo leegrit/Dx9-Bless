@@ -9,6 +9,8 @@
 #include "SoundManager.h"
 #include "Player.h"
 #include "PlayerAfterImage.h"
+#include "PlayerSkillInfo.h"
+
 
 PlayerSkillTornado::PlayerSkillTornado(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillTornado")
@@ -158,6 +160,11 @@ int PlayerSkillTornado::GetIdleAnimIndex() const
 
 void PlayerSkillTornado::UpdateAction()
 {
+	// shiled skill index = 3
+	PlayerSkillInfo* pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo->isLock[3] == true)
+		return;
+
 	if (KEYBOARD->Down(48 + 3))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

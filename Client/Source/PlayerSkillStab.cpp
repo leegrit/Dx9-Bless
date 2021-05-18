@@ -8,6 +8,8 @@
 #include "Effect.h"
 #include "SoundManager.h"
 #include "Player.h"
+#include "PlayerSkillInfo.h"
+
 
 
 PlayerSkillStab::PlayerSkillStab(GameObject * pPlayer, PlayerController * pPlayerController)
@@ -349,6 +351,11 @@ int PlayerSkillStab::GetIdleAnimIndex() const
 
 void PlayerSkillStab::UpdateAction()
 {
+	// shiled skill index = 2
+	PlayerSkillInfo* pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo->isLock[2] == true)
+		return;
+
 	if (KEYBOARD->Down(48 + 2))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

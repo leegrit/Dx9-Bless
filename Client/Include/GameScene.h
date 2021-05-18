@@ -3,6 +3,12 @@
 
 using namespace HyEngine;
 
+enum class EObjectGroup
+{
+	PlayerGroup,
+	EnemyGroup,
+
+};
 
 class GameManager;
 class UIManager;
@@ -11,6 +17,7 @@ class NPCInteractManager;
 class BattleManager;
 class InteractManager;
 class EffectManager;
+class CinematicManager;
 class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -48,6 +55,13 @@ public :
 	class PlayerEquipData* GetPlayerEquipData();
 	class PlayerStatusData* GetPlayerStatusData();
 	
+	//////////////////////////////////////////////////////////////////////////
+	// GETTER
+	//////////////////////////////////////////////////////////////////////////
+public:
+	std::vector<GameObject*> GetObjectGroup(EObjectGroup objectGroup);
+
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER FOR MANAGER
@@ -60,6 +74,7 @@ public:
 	BattleManager* GetBattleManager();
 	InteractManager* GetInteractManager();
 	EffectManager* GetEffectManager();
+	CinematicManager * GetCinematicManager();
 
 	/* TEMP */
 public :
@@ -83,6 +98,9 @@ private:
 	Camera * m_pEditCam = nullptr;
 	Camera * m_pGameCam = nullptr;
 
+private : /* For Object Group */	
+	std::unordered_map<EObjectGroup, std::vector<GameObject*>> m_objectGroups;
+
 private : /* For ScriptableData */
 	class PlayerInfo * m_pPlayerInfo = nullptr;
 	class ExpTable * m_pExpTable = nullptr;
@@ -99,5 +117,6 @@ private : /* For Manager */
 	BattleManager* m_pBattleManager = nullptr;
 	InteractManager* m_pInteractManager = nullptr;
 	EffectManager* m_pEffectManager = nullptr;
+	CinematicManager * m_pCinematicManager = nullptr;
 };
 

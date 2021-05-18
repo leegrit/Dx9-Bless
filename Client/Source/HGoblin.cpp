@@ -8,15 +8,23 @@
 #include "HGoblinMove.h"
 #include "NameFont.h"
 #include "Client_Events.h"
+#include "GameScene.h"
+#include "CinematicManager.h"
+#include "QuestManager.h"
+#include "Quest.h"
+#include "UpdateDispatcher.h"
 
 HGoblin::HGoblin(Scene * pScene, NavMesh * pNavMesh)
 	: NamedEnemy(pScene, pNavMesh,D3DXVECTOR3(0, 15, 0), 10, ESkinningType::SoftwareSkinning)
 {
+	EventDispatcher::AddEventListener(QuestEvent::QuestAccept, std::to_string(GetInstanceID()),
+		std::bind(&HGoblin::OnQuestAccept, this, placeholders::_1));
 
 }
 
 HGoblin::~HGoblin()
 {
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestAccept, std::to_string(GetInstanceID()));
 	m_state.Release();
 }
 
@@ -46,7 +54,12 @@ void HGoblin::Update()
 {
 	NamedEnemy::Update();
 
-	m_state.Update();
+	if (m_isActiveFSM)
+	{
+		m_state.Update();
+	}
+
+
 
 
 }
@@ -110,6 +123,39 @@ int HGoblin::GetLevel()
 std::wstring HGoblin::GetCharacterName()
 {
 	return L"홉 고블린";
+}
+
+void HGoblin::OnQuestAccept(void * pQuestIndex)
+{
+	int index = *static_cast<int*>(pQuestIndex);
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	Quest * pQuest = pScene->GetQuestManager()->GetQuest(index);
+	if (pQuest->GetQuestName().compare(L"말하는 고블린") == 0)
+	{
+		
+		UpdateDispatcher::Dispatch([&]()->UpdateDispatcher::UpdateState 
+		{
+			m_elapsed += TIMER->getDeltaTime();
+			if (m_elapsed >= m_cinematicDelay)
+			{
+				m_isPlayCinematic = true;
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				pScene->GetCinematicManager()->PlayCinematic(L"HGoblinCinematic");
+				return UpdateDispatcher::UpdateState::End;
+			}
+			return UpdateDispatcher::UpdateState::Continue;
+		}, []() {});
+	}
+}
+
+void HGoblin::StopFSM()
+{
+	m_isActiveFSM = false;
+}
+
+void HGoblin::PlayFSM()
+{
+	m_isActiveFSM = true;
 }
 
 HGoblin * HGoblin::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)

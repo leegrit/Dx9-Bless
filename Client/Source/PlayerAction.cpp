@@ -81,6 +81,7 @@ void PlayerAction::SetParams(float atkDelay, int seqCount, float coolTime, float
 {
 	ActionComponent::SetParams(atkDelay, seqCount, atkRange, damage, bKnockBack, colOffset);
 	m_coolTime = coolTime;
+	m_curCoolTime = m_coolTime;
 }
 
 bool PlayerAction::DoAction(int animIndex)

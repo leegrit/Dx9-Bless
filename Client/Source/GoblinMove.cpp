@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GoblinMove.h"
 #include "Goblin.h"
+#include "GameScene.h"
 
 void GoblinMove::Enter()
 {
@@ -19,10 +20,18 @@ void GoblinMove::Update()
 		m_component->GetState()->Set("Die");
 	}
 
-	D3DXVECTOR3 skeletonePos = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
-	D3DXVECTOR3 playerPos = PLAYER->m_pTransform->m_position.operator D3DXVECTOR3();
 
-	float distance = D3DXVec3Length(&(playerPos - skeletonePos));
+	D3DXVECTOR3 position = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
+	GameScene* pScene = static_cast<GameScene*>(m_component->GetScene());
+	if (m_component->GetTarget() == nullptr)
+	{
+		m_component->GetState()->Set("Idle");
+		return;
+	}
+	D3DXVECTOR3 targetPos = m_component->GetTarget()->m_pTransform->m_position;
+	
+	float distance = D3DXVec3Length(&(targetPos - position));
+
 
 	if (distance > 100)
 	{
@@ -33,10 +42,10 @@ void GoblinMove::Update()
 		m_component->GetState()->Set("Attack");
 	}
 
-	D3DXVECTOR3 dir = playerPos - skeletonePos;
+	D3DXVECTOR3 dir = targetPos - position;
 	D3DXVec3Normalize(&dir, &dir);
 
-	m_component->m_pTransform->LookAtEuler(playerPos);
+	m_component->m_pTransform->LookAtEuler(targetPos);
 	m_component->m_pTransform->Translate(dir * m_component->GetMoveSpeed() * TIMER->getDeltaTime());
 }
 

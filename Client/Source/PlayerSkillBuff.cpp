@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Equipment.h"
 #include "PlayerBuffInfo.h"
+#include "PlayerSkillInfo.h"
 
 
 PlayerSkillBuff::PlayerSkillBuff(GameObject * pPlayer, PlayerController * pPlayerController)
@@ -187,6 +188,11 @@ int PlayerSkillBuff::GetIdleAnimIndex() const
 
 void PlayerSkillBuff::UpdateAction()
 {
+	// shiled skill index = 4
+	PlayerSkillInfo* pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo->isLock[4] == true)
+		return;
+
 	if (KEYBOARD->Down(48 + 4))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

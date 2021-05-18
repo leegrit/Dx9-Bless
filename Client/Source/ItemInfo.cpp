@@ -18,3 +18,18 @@ ItemInfo::ItemInfo()
 	availableForSale = true;
 	availableForDestruction = true;
 }
+
+void ItemInfo::AddItem(ItemInfo itemInfo)
+{
+	m_overlapItems.push_back(itemInfo);
+}
+
+ItemInfo ItemInfo::GetItem(int index)
+{
+	return m_overlapItems[index];
+}
+
+int ItemInfo::GetOverlapCount()
+{
+	return m_overlapItems.size();
+}

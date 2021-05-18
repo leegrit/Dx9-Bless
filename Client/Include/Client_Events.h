@@ -52,6 +52,9 @@ namespace GameEvent
 	// 장비 교체
 	static std::string EquipmentChange = "GameEvent.EquipmentChange";
 
+	static std::string UseItem = "GameEvent.UseItem";
+
+
 	// 소지금 부족
 	static std::string NotEnoughMoney = "GameEvent.NotEnoughMoney";
 
@@ -61,5 +64,15 @@ namespace GameEvent
 
 	static std::string InvalidCoolTime = "GameEvent.InvalidCoolTime";
 	static std::string InvalidTarget = "GameEvent.InvalidTarget";
+
+
+	/* Quick Slot */
+	static std::string SetQuickSlot = "GameEvent.SetQuickSlot";
+	static std::string RemoveQuickSlot = "GameEvent.RemoveQuickSlot";
+
+
+	/* Cinematic */
+	static std::string BeginCinematic = "GameEvent.BeginCinematic";
+	static std::string EndCinematic = "GameEvent.EndCinematic";
 }
 

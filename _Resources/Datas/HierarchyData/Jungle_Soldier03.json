@@ -1,0 +1,93 @@
+{
+  "Type": 1,
+  "Index": 151,
+  "TagIndex": 0,
+  "LayerIndex": 2,
+  "StaticIndex": 0,
+  "GameObjectData": {
+    "Index": 151,
+    "Name": "Soldier",
+    "Tag": "Default",
+    "Layer": 2,
+    "StaticType": 0,
+    "Transform": {
+      "Position": {
+        "X": 183.69,
+        "Y": -7.62939453E-06,
+        "Z": 808.28
+      },
+      "Rotation": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Scale": {
+        "X": 0.6,
+        "Y": 0.6,
+        "Z": 0.6
+      }
+    }
+  },
+  "MeshData": {
+    "Index": 151,
+    "MeshFilePath": "Assets\\Mesh\\Unit\\Soldier\\Soldier_00.x",
+    "DiffuseTexturePath": ""
+  },
+  "MapData": {
+    "Index": 151,
+    "Group": 0
+  },
+  "NavMeshData": {
+    "Index": 150,
+    "CellCount": 0
+  },
+  "TerrainData": {
+    "VertexCountX": 10,
+    "VertexCountZ": 10,
+    "TextureCountX": 20.0,
+    "TextureCountZ": 20.0,
+    "VertexInterval": 1.0,
+    "DiffuseFilePath": "",
+    "NormalFilePath": ""
+  },
+  "LightData": {
+    "LightType": 0,
+    "Direction": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Position": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Ambient": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "AmbientIntensity": 0.0,
+    "Diffuse": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "DiffuseIntensity": 0.0,
+    "Specular": {
+      "R": 0.0,
+      "G": 0.0,
+      "B": 0.0,
+      "A": 0.0
+    },
+    "SpecularIntensity": 0.0,
+    "SpecularPower": 0.0,
+    "Range": 0.0,
+    "Cone": 0.0,
+    "Constant": 0.0,
+    "Linear": 0.0,
+    "Quadratic": 0.0
+  }
+}

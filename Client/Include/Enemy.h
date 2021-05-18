@@ -56,12 +56,21 @@ public :
 
 	void PlayHitAnimation(EEnemyHitType);
 
+	GameObject* GetTarget() const;
+	void SetTarget(GameObject* pTarget);
+	const std::vector<GameObject*>& GetTargets() const;
+
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED
 	//////////////////////////////////////////////////////////////////////////
 protected :
 	void ShowHPBar();
 
+
+private : /* For FSM */
+	// 필드에 존재하는 적을 미리 저장해둔다.
+	GameObject* m_pTarget = nullptr;
+	std::vector<GameObject* > m_targets;
 
 private :
 	/* For Action */

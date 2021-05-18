@@ -67,6 +67,7 @@ private :
 
 
 	class InventoryData* m_pInventoryData = nullptr;
+	class QuickSlotData * m_pQuickSlotData = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

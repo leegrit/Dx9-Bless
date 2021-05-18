@@ -148,7 +148,6 @@
     <ClCompile Include="..\Source\ArbaJungleScene.cpp">
       <Filter>Scenes\GameStage</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\WarpPoint.cpp" />
     <ClCompile Include="..\Source\FadeInOut.cpp">
       <Filter>Scripts\UI</Filter>
     </ClCompile>
@@ -428,6 +427,55 @@
     <ClCompile Include="..\Source\HGoblinAttack.cpp">
       <Filter>FSM\HGoblin</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Soldier.cpp">
+      <Filter>GameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierAttack.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierDie.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierDied.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierHit.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierIdle.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\SoldierMove.cpp">
+      <Filter>FSM\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CinematicGenerator.cpp">
+      <Filter>Scripts\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CinematicManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinCinematicTrack.cpp">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\CinematicTrack.cpp">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerSkillInfo.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ItemQuickSlotUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\QuickSlotData.cpp">
+      <Filter>ScriptableData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ItemManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\WarpPoint.cpp" />
+    <ClCompile Include="..\Source\BuffManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -543,6 +591,15 @@
     </Filter>
     <Filter Include="FSM\HGoblin">
       <UniqueIdentifier>{eac12f1b-b66c-4b2f-b4ca-a384b9050a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FSM\Soldier">
+      <UniqueIdentifier>{e49d10d4-ef7a-42f3-8829-34882591d851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Enemy">
+      <UniqueIdentifier>{b4e00bf8-415a-4133-9873-c8a8d2f7de77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Cinematic">
+      <UniqueIdentifier>{20305088-a855-4a0a-8058-25e2b512e72a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -698,7 +755,6 @@
     <ClInclude Include="..\Include\ArbaJungleScene.h">
       <Filter>Scenes\GameStage</Filter>
     </ClInclude>
-    <ClInclude Include="..\Include\WarpPoint.h" />
     <ClInclude Include="..\Include\FadeInOut.h">
       <Filter>Scripts\UI</Filter>
     </ClInclude>
@@ -980,6 +1036,55 @@
     </ClInclude>
     <ClInclude Include="..\Include\HGoblinIdle.h">
       <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Soldier.h">
+      <Filter>GameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierAttack.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierDie.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierDied.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierHit.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierIdle.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\SoldierMove.h">
+      <Filter>FSM\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CinematicGenerator.h">
+      <Filter>Scripts\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CinematicManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinCinematicTrack.h">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\CinematicTrack.h">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerSkillInfo.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ItemQuickSlotUI.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\QuickSlotData.h">
+      <Filter>ScriptableData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ItemManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\WarpPoint.h" />
+    <ClInclude Include="..\Include\BuffManager.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

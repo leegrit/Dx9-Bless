@@ -314,7 +314,10 @@ void HyEngine::Engine::DrawText(const TCHAR * text, D3DXVECTOR3 position, D3DXVE
 	info.matTrans = scaleMat * posMat;
 	info.textColor = color;
 	//info.format = format;
-	info.format = DT_LEFT | DT_TOP;
+	if (format == -1)
+		info.format = 0;
+	else
+		info.format = DT_LEFT | DT_TOP;
 	RECT rect;
 	SetRect(&rect, 0, 0, 1024, 768);
 	info.rect = rect;
@@ -567,7 +570,14 @@ void HyEngine::Engine::RenderFont()
 		SetRect(&rect, -500, -40, 500, 0);
 */
 		//DEVICE->SetRenderState(D3DRS_ZENABLE, FALSE);
-		DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), &fontInfo.rect, fontInfo.format/*DT_CENTER | DT_BOTTOM*/, fontInfo.textColor);
+		if (fontInfo.format == -1)
+		{
+			DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), nullptr,0/*DT_CENTER | DT_BOTTOM*/, fontInfo.textColor);
+		}
+		else
+		{
+			DIRECT_FONT->DrawTextW(DIRECT_SPRITE, fontInfo.textBuff, lstrlen(fontInfo.textBuff), &fontInfo.rect, fontInfo.format/*DT_CENTER | DT_BOTTOM*/, fontInfo.textColor);
+		}
 	}
 	DIRECT_SPRITE->End();
 

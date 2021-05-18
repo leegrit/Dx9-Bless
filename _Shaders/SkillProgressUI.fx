@@ -3,6 +3,7 @@ matrix ViewMatrix;
 matrix ProjMatrix;
 
 float Amount;
+float Alpha;
 
 texture FillTex;
 sampler FillSampler = sampler_state
@@ -59,7 +60,7 @@ void SkillProgressUIPS(
 	if(angle >= condition)
 		discard;
 	
-	outColor = fillColor;
+	outColor = fillColor * Alpha;
 };
 
 technique SkillProgressUI

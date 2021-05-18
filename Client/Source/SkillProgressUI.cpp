@@ -37,6 +37,7 @@ void SkillProgressUI::Render()
 	m_pEffect->SetTexture(diffuseHandler, m_pTexture);
 
 	m_pEffect->SetFloat("Amount", m_amount);
+	m_pEffect->SetFloat("Alpha", m_alpha);
 
 	m_pEffect->SetTechnique("SkillProgressUI");
 	m_pEffect->Begin(0, 0);
@@ -60,7 +61,12 @@ void SkillProgressUI::Update()
 
 void SkillProgressUI::SetAmount(float amount)
 {
-	m_amount = amount;
+	m_amount = 1 - amount;
+}
+
+void SkillProgressUI::SetAlpha(float alpha)
+{
+	m_alpha = alpha;
 }
 
 SkillProgressUI * SkillProgressUI::Create(Scene * pScene, std::wstring imageFilePath, D3DXVECTOR3 position, D3DXVECTOR3 rotation, D3DXVECTOR3 scale, std::wstring name)

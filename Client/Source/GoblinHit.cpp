@@ -5,7 +5,7 @@
 void GoblinHit::Enter()
 {
 	D3DXVECTOR3 skeletonePos = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
-	D3DXVECTOR3 playerPos = PLAYER->m_pTransform->m_position.operator D3DXVECTOR3();
+	D3DXVECTOR3 playerPos = m_component->GetTarget()->m_pTransform->m_position;//PLAYER->m_pTransform->m_position.operator D3DXVECTOR3();
 	D3DXVECTOR3 dir = playerPos - skeletonePos;
 	D3DXVec3Normalize(&dir, &dir);
 

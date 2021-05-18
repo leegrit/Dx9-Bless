@@ -26,6 +26,7 @@
 #include "NotifyUI.h"
 #include "SummonProgressBar.h"
 #include "SkillIconUI.h"
+#include "ItemQuickSlotUI.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -49,6 +50,13 @@ UIManager::UIManager(GameScene* pScene)
 		std::bind(&UIManager::OnInvalidCoolTime, this, placeholders::_1));
 	EventDispatcher::AddEventListener(GameEvent::InvalidTarget, "UIManager",
 		std::bind(&UIManager::OnInvalidTarget, this, placeholders::_1));
+
+
+	EventDispatcher::AddEventListener(GameEvent::BeginCinematic, "UIManager",
+		std::bind(&UIManager::OnBeginCinematic, this, placeholders::_1));
+	EventDispatcher::AddEventListener(GameEvent::EndCinematic, "UIManager",
+		std::bind(&UIManager::OnEndCinematic, this, placeholders::_1));
+
 }
 
 
@@ -64,6 +72,10 @@ UIManager::~UIManager()
 	EventDispatcher::RemoveEventListener(GameEvent::BuyItem, "UIManager");
 	EventDispatcher::RemoveEventListener(GameEvent::InvalidCoolTime, "UIManager");
 	EventDispatcher::RemoveEventListener(GameEvent::InvalidTarget, "UIManager");
+
+
+	EventDispatcher::RemoveEventListener(GameEvent::BeginCinematic, "UIManager");
+	EventDispatcher::RemoveEventListener(GameEvent::EndCinematic, "UIManager");
 
 }
 
@@ -123,6 +135,41 @@ void UIManager::OnInvalidTarget(void *)
 void UIManager::OnInvalidCoolTime(void *)
 {
 	m_pNotifyUI->PushNotify(ENotifyType::InvalidCoolTime);
+}
+
+void UIManager::OnBeginCinematic(void *)
+{
+	m_pFadeInOut->FadeIn([]() {});
+	for (auto& ui : m_staticUIList)
+	{
+		ui->SetActive(false);
+	}
+
+	for (auto& skillIcon : m_skillList)
+	{
+		skillIcon->SetActive(false);
+	}
+	for (auto& itemIcon : m_itemList)
+	{
+		itemIcon->SetActive(false);
+	}
+}
+
+void UIManager::OnEndCinematic(void *)
+{
+	m_pFadeInOut->FadeIn([]() {}, 0.5f);
+	for (auto& ui : m_staticUIList)
+	{
+		ui->SetActive(true);
+	}
+	for (auto& skillIcon : m_skillList)
+	{
+		skillIcon->SetActive(true);
+	}
+	for (auto& itemIcon : m_itemList)
+	{
+		itemIcon->SetActive(true);
+	}
 }
 
 void UIManager::Initialize()
@@ -201,20 +248,39 @@ void UIManager::Initialize()
 
 
 	/* For SkillIcon */
+	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-329, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3.png",
-		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3_lock.png", D3DXVECTOR3(-349, -341, 0), 0, L"Skill_Shiled"));
+		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_3_lock.png", D3DXVECTOR3(-329, -341, 0), 0, L"Skill_Shiled"));
+	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-258, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6.png",
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_6_lock.png", D3DXVECTOR3(-258, -341, 0), 1, L"Skill_Swing"));
+	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-210, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4.png",
-		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4_lock.png",D3DXVECTOR3(-210, -341, 0), 2,  L"Skill_Stab"));
+		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_4_lock.png", D3DXVECTOR3(-210, -341, 0), 2, L"Skill_Stab"));
+	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-162, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7.png",
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_7_lock.png", D3DXVECTOR3(-162, -341, 0), 3, L"Skill_Tornado"));
+	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(SkillIconUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0.png",
 		PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/Lups/Lups_0_lock.png", D3DXVECTOR3(-114, -341, 0), 4, L"Skill_Buff"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(114, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"7"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(162, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"8"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(210, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"9"));
 	m_skillList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(258, -341, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(45, 45, 1), L"11"));
+
+
+	/* Item Slots */
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-358 + 38 * 0, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-358+ 38 * 1, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-358+ 38 * 2, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-358+ 38 * 3, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-187+ 38 * 0, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-187 + 38 * 1, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+	m_itemList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/SkillIcon/SkillIconBase/SkillIconBase_0.png", D3DXVECTOR3(-187 + 38 * 2, -277, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"11"));
+
+	m_pQuickSlotUI = ItemQuickSlotUI::Create(m_pScene);
+	m_pQuickSlotUI->Show();
 
 	//////////////////////////////////////////////////////////////////////////
 	// STATIC UI
@@ -301,6 +367,33 @@ void UIManager::Update()
 		ENGINE->DrawText(L"½È½À´Ï´Ù.", D3DXVECTOR3(778, 473, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 	}
+
+
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// FOR STATIC FONTS
+	//////////////////////////////////////////////////////////////////////////
+	ENGINE->DrawText(L"F1", D3DXVECTOR3(137 + 5, 643 + 4,0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"F2", D3DXVECTOR3(137 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"F3", D3DXVECTOR3(137 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"F4", D3DXVECTOR3(137 + 5 + 38 * 3, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+
+	ENGINE->DrawText(L"F5", D3DXVECTOR3(309 + 5 + 38 * 0, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"F6", D3DXVECTOR3(309 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"F7", D3DXVECTOR3(309 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+
+	ENGINE->DrawText(L"Shift", D3DXVECTOR3(167, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+
+	ENGINE->DrawText(L"1", D3DXVECTOR3(237 + 48 *0, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"2", D3DXVECTOR3(237 + 48 * 1, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"3", D3DXVECTOR3(237 + 48 * 2, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"4", D3DXVECTOR3(237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+
+	ENGINE->DrawText(L"5", D3DXVECTOR3(228 + 237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"6", D3DXVECTOR3(228 + 237 + 48 * 4, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"7", D3DXVECTOR3(228 + 237 + 48 * 5, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	ENGINE->DrawText(L"8", D3DXVECTOR3(228 + 237 + 48 * 6, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
 
 }
 

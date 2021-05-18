@@ -8,6 +8,7 @@
 #include "Effect.h"
 #include "SoundManager.h"
 #include "ShieldEffect.h"
+#include "PlayerSkillInfo.h"
 
 PlayerSkillShield::PlayerSkillShield(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillShield")
@@ -176,6 +177,12 @@ int PlayerSkillShield::GetIdleAnimIndex() const
 
 void PlayerSkillShield::UpdateAction()
 {
+	// shiled skill index = 0
+	PlayerSkillInfo* pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo->isLock[0] == true)
+		return;
+
+
 	if (KEYBOARD->Down(VK_SHIFT))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

@@ -29,6 +29,10 @@ public :
 	void OnBuyItem(void*);
 	void OnInvalidTarget(void*);
 	void OnInvalidCoolTime(void*);
+
+public :
+	void OnBeginCinematic(void*);
+	void OnEndCinematic(void*);
 	//////////////////////////////////////////////////////////////////////////
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
@@ -91,7 +95,9 @@ private :
 private : /* Static UI */
 	std::vector<UIElement*> m_staticUIList;
 	std::vector<GameObject*> m_skillList;
+	std::vector<GameObject*> m_itemList;
 
+	class ItemQuickSlotUI* m_pQuickSlotUI;
 private : /* Interacive UI */
 	UIElement* m_pTalkPanel = nullptr;
 	UIElement* m_pPickUpPanel = nullptr;

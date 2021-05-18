@@ -13,6 +13,7 @@
 #include "PlayerStatusData.h"
 #include "PlayerBuffInfo.h"
 #include "Enemy.h"
+#include "PlayerSkillInfo.h"
 
 PlayerSkillSwing::PlayerSkillSwing(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillSwing")
@@ -865,6 +866,11 @@ int PlayerSkillSwing::GetIdleAnimIndex() const
 
 void PlayerSkillSwing::UpdateAction()
 {
+	// swing skill index = 1
+	PlayerSkillInfo* pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo->isLock[1] == true)
+		return;
+
 	if (KEYBOARD->Down(48 + 1))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

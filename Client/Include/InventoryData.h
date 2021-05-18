@@ -11,9 +11,11 @@ public :
 	void RemoveItem(ItemInfo itemInfo);
 	bool ExitItem(int index);
 	bool TryGetItem(int index, _Out_ ItemInfo* pItemInfo);
+	bool TryGetItem(std::wstring name, _Out_ ItemInfo* pItemInfo);
 	ItemInfo GetItem(int index);
 	bool IsFull();
 	int GetCount();
+	int GetOverlapCount(int index);
 private:
 
 	std::vector<ItemInfo> m_items;

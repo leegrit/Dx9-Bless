@@ -9,6 +9,7 @@
 #include "EffectManager.h"
 #include "Sprite.h"
 #include "SoundManager.h"
+#include "ObjectContainer.h"
 
 Enemy::Enemy(Scene * scene, NavMesh * pNavMesh, D3DXVECTOR3 colPosOffset, float colRadius, ESkinningType skinningType)
 	: Character(scene, pNavMesh, colPosOffset, colRadius, skinningType)
@@ -25,6 +26,10 @@ void Enemy::Initialize(std::wstring dataPath)
 	Character::Initialize(dataPath);
 	m_pFocusCollider = SphereCollider::Create(EColliderType::Multipurpose,
 		this, GetFocusColliderSize(), Layer::Default, nullptr);
+
+	m_targets.clear();
+	m_targets = GetScene()->GetObjectContainer()->GetOpaqueObjectAll(Layer::Player);
+
 
 
 	/* Set Attack Data */
@@ -167,6 +172,7 @@ void Enemy::OnDamaged(GameObject* pSender, float damage, bool isCritical)
 	GameScene* scene = static_cast<GameScene*>(SCENE);
 	scene->GetUIManager()->PushDamageFont(damage, false, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
 
+	m_pTarget = pSender;
 	/* юс╫ц */
 	SoundDesc desc;
 	desc.channelMode = FMOD_LOOP_OFF;
@@ -223,6 +229,21 @@ void Enemy::PlayHitAnimation(EEnemyHitType enemyHitType)
 		m_pHitEffect->PlayAnimation();
 		break;
 	}
+}
+
+GameObject * Enemy::GetTarget() const
+{
+	return m_pTarget;
+}
+
+void Enemy::SetTarget(GameObject * pTarget)
+{
+	m_pTarget = pTarget;
+}
+
+const std::vector<GameObject*>& Enemy::GetTargets() const
+{
+	return m_targets;
 }
 
 void Enemy::ShowHPBar()

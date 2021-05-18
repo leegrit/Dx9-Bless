@@ -21,7 +21,9 @@
 #include "InventoryData.h"
 #include "EffectManager.h"
 #include "PlayerBuffInfo.h"
-
+#include "CinematicManager.h"
+#include "PlayerSkillInfo.h"
+#include "QuickSlotData.h"
 
 void GameScene::Update()
 {
@@ -32,6 +34,7 @@ void GameScene::Update()
 	m_pBattleManager->Update();
 	m_pInteractManager->Update();
 	m_pEffectManager->Update();
+	m_pCinematicManager->Update();
 }
 
 void GameScene::Load()
@@ -44,6 +47,7 @@ void GameScene::Load()
 	m_pBattleManager = new BattleManager(this);
 	m_pInteractManager = new InteractManager(this);
 	m_pEffectManager = new EffectManager(this);
+	m_pCinematicManager = new CinematicManager(this);
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
 	if (pExpTable == nullptr)
@@ -103,6 +107,20 @@ void GameScene::Load()
 		ENGINE->AddScriptableData(L"PlayerBuffInfo", pPlayerBuffInfo);
 	}
 	pPlayerBuffInfo->bBuff = false;
+
+	PlayerSkillInfo * pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
+	if (pPlayerSkillInfo == nullptr)
+	{
+		pPlayerSkillInfo = new PlayerSkillInfo();
+		ENGINE->AddScriptableData(L"PlayerSkillInfo", pPlayerSkillInfo);
+	}
+
+	QuickSlotData * pQuickSlotData = static_cast<QuickSlotData*>(ENGINE->GetScriptableData(L"QuickSlotData"));
+	if (pQuickSlotData == nullptr)
+	{
+		pQuickSlotData = new QuickSlotData();
+		ENGINE->AddScriptableData(L"QuickSlotData", pQuickSlotData);
+	}
 }
 
 void GameScene::LateLoadScene()
@@ -114,6 +132,7 @@ void GameScene::LateLoadScene()
 	m_pBattleManager->Initialize();
 	m_pInteractManager->Initialize();
 	m_pEffectManager->Initialize();
+	m_pCinematicManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -127,6 +146,26 @@ void GameScene::LateLoadScene()
 		QuestTable* table = static_cast<QuestTable*>(data);
 		table->LinkQuests();
 	}
+	std::vector<GameObject* > enemyGroup;
+	std::vector<GameObject*> playerGroup;
+
+	for (auto opaque : GetObjectContainer()->GetOpaqueObjectAll())
+	{
+		if(opaque->GetLayer() & Layer::Enemy)
+		{
+			enemyGroup.push_back(opaque);
+			continue;
+		}
+		if (opaque->GetLayer() & Layer::Player)
+		{
+			playerGroup.push_back(opaque);
+			continue;
+		}
+	}
+
+
+	m_objectGroups.insert(std::make_pair(EObjectGroup::EnemyGroup, enemyGroup));
+	m_objectGroups.insert(std::make_pair(EObjectGroup::PlayerGroup, playerGroup));
 }
 
 void GameScene::Unload()
@@ -139,6 +178,7 @@ void GameScene::Unload()
 	SAFE_DELETE(m_pQuestManager);
 	SAFE_DELETE(m_pBattleManager);
 	SAFE_DELETE(m_pEffectManager);
+	SAFE_DELETE(m_pCinematicManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -237,6 +277,11 @@ PlayerStatusData * GameScene::GetPlayerStatusData()
 	return m_pPlayerStatusData;
 }
 
+std::vector<GameObject*> GameScene::GetObjectGroup(EObjectGroup objectGroup)
+{
+	return m_objectGroups[objectGroup];
+}
+
 GameManager * GameScene::GetGameManager()
 {
 	return m_pGameManager;
@@ -262,9 +307,19 @@ BattleManager * GameScene::GetBattleManager()
 	return m_pBattleManager;
 }
 
+InteractManager * GameScene::GetInteractManager()
+{
+	return m_pInteractManager;
+}
+
 EffectManager * GameScene::GetEffectManager()
 {
 	return m_pEffectManager;
+}
+
+CinematicManager * GameScene::GetCinematicManager()
+{
+	return m_pCinematicManager;
 }
 
 float GameScene::GetFloatA()

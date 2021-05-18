@@ -9,6 +9,7 @@
 #include "PlayerMoneyData.h"
 #include "GameScene.h"
 #include "PlayerEquipData.h"
+#include "QuickSlotData.h"
 
 InventoryUI::InventoryUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
@@ -38,14 +39,14 @@ void InventoryUI::Initialize()
 
 	m_itemSlots.reserve(m_maxSlotCount);
 	int slotIndex = 0;
-	for (int i = 0; i < m_maxSlotHorizontal; i++)
+	for (int i = 0; i < m_maxSlotVertical; i++)
 	{
-		for (int j = 0; j < m_maxSlotVertical; j++)
+		for (int j = 0; j < m_maxSlotHorizontal; j++)
 		{
 			auto itemSlot = Button::Create(GetScene(),
 				L"ItemSlot" + std::to_wstring(slotIndex),
 				PATH->AssetsPathW() + L"UI/BLUIOpener_I3_0.png",
-				D3DXVECTOR3(9 + i * m_slotOffset,99 - j * m_slotOffset, 0),
+				D3DXVECTOR3(9 + j * m_slotOffset,99 - i * m_slotOffset, 0),
 				D3DXVECTOR3(0, 0, 0),
 				D3DXVECTOR3(50, 50, 1)
 			);
@@ -53,7 +54,7 @@ void InventoryUI::Initialize()
 
 			auto itemIcon = UIPanel::Create(GetScene(),
 				L"",
-				D3DXVECTOR3(9 + i * m_slotOffset, 99 - j * m_slotOffset, 0),
+				D3DXVECTOR3(9 + j * m_slotOffset, 99 - i * m_slotOffset, 0),
 				D3DXVECTOR3(0, 0, 0),
 				D3DXVECTOR3(50, 50, 1),
 				L"Item_Icon");
@@ -102,6 +103,9 @@ void InventoryUI::Initialize()
 				case EItemType::QuestItem : 
 					break; 
 				case EItemType::Item : 
+					//EventDispatcher::TriggerEvent(GameEvent::UseItem, (void*)&itemInfo);
+					//m_pInventoryData->RemoveItem(itemInfo);
+					m_pQuickSlotData->PushItem(itemInfo);
 					break;
 				case EItemType::Belt : 
 					EventDispatcher::TriggerEvent(GameEvent::WearItem, (void*)&itemInfo);
@@ -336,6 +340,7 @@ void InventoryUI::Initialize()
 
 
 	m_pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+	m_pQuickSlotData = static_cast<QuickSlotData*>(ENGINE->GetScriptableData(L"QuickSlotData"));
 }
 
 void InventoryUI::Update()
@@ -343,6 +348,30 @@ void InventoryUI::Update()
 	if (m_bShow)
 	{
 		PlayerMoneyData* pData = static_cast<PlayerMoneyData*>(ENGINE->GetScriptableData(L"PlayerMoneyData"));
+
+		int slotIndex = 0;
+		for (int i = 0; i < m_maxSlotVertical; i++)
+		{
+			for (int j = 0; j < m_maxSlotHorizontal; j++)
+			{
+
+				ItemInfo itemInfo;
+				bool bOk = m_pInventoryData->TryGetItem(slotIndex, &itemInfo);
+				if (bOk == false)
+					continue;
+				if (itemInfo.itemType == EItemType::Item ||
+					itemInfo.itemType == EItemType::Spoils)
+				{
+					int count = m_pInventoryData->GetOverlapCount(slotIndex);
+					ENGINE->DrawText(std::to_wstring(count).c_str(), D3DXVECTOR3( 512 + 9 + j * m_slotOffset, 384 + 99 - i * m_slotOffset, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1));
+
+				}
+
+
+
+				slotIndex++;
+			}
+		}
 
 
 		ENGINE->DrawText(L"º“¡ˆ«∞", D3DXVECTOR3(556, 140, 0), D3DXVECTOR3(1.3, 1.3, 1.3), D3DXCOLOR(1, 1, 1, 1));

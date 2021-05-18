@@ -26,5 +26,17 @@ public :
 
 	bool availableForSale;
 	bool availableForDestruction;
+
+public :
+	// 소모품, 잡동사니같은 경우 중첩 가능
+	void AddItem(ItemInfo itemInfo);
+	ItemInfo GetItem(int index);
+	int GetOverlapCount();
+
+private:
+	int m_itemCount = 1;
+public:
+	std::vector<ItemInfo> m_overlapItems;
+
 };
 

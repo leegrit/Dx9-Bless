@@ -65,7 +65,8 @@ enum class EItemType
 	Weapon,
 	Item, // 家葛前
 	QuestItem,
-	Spoils,
+	Spoils, // 傈府前
+
 };
 
 enum class EItemSaleType

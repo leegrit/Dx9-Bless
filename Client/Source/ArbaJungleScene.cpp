@@ -28,6 +28,10 @@
 #include "TalkableGoblin.h"
 #include "CollectObject.h"
 #include "HGoblin.h"
+#include "Soldier.h"
+#include "CinematicManager.h"
+#include "HGoblinCinematicTrack.h"
+
 
 void ArbaJungleScene::Update()
 {
@@ -133,11 +137,24 @@ void ArbaJungleScene::Load()
 	auto enemy26 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_5.json");
 	auto enemy27 = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin03_6.json");
 	
-	
+	//////////////////////////////////////////////////////////////////////////
+	// SOLDIERS
+	//////////////////////////////////////////////////////////////////////////
+	auto soldier01 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier01.json");
+	auto soldier02 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier02.json");
+	auto soldier03 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier03.json");
+	auto soldier04 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier04.json");
+	auto soldier05 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier05.json");
+	auto soldier06 = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier06.json");
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// NAMED
 	//////////////////////////////////////////////////////////////////////////
 	auto named = HGoblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/HGoblin.json");
+
+	HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
+	GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER

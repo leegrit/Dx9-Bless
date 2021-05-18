@@ -79,59 +79,59 @@ bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchy(std::wstring filePath,_O
 
 bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchySW(std::wstring filePath, AnimationController ** ppAniCtrl, D3DXFRAME ** ppRootFrame)
 {
-	auto& iter = meshHierarchyMap.find(filePath);
+	/*auto& iter = meshHierarchyMap.find(filePath);
 	if (meshHierarchyMap.end() == iter)
+	{*/
+	std::wstring dirPath = Path::GetDirectoryName(filePath);
+	/* Create Hierarchy Allocator */
+	MeshHierarchySW * pLoader = new MeshHierarchySW(dirPath);
+	if (pLoader == nullptr)
+		return false;
+
+	LPD3DXANIMATIONCONTROLLER pAniCtrl = nullptr;
+
+	D3DXFRAME * pRootFrame = nullptr;
+
+	HRESULT hr;
+	hr = D3DXLoadMeshHierarchyFromX
+	(
+		filePath.c_str(),
+		D3DXMESH_MANAGED,
+		DEVICE,
+		pLoader,
+		NULL,
+		&pRootFrame,
+		&pAniCtrl
+	);
+	/*if (FAILED(hr))
 	{
-		std::wstring dirPath = Path::GetDirectoryName(filePath);
-		/* Create Hierarchy Allocator */
-		MeshHierarchySW * pLoader = new MeshHierarchySW(dirPath);
-		if (pLoader == nullptr)
-			return false;
+		SEND_LOG_WARNING("MeshHierarchyLoad Failed");
+		return false;
+	}*/
 
-		LPD3DXANIMATIONCONTROLLER pAniCtrl = nullptr;
-
-		D3DXFRAME * pRootFrame = nullptr;
-
-		HRESULT hr;
-		hr = D3DXLoadMeshHierarchyFromX
-		(
-			filePath.c_str(),
-			D3DXMESH_MANAGED,
-			DEVICE,
-			pLoader,
-			NULL,
-			&pRootFrame,
-			&pAniCtrl
-		);
-		if (FAILED(hr))
-		{
-			SEND_LOG_WARNING("MeshHierarchyLoad Failed");
-			return false;
-		}
-
-		AnimationController* pAnimationController = new AnimationController(pAniCtrl);
-		if (pAnimationController == nullptr)
-			return false;
+	AnimationController* pAnimationController = new AnimationController(pAniCtrl);
+	if (pAnimationController == nullptr)
+		return false;
 
 
-		HierarchyedMesh * pHierarchyedMesh = new HierarchyedMesh();
-		pHierarchyedMesh->pLoader = pLoader;
-		pHierarchyedMesh->pRootFrame = pRootFrame;
-		pHierarchyedMesh->pAniCtrl = pAnimationController;
+	HierarchyedMesh * pHierarchyedMesh = new HierarchyedMesh();
+	pHierarchyedMesh->pLoader = pLoader;
+	pHierarchyedMesh->pRootFrame = pRootFrame;
+	pHierarchyedMesh->pAniCtrl = pAnimationController;
 
 
-		meshHierarchyMap.insert(std::make_pair(filePath, pHierarchyedMesh));
+	//meshHierarchyMap.insert(std::make_pair(filePath, pHierarchyedMesh));
 
-		*ppAniCtrl = pAnimationController;
-		*ppRootFrame = (D3DXFRAME_DERIVED*)pRootFrame;
-	}
+	*ppAniCtrl = pAnimationController;
+	*ppRootFrame = (D3DXFRAME_DERIVED*)pRootFrame;
+	/*}
 	else
 	{
 		HierarchyedMesh * result = meshHierarchyMap[filePath];
 
 		*ppAniCtrl = new AnimationController(*result->pAniCtrl);
 		*ppRootFrame = result->pRootFrame;
-	}
+	}*/
 	// 	else
 	// 	{
 	// 		HierarchyedMesh * result = meshHierarchyMap[filePath];
@@ -146,6 +146,8 @@ bool HyEngine::MeshHierarchyLoader::TryGetMeshHierarchySW(std::wstring filePath,
 	// 		*ppRootFrame = new D3DXFRAME_DERIVED(*(D3DXFRAME_DERIVED*)result->pRootFrame);
 	// 	}
 	//**ppRootFrame = *result->pRootFrame;
+	//return true;
+
 	return true;
 }
 
