@@ -288,6 +288,8 @@
     <ClCompile Include="..\Source\SoldierHit.cpp" />
     <ClCompile Include="..\Source\SoldierIdle.cpp" />
     <ClCompile Include="..\Source\SoldierMove.cpp" />
+    <ClCompile Include="..\Source\SpoilsObject.cpp" />
+    <ClCompile Include="..\Source\SpoilsUI.cpp" />
     <ClCompile Include="..\Source\Sprite.cpp" />
     <ClCompile Include="..\Source\SpriteLoader.cpp" />
     <ClCompile Include="..\Source\SummonProgressBar.cpp" />
@@ -454,6 +456,8 @@
     <ClInclude Include="..\Include\SoldierHit.h" />
     <ClInclude Include="..\Include\SoldierIdle.h" />
     <ClInclude Include="..\Include\SoldierMove.h" />
+    <ClInclude Include="..\Include\SpoilsObject.h" />
+    <ClInclude Include="..\Include\SpoilsUI.h" />
     <ClInclude Include="..\Include\Sprite.h" />
     <ClInclude Include="..\Include\SpriteLoader.h" />
     <ClInclude Include="..\Include\stdafx.h" />

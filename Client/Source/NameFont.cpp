@@ -1,5 +1,7 @@
 #include "StandardEngineFramework.h"
 #include "NameFont.h"
+#include "Font.h"
+
 
 void NameFont::Initialize(std::wstring text, GameObject * pOwner, D3DXVECTOR2 size, D3DXVECTOR3 offset, float centerOffset, D3DXCOLOR color)
 {
@@ -9,6 +11,17 @@ void NameFont::Initialize(std::wstring text, GameObject * pOwner, D3DXVECTOR2 si
 	m_size = size;
 	m_color = color;
 	m_centerOffset = centerOffset;
+
+	/*FontDesc desc;
+	desc.text = text.c_str();
+	desc.position = D3DXVECTOR3(0, 0, 0);
+	desc.format = DT_CENTER | DT_BOTTOM;
+	RECT rt;
+	SetRect(&rt, -100, 40, 100, 0);
+	desc.rect = rt;
+	desc.scale = D3DXVECTOR3(1, 1, 1);
+	desc.textColor = D3DXCOLOR(1, 1, 1, 1);
+	m_pFont =  Font::Create(SCENE, desc);*/
 }
 
 void NameFont::RenderFont()
@@ -41,10 +54,22 @@ void NameFont::RenderFont()
 
 	//resultPos.x += m_centerOffset;
 
+	/*FontDesc desc;
+	desc.fontSpace = EFontSpace::World;
+	desc.text = m_text.c_str();
+	desc.position = m_pOwner->m_pTransform->CalcOffset(m_offset);
+	desc.format = DT_CENTER | DT_BOTTOM;
+	RECT rt;
+	SetRect(&rt, -100, 40, 100, 0);
+	desc.rect = rt;
+	desc.scale = D3DXVECTOR3(1, 1, 1);
+	desc.textColor = D3DXCOLOR(1, 1, 1, 1);
+	m_pFont->SetDesc(desc);*/
+
 	ENGINE->DrawTextInWorld(m_text.c_str(), position, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
 
 
-	//ENGINE->DrawText(m_text.c_str(),resultPos, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
+	//ENGINE->DrawText(m_text.c_str(), resultPos, D3DXVECTOR3(m_size.x, m_size.y, 1), m_color);
 }
 
 void NameFont::SetOffset(D3DXVECTOR3 offset)

@@ -28,6 +28,7 @@
 #include "SkillIconUI.h"
 #include "ItemQuickSlotUI.h"
 #include "BuffSlotUI.h"
+#include "SpoilsUI.h"
 
 
 
@@ -217,6 +218,8 @@ void UIManager::Initialize()
 	m_pDialogCancleIconUI = UIPanel::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUITalk_I15_1.png", D3DXVECTOR3(243, -101, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(25, 25, 1), L"DialogCancleIcon");
 	m_pDialogCancleIconUI->SetActive(false);
 
+	m_pSpoilsUI = SpoilsUI::Create(m_pScene, L"SpoilsUI");
+	m_pSpoilsUI->Hide();
 
 	m_pInventoryUI = InventoryUI::Create(m_pScene, L"InventoryUI");
 	m_pInventoryUI->Hide();
@@ -523,6 +526,16 @@ void UIManager::ShowGeneralStoreUI()
 void UIManager::HideGeneralStoreUI()
 {
 	m_pGeneralStoreUI->Hide();
+}
+
+void UIManager::ShowSpoilsUI(ItemInfo itemInfo)
+{
+	m_pSpoilsUI->Show(itemInfo);
+}
+
+void UIManager::HideSpoilsUI()
+{
+	m_pSpoilsUI->Hide();
 }
 
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)

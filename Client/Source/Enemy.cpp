@@ -55,20 +55,20 @@ void Enemy::Initialize(std::wstring dataPath)
 
 	MeshEffectDesc leftHitEffectDesc;
 	leftHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
-	leftHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	leftHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB_Color.tga";
 	leftHitEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
 	leftHitEffectDesc.fadeOut = true;
 	//leftHitEffectDesc.fadeIn = true;
 	leftHitEffectDesc.fadeOutFactor = 0.5f;
 	leftHitEffectDesc.lifeTime = 0.3f;
-	leftHitEffectDesc.endScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f);
+	leftHitEffectDesc.endScale = D3DXVECTOR3(0.2f, 0.2f, 0.2f); // ¿ø·¡ 0.2
 	m_pLeftSwordHitEffect = pScene->GetEffectManager()->AddEffect(std::to_wstring(GetInstanceID()) + L"EnemyHitEffect_Left", leftHitEffectDesc);
 
 
 
 	MeshEffectDesc rightHitEffectDesc;
 	rightHitEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_Hit_001_SM.X";
-	rightHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
+	rightHitEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB_Color.tga";
 	rightHitEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_Impact_Up_001_TEX_HKB.tga";
 	rightHitEffectDesc.fadeOut = true;
 	//leftHitEffectDesc.fadeIn = true;

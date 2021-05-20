@@ -6,8 +6,15 @@ struct EngineDesc
 	std::vector<Scene*> scenes;
 };
 
+enum class EFontSpace
+{
+	Screen,
+	World,
+};
+
 struct FontInfo
 {
+	EFontSpace fontSpace;
 	TCHAR textBuff[256];
 	D3DXMATRIX matTrans;
 	RECT rect;
@@ -17,7 +24,9 @@ struct FontInfo
 
 struct FontDesc
 {
+	EFontSpace fontSpace;
 	const TCHAR * text;
+	D3DXMATRIX matTrans;
 	D3DXVECTOR3 position = D3DXVECTOR3(0, 0, 0);
 	D3DXVECTOR3 scale = D3DXVECTOR3(1, 1, 1);
 	RECT rect;

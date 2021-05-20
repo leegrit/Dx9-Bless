@@ -1,4 +1,13 @@
 #pragma once
+#include "ItemInfo.h"
+
+struct SpoilsObjectDesc
+{
+	std::wstring key;
+	ItemInfo itemInfo1;
+	ItemInfo itemInfo2;
+	D3DXVECTOR3 position;
+};
 class InteractManager
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -22,12 +31,16 @@ public :
 	void Initialize();
 	void Update();
 
+
+public:
+	void DropSpoils(SpoilsObjectDesc desc);
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
 	//////////////////////////////////////////////////////////////////////////
 private:
 	class GameScene* m_pScene = nullptr;
 	std::vector<class CollectObject*> m_collectObjects;
+	std::vector<class SpoilsObject*> m_spoilsObjects;
 
 	float m_interDist = 30;
 	bool m_bInteractable = true;

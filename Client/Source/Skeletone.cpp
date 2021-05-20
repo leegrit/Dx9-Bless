@@ -11,6 +11,8 @@
 #include "GameScene.h"
 #include "EnemyName.h"
 #include "PathManager.h"
+#include "ItemInfo.h"
+#include "InteractManager.h"
 
 
 Skeletone::Skeletone(Scene * pScene, NavMesh * pNavMesh)
@@ -35,7 +37,7 @@ void Skeletone::Initialize(std::wstring dataPath)
 		std::bind(&Skeletone::OnHitOthers, this, placeholders::_1));
 	m_pAttackCollider->SetOffset(m_colliderOffset);
 
-	SetParams(10, 5000, 100);
+	SetParams(10, 500, 100);
 
 	m_state.Add<SkeletoneAttack>(this, "Attack");
 	m_state.Add<SkeletoneDie>(this, "Die");
@@ -97,6 +99,25 @@ void Skeletone::OnHitOthers(Collider * other)
 void Skeletone::OnDied()
 {
 	Enemy::OnDied();
+
+	ItemInfo leaderPiece;
+	leaderPiece.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/LeaderPiece.jpg";
+	leaderPiece.itemName = L"°¡Á×²ö";
+	leaderPiece.itemType = EItemType::Spoils;
+	leaderPiece.typeText = L"Àç·á";
+	leaderPiece.effectText = L"Æò¹üÇÑ °¡Á×²öÀÌ´Ù";
+	leaderPiece.itemDescription = L"Æò¹üÇÑ °¡Á×²öÀÌ´Ù";
+	leaderPiece.salePrice = 10;
+
+	SpoilsObjectDesc desc;
+	desc.key = L"Skeleton.Spoils";
+	desc.position = m_pTransform->m_position.operator D3DXVECTOR3();
+	desc.itemInfo1 = leaderPiece;
+
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	pScene->GetInteractManager()->DropSpoils(desc);
+
+
 
 	EventDispatcher::TriggerEvent(GameEvent::SendExp, (float*)&m_exp);
 }

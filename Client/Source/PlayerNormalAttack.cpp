@@ -38,7 +38,7 @@ void PlayerNormalAttack::Initialize()
 	meshEffectDesc.uvDirection = D3DXVECTOR2(1, 0);
 	meshEffectDesc.uvSpeed = 0.7f;
 	meshEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
-	meshEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	meshEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH_Color3.png";
 	meshEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
 	meshEffectDesc.lifeTime = 0.5f;
 
@@ -52,7 +52,7 @@ void PlayerNormalAttack::Initialize()
 	meshEffectDesc_Second.uvDirection = D3DXVECTOR2(1, 0);
 	meshEffectDesc_Second.uvSpeed = 0.7f;
 	meshEffectDesc_Second.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_trailLine_001_SM_CJH.X";
-	meshEffectDesc_Second.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	meshEffectDesc_Second.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH_Color3.png";
 	meshEffectDesc_Second.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
 	meshEffectDesc_Second.lifeTime = 0.5f;
 
@@ -175,6 +175,8 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
+			m_bSendDamage = true;
+			m_bSendDamage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 
 			SoundDesc desc;
@@ -221,8 +223,8 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 				{
 					CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				}
+				break;
 			}
-			m_bSendDamage = true;
 		}
 		break;
 	case 1:
@@ -267,6 +269,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
+			m_bSendDamage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
@@ -357,7 +360,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
-			
+			m_bSendDamage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;

@@ -1,0 +1,47 @@
+#pragma once
+#include "GameObject.h"
+#include "InteractManager.h"
+using namespace HyEngine;
+class SpoilsObject : public GameObject
+{
+	//////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTOR & DESTRUCTOR
+	//////////////////////////////////////////////////////////////////////////
+protected :
+	explicit SpoilsObject(Scene* pScene, std::wstring name, SpoilsObjectDesc desc);
+	virtual ~SpoilsObject();
+
+	//////////////////////////////////////////////////////////////////////////
+	// INHERITED
+	//////////////////////////////////////////////////////////////////////////
+public:
+	virtual void Initialize();
+	virtual void Update() override;
+
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+
+	void Collecting(_Out_ bool * bEnd);
+	void OutOfRange();
+public :
+	virtual void DoCollect();
+	virtual void OnCollected();
+	virtual void OnCollectBegin();
+	virtual void OnCollectEnd();
+
+
+private :
+	float m_interactRadius = 30;
+	bool m_bCollecting = false;
+	bool m_bCollectable = true;
+
+	SpoilsObjectDesc m_desc;
+	class InventoryData * m_pInventoryData = nullptr;
+	//////////////////////////////////////////////////////////////////////////
+	// FACTORY METHOD
+	//////////////////////////////////////////////////////////////////////////
+public:
+	static SpoilsObject* Create(Scene* pScene, std::wstring name, SpoilsObjectDesc desc );
+};
+

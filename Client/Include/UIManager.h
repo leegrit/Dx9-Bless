@@ -1,5 +1,6 @@
 #pragma once
 #include "Client_Enumerators.h"
+#include "ItemInfo.h"
 
 namespace HyEngine
 {
@@ -71,6 +72,10 @@ public : /* For Interact */
 	void ShowGeneralStoreUI();
 	void HideGeneralStoreUI();
 
+	void ShowSpoilsUI(ItemInfo itemInfo);
+	void HideSpoilsUI();
+
+
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
 
 
@@ -112,6 +117,8 @@ private : /* Interacive UI */
 	class DamageFontScatter * m_pDamageFontScatter = nullptr;
 
 	class SummonProgressBar * m_pSummonProgressBar = nullptr;
+
+	class SpoilsUI* m_pSpoilsUI = nullptr;
 
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;

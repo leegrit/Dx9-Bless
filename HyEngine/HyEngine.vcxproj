@@ -224,6 +224,7 @@
     <ClInclude Include="Include\FlockSystem.h" />
     <ClInclude Include="Include\FlockAgent.h" />
     <ClInclude Include="Include\FlockBehaviour.h" />
+    <ClInclude Include="Include\Font.h" />
     <ClInclude Include="Include\fsm.h" />
     <ClInclude Include="Include\Functor.h" />
     <ClInclude Include="Include\GameObject.h" />
@@ -397,6 +398,7 @@
     <ClCompile Include="Source\FlockSystem.cpp" />
     <ClCompile Include="Source\FlockAgent.cpp" />
     <ClCompile Include="Source\FlockBehaviour.cpp" />
+    <ClCompile Include="Source\Font.cpp" />
     <ClCompile Include="Source\Functor.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GameObjectData.cpp" />

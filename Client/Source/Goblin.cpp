@@ -9,7 +9,9 @@
 #include "GoblinIdle.h"
 #include "GoblinMove.h"
 #include "GameScene.h"
-
+#include "ItemInfo.h"
+#include "InteractManager.h"
+#include "PathManager.h"
 
 Goblin::Goblin(Scene * pScene, NavMesh * pNavMesh)
 	:Enemy(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 5, ESkinningType::HardwareSkinning)
@@ -85,6 +87,23 @@ void Goblin::OnHitOthers(Collider * other)
 void Goblin::OnDied()
 {
 	Enemy::OnDied();
+
+	ItemInfo leaderPiece;
+	leaderPiece.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/GoblinLeader.jpg";
+	leaderPiece.itemName = L"고블린 가죽";
+	leaderPiece.itemType = EItemType::Spoils;
+	leaderPiece.typeText = L"재료";
+	leaderPiece.effectText = L"품질이 안좋은 고블린 가죽이다.";
+	leaderPiece.itemDescription = L"품질이 안좋은 고블린 가죽이다.";
+	leaderPiece.salePrice = 30;
+
+	SpoilsObjectDesc desc;
+	desc.key = L"Goblin.Spoils";
+	desc.position = m_pTransform->m_position.operator D3DXVECTOR3();
+	desc.itemInfo1 = leaderPiece;
+
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	pScene->GetInteractManager()->DropSpoils(desc);
 
 	EventDispatcher::TriggerEvent(GameEvent::SendExp, (float*)&m_exp);
 }

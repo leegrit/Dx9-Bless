@@ -1,5 +1,9 @@
 #pragma once
 
+namespace HyEngine
+{
+	class Font;
+}
 
 class NameFont
 {
@@ -16,6 +20,7 @@ public :
 private :
 	/* For Font */
 	std::wstring m_text;
+	Font* m_pFont = nullptr;
 
 	/* For Offset */
 	GameObject* m_pOwner;

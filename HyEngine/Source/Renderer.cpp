@@ -676,6 +676,8 @@ void HyEngine::Renderer::ForwardPipeline(Scene* scene)
 	{
 		return l->GetRenderQueue() > r->GetRenderQueue();
 	});
+
+
 	for (auto& alpha : list)
 	{
 		alpha->Render();

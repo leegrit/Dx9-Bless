@@ -66,6 +66,10 @@ namespace GameEvent
 	static std::string InvalidTarget = "GameEvent.InvalidTarget";
 
 
+	/* 전리품 수집 */
+	static std::string BeginSpoils = "GameEvent.BeginSpoils";
+	static std::string EndSpoils = "GameEvent.EndSpoils";
+
 	/* Quick Slot */
 	static std::string SetQuickSlot = "GameEvent.SetQuickSlot";
 	static std::string RemoveQuickSlot = "GameEvent.RemoveQuickSlot";
