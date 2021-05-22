@@ -20,6 +20,7 @@ class EffectManager;
 class CinematicManager;
 class ItemManager;
 class BuffManager;
+class LightManager;
 class GameScene : public Scene
 {
 	//////////////////////////////////////////////////////////////////////////
@@ -79,6 +80,7 @@ public:
 	CinematicManager * GetCinematicManager();
 	ItemManager* GetItemManager();
 	BuffManager* GetBuffManager();
+	LightManager* GetLightManager();
 
 	/* TEMP */
 public :
@@ -124,5 +126,6 @@ private : /* For Manager */
 	CinematicManager * m_pCinematicManager = nullptr;
 	ItemManager * m_pItemManager = nullptr;
 	BuffManager * m_pBuffManager = nullptr;
+	LightManager* m_pLightManager = nullptr;
 };
 

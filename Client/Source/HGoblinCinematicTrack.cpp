@@ -2,7 +2,7 @@
 #include "HGoblinCinematicTrack.h"
 #include "ZoomInCamera.h"
 #include "HGoblin.h"
-
+#include "SoundManager.h"
 HGoblinCinematicTrack::HGoblinCinematicTrack(GameObject * pHGoblin)
 	: CinematicTrack()
 {
@@ -36,6 +36,12 @@ void HGoblinCinematicTrack::OnBegin()
 	m_pHGoblin->StopFSM();
 	m_pHGoblin->SetAnimationSet(7);
 
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_NORMAL;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->StopSound("BGM");
+	SOUND->PlaySound("BGM", L"BossBattle.mp3", desc);
 }
 
 void HGoblinCinematicTrack::OnEnd()

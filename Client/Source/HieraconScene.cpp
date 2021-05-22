@@ -29,6 +29,7 @@
 #include "Elaine.h"
 #include "Liurens.h"
 #include "Renderer.h"
+#include "SoundManager.h"
 
 
 using namespace HyEngine;
@@ -68,6 +69,12 @@ void HieraconScene::Update()
 void HieraconScene::Load()
 {
 	GameScene::Load();
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_NORMAL;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("BGM", L"HierconCapital.mp3", desc);
 
 	//////////////////////////////////////////////////////////////////////////
 	// RENDER OPTION
@@ -157,9 +164,9 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
 	//////////////////////////////////////////////////////////////////////////
-	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
-	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
-	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
+	//auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
+	//auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
+	//auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
@@ -238,6 +245,7 @@ void HieraconScene::LateLoadScene()
 void HieraconScene::Unload()
 {
 	GameScene::Unload();
+	SOUND->StopAll();
 }
 
 void HieraconScene::LoadAsync(std::function<void(int, int)> onProgress)

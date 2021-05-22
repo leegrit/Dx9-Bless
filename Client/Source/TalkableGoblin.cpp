@@ -15,7 +15,7 @@ void TalkableGoblin::Initialize(std::wstring dataPath)
 {
 	NonePlayer::Initialize(dataPath);
 
-	SetAnimationSet(8);
+	SetAnimationSet(5);
 }
 
 void TalkableGoblin::Update()

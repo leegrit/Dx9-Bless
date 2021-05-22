@@ -68,8 +68,10 @@ void MeshEffectPS(
 	out float4 outColor : COLOR0
 	)
 {
-	float4 albedo = tex2D(AlbedoSampler, texcoord);
-	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord);
+	float2 texcoord2 = texcoord;
+	texcoord2 += UVMoveFactor;
+	float4 albedo = tex2D(AlbedoSampler, texcoord2);
+	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord2);
 
 	//outColor = albedo * alphaMask;
 	// test

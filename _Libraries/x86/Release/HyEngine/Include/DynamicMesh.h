@@ -26,7 +26,8 @@ namespace HyEngine
 		virtual void DrawPrimitive(ID3DXEffect* pShader) override;
 		virtual void UpdatedData(EDataType dataType) override;
 		virtual bool ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _Out_ float * radius);
-
+		virtual void OnEnable() override;
+		virtual void OnDisable() override;
 	
 
 		//////////////////////////////////////////////////////////////////////////

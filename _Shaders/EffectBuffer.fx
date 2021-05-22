@@ -13,6 +13,14 @@ sampler AlbedoSampler = sampler_state
 	Texture = (AlbedoTex);
 };
 
+texture MaskTex;
+sampler MaskSampler = sampler_state
+{
+	Texture = (MaskTex);
+	AddressU = Border;
+	AddressV = Border;
+};
+
 
 struct SkinnedVtxIn
 {
@@ -58,6 +66,8 @@ int BloomFactor;
 
 bool IsSkinnedMesh;
 
+bool IsMasked; 
+float2 UVMoveFactor;
 
 PixelInputType SkinnedMeshVS(SkinnedVtxIn input)
 {
@@ -135,9 +145,18 @@ PixelOutput EffectBufferPS(PixelInputType input)
 {
 	PixelOutput output = (PixelOutput)0;
 
+	float2 texcoord2 = input.texcoord;
+	texcoord2 += UVMoveFactor;
+	float4 maskTex = tex2D(MaskSampler, texcoord2);
 
 	output.vtxNormal = float4( input.normal.rgb, 0);
 	output.EffectMask.r = RimLightFactor;
+	output.EffectMask.g = BloomFactor;
+	if (IsMasked)
+	{
+		//float temp = BloomFactor * maskTex.r > 0 ? 1 : 0;
+		output.EffectMask.g = BloomFactor * maskTex.r;
+	}
 	output.EffectParam.r = RimLightWidth;
 	output.RimLightColor = RimLightColor;
 	/* For Bloom */
@@ -176,6 +195,7 @@ technique EffectBuffer
 		BlendOp = ADD;
 		SrcBlend = ONE;
 		DestBlend = ONE;
+		CULLMODE = NONE;
 		VertexShader = compile vs_3_0 MeshVS();
 		PixelShader = compile ps_3_0 EffectBufferPS();
 	}

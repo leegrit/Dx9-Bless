@@ -32,6 +32,8 @@ public:
 	virtual void RemoveQuestMark(Quest * pQuest) override;
 	virtual void ShowQuestFinishMark(Quest * pQuest) override;
 	virtual void RemoveQuestFinishMark(Quest * pQuest) override;
+	virtual void OnEnable() override;
+	virtual void OnDisable() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER

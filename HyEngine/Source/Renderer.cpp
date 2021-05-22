@@ -1014,6 +1014,12 @@ void HyEngine::Renderer::EffectPass(Scene * scene)
 			pEffect->SetInt("RimLightFactor", 1);
 		else
 			pEffect->SetInt("RimLightFactor", 0);
+
+		bool isBloom = opaque->IsRenderEffect(RenderEffectOption::Bloom) ? true : false;
+		if (isBloom == true)
+			pEffect->SetInt("BloomFactor", 1);
+		else
+			pEffect->SetInt("BloomFactor", 0);
 		//pEffect->SetBool("IsRimLight", isRimLight);
 		pEffect->SetFloat("RimLightWidth", opaque->GetRimWidth());
 
@@ -1061,6 +1067,12 @@ void HyEngine::Renderer::EffectPass(Scene * scene)
 		else
 			pEffect->SetInt("RimLightFactor", 0);
 		pEffect->SetBool("IsRimLight", isRimLight);
+
+		bool isBloom = alpha->IsRenderEffect(RenderEffectOption::Bloom) ? true : false;
+		if (isBloom == true)
+			pEffect->SetInt("BloomFactor", 1);
+		else
+			pEffect->SetInt("BloomFactor", 0);
 		pEffect->SetFloat("RimLightWidth", alpha->GetRimWidth());
 
 		pEffect->SetValue("RimLightColor", &alpha->GetRimColor(), sizeof(alpha->GetRimColor()));
@@ -1076,6 +1088,9 @@ void HyEngine::Renderer::EffectPass(Scene * scene)
 			pEffect->SetMatrix("ViewMatrix", &EDIT_CAMERA->GetViewMatrix());
 			pEffect->SetMatrix("ProjMatrix", &EDIT_CAMERA->GetProjectionMatrix());
 		}
+		pEffect->SetBool("IsMasked", false);
+		D3DXVECTOR2 uvOffset = D3DXVECTOR2(0, 0);
+		pEffect->SetValue("UVMoveFactor", &uvOffset, sizeof(uvOffset));
 		pEffect->SetTechnique("EffectBuffer");
 		pEffect->Begin(0, 0);
 		{
@@ -2063,9 +2078,12 @@ void HyEngine::Renderer::BrightnessPass()
 		EDIT_ENGINE->TryGetShader(L"Brightness", &pShader);
 	assert(pShader);
 
-	/* DepthTex */
 	D3DXHANDLE screenHandle = pShader->GetParameterByName(0, "ScreenTex");
 	pShader->SetTexture(screenHandle, m_pScreenTexture);
+	
+	D3DXHANDLE effectMaskHandle = pShader->GetParameterByName(0, "EffectMaskTex");
+	pShader->SetTexture(effectMaskHandle, m_pEffectMaskRTTexture);
+
 
 	pShader->SetTechnique("Brightness");
 	pShader->Begin(0, 0);

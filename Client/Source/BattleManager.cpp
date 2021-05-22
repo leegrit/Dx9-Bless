@@ -42,6 +42,8 @@ void BattleManager::Update()
 		Character* pCharacter = dynamic_cast<Character*>(raycastHit->m_pTransform->GetGameObject());
 		if (pCharacter == nullptr)
 			continue;
+		if (pCharacter->GetActive() == false)
+			continue;
 		if (pCharacter->IsDied())
 			continue;
 		float dist = D3DXVec3Length(&(PLAYER->m_pTransform->m_position - raycastHit->m_pTransform->m_position).operator D3DXVECTOR3());

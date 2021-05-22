@@ -70,9 +70,17 @@ bool SoundManager::PlaySound(std::string tag, TCHAR * pFileName, SoundDesc desc)
 		{
 			m_soundPool[i].tag = tag;
 			m_soundPool[i].volume = desc.volume;
+			if (desc.volumeType == EVolumeTYPE::RelativeVolume)
+			{
+				Camera* pCam = CAMERA;
+				float dist = D3DXVec3Length( &(pCam->m_pTransform->m_position.operator D3DXVECTOR3() - desc.soundPosition));
+				m_soundPool[i].volume = 1 - std::min( (float)dist / m_distMax, 1.0f);
+			}
+			if (m_soundPool[i].volume <= 0)
+				return false;
 			FMOD_System_PlaySound(m_pSystem, FMOD_CHANNEL_FREE, iter->second, FALSE, &m_pChannels[i]);
 			FMOD_Channel_SetMode(m_pChannels[i], desc.channelMode);
-			FMOD_Channel_SetVolume(m_pChannels[i], desc.volume);
+			FMOD_Channel_SetVolume(m_pChannels[i], m_soundPool[i].volume);
 			return true;
 		}
 	}

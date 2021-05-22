@@ -267,3 +267,13 @@ void Character::RemoveQuestFinishMark(Quest * pQuest)
 		m_pSubQuestFinishMarker->SetActive(false);
 	}
 }
+
+void Character::OnEnable()
+{
+	Pawn::OnEnable();
+}
+
+void Character::OnDisable()
+{
+	Pawn::OnDisable();
+}

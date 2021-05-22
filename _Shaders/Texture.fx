@@ -61,6 +61,7 @@ technique Texture
 {
 	pass P0
 	{
+		CullMode = NONE;
 		AlphaBlendEnable = true;
 		SrcBlend = SRCALPHA;
 		DestBlend = INVSRCALPHA;

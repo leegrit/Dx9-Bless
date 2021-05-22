@@ -63,7 +63,7 @@ ElainShopItemsData::ElainShopItemsData()
 	m_items.push_back(mpPotion);
 
 	ItemInfo powerUpPotion;
-	powerUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/ManaPotion.jpg";
+	powerUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/PowerPotion.png";
 	powerUpPotion.itemName = L"힘 강화 포션";
 	powerUpPotion.itemType = EItemType::Item;
 	powerUpPotion.buffType = EItemBuffType::PowerUp;
@@ -78,7 +78,7 @@ ElainShopItemsData::ElainShopItemsData()
 	m_items.push_back(powerUpPotion);
 
 	ItemInfo speedUpPotion;
-	speedUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/ManaPotion.jpg";
+	speedUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/SpeedPotion.png";
 	speedUpPotion.itemName = L"속도 강화 포션";
 	speedUpPotion.itemType = EItemType::Item;
 	speedUpPotion.buffType = EItemBuffType::SpeedUp;
@@ -93,7 +93,7 @@ ElainShopItemsData::ElainShopItemsData()
 	m_items.push_back(speedUpPotion);
 
 	ItemInfo defenceUpPotion;
-	defenceUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/ManaPotion.jpg";
+	defenceUpPotion.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/DefPotion.png";
 	defenceUpPotion.itemName = L"방어력 강화 포션";
 	defenceUpPotion.itemType = EItemType::Item;
 	defenceUpPotion.buffType = EItemBuffType::DefenceUp;

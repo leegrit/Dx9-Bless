@@ -1,0 +1,44 @@
+#pragma once
+
+namespace HyEngine
+{
+	class Light;
+}
+
+struct DynamicLightInfo
+{
+	std::wstring key;
+	float elapsed = 0;
+	float duration;
+	Light* pLight;
+};
+class LightManager
+{
+	//////////////////////////////////////////////////////////////////////////
+	// CONSTRUCTOR & DESTRUCTOR
+	//////////////////////////////////////////////////////////////////////////
+public:
+	LightManager(class GameScene* pScene);
+	~LightManager();
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// PUBLIC METHOD
+	//////////////////////////////////////////////////////////////////////////
+public:
+	void Initialize();
+	void Update();
+
+	void GenerateLight(std::wstring key, D3DXVECTOR3 position, D3DXCOLOR diffuse, float specularPower, float range, float constant, float linear, float quadratic, float duration);
+
+	//////////////////////////////////////////////////////////////////////////
+	// VARIABLES
+	//////////////////////////////////////////////////////////////////////////
+private :
+	class GameScene* m_pScene;
+
+private :
+	std::vector<DynamicLightInfo> m_lightInfos;
+	float m_dynamicLightCount = 10;
+};
+

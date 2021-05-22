@@ -54,7 +54,7 @@ private: /* For FSM */
 	bool m_isPlayCinematic = false;
 	bool m_bAccepted = false;
 	float m_elapsed = 0;
-	float m_cinematicDelay = 1.0f;
+	float m_cinematicDelay = 5.0f;
 private : 
 	class NameFont * m_pNameFont;
 

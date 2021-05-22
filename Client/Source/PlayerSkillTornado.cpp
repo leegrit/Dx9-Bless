@@ -25,12 +25,38 @@ PlayerSkillTornado::~PlayerSkillTornado()
 void PlayerSkillTornado::Initialize()
 {
 	PlayerAction::Initialize();
+
+	GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+
+	MeshEffectDesc tornadoEffectDesc;
+	tornadoEffectDesc.isUVAnim = true;
+	tornadoEffectDesc.uvDirection = D3DXVECTOR2(0, 1);
+	tornadoEffectDesc.uvSpeed = 1.0f;
+	tornadoEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_landburncyclone.X";
+	tornadoEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_FireTile_010_TEX_KKJ.tga";
+	tornadoEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	tornadoEffectDesc.lifeTime = 1.0f;
+	tornadoEffectDesc.fadeOut = true;
+	tornadoEffectDesc.endRot = D3DXVECTOR3(0, 360, 0);
+	tornadoEffectDesc.endScale = D3DXVECTOR3(2, 0, 2);
+
+	m_pTornadoEffect = pScene->GetEffectManager()->AddEffect(L"PlayerSkillTornado_Tornado", tornadoEffectDesc);
+
 }
 
 void PlayerSkillTornado::Update()
 {
 	PlayerAction::Update();
 	UpdateAction();
+
+	m_pTornadoEffect->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 0))
+	);
+	m_pTornadoEffect->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pTornadoEffect->SetOriginScale(D3DXVECTOR3(1, 0.3, 1));
 }
 
 void PlayerSkillTornado::LateUpdate()
@@ -103,6 +129,7 @@ void PlayerSkillTornado::OnActionTimeElapsed(int seqIndex, float elapsed)
 			//pPlayerAfterImage->SetActive(true);
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			pScene->GetEffectManager()->PlayAffterEffect(m_testIndex);
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillTornado_Tornado");
 			//////////////////////////////////////////////////////////////////////////
 
 

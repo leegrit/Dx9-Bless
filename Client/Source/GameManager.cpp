@@ -7,6 +7,7 @@
 #include "UIManager.h"
 #include "EquipmentUI.h"
 #include "InventoryUI.h"
+#include "SoundManager.h"
 
 
 GameManager::GameManager(GameScene * pScene)
@@ -131,4 +132,14 @@ void GameManager::Update()
 bool GameManager::IsPlayerMovable()
 {
 	return !m_bOccupyUI;
+}
+
+void GameManager::SwitchBGM(TCHAR* soundName)
+{
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_NORMAL;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->StopSound("BGM");
+	SOUND->PlaySound("BGM", soundName, desc);
 }

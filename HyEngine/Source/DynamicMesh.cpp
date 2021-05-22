@@ -338,6 +338,16 @@ bool HyEngine::DynamicMesh::ComputeBoundingSphere(_Out_ D3DXVECTOR3 * center, _O
 	return false;
 }
 
+void HyEngine::DynamicMesh::OnEnable()
+{
+	Mesh::OnEnable();
+}
+
+void HyEngine::DynamicMesh::OnDisable()
+{
+	Mesh::OnDisable();
+}
+
 void HyEngine::DynamicMesh::InitializeMeshes(std::wstring filePath, std::wstring fileName)
 {
 	TCHAR fullPath[MAX_PATH] = L"";

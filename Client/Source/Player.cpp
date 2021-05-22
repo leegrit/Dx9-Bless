@@ -80,7 +80,6 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerController->SetUnWeaponMesh(m_pPlayerUW);
 	m_pPlayerController->SetHorse(m_pPegasus);
 
-
 }
 
 Player * Player::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)

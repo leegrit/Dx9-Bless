@@ -61,6 +61,16 @@ Pawn * HyEngine::Pawn::Create(Scene * scene, GameObject * parent, NavMesh * navM
 	return pawn;
 }
 
+void HyEngine::Pawn::OnEnable()
+{
+	DynamicMesh::OnEnable();
+}
+
+void HyEngine::Pawn::OnDisable()
+{
+	DynamicMesh::OnDisable();
+}
+
 int HyEngine::Pawn::GetNavPrimIndex() const
 {
 	return m_navPrimIndex;

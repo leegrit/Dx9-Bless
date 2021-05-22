@@ -4,19 +4,20 @@
 
 #define MAX_CHANNEL 32
 
+enum class EVolumeTYPE
+{
+	RelativeVolume, // 상대적인 위치로 소리가 작아지고 커진다.
+	AbsoluteVolume, // 위치와 상관없이 설정한 볼륨으로 나온다.
+};
 struct ChannelInfo
 {
+	EVolumeTYPE volumeType;
 	DWORD channelID;
 	std::string tag;
 	bool isPlaying;
 	float volume;
 };
 
-enum class EVolumeTYPE
-{
-	RelativeVolume, // 상대적인 위치로 소리가 작아지고 커진다.
-	AbsoluteVolume, // 위치와 상관없이 설정한 볼륨으로 나온다.
-};
 
 struct SoundDesc
 {
@@ -75,6 +76,9 @@ private : /* For FMOD */
 	FMOD_CHANNEL* m_pChannels[MAX_CHANNEL];
 
 	ChannelInfo m_soundPool[MAX_CHANNEL];
+
+
+	float m_distMax = 500;
 };
 
 #define SOUND SoundManager::Get()

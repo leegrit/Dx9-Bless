@@ -3,5 +3,5 @@
 
 PlayerMoneyData::PlayerMoneyData()
 {
-	money = 1000;
+	money = 10000;
 }

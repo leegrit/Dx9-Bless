@@ -21,6 +21,7 @@ namespace HyEngine
 		virtual void OnDisable() override;
 		virtual void Update() override;
 		virtual void Render() override;
+		virtual void DrawPrimitive(ID3DXEffect * pEffect) override;
 		virtual void UpdatedData(EDataType dataType)override;
 
 

@@ -39,7 +39,7 @@ void TitleScene::Load()
 	desc.channelMode = FMOD_LOOP_NORMAL;
 	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 	desc.volume = 1;
-	//SOUND->PlaySound("TitleBGM",L"Logo_BGM_00.mp3",  desc);
+	SOUND->PlaySound("TitleBGM",L"Warploading.mp3",  desc);
 
 }
 

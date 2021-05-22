@@ -23,7 +23,22 @@ void NamedEnemy::Initialize(std::wstring dataPath)
 void NamedEnemy::Update()
 {
 	Enemy::Update();
-
+	if (m_hited)
+	{
+		m_hitElapsed += TIMER->getDeltaTime();
+		if (m_hitElapsed >= m_reactionDuration)
+		{
+			m_hited = false;
+			m_hitElapsed = 0;
+		}
+		SetRenderEffectOption(RenderEffectOption::RimLight);
+		SetRimWidth(1.0f);
+		SetRimColor(D3DXCOLOR(1, 1, 1, 1));
+	}
+	else
+	{
+		SetRimWidth(0.0f);
+	}
 	//SetRenderEffectOption(RenderEffectOption::None);
 }
 
@@ -54,8 +69,8 @@ Collider * NamedEnemy::GetAttackCollider(int attackIndex)
 void NamedEnemy::OnDamaged(GameObject * pSender, float damage, bool isCritical)
 {
 	Enemy::OnDamaged(pSender, damage, isCritical);
-
-	SetRenderEffectOption(RenderEffectOption::RimLight);
+	m_hited = true;
+	/*SetRenderEffectOption(RenderEffectOption::RimLight);
 	SetRimWidth(1.0f);
-	SetRimColor(D3DXCOLOR(1, 0, 0, 1));
+	SetRimColor(D3DXCOLOR(1, 0, 0, 1));*/
 }

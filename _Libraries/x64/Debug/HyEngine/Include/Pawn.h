@@ -21,6 +21,8 @@ namespace HyEngine
 		virtual void Render() override;
 		virtual void UpdatedData(EDataType type) override;
 		static Pawn* Create(Scene* scene, GameObject* parent, NavMesh* navMesh, std::wstring dataPath);
+		virtual void OnEnable() override;
+		virtual void OnDisable() override;
 
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER

@@ -236,6 +236,7 @@ Effect * EffectManager::GetEffect(std::wstring key)
 
 void EffectManager::PlayEffect(std::wstring key)
 {
+
 	Effect* pEffect = m_effects[key];
 	if (pEffect)
 	{

@@ -27,6 +27,7 @@
 #include "ItemManager.h"
 #include "Renderer.h"
 #include "BuffManager.h"
+#include "LightManager.h"
 
 void GameScene::Update()
 {
@@ -40,6 +41,7 @@ void GameScene::Update()
 	m_pCinematicManager->Update();
 	m_pItemManager->Update();
 	m_pBuffManager->Update();
+	m_pLightManager->Update();
 
 	if (KEYBOARD->Press(VK_F10))
 	{
@@ -64,6 +66,7 @@ void GameScene::Load()
 	m_pCinematicManager = new CinematicManager(this);
 	m_pItemManager = new ItemManager(this);
 	m_pBuffManager = new BuffManager(this);
+	m_pLightManager = new LightManager(this);
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
 	if (pExpTable == nullptr)
@@ -151,6 +154,7 @@ void GameScene::LateLoadScene()
 	m_pCinematicManager->Initialize();
 	m_pItemManager->Initialize();
 	m_pBuffManager->Initialize();
+	m_pLightManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -199,6 +203,7 @@ void GameScene::Unload()
 	SAFE_DELETE(m_pCinematicManager);
 	SAFE_DELETE(m_pItemManager);
 	SAFE_DELETE(m_pBuffManager);
+	SAFE_DELETE(m_pLightManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -344,7 +349,17 @@ CinematicManager * GameScene::GetCinematicManager()
 
 ItemManager * GameScene::GetItemManager()
 {
-	return nullptr;
+	return m_pItemManager;
+}
+
+BuffManager * GameScene::GetBuffManager()
+{
+	return m_pBuffManager;
+}
+
+LightManager * GameScene::GetLightManager()
+{
+	return m_pLightManager;
 }
 
 float GameScene::GetFloatA()

@@ -30,6 +30,9 @@ public :
 	void Update();
 	bool IsPlayerMovable();
 
+public : /* For Sound */
+	void SwitchBGM(TCHAR* soundName);
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES

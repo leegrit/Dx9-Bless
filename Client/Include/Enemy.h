@@ -32,7 +32,8 @@ public :
 	virtual void Render() override;
 	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical) override;
 	virtual void OnDied() override;
-
+	virtual void OnEnable() override;
+	virtual void OnDisable() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// PURE
@@ -86,6 +87,10 @@ private :
 	/* For Focus */
 	Collider * m_pFocusCollider;
 
+private : /* hit reaction */
+	bool m_hited = false;
+	float m_hitElapsed = 0;
+	float m_reactionDuration = 0.2f;
 
 private : /* Hit Effect */
 	Effect * m_pLeftSwordHitEffect;
@@ -93,6 +98,7 @@ private : /* Hit Effect */
 	class Sprite* m_pHitEffect;
 	Effect* m_pLeftBloodEffect;
 	Effect* m_pRightBloodEffect;
+	class Sprite * m_pHitEffect2;
 
 
 };

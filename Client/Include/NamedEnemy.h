@@ -25,5 +25,10 @@ public :
 	virtual void OnDamaged(GameObject* pSender, float damage, bool isCritical) override;
 
 
+
+private : 
+	bool m_hited = false;
+	float m_hitElapsed = 0;
+	float m_reactionDuration = 0.2f;
 };
 

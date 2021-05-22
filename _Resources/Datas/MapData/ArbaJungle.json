@@ -1,6 +1,6 @@
 {
   "Group": 0,
-  "MapCount": 119,
+  "MapCount": 126,
   "Hierarchy_0": {
     "Type": 2,
     "Index": 1,
@@ -9875,7 +9875,7 @@
         "Position": {
           "X": 97.91,
           "Y": 0.0,
-          "Z": 434.7755
+          "Z": 434.78
         },
         "Rotation": {
           "X": 0.0,
@@ -9966,9 +9966,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -111.755562,
+          "X": -111.76,
           "Y": -7.62939453E-06,
-          "Z": 1048.73584
+          "Z": 1048.74
         },
         "Rotation": {
           "X": 0.0,
@@ -10154,7 +10154,7 @@
         "Position": {
           "X": 180.18,
           "Y": -1.90734863E-06,
-          "Z": 375.187683
+          "Z": 375.19
         },
         "Rotation": {
           "X": 0.0,
@@ -10245,9 +10245,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 215.622879,
+          "X": 215.62,
           "Y": -7.62939453E-06,
-          "Z": 387.144836
+          "Z": 387.14
         },
         "Rotation": {
           "X": 0.0,
@@ -10338,9 +10338,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 332.2193,
+          "X": 332.22,
           "Y": -1.90734863E-06,
-          "Z": 705.074463
+          "Z": 705.07
         },
         "Rotation": {
           "X": 0.0,
@@ -10431,9 +10431,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 209.544067,
+          "X": 209.54,
           "Y": -1.90734863E-06,
-          "Z": 769.7003
+          "Z": 769.7
         },
         "Rotation": {
           "X": 0.0,
@@ -10526,7 +10526,7 @@
         "Position": {
           "X": -156.54,
           "Y": -3.81469727E-06,
-          "Z": 1004.90894
+          "Z": 1004.91
         },
         "Rotation": {
           "X": 0.0,
@@ -10617,9 +10617,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -259.339966,
+          "X": -259.34,
           "Y": -3.81469727E-06,
-          "Z": 431.842255
+          "Z": 431.84
         },
         "Rotation": {
           "X": 0.0,
@@ -10698,12 +10698,12 @@
   },
   "Hierarchy_115": {
     "Type": 2,
-    "Index": 146,
+    "Index": 145,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 146,
+      "Index": 145,
       "Name": "JungleTree06",
       "Tag": "Default",
       "Layer": 0,
@@ -10727,12 +10727,12 @@
       }
     },
     "MeshData": {
-      "Index": 146,
+      "Index": 145,
       "MeshFilePath": "Assets\\Mesh\\Map\\ArbaJungle\\JungleTree06.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 146,
+      "Index": 145,
       "Group": 0
     },
     "NavMeshData": {
@@ -10791,21 +10791,21 @@
   },
   "Hierarchy_116": {
     "Type": 2,
-    "Index": 147,
+    "Index": 146,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 147,
+      "Index": 146,
       "Name": "Sundires01",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -277.434174,
+          "X": -277.43,
           "Y": 0.0,
-          "Z": 243.43251
+          "Z": 243.43
         },
         "Rotation": {
           "X": 0.0,
@@ -10820,12 +10820,12 @@
       }
     },
     "MeshData": {
-      "Index": 147,
+      "Index": 146,
       "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 147,
+      "Index": 146,
       "Group": 0
     },
     "NavMeshData": {
@@ -10884,6 +10884,99 @@
   },
   "Hierarchy_117": {
     "Type": 2,
+    "Index": 147,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 147,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -12.21,
+          "Y": 0.0,
+          "Z": 138.02
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 147,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 147,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_118": {
+    "Type": 2,
     "Index": 148,
     "TagIndex": 0,
     "LayerIndex": 0,
@@ -10896,9 +10989,9 @@
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": -12.213459,
-          "Y": 0.0,
-          "Z": 138.0181
+          "X": 123.8,
+          "Y": -7.62939453E-06,
+          "Z": 345.48
         },
         "Rotation": {
           "X": 0.0,
@@ -10975,23 +11068,23 @@
       "Quadratic": 0.0
     }
   },
-  "Hierarchy_118": {
+  "Hierarchy_119": {
     "Type": 2,
-    "Index": 149,
+    "Index": 164,
     "TagIndex": 0,
     "LayerIndex": 0,
     "StaticIndex": 0,
     "GameObjectData": {
-      "Index": 149,
+      "Index": 164,
       "Name": "Sundires01",
       "Tag": "Default",
       "Layer": 0,
       "StaticType": 0,
       "Transform": {
         "Position": {
-          "X": 123.795738,
+          "X": 208.4632,
           "Y": -7.62939453E-06,
-          "Z": 345.4751
+          "Z": 576.9892
         },
         "Rotation": {
           "X": 0.0,
@@ -11006,12 +11099,570 @@
       }
     },
     "MeshData": {
-      "Index": 149,
+      "Index": 164,
       "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
       "DiffuseTexturePath": ""
     },
     "MapData": {
-      "Index": 149,
+      "Index": 164,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_120": {
+    "Type": 2,
+    "Index": 165,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 165,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 390.4351,
+          "Y": -1.52587891E-05,
+          "Z": 582.590942
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 165,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 165,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_121": {
+    "Type": 2,
+    "Index": 166,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 166,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 332.4696,
+          "Y": -3.81469727E-06,
+          "Z": 989.167847
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 166,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 166,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_122": {
+    "Type": 2,
+    "Index": 167,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 167,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": 73.1886139,
+          "Y": -7.62939453E-06,
+          "Z": 1163.651
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 167,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 167,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_123": {
+    "Type": 2,
+    "Index": 168,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 168,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -218.738541,
+          "Y": -3.81469727E-06,
+          "Z": 993.510742
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 168,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 168,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_124": {
+    "Type": 2,
+    "Index": 169,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 169,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -138.647873,
+          "Y": -7.62939453E-06,
+          "Z": 705.1154
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 169,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 169,
+      "Group": 0
+    },
+    "NavMeshData": {
+      "Index": 112,
+      "CellCount": 0
+    },
+    "TerrainData": {
+      "VertexCountX": 10,
+      "VertexCountZ": 10,
+      "TextureCountX": 20.0,
+      "TextureCountZ": 20.0,
+      "VertexInterval": 1.0,
+      "DiffuseFilePath": "",
+      "NormalFilePath": ""
+    },
+    "LightData": {
+      "LightType": 0,
+      "Direction": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Position": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Ambient": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "AmbientIntensity": 0.0,
+      "Diffuse": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "DiffuseIntensity": 0.0,
+      "Specular": {
+        "R": 0.0,
+        "G": 0.0,
+        "B": 0.0,
+        "A": 0.0
+      },
+      "SpecularIntensity": 0.0,
+      "SpecularPower": 0.0,
+      "Range": 0.0,
+      "Cone": 0.0,
+      "Constant": 0.0,
+      "Linear": 0.0,
+      "Quadratic": 0.0
+    }
+  },
+  "Hierarchy_125": {
+    "Type": 2,
+    "Index": 170,
+    "TagIndex": 0,
+    "LayerIndex": 0,
+    "StaticIndex": 0,
+    "GameObjectData": {
+      "Index": 170,
+      "Name": "Sundires01",
+      "Tag": "Default",
+      "Layer": 0,
+      "StaticType": 0,
+      "Transform": {
+        "Position": {
+          "X": -35.924118,
+          "Y": -3.81469727E-06,
+          "Z": 430.557556
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 0.3,
+          "Y": 0.3,
+          "Z": 0.3
+        }
+      }
+    },
+    "MeshData": {
+      "Index": 170,
+      "MeshFilePath": "Assets\\Mesh\\Map\\Binterrante\\Sundires01.X",
+      "DiffuseTexturePath": ""
+    },
+    "MapData": {
+      "Index": 170,
       "Group": 0
     },
     "NavMeshData": {

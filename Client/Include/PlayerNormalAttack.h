@@ -63,6 +63,7 @@ private : /* Effect */
 	Effect * m_pSwordTrail = nullptr;
 	Effect* m_pSwordTrail_Second = nullptr;
 	Effect* m_pSwordTrail_Third = nullptr;
+	Effect* m_pStabEffect = nullptr;
 
 	bool m_bPlayerAfterImage = false;
 	

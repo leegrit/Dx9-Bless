@@ -106,6 +106,11 @@ private : /* For Collect Action */
 private :
 	DynamicMesh* m_pPlayerUW = nullptr;
 
+private : /* For Sound */
+	bool m_bLeftWalkSound = false;
+	bool m_bRightWalkSound = false;
+	float m_walkDelay = 0.42f;
+	float m_walkElapsed = 0;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

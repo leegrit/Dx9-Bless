@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Client_Events.h"
 #include "PlayerCamera.h"
+#include "SoundManager.h"
 
 
 PlayerController::PlayerController(GameObject * pOwner)
@@ -130,61 +131,118 @@ void PlayerController::UpdateMovement()
 
 	if (GetState() != EPlayerState::MountOnHorse)
 	{
-		if (KEYBOARD->Press('W'))
+		if (KEYBOARD->Press('W') ||
+			KEYBOARD->Press('S') ||
+			KEYBOARD->Press('A') ||
+			KEYBOARD->Press('D'))
 		{
-			/* Forward + Left */
-			if (KEYBOARD->Press('A'))
+			if (KEYBOARD->Press('W'))
 			{
-				SetAnimationSet(78);
-				GetTransform()->Translate(-GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				/* Forward + Left */
+				if (KEYBOARD->Press('A'))
+				{
+					SetAnimationSet(78);
+					GetTransform()->Translate(-GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				}
+				/* Forward + Right */
+				else if (KEYBOARD->Press('D'))
+				{
+					SetAnimationSet(77);
+					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				}
+				/* Only Forward */
+				else
+				{
+					SetAnimationSet(44);
+					/*Player* pPlayer = static_cast<Player*>(GetGameObject());
+					double pos = pPlayer->GetCurAnimationPosition();
+					std::cout << "pos : " << pos << std::endl;
+					bool isEnd = false;
+					isEnd = pPlayer->IsAnimationSetEnd();
+					if (isEnd == true)
+					{
+						m_bLeftWalkSound = false;
+						m_bRightWalkSound = false;
+						std::cout << "end move " << std::endl;
+					}*/
+
+					
+
+					/*if (pos < 0.2f)
+					{
+						m_bLeftWalkSound = false;
+						m_bRightWalkSound = false;
+					}*/
+
+				}
+				GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * m_speed);
 			}
-			/* Forward + Right */
-			else if (KEYBOARD->Press('D'))
+			else if (KEYBOARD->Press('S'))
 			{
-				SetAnimationSet(77);
-				GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				/* Back + Left */
+				if (KEYBOARD->Press('A'))
+				{
+					SetAnimationSet(83);
+					GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
+				}
+				/* Back + Right */
+				else if (KEYBOARD->Press('D'))
+				{
+					SetAnimationSet(82);
+					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				}
+				/* Only Back */
+				else
+				{
+					SetAnimationSet(84);
+				}
+				GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* m_speed);
 			}
-			/* Only Forward */
-			else
+			else if (KEYBOARD->Press('A'))
 			{
-				SetAnimationSet(44);
-			}
-			GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * m_speed);
-		}
-		else if (KEYBOARD->Press('S'))
-		{
-			/* Back + Left */
-			if (KEYBOARD->Press('A'))
-			{
-				SetAnimationSet(83);
+				SetAnimationSet(74);
 				GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
 			}
-			/* Back + Right */
 			else if (KEYBOARD->Press('D'))
 			{
-				SetAnimationSet(82);
+				SetAnimationSet(73);
 				GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
 			}
-			/* Only Back */
-			else
+			m_walkElapsed += TIMER->getDeltaTime();
+			/*if (m_walkElapsed >= m_walkDelay)
 			{
-				SetAnimationSet(84);
+			m_walkElapsed = 0;
+			m_bLeftWalkSound = false;
+			m_bRightWalkSound = false;
+			}*/
+			if (m_walkElapsed >= 0.4f && m_bLeftWalkSound == false)
+			{
+				m_bLeftWalkSound = true;
+
+				SoundDesc desc;
+				desc.channelMode = FMOD_LOOP_OFF;
+				desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+				desc.volume = 1;
+				SOUND->PlaySound("LeftWalkSound", L"WalkSound2.ogg", desc);
+
 			}
-			GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* m_speed);
-		}
-		else if (KEYBOARD->Press('A'))
-		{
-			SetAnimationSet(74);
-			GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
-		}
-		else if (KEYBOARD->Press('D'))
-		{
-			SetAnimationSet(73);
-			GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+			if (m_walkElapsed >= 0.8f && m_bRightWalkSound == false)
+			{
+				m_bRightWalkSound = true;
+				m_walkElapsed = 0;
+				m_bLeftWalkSound = false;
+				m_bRightWalkSound = false;
+				SoundDesc desc;
+				desc.channelMode = FMOD_LOOP_OFF;
+				desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+				desc.volume = 1;
+				SOUND->PlaySound("RightWalkSound", L"WalkSound2.ogg", desc);
+			}
 		}
 		else
 		{
 			SetAnimationSet(89);
+			
 		}
 	}
 	else if (GetState() == EPlayerState::MountOnHorse)

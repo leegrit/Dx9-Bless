@@ -99,6 +99,28 @@ void HyEngine::MeshEffect::Render()
 
 }
 
+void HyEngine::MeshEffect::DrawPrimitive(ID3DXEffect * pEffect)
+{
+	pEffect->SetBool("IsMasked", true);
+	D3DXHANDLE maskHandle = pEffect->GetParameterByName(0, "MaskTex");
+	/* Set world, view and projection */
+	pEffect->SetValue("WorldMatrix", &m_pTransform->GetWorldMatrix(), sizeof(m_pTransform->GetWorldMatrix()));
+	pEffect->SetValue("ViewMatrix", &CAMERA->GetViewMatrix(), sizeof(CAMERA->GetViewMatrix()));
+	pEffect->SetValue("ProjMatrix", &CAMERA->GetProjectionMatrix(), sizeof(CAMERA->GetProjectionMatrix()));
+
+	if (m_pAlphaMask)
+	{
+		pEffect->SetTexture(maskHandle, m_pAlphaMask);
+	}
+	else
+	{
+		pEffect->SetTexture(maskHandle, m_pDiffuseMap);
+	}
+	pEffect->SetValue("UVMoveFactor", &GetUVOffset(), sizeof(GetUVOffset()));
+	pEffect->CommitChanges();
+	m_pMesh->DrawSubset(0);
+}
+
 void HyEngine::MeshEffect::UpdatedData(EDataType dataType)
 {
 	Effect::UpdatedData(dataType);

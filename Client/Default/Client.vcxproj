@@ -143,6 +143,7 @@
     <ClCompile Include="..\Source\ActionComponent.cpp" />
     <ClCompile Include="..\Source\AncientTowerScene.cpp" />
     <ClCompile Include="..\Source\ArbaJungleScene.cpp" />
+    <ClCompile Include="..\Source\BattleCinematicTrack.cpp" />
     <ClCompile Include="..\Source\Bran.cpp" />
     <ClCompile Include="..\Source\BuffManager.cpp" />
     <ClCompile Include="..\Source\BuffSlotData.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="..\Source\CollectObject.cpp" />
     <ClCompile Include="..\Source\CollectProgressBar.cpp" />
     <ClCompile Include="..\Source\CollectQuest.cpp" />
+    <ClCompile Include="..\Source\DynamicLight.cpp" />
     <ClCompile Include="..\Source\EffectManager.cpp" />
     <ClCompile Include="..\Source\Elaine.cpp" />
     <ClCompile Include="..\Source\ElainShopItemsData.cpp" />
@@ -173,6 +175,7 @@
     <ClCompile Include="..\Source\HGoblinMove.cpp" />
     <ClCompile Include="..\Source\ItemManager.cpp" />
     <ClCompile Include="..\Source\ItemQuickSlotUI.cpp" />
+    <ClCompile Include="..\Source\LightManager.cpp" />
     <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
@@ -291,7 +294,9 @@
     <ClCompile Include="..\Source\SpoilsObject.cpp" />
     <ClCompile Include="..\Source\SpoilsUI.cpp" />
     <ClCompile Include="..\Source\Sprite.cpp" />
+    <ClCompile Include="..\Source\Sprite3D.cpp" />
     <ClCompile Include="..\Source\SpriteLoader.cpp" />
+    <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\SummonProgressBar.cpp" />
     <ClCompile Include="..\Source\SwordMeshEffect.cpp" />
     <ClCompile Include="..\Source\TalkableGoblin.cpp" />
@@ -309,6 +314,7 @@
     <ClInclude Include="..\Include\ActionComponent.h" />
     <ClInclude Include="..\Include\AncientTowerScene.h" />
     <ClInclude Include="..\Include\ArbaJungleScene.h" />
+    <ClInclude Include="..\Include\BattleCinematicTrack.h" />
     <ClInclude Include="..\Include\Bran.h" />
     <ClInclude Include="..\Include\BuffManager.h" />
     <ClInclude Include="..\Include\BuffSlotData.h" />
@@ -319,6 +325,7 @@
     <ClInclude Include="..\Include\CollectObject.h" />
     <ClInclude Include="..\Include\CollectProgressBar.h" />
     <ClInclude Include="..\Include\CollectQuest.h" />
+    <ClInclude Include="..\Include\DynamicLight.h" />
     <ClInclude Include="..\Include\EffectManager.h" />
     <ClInclude Include="..\Include\Elaine.h" />
     <ClInclude Include="..\Include\ElainShopItemsData.h" />
@@ -339,6 +346,7 @@
     <ClInclude Include="..\Include\HGoblinMove.h" />
     <ClInclude Include="..\Include\ItemManager.h" />
     <ClInclude Include="..\Include\ItemQuickSlotUI.h" />
+    <ClInclude Include="..\Include\LightManager.h" />
     <ClInclude Include="..\Include\LiurensShopItemsData.h" />
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />
@@ -459,7 +467,9 @@
     <ClInclude Include="..\Include\SpoilsObject.h" />
     <ClInclude Include="..\Include\SpoilsUI.h" />
     <ClInclude Include="..\Include\Sprite.h" />
+    <ClInclude Include="..\Include\Sprite3D.h" />
     <ClInclude Include="..\Include\SpriteLoader.h" />
+    <ClInclude Include="..\Include\StaticCamera.h" />
     <ClInclude Include="..\Include\stdafx.h" />
     <ClInclude Include="..\Include\SummonProgressBar.h" />
     <ClInclude Include="..\Include\SwordMeshEffect.h" />

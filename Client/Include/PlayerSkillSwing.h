@@ -44,7 +44,7 @@ private:
 private:
 	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[3] = { 22,26,  24 };//,23, 24};
+	int m_animIndexes[1] = { /*22,*/ /*26,*/  24 };//,23, 24};
 	// 데미지 배율
 	float m_damageScale[3] = { 1.5f, 1.5f, 3.0f };
 	class PlayerStatusData * m_pPlayerStatusData = nullptr;
@@ -72,6 +72,8 @@ private : /* SecondAction Effect */
 private : /* ThirdAction Effect */
 	Effect* m_pEffect0 = nullptr;
 	Effect* m_pEffect1 = nullptr;
+
+	Effect * m_pSwingEffect = nullptr;
 
 private : /* FourthAction Effect */
 	Effect * m_pFourthActionTrail = nullptr;

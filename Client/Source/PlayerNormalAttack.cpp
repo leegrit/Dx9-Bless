@@ -44,6 +44,7 @@ void PlayerNormalAttack::Initialize()
 
 	GameScene* pScene = static_cast<GameScene*>( GetGameObject()->GetScene());
 	m_pSwordTrail = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect", meshEffectDesc);
+	m_pSwordTrail->SetRenderEffectOption(RenderEffectOption::Bloom);
 	//m_pSwordTrail->SetRenderEffectOption(PostRenderOption::Bloom);
 
 	/* Add Effect NormalAttack */
@@ -58,6 +59,7 @@ void PlayerNormalAttack::Initialize()
 
 	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 	m_pSwordTrail_Second = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect_Second", meshEffectDesc_Second);
+	m_pSwordTrail_Second->SetRenderEffectOption(RenderEffectOption::Bloom);
 
 	MeshEffectDesc meshEffectDesc_Third;
 	meshEffectDesc_Third.isUVAnim = true;
@@ -68,8 +70,23 @@ void PlayerNormalAttack::Initialize()
 	meshEffectDesc_Third.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_toneido_01.tga";
 	meshEffectDesc_Third.lifeTime = 0.6f;
 
+
 	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 	m_pSwordTrail_Third = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_SwordTrailEffect_Third", meshEffectDesc_Third);
+
+	MeshEffectDesc stabEffectDesc;
+	stabEffectDesc.isUVAnim = true;
+	stabEffectDesc.uvDirection = D3DXVECTOR2(1, 0);
+	stabEffectDesc.uvSpeed = 1.0f;
+	stabEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_TwistLine_001.X";
+	stabEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_IceWhipDecal_001_Tex_PHS.tga";
+	stabEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_IceWhipDecal_001_Tex_PHS.tga";
+	stabEffectDesc.lifeTime = 1.0f;
+	stabEffectDesc.fadeOut = true;
+	stabEffectDesc.endRot = D3DXVECTOR3(-360, 0, 0);
+
+	m_pStabEffect = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_StabEffect", stabEffectDesc);
+
 }
 
 void PlayerNormalAttack::Update()
@@ -104,6 +121,14 @@ void PlayerNormalAttack::Update()
 	);
 	m_pSwordTrail_Third->SetOriginScale(D3DXVECTOR3(1.2, 1.2, 1.2));
 
+	m_pStabEffect->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(-0.24, 7.76, 12.48))
+	);
+	m_pStabEffect->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, -95.6, 0)
+	);
+	m_pStabEffect->SetOriginScale(D3DXVECTOR3(0.5, 0.5, 0.5));
 
 }
 
@@ -319,6 +344,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		break;
 	case 2:
+		if (elapsed >= 0.1f)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRenderEffectOption(RenderEffectOption::RimLight);
+			weapon->SetRimWidth(1.0f);
+			weapon->SetRimColor(D3DXCOLOR(1, 1.0f, 0.0f, 1));
+		}
 		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
 		{
 
@@ -345,7 +378,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			AfterEffectDesc desc;
 			desc.animIndex = animSet;
 			desc.animPosition = pPlayer->GetCurAnimationPosition();
-			desc.color = D3DXCOLOR(1, 0, 0, 1);
+			desc.color = D3DXCOLOR(1, 1, 0, 1);
 			desc.lifeTime = 0.5f;
 			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
 			desc.startScale = 1.2f;
@@ -360,6 +393,10 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		if (elapsed >= 0.3f && m_bSendDamage == false)
 		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRimWidth(0.0f);
+
 			m_bSendDamage = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
@@ -367,7 +404,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_Third", L"Lups_SwordThrowing0.mp3", desc);
-			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Third");
+			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_StabEffect");
 			for (auto& obj : m_hitEnemies)
 			{
 				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)

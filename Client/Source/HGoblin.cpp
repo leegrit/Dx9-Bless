@@ -32,7 +32,7 @@ void HGoblin::Initialize(std::wstring dataPath)
 {
 	NamedEnemy::Initialize(dataPath);
 
-	SetParams(15, 10000, 1000);
+	SetParams(10, 3000, 100);
 
 
 	m_state.Add<HGoblinAttack>(this, "Attack");
@@ -141,6 +141,8 @@ void HGoblin::OnQuestAccept(void * pQuestIndex)
 				m_isPlayCinematic = true;
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
 				pScene->GetCinematicManager()->PlayCinematic(L"HGoblinCinematic");
+
+
 				return UpdateDispatcher::UpdateState::End;
 			}
 			return UpdateDispatcher::UpdateState::Continue;

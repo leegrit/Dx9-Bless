@@ -25,6 +25,16 @@ void HyEngine::Mesh::UpdatedData(EDataType dataType)
 
 }
 
+void HyEngine::Mesh::OnEnable()
+{
+	GameObject::OnEnable();
+}
+
+void HyEngine::Mesh::OnDisable()
+{
+	GameObject::OnDisable();
+}
+
 bool HyEngine::Mesh::ComputeBoundingSphere(D3DXVECTOR3 * center, float * radius)
 {
 	*center = D3DXVECTOR3(0, 0, 0);

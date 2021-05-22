@@ -43,7 +43,7 @@ private:
 private :
 	/* For Action Sequence */
 	int m_seqIndex = 0;
-	int m_animIndexes[1] = {37 };
+	int m_animIndexes[1] = {24/*37*/ };
 
 	/* For Attack Logic */
 	bool m_bSendDamage = false;
@@ -52,6 +52,10 @@ private :
 
 private: /* Effect */
 	int m_testIndex;
+
+private : /* Tornado Effect */
+	Effect * m_pTornadoEffect = nullptr;
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

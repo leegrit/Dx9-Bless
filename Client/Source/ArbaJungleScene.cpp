@@ -31,7 +31,13 @@
 #include "Soldier.h"
 #include "CinematicManager.h"
 #include "HGoblinCinematicTrack.h"
-
+#include "Sprite3D.h"
+#include "SoundManager.h"
+#include "BattleCinematicTrack.h"
+#include "QuestManager.h"
+#include "UpdateDispatcher.h"
+#include "Quest.h"
+#include "Client_Events.h"
 
 void ArbaJungleScene::Update()
 {
@@ -43,13 +49,26 @@ void ArbaJungleScene::Load()
 	GameScene::Load();
 
 	//////////////////////////////////////////////////////////////////////////
+	// EVENT
+	//////////////////////////////////////////////////////////////////////////
+	EventDispatcher::AddEventListener(QuestEvent::QuestAccept, "ArbaJungleScene",
+		std::bind(&ArbaJungleScene::OnQuestAccept, this, placeholders::_1));
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_NORMAL;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("BGM", L"EastSkarapForest.mp3", desc);
+
+	//////////////////////////////////////////////////////////////////////////
 	// RENDER OPTION
 	//////////////////////////////////////////////////////////////////////////
 	ENGINE->SetRenderOption(RenderOptions::RenderCollider, false);
-	ENGINE->SetRenderOption(RenderOptions::RenderLight, false);
+	ENGINE->SetRenderOption(RenderOptions::RenderLight, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderNavMesh, false);
 	ENGINE->SetRenderOption(RenderOptions::RenderShadow, true);
 	ENGINE->SetRenderOption(RenderOptions::RenderUI, false);
+	ENGINE->SetRenderOption(RenderOptions::RenderPostEffect, true);
 
 	//////////////////////////////////////////////////////////////////////////
 	// NAVMESH
@@ -94,6 +113,19 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	/* Directional Light */
 	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_DirectionalLight.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight1.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight2.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight3.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight4.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight5.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight6.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight7.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight8.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight9.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight10.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight11.json");
+	LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/Jungle_PointLight12.json");
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// EQUIPMENT
@@ -105,6 +137,71 @@ void ArbaJungleScene::Load()
 	m_pPlayer->SetWeapon(pEquip);
 	pEquip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
 	m_pPlayer->SetShield(pEquip);
+
+	//////////////////////////////////////////////////////////////////////////
+	// ENVIRONMENT
+	//////////////////////////////////////////////////////////////////////////
+	auto env1 = Sprite3D::Create(this, L"Env1",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env1->m_pTransform->m_position = D3DXVECTOR3(-12, 30, 137);
+	env1->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env1->PlayAnimation();
+	auto env2 = Sprite3D::Create(this, L"Env2",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env2->m_pTransform->m_position = D3DXVECTOR3(123, 30, 343);
+	env2->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env2->PlayAnimation();
+	auto env3 = Sprite3D::Create(this, L"Env3",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env3->m_pTransform->m_position = D3DXVECTOR3(-276, 30, 242);
+	env3->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env3->PlayAnimation();
+	auto env4 = Sprite3D::Create(this, L"Env4",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env4->m_pTransform->m_position = D3DXVECTOR3(-36, 30, 840);
+	env4->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env4->PlayAnimation();
+	auto env5 = Sprite3D::Create(this, L"Env5",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env5->m_pTransform->m_position = D3DXVECTOR3(-399, 30, 790);
+	env5->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env5->PlayAnimation();
+	auto env6 = Sprite3D::Create(this, L"Env6",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env6->m_pTransform->m_position = D3DXVECTOR3(208, 30, 576);
+	env6->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env6->PlayAnimation();
+	auto env7 = Sprite3D::Create(this, L"Env7",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env7->m_pTransform->m_position = D3DXVECTOR3(390, 30, 582);
+	env7->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env7->PlayAnimation();
+	auto env8 = Sprite3D::Create(this, L"Env8",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env8->m_pTransform->m_position = D3DXVECTOR3(332, 30, 989);
+	env8->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env8->PlayAnimation();
+	auto env9 = Sprite3D::Create(this, L"Env9",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env9->m_pTransform->m_position = D3DXVECTOR3(73, 30, 1163);
+	env9->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env9->PlayAnimation();
+	auto env10 = Sprite3D::Create(this, L"Env10",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env10->m_pTransform->m_position = D3DXVECTOR3(-218, 30, 993);
+	env10->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env10->PlayAnimation();
+	auto env11 = Sprite3D::Create(this, L"Env11",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env11->m_pTransform->m_position = D3DXVECTOR3(-138, 30, 705);
+	env11->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env11->PlayAnimation();
+	auto env12 = Sprite3D::Create(this, L"Env12",
+		PATH->AssetsPathW() + L"Effect/Texture/FX_GstarFire_005_TEX_KJS", ELoopType::Loop, 64, 20.0f);
+	env12->m_pTransform->m_position = D3DXVECTOR3(-35, 30, 430);
+	env12->m_pTransform->m_scale = D3DXVECTOR3(35, 35, 35);
+	env12->PlayAnimation();
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
@@ -153,8 +250,31 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	auto named = HGoblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/HGoblin.json");
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// CINEMATIC
+	//////////////////////////////////////////////////////////////////////////
 	HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
 	GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
+
+	auto goblin01_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin01.json");
+	auto goblin02_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin02.json");
+	auto goblin03_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin03.json");
+	auto goblin04_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin04.json");
+
+	auto soldier01_Cin = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier01_Cin.json");
+	auto soldier02_Cin = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier02_Cin.json");
+	auto soldier03_Cin = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier03_Cin.json");
+	auto soldier04_Cin = Soldier::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Jungle_Soldier04_Cin.json");
+	std::vector<GameObject* > actors = { goblin01_Cin, goblin02_Cin, goblin03_Cin , goblin04_Cin,
+	soldier01_Cin, soldier02_Cin, soldier03_Cin, soldier04_Cin};
+
+	for (auto actor : actors)
+	{
+		actor->SetActive(false);
+	}
+	BattleCinematicTrack * pBattleCinTrack = new BattleCinematicTrack(actors);
+	GetCinematicManager()->AddCinematic(L"BattleCinematic", pBattleCinTrack);
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
@@ -188,7 +308,9 @@ void ArbaJungleScene::LateLoadScene()
 void ArbaJungleScene::Unload()
 {
 	GameScene::Unload();
+	SOUND->StopAll();
 
+	EventDispatcher::RemoveEventListener(QuestEvent::QuestAccept, "ArbaJungleScene");
 }
 
 void ArbaJungleScene::LoadAsync(std::function<void(int, int)> onProgress)
@@ -210,4 +332,26 @@ Camera * ArbaJungleScene::GetEditCam()
 Camera * ArbaJungleScene::GetGameCam()
 {
 	return m_pGameCam;
+}
+
+void ArbaJungleScene::OnQuestAccept(void * pQuestIndex)
+{
+	int index = *static_cast<int*>(pQuestIndex);
+	GameScene* pScene = static_cast<GameScene*>(SCENE);
+	Quest * pQuest = pScene->GetQuestManager()->GetQuest(index);
+	if (pQuest->GetQuestName().compare(L"°íºí¸° ÅðÄ¡") == 0)
+	{
+
+		UpdateDispatcher::Dispatch([&]()->UpdateDispatcher::UpdateState
+		{
+			m_elapsed += TIMER->getDeltaTime();
+			if (m_elapsed >= m_cinematicDelay)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+				pScene->GetCinematicManager()->PlayCinematic(L"BattleCinematic");
+				return UpdateDispatcher::UpdateState::End;
+			}
+			return UpdateDispatcher::UpdateState::Continue;
+		}, []() {});
+	}
 }

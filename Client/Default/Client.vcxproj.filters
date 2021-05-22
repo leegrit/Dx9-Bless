@@ -491,6 +491,19 @@
     <ClCompile Include="..\Source\SpoilsUI.cpp">
       <Filter>Scripts\UI\Battle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Sprite3D.cpp">
+      <Filter>Scripts\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\BattleCinematicTrack.cpp">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\StaticCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DynamicLight.cpp" />
+    <ClCompile Include="..\Source\LightManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -615,6 +628,9 @@
     </Filter>
     <Filter Include="Scripts\Cinematic">
       <UniqueIdentifier>{20305088-a855-4a0a-8058-25e2b512e72a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Light">
+      <UniqueIdentifier>{34a55ec5-679a-457f-bcb9-c0fdebd6d192}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1115,6 +1131,19 @@
     </ClInclude>
     <ClInclude Include="..\Include\SpoilsUI.h">
       <Filter>Scripts\UI\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Sprite3D.h">
+      <Filter>Scripts\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\BattleCinematicTrack.h">
+      <Filter>Scripts\Cinematic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\StaticCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DynamicLight.h" />
+    <ClInclude Include="..\Include\LightManager.h">
+      <Filter>Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

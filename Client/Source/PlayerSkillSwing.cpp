@@ -18,7 +18,7 @@
 PlayerSkillSwing::PlayerSkillSwing(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillSwing")
 {
-	SetParams(0.2f, 3, 3.0f, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+	SetParams(0.2f, 1, 3.0f, 10, 10, false, D3DXVECTOR3(0, 10, 20));
 }
 
 PlayerSkillSwing::~PlayerSkillSwing()
@@ -95,7 +95,22 @@ void PlayerSkillSwing::Initialize()
 	//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
 	m_pFourthActionTrail = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_FourthActionTrail", FourthActionTrailDesc);
 
+	MeshEffectDesc swingEffectDesc;
+	swingEffectDesc.isUVAnim = true;
+	swingEffectDesc.uvDirection = D3DXVECTOR2(0, 1);
+	swingEffectDesc.uvSpeed = 1.0f;
+	swingEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_landburncyclone.X";
+	swingEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_FireTile8.tga";
+	swingEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	swingEffectDesc.lifeTime = 0.4f;
+	swingEffectDesc.fadeOut = true;
+	swingEffectDesc.fadeOutFactor = 0.8f;
+	swingEffectDesc.fadeIn = false;
+	swingEffectDesc.fadeInFactor = 0.2f;
+	swingEffectDesc.endRot = D3DXVECTOR3(0, 360, 0);
+	swingEffectDesc.endScale = D3DXVECTOR3(0, 0, 0);
 
+	m_pSwingEffect = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_SwingEffect", swingEffectDesc);
 }
 
 void PlayerSkillSwing::Update()
@@ -139,7 +154,16 @@ void PlayerSkillSwing::Update()
 		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
 	);
 	m_pEffect1->SetOriginScale(D3DXVECTOR3(0.1f, 0.1f, 0.1f));
+	
 
+	m_pSwingEffect->SetOriginPos(
+		GetGameObject()->m_pTransform->CalcOffset(D3DXVECTOR3(0, 0, 0))
+	);
+	m_pSwingEffect->SetOriginRot
+	(
+		GetGameObject()->m_pTransform->m_rotationEuler.operator D3DXVECTOR3() + D3DXVECTOR3(0, 0, 0)
+	);
+	m_pSwingEffect->SetOriginScale(D3DXVECTOR3(1, 0.3, 1));
 }
 
 void PlayerSkillSwing::LateUpdate()
@@ -215,190 +239,190 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 	//if (m_bSendDamage == true) return;
 	switch (seqIndex)
 	{
+	//case 0:
+	//	if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
+	//	{
+
+	//		Player* pPlayer = static_cast<Player*>(PLAYER);
+
+	//		Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+	//		WeaponAfterEffectDesc weaponDesc;
+	//		weaponDesc.lifeTime = 0.4f;
+	//		weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+	//		weaponDesc.pOrigin = pWeapon;
+	//		weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+	//		weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+	//		weaponDesc.fadeOutSpd = 2.0f;
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+
+	//	}
+	//	if (elapsed >= 0.01f && m_bPlayAfterImage == false && m_pPlayerBuffInfo->bBuff)
+	//	{
+	//		Player * pPlayer = static_cast<Player*>(PLAYER);
+	//		UINT animSet = pPlayer->GetCurAnimationIndex();
+	//		//pPlayer->SetAnimationSpeed(1.5f);
+	//		AfterEffectDesc desc;
+	//		desc.animIndex = animSet;
+	//		desc.animPosition = pPlayer->GetCurAnimationPosition();
+	//		desc.color = D3DXCOLOR(1, 0, 0, 1);
+	//		desc.lifeTime = 0.5f;
+	//		desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+	//		desc.startScale = 1.2f;
+	//		desc.endScale = 1.0f;
+	//		desc.scaleSpd = 2.0f;
+
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+	//		//GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		pScene->GetEffectManager()->PlayAffterEffect(index);
+
+	//		m_bPlayAfterImage = true;
+	//	}
+	//	if (elapsed >= 0.3f && m_bSendDamage == false)
+	//	{
+	//		SoundDesc desc;
+	//		desc.channelMode = FMOD_LOOP_OFF;
+	//		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	//		desc.volume = 1;
+	//		SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+	//		pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_FirstActionTrail");
+
+	//		for (auto& obj : m_hitEnemies)
+	//		{
+	//			GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//			if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+	//				return;
+	//			if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+	//			{
+	//				continue;
+	//			}
+
+	//			Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+	//			float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+	//			float minDamage = damage * 0.5f;
+	//			float maxDamage = damage * 1.5f;
+	//			damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+	//			float critical = DxHelper::GetRandomFloat(0, 1);
+	//			bool isCritical = false;
+	//			float playerCritical = m_pPlayerStatusData->critical;
+	//			playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+	//			if (critical < m_pPlayerStatusData->critical)
+	//			{
+	//				isCritical = true;
+	//				damage *= 2.0f;
+	//			}
+
+	//			enemy->SendDamage(GetGameObject(), damage, isCritical);
+	//			enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+	//			if (isCritical)
+	//			{
+	//				CAMERA->Shake(0.3f, 0.3f, 1.0f);
+	//			}
+	//			else
+	//			{
+	//				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+	//			}
+	//			
+	//		}
+	//		m_bSendDamage = true;
+	//	}
+	//	break;
+	//case 0:
+	//	if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
+	//	{
+	//		Player* pPlayer = static_cast<Player*>(PLAYER);
+
+	//		Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
+	//		WeaponAfterEffectDesc weaponDesc;
+	//		weaponDesc.lifeTime = 0.4f;
+	//		weaponDesc.worldMat = pWeapon->GetWorldMatrix();
+	//		weaponDesc.pOrigin = pWeapon;
+	//		weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
+	//		weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
+	//		weaponDesc.fadeOutSpd = 2.0f;
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
+	//	}
+	//	if (elapsed >= 0.01f && m_bPlayAfterImage == false && m_pPlayerBuffInfo->bBuff)
+	//	{
+	//		Player * pPlayer = static_cast<Player*>(PLAYER);
+	//		UINT animSet = pPlayer->GetCurAnimationIndex();
+	//		//pPlayer->SetAnimationSpeed(1.5f);
+	//		AfterEffectDesc desc;
+	//		desc.animIndex = animSet;
+	//		desc.animPosition = pPlayer->GetCurAnimationPosition();
+	//		desc.color = D3DXCOLOR(1, 0, 0, 1);
+	//		desc.lifeTime = 0.5f;
+	//		desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+	//		desc.startScale = 1.2f;
+	//		desc.endScale = 1.0f;
+	//		desc.scaleSpd = 2.0f;
+
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+	//		//GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//		pScene->GetEffectManager()->PlayAffterEffect(index);
+
+	//		m_bPlayAfterImage = true;
+	//	}
+	//	if (elapsed >= 0.3f && m_bSendDamage == false)
+	//	{
+	//		SoundDesc desc;
+	//		desc.channelMode = FMOD_LOOP_OFF;
+	//		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	//		desc.volume = 1;
+	//		SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+	//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+	//		pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_SecondActionTrail");
+
+	//		for (auto& obj : m_hitEnemies)
+	//		{
+	//			GameScene* pScene = static_cast<GameScene*>(SCENE);
+	//			if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+	//				return;
+	//			if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+	//			{
+	//				continue;
+	//			}
+
+	//			Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+	//			float damage = m_damageScale[1] * m_pPlayerStatusData->power;
+	//			float minDamage = damage * 0.5f;
+	//			float maxDamage = damage * 1.5f;
+	//			damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+	//			float critical = DxHelper::GetRandomFloat(0, 1);
+	//			bool isCritical = false;
+	//			float playerCritical = m_pPlayerStatusData->critical;
+	//			playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+	//			if (critical < m_pPlayerStatusData->critical)
+	//			{
+	//				isCritical = true;
+	//				damage *= 2.0f;
+	//			}
+
+	//			enemy->SendDamage(GetGameObject(), damage, isCritical);
+	//			enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+	//			if (isCritical)
+	//			{
+	//				CAMERA->Shake(0.3f, 0.3f, 1.0f);
+	//			}
+	//			else
+	//			{
+	//				CAMERA->Shake(0.1f, 0.1f, 1.0f);
+	//			}
+	//		}
+	//		m_bSendDamage = true;
+	//	}
+	//	break;
 	case 0:
-		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
-		{
-
-			Player* pPlayer = static_cast<Player*>(PLAYER);
-
-			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
-			WeaponAfterEffectDesc weaponDesc;
-			weaponDesc.lifeTime = 0.4f;
-			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
-			weaponDesc.pOrigin = pWeapon;
-			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
-			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
-			weaponDesc.fadeOutSpd = 2.0f;
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
-
-		}
-		if (elapsed >= 0.01f && m_bPlayAfterImage == false && m_pPlayerBuffInfo->bBuff)
-		{
-			Player * pPlayer = static_cast<Player*>(PLAYER);
-			UINT animSet = pPlayer->GetCurAnimationIndex();
-			//pPlayer->SetAnimationSpeed(1.5f);
-			AfterEffectDesc desc;
-			desc.animIndex = animSet;
-			desc.animPosition = pPlayer->GetCurAnimationPosition();
-			desc.color = D3DXCOLOR(1, 0, 0, 1);
-			desc.lifeTime = 0.5f;
-			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
-			desc.startScale = 1.2f;
-			desc.endScale = 1.0f;
-			desc.scaleSpd = 2.0f;
-
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
-			//GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(index);
-
-			m_bPlayAfterImage = true;
-		}
-		if (elapsed >= 0.3f && m_bSendDamage == false)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_FirstActionTrail");
-
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
-
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				float playerCritical = m_pPlayerStatusData->critical;
-				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
-
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-				
-			}
-			m_bSendDamage = true;
-		}
-		break;
-	case 1:
-		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
-		{
-			Player* pPlayer = static_cast<Player*>(PLAYER);
-
-			Equipment * pWeapon = static_cast<Equipment*>(pPlayer->GetWeapon());
-			WeaponAfterEffectDesc weaponDesc;
-			weaponDesc.lifeTime = 0.4f;
-			weaponDesc.worldMat = pWeapon->GetWorldMatrix();
-			weaponDesc.pOrigin = pWeapon;
-			weaponDesc.afterEffectOption = AfterEffectOption::FadeOut;
-			weaponDesc.color = D3DXCOLOR(1, 1, 0, 1);
-			weaponDesc.fadeOutSpd = 2.0f;
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
-		}
-		if (elapsed >= 0.01f && m_bPlayAfterImage == false && m_pPlayerBuffInfo->bBuff)
-		{
-			Player * pPlayer = static_cast<Player*>(PLAYER);
-			UINT animSet = pPlayer->GetCurAnimationIndex();
-			//pPlayer->SetAnimationSpeed(1.5f);
-			AfterEffectDesc desc;
-			desc.animIndex = animSet;
-			desc.animPosition = pPlayer->GetCurAnimationPosition();
-			desc.color = D3DXCOLOR(1, 0, 0, 1);
-			desc.lifeTime = 0.5f;
-			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
-			desc.startScale = 1.2f;
-			desc.endScale = 1.0f;
-			desc.scaleSpd = 2.0f;
-
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
-			//GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(index);
-
-			m_bPlayAfterImage = true;
-		}
-		if (elapsed >= 0.3f && m_bSendDamage == false)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_SecondActionTrail");
-
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
-
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-
-				float damage = m_damageScale[1] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				float playerCritical = m_pPlayerStatusData->critical;
-				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
-
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
-
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-			}
-			m_bSendDamage = true;
-		}
-		break;
-	case 2:
-		if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
+		/*if (elapsed >= 0.01f && m_pPlayerBuffInfo->bBuff)
 		{
 			Player* pPlayer = static_cast<Player*>(PLAYER);
 
@@ -460,67 +484,48 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 				pScene->GetEffectManager()->PlayAffterEffect(index);
 				//m_bFinalAfterImage[0] = true;
 			}
+		}*/
+		if (elapsed >= 0.1f)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRenderEffectOption(RenderEffectOption::RimLight);
+			weapon->SetRimWidth(1.0f);
+			weapon->SetRimColor(D3DXCOLOR(1, 0.0f, 0.0f, 1));
+
 		}
-		//if (elapsed >= 0.2f && m_bFinalAfterImage[1] == false && m_pPlayerBuffInfo->bBuff)
-		//{
-		//	Player * pPlayer = static_cast<Player*>(PLAYER);
-		//	//pPlayer->SetAnimationSpeed(1.5f);
-		//	UINT animSet = pPlayer->GetCurAnimationIndex();
+		if (elapsed >= 0.3f && m_bPlayAfterImage == false)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			pPlayer->SetAnimationSpeed(0.4f);
+			UINT animSet = pPlayer->GetCurAnimationIndex();
 
-		//	AfterEffectDesc desc;
-		//	desc.animIndex = animSet;
-		//	desc.animPosition = pPlayer->GetCurAnimationPosition();
-		//	desc.color = D3DXCOLOR(1, 1, 1, 1);
-		//	desc.lifeTime = 0.5f;
-		//	desc.afterEffectOption = AfterEffectOption::FadeOut;
+			AfterEffectDesc desc;
+			desc.animIndex = animSet;
+			desc.animPosition = pPlayer->GetCurAnimationPosition();
+			desc.color = D3DXCOLOR(0.6, 0.6, 1, 1);
+			desc.lifeTime = 0.3f;
+			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+			desc.startScale = 1.3f;
+			desc.endScale = 1.0f;
+			desc.scaleSpd = 1.5f;
 
-		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
-		//	//GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	pScene->GetEffectManager()->PlayAffterEffect(index);
-		//	m_bFinalAfterImage[1] = true;
-		//}
-		//if (elapsed >= 0.3f && m_bFinalAfterImage[2] == false && m_pPlayerBuffInfo->bBuff)
-		//{
-		//	Player * pPlayer = static_cast<Player*>(PLAYER);
-		//	///pPlayer->SetAnimationSpeed(1.5f);
-		//	UINT animSet = pPlayer->GetCurAnimationIndex();
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+			//GameScene* pScene = static_cast<GameScene*>(SCENE);
+			pScene->GetEffectManager()->PlayAffterEffect(index);
+			m_bPlayAfterImage = true;
 
-		//	AfterEffectDesc desc;
-		//	desc.animIndex = animSet;
-		//	desc.animPosition = pPlayer->GetCurAnimationPosition();
-		//	desc.color = D3DXCOLOR(1, 1, 1, 1);
-		//	desc.lifeTime = 0.5f;
-		//	desc.afterEffectOption = AfterEffectOption::FadeOut;
-
-		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
-		//	//GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	pScene->GetEffectManager()->PlayAffterEffect(index);
-		//	m_bFinalAfterImage[2] = true;
-		//}
-		//if (elapsed >= 0.4f && m_bFinalAfterImage[3] == false && m_pPlayerBuffInfo->bBuff)
-		//{
-		//	Player * pPlayer = static_cast<Player*>(PLAYER);
-		//	//pPlayer->SetAnimationSpeed(1.5f);
-		//	UINT animSet = pPlayer->GetCurAnimationIndex();
-
-		//	AfterEffectDesc desc;
-		//	desc.animIndex = animSet;
-		//	desc.animPosition = pPlayer->GetCurAnimationPosition();
-		//	desc.color = D3DXCOLOR(1, 1, 1, 1);
-		//	desc.lifeTime = 0.5f;
-		//	desc.afterEffectOption = AfterEffectOption::FadeOut;
-
-		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
-		//	//GameScene* pScene = static_cast<GameScene*>(SCENE);
-		//	pScene->GetEffectManager()->PlayAffterEffect(index);
-		//	m_bFinalAfterImage[3] = true;
-		//}
+			PLAYER->SetRenderEffectOption(RenderEffectOption::RimLight);
+			PLAYER->SetRimColor(D3DXCOLOR(0.6, 0.6, 1, 1));
+			PLAYER->SetRimWidth(1.0);
+		}
 		if (elapsed >= 1.5f && m_bSendDamage == false)
 		{
 			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRimWidth(0.0f);
+			PLAYER->SetRimWidth(0.0);
 			pPlayer->SetAnimationSpeed(1.0f);
 
 			SoundDesc desc;
@@ -528,11 +533,12 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+			SOUND->PlaySound("PlayerSkillSwing_Fire", L"FireWall.mp3", desc);
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
-
+			//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+			//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_SwingEffect");
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
@@ -572,210 +578,210 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			}
 			m_bSendDamage = true;
 		}
-		if (elapsed >= 1.6f && m_bFinalSendDamage[0] == false && m_pPlayerBuffInfo->bBuff)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			//SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//if (elapsed >= 1.6f && m_bFinalSendDamage[0] == false && m_pPlayerBuffInfo->bBuff)
+		//{
+		//	SoundDesc desc;
+		//	desc.channelMode = FMOD_LOOP_OFF;
+		//	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		//	desc.volume = 1;
+		//	//SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
 
-			//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-			//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+		//	//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+		//	//pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
 
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
-
-
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
-
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
-
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-			}
-			m_bFinalSendDamage[0] = true;
-		}
-		if (elapsed >= 1.7f && m_bFinalSendDamage[1] == false && m_pPlayerBuffInfo->bBuff)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
-
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
+		//	for (auto& obj : m_hitEnemies)
+		//	{
+		//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//		if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+		//			return;
+		//		if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+		//		{
+		//			continue;
+		//		}
 
 
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+		//		Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
+		//		float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+		//		float minDamage = damage * 0.5f;
+		//		float maxDamage = damage * 1.5f;
+		//		damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+		//		float critical = DxHelper::GetRandomFloat(0, 1);
+		//		bool isCritical = false;
+		//		if (critical < m_pPlayerStatusData->critical)
+		//		{
+		//			isCritical = true;
+		//			damage *= 2.0f;
+		//		}
 
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+		//		enemy->SendDamage(GetGameObject(), damage, isCritical);
+		//		enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
 
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-			}
-			m_bFinalSendDamage[1] = true;
-		}
-		if (elapsed >= 1.8f && m_bFinalSendDamage[2] == false && m_pPlayerBuffInfo->bBuff)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//		if (isCritical)
+		//		{
+		//			CAMERA->Shake(0.3f, 0.3f, 1.0f);
+		//		}
+		//		else
+		//		{
+		//			CAMERA->Shake(0.1f, 0.1f, 1.0f);
+		//		}
+		//	}
+		//	m_bFinalSendDamage[0] = true;
+		//}
+		//if (elapsed >= 1.7f && m_bFinalSendDamage[1] == false && m_pPlayerBuffInfo->bBuff)
+		//{
+		//	SoundDesc desc;
+		//	desc.channelMode = FMOD_LOOP_OFF;
+		//	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		//	desc.volume = 1;
+		//	SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
 
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
 
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
-
-
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
-
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
-
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
-
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-			}
-			m_bFinalSendDamage[2] = true;
-		}
-		if (elapsed >= 1.9f && m_bFinalSendDamage[3] == false && m_pPlayerBuffInfo->bBuff)
-		{
-			SoundDesc desc;
-			desc.channelMode = FMOD_LOOP_OFF;
-			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-			desc.volume = 1;
-			SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
-			pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
-
-			for (auto& obj : m_hitEnemies)
-			{
-				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
+		//	for (auto& obj : m_hitEnemies)
+		//	{
+		//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//		if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+		//			return;
+		//		if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+		//		{
+		//			continue;
+		//		}
 
 
-				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+		//		Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
-				float minDamage = damage * 0.5f;
-				float maxDamage = damage * 1.5f;
-				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
-				float critical = DxHelper::GetRandomFloat(0, 1);
-				bool isCritical = false;
-				if (critical < m_pPlayerStatusData->critical)
-				{
-					isCritical = true;
-					damage *= 2.0f;
-				}
+		//		float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+		//		float minDamage = damage * 0.5f;
+		//		float maxDamage = damage * 1.5f;
+		//		damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+		//		float critical = DxHelper::GetRandomFloat(0, 1);
+		//		bool isCritical = false;
+		//		if (critical < m_pPlayerStatusData->critical)
+		//		{
+		//			isCritical = true;
+		//			damage *= 2.0f;
+		//		}
 
-				enemy->SendDamage(GetGameObject(), damage, isCritical);
-				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+		//		enemy->SendDamage(GetGameObject(), damage, isCritical);
+		//		enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
 
-				if (isCritical)
-				{
-					CAMERA->Shake(0.3f, 0.3f, 1.0f);
-				}
-				else
-				{
-					CAMERA->Shake(0.1f, 0.1f, 1.0f);
-				}
-			}
-			m_bFinalSendDamage[3] = true;
-		}
+		//		if (isCritical)
+		//		{
+		//			CAMERA->Shake(0.3f, 0.3f, 1.0f);
+		//		}
+		//		else
+		//		{
+		//			CAMERA->Shake(0.1f, 0.1f, 1.0f);
+		//		}
+		//	}
+		//	m_bFinalSendDamage[1] = true;
+		//}
+		//if (elapsed >= 1.8f && m_bFinalSendDamage[2] == false && m_pPlayerBuffInfo->bBuff)
+		//{
+		//	SoundDesc desc;
+		//	desc.channelMode = FMOD_LOOP_OFF;
+		//	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		//	desc.volume = 1;
+		//	SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+
+		//	for (auto& obj : m_hitEnemies)
+		//	{
+		//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//		if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+		//			return;
+		//		if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+		//		{
+		//			continue;
+		//		}
+
+
+		//		Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+		//		float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+		//		float minDamage = damage * 0.5f;
+		//		float maxDamage = damage * 1.5f;
+		//		damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+		//		float critical = DxHelper::GetRandomFloat(0, 1);
+		//		bool isCritical = false;
+		//		if (critical < m_pPlayerStatusData->critical)
+		//		{
+		//			isCritical = true;
+		//			damage *= 2.0f;
+		//		}
+
+		//		enemy->SendDamage(GetGameObject(), damage, isCritical);
+		//		enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+		//		if (isCritical)
+		//		{
+		//			CAMERA->Shake(0.3f, 0.3f, 1.0f);
+		//		}
+		//		else
+		//		{
+		//			CAMERA->Shake(0.1f, 0.1f, 1.0f);
+		//		}
+		//	}
+		//	m_bFinalSendDamage[2] = true;
+		//}
+		//if (elapsed >= 1.9f && m_bFinalSendDamage[3] == false && m_pPlayerBuffInfo->bBuff)
+		//{
+		//	SoundDesc desc;
+		//	desc.channelMode = FMOD_LOOP_OFF;
+		//	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		//	desc.volume = 1;
+		//	SOUND->PlaySound("PlayerSkillSwing", L"Lups_SwordThrowing3.mp3", desc);
+		//	GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect0");
+		//	pScene->GetEffectManager()->PlayEffect(L"PlayerSkillSwing_Effect1");
+		//	
+		//	for (auto& obj : m_hitEnemies)
+		//	{
+		//		GameScene* pScene = static_cast<GameScene*>(SCENE);
+		//		if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+		//			return;
+		//		if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+		//		{
+		//			continue;
+		//		}
+
+
+		//		Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+		//		float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+		//		float minDamage = damage * 0.5f;
+		//		float maxDamage = damage * 1.5f;
+		//		damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+		//		float critical = DxHelper::GetRandomFloat(0, 1);
+		//		bool isCritical = false;
+		//		if (critical < m_pPlayerStatusData->critical)
+		//		{
+		//			isCritical = true;
+		//			damage *= 2.0f;
+		//		}
+
+		//		enemy->SendDamage(GetGameObject(), damage, isCritical);
+		//		enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+
+		//		if (isCritical)
+		//		{
+		//			CAMERA->Shake(0.3f, 0.3f, 1.0f);
+		//		}
+		//		else
+		//		{
+		//			CAMERA->Shake(0.1f, 0.1f, 1.0f);
+		//		}
+		//	}
+		//	m_bFinalSendDamage[3] = true;
+		//}
 
 		break;
 	case 3:
