@@ -28,8 +28,9 @@ void HGoblinHit::Update()
 {
 	if (m_component->IsDamaged())
 	{
-		m_component->SetAnimationSet(5);
-		m_component->GetState()->Set("Hit");
+		m_component->SetDamagedState(false);
+		//m_component->SetAnimationSet(5);
+		//m_component->GetState()->Set("Hit");
 	}
 	if (m_component->IsDied())
 	{

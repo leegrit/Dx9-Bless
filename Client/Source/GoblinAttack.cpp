@@ -15,7 +15,7 @@ void GoblinAttack::Update()
 {
 	if (m_component->IsDamaged())
 	{
-		m_component->GetState()->Set("Hit");
+		m_component->SetDamagedState(false);
 	}
 	if (m_component->IsDied())
 	{

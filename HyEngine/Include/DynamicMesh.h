@@ -61,6 +61,13 @@ namespace HyEngine
 		// 강제로 애니메이션 재생
 		void ForcedUpdateAnimation();
 		void SetAnimationPosition(double position);
+
+
+	public : /* For Dissolve */
+		void SetDissolveTexture(std::wstring path);
+		void SetDissolveAmount(float amount);
+		void SetFringeAmount(float amount);
+
 		//////////////////////////////////////////////////////////////////////////
 		// CALLBACK
 		//////////////////////////////////////////////////////////////////////////
@@ -100,6 +107,10 @@ namespace HyEngine
 		std::vector< D3DXMATRIX**>m_palettes;
 		ESkinningType m_skinningType;
 
+	private : /* For Dissolve */
+		IDirect3DTexture9* m_pDissolveTex = nullptr;
+		float m_dissolveAmount = 0;
+		float m_fringeAmount = 0;
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD
 		//////////////////////////////////////////////////////////////////////////

@@ -50,6 +50,10 @@ void Goblin::Initialize(std::wstring dataPath)
 	m_pNameFont->Initialize(L"고블린", this, D3DXVECTOR2(0.8f, 0.8f), D3DXVECTOR3(0, 16, 0), -40, D3DXCOLOR(1, 1, 0, 1));
 
 	ShowHPBar();
+
+	SetDissolveTexture(PATH->AssetsPathW() + L"Texture/dissolveMap.jpg");
+	SetDissolveAmount(0.0f);
+	SetFringeAmount(0.01f);
 }
 
 void Goblin::Update()
@@ -58,6 +62,28 @@ void Goblin::Update()
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	//m_pNameFont->SetOffset(D3DXVECTOR3(0, 18, 0));
 	//m_pNameFont->SetCenterOffset(-20);
+
+	if (IsDied())
+	{
+		m_pNameFont->SetColor(D3DXCOLOR(0.2f,0.2f, 0.2f, 1));
+	}
+	else if (GetCurHP() != GetMaxHP())
+	{
+		m_colorChangeElapsed += TIMER->getDeltaTime();
+		if (m_colorChangeElapsed >= m_colorChangeDelay)
+		{
+			m_colorChangeElapsed = 0;
+			m_bRedColor = !m_bRedColor;
+		}
+		if (m_bRedColor)
+		{
+			m_pNameFont->SetColor(D3DXCOLOR(1, 0, 0, 1));
+		}
+		else
+		{
+			m_pNameFont->SetColor(D3DXCOLOR(1, 0.5f, 0, 1));
+		}
+	}
 	m_state.Update();
 }
 
@@ -133,6 +159,12 @@ int Goblin::GetLevel()
 std::wstring Goblin::GetCharacterName()
 {
 	return L"고블린";
+}
+
+void Goblin::Reset()
+{
+	Enemy::Reset();
+	m_state.Set("Idle");
 }
 
 int Goblin::GetAttackCount()

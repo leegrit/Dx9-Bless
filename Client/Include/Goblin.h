@@ -26,6 +26,7 @@ public:
 	virtual D3DXVECTOR3 GetFocusUIOffset() override;
 	virtual int GetLevel() override;
 	virtual std::wstring GetCharacterName() override;
+	virtual void Reset() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK
@@ -55,6 +56,11 @@ private:
 	class NameFont * m_pNameFont = nullptr;
 
 	float m_exp = 30;
+
+private : /* Name ColorChange */
+	float m_colorChangeElapsed = 0;
+	float m_colorChangeDelay = 0.2f;
+	bool m_bRedColor = false;
 
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD

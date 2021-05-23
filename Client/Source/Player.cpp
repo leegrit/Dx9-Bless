@@ -19,6 +19,8 @@
 #include "PlayerSkillStab.h"
 #include "PlayerAfterImage.h"
 #include "EffectManager.h"
+#include "SoundManager.h"
+#include "PlayerShieldAttack.h"
 
 Player::Player(Scene * pScene, NavMesh * pNavMesh)
 	:Character(pScene, pNavMesh, D3DXVECTOR3(0, 10, 0), 8, ESkinningType::HardwareSkinning)
@@ -60,7 +62,8 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillShield::Create(this, m_pPlayerController)));
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillSwing::Create(this, m_pPlayerController)));
 	//AddComponent(PlayerSkillSwingDown::Create(this, m_pPlayerController));
-	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillStab::Create(this, m_pPlayerController)));
+	//m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillStab::Create(this, m_pPlayerController)));
+	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerShieldAttack::Create(this, m_pPlayerController)));
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillTornado::Create(this, m_pPlayerController)));
 	m_pPlayerSkills.push_back((PlayerAction*)AddComponent(PlayerSkillBuff::Create(this, m_pPlayerController)));
 
@@ -80,6 +83,14 @@ void Player::Initialize(std::wstring dataPath)
 	m_pPlayerController->SetUnWeaponMesh(m_pPlayerUW);
 	m_pPlayerController->SetHorse(m_pPegasus);
 
+
+	//////////////////////////////////////////////////////////////////////////
+	// TEST
+	//////////////////////////////////////////////////////////////////////////
+	//SetDissolveTexture(PATH->AssetsPathW() + L"Texture/dissolveMap.jpg");
+	//SetDissolveAmount(0.5f);
+	//SetFringeAmount(0.01f);
+
 }
 
 Player * Player::Create(Scene * pScene, NavMesh * pNavMesh, std::wstring dataPath)
@@ -97,6 +108,14 @@ void Player::OnDamaged(GameObject * pSender, float damage, bool isCritical)
 {
 	GameScene* scene = static_cast<GameScene*>(SCENE);
 	scene->GetUIManager()->PushDamageFont(damage, true, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+	CAMERA->Shake(0.2f, 0.2f, 1.0f);
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("PlayerHit", L"Hit_Player_Blood.wav", desc);
+
 
 }
 

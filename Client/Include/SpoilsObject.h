@@ -1,6 +1,11 @@
 #pragma once
 #include "GameObject.h"
 #include "InteractManager.h"
+
+namespace HyEngine
+{
+	class Billboard;
+}
 using namespace HyEngine;
 class SpoilsObject : public GameObject
 {
@@ -30,7 +35,9 @@ public :
 	virtual void OnCollectBegin();
 	virtual void OnCollectEnd();
 
-
+private:
+	Billboard* m_pBillboard = nullptr;
+	float m_elpased = -20;
 private :
 	float m_interactRadius = 30;
 	bool m_bCollecting = false;

@@ -16,6 +16,8 @@
 #include "EffectManager.h"
 #include "PathManager.h"
 #include "MeshEffect.h"
+#include "HGoblinAttack2.h"
+#include "HGoblinSkAttack.h"
 
 
 HGoblin::HGoblin(Scene * pScene, NavMesh * pNavMesh)
@@ -95,6 +97,8 @@ void HGoblin::Initialize(std::wstring dataPath)
 
 
 	m_state.Add<HGoblinAttack>(this, "Attack");
+	m_state.Add<HGoblinAttack2>(this, "Attack2");
+	m_state.Add<HGoblinSkAttack>(this, "SKAttack");
 	m_state.Add<HGoblinDie>(this, "Die");
 	m_state.Add<HGoblinHit>(this, "Hit");
 	m_state.Add<HGoblinIdle>(this, "Idle");

@@ -10,7 +10,7 @@ void GoblinDie::Enter()
 void GoblinDie::Update()
 {
 	bool animEnd = false;
-	animEnd = m_component->IsAnimationSetEnd();
+	animEnd = m_component->IsAnimationSetEnd(0.3f);
 	if (animEnd == true)
 	{
 		m_component->GetState()->Set("Died");

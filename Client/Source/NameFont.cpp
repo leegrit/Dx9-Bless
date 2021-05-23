@@ -81,3 +81,8 @@ void NameFont::SetCenterOffset(float centerOffset)
 {
 	m_centerOffset = centerOffset;
 }
+
+void NameFont::SetColor(D3DXCOLOR color)
+{
+	m_color = color;
+}

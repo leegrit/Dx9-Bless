@@ -12,7 +12,7 @@ void GoblinIdle::Enter()
 
 void GoblinIdle::Update()
 {
-	if (m_component->IsDamaged())
+	 if (m_component->IsDamaged())
 	{
 		m_component->GetState()->Set("Hit");
 	}

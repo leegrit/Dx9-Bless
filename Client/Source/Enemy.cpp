@@ -503,6 +503,11 @@ void Enemy::OnDisable()
 		m_pHpBarBillboard->SetActive(false);
 }
 
+void Enemy::Reset()
+{
+	Character::Reset();
+}
+
 
 
 void Enemy::AddHitOthers(GameObject * other)

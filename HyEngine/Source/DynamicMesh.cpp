@@ -160,13 +160,26 @@ void HyEngine::DynamicMesh::Render()
 			}
 			m_pShader->SetBool("HasNormalMap", hasNormalMap);
 
+			int pass = 0;
+			if (m_pDissolveTex)
+			{
+				pass = 1;
+
+				D3DXHANDLE dissolveHandle = m_pShader->GetParameterByName(0, "DissolveTex");
+				m_pShader->SetTexture(dissolveHandle, m_pDissolveTex);
+
+				m_pShader->SetFloat("DissolveAmount", m_dissolveAmount);
+				m_pShader->SetFloat("FringeAmount", m_fringeAmount);
+
+			}
+
 			if (m_skinningType == ESkinningType::HardwareSkinning)
 				m_pShader->SetTechnique("SkinnedMesh");
 			else if (m_skinningType == ESkinningType::SoftwareSkinning)
 				m_pShader->SetTechnique("SoftwareSkinnedMesh");
 			m_pShader->Begin(0, 0);
 			{
-				m_pShader->BeginPass(0);
+				m_pShader->BeginPass(pass);
 				pMeshContainer->MeshData.pMesh->DrawSubset(i);
 				m_pShader->EndPass();
 			}
@@ -556,6 +569,21 @@ void HyEngine::DynamicMesh::ForcedUpdateAnimation()
 void HyEngine::DynamicMesh::SetAnimationPosition(double position)
 {
 	m_pAniCtrl->SetCurAnimationPosition(position);
+}
+
+void HyEngine::DynamicMesh::SetDissolveTexture(std::wstring path)
+{
+	m_pDissolveTex = (IDirect3DTexture9*)TextureLoader::GetTexture(path);
+}
+
+void HyEngine::DynamicMesh::SetDissolveAmount(float amount)
+{
+	m_dissolveAmount = amount;
+}
+
+void HyEngine::DynamicMesh::SetFringeAmount(float amount)
+{
+	m_fringeAmount = amount;
 }
 
 void HyEngine::DynamicMesh::OnRenderBegin(void*)

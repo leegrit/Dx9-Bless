@@ -11,7 +11,7 @@ void GoblinMove::Enter()
 
 void GoblinMove::Update()
 {
-	if (m_component->IsDamaged())
+	 if (m_component->IsDamaged())
 	{
 		m_component->GetState()->Set("Hit");
 	}

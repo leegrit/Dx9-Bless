@@ -88,6 +88,9 @@ protected :
 public :
 	void SendDamage(GameObject* sender, float damage, bool isCritical = false);
 	bool UseMP(float value);
+	virtual void Reset();
+	float GetResurrectionDelay();
+	float& ResurrectionElapsed();
 
 	//////////////////////////////////////////////////////////////////////////
 	// VARIABLES
@@ -106,6 +109,13 @@ private :
 	float m_curHP;
 	float m_maxMP;
 	float m_curMP;
+
+	float m_resurrectionDelay = 10.0f;
+	float m_resurrectionElapsed = 0.0f;
+private :
+	D3DXVECTOR3 m_originPos;
+	D3DXVECTOR3 m_originRot;
+	D3DXVECTOR3 m_originScale;
 
 private : /* For Quest */
 	class HyEngine::Billboard* m_pMainQuestMarker = nullptr;

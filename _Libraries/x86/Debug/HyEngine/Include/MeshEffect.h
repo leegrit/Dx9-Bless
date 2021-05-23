@@ -40,6 +40,8 @@ namespace HyEngine
 		void SetNormalMapTexture(std::wstring path);
 		void SetEffectMesh(std::wstring path);
 
+		void SetWrapMode(bool isWrap);
+
 		//////////////////////////////////////////////////////////////////////////
 		// GETTER
 		//////////////////////////////////////////////////////////////////////////
@@ -62,6 +64,8 @@ namespace HyEngine
 	private : /* For mesh */
 		std::wstring m_lastMeshPath;
 
+	private :
+		bool m_isWrap = false;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

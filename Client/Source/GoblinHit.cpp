@@ -35,7 +35,10 @@ void GoblinHit::Update()
 {
 	if (m_component->IsDamaged())
 	{
-		m_component->SetAnimationSet(5);
+		m_component->SetDamagedState(false);
+	}
+	if (m_component->IsDamaged())
+	{
 		m_component->GetState()->Set("Hit");
 	}
 	if (m_component->IsDied())

@@ -49,6 +49,12 @@ void Character::Initialize(std::wstring dataPath)
 	m_pSubQuestFinishMarker->SetDiffuseTexture(PATH->AssetsPathW() + L"UI/BLUINameTag_I1_37.png");
 	m_pSubQuestFinishMarker->m_pTransform->SetScale(10, 10, 1);
 	m_pSubQuestFinishMarker->SetActive(false);
+
+	m_originPos = m_pTransform->m_position.operator D3DXVECTOR3();
+	m_originRot = m_pTransform->m_rotationEuler.operator D3DXVECTOR3();
+	m_originScale = m_pTransform->m_scale.operator D3DXVECTOR3();
+
+	m_resurrectionElapsed = 0.0f;
 }
 
 void Character::Update()
@@ -77,6 +83,7 @@ bool Character::IsDamaged() const
 {
 	return m_isDamaged;
 }
+
 
 bool Character::IsDied() const
 {
@@ -220,52 +227,78 @@ bool Character::UseMP(float value)
 	}
 }
 
+void Character::Reset()
+{
+	m_pTransform->m_position = m_originPos;
+	m_pTransform->m_rotationEuler = m_originRot;
+	m_pTransform->m_scale = m_originScale;
+
+	SetDissolveAmount(0);
+	m_isDied = false;
+	m_isDamaged = false;
+
+	m_curHP = m_maxHP;
+	m_curMP = m_maxMP;
+
+	m_resurrectionElapsed = 0.0f;
+}
+
+float Character::GetResurrectionDelay()
+{
+	return m_resurrectionDelay;
+}
+
+float & Character::ResurrectionElapsed()
+{
+	return m_resurrectionElapsed;
+}
+
 void Character::ShowQuestMark(Quest * pQuest)
 {
-	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	/*if (pQuest->GetQuestImportance() == EQuestImportance::Main)
 	{
 		m_pMainQuestMarker->SetActive(true);
 	}
 	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
 	{
 		m_pSubQuestMarker->SetActive(true);
-	}
+	}*/
 }
 
 void Character::RemoveQuestMark(Quest * pQuest)
 {
-	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	/*if (pQuest->GetQuestImportance() == EQuestImportance::Main)
 	{
 		m_pMainQuestMarker->SetActive(false);
 	}
 	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
 	{
 		m_pSubQuestMarker->SetActive(false);
-	}
+	}*/
 }
 
 void Character::ShowQuestFinishMark(Quest * pQuest)
 {
-	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	/*if (pQuest->GetQuestImportance() == EQuestImportance::Main)
 	{
 		m_pMainQuestFinishMarker->SetActive(true);
 	}
 	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
 	{
 		m_pSubQuestFinishMarker->SetActive(false);
-	}
+	}*/
 }
 
 void Character::RemoveQuestFinishMark(Quest * pQuest)
 {
-	if (pQuest->GetQuestImportance() == EQuestImportance::Main)
+	/*if (pQuest->GetQuestImportance() == EQuestImportance::Main)
 	{
 		m_pMainQuestFinishMarker->SetActive(false);
 	}
 	else if (pQuest->GetQuestImportance() == EQuestImportance::Sub)
 	{
 		m_pSubQuestFinishMarker->SetActive(false);
-	}
+	}*/
 }
 
 void Character::OnEnable()

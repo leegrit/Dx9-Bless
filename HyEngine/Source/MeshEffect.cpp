@@ -83,6 +83,12 @@ void HyEngine::MeshEffect::Render()
 	//// 1을 넘어가면 소수점만 남기고 뺀다.
 	//D3DXVECTOR2 uvMoveRes = D3DXVECTOR2(uvMove.x - (int)uvMove.x, uvMove.y - (int)uvMove.y);
 
+	float pass = 0;
+	if (m_isWrap)
+	{
+		pass = 1;
+	}
+
 	pShader->SetValue("UVMoveFactor", &GetUVOffset(), sizeof(GetUVOffset()));
 
 	if (m_pAlphaMask == nullptr)
@@ -91,7 +97,7 @@ void HyEngine::MeshEffect::Render()
 		pShader->SetTechnique("MeshEffectWithAlphaMask");
 	pShader->Begin(0, 0);
 	{
-		pShader->BeginPass(0);
+		pShader->BeginPass(pass);
 		m_pMesh->DrawSubset(0);
 		pShader->EndPass();
 	}
@@ -267,6 +273,11 @@ void HyEngine::MeshEffect::SetEffectMesh(std::wstring path)
 		//assert(SUCCEEDED(hr));
 
 	}
+}
+
+void HyEngine::MeshEffect::SetWrapMode(bool isWrap)
+{
+	m_isWrap = isWrap;
 }
 
 ID3DXMesh * HyEngine::MeshEffect::GetMesh() const

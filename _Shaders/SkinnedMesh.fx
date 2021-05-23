@@ -53,6 +53,14 @@ sampler SpecularMaskSampler = sampler_state
 	MipFilter = LINEAR;*/
 };
 
+texture DissolveTex;
+sampler DissolveSampler = sampler_state
+{
+	texture = (DissolveTex);
+};
+
+float DissolveAmount;
+float FringeAmount;
 
 
 
@@ -231,6 +239,77 @@ void SkinnedMeshPS(
 	}
 }
 
+void DissolvedSkinnedMeshPS(
+	float4 depthPosition : TEXCOORD0,
+	float3 normal : NORMAL,
+	float2 texcoord : TEXCOORD1,
+	float3x3 tangentWorldMat : TEXCOORD2,
+	float3 Test : TEXCOORD6,
+	out float4 outDepth : COLOR0,
+	out float4 outAlbedo : COLOR1,
+	out float4 outNormal : COLOR2,
+	out float4 outSpecular : COLOR3
+)
+{
+	float4 albedo = tex2D(AlbedoSampler, texcoord);
+	float4 emissive = tex2D(EmissiveSampler, texcoord);
+	float4 specular = tex2D(SpecularSampler, texcoord);
+	float4 specularMask = tex2D(SpecularMaskSampler, texcoord);
+
+
+	/* Depth */
+	float depth = (float)depthPosition.z / depthPosition.w;
+
+
+	outDepth = float4(emissive.r, emissive.g, emissive.b, depth);
+
+	/* Albedo */
+	outAlbedo = albedo;
+
+	/* Specular */
+	outSpecular = specular;
+
+	outSpecular.a = specularMask.b + specularMask.g;
+
+	/* Normal */
+	outNormal = float4(normal * 0.5f + 0.5f, 1);
+
+	if (HasNormalMap)
+	{
+		/* BumpMap Sampling */
+		float4 bumpMap = tex2D(NormalSampler, texcoord);
+
+		/* convert -1 ~ 1*/
+		bumpMap = (bumpMap * 2.0f) - 1.0f;
+
+		float3 tangent = normalize(tangentWorldMat[0]);
+		float3 binormal = normalize(tangentWorldMat[1]);
+
+
+		/* Calculate bumpNormal */
+		float3 bumpNormal = (bumpMap.x * tangent) + (bumpMap.y * binormal) + (bumpMap.z * normal);
+		bumpNormal = normalize(bumpNormal);
+
+		outNormal = float4(bumpNormal * 0.5f + 0.5f, 1);
+
+	}
+
+	float4 dissolveMap = tex2D(DissolveSampler, texcoord);
+	float dissolveValue = dissolveMap.x;
+
+	if (dissolveValue <= DissolveAmount)
+	{
+		discard;
+		//outAlbedo = float4(0, 0, 0, 0);
+	}
+	else if ((dissolveValue <= DissolveAmount + FringeAmount) && DissolveAmount != 0)
+	{
+		if (outAlbedo.a != 0.0f)
+		{
+			outAlbedo = outAlbedo + float4(10.0f, 0, 0, dissolveMap.a);
+		}
+	}
+}
 
 technique SkinnedMesh
 {
@@ -240,6 +319,12 @@ technique SkinnedMesh
 		VertexShader = compile vs_3_0 SkinnedMeshVS();
 		PixelShader = compile ps_3_0 SkinnedMeshPS();
 	}
+	pass P1
+	{
+		AlphaBlendEnable = false;
+		VertexShader = compile vs_3_0 SkinnedMeshVS();
+		PixelShader = compile ps_3_0 DissolvedSkinnedMeshPS();
+	}
 };
 technique SoftwareSkinnedMesh
 {
@@ -248,5 +333,11 @@ technique SoftwareSkinnedMesh
 		AlphaBlendEnable = false;
 		VertexShader = compile vs_3_0 SoftwareSkinnedMeshVS();
 		PixelShader = compile ps_3_0 SkinnedMeshPS();
+	}
+	pass P1
+	{
+		AlphaBlendEnable = false;
+		VertexShader = compile vs_3_0 SoftwareSkinnedMeshVS();
+		PixelShader = compile ps_3_0 DissolvedSkinnedMeshPS();
 	}
 };

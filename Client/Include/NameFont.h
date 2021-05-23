@@ -16,7 +16,8 @@ public :
 
 	void SetOffset(D3DXVECTOR3 offset);
 	void SetCenterOffset(float centerOffset);
-
+	
+	void SetColor(D3DXCOLOR color);
 private :
 	/* For Font */
 	std::wstring m_text;

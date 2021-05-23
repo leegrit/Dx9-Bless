@@ -28,6 +28,7 @@
 #include "Renderer.h"
 #include "BuffManager.h"
 #include "LightManager.h"
+#include "EnemyManager.h"
 
 void GameScene::Update()
 {
@@ -42,6 +43,7 @@ void GameScene::Update()
 	m_pItemManager->Update();
 	m_pBuffManager->Update();
 	m_pLightManager->Update();
+	m_pEnemyManager->Update();
 
 	if (KEYBOARD->Press(VK_F10))
 	{
@@ -67,6 +69,7 @@ void GameScene::Load()
 	m_pItemManager = new ItemManager(this);
 	m_pBuffManager = new BuffManager(this);
 	m_pLightManager = new LightManager(this);
+	m_pEnemyManager = new EnemyManager(this);
 
 	ExpTable * pExpTable = static_cast<ExpTable*>(ENGINE->GetScriptableData(L"ExpTable"));
 	if (pExpTable == nullptr)
@@ -155,6 +158,7 @@ void GameScene::LateLoadScene()
 	m_pItemManager->Initialize();
 	m_pBuffManager->Initialize();
 	m_pLightManager->Initialize();
+	m_pEnemyManager->Initialize();
 
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
@@ -204,6 +208,7 @@ void GameScene::Unload()
 	SAFE_DELETE(m_pItemManager);
 	SAFE_DELETE(m_pBuffManager);
 	SAFE_DELETE(m_pLightManager);
+	SAFE_DELETE(m_pEnemyManager);
 }
 
 void GameScene::LoadAsync(std::function<void(int, int)> onProgress)

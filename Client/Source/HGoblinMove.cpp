@@ -29,7 +29,7 @@ void HGoblinMove::Update()
 	}
 	if (distance <= 20)
 	{
-		m_component->GetState()->Set("Attack");
+		m_component->GetState()->Set("Idle");
 	}
 
 	D3DXVECTOR3 dir = playerPos - skeletonePos;

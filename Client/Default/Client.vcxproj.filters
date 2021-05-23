@@ -519,6 +519,24 @@
     <ClCompile Include="..\Source\Jungle_Liurens.cpp">
       <Filter>GameObject\NPC\ArbaJungle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\HGoblinAttack2.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\HGoblinSkAttack.cpp">
+      <Filter>FSM\HGoblin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PlayerShieldAttack.cpp">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\ActorManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\EnemyManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Q_CollectGoblinHide.cpp">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -1174,6 +1192,24 @@
     </ClInclude>
     <ClInclude Include="..\Include\Jungle_Liurens.h">
       <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinSkAttack.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\HGoblinAttack2.h">
+      <Filter>FSM\HGoblin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\PlayerShieldAttack.h">
+      <Filter>Scripts\Player\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\ActorManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\EnemyManager.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Q_CollectGoblinHide.h">
+      <Filter>Scripts\Quest\ArbaJungle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
