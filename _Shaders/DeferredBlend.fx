@@ -94,14 +94,15 @@ VertexOutput DefaultVS(VertexInput input)
 
 float4 DeferredBlendPS(PixelInput In) : COLOR0
 {
-	
-	float4 color = tex2D(AlbedoSampler, In.texcoord);
+	float4 color = float4(0, 0, 0 ,0);
+	color = tex2D(AlbedoSampler, In.texcoord);
 	float4 lightIntensity = tex2D(LightIntensitySampler, In.texcoord);
 	float4 ambientIntensity = tex2D(AmbientIntensitySampler, In.texcoord);
 	float4 specularIntensity = tex2D(SpecularIntensitySampler, In.texcoord);
 	float4 rimLight = tex2D(RimLightSampler, In.texcoord);
 
 	float4 ambient = color * ambientIntensity;
+	ambient.a = 0;
 	color = color * lightIntensity + ambient + specularIntensity + rimLight;
 
 	return color;
@@ -116,6 +117,7 @@ float4 DeferredBlendWithLUTFilterPS(PixelInput In) : COLOR0
 	float4 rimLight = tex2D(RimLightSampler, In.texcoord);
 
 	float4 ambient = color * ambientIntensity;
+	ambient.a = 0;
 	color = color * lightIntensity + ambient + specularIntensity + rimLight;
 
 	color = float4(GetLutColor(color.rgb, LutSampler), 1.0f);
@@ -128,7 +130,9 @@ technique DeferredBlend
 	pass P0
 	{
 		ZEnable = false;
-		AlphaBlendEnable = false;
+		AlphaBlendEnable = true;
+		SrcBlend = SrcAlpha;
+		DestBlend = InvSrcAlpha;
 		VertexShader = NULL;// compile vs_3_0 DefaultVS();
 		PixelShader = compile ps_3_0 DeferredBlendPS();
 	}
@@ -139,7 +143,9 @@ technique DeferredBlendWithLUTFilter
 	pass P0
 	{
 		ZEnable = false;
-		AlphaBlendEnable = false;
+		AlphaBlendEnable = true;
+		SrcBlend = SrcAlpha;
+		DestBlend = InvSrcAlpha;
 		VertexShader = NULL;
 		PixelShader = compile ps_3_0 DeferredBlendWithLUTFilterPS();
 	}

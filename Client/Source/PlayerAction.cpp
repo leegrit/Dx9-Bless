@@ -2,6 +2,7 @@
 #include "PlayerAction.h"
 #include "PlayerController.h"
 #include "Player.h"
+#include "Client_Events.h"
 PlayerAction::PlayerAction(DWORD behaviourType, GameObject * pOwner, PlayerController * pPlayerController, std::wstring name)
 	: ActionComponent(behaviourType, pOwner, name),
 	m_pPlayerController(pPlayerController),
@@ -93,7 +94,11 @@ bool PlayerAction::DoAction(int animIndex)
 	if (state == EPlayerState::Jump)return false;
 	if (state == EPlayerState::OtherAction) return false;
 	if (state == EPlayerState::OtherEvent) return false;
-	if (m_coolTime > m_curCoolTime) return false;
+	if (m_coolTime > m_curCoolTime)
+	{
+		EventDispatcher::TriggerEvent(GameEvent::InvalidCoolTime, nullptr);
+		return false;
+	}
 	if (state == EPlayerState::Attack && IsAttackState() == false) return false;
 
 	ActionComponent::DoAction(animIndex);

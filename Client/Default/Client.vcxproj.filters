@@ -504,6 +504,21 @@
     <ClCompile Include="..\Source\LightManager.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\MouseCursorUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\GainSkillNoticeUI.cpp">
+      <Filter>Scripts\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Jungle_Chitata.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Jungle_Gagato.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Jungle_Liurens.cpp">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -1144,6 +1159,21 @@
     <ClInclude Include="..\Include\DynamicLight.h" />
     <ClInclude Include="..\Include\LightManager.h">
       <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\MouseCursorUI.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\GainSkillNoticeUI.h">
+      <Filter>Scripts\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Jungle_Chitata.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Jungle_Gagato.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\Jungle_Liurens.h">
+      <Filter>GameObject\NPC\ArbaJungle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

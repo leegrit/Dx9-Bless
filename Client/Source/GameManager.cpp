@@ -55,6 +55,11 @@ void GameManager::OnSendExp(void * value)
 	if (pPlayerInfo->exp >= pExpTable->expTable[pPlayerInfo->level - 1])
 	{
 		pPlayerInfo->level++;
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		desc.volume = 0.7f;
+		SOUND->PlaySound("LevelUpSound",L"021. Level Up.mp3", desc);
 		EventDispatcher::TriggerEvent(GameEvent::LevelUp, (int*)&pPlayerInfo->level);
 	}
 

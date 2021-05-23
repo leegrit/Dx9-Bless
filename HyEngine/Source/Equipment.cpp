@@ -23,7 +23,7 @@ void HyEngine::Equipment::Initialize(std::wstring xFilePath, std::wstring boneNa
 	ID3DXBuffer * adjBuffer = nullptr;
 	ID3DXBuffer* mtrlBuffer = nullptr;
 	DWORD numMtrls = 0;
-
+	m_boneName = boneName;
 
 	hr = D3DXLoadMeshFromX
 	(
@@ -366,6 +366,31 @@ D3DXMATRIX HyEngine::Equipment::GetParentWorldMatrix()
 D3DXMATRIX HyEngine::Equipment::GetParentBoneMatrix()
 {
 	return *m_pParentBoneMatrix;
+}
+
+void HyEngine::Equipment::SetOwner(GameObject * pOwner)
+{
+	m_pOwner = pOwner;
+	DynamicMesh* mesh = dynamic_cast<DynamicMesh*>(m_pOwner);
+	assert(mesh);
+	const D3DXFRAME_DERIVED * pFrame = mesh->GetFrameByName(CString::ToString(m_boneName).c_str());
+	assert(pFrame);
+
+	m_pParentBoneMatrix = &pFrame->CombinedTransformMatrix;
+
+
+}
+
+void HyEngine::Equipment::SetBoneName(std::wstring boneName)
+{
+	m_boneName = boneName;
+	DynamicMesh* mesh = dynamic_cast<DynamicMesh*>(m_pOwner);
+	assert(mesh);
+	const D3DXFRAME_DERIVED * pFrame = mesh->GetFrameByName(CString::ToString(boneName).c_str());
+	assert(pFrame);
+
+	m_pParentBoneMatrix = &pFrame->CombinedTransformMatrix;
+
 }
 
 

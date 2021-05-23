@@ -12,6 +12,7 @@
 #include "Equipment.h"
 #include "PlayerBuffInfo.h"
 #include "PlayerStatusData.h"
+#include "PlayerController.h"
 
 
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
@@ -79,14 +80,15 @@ void PlayerNormalAttack::Initialize()
 	stabEffectDesc.uvDirection = D3DXVECTOR2(1, 0);
 	stabEffectDesc.uvSpeed = 1.0f;
 	stabEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_TwistLine_001.X";
-	stabEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_IceWhipDecal_001_Tex_PHS.tga";
+	stabEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_IceWhipDecal_001_Tex_PHS_Color.tga";
 	stabEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_IceWhipDecal_001_Tex_PHS.tga";
 	stabEffectDesc.lifeTime = 1.0f;
 	stabEffectDesc.fadeOut = true;
 	stabEffectDesc.endRot = D3DXVECTOR3(-360, 0, 0);
 
-	m_pStabEffect = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_StabEffect", stabEffectDesc);
 
+	m_pStabEffect = pScene->GetEffectManager()->AddEffect(L"PlayerNormalAttack_StabEffect", stabEffectDesc);
+	m_pStabEffect->SetRenderEffectOption(RenderEffectOption::Bloom);
 }
 
 void PlayerNormalAttack::Update()
@@ -209,6 +211,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_First", L"Lups_SwordThrowing5.mp3", desc);
+
+			SoundDesc desc2;
+			desc2.channelMode = FMOD_LOOP_OFF;
+			desc2.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc2.volume = 1;
+			SOUND->PlaySound("Attack_Voice_1", L"Attack_Voice_1.wav", desc2);
+
+
 			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect");
 
 			for (auto& obj : m_hitEnemies)
@@ -238,7 +248,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				enemy->SendDamage(GetGameObject(), damage, isCritical);
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
-				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				if (isCritical)
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::CriticalRight);
+				}
+				else
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				}
 				std::cout << "Do First" << std::endl;
 				if (isCritical)
 				{
@@ -301,6 +318,13 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_Second", L"Lups_SwordThrowing6.mp3", desc);
+
+			SoundDesc desc2;
+			desc2.channelMode = FMOD_LOOP_OFF;
+			desc2.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc2.volume = 1;
+			SOUND->PlaySound("Attack_Voice_2", L"Attack_Voice_2.wav", desc2);
+
 			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_SwordTrailEffect_Second");
 			for (auto& obj : m_hitEnemies)
 			{
@@ -329,7 +353,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				enemy->SendDamage(GetGameObject(), damage, isCritical);
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
-				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+				if (isCritical)
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::CriticalLeft);
+				}
+				else
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+				}
 				std::cout << "Do First" << std::endl;
 				if (isCritical)
 				{
@@ -404,6 +435,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
 			desc.volume = 1;
 			SOUND->PlaySound("PlayerNormalAttack_Third", L"Lups_SwordThrowing0.mp3", desc);
+
+			SoundDesc desc2;
+			desc2.channelMode = FMOD_LOOP_OFF;
+			desc2.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc2.volume = 1;
+			SOUND->PlaySound("Attack_Long_Voice_0", L"Attack_Long_Voice_0.wav", desc2);
+
+
 			pScene->GetEffectManager()->PlayEffect(L"PlayerNormalAttack_StabEffect");
 			for (auto& obj : m_hitEnemies)
 			{
@@ -432,7 +471,14 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				enemy->SendDamage(GetGameObject(), damage, isCritical);
 				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
-				enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				if (isCritical)
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::CriticalRight);
+				}
+				else
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				}
 				std::cout << "Do First" << std::endl;
 				if (isCritical)
 				{
@@ -468,6 +514,9 @@ int PlayerNormalAttack::GetIdleAnimIndex() const
 
 void PlayerNormalAttack::UpdateAction()
 {
+	PlayerController* pController = PLAYER->GetComponent<PlayerController>();
+	if (pController->IsMovable() == false)
+		return;
 	if (MOUSE->Down(0))
 	{
 		DoAction(m_animIndexes[m_seqIndex]);

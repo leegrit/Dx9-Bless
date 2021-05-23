@@ -46,6 +46,7 @@ void QuestDialogUI::Render()
 	D3DXHANDLE diffuseHandler = m_pEffect->GetParameterByName(0, "AlbedoTex");
 	m_pEffect->SetTexture(diffuseHandler, m_pTexture);
 
+	m_pEffect->SetFloat("Alpha", 1);
 	m_pEffect->SetTechnique("UIPanel");
 	m_pEffect->Begin(0, 0);
 	{

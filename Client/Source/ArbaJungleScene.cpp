@@ -38,6 +38,9 @@
 #include "UpdateDispatcher.h"
 #include "Quest.h"
 #include "Client_Events.h"
+#include "Jungle_Chitata.h"
+#include "Jungle_Gagato.h"
+#include "Jungle_Liurens.h"
 
 void ArbaJungleScene::Update()
 {
@@ -136,6 +139,7 @@ void ArbaJungleScene::Load()
 	pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 	m_pPlayer->SetWeapon(pEquip);
 	pEquip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
+	pEquip->m_pTransform->m_rotationEuler = D3DXVECTOR3(0, 0, 180);
 	m_pPlayer->SetShield(pEquip);
 
 	//////////////////////////////////////////////////////////////////////////
@@ -254,8 +258,8 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// CINEMATIC
 	//////////////////////////////////////////////////////////////////////////
-	HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
-	GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
+	//HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
+	//GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
 
 	auto goblin01_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin01.json");
 	auto goblin02_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin02.json");
@@ -273,15 +277,22 @@ void ArbaJungleScene::Load()
 	{
 		actor->SetActive(false);
 	}
-	BattleCinematicTrack * pBattleCinTrack = new BattleCinematicTrack(actors);
-	GetCinematicManager()->AddCinematic(L"BattleCinematic", pBattleCinTrack);
+	//BattleCinematicTrack * pBattleCinTrack = new BattleCinematicTrack(actors);
+	//GetCinematicManager()->AddCinematic(L"BattleCinematic", pBattleCinTrack);
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
 	//////////////////////////////////////////////////////////////////////////
-	Leoni::Create(this, PATH->DatasPathW() + L"HierarchyData/Leoni.json");
-	Guido::Create(this, PATH->DatasPathW() + L"HierarchyData/Guido.json");
+	Leoni::Create(this, PATH->DatasPathW() + L"HierarchyData/Jungle_Leoni.json");
+	Guido::Create(this, PATH->DatasPathW() + L"HierarchyData/Jungle_Guido.json");
 	TalkableGoblin::Create(this, PATH->DatasPathW() + L"HierarchyData/GoblinNPC.json");
+	Jungle_Gagato::Create(this, PATH->DatasPathW() + L"HierarchyData/Jungle_Gagato.json");
+	Jungle_Liurens::Create(this, PATH->DatasPathW() + L"HierarchyData/Jungle_Mathias.json");
+	Jungle_Chitata::Create(this, PATH->DatasPathW() + L"HierarchyData/Jungle_Chitata.json");
+	// gagato / 잡화 
+	// mathi / 무기점
+	// chitata /  퀘스트
+
 
 
 	//////////////////////////////////////////////////////////////////////////

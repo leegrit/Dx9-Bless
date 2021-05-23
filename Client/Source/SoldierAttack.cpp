@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SoldierAttack.h"
 #include "Soldier.h"
+#include "SoundManager.h"
 void SoldierAttack::Enter()
 {
 	m_component->SetAnimationSet(1); // attack
@@ -24,6 +25,12 @@ void SoldierAttack::Update()
 
 	if (m_elapsed >= 0.3f && m_isAttacked == false)
 	{
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::RelativeVolume;
+		desc.volume = 0.1f;
+		desc.soundPosition = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
+		SOUND->PlaySound("SoldierAtkSound", L"Attack_Voice_0.wav", desc);
 		m_component->SendDamageToOthers(50);
 		m_isAttacked = true;
 	}

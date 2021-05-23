@@ -669,6 +669,9 @@
     <ClInclude Include="Include\Font.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Include\MouseQuad.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp">
@@ -1141,6 +1144,9 @@
     </ClCompile>
     <ClCompile Include="Source\Font.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MouseQuad.cpp">
+      <Filter>Geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

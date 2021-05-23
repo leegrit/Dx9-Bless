@@ -39,7 +39,8 @@ void CinematicManager::AddCinematic(std::wstring key, CinematicTrack * pCinemati
 void CinematicManager::PlayCinematic(std::wstring key)
 {
 	auto track = m_cinematics[key];
-	assert(track);
+	if (track == nullptr)
+		return;
 	m_pCurrentTrack = track;
 	m_cinematics.erase(key);
 	EventDispatcher::TriggerEvent(GameEvent::BeginCinematic, &track);

@@ -6,7 +6,7 @@
 #include "Client_Events.h"
 #include "PlayerMoneyData.h"
 #include "InventoryData.h"
-
+#include "SoundManager.h"
 
 
 ShopUI::ShopUI(Scene * pScene, std::wstring name)
@@ -35,6 +35,11 @@ void ShopUI::Initialize()
 		D3DXVECTOR3(25, 25, 1));
 	m_pCloseButton->SetButtonEvent(EButtonEvent::ButtonUp, [&]() 
 	{
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		desc.volume = 1;
+		SOUND->PlaySound("CloseButtonSound", L"Button.wav", desc);
 		Hide();
 	});
 
@@ -121,6 +126,13 @@ void ShopUI::Initialize()
 			//备概 己傍
 			pData->money -= m_items[i].salePrice;
 			pInventoryData->PushItem(m_items[i]);
+
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("ShopBuy", L"ItemSell.wav", desc);
+
 			EventDispatcher::TriggerEvent(GameEvent::BuyItem, (void*)&m_items[i]);
 			EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&m_items[i]);
 
@@ -195,6 +207,11 @@ void ShopUI::Initialize()
 			//备概 己傍
 			pData->money -= m_items[i].salePrice;
 			pInventoryData->PushItem(m_items[i]);
+			SoundDesc desc;
+			desc.channelMode = FMOD_LOOP_OFF;
+			desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+			desc.volume = 1;
+			SOUND->PlaySound("ShopBuy", L"ItemSell.wav", desc);
 			EventDispatcher::TriggerEvent(GameEvent::BuyItem, (void*)&m_items[i]);
 			EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&m_items[i]);
 

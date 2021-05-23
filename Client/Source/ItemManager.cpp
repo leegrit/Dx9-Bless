@@ -3,20 +3,32 @@
 #include "QuickSlotData.h"
 #include "InventoryData.h"
 #include "Client_Events.h"
+#include "SoundManager.h"
+#include "PlayerSkillInfo.h"
 
 ItemManager::ItemManager(GameScene * pScene)
 {
+	EventDispatcher::AddEventListener(GameEvent::UseSkillBook, "ItemManager",
+		std::bind(&ItemManager::OnUseSkillBook, this, placeholders::_1));
 }
 
 ItemManager::~ItemManager()
 {
+	EventDispatcher::RemoveEventListener(GameEvent::UseSkillBook, "ItemManager");
+}
+
+void ItemManager::OnUseSkillBook(void * pItemInfo)
+{
+	ItemInfo itemInfo = *static_cast<ItemInfo*>(pItemInfo);
+	EventDispatcher::TriggerEvent(GameEvent::GainSkill, &itemInfo.itemValue);
+	m_pPlayerSkillInfo->isLock[itemInfo.itemValue] = false;
 }
 
 void ItemManager::Initialize()
 {
 	m_pQuickSlotData = static_cast<QuickSlotData*>(ENGINE->GetScriptableData(L"QuickSlotData"));
 	m_pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
-
+	m_pPlayerSkillInfo = static_cast<PlayerSkillInfo*>(ENGINE->GetScriptableData(L"PlayerSkillInfo"));
 }
 
 void ItemManager::Update()
@@ -28,6 +40,7 @@ void ItemManager::Update()
 		{
 			if (m_pQuickSlotData->GetItem(0).curCoolTime >= m_pQuickSlotData->GetItem(0).coolTime)
 			{
+
 				ItemInfo useItemInfo = m_pQuickSlotData->GetItem(0);
 				UseItem(useItemInfo);
 				m_pQuickSlotData->ResetCoolTime(0);
@@ -177,6 +190,11 @@ void ItemManager::Update()
 
 void ItemManager::UseItem(ItemInfo info)
 {
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("UsePotionSound", L"PotionSound.ogg", desc);
 	EventDispatcher::TriggerEvent(GameEvent::UseItem, (void*)&info);
 	switch (info.buffType)
 	{

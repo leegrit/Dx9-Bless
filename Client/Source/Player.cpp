@@ -50,7 +50,7 @@ void Player::Initialize(std::wstring dataPath)
 	Pawn::Initialize(dataPath);
 	//SetRenderEffectOption(RenderEffectOption::RimLight);
 	//SetRimWidth(0.3f);
-	SetParams(50, 1000, 1000);
+	SetParams(30, 1000, 1000);
 	
 	m_pPlayerController = PlayerController::Create(this);
 	AddComponent(m_pPlayerController);
@@ -150,6 +150,8 @@ void Player::Render()
 		return;
 	if (m_pPlayerController->GetState() == EPlayerState::Collecting)
 		return;
+	if (m_pPlayerController->GetFormState() == PlayerController::EFormStat::UnWeapon)
+		return;
 	Pawn::Render();
 }
 
@@ -159,18 +161,19 @@ void Player::OnExpChanged( void*)
 	{
 		GameScene * scene = static_cast<GameScene*>(SCENE);
 		m_pExpBarUI = static_cast<ProgressBar*>(scene->GetUIManager()->GetStaticUI(L"PlayerExp_Fill"));
+		m_pExpBarUI->SetRenderQueue(2000);
 	}
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	float amount;
 	if (pScene->GetPlayerInfo()->level == 1)
 	{
-		amount = pScene->GetPlayerInfo()->exp / pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 1];
+		amount = pScene->GetPlayerInfo()->exp / (float)pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 1];
 	}
 	else
 	{
 		// º¸Á¤Ä¡
 		float temp = pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 2];
-		amount = pScene->GetPlayerInfo()->exp - temp / pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 1] - temp;
+		amount = (pScene->GetPlayerInfo()->exp - temp) / (pScene->GetExpTable()->expTable[pScene->GetPlayerInfo()->level - 1] - temp);
 	}
 	m_pExpBarUI->SetAmount(amount);
 }

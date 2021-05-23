@@ -15,6 +15,7 @@ public :
 	// CALLBACK 
 	//////////////////////////////////////////////////////////////////////////
 public :
+	void OnUseSkillBook(void* pItemInfo);
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -35,5 +36,6 @@ private :
 private : /* For Item */
 	class InventoryData* m_pInventoryData = nullptr;
 	class QuickSlotData * m_pQuickSlotData = nullptr;
+	class PlayerSkillInfo * m_pPlayerSkillInfo = nullptr;
 };
 

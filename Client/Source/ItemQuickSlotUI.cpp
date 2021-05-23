@@ -192,7 +192,7 @@ void ItemQuickSlotUI::Hide()
 	// 버튼 활성화
 	for (int i = 0; i < m_slotButtons.size(); i++)
 	{
-		m_slotButtons[i]->SetActive(true);
+		m_slotButtons[i]->SetActive(false);
 	}
 
 	m_bShow = false;

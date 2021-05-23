@@ -17,14 +17,14 @@ void SummonProgressBar::Initialize()
 {
 	m_pFillBack = UIPanel::Create(GetScene(),
 		PATH->AssetsPathW() + L"UI/StatusGauge_0.png",
-		D3DXVECTOR3(0, -148.16, 0),
+		D3DXVECTOR3(0, -148.16 - 60, 0),
 		D3DXVECTOR3(0, 0, 0),
 		D3DXVECTOR3(300, 15, 1),
 		L"SummonProgressBar_FillBack");
 
 	m_pFill = ProgressBar::Create(GetScene(),
 		PATH->AssetsPathW() + L"UI/BossGauge_2.png",
-		D3DXVECTOR3(0, -148.8, 0),
+		D3DXVECTOR3(0, -148.8 - 60, 0),
 		D3DXVECTOR3(0, 0, 0),
 		D3DXVECTOR3(250, 7, 1),
 		L"SummonProgressBar_Fill");

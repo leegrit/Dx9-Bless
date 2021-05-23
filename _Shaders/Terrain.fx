@@ -113,6 +113,7 @@ technique Terrain
 {
 	pass P0
 	{
+		
 		VertexShader = compile vs_3_0 TerrainVS();
 		PixelShader = compile ps_3_0 TerrainPS();
 	}

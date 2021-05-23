@@ -36,6 +36,7 @@ public :
 	virtual bool IsFinish() PURE;
 	// 퀘스트 목표 오브젝트 목록 (아이콘 띄워줘야한다.)
 	virtual std::vector<GameObject*> GetTargets() PURE;
+	virtual void OnAccept() {};
 
 	//////////////////////////////////////////////////////////////////////////
 	// GETTER

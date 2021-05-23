@@ -26,6 +26,16 @@ public : /* For Quest */
 	void OnQuestDialogEnd(void*);
 
 public :
+	void OnInventoryUIOpen(void*);
+	void OnInventoryUIClose(void*);
+	
+	void OnEquipmentUIOpen(void*);
+	void OnEquipmentUIClose(void*);
+
+	void OnShopUIOpen(void*);
+	void OnShopUIClose(void*);
+
+public :
 	void OnAddItem(void*);
 	void OnBuyItem(void*);
 	void OnInvalidTarget(void*);
@@ -78,6 +88,11 @@ public : /* For Interact */
 
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
 
+public : /* For Mouse */
+	void ShowMouseCursor();
+	void HideMouseCursor();
+	void ShowCrossHair();
+	void HideCrossHair();
 
 public : /* For Quest */
 	void ShowQuestDialogUI(class Quest* pQuest, int dialogIndex, EQuestDialogType questDialogType);
@@ -120,6 +135,10 @@ private : /* Interacive UI */
 
 	class SpoilsUI* m_pSpoilsUI = nullptr;
 
+private :
+	class MouseCursorUI * m_pMouseCursorUI = nullptr;
+	UIPanel* m_pCrossHairUI = nullptr;
+
 private : /* For Quest */
 	class QuestDialogUI* m_pQuestDialogUI = nullptr;
 	// 나중에 버튼으로 수정할것
@@ -141,6 +160,8 @@ private : /* For Quest */
 	class QuestNoticeUI * m_pQuestNoticeUI = nullptr;
 
 	class LevelUpNoticeUI* m_pLevelUpNoticeUI = nullptr;
+
+	class GainSkillNoticeUI* m_pGainSkillNoticeUI = nullptr;
 
 private :
 	class InventoryUI* m_pInventoryUI = nullptr;

@@ -29,7 +29,7 @@ void NotifyUI::Update()
 		}
 		float alpha = (m_delay - m_notifyMessages[i].elapsed) / m_delay;
 		ENGINE->DrawText(m_notifyMessages[i].message.c_str(),
-			D3DXVECTOR3(m_notifyMessages[i].xPos, 230 - ((m_notifyMessages.size() - 1) - i) * 30, 0), D3DXVECTOR3(1, 1, 1),
+			D3DXVECTOR3(m_notifyMessages[i].xPos, 100 - ((m_notifyMessages.size() - 1) - i) * 30, 0), D3DXVECTOR3(1, 1, 1),
 			D3DXCOLOR(1, 1, 1, alpha));
 	}
 }

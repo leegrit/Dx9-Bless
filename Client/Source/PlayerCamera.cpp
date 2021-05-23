@@ -36,7 +36,13 @@ void PlayerCamera::Update()
 
 	GameScene* pScene = static_cast<GameScene*>(SCENE);
 	if (pScene->GetGameManager()->IsPlayerMovable() == false)
+	{
 		return;
+	}
+	else
+	{
+
+	}
 
 	if (ENGINE->GetGameMode() == EGameMode::GAME_MODE &&
 		m_bMouseFix)
@@ -46,11 +52,11 @@ void PlayerCamera::Update()
 
 	//SetBasicProjection();
 	//SetProjectionMatrix(D3DXToRadian(45.f), WinMaxWidth / WinMaxHeight, 0.01, 15);
-	SetProjectionMatrix(D3DXToRadian(60), WinMaxWidth / WinMaxHeight, 1, 700);
+	SetProjectionMatrix(D3DXToRadian(60), WinMaxWidth / WinMaxHeight, 1, 700/*700*/);
 
 	
 	Camera::Update();
-	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+	SetViewMatrix(m_pPlayer->m_pTransform->CalcOffset(D3DXVECTOR3(0, 15, 0)));
 
 }
 

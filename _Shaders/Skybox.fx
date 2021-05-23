@@ -2,24 +2,17 @@ matrix WorldMatrix;
 matrix ViewMatrix;
 matrix ProjMatrix;
 
-
-texture AlbedoTex;
-sampler AlbedoSampler = sampler_state
+texture SkyboxTex;
+samplerCUBE SkyboxSampler = sampler_state
 {
-	Texture = (AlbedoTex);
-	/*MinFilter = LINEAR;
-    MagFilter = LINEAR;
-    MipFilter = None;
-    AddressU = wrap;
-    AddressV = wrap;*/
+	texture = SkyboxTex;
 };
-
 
 void SkyboxVS(
 	float4 position : POSITION,
-	float2 texcoord : TEXCOORD0,
+	float3 texcoord : TEXCOORD0,
 	out float4 outPosition : POSITION,
-	out float2 outTexcoord : TEXCOORD0
+	out float3 outTexcoord : TEXCOORD0
 )
 {
     /* Position */ 
@@ -31,16 +24,14 @@ void SkyboxVS(
 }
 
 void SkyboxPS(
-	float2 texcoord : TEXCOORD0,
+	float3 texcoord : TEXCOORD0,
 	out float4 outColor : COLOR0
 	)
 {
-	float4 albedo = tex2D(AlbedoSampler, texcoord);
+	float4 albedo = texCUBE(SkyboxSampler, texcoord);
 	
 
 	outColor = albedo;
-	/* Test */
-	outColor = float4(1, 0, 0, 1);
 }
 
 

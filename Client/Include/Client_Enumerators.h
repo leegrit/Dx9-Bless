@@ -13,6 +13,8 @@ enum class EPlayerState
 	PutInWeapon,
 	MountOnHorse,
 	Collecting,
+	UnWeapon,
+	Weapon
 };
 enum class EEquipSlot
 {
@@ -66,6 +68,7 @@ enum class EItemType
 	Item, // 家葛前
 	QuestItem,
 	Spoils, // 傈府前
+	SkillBook,
 
 };
 

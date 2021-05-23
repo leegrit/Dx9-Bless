@@ -2,6 +2,7 @@
 #include "Elaine.h"
 #include "GameScene.h"
 #include "UIManager.h"
+#include "SoundManager.h"
 
 Elaine::Elaine(Scene * pScene)
 	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
@@ -38,6 +39,12 @@ bool Elaine::DoInteract()
 {
 	GameScene* pScene = static_cast<GameScene*>(GetScene());
 	pScene->GetUIManager()->ShowGeneralStoreUI();
+
+	SoundDesc desc2;
+	desc2.channelMode = FMOD_LOOP_OFF;
+	desc2.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc2.volume = 1;
+	SOUND->PlaySound("AccNPC1", L"AccNPC1.wav", desc2);
 	return true;
 }
 

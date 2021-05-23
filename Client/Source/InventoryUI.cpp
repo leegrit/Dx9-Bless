@@ -10,6 +10,7 @@
 #include "GameScene.h"
 #include "PlayerEquipData.h"
 #include "QuickSlotData.h"
+#include "SoundManager.h"
 
 InventoryUI::InventoryUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
@@ -90,7 +91,8 @@ void InventoryUI::Initialize()
 
 				if (slotIndex >= m_pInventoryData->GetCount())
 					return;
-
+				m_pItemSelectPanel->SetActive(false);
+				m_pItemInfoUI->Hide();
 				ItemInfo itemInfo;
 				bool isSucceeded = m_pInventoryData->TryGetItem(slotIndex, &itemInfo);
 				assert(isSucceeded);
@@ -102,6 +104,10 @@ void InventoryUI::Initialize()
 					break;
 				case EItemType::QuestItem : 
 					break; 
+				case EItemType::SkillBook :
+					EventDispatcher::TriggerEvent(GameEvent::UseSkillBook, (void*)&itemInfo);
+					m_pInventoryData->RemoveItem(itemInfo);
+					break;
 				case EItemType::Item : 
 					//EventDispatcher::TriggerEvent(GameEvent::UseItem, (void*)&itemInfo);
 					//m_pInventoryData->RemoveItem(itemInfo);
@@ -454,6 +460,14 @@ void InventoryUI::Show()
 
 	m_bShow = true;
 	EventDispatcher::TriggerEvent(UIEvent::InventoryUIOpen);
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("Inven_Open", L"Inven_Open.wav", desc);
+
+
 }
 
 void InventoryUI::Hide()
@@ -477,6 +491,12 @@ void InventoryUI::Hide()
 	m_pItemInfoUI->Hide();
 	m_bShow = false;
 	EventDispatcher::TriggerEvent(UIEvent::InventoryUIClose);
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("Inven_Close", L"Inven_Close.wav", desc);
 }
 
 bool InventoryUI::IsShow()

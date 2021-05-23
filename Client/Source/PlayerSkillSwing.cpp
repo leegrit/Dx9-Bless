@@ -100,17 +100,21 @@ void PlayerSkillSwing::Initialize()
 	swingEffectDesc.uvDirection = D3DXVECTOR2(0, 1);
 	swingEffectDesc.uvSpeed = 1.0f;
 	swingEffectDesc.meshPath = PATH->AssetsPathW() + L"Effect/EffectMesh/FX_landburncyclone.X";
-	swingEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_FireTile8.tga";
-	swingEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
-	swingEffectDesc.lifeTime = 0.4f;
+	//swingEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_FireTile8.tga";
+	//swingEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_swordtrail_003_TEX_CJH.tga";
+	swingEffectDesc.diffusePath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_trail_015_TEX_CJH_Color.tga";
+	swingEffectDesc.alphaMaskPath = PATH->AssetsPathW() + L"Effect/SingleTexture/FX_trail_015_TEX_CJH.tga";
+
+	swingEffectDesc.lifeTime = 1.0f;
 	swingEffectDesc.fadeOut = true;
-	swingEffectDesc.fadeOutFactor = 0.8f;
+	swingEffectDesc.fadeOutFactor = 0.5f;
 	swingEffectDesc.fadeIn = false;
-	swingEffectDesc.fadeInFactor = 0.2f;
+	//swingEffectDesc.fadeInFactor = 0.2f;
 	swingEffectDesc.endRot = D3DXVECTOR3(0, 360, 0);
 	swingEffectDesc.endScale = D3DXVECTOR3(0, 0, 0);
 
 	m_pSwingEffect = pScene->GetEffectManager()->AddEffect(L"PlayerSkillSwing_SwingEffect", swingEffectDesc);
+	m_pSwingEffect->SetRenderEffectOption(RenderEffectOption::Bloom);
 }
 
 void PlayerSkillSwing::Update()
@@ -491,36 +495,36 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			auto weapon = pPlayer->GetWeapon();
 			weapon->SetRenderEffectOption(RenderEffectOption::RimLight);
 			weapon->SetRimWidth(1.0f);
-			weapon->SetRimColor(D3DXCOLOR(1, 0.0f, 0.0f, 1));
+			weapon->SetRimColor(D3DXCOLOR(1, 1.0f, 0.0f, 1));
 
 		}
-		if (elapsed >= 0.3f && m_bPlayAfterImage == false)
+		if (elapsed >= 1.0f && m_bPlayAfterImage == false)
 		{
 			Player * pPlayer = static_cast<Player*>(PLAYER);
-			pPlayer->SetAnimationSpeed(0.4f);
+			//pPlayer->SetAnimationSpeed(0.4f);
 			UINT animSet = pPlayer->GetCurAnimationIndex();
 
-			AfterEffectDesc desc;
-			desc.animIndex = animSet;
-			desc.animPosition = pPlayer->GetCurAnimationPosition();
-			desc.color = D3DXCOLOR(0.6, 0.6, 1, 1);
-			desc.lifeTime = 0.3f;
-			desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
-			desc.startScale = 1.3f;
-			desc.endScale = 1.0f;
-			desc.scaleSpd = 1.5f;
+			//AfterEffectDesc desc;
+			//desc.animIndex = animSet;
+			//desc.animPosition = pPlayer->GetCurAnimationPosition();
+			//desc.color = D3DXCOLOR(0.6, 0.6, 1, 1);
+			//desc.lifeTime = 0.3f;
+			//desc.afterEffectOption = AfterEffectOption::FadeOut | AfterEffectOption::ScaleEffect;
+			//desc.startScale = 1.3f;
+			//desc.endScale = 1.0f;
+			//desc.scaleSpd = 1.5f;
 
-			GameScene* pScene = static_cast<GameScene*>(SCENE);
-			int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
 			//GameScene* pScene = static_cast<GameScene*>(SCENE);
-			pScene->GetEffectManager()->PlayAffterEffect(index);
+			//int index = pScene->GetEffectManager()->AddAfterEffect(desc, nullptr);
+			////GameScene* pScene = static_cast<GameScene*>(SCENE);
+			//pScene->GetEffectManager()->PlayAffterEffect(index);
 			m_bPlayAfterImage = true;
 
-			PLAYER->SetRenderEffectOption(RenderEffectOption::RimLight);
-			PLAYER->SetRimColor(D3DXCOLOR(0.6, 0.6, 1, 1));
-			PLAYER->SetRimWidth(1.0);
+			//PLAYER->SetRenderEffectOption(RenderEffectOption::RimLight);
+			//PLAYER->SetRimColor(D3DXCOLOR(0.6, 0.6, 1, 1));
+			//PLAYER->SetRimWidth(1.0);
 		}
-		if (elapsed >= 1.5f && m_bSendDamage == false)
+		if (elapsed >= 0.7f && m_bSendDamage == false)
 		{
 			Player * pPlayer = static_cast<Player*>(PLAYER);
 			auto weapon = pPlayer->GetWeapon();

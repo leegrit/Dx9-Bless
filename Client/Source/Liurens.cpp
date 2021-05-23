@@ -2,6 +2,7 @@
 #include "Liurens.h"
 #include "GameScene.h"
 #include "UIManager.h"
+#include "SoundManager.h"
 
 Liurens::Liurens(Scene * pScene)
 	: NonePlayer(pScene, ESkinningType::SoftwareSkinning)
@@ -39,6 +40,13 @@ bool Liurens::DoInteract()
 {
 	GameScene* pScene = static_cast<GameScene*>(GetScene());
 	pScene->GetUIManager()->ShowEquipShopUI();
+
+	SoundDesc desc2;
+	desc2.channelMode = FMOD_LOOP_OFF;
+	desc2.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc2.volume = 1;
+	SOUND->PlaySound("WeaponNPC3", L"WeaponNPC3.wav", desc2);
+
 	return true;
 }
 

@@ -254,10 +254,14 @@ void DirectionalLightPS(float2 texcoord : TEXCOORD0,
 	finalColor = saturate(finalColor);
 
 	//float3 rimFinal = finalColor.rgb * rimLightColor * 1.0f;
-	outLightIntensity = float4(finalColor.rgb, 1);
-	outAmbientIntensity = float4(ambient.rgb, 1);
-	outSpecularIntensity = float4(specular.rgb, 1);
-	outRimLight = float4(rimFinal, 1);
+
+	
+	outLightIntensity = float4(finalColor.rgb,1);
+	/*if (normalMap.a == 0)
+		outLightIntensity = float4(1, 1, 1, 1);*/
+	outAmbientIntensity = float4(ambient.rgb, 0);
+	outSpecularIntensity = float4(specular.rgb, 0);
+	outRimLight = float4(rimFinal, 0);
 
 }
 

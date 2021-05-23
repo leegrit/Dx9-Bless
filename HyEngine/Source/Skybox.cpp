@@ -160,9 +160,9 @@ void HyEngine::Skybox::Render()
 	if (m_pShader == nullptr)
 	{
 		if (IS_EDITOR)
-			EDIT_ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			EDIT_ENGINE->TryGetShader(L"Skybox", &m_pShader);
 		else
-			ENGINE->TryGetShader(L"GBuffer", &m_pShader);
+			ENGINE->TryGetShader(L"Skybox", &m_pShader);
 	}
 
 	assert(m_pShader);
@@ -212,7 +212,7 @@ void HyEngine::Skybox::Render()
 	bool hasNormalMap = false;
 	m_pShader->SetValue("HasNormalMap", &hasNormalMap, sizeof(hasNormalMap));
 
-	m_pShader->SetTechnique("GBuffer_Skybox");
+	m_pShader->SetTechnique("Skybox");
 	m_pShader->Begin(0, 0);
 	{
 		m_pShader->BeginPass(0);

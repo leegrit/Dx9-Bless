@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Q_NewSkill.h"
 #include "Client_Events.h"
+#include "SoundManager.h"
+#include "InventoryData.h"
+#include "PathManager.h"
 
 Q_NewSkill::Q_NewSkill()
 	: Quest()
@@ -24,6 +27,34 @@ bool Q_NewSkill::IsFinish()
 std::vector<GameObject*> Q_NewSkill::GetTargets()
 {
 	return std::vector<GameObject*>();
+}
+
+void Q_NewSkill::OnAccept()
+{
+
+	ItemInfo item;
+	item.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/SkillBook.jpg";
+	item.itemName = L"가드 스킬북";
+	item.itemType = EItemType::SkillBook;
+	item.typeText = L"스킬북";
+	item.itemValue = 0; // skill index
+	item.effectText = L"읽으면 가드 스킬을 획득할 수 있습니다.";
+	item.itemDescription = L"읽으면 가드 스킬을 획득할 수 있습니다.";
+	item.salePrice = 500;
+	
+
+
+	InventoryData* pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+	if (pInventoryData->IsFull())
+	{
+		EventDispatcher::TriggerEvent(GameEvent::InventoryFull);
+		return;
+	}
+
+	pInventoryData->PushItem(item);
+
+
+	EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&item);
 }
 
 void Q_NewSkill::Initialize()

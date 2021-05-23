@@ -128,6 +128,7 @@ bool Quest::IsCompletelyFinished()
 
 void Quest::Accept()
 {
+	OnAccept();
 	m_bAccepted = true;
 }
 

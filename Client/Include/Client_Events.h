@@ -54,6 +54,9 @@ namespace GameEvent
 
 	static std::string UseItem = "GameEvent.UseItem";
 
+	// Skill
+	static std::string UseSkillBook = "GameEvent.UseSkillBook";
+	static std::string GainSkill = "GameEvent.GainSkill";
 
 	// 소지금 부족
 	static std::string NotEnoughMoney = "GameEvent.NotEnoughMoney";

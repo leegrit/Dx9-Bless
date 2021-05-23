@@ -212,9 +212,11 @@ void PointLightPS(
 			specular = float4(0, 0, 0, 0);//specular * shadowFactor * specularMap.rgb;
 	}
 	finalColor = saturate(finalColor);// *distFactor;
-	outLightIntensity = float4(finalColor.rgb, 1);
-	outAmbientIntensity = float4(0, 0, 0, 1);
-	outSpecularIntensity = float4(specular.rgb, 1);
+	outLightIntensity = float4(finalColor.rgb, 0);
+	/*if (normalMap.a == 0)
+		outLightIntensity = float4(0,0, 0, 0);*/
+	outAmbientIntensity = float4(0, 0, 0, 0);
+	outSpecularIntensity = float4(specular.rgb, 0);
 
 
 }

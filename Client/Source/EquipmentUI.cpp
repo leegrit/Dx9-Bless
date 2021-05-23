@@ -9,7 +9,7 @@
 #include "PlayerInfo.h"
 #include "PlayerStatusData.h"
 #include "InventoryData.h"
-
+#include "SoundManager.h"
 EquipmentUI::EquipmentUI(Scene * pScene, std::wstring name)
 	: GameObject(ERenderType::None, pScene, nullptr, name)
 {
@@ -318,6 +318,8 @@ void EquipmentUI::Initialize()
 		if (pScene->GetPlayerEquipData()->IsExistEquipment(EEquipSlot::Shoulder) == false) return;
 		pScene->GetInventoryData()->PushItem(pScene->GetPlayerEquipData()->GetEquipment(EEquipSlot::Shoulder));
 		pScene->GetPlayerEquipData()->RemoveEquipment(EEquipSlot::Shoulder);
+		
+
 		EventDispatcher::TriggerEvent(GameEvent::EquipmentChange);
 	});
 	m_equipSlots[(int)EEquipSlot::Shoulder]->SetRenderQueue(3400);
@@ -568,6 +570,12 @@ void EquipmentUI::Show()
 
 	m_bShow = true;
 
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("Equip_Open", L"Inven_Open.wav", desc);
+
 	EventDispatcher::TriggerEvent(UIEvent::EquipmentUIOpen);
 }
 
@@ -594,6 +602,13 @@ void EquipmentUI::Hide()
 	m_pEquipSelectPanel->SetActive(false);
 	m_pEquipInfoUI->Hide();
 	m_bShow = false;
+
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("Equip_Close", L"Inven_Close.wav", desc);
+
 	EventDispatcher::TriggerEvent(UIEvent::EquipmentUIClose);
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GoblinAttack.h"
 #include "Goblin.h"
+#include "SoundManager.h"
 
 void GoblinAttack::Enter()
 {
@@ -23,8 +24,14 @@ void GoblinAttack::Update()
 
 	m_elapsed += TIMER->getDeltaTime();
 
-	if (m_elapsed >= 0.3f && m_isAttacked == false)
+	if (m_elapsed >= 0.5f && m_isAttacked == false)
 	{
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::RelativeVolume;
+		desc.volume = 0.1f;
+		desc.soundPosition = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
+		SOUND->PlaySound("GoblinAtkSound", L"008_goblin_01.wav", desc);
 		m_component->SendDamageToOthers(50);
 		m_isAttacked = true;
 	}

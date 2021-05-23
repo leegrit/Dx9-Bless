@@ -17,7 +17,7 @@ public :
 	virtual float GetCurProgress() override;
 	virtual bool IsFinish() override;
 	virtual std::vector<GameObject*> GetTargets() override;
-
+	virtual void OnAccept() override;
 public:
 	void Initialize();
 };

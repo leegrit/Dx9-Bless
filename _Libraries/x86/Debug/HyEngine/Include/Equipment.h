@@ -42,6 +42,10 @@ namespace HyEngine
 		D3DXMATRIX GetParentWorldMatrix();
 		D3DXMATRIX GetParentBoneMatrix();
 
+	public :
+		void SetOwner(GameObject* pOwner);
+		void SetBoneName(std::wstring boneName);
+
 		//////////////////////////////////////////////////////////////////////////
 		// VARIABLES
 		//////////////////////////////////////////////////////////////////////////
@@ -61,6 +65,7 @@ namespace HyEngine
 		const D3DXMATRIX * m_pParentBoneMatrix = nullptr;
 		D3DXMATRIX m_pParentWorldMatrix;
 		//char m_boneName[256]; // юс╫ц
+		std::wstring m_boneName;
 
 		//////////////////////////////////////////////////////////////////////////
 		// FACTORY METHOD

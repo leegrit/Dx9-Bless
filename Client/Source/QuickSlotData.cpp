@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "QuickSlotData.h"
 #include "Client_Events.h"
+#include "SoundManager.h"
 
 
 QuickSlotData::QuickSlotData()
@@ -14,6 +15,11 @@ bool QuickSlotData::PushItem(ItemInfo itemInfo)
 		return false;
 
 	m_items.push_back(itemInfo);
+	SoundDesc desc;
+	desc.channelMode = FMOD_LOOP_OFF;
+	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+	desc.volume = 1;
+	SOUND->PlaySound("QuickSlotSound", L"Button.wav", desc);
 	EventDispatcher::TriggerEvent(GameEvent::SetQuickSlot, (void*)&itemInfo);
 	return true;
 }

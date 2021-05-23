@@ -163,6 +163,7 @@
     <ClCompile Include="..\Source\EquipmentUI.cpp" />
     <ClCompile Include="..\Source\EquipShopUI.cpp" />
     <ClCompile Include="..\Source\FontTexture.cpp" />
+    <ClCompile Include="..\Source\GainSkillNoticeUI.cpp" />
     <ClCompile Include="..\Source\GeneralStoreUI.cpp" />
     <ClCompile Include="..\Source\Helper.cpp" />
     <ClCompile Include="..\Source\HGoblin.cpp" />
@@ -175,8 +176,12 @@
     <ClCompile Include="..\Source\HGoblinMove.cpp" />
     <ClCompile Include="..\Source\ItemManager.cpp" />
     <ClCompile Include="..\Source\ItemQuickSlotUI.cpp" />
+    <ClCompile Include="..\Source\Jungle_Chitata.cpp" />
+    <ClCompile Include="..\Source\Jungle_Gagato.cpp" />
+    <ClCompile Include="..\Source\Jungle_Liurens.cpp" />
     <ClCompile Include="..\Source\LightManager.cpp" />
     <ClCompile Include="..\Source\LiurensShopItemsData.cpp" />
+    <ClCompile Include="..\Source\MouseCursorUI.cpp" />
     <ClCompile Include="..\Source\NoticeManager.cpp" />
     <ClCompile Include="..\Source\NotifyUI.cpp" />
     <ClCompile Include="..\Source\PlayerAfterImage.cpp" />
@@ -334,6 +339,7 @@
     <ClInclude Include="..\Include\EquipmentUI.h" />
     <ClInclude Include="..\Include\EquipShopUI.h" />
     <ClInclude Include="..\Include\FontTexture.h" />
+    <ClInclude Include="..\Include\GainSkillNoticeUI.h" />
     <ClInclude Include="..\Include\GeneralStoreUI.h" />
     <ClInclude Include="..\Include\Helper.h" />
     <ClInclude Include="..\Include\HGoblin.h" />
@@ -346,8 +352,12 @@
     <ClInclude Include="..\Include\HGoblinMove.h" />
     <ClInclude Include="..\Include\ItemManager.h" />
     <ClInclude Include="..\Include\ItemQuickSlotUI.h" />
+    <ClInclude Include="..\Include\Jungle_Chitata.h" />
+    <ClInclude Include="..\Include\Jungle_Gagato.h" />
+    <ClInclude Include="..\Include\Jungle_Liurens.h" />
     <ClInclude Include="..\Include\LightManager.h" />
     <ClInclude Include="..\Include\LiurensShopItemsData.h" />
+    <ClInclude Include="..\Include\MouseCursorUI.h" />
     <ClInclude Include="..\Include\NoticeManager.h" />
     <ClInclude Include="..\Include\NotifyUI.h" />
     <ClInclude Include="..\Include\PlayerAfterImage.h" />

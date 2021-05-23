@@ -29,7 +29,10 @@
 #include "ItemQuickSlotUI.h"
 #include "BuffSlotUI.h"
 #include "SpoilsUI.h"
-
+#include "ExpTable.h"
+#include "PlayerInfo.h"
+#include "MouseCursorUI.h"
+#include "GainSkillNoticeUI.h"
 
 
 UIManager::UIManager(GameScene* pScene)
@@ -60,6 +63,18 @@ UIManager::UIManager(GameScene* pScene)
 	EventDispatcher::AddEventListener(GameEvent::EndCinematic, "UIManager",
 		std::bind(&UIManager::OnEndCinematic, this, placeholders::_1));
 
+	EventDispatcher::AddEventListener(UIEvent::ShopUIOpen, "UIManager",
+		std::bind(&UIManager::OnShopUIOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::ShopUIClose, "UIManager",
+		std::bind(&UIManager::OnShopUIClose, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::InventoryUIOpen, "UIManager",
+		std::bind(&UIManager::OnInventoryUIOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::InventoryUIClose, "UIManager",
+		std::bind(&UIManager::OnInventoryUIClose, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::EquipmentUIOpen, "UIManager",
+		std::bind(&UIManager::OnEquipmentUIOpen, this, placeholders::_1));
+	EventDispatcher::AddEventListener(UIEvent::EquipmentUIClose, "UIManager",
+		std::bind(&UIManager::OnEquipmentUIClose, this, placeholders::_1));
 }
 
 
@@ -80,6 +95,13 @@ UIManager::~UIManager()
 	EventDispatcher::RemoveEventListener(GameEvent::BeginCinematic, "UIManager");
 	EventDispatcher::RemoveEventListener(GameEvent::EndCinematic, "UIManager");
 
+	EventDispatcher::RemoveEventListener(UIEvent::ShopUIOpen, "UIManager");
+	EventDispatcher::RemoveEventListener(UIEvent::ShopUIClose, "UIManager");
+	EventDispatcher::RemoveEventListener(UIEvent::EquipmentUIOpen, "UIManager");
+	EventDispatcher::RemoveEventListener(UIEvent::EquipmentUIClose, "UIManager");
+	EventDispatcher::RemoveEventListener(UIEvent::InventoryUIOpen, "UIManager");
+	EventDispatcher::RemoveEventListener(UIEvent::InventoryUIClose, "UIManager");
+
 }
 
 void UIManager::OnQuestDialogOpen(void *)
@@ -89,13 +111,18 @@ void UIManager::OnQuestDialogOpen(void *)
 	{
 		ui->SetActive(false);
 	}
-
+	for (auto itemIcon : m_itemList)
+	{
+		itemIcon->SetActive(false);
+	}
 	for (auto& skillIcon : m_skillList)
 	{
 		skillIcon->SetActive(false);
 	}
 	m_pQuickSlotUI->Hide();
 	m_pBuffSlotUI->Hide();
+	ShowMouseCursor();
+	HideCrossHair();
 }
 
 void UIManager::OnQuestDialogEnd(void *)
@@ -104,6 +131,10 @@ void UIManager::OnQuestDialogEnd(void *)
 	for (auto& ui : m_staticUIList)
 	{
 		ui->SetActive(true);
+	}
+	for (auto itemIcon : m_itemList)
+	{
+		itemIcon->SetActive(true);
 	}
 	for (auto& skillIcon : m_skillList)
 	{
@@ -120,6 +151,44 @@ void UIManager::OnQuestDialogEnd(void *)
 	m_pDialogCancleUI->SetActive(false);
 	m_pDialogCancleIconUI->SetActive(false);
 
+	ShowCrossHair();
+	HideMouseCursor();
+}
+
+void UIManager::OnInventoryUIOpen(void *)
+{
+	ShowMouseCursor();
+	HideCrossHair();
+}
+
+void UIManager::OnInventoryUIClose(void *)
+{
+	ShowCrossHair();
+	HideMouseCursor();
+}
+
+void UIManager::OnEquipmentUIOpen(void *)
+{
+	ShowMouseCursor();
+	HideCrossHair();
+}
+
+void UIManager::OnEquipmentUIClose(void *)
+{
+	ShowMouseCursor();
+	HideCrossHair();
+}
+
+void UIManager::OnShopUIOpen(void *)
+{
+	ShowMouseCursor();
+	HideCrossHair();
+}
+
+void UIManager::OnShopUIClose(void *)
+{
+	ShowCrossHair();
+	HideMouseCursor();
 }
 
 void UIManager::OnAddItem(void *)
@@ -227,6 +296,16 @@ void UIManager::Initialize()
 	m_pEquipmentUI = EquipmentUI::Create(m_pScene, L"EquipmentUI");
 	m_pEquipmentUI->Hide();
 
+	/* For Mouse UI */
+	m_pMouseCursorUI = MouseCursorUI::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/Mouse/cursor.png",
+		D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 30));
+	m_pMouseCursorUI->SetRenderQueue(100);
+	m_pMouseCursorUI->SetActive(false);
+	m_pCrossHairUI = UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/Mouse/Crosshair.png",
+		D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(30, 30, 1), L"CrossHair");
+	m_pCrossHairUI->SetActive(true);
+	m_pCrossHairUI->SetRenderQueue(100);
+
 	/* For Shop Ui */
 	m_pEquipShopUI = EquipShopUI::Create(m_pScene, L"EquipShopUI");
 	m_pEquipShopUI->Hide();
@@ -245,6 +324,7 @@ void UIManager::Initialize()
 	m_pQuestNoticeUI = QuestNoticeUI::Create(m_pScene, L"QuestNoticeUI");
 
 	m_pLevelUpNoticeUI = LevelUpNoticeUI::Create(m_pScene, L"LevelUpNoticeUI");
+	m_pGainSkillNoticeUI = GainSkillNoticeUI::Create(m_pScene);
 
 	/* For Battle UI */
 	m_pTargetingCircle = TargetingCircle::Create(m_pScene, L"TargetingCircle");
@@ -335,7 +415,20 @@ void UIManager::Initialize()
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(439, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
 	m_staticUIList.emplace_back(UIPanel::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_3.png", D3DXVECTOR3(539, -373, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(100, 10, 1), L"55"));
 	/* exp fill */
-	m_staticUIList.emplace_back(ProgressBar::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_5.png", D3DXVECTOR3(13.2, -372.6, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1000, 1.2, 1), L"PlayerExp_Fill"));
+	float amount;
+	if (m_pScene->GetPlayerInfo()->level == 1)
+	{
+		amount = m_pScene->GetPlayerInfo()->exp / (float)m_pScene->GetExpTable()->expTable[m_pScene->GetPlayerInfo()->level - 1];
+	}
+	else
+	{
+		// º¸Á¤Ä¡
+		float temp = m_pScene->GetExpTable()->expTable[m_pScene->GetPlayerInfo()->level - 2];
+		amount = (m_pScene->GetPlayerInfo()->exp - temp) / (m_pScene->GetExpTable()->expTable[m_pScene->GetPlayerInfo()->level - 1] - temp);
+	}
+	auto bar = ProgressBar::Create(m_pScene, PATH->ResourcesPathW() + L"Assets/UI/BLUIEXPBar_I3_5.png", D3DXVECTOR3(13.2, -372.6, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1000, 1.2, 1), L"PlayerExp_Fill");
+	bar->SetAmount(amount);
+	m_staticUIList.emplace_back(bar);
 }
 
 void UIManager::Update()
@@ -389,27 +482,31 @@ void UIManager::Update()
 	//////////////////////////////////////////////////////////////////////////
 	// FOR STATIC FONTS
 	//////////////////////////////////////////////////////////////////////////
-	ENGINE->DrawText(L"F1", D3DXVECTOR3(137 + 5, 643 + 4,0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"F2", D3DXVECTOR3(137 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"F3", D3DXVECTOR3(137 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"F4", D3DXVECTOR3(137 + 5 + 38 * 3, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	if (m_itemList[0]->GetActive() == true)
+	{
+		ENGINE->DrawText(L"F1", D3DXVECTOR3(137 + 5, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F2", D3DXVECTOR3(137 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F3", D3DXVECTOR3(137 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F4", D3DXVECTOR3(137 + 5 + 38 * 3, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
 
-	ENGINE->DrawText(L"F5", D3DXVECTOR3(309 + 5 + 38 * 0, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"F6", D3DXVECTOR3(309 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"F7", D3DXVECTOR3(309 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F5", D3DXVECTOR3(309 + 5 + 38 * 0, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F6", D3DXVECTOR3(309 + 5 + 38 * 1, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"F7", D3DXVECTOR3(309 + 5 + 38 * 2, 643 + 4, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	}
+	if (m_skillList[0]->GetActive() == true)
+	{
+		ENGINE->DrawText(L"Shift", D3DXVECTOR3(167, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
 
-	ENGINE->DrawText(L"Shift", D3DXVECTOR3(167, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"1", D3DXVECTOR3(237 + 48 * 0, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"2", D3DXVECTOR3(237 + 48 * 1, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"3", D3DXVECTOR3(237 + 48 * 2, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"4", D3DXVECTOR3(237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
 
-	ENGINE->DrawText(L"1", D3DXVECTOR3(237 + 48 *0, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"2", D3DXVECTOR3(237 + 48 * 1, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"3", D3DXVECTOR3(237 + 48 * 2, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"4", D3DXVECTOR3(237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-
-	ENGINE->DrawText(L"5", D3DXVECTOR3(228 + 237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"6", D3DXVECTOR3(228 + 237 + 48 * 4, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"7", D3DXVECTOR3(228 + 237 + 48 * 5, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-	ENGINE->DrawText(L"8", D3DXVECTOR3(228 + 237 + 48 * 6, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
-
+		ENGINE->DrawText(L"5", D3DXVECTOR3(228 + 237 + 48 * 3, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"6", D3DXVECTOR3(228 + 237 + 48 * 4, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"7", D3DXVECTOR3(228 + 237 + 48 * 5, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+		ENGINE->DrawText(L"8", D3DXVECTOR3(228 + 237 + 48 * 6, 705, 0), D3DXVECTOR3(0.7f, 0.7f, 0.7f), D3DXCOLOR(1, 1, 1, 1), -1);
+	}
 }
 
 UIElement * UIManager::GetStaticUI(std::wstring name)
@@ -541,6 +638,30 @@ void UIManager::HideSpoilsUI()
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
 {
 	m_pDamageFontScatter->PushDamageFunt(damage, isPlayer, isCritical, center);
+}
+
+void UIManager::ShowMouseCursor()
+{
+	if (m_pMouseCursorUI)
+		m_pMouseCursorUI->SetActive(true);
+}
+
+void UIManager::HideMouseCursor()
+{
+	if (m_pMouseCursorUI)
+		m_pMouseCursorUI->SetActive(false);
+}
+
+void UIManager::ShowCrossHair()
+{
+	if (m_pCrossHairUI)
+		m_pCrossHairUI->SetActive(true);
+}
+
+void UIManager::HideCrossHair()
+{
+	if (m_pCrossHairUI)
+		m_pCrossHairUI->SetActive(false);
 }
 
 void UIManager::ShowQuestDialogUI(Quest * pQuest, int dialogIndex, EQuestDialogType questDialogType)

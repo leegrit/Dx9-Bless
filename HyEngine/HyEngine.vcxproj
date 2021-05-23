@@ -272,6 +272,7 @@
     <ClInclude Include="Include\MeshLoader.h" />
     <ClInclude Include="Include\MeshObject2.h" />
     <ClInclude Include="Include\Mouse.h" />
+    <ClInclude Include="Include\MouseQuad.h" />
     <ClInclude Include="Include\NavMesh.h" />
     <ClInclude Include="Include\NavMeshData.h" />
     <ClInclude Include="Include\NavPrimitive.h" />
@@ -439,6 +440,7 @@
     <ClCompile Include="Source\MeshLoader.cpp" />
     <ClCompile Include="Source\MeshObject2.cpp" />
     <ClCompile Include="Source\Mouse.cpp" />
+    <ClCompile Include="Source\MouseQuad.cpp" />
     <ClCompile Include="Source\NavMesh.cpp" />
     <ClCompile Include="Source\NavMeshData.cpp" />
     <ClCompile Include="Source\NavPrimitive.cpp" />

@@ -544,8 +544,10 @@ void HyEngine::Renderer::OcclusionEnd()
 
 void HyEngine::Renderer::Render(Scene * scene)
 {
-	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
-
+	//DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, false);
+	/* For Skybox */
+	if (scene->GetSkybox() != nullptr)
+		scene->GetSkybox()->Render();
 	//* For shadowMap */
 	PreparePipeline(scene);
 
@@ -635,9 +637,7 @@ void HyEngine::Renderer::DeferredPipeline(Scene* scene)
 	SetGBufferMRT();
 	ClearBackBuffer();
 
-	/* For Skybox */
-	if (scene->GetSkybox() != nullptr)
-		scene->GetSkybox()->Render();
+	
 
 	/* Render For GBuffer */
 	GeometryPass(scene);

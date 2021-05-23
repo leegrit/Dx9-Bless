@@ -155,8 +155,16 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	m_pEquip =	Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"Bip01-R-Finger22" /*L"Bip01-R-Finger21"*/, L"Sword");
 	m_pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
+	//m_pEquip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/OSW_9000/OSW_9000.x", L"BN_L_Hip" /*L"Bip01-R-Finger21"*/, L"Sword");
+	//m_pEquip->m_pTransform->m_rotationEuler = D3DXVECTOR3(-90, 0, -90);
+	//m_pEquip->m_pTransform->m_position = D3DXVECTOR3(-6, -3.5, 0);
+	//m_pEquip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
 	m_pPlayer->SetWeapon(m_pEquip);
 	auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Hand", L"SLD");
+	equip->m_pTransform->m_rotationEuler = D3DXVECTOR3(0, 0, 180);
+	//auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-Spine2", L"SLD");
+	//equip->m_pTransform->m_rotationEuler = D3DXVECTOR3(0, 0, -90);
+	//equip->m_pTransform->m_position = D3DXVECTOR3(0, 0, -2);
 	m_pPlayer->SetShield(equip);
 	//auto equip = Equipment::Create(this, m_pPlayer, PATH->ResourcesPathW() + L"Assets/Mesh/Item/SLD_9000/SLD_9000.x", L"Bip01-L-Finger31", L"SLD");
 	//equip->m_pTransform->SetScale(1.5f, 1.5f, 1.5f);
@@ -164,9 +172,9 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
 	//////////////////////////////////////////////////////////////////////////
-	//auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
-	//auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
-	//auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
+	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
+	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
+	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER

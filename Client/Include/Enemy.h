@@ -9,7 +9,11 @@ namespace HyEngine
 enum class EEnemyHitType
 {
 	SwordLeft,
-	SwordRight
+	SwordRight,
+	SwordStab,
+	CriticalLeft,
+	CriticalRight,
+	CriticalStab,
 };
 
 using namespace HyEngine;
@@ -100,6 +104,21 @@ private : /* Hit Effect */
 	Effect* m_pRightBloodEffect;
 	class Sprite * m_pHitEffect2;
 
+private : /* Ver2 */
+	Effect * m_pLeftSwordHitEffect2;
+	Effect * m_pLeftUpSwordHitEffect2;
+	Effect * m_pLeftDownSwordHitEffect2;
+	Effect * m_pRightSwordHitEffect2;
+	Effect * m_pRightUpSwordHitEffect2;
+	Effect * m_pRightDownSwordHitEffect2;
 
+	Effect * m_pLeftBloodEffect2;
+	Effect * m_pLeftUpBloodEffect2;
+	Effect * m_pLeftDownBloodEffect2;
+	Effect * m_pRightBloodEffect2;
+	Effect * m_pRightUpBloodEffect2;
+	Effect * m_pRightDownBloodEffect2;
+
+	D3DXVECTOR3 m_hitedPos;
 };
 
