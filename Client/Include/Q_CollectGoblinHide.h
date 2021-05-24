@@ -1,8 +1,33 @@
 #pragma once
-class Q_CollectGoblinHide
+#include "Quest.h"
+
+
+class Q_CollectGoblinHide : public Quest
 {
 public:
 	Q_CollectGoblinHide();
-	~Q_CollectGoblinHide();
+	virtual ~Q_CollectGoblinHide();
+
+	//////////////////////////////////////////////////////////////////////////
+	// CALLBACK
+	//////////////////////////////////////////////////////////////////////////
+public:
+	void OnCollectItem(void* item);
+
+	//////////////////////////////////////////////////////////////////////////
+	// INHERITED
+	//////////////////////////////////////////////////////////////////////////
+public:
+	virtual float GetCurProgress() override;
+	virtual bool IsFinish() override;
+	virtual std::vector<GameObject*> GetTargets() override;
+
+
+public:
+	void Initialize();
+
+private :
+	int m_goalCnt = 10;
+	int m_curCnt = 0;
 };
 

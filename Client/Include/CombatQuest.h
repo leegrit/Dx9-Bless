@@ -39,6 +39,7 @@ public:
 	virtual bool IsFinish() override;
 	virtual std::vector<GameObject*> GetTargets() override;
 	virtual void LinkObject() override;
+	virtual void OnAccept() override;
 
 	//////////////////////////////////////////////////////////////////////////
 	// CALLBACK

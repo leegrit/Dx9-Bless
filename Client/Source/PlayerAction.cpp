@@ -78,11 +78,21 @@ float PlayerAction::GetCurCoolTime()
 	return m_curCoolTime;
 }
 
+PlayerController * PlayerAction::GetPlayerController()
+{
+	return m_pPlayerController;
+}
+
 void PlayerAction::SetParams(float atkDelay, int seqCount, float coolTime, float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset)
 {
 	ActionComponent::SetParams(atkDelay, seqCount, atkRange, damage, bKnockBack, colOffset);
 	m_coolTime = coolTime;
 	m_curCoolTime = m_coolTime;
+}
+
+void PlayerAction::SetManaDemand(float manaDemand)
+{
+	m_manaDemand = manaDemand;
 }
 
 bool PlayerAction::DoAction(int animIndex)
@@ -100,6 +110,12 @@ bool PlayerAction::DoAction(int animIndex)
 		return false;
 	}
 	if (state == EPlayerState::Attack && IsAttackState() == false) return false;
+
+	Player * pPlayer = static_cast<Player*>(GetGameObject());
+	bool isSucceeded = pPlayer->UseMP(m_manaDemand);
+
+	if (isSucceeded == false)
+		return false;
 
 	ActionComponent::DoAction(animIndex);
 	

@@ -55,6 +55,10 @@ private : /* Shield Effect */
 	ShieldEffect* m_pLeftSLD = nullptr;
 	ShieldEffect* m_pRightSLD = nullptr;
 
+private : /* Aura Effect */
+	class Effect * m_pAuraEffect = nullptr;
+	class Effect * m_pAuraLeftEffect = nullptr;
+	class Effect * m_pAuraRightEffect = nullptr;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

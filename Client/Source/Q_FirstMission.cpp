@@ -45,7 +45,7 @@ void Q_FirstMission::Initialize()
 
 float Q_FirstMission::GetCurProgress()
 {
-	return 1;
+	return -1;
 }
 
 bool Q_FirstMission::IsFinish()

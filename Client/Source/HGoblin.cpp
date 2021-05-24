@@ -40,6 +40,10 @@ void HGoblin::Initialize(std::wstring dataPath)
 
 	SetParams(10, 3000, 100);
 
+	SetDissolveTexture(PATH->AssetsPathW() + L"Texture/dissolveMap.jpg");
+	SetDissolveAmount(0.0f);
+	SetFringeAmount(0.01f);
+
 	GameScene* pScene = static_cast<GameScene*>(GetScene());
 
 	MeshEffectDesc swingDownEffectDesc;

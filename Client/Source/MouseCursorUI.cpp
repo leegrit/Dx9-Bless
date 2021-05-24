@@ -44,6 +44,7 @@ void MouseCursorUI::Render()
 	D3DXHANDLE albedoHandle = m_pEffect->GetParameterByName(0, "AlbedoTex");
 	m_pEffect->SetTexture(albedoHandle, m_pTexture);
 
+	m_pEffect->SetFloat("Alpha", 1);
 
 	m_pEffect->SetTechnique("UIPanel");
 	m_pEffect->Begin(0, 0);

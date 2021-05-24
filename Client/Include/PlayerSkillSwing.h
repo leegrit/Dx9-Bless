@@ -46,9 +46,11 @@ private:
 	int m_seqIndex = 0;
 	int m_animIndexes[1] = { /*22,*/ /*26,*/  24 };//,23, 24};
 	// 데미지 배율
-	float m_damageScale[3] = { 1.5f, 1.5f, 3.0f };
+	float m_damageScale[3] = { 0.8f, 1.5f, 3.0f };
 	class PlayerStatusData * m_pPlayerStatusData = nullptr;
 	class PlayerBuffInfo * m_pPlayerBuffInfo = nullptr;
+	class PlayerEquipData * m_pPlayerEquipData = nullptr;
+
 	/* For Attack Logic */
 	bool m_bSendDamage = false;
 	std::vector<GameObject*> m_hitEnemies;
@@ -81,6 +83,8 @@ private : /* FourthAction Effect */
 private : /* ThirdAction AfterImage */
 	std::vector<int> m_thirdActionAfterImageIndex;
 	std::vector<bool> m_thirdActionSeq;
+
+	float m_atkSpeed = 1.0f;
 	//////////////////////////////////////////////////////////////////////////
 	// FACTORY METHOD
 	//////////////////////////////////////////////////////////////////////////

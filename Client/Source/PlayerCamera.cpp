@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "GameScene.h"
 #include "Client_Events.h"
+#include "PlayerController.h"
 
 PlayerCamera::PlayerCamera(Scene * scene, GameObject * player, wstring name) 
 	: Camera(scene, nullptr, name),
@@ -109,6 +110,8 @@ void PlayerCamera::ParamChange()
 void PlayerCamera::Movement()
 {
 	assert(m_pPlayer);
+	if (m_pPlayer->GetComponent<PlayerController>()->GetState() == EPlayerState::Shield)
+		return;
 
 	/* Get Forward of target */
 	D3DXVECTOR3 targetForward;

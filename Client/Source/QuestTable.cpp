@@ -10,6 +10,7 @@
 #include "Q_FirstEquipment.h"
 #include "Q_NewSkill.h"
 #include "Q_PrepareForMission.h"
+#include "Q_CollectGoblinHide.h"
 
 
 void QuestTable::Initialize()
@@ -62,7 +63,10 @@ void QuestTable::Initialize()
 	pCollectRelics->Initialize();
 	m_quests.push_back(pCollectRelics);
 
-
+	Q_CollectGoblinHide * pCollectGoblinHide = new Q_CollectGoblinHide();
+	pCollectGoblinHide->Initialize();
+	m_quests.push_back(pCollectGoblinHide);
+ 
 }
 
 void QuestTable::LinkQuests()

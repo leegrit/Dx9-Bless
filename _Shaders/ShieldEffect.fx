@@ -43,6 +43,7 @@ float2 UVMoveFactor;
 float3 WorldPosition;
 float3 EyePosition;
 float RimWidth;
+float4 RimColor;
 
 
 void ShieldEffectVS(
@@ -115,7 +116,8 @@ void ShieldEffectPS(
 	//if (rimLightColor <= (1 - RimWidth + 0.001f))
 	//	rimLightColor = 0;
 	//outColor = bumpMap;
-	outColor = rimLightColor;
+	outColor = RimColor * rimLightColor;
+	//outColor = rimLightColor;
 }
 
 technique ShieldEffect

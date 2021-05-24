@@ -10,6 +10,9 @@ public :
 	int life;
 	int intel;
 	int dex;
+	int physicalDef;
+	int magicalDef;
 	float critical;
+	float defense; // 자동 방어확률
 };
 

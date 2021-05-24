@@ -222,7 +222,7 @@ bool Character::UseMP(float value)
 	}
 	else
 	{
-		m_curMP -= temp;
+		m_curMP -= value;
 		return true;
 	}
 }

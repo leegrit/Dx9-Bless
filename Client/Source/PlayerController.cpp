@@ -13,6 +13,7 @@
 #include "Sprite3D.h"
 #include "PathManager.h"
 #include "Sprite.h"
+#include "PlayerBuffInfo.h"
 
 PlayerController::PlayerController(GameObject * pOwner)
 	:Component(BehaviourType::Update, pOwner, L"PlayerController")
@@ -47,6 +48,8 @@ PlayerController::~PlayerController()
 
 void PlayerController::Initialize()
 {
+
+	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
 	m_mouseCenter = MOUSE->GetPosition();
 	m_playerState = EPlayerState::Weapon;
 
@@ -72,6 +75,8 @@ void PlayerController::Update()
 		SetAnimationSet(89);
 		return;
 	}
+	if (GetState() == EPlayerState::Shield)
+		return;
 	
 	UpdateRotation();
 	UpdateMovement();
@@ -177,6 +182,9 @@ void PlayerController::UpdateMovement()
 	if (m_formChangeStep != EFormChangeStep::Done)
 		return;
 
+	if (GetState() == EPlayerState::Shield)
+		return;
+
 	if (GetState() != EPlayerState::MountOnHorse)
 	{
 		if (KEYBOARD->Press('W') ||
@@ -190,13 +198,13 @@ void PlayerController::UpdateMovement()
 				if (KEYBOARD->Press('A'))
 				{
 					SetAnimationSet(78);
-					GetTransform()->Translate(-GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+					GetTransform()->Translate(-GetTransform()->Right() * TIMER->getDeltaTime() * (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 				}
 				/* Forward + Right */
 				else if (KEYBOARD->Press('D'))
 				{
 					SetAnimationSet(77);
-					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 				}
 				/* Only Forward */
 				else
@@ -223,7 +231,7 @@ void PlayerController::UpdateMovement()
 					}*/
 
 				}
-				GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * m_speed);
+				GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			else if (KEYBOARD->Press('S'))
 			{
@@ -231,30 +239,30 @@ void PlayerController::UpdateMovement()
 				if (KEYBOARD->Press('A'))
 				{
 					SetAnimationSet(83);
-					GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
+					GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 				}
 				/* Back + Right */
 				else if (KEYBOARD->Press('D'))
 				{
 					SetAnimationSet(82);
-					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+					GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 				}
 				/* Only Back */
 				else
 				{
 					SetAnimationSet(84);
 				}
-				GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* m_speed);
+				GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			else if (KEYBOARD->Press('A'))
 			{
 				SetAnimationSet(74);
-				GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* m_speed);
+				GetTransform()->Translate(-GetTransform()->Right()  * TIMER->getDeltaTime()* (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			else if (KEYBOARD->Press('D'))
 			{
 				SetAnimationSet(73);
-				GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * m_speed);
+				GetTransform()->Translate(GetTransform()->Right() * TIMER->getDeltaTime() * (m_speed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			m_walkElapsed += TIMER->getDeltaTime();
 			/*if (m_walkElapsed >= m_walkDelay)
@@ -321,7 +329,7 @@ void PlayerController::UpdateMovement()
 					m_pPlayerUW->SetAnimationSet(249);
 					//SetAnimationSet(44);
 				}
-				GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * m_horseSpeed);
+				GetTransform()->Translate(GetTransform()->Forward() * TIMER->getDeltaTime() * (m_horseSpeed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			else if (KEYBOARD->Press('S'))
 			{
@@ -344,7 +352,7 @@ void PlayerController::UpdateMovement()
 					m_pPlayerUW->SetAnimationSet(250);
 					//SetAnimationSet(84);
 				}
-				GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* m_horseSpeed);
+				GetTransform()->Translate(-GetTransform()->Forward()  * TIMER->getDeltaTime()* (m_horseSpeed + m_pPlayerBuffInfo->GetBuffMoveSpd()));
 			}
 			/*else if (KEYBOARD->Press('A'))
 			{

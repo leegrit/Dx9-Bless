@@ -46,7 +46,7 @@ void Q_FirstEquipment::Initialize()
 	Quest::Initialize
 	(
 		L"첫 장비",
-		L"무기점에서 무기를 구매 후 착용하라",
+		L"무기점에서 무기를 구매 후 \n착용하라",
 		{
 			L"신참 장비가 그게 뭐야?",
 			L"무기점가서 장비좀 맞춰야하지 않겠어"

@@ -307,6 +307,7 @@
     <ClCompile Include="..\Source\Sprite.cpp" />
     <ClCompile Include="..\Source\Sprite3D.cpp" />
     <ClCompile Include="..\Source\SpriteLoader.cpp" />
+    <ClCompile Include="..\Source\StateFontScatter.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\SummonProgressBar.cpp" />
     <ClCompile Include="..\Source\SwordMeshEffect.cpp" />
@@ -316,6 +317,7 @@
     <ClCompile Include="..\Source\TestQuest.cpp" />
     <ClCompile Include="..\Source\TitleCamera.cpp" />
     <ClCompile Include="..\Source\TitleScene.cpp" />
+    <ClCompile Include="..\Source\TitleScreen.cpp" />
     <ClCompile Include="..\Source\UIManager.cpp" />
     <ClCompile Include="..\Source\WarpPoint.cpp" />
     <ClCompile Include="..\Source\WeaponAfterImage.cpp" />
@@ -491,6 +493,7 @@
     <ClInclude Include="..\Include\Sprite.h" />
     <ClInclude Include="..\Include\Sprite3D.h" />
     <ClInclude Include="..\Include\SpriteLoader.h" />
+    <ClInclude Include="..\Include\StateFontScatter.h" />
     <ClInclude Include="..\Include\StaticCamera.h" />
     <ClInclude Include="..\Include\stdafx.h" />
     <ClInclude Include="..\Include\SummonProgressBar.h" />
@@ -501,6 +504,7 @@
     <ClInclude Include="..\Include\TestQuest.h" />
     <ClInclude Include="..\Include\TitleCamera.h" />
     <ClInclude Include="..\Include\TitleScene.h" />
+    <ClInclude Include="..\Include\TitleScreen.h" />
     <ClInclude Include="..\Include\UIManager.h" />
     <ClInclude Include="..\Include\WarpPoint.h" />
     <ClInclude Include="..\Include\WeaponAfterImage.h" />

@@ -28,6 +28,7 @@ private :
 	
 	class HGoblin * m_pHGoblin = nullptr;
 
-
+	bool m_bFirstAnim = false;
+	bool m_bSecondAnim = false;
 };
 

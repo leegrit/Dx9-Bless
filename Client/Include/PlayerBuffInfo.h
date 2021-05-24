@@ -33,6 +33,11 @@ public:
 	void AddBuff(BuffDesc desc);
 	void RemoveBuff(BuffDesc desc);
 
+	float GetBuffAtk();
+	float GetBuffDef();
+	float GetBuffMoveSpd();
+	float GetBuffAtkSpd();
+
 	std::vector<BuffDesc> buffDescs;
 };
 

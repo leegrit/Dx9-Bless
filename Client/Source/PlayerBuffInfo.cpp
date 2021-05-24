@@ -38,3 +38,43 @@ void PlayerBuffInfo::RemoveBuff(BuffDesc desc)
 		}
 	}
 }
+
+float PlayerBuffInfo::GetBuffAtk()
+{
+	float acc = 0;
+	for (auto desc : buffDescs)
+	{
+		acc += desc.addAtk;
+	}
+	return acc;
+}
+
+float PlayerBuffInfo::GetBuffDef()
+{
+	float acc = 0;
+	for (auto desc : buffDescs)
+	{
+		acc += desc.addDef;
+	}
+	return acc;
+}
+
+float PlayerBuffInfo::GetBuffMoveSpd()
+{
+	float acc = 0;
+	for (auto desc : buffDescs)
+	{
+		acc += desc.addMoveSpd;
+	}
+	return acc;
+}
+
+float PlayerBuffInfo::GetBuffAtkSpd()
+{
+	float acc = 0;
+	for (auto desc : buffDescs)
+	{
+		acc += desc.addAtkSpd;
+	}
+	return acc;
+}

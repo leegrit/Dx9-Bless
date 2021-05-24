@@ -13,6 +13,7 @@
 #include "PlayerBuffInfo.h"
 #include "PlayerStatusData.h"
 #include "PlayerController.h"
+#include "PlayerEquipData.h"
 
 
 PlayerNormalAttack::PlayerNormalAttack(GameObject * pPlayer, PlayerController * pPlayerController)
@@ -31,7 +32,7 @@ void PlayerNormalAttack::Initialize()
 
 	m_pPlayerStatusData = static_cast<PlayerStatusData*>(ENGINE->GetScriptableData(L"PlayerStatusData"));
 	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
-
+	m_pPlayerEquipData = static_cast<PlayerEquipData*>(ENGINE->GetScriptableData(L"PlayerEquipData"));
 
 	/* Add Effect NormalAttack */
 	MeshEffectDesc meshEffectDesc;
@@ -167,7 +168,9 @@ void PlayerNormalAttack::OnSequenceStart(int seqIndex)
 	PlayerAction::OnSequenceStart(seqIndex);
 	m_seqIndex = seqIndex + 1;
 	m_hitEnemies.clear();
-	m_bSendDamage = false;
+	m_bSendDamage[0] = false;
+	m_bSendDamage[1] = false;
+	m_bSendDamage[2] = false;
 	m_bPlayerAfterImage = false;
 
 	Player * pPlayer = static_cast<Player*>(PLAYER);
@@ -200,10 +203,9 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			pScene->GetEffectManager()->PlayerWeaponAffterEffect(weaponDesc);
 		}
-		if (elapsed >= 0.3f && m_bSendDamage == false)
+		if (elapsed >= 0.3f && m_bSendDamage[0] == false)
 		{
-			m_bSendDamage = true;
-			m_bSendDamage = true;
+			m_bSendDamage[0] = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 
 			SoundDesc desc;
@@ -232,7 +234,8 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				//float damage = m_damageScale[0] * m_pPlayerStatusData->power;
 				float minDamage = damage * 0.7f;
 				float maxDamage = damage * 1.3f;
 				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
@@ -309,9 +312,9 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 			m_bPlayerAfterImage = true;
 		}
-		if (elapsed >= 0.3f && m_bSendDamage == false)
+		if (elapsed >= 0.3f && m_bSendDamage[0] == false)
 		{
-			m_bSendDamage = true;
+			m_bSendDamage[0] = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
@@ -337,7 +340,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[1] * m_pPlayerStatusData->power;
+				float damage = m_damageScale[1] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
 				float minDamage = damage * 0.7f;
 				float maxDamage = damage * 1.3f;
 				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
@@ -371,7 +374,6 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 					CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				}
 			}
-			m_bSendDamage = true;
 		}
 		break;
 	case 2:
@@ -422,13 +424,11 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 			pScene->GetEffectManager()->PlayAffterEffect(index);
 			m_bPlayerAfterImage = true;
 		}
-		if (elapsed >= 0.3f && m_bSendDamage == false)
+		if (elapsed >= 0.3f && m_bSendDamage[0] == false)
 		{
-			Player * pPlayer = static_cast<Player*>(PLAYER);
-			auto weapon = pPlayer->GetWeapon();
-			weapon->SetRimWidth(0.0f);
+			
 
-			m_bSendDamage = true;
+			m_bSendDamage[0] = true;
 			GameScene* pScene = static_cast<GameScene*>(SCENE);
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
@@ -455,7 +455,7 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[2] * m_pPlayerStatusData->power;
+				float damage = m_damageScale[2] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
 				float minDamage = damage * 0.7f;
 				float maxDamage = damage * 1.3f;
 				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
@@ -489,7 +489,110 @@ void PlayerNormalAttack::OnActionTimeElapsed(int seqIndex, float elapsed)
 					CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				}
 			}
-			m_bSendDamage = true;
+		}
+		if (elapsed >= 0.4f && m_bSendDamage[1] == false)
+		{
+			m_bSendDamage[1] = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			for (auto& obj : m_hitEnemies)
+			{
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[2] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.7f;
+				float maxDamage = damage * 1.3f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				if (isCritical)
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::CriticalRight);
+				}
+				else
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				}
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
+		}
+		if (elapsed >= 0.5f && m_bSendDamage[2] == false)
+		{
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRimWidth(0.0f);
+
+			m_bSendDamage[2] = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+			for (auto& obj : m_hitEnemies)
+			{
+				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
+					return;
+				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
+				{
+					continue;
+				}
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[2] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.7f;
+				float maxDamage = damage * 1.3f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				float playerCritical = m_pPlayerStatusData->critical;
+				playerCritical = m_pPlayerBuffInfo->bBuff ? playerCritical * 3.0f : playerCritical;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				//GameScene* pScene = static_cast<GameScene*>(GetGameObject()->GetScene());
+				if (isCritical)
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::CriticalRight);
+				}
+				else
+				{
+					enemy->PlayHitAnimation(EEnemyHitType::SwordRight);
+				}
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
 		}
 		break;
 	}

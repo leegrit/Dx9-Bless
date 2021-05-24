@@ -34,8 +34,8 @@ void BuffManager::OnUseItem(void * pUseItem)
 		desc->color = D3DXCOLOR(0, 1, 0, 1);
 		desc->onUpdate = std::bind(&BuffManager::OnBuffEffectUpdate, this, placeholders::_1);
 		desc->onEnd = std::bind(&BuffManager::OnBuffEffectEnd, this, placeholders::_1);
-		
 
+		
 		m_pScene->GetEffectManager()->AddCustomEffect(desc);
 
 
@@ -154,7 +154,8 @@ void BuffManager::OnBuffEffectUpdate(CustomEffectDesc * pDesc)
 {
 	PlayerPotionEffectDesc * pEffectDesc = static_cast<PlayerPotionEffectDesc*>(pDesc);
 	float amount = (float)pEffectDesc->elapsed / pEffectDesc->lifeTime;
-	amount = 1 - amount;
+	amount = (1 - amount) - 0.3f;
+	amount = amount <= 0 ? 0 : amount;
 	Player* pPlayer = static_cast<Player*>(PLAYER);
 	pPlayer->SetRenderEffectOption(RenderEffectOption::RimLight);
 	pPlayer->SetRimWidth(amount);

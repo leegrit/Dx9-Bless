@@ -23,9 +23,22 @@ HGoblinCinematicTrack::~HGoblinCinematicTrack()
 bool HGoblinCinematicTrack::TrackUpdate()
 {
 	assert(m_pHGoblin);
+	bool isFinish = false;
+	bool isEnd =m_pHGoblin->IsAnimationSetEnd(0.3f);
+	if (isEnd)
+	{
+		if (m_bFirstAnim == false)
+		{
+			m_bFirstAnim = true;
+			m_pHGoblin->SetAnimationSet(1);
 
-	bool isEnd =m_pHGoblin->IsAnimationSetEnd();
-	return isEnd;
+		}
+		else if (m_bSecondAnim == false)
+		{
+			isFinish = true;
+		}
+	}
+	return isFinish;
 }
 
 void HGoblinCinematicTrack::OnBegin()
@@ -46,6 +59,7 @@ void HGoblinCinematicTrack::OnBegin()
 
 void HGoblinCinematicTrack::OnEnd()
 {
+	m_pHGoblin->SetAnimationSet(9);
 	m_pHGoblin->PlayFSM();
 	SCENE->SelectCamera(m_originCamName);
 }

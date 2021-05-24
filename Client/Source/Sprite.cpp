@@ -86,6 +86,8 @@ void Sprite::Update()
 		case ELoopType::Loop:
 			m_curFrame = 0;
 			break;
+		case ELoopType::Infinity:
+			return;
 		default : 
 			assert(false);
 			break;

@@ -40,12 +40,15 @@ public :
 public :
 	float GetCoolTime();
 	float GetCurCoolTime();
+	PlayerController* GetPlayerController();
 
 	//////////////////////////////////////////////////////////////////////////
 	// PROTECTED METHOD
 	//////////////////////////////////////////////////////////////////////////
 protected:
 	void SetParams(float atkDelay, int seqCount, float coolTime, float atkRange, float damage, bool bKnockBack, D3DXVECTOR3 colOffset);
+	void SetManaDemand(float manaDemand);
+	
 	bool DoAction(int animIndex);
 
 
@@ -59,5 +62,8 @@ private :
 	/* For Attack parameters */
 	float m_coolTime;
 	float m_curCoolTime;
+
+	float m_manaDemand = 0; // 마나 요구량
+
 };
 

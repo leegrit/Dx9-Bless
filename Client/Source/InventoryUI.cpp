@@ -382,7 +382,7 @@ void InventoryUI::Update()
 
 
 		ENGINE->DrawText(L"소지품", D3DXVECTOR3(556, 140, 0), D3DXVECTOR3(1.3, 1.3, 1.3), D3DXCOLOR(1, 1, 1, 1));
-		ENGINE->DrawText(std::to_wstring(pData->money).c_str(), D3DXVECTOR3(812, 509, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(std::to_wstring(pData->money).c_str(), D3DXVECTOR3(815, 512, 0), D3DXVECTOR3(0.9f, 0.9f, 0.9f), D3DXCOLOR(1, 1, 1, 1));
 		ENGINE->DrawText(L"잡동사니 모두 팔기", D3DXVECTOR3(643, 597, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 	}

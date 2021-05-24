@@ -14,7 +14,8 @@ enum class EPlayerState
 	MountOnHorse,
 	Collecting,
 	UnWeapon,
-	Weapon
+	Weapon,
+	Shield,
 };
 enum class EEquipSlot
 {

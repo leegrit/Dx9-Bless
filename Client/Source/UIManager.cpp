@@ -33,7 +33,7 @@
 #include "PlayerInfo.h"
 #include "MouseCursorUI.h"
 #include "GainSkillNoticeUI.h"
-
+#include "StateFontScatter.h"
 
 UIManager::UIManager(GameScene* pScene)
 	:m_pScene(pScene)
@@ -175,8 +175,8 @@ void UIManager::OnEquipmentUIOpen(void *)
 
 void UIManager::OnEquipmentUIClose(void *)
 {
-	ShowMouseCursor();
-	HideCrossHair();
+	ShowCrossHair();
+	HideMouseCursor();
 }
 
 void UIManager::OnShopUIOpen(void *)
@@ -273,6 +273,7 @@ void UIManager::Initialize()
 	m_pFadeInOut->SetActive(false);
 
 	m_pDamageFontScatter = DamageFontScatter::Create(m_pScene, L"DamageFontScatter");
+	m_pStateFontScatter = StateFontScatter::Create(m_pScene);
 
 	m_pQuestDialogUI = QuestDialogUI::Create(m_pScene, PATH->AssetsPathW() + L"UI/BLUILooting_I4_0.png", D3DXVECTOR3(0, -260, 0), D3DXVECTOR3(WinMaxWidth, 250, 1), L"QuestDialogUI");
 	m_pQuestDialogUI->SetActive(false);
@@ -638,6 +639,16 @@ void UIManager::HideSpoilsUI()
 void UIManager::PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center)
 {
 	m_pDamageFontScatter->PushDamageFunt(damage, isPlayer, isCritical, center);
+}
+
+void UIManager::PushDamageFontForPlayer(float damage, bool isCritical, bool isGaurd, D3DXVECTOR3 center)
+{
+	m_pDamageFontScatter->PushDamageFontForPlayer(damage, isCritical,isGaurd, center);
+}
+
+void UIManager::PushStateFont(std::wstring font, D3DXVECTOR3 center)
+{
+	m_pStateFontScatter->PushStateFont(font, center);
 }
 
 void UIManager::ShowMouseCursor()

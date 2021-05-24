@@ -31,7 +31,7 @@ void SoldierAttack::Update()
 		desc.volume = 0.1f;
 		desc.soundPosition = m_component->m_pTransform->m_position.operator D3DXVECTOR3();
 		SOUND->PlaySound("SoldierAtkSound", L"Attack_Voice_0.wav", desc);
-		m_component->SendDamageToOthers(50);
+		m_component->SendDamageToOthers(5);
 		m_isAttacked = true;
 	}
 

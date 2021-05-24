@@ -501,11 +501,11 @@ void EquipmentUI::Update()
 
 		/* 지능 */
 		ENGINE->DrawText(L"물리방어", D3DXVECTOR3(304, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->intel).c_str(), D3DXVECTOR3(435, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->physicalDef + pScene->GetPlayerEquipData()->GetPhysicalDef()).c_str(), D3DXVECTOR3(435, 542, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 		
 		/* 민첩 */
 		ENGINE->DrawText(L"마법방어", D3DXVECTOR3(304, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->dex).c_str(), D3DXVECTOR3(435, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+		ENGINE->DrawText(std::to_wstring(pScene->GetPlayerStatusData()->magicalDef + pScene->GetPlayerEquipData()->GetMagicalDef()).c_str(), D3DXVECTOR3(435, 582, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 
 
 

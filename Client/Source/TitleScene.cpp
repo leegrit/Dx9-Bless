@@ -4,6 +4,8 @@
 #include "TitleCamera.h"
 #include "QuestTable.h"
 #include "SoundManager.h"
+#include "Sprite.h"
+#include "LightObject.h"
 
 void TitleScene::Update()
 {
@@ -22,7 +24,14 @@ void TitleScene::Load()
 	SelectCamera(L"TitleCamera");
 
 	UIPanel::Create(this, PATH->ResourcesPathW() + L"Assets/UI/Character_Lobby_D_KSU.tga", D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(WinMaxWidth, WinMaxHeight, 1), L"1");
+	//LightObject::Create(this, nullptr, PATH->DatasPathW() + L"LightData/DirectionalLight.json");
 
+	/*m_pLogo = Sprite::Create(this, L"Sprite",
+		PATH->AssetsPathW() + L"Logo/Bless", ELoopType::Infinity, 90, 10);
+	m_pLogo->PlayAnimation();
+
+	m_pLogo->m_pTransform->m_position = D3DXVECTOR3(0, 2.3f, -1);
+	m_pLogo->m_pTransform->m_scale = D3DXVECTOR3(15, 7, 1);*/
 	ScriptableData * data = ENGINE->GetScriptableData(L"QuestTable");
 	if (data == nullptr)
 	{

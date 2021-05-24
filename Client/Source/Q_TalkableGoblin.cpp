@@ -42,6 +42,7 @@ void Q_TalkableGoblin::Initialize()
 		EQuestImportance::Sub,
 		[&]() ->bool
 	{
+		return true;
 		GameScene *pScene = static_cast<GameScene*>(SCENE);
 		Quest * pQuest = pScene->GetQuestManager()->GetQuest(L"유물 수집");
 		if (pQuest->IsCompletelyFinished() == true)

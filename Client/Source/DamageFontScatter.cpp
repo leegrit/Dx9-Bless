@@ -209,6 +209,10 @@ void DamageFontScatter::PushDamageFunt(float damage, bool isPlayer, bool isCriti
 	{
 		desc.font = L"치명타 " + desc.font;
 	}
+	else
+	{
+
+	}
 
 	D3DXVECTOR3 min = center - D3DXVECTOR3(m_radius, m_radius, m_radius);
 	D3DXVECTOR3 max = center + D3DXVECTOR3(m_radius, m_radius, m_radius);
@@ -216,6 +220,38 @@ void DamageFontScatter::PushDamageFunt(float damage, bool isPlayer, bool isCriti
 		&min,
 		&max);
 	
+	desc.m_elapsed = 0;
+
+
+
+	m_damageFonts.push_back(desc);
+}
+
+void DamageFontScatter::PushDamageFontForPlayer(float damage, bool isCritical, bool isGaurd, D3DXVECTOR3 center)
+{
+	DamageFontDesc desc;
+
+	desc.font = std::to_wstring((int)damage);
+	desc.font = L"-" + desc.font;
+	desc.isPlayer = true;
+	desc.isCritical = isCritical;
+	//desc.isCritical = true;
+
+	if (desc.isCritical)
+	{
+		desc.font = L"치명타 " + desc.font;
+	}
+	else if(isGaurd)
+	{
+		desc.font = L"가드 " + desc.font;
+	}
+
+	D3DXVECTOR3 min = center - D3DXVECTOR3(m_radius, m_radius, m_radius);
+	D3DXVECTOR3 max = center + D3DXVECTOR3(m_radius, m_radius, m_radius);
+	DxHelper::GetRandomVector(&desc.position,
+		&min,
+		&max);
+
 	desc.m_elapsed = 0;
 
 

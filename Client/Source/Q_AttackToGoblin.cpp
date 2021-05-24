@@ -3,6 +3,9 @@
 #include "Client_Events.h"
 #include "GameScene.h"
 #include "QuestManager.h"
+#include "PathManager.h"
+#include "ItemInfo.h"
+#include "InventoryData.h"
 
 Q_AttackToGoblin::Q_AttackToGoblin()
 	: CombatQuest()
@@ -11,6 +14,57 @@ Q_AttackToGoblin::Q_AttackToGoblin()
 
 Q_AttackToGoblin::~Q_AttackToGoblin()
 {
+}
+
+void Q_AttackToGoblin::OnAccept()
+{
+	CombatQuest::OnAccept();
+
+	ItemInfo weapon;
+	weapon.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/Sword1.png";
+	weapon.itemName = L"강철 검";
+	weapon.itemType = EItemType::Weapon;
+	weapon.typeText = L"무기";
+	weapon.effectText = L"물리 공격력 30";
+	weapon.atk = 30;
+	weapon.salePrice = 1000;
+	weapon.wearableLevel = 1;
+	weapon.itemDescription = L"강철로된 검이다.";
+
+	ItemInfo upperInfo;
+	upperInfo.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/SteelUpper.png";
+	upperInfo.itemName = L"강철 갑옷";
+	upperInfo.itemType = EItemType::Upper;
+	upperInfo.typeText = L"상의";
+	upperInfo.effectText = L"물리 방어력 30";
+	upperInfo.physicalDef = 30;
+	upperInfo.salePrice = 1300;
+	upperInfo.wearableLevel = 1;
+	upperInfo.itemDescription = L"강철로된 갑옷이다.";
+
+	ItemInfo lower;
+	lower.imagePath = PATH->AssetsPathW() + L"UI/ItemIcon/SteelGlove.png";
+	lower.itemName = L"강철 글러브";
+	lower.itemType = EItemType::Glove;
+	lower.typeText = L"글러브";
+	lower.effectText = L"물리 방어력 25";
+	lower.physicalDef = 25;
+	lower.salePrice = 800;
+	lower.wearableLevel = 1;
+	lower.itemDescription = L"강철로된 글러브다.";
+
+	InventoryData* pInventoryData = static_cast<InventoryData*>(ENGINE->GetScriptableData(L"InventoryData"));
+	if (pInventoryData->IsFull())
+	{
+		EventDispatcher::TriggerEvent(GameEvent::InventoryFull);
+		return;
+	}
+	pInventoryData->PushItem(weapon);
+	EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&weapon);
+	pInventoryData->PushItem(upperInfo);
+	EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&upperInfo);
+	pInventoryData->PushItem(lower);
+	EventDispatcher::TriggerEvent(GameEvent::AddItemToInventory, (void*)&lower);
 }
 
 void Q_AttackToGoblin::Initialize()
@@ -50,7 +104,7 @@ void Q_AttackToGoblin::Initialize()
 	}, // 보상 없음 
 		L"Leoni",
 		L"Leoni",
-		10,
+		20,
 		L"Goblin"
 		);
 }

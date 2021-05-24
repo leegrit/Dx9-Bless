@@ -47,13 +47,15 @@ private :
 	int m_animIndexes[3] = { 22, 23, 1 };
 
 	/* For Attack Logic */
-	bool m_bSendDamage = false;
+	bool m_bSendDamage[3] = {false, false, false};
 	std::vector<GameObject*> m_hitEnemies;
 
+	
 private:
 	// 데미지 비율
 	float m_damageScale[3] = { 1.0f, 1.0f, 1.0f };
 	class PlayerStatusData * m_pPlayerStatusData = nullptr;
+	class PlayerEquipData * m_pPlayerEquipData = nullptr;
 	class PlayerBuffInfo * m_pPlayerBuffInfo = nullptr;
 
 	

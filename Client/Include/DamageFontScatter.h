@@ -43,7 +43,7 @@ public :
 public :
 	void Initialize();
 	void PushDamageFunt(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
-
+	void PushDamageFontForPlayer(float damage, bool isCritical, bool isGaurd, D3DXVECTOR3 center);
 
 
 	//////////////////////////////////////////////////////////////////////////

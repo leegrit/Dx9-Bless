@@ -83,6 +83,9 @@ void GainSkillNoticeUI::OnGainSkill(void * value)
 	case 0 :
 		message = L"가드";
 		break;
+	case 1 :
+		message = L"휘두르기";
+		break;
 	default:
 		assert(false);
 		break;

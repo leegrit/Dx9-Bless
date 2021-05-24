@@ -15,6 +15,8 @@ public :
 	virtual void LoadAsync(std::function<void(int, int)> onProgress) override;
 	virtual void RenderGUI() override;
 
+private :
+	class Sprite *m_pLogo = nullptr;
 
 };
 

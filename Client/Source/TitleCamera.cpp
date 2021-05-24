@@ -19,7 +19,7 @@ void TitleCamera::Initialize()
 void TitleCamera::Update()
 {
 	Camera::Update();
-	SetProjectionMatrix(D3DXToRadian(45.f), WinMaxWidth / WinMaxHeight, 1, 700);
+	SetProjectionMatrix(D3DXToRadian(60.f), WinMaxWidth / WinMaxHeight, 1, 700);
 
 	SetViewMatrix(D3DXVECTOR3(0, 0, -10), D3DXVECTOR3(0, 0, 0));
 }

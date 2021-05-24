@@ -101,6 +101,9 @@ void MeshEffectWrapPS(
 	float4 alphaMask = tex2D(AlphaMaskWrapSampler, texcoord2);
 
 	outColor = albedo * Alpha;
+
+	if (outColor.a == 0)
+		discard;
 }
 void MeshEffectWithAlphaMaskPS(
 	float2 texcoord : TEXCOORD0,
@@ -112,7 +115,11 @@ void MeshEffectWithAlphaMaskPS(
 	float4 albedo = tex2D(AlbedoSampler, texcoord2);
 	float4 alphaMask = tex2D(AlphaMaskSampler, texcoord2);
 	//float alphaMaskAlpha = saturate( alphaMask.r + alphaMask.g + alphaMask.b);
+	if (alphaMask.r == 0)
+		discard;
+	
 	outColor = albedo * alphaMask.r * Alpha;
+
 	// test
 	//outColor = albedo * Alpha;
 }
@@ -126,7 +133,13 @@ void MeshEffectWithAlphaMaskWrapPS(
 	float4 albedo = tex2D(AlbedoWrapSampler, texcoord2);
 	float4 alphaMask = tex2D(AlphaMaskWrapSampler, texcoord2);
 	//float alphaMaskAlpha = saturate( alphaMask.r + alphaMask.g + alphaMask.b);
+	
+	if (alphaMask.r == 0)
+		discard;
+
 	outColor = albedo * alphaMask.r * Alpha;
+
+
 	// test
 	//outColor = albedo * Alpha;
 }

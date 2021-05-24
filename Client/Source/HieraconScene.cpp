@@ -172,9 +172,9 @@ void HieraconScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// ENEMY
 	//////////////////////////////////////////////////////////////////////////
-	auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
-	auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
-	auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
+	//auto enemy1 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone0.json");
+	//auto enemy2 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone1.json");
+	//auto enemy3 = Skeletone::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Skeletone2.json");
 
 	//////////////////////////////////////////////////////////////////////////
 	// NONE PLAYER
@@ -259,6 +259,22 @@ void HieraconScene::Unload()
 void HieraconScene::LoadAsync(std::function<void(int, int)> onProgress)
 {
 	GameScene::LoadAsync(onProgress);
+
+	ID3DXBuffer * adjBuffer = nullptr;
+	ID3DXBuffer* mtrlBuffer = nullptr;
+	DWORD numMtrls = 0;
+	ID3DXMesh *pMesh;
+	D3DXLoadMeshFromX
+	(
+		(PATH->AssetsPathW() + L"Mesh/Map/Hieracon6.X").c_str(),
+		D3DXMESH_MANAGED,
+		DEVICE,
+		&adjBuffer,
+		&mtrlBuffer,
+		0,
+		&numMtrls,
+		&pMesh
+	);
 }
 
 void HieraconScene::RenderGUI()

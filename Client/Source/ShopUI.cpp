@@ -283,7 +283,7 @@ void ShopUI::Update()
 				break;
 			ENGINE->DrawText(m_items[i].itemName.c_str(), D3DXVECTOR3(160, 228 + i * m_slotOffset, 0), D3DXVECTOR3(1,1, 1), D3DXCOLOR(1, 1, 1, 1));
 			ENGINE->DrawText(m_items[i].typeText.c_str() , D3DXVECTOR3(160, 252 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(std::to_wstring( m_items[i].salePrice).c_str(), D3DXVECTOR3(307, 250 + i * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(std::to_wstring( m_items[i].salePrice).c_str(), D3DXVECTOR3(307, 252 + i * m_slotOffset, 0), D3DXVECTOR3(0.9f, 0.9f, 0.9f), D3DXCOLOR(1, 1, 1, 1));
 		}
 
 		/* Slot Right */
@@ -293,7 +293,7 @@ void ShopUI::Update()
 				break;
 			ENGINE->DrawText(m_items[i].itemName.c_str(), D3DXVECTOR3(452, 228 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
 			ENGINE->DrawText(m_items[i].typeText.c_str(), D3DXVECTOR3(452, 252 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
-			ENGINE->DrawText(std::to_wstring(m_items[i].salePrice).c_str(), D3DXVECTOR3(607, 250 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(1, 1, 1), D3DXCOLOR(1, 1, 1, 1));
+			ENGINE->DrawText(std::to_wstring(m_items[i].salePrice).c_str(), D3DXVECTOR3(607, 252 + (i - 4) * m_slotOffset, 0), D3DXVECTOR3(0.9f, 0.9f, 0.9f), D3DXCOLOR(1, 1, 1, 1));
 		}
 
 	}

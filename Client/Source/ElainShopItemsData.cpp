@@ -68,7 +68,7 @@ ElainShopItemsData::ElainShopItemsData()
 	powerUpPotion.itemType = EItemType::Item;
 	powerUpPotion.buffType = EItemBuffType::PowerUp;
 	powerUpPotion.typeText = L"포션";
-	powerUpPotion.itemValue = 10;
+	powerUpPotion.itemValue = 20;
 	powerUpPotion.effectText = L"마시면 힘이 강해진다.";
 	powerUpPotion.itemDescription = L"마시면 힘이 강해진다.";
 	powerUpPotion.salePrice = 100;

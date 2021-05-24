@@ -258,8 +258,8 @@ void ArbaJungleScene::Load()
 	//////////////////////////////////////////////////////////////////////////
 	// CINEMATIC
 	//////////////////////////////////////////////////////////////////////////
-	//HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
-	//GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
+	HGoblinCinematicTrack * pHGoblinCineTrack = new HGoblinCinematicTrack(named);
+	GetCinematicManager()->AddCinematic(L"HGoblinCinematic", pHGoblinCineTrack);
 
 	auto goblin01_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin01.json");
 	auto goblin02_Cin = Goblin::Create(this, navMesh, PATH->DatasPathW() + L"HierarchyData/Goblin_Cin02.json");
@@ -327,6 +327,23 @@ void ArbaJungleScene::Unload()
 void ArbaJungleScene::LoadAsync(std::function<void(int, int)> onProgress)
 {
 	GameScene::LoadAsync(onProgress);
+
+
+	ID3DXBuffer * adjBuffer = nullptr;
+	ID3DXBuffer* mtrlBuffer = nullptr;
+	DWORD numMtrls = 0;
+	ID3DXMesh *pMesh;
+	D3DXLoadMeshFromX
+	(
+		(PATH->AssetsPathW() + L"Mesh/Map/Hieracon6.X").c_str(),
+		D3DXMESH_MANAGED,
+		DEVICE,
+		&adjBuffer,
+		&mtrlBuffer,
+		0,
+		&numMtrls,
+		&pMesh
+	);
 
 }
 

@@ -86,7 +86,7 @@ protected :
 	// PUBLIC METHOD
 	//////////////////////////////////////////////////////////////////////////
 public :
-	void SendDamage(GameObject* sender, float damage, bool isCritical = false);
+	virtual void SendDamage(GameObject* sender, float damage, bool isCritical = false);
 	bool UseMP(float value);
 	virtual void Reset();
 	float GetResurrectionDelay();

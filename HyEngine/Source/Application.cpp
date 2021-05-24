@@ -84,7 +84,12 @@ void Application::Run()
 
 				// accumulate the elapsed time since the last frame
 				accumulatedTime += TIMER->getUnscaleDeltaTime();
-				ENGINE->SimulateFrame();
+				if (accumulatedTime >= m_dt)
+				{
+					ENGINE->SimulateFrame();
+					ENGINE->RenderFrame();
+				}
+			
 				//if (accumulatedTime >= m_dt)
 				//{
 				//	accumulatedTime -= m_dt;
@@ -93,7 +98,7 @@ void Application::Run()
 
 				//	//ENGINE->RenderFrame();
 				//}
-				ENGINE->RenderFrame();
+				
 	// 			nLoops = 0;
 	// 			while (accumulatedTime >= m_dt && nLoops < m_maxSkipFrames)
 	// 			{

@@ -537,6 +537,12 @@
     <ClCompile Include="..\Source\Q_CollectGoblinHide.cpp">
       <Filter>Scripts\Quest\ArbaJungle</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\TitleScreen.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\StateFontScatter.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entry">
@@ -1210,6 +1216,12 @@
     </ClInclude>
     <ClInclude Include="..\Include\Q_CollectGoblinHide.h">
       <Filter>Scripts\Quest\ArbaJungle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\TitleScreen.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\StateFontScatter.h">
+      <Filter>Font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

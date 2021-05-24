@@ -16,7 +16,7 @@ float Q_PrepareForMission::GetCurProgress()
 {
 	PlayerInfo* pInfo = static_cast<PlayerInfo*>(ENGINE->GetScriptableData(L"PlayerInfo"));
 
-	return pInfo->level / 3;
+	return -1;
 }
 
 bool Q_PrepareForMission::IsFinish()

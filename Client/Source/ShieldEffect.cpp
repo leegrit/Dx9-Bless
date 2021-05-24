@@ -33,6 +33,7 @@ void ShieldEffect::Render()
 	m_pEffect->SetValue("WorldPosition", &worldPos, sizeof(worldPos));
 	m_pEffect->SetValue("EyePosition", &cameraPos, sizeof(cameraPos));
 	m_pEffect->SetFloat("RimWidth", rimWidth);
+	m_pEffect->SetValue("RimColor", &m_rimColor, sizeof(m_rimColor));
 
 	m_pEffect->SetTechnique("ShieldEffect");
 	m_pEffect->Begin(0, 0);
@@ -50,6 +51,11 @@ void ShieldEffect::Initialize()
 	ENGINE->TryGetShader(L"ShieldEffect", &m_pEffect);
 	SetNormalMapTexture(PATH->AssetsPathW() + L"Effect/SingleTexture/FX_SLD_Normal_001_TEX_CJH.tga");
 	assert(m_pEffect);
+}
+
+void ShieldEffect::SetRimColor(D3DXCOLOR color)
+{
+	m_rimColor = color;
 }
 
 ShieldEffect * ShieldEffect::Create(Scene * pScene)

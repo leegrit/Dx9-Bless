@@ -60,6 +60,11 @@ void CombatQuest::LinkObject()
 	SCENE->GetObjectContainer()->TryGetDynamicMeshObjects(m_enemyName, &m_targets);
 }
 
+void CombatQuest::OnAccept()
+{
+	Quest::OnAccept();
+}
+
 void CombatQuest::OnKillEnemy(void * arg)
 {
 	GameObject * obj = static_cast<GameObject*>(arg);

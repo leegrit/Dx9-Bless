@@ -14,11 +14,14 @@
 #include "PlayerBuffInfo.h"
 #include "Enemy.h"
 #include "PlayerSkillInfo.h"
+#include "PlayerEquipData.h"
+
 
 PlayerSkillSwing::PlayerSkillSwing(GameObject * pPlayer, PlayerController * pPlayerController)
 	: PlayerAction(BehaviourType::Update, pPlayer, pPlayerController, L"PlayerSkillSwing")
 {
 	SetParams(0.2f, 1, 3.0f, 10, 10, false, D3DXVECTOR3(0, 10, 20));
+	SetManaDemand(40);
 }
 
 PlayerSkillSwing::~PlayerSkillSwing()
@@ -31,6 +34,7 @@ void PlayerSkillSwing::Initialize()
 
 	m_pPlayerStatusData = static_cast<PlayerStatusData*>(ENGINE->GetScriptableData(L"PlayerStatusData"));
 	m_pPlayerBuffInfo = static_cast<PlayerBuffInfo*>(ENGINE->GetScriptableData(L"PlayerBuffInfo"));
+	m_pPlayerEquipData = static_cast<PlayerEquipData*>(ENGINE->GetScriptableData(L"PlayerEquipData"));
 
 	assert(m_pPlayerStatusData);
 
@@ -526,11 +530,9 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 		}
 		if (elapsed >= 0.7f && m_bSendDamage == false)
 		{
+			m_bSendDamage = true;
 			Player * pPlayer = static_cast<Player*>(PLAYER);
-			auto weapon = pPlayer->GetWeapon();
-			weapon->SetRimWidth(0.0f);
-			PLAYER->SetRimWidth(0.0);
-			pPlayer->SetAnimationSpeed(1.0f);
+			//pPlayer->SetAnimationSpeed(0.3f);
 
 			SoundDesc desc;
 			desc.channelMode = FMOD_LOOP_OFF;
@@ -546,17 +548,11 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 			for (auto& obj : m_hitEnemies)
 			{
 				GameScene* pScene = static_cast<GameScene*>(SCENE);
-				if (pScene->GetBattleManager()->GetFocusedObject() == nullptr)
-					return;
-				if (obj->GetInstanceID() != pScene->GetBattleManager()->GetFocusedObject()->GetInstanceID())
-				{
-					continue;
-				}
 
 
 				Enemy* enemy = dynamic_cast<Enemy*>(obj);
 
-				float damage = m_damageScale[0] * m_pPlayerStatusData->power;
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
 				float minDamage = damage * 0.5f;
 				float maxDamage = damage * 1.5f;
 				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
@@ -580,7 +576,156 @@ void PlayerSkillSwing::OnActionTimeElapsed(int seqIndex, float elapsed)
 					CAMERA->Shake(0.1f, 0.1f, 1.0f);
 				}
 			}
-			m_bSendDamage = true;
+		}
+		if (elapsed >= 0.8f && m_bFinalSendDamage[0] == false)
+		{
+			m_bFinalSendDamage[0] = true;
+
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
+		}
+		if (elapsed >= 0.9f && m_bFinalSendDamage[1] == false)
+		{
+			m_bFinalSendDamage[1] = true;
+
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
+		}
+		if (elapsed >= 1.0f && m_bFinalSendDamage[2] == false)
+		{
+			m_bFinalSendDamage[2] = true;
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			for (auto& obj : m_hitEnemies)
+			{
+
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
+		}
+		if (elapsed >= 1.1f && m_bFinalSendDamage[3] == false)
+		{
+			m_bFinalSendDamage[3] = true;
+			Player * pPlayer = static_cast<Player*>(PLAYER);
+			auto weapon = pPlayer->GetWeapon();
+			weapon->SetRimWidth(0.0f);
+			PLAYER->SetRimWidth(0.0);
+			pPlayer->SetAnimationSpeed(1.0f);
+			GameScene* pScene = static_cast<GameScene*>(SCENE);
+			for (auto& obj : m_hitEnemies)
+			{
+				GameScene* pScene = static_cast<GameScene*>(SCENE);
+
+
+				Enemy* enemy = dynamic_cast<Enemy*>(obj);
+
+				float damage = m_damageScale[0] * (m_pPlayerStatusData->power + m_pPlayerEquipData->GetPower() + m_pPlayerBuffInfo->GetBuffAtk());
+				float minDamage = damage * 0.5f;
+				float maxDamage = damage * 1.5f;
+				damage = DxHelper::GetRandomFloat(minDamage, maxDamage);
+				float critical = DxHelper::GetRandomFloat(0, 1);
+				bool isCritical = false;
+				if (critical < m_pPlayerStatusData->critical)
+				{
+					isCritical = true;
+					damage *= 2.0f;
+				}
+
+				enemy->SendDamage(GetGameObject(), damage, isCritical);
+				enemy->PlayHitAnimation(EEnemyHitType::SwordLeft);
+
+				if (isCritical)
+				{
+					CAMERA->Shake(0.3f, 0.3f, 1.0f);
+				}
+				else
+				{
+					CAMERA->Shake(0.1f, 0.1f, 1.0f);
+				}
+			}
 		}
 		//if (elapsed >= 1.6f && m_bFinalSendDamage[0] == false && m_pPlayerBuffInfo->bBuff)
 		//{

@@ -11,7 +11,7 @@ void GoblinDied::Enter()
 
 void GoblinDied::Update()
 {
-	m_elapsed += TIMER->getDeltaTime() * 0.5f;
+	m_elapsed += TIMER->getDeltaTime() * 0.2f;
 	m_component->SetDissolveAmount(m_elapsed);
 }
 

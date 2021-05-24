@@ -16,7 +16,7 @@ Q_NewSkill::~Q_NewSkill()
 
 float Q_NewSkill::GetCurProgress()
 {
-	return 1;
+	return -1;
 }
 
 bool Q_NewSkill::IsFinish()
@@ -38,7 +38,7 @@ void Q_NewSkill::OnAccept()
 	item.itemType = EItemType::SkillBook;
 	item.typeText = L"스킬북";
 	item.itemValue = 0; // skill index
-	item.effectText = L"읽으면 가드 스킬을 획득할 수 있습니다.";
+	item.effectText = L"읽으면 가드 스킬을 \n획득할 수 있습니다.";
 	item.itemDescription = L"읽으면 가드 스킬을 획득할 수 있습니다.";
 	item.salePrice = 500;
 	

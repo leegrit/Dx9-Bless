@@ -87,6 +87,9 @@ public : /* For Interact */
 
 
 	void PushDamageFont(float damage, bool isPlayer, bool isCritical, D3DXVECTOR3 center);
+	void PushDamageFontForPlayer(float damage, bool isCritical, bool isGaurd, D3DXVECTOR3 center);
+
+	void PushStateFont(std::wstring font, D3DXVECTOR3 center);
 
 public : /* For Mouse */
 	void ShowMouseCursor();
@@ -130,6 +133,7 @@ private : /* Interacive UI */
 	class CollectProgressBar * m_pCollectProgressBar = nullptr;
 
 	class DamageFontScatter * m_pDamageFontScatter = nullptr;
+	class StateFontScatter * m_pStateFontScatter = nullptr;
 
 	class SummonProgressBar * m_pSummonProgressBar = nullptr;
 

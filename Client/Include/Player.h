@@ -33,6 +33,7 @@ public :
 	virtual void OnMPChanged();
 	virtual void Update() override;
 	virtual void Render() override;
+	virtual void SendDamage(GameObject* sender, float damage, bool isCritical /* = false */) override;
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -94,5 +95,7 @@ public :
 	ProgressBar* m_pHPBarUI = nullptr;
 	ProgressBar* m_pMPBarUI = nullptr;
 	ProgressBar* m_pExpBarUI = nullptr;
+
+	bool m_bGaurded = false;
 };
 

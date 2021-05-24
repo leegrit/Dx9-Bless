@@ -107,14 +107,30 @@ void Player::OnCollision(Collider * other)
 void Player::OnDamaged(GameObject * pSender, float damage, bool isCritical)
 {
 	GameScene* scene = static_cast<GameScene*>(SCENE);
-	scene->GetUIManager()->PushDamageFont(damage, true, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
+	if (m_bGaurded)
+	{
+		m_bGaurded = false;
+		scene->GetUIManager()->PushDamageFontForPlayer(damage,  isCritical, true, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		desc.volume = 1;
+		SOUND->PlaySound("PlayerGaurd", L"Action_Guard_Success.wav", desc);
+	}
+	else
+	{
+		scene->GetUIManager()->PushDamageFont(damage, true, isCritical, m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		desc.volume = 1;
+		SOUND->PlaySound("PlayerHit", L"Hit_Player_Blood.wav", desc);
+	}
 	CAMERA->Shake(0.2f, 0.2f, 1.0f);
 
-	SoundDesc desc;
-	desc.channelMode = FMOD_LOOP_OFF;
-	desc.volumeType = EVolumeTYPE::AbsoluteVolume;
-	desc.volume = 1;
-	SOUND->PlaySound("PlayerHit", L"Hit_Player_Blood.wav", desc);
 
 
 }
@@ -172,6 +188,37 @@ void Player::Render()
 	if (m_pPlayerController->GetFormState() == PlayerController::EFormStat::UnWeapon)
 		return;
 	Pawn::Render();
+}
+
+void Player::SendDamage(GameObject * sender, float damage, bool isCritical)
+{
+	GameScene* scene = static_cast<GameScene*>(SCENE);
+
+	if (m_pPlayerController->GetState() == EPlayerState::Shield)
+	{
+		scene->GetUIManager()->PushStateFont(L"무효", m_pTransform->CalcOffset(D3DXVECTOR3(0, 10, 0)));
+		
+		SoundDesc desc;
+		desc.channelMode = FMOD_LOOP_OFF;
+		desc.volumeType = EVolumeTYPE::AbsoluteVolume;
+		desc.volume = 1;
+		SOUND->PlaySound("PlayerShield", L"Attacked_3.mp3", desc);
+		CAMERA->Shake(0.2f, 0.2f, 1.0f);
+		return;
+	}
+	m_bGaurded = false;
+
+	float damageResult = damage;
+
+	float temp = DxHelper::ReliableRandom(0, 1);
+	if (temp <= 0.3f)
+	{
+		// 가드
+		m_bGaurded = true;
+		damageResult = damage * 0.3f;
+	}
+
+	Character::SendDamage(sender, damageResult, isCritical);
 }
 
 void Player::OnExpChanged( void*) 
